@@ -17,10 +17,16 @@
     <loc>https://twcch.github.io/tags/markdown/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://twcch.github.io/posts-template/markdown-syntax/</loc>
+    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://twcch.github.io/posts/markdown-syntax/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://twcch.github.io/posts/</loc>
+    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://twcch.github.io/posts-template/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://twcch.github.io/series/</loc>
@@ -44,28 +50,28 @@
     <loc>https://twcch.github.io/tags/privacy/</loc>
     <lastmod>2019-03-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/posts/rich-content/</loc>
+    <loc>https://twcch.github.io/posts-template/rich-content/</loc>
     <lastmod>2019-03-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://twcch.github.io/tags/shortcodes/</loc>
     <lastmod>2019-03-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/posts/more-rich-content/</loc>
+    <loc>https://twcch.github.io/posts-template/more-rich-content/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/posts/placeholder-text/</loc>
+    <loc>https://twcch.github.io/posts-template/placeholder-text/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://twcch.github.io/tags/text/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/posts/math-typesetting/</loc>
+    <loc>https://twcch.github.io/posts-template/math-typesetting/</loc>
     <lastmod>2019-03-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://twcch.github.io/tags/emoji/</loc>
     <lastmod>2019-03-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/posts/emoji-support/</loc>
+    <loc>https://twcch.github.io/posts-template/emoji-support/</loc>
     <lastmod>2019-03-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://twcch.github.io/tags/development/</loc>
@@ -74,7 +80,7 @@
     <loc>https://twcch.github.io/categories/development/</loc>
     <lastmod>2019-03-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/posts/hugo-coder-wiki/</loc>
+    <loc>https://twcch.github.io/posts-template/hugo-coder-wiki/</loc>
     <lastmod>2019-03-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://twcch.github.io/tags/hugo/</loc>

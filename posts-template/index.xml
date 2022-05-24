@@ -1,37 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>志謙&#39;s Blog</title>
-    <link>https://twcch.github.io/</link>
-    <description>Recent content on 志謙&#39;s Blog</description>
+    <title>Posts-templates on 志謙&#39;s Blog</title>
+    <link>https://twcch.github.io/posts-template/</link>
+    <description>Recent content in Posts-templates on 志謙&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://twcch.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>About</title>
-      <link>https://twcch.github.io/about/</link>
-      <pubDate>Mon, 23 May 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://twcch.github.io/about/</guid>
-      <description>我是謝志謙，擁有2年壽險公司的Business Analysis經驗。擅長需求分析/溝通協作/專案管理，邏輯清晰且善於溝通協作。我認為要能保持競爭力，就必須持續學習，培養跨領域的才能，才能應變未來的趨勢。
-工作經歷:     2022年3月至2022年4月 - 任職於「南山人壽保險股份有限公司 Nan Shan Life Insurance Co., Ltd.」 2022年4月至今日 - 任職於「富邦人壽保險股份有限公司 Fubon Life Insurance Co., Ltd.」  技能/擅長工具:     Java Excel Visual Basic for Applications (VBA) Microsoft Office (Excel/Word/PowerPoint)  專長:     保險領域知識 溝通協作 專案管理 需求分析 使用者測試(User acceptance testing; UAT) 新進人員訓練及教育訓練文案撰寫  學歷:     2018年9月至2020年6月 - (碩士)國立臺中科技大學保險金融管理系研究所 2016年9月至2018年6月 - (學士)國立臺中科技大學保險金融管理系  專業證照:     初級壽險管理師(CERT; FLMI Level 1) 保險理賠人員 人身保險業務員 財產保險業務員資格 金融市場常識與職業道德  </description>
-    </item>
-    
+    <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://twcch.github.io/posts-template/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Markdown Syntax Guide</title>
       <link>https://twcch.github.io/posts-template/markdown-syntax/</link>
       <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>https://twcch.github.io/posts-template/markdown-syntax/</guid>
-      <description>&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Markdown Syntax Guide</title>
-      <link>https://twcch.github.io/posts/markdown-syntax/</link>
-      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://twcch.github.io/posts/markdown-syntax/</guid>
       <description>&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;</description>
     </item>
     
@@ -87,25 +68,6 @@
       
       <guid>https://twcch.github.io/posts-template/hugo-coder-wiki/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Contact</title>
-      <link>https://twcch.github.io/contact/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://twcch.github.io/contact/</guid>
-      <description>如果想要聯繫我，可以透過以下方式:
- LinkedIn twcch1218@gmail.com  </description>
-    </item>
-    
-    <item>
-      <title>Projects</title>
-      <link>https://twcch.github.io/projects/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://twcch.github.io/projects/</guid>
-      <description>Nothing to see here&amp;hellip; Move along!</description>
     </item>
     
   </channel>
