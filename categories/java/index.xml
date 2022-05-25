@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on 志謙&#39;s Blog</title>
+    <link>https://twcch.github.io/categories/java/</link>
+    <description>Recent content in Java on 志謙&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Wed, 25 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://twcch.github.io/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Note</title>
+      <link>https://twcch.github.io/posts/java-note/</link>
+      <pubDate>Wed, 25 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://twcch.github.io/posts/java-note/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
