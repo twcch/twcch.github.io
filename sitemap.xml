@@ -2,107 +2,99 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://twcch.github.io/about/</loc>
-    <lastmod>2023-06-06T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/gallery/</loc>
+    <lastmod>2023-06-09T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/authors/</loc>
-    <lastmod>2023-01-05T01:15:29+01:00</lastmod>
+    <loc>http://twcch.github.io/</loc>
+    <lastmod>2023-06-09T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/authors/hugo-authors/</loc>
-    <lastmod>2023-01-05T01:15:29+01:00</lastmod>
+    <loc>http://twcch.github.io/gallery/memories/</loc>
+    <lastmod>2023-06-09T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/</loc>
-    <lastmod>2023-01-05T01:15:29+01:00</lastmod>
+    <loc>http://twcch.github.io/posts/</loc>
+    <lastmod>2023-05-24T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/categories/</loc>
-    <lastmod>2023-01-04T23:21:18+01:00</lastmod>
+    <loc>http://twcch.github.io/posts/creating-a-calming-atmosphere-in-your-home-workspace/</loc>
+    <lastmod>2023-05-24T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/categoria/temas/</loc>
-    <lastmod>2023-01-04T23:21:18+01:00</lastmod>
+    <loc>http://twcch.github.io/tags/</loc>
+    <lastmod>2023-05-24T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/categoria/sintaxe/</loc>
-    <lastmod>2023-01-04T23:21:06+01:00</lastmod>
+    <loc>http://twcch.github.io/tags/work/</loc>
+    <lastmod>2023-05-24T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/tags/shortcodes/</loc>
-    <lastmod>2023-01-04T11:51:36+01:00</lastmod>
+    <loc>http://twcch.github.io/posts/enhancing-mobile-development-with-wireframes-and-mockups/</loc>
+    <lastmod>2023-05-21T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/tags/</loc>
-    <lastmod>2023-01-04T11:51:36+01:00</lastmod>
+    <loc>http://twcch.github.io/posts/the-blueprint-for-seamless-mobile-app-design/</loc>
+    <lastmod>2023-05-17T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/series/hugo/</loc>
-    <lastmod>2022-07-25T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/posts/the-power-of-prototyping-in-mobile-design-and-development/</loc>
+    <lastmod>2023-05-15T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/posts/mermaid-support/</loc>
-    <lastmod>2022-07-25T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/projects/</loc>
+    <lastmod>2023-01-10T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/posts/</loc>
-    <lastmod>2022-07-25T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/projects/the-foundation-of-mobile-development/</loc>
+    <lastmod>2023-01-10T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/series/</loc>
-    <lastmod>2022-07-25T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/projects/unleashing-the-power-of-wireframes/</loc>
+    <lastmod>2023-01-09T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/series/theme/</loc>
-    <lastmod>2022-07-25T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/projects/exploring-wireframes-and-mockups/</loc>
+    <lastmod>2023-01-08T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/tags/css/</loc>
-    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/projects/a-guide-for-mobile-app-design/</loc>
+    <lastmod>2023-01-07T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/tags/html/</loc>
-    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/projects/unlocking-innovation-in-digital-design/</loc>
+    <lastmod>2023-01-06T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/posts/html-and-css-only-tabs/</loc>
-    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/projects/enhancing-eser-centered-experiences/</loc>
+    <lastmod>2023-01-05T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/tags/markdown/</loc>
-    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/gallery/california/</loc>
+    <lastmod>2022-07-08T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/series/themes-guide/</loc>
-    <lastmod>2022-05-15T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/gallery/hawaii/</loc>
+    <lastmod>2022-05-08T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/posts/markdown-syntax/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/videos/</loc>
+    <lastmod>2022-01-07T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/tags/privacy/</loc>
-    <lastmod>2019-03-10T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/videos/creating-engaging-videos-for-your-youtube-channel/</loc>
+    <lastmod>2022-01-07T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/posts/rich-content/</loc>
-    <lastmod>2019-03-10T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/tags/video/</loc>
+    <lastmod>2022-01-07T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/posts/more-rich-content/</loc>
-    <lastmod>2019-03-09T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/videos/crafting-compelling-content-that-captivates/</loc>
+    <lastmod>2022-01-05T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/posts/placeholder-text/</loc>
-    <lastmod>2019-03-09T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/videos/building-a-thriving-channel-from-scratch/</loc>
+    <lastmod>2022-01-04T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/tags/text/</loc>
-    <lastmod>2019-03-09T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/videos/boosting-traffic-and-engaging-your-audience/</loc>
+    <lastmod>2022-01-02T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/posts/math-typesetting/</loc>
-    <lastmod>2019-03-08T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/posts/organizing-your-workflow-and-home-environment/</loc>
+    <lastmod>2021-11-09T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/tags/emoji/</loc>
-    <lastmod>2019-03-05T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/tags/workflow/</loc>
+    <lastmod>2021-11-09T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/posts/emoji-support/</loc>
-    <lastmod>2019-03-05T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/posts/infusing-your-workspace-with-personality-and-motivation/</loc>
+    <lastmod>2021-11-08T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/tags/development/</loc>
-    <lastmod>2019-03-04T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/gallery/bike-trip/</loc>
+    <lastmod>2021-08-12T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>https://twcch.github.io/categories/development/</loc>
-    <lastmod>2019-03-04T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/about/</loc>
   </url><url>
-    <loc>https://twcch.github.io/posts/hugo-coder-wiki/</loc>
-    <lastmod>2019-03-04T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/elements/</loc>
   </url><url>
-    <loc>https://twcch.github.io/tags/hugo/</loc>
-    <lastmod>2019-03-04T00:00:00+00:00</lastmod>
+    <loc>http://twcch.github.io/contact/</loc>
   </url><url>
-    <loc>https://twcch.github.io/tags/themes/</loc>
-    <lastmod>2019-03-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://twcch.github.io/contact/</loc>
-  </url><url>
-    <loc>https://twcch.github.io/projects/</loc>
+    <loc>http://twcch.github.io/categories/</loc>
   </url>
 </urlset>
