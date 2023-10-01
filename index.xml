@@ -18,46 +18,6 @@ Photo by Jamie Street on Unsplash</description>
     </item>
     
     <item>
-      <title>Creating a Calming Atmosphere in Your Home Workspace</title>
-      <link>https://twcch.github.io/posts/creating-a-calming-atmosphere-in-your-home-workspace/</link>
-      <pubDate>Wed, 24 May 2023 15:01:35 +0300</pubDate>
-      
-      <guid>https://twcch.github.io/posts/creating-a-calming-atmosphere-in-your-home-workspace/</guid>
-      <description>When designing your home setup, consider factors such as lighting, ergonomics, and organization. Ensure that your workspace is well-lit with natural or artificial light, as it can significantly impact your mood and energy levels. Invest in an ergonomic chair and adjustable desk to maintain good posture and reduce the risk of strain or discomfort.
-Creating a Productive Routine The efficiency and productivity of your workflow greatly depend on the setup of your home office.</description>
-    </item>
-    
-    <item>
-      <title>Enhancing Mobile Development with Wireframes and Mockups</title>
-      <link>https://twcch.github.io/posts/enhancing-mobile-development-with-wireframes-and-mockups/</link>
-      <pubDate>Sun, 21 May 2023 15:01:35 +0300</pubDate>
-      
-      <guid>https://twcch.github.io/posts/enhancing-mobile-development-with-wireframes-and-mockups/</guid>
-      <description>Mobile development is a multidisciplinary endeavor that requires seamless collaboration between designers, developers, and other stakeholders. Mockups act as a shared vision board, facilitating discussions and aligning everyone&amp;rsquo;s expectations.
-Loop Through Elements in Array // Create an Array with three elements var myArray = [&amp;#34;Swift&amp;#34;, &amp;#34;Objective-C&amp;#34;, &amp;#34;PHP&amp;#34;] // Loop through Array elements for arrayElement in myArray { print(arrayElement) } Mockups are instrumental in the user-centered design process for mobile apps. They enable designers to test and refine their ideas, ensuring that the visual aesthetics and user interactions align with the app&amp;rsquo;s goals.</description>
-    </item>
-    
-    <item>
-      <title>The Blueprint for Seamless Mobile App Design</title>
-      <link>https://twcch.github.io/posts/the-blueprint-for-seamless-mobile-app-design/</link>
-      <pubDate>Wed, 17 May 2023 15:01:35 +0300</pubDate>
-      
-      <guid>https://twcch.github.io/posts/the-blueprint-for-seamless-mobile-app-design/</guid>
-      <description>Mobile development is a multidisciplinary endeavor that requires seamless collaboration between designers, developers, and other stakeholders. Mockups act as a shared vision board, facilitating discussions and aligning everyone&amp;rsquo;s expectations.
-Mockups are instrumental in the user-centered design process for mobile apps. They enable designers to test and refine their ideas, ensuring that the visual aesthetics and user interactions align with the app&amp;rsquo;s goals. By presenting a tangible representation of the app&amp;rsquo;s look and feel, mockups facilitate user feedback and allow for iterative improvements, resulting in a polished and engaging mobile experience.</description>
-    </item>
-    
-    <item>
-      <title>The Power of Prototyping in Mobile Design and Development</title>
-      <link>https://twcch.github.io/posts/the-power-of-prototyping-in-mobile-design-and-development/</link>
-      <pubDate>Mon, 15 May 2023 15:01:35 +0300</pubDate>
-      
-      <guid>https://twcch.github.io/posts/the-power-of-prototyping-in-mobile-design-and-development/</guid>
-      <description>Mobile development is a multidisciplinary endeavor that requires seamless collaboration between designers, developers, and other stakeholders. Mockups act as a shared vision board, facilitating discussions and aligning everyone&amp;rsquo;s expectations.
-Loop Through Elements in Array // Create an Array with three elements var myArray = [&amp;#34;Swift&amp;#34;, &amp;#34;Objective-C&amp;#34;, &amp;#34;PHP&amp;#34;] // Loop through Array elements for arrayElement in myArray { print(arrayElement) } Mockups are instrumental in the user-centered design process for mobile apps. They enable designers to test and refine their ideas, ensuring that the visual aesthetics and user interactions align with the app&amp;rsquo;s goals.</description>
-    </item>
-    
-    <item>
       <title>The Foundation of Mobile Development</title>
       <link>https://twcch.github.io/projects/the-foundation-of-mobile-development/</link>
       <pubDate>Tue, 10 Jan 2023 08:01:35 +0300</pubDate>
@@ -176,26 +136,6 @@ Building a loyal and engaged audience on YouTube requires consistent effort and 
     </item>
     
     <item>
-      <title>Organizing Your Workflow and Home Environment</title>
-      <link>https://twcch.github.io/posts/organizing-your-workflow-and-home-environment/</link>
-      <pubDate>Tue, 09 Nov 2021 15:01:35 +0300</pubDate>
-      
-      <guid>https://twcch.github.io/posts/organizing-your-workflow-and-home-environment/</guid>
-      <description>When designing your home setup, consider factors such as lighting, ergonomics, and organization. Ensure that your workspace is well-lit with natural or artificial light, as it can significantly impact your mood and energy levels. Invest in an ergonomic chair and adjustable desk to maintain good posture and reduce the risk of strain or discomfort.
-Creating a Productive Routine The efficiency and productivity of your workflow greatly depend on the setup of your home office.</description>
-    </item>
-    
-    <item>
-      <title>Infusing Your Workspace with Personality and Motivation</title>
-      <link>https://twcch.github.io/posts/infusing-your-workspace-with-personality-and-motivation/</link>
-      <pubDate>Mon, 08 Nov 2021 15:01:35 +0300</pubDate>
-      
-      <guid>https://twcch.github.io/posts/infusing-your-workspace-with-personality-and-motivation/</guid>
-      <description>When designing your home setup, consider factors such as lighting, ergonomics, and organization. Ensure that your workspace is well-lit with natural or artificial light, as it can significantly impact your mood and energy levels. Invest in an ergonomic chair and adjustable desk to maintain good posture and reduce the risk of strain or discomfort.
-Creating a Productive Routine The efficiency and productivity of your workflow greatly depend on the setup of your home office.</description>
-    </item>
-    
-    <item>
       <title>Bike Trip</title>
       <link>https://twcch.github.io/gallery/bike-trip/</link>
       <pubDate>Thu, 12 Aug 2021 15:01:35 +0300</pubDate>
@@ -230,8 +170,7 @@ Headings by default: H1 Default styles for headings H2 Default styles for headin
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://twcch.github.io/about/</guid>
-      <description>Dave believes that great design goes beyond aesthetics – it should tell a story, evoke emotions, and drive meaningful user interactions.
-Browse through Dave&amp;rsquo;s portfolio to see his impressive body of work. From sleek corporate websites to vibrant e-commerce platforms and immersive landing pages, each project showcases Dave&amp;rsquo;s ability to translate ideas into impactful visual experiences. Get inspired by his use of color palettes, typography, and innovative design elements that push the boundaries of creativity.</description>
+      <description>很懶 &amp;hellip; 籌備中</description>
     </item>
     
   </channel>
