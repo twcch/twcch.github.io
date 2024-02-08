@@ -7,21 +7,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>✍️ Writing | 志謙&#39;s Blog</title>
+  <title>Java中的Comparable與Comparator比較器的教學 | 志謙&#39;s Blog</title>
   <meta name="description" content="">
 
-  <link rel="alternate" type="application/rss+xml" href="https://twcch.github.io/posts/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="✍️ Writing | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="Alan&#39;s blog, provides java teaching.">
+  <meta name="twitter:title" content="Java中的Comparable與Comparator比較器的教學 | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="在Java中，比較器（Comparator）是一個常用的工具，用於對對象進行比較和排序。而Comparable接口則是一種內建的機制，用於對類的對象進行自然排序。本文將深入探討這兩種方法的使用，並示範如何在Java程序中實現它們。
+Comparable接口 Comparable接口位於java.lang包中，它包含單個方法compareTo()，該方法用於定義對象之間的自然排序順序。當一個類實現了Comparable接口時，它必須實現compareTo()方法，這使得該類的對象可以直接通過調用Collections.sort()方法進行排序。
+下面是一個簡單的例子，展示了如何實現Comparable接口：
+import java.util.*; class Person implements Comparable&lt;Person&gt; { private String name; private int age; public Person(String name, int age) { this.name = name; this.age = age; } @Override public int compareTo(Person otherPerson) { return this.age - otherPerson.age; } @Override public String toString() { return &#34;Person{name=&#39;&#34; &#43; name &#43; &#34;&#39;, age=&#34; &#43; age &#43; &#39;}&#39;; } } public class ComparableExample { public static void main(String[] args) { List&lt;Person&gt; people = new ArrayList&lt;&gt;(); people.">
   <meta name="twitter:image" content="https://twcch.github.io/">
 
   
-  <meta property="og:title" content="✍️ Writing | 志謙&#39;s Blog">
-  <meta property="og:description" content="Alan&#39;s blog, provides java teaching.">
+  <meta property="og:title" content="Java中的Comparable與Comparator比較器的教學 | 志謙&#39;s Blog">
+  <meta property="og:description" content="在Java中，比較器（Comparator）是一個常用的工具，用於對對象進行比較和排序。而Comparable接口則是一種內建的機制，用於對類的對象進行自然排序。本文將深入探討這兩種方法的使用，並示範如何在Java程序中實現它們。
+Comparable接口 Comparable接口位於java.lang包中，它包含單個方法compareTo()，該方法用於定義對象之間的自然排序順序。當一個類實現了Comparable接口時，它必須實現compareTo()方法，這使得該類的對象可以直接通過調用Collections.sort()方法進行排序。
+下面是一個簡單的例子，展示了如何實現Comparable接口：
+import java.util.*; class Person implements Comparable&lt;Person&gt; { private String name; private int age; public Person(String name, int age) { this.name = name; this.age = age; } @Override public int compareTo(Person otherPerson) { return this.age - otherPerson.age; } @Override public String toString() { return &#34;Person{name=&#39;&#34; &#43; name &#43; &#34;&#39;, age=&#34; &#43; age &#43; &#39;}&#39;; } } public class ComparableExample { public static void main(String[] args) { List&lt;Person&gt; people = new ArrayList&lt;&gt;(); people.">
   <meta property="og:image" content="https://twcch.github.io/">
 
   
@@ -46,7 +51,7 @@
 
     
     <div class="global-cover">
-      <img src="https://twcch.github.io/images/banner.jpg" alt="✍️ Writing">
+      <img src="https://twcch.github.io/images/banner.jpg" alt="Java中的Comparable與Comparator比較器的教學">
     </div>
     
 
@@ -81,7 +86,7 @@
             
             
               <li class="nav__item">
-                <a href="/posts/" class="nav__link active-link">✍️ 部落格</a>
+                <a href="/posts/" class="nav__link ">✍️ 部落格</a>
               </li>
             
             
@@ -116,6 +121,12 @@
         
           
           
+          » <a href='https://twcch.github.io/posts/java-comparable-and-comparator'>Java comparable and comparator</a>
+          
+        
+        
+          
+          
         
       </div>
     </div>
@@ -130,54 +141,193 @@
 
 
 
-<div class="page container">
+<article class="post container">
 
-  <div class="page-head">
-    <h1 class="page-title">✍️ Writing</h1>
+  <div class="post-head">
+    <h1 class="post-title">Java中的Comparable與Comparator比較器的教學</h1>
+    <div class="post-meta">
+      
+      <div class="post-tags">
+        Publish in&nbsp;
+        
+          <a href="https://twcch.github.io/tags/java/" class="post__tag">Java</a>
+        
+      </div>
+      &nbsp;&bull;&nbsp;
+      
+      <time class="post-date" datetime="2024-02-08T00:00:00&#43;08:00">8 Feb, 2024</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="post-minutes">1 min read</span>
+      
+    </div>
     
   </div>
 
-  <div class="page__blog">
-    <div class="row">
-      
-        <div class="article col col-6 col-t-12 animate">
+  
 
-  <div class="article__content">
+  
+
+  
+
+  <div class="post__content">
     
-  
-    <h2 class="article__title">
-      <a href="/posts/java-comparable-and-comparator/">Java中的Comparable與Comparator比較器的教學</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="https://twcch.github.io/tags/java/" class="article__tag">Java</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2024-02-08T00:00:00&#43;08:00">8 Feb, 2024</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在Java中，比較器（Comparator）是一個常用的工具，用於對對象進行比較和排序。而Comparable接口則是一種內建的機制，用於對類的對象進行自然排序。本文將深入探討這兩種方法的使用，並示範如何在Java程序中實現它們。
-Comparable接口 Comparable接口位於java.lang包中，它包含單個方法compareTo()，該方法用於定義對象之間的自然排序順序。當一個類實現了Comparable接口時，它必須實現compareTo()方法，這使得該類的對象可以直接通過調用Collections.sort()方法進行排序。
-下面是一個簡單的例子，展示了如何實現Comparable接口：
-import java.util.*; class Person implements Comparable&lt;Person&gt; { private String name; private int age; public Person(String name, int age) { this.name = name; this.age = age; } @Override public int compareTo(Person otherPerson) { return this.age - otherPerson.age; } @Override public String toString() { return &#34;Person{name=&#39;&#34; + name + &#34;&#39;, age=&#34; + age + &#39;}&#39;; } } public class ComparableExample { public static void main(String[] args) { List&lt;Person&gt; people = new ArrayList&lt;&gt;(); people.</p>
+    <p>在Java中，比較器（Comparator）是一個常用的工具，用於對對象進行比較和排序。而Comparable接口則是一種內建的機制，用於對類的對象進行自然排序。本文將深入探討這兩種方法的使用，並示範如何在Java程序中實現它們。</p>
+<h3 id="comparable接口">Comparable接口</h3>
+<p>Comparable接口位於java.lang包中，它包含單個方法compareTo()，該方法用於定義對象之間的自然排序順序。當一個類實現了Comparable接口時，它必須實現compareTo()方法，這使得該類的對象可以直接通過調用Collections.sort()方法進行排序。</p>
+<p>下面是一個簡單的例子，展示了如何實現Comparable接口：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.*</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">class</span> <span class="nc">Person</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Person</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">compareTo</span><span class="p">(</span><span class="n">Person</span><span class="w"> </span><span class="n">otherPerson</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">age</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">otherPerson</span><span class="p">.</span><span class="na">age</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;Person{name=&#39;&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;&#39;, age=&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sc">&#39;}&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ComparableExample</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">people</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">(</span><span class="s">&#34;Alice&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">25</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">people</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">(</span><span class="s">&#34;Bob&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">30</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">people</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">(</span><span class="s">&#34;Charlie&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">20</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">people</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">people</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">person</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>在這個例子中，我們定義了一個Person類，並實現了Comparable接口。compareTo()方法根據人的年齡進行比較。通過調用Collections.sort()方法，我們將人按照年齡的升序進行排序。</p>
+<h3 id="comparator接口">Comparator接口</h3>
+<p>雖然Comparable接口提供了一種對對象進行自然排序的方法，但有時我們需要根據對象的不同屬性進行排序，或者對已經存在的類進行排序而無法修改其代碼。這時就可以使用Comparator接口。</p>
+<p>Comparator接口也位於java.util包中，它包含兩個方法compare()和equals()，其中compare()方法用於定義對象之間的比較規則。與Comparable不同，Comparator是一個獨立的比較器，可以在排序時單獨傳遞給相應的方法。</p>
+<p>下面是一個使用Comparator進行排序的例子：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.*</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">class</span> <span class="nc">Person</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Person</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;Person{name=&#39;&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;&#39;, age=&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sc">&#39;}&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">class</span> <span class="nc">AgeComparator</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">compare</span><span class="p">(</span><span class="n">Person</span><span class="w"> </span><span class="n">person1</span><span class="p">,</span><span class="w"> </span><span class="n">Person</span><span class="w"> </span><span class="n">person2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">person1</span><span class="p">.</span><span class="na">age</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">person2</span><span class="p">.</span><span class="na">age</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ComparatorExample</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">people</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">(</span><span class="s">&#34;Alice&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">25</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">people</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">(</span><span class="s">&#34;Bob&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">30</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">people</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">(</span><span class="s">&#34;Charlie&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">20</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">people</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AgeComparator</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">people</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">person</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>在這個例子中，我們定義了一個AgeComparator類，實現了Comparator接口。compare()方法根據人的年齡進行比較。通過將AgeComparator的實例傳遞給Collections.sort()方法，我們實現了按照年齡的升序對人進行排序。</p>
+<h3 id="總結">總結</h3>
+<p>在Java中，Comparable和Comparator是兩種常用的比較器，用於對對象進行排序。使用Comparable接口，我們可以定義對象的自然排序順序；而使用Comparator接口，我們可以根據不同的比較規則對對象進行排序。通過掌握這兩種比較器的使用，我們可以更靈活地處理排序操作，使得我們的代碼更加清晰和易於維護。</p>
+
   </div>
 
+  <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=Java%e4%b8%ad%e7%9a%84Comparable%e8%88%87Comparator%e6%af%94%e8%bc%83%e5%99%a8%e7%9a%84%e6%95%99%e5%ad%b8&url=https%3a%2f%2ftwcch.github.io%2fposts%2fjava-comparable-and-comparator%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+    </li>
 
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftwcch.github.io%2fposts%2fjava-comparable-and-comparator%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftwcch.github.io%2fposts%2fjava-comparable-and-comparator%2f&title=Java%e4%b8%ad%e7%9a%84Comparable%e8%88%87Comparator%e6%af%94%e8%bc%83%e5%99%a8%e7%9a%84%e6%95%99%e5%ad%b8&summary=&source=Java%e4%b8%ad%e7%9a%84Comparable%e8%88%87Comparator%e6%af%94%e8%bc%83%e5%99%a8%e7%9a%84%e6%95%99%e5%ad%b8"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2ftwcch.github.io%2fposts%2fjava-comparable-and-comparator%2f&amp;media=https%3a%2f%2ftwcch.github.io%2f&amp;description=Java%e4%b8%ad%e7%9a%84Comparable%e8%88%87Comparator%e6%af%94%e8%bc%83%e5%99%a8%e7%9a%84%e6%95%99%e5%ad%b8"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+    </li>
+  </ul>
 </div>
-      
-    </div>
+
+  
+
+</article>
+
+
+
+  
+
+<div class="container">
+  <div class="show-comments">
+    <button class="button" id="show-comments-button" onclick="disqus();return false;">Comments</button>
   </div>
-
+  
+  <div id="disqus_thread" class="post__comments">
+    <div id="disqus_empty"></div>
+  </div>
+  
+  <script>
+    var disqus_loaded = false;
+    var disqus_shortname = 'anvod-studio-test';
+    var disqus_container = document.getElementById("disqus_thread");
+    function disqus() {
+      if (!disqus_loaded) {
+        disqus_loaded = true;
+        var e = document.createElement("script");
+        e.type = "text/javascript";
+        e.async = true;
+        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0])
+          .appendChild(e);
+        
+        document.getElementById("show-comments-button").style.display = "none";
+        
+        disqus_container.classList.add("is-open");
+      }
+    }
+  </script>
 </div>
+
+
 
 
 

@@ -3,6 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://twcch.github.io/posts/</loc>
+    <lastmod>2024-02-08T00:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://twcch.github.io/tags/java/</loc>
+    <lastmod>2024-02-08T00:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://twcch.github.io/posts/java-comparable-and-comparator/</loc>
+    <lastmod>2024-02-08T00:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://twcch.github.io/tags/</loc>
+    <lastmod>2024-02-08T00:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://twcch.github.io/</loc>
+    <lastmod>2024-02-08T00:00:00+08:00</lastmod>
   </url><url>
     <loc>https://twcch.github.io/videos/</loc>
   </url><url>
@@ -17,9 +30,5 @@
     <loc>https://twcch.github.io/projects/</loc>
   </url><url>
     <loc>https://twcch.github.io/categories/</loc>
-  </url><url>
-    <loc>https://twcch.github.io/tags/</loc>
-  </url><url>
-    <loc>https://twcch.github.io/</loc>
   </url>
 </urlset>

@@ -164,6 +164,39 @@
       <div class="grid">
         
         
+          <div class="article-small grid__post">
+
+            
+
+            <div class="article-small__content">
+              <h2 class="article-small__title">
+                <a href="/posts/java-comparable-and-comparator/">Java中的Comparable與Comparator比較器的教學</a>
+              </h2>
+              
+              <div class="article-small__meta">
+                
+                <div class="article-small__tags">
+                  
+                    <a href="https://twcch.github.io/tags/java/" class="article-small__tag">Java</a>
+                  
+                </div>
+                &nbsp;&bull;&nbsp;
+                
+                <time class="article-small__date" datetime="2024-02-08T00:00:00&#43;08:00">8 Feb, 2024</time>
+                
+                  &nbsp;&bull;&nbsp;
+                  <span class="article-small__minutes">1 min read</span>
+                
+              </div>
+              
+              <p class="article-small__excerpt">在Java中，比較器（Comparator）是一個常用的工具，用於對對象進行比較和排序。而Comparable接口則是一種內建的機制，用於對類的對象進行自然排序。本文將深入探討這兩種方法的使用，並示範如何在Java程序中實現它們。
+Comparable接口 Comparable接口位於java.lang包中，它包含單個方法compareTo()，該方法用於定義對象之間的自然排序順序。當一個類實現了Comparable接口時，它必須實現compareTo()方法，這使得該類的對象可以直接通過調用Collections.sort()方法進行排序。
+下面是一個簡單的例子，展示了如何實現Comparable接口：
+import java.util.*; class Person implements Comparable&lt;Person&gt; { private String name; private int age; public Person(String name, int age) { this.name = name; this.age = age; } @Override public int compareTo(Person otherPerson) { return this.age - otherPerson.age; } @Override public String toString() { return &#34;Person{name=&#39;&#34; + name + &#34;&#39;, age=&#34; + age + &#39;}&#39;; } } public class ComparableExample { public static void main(String[] args) { List&lt;Person&gt; people = new ArrayList&lt;&gt;(); people.</p>
+            </div>
+
+          </div>
+        
       </div>
 
       
@@ -174,7 +207,7 @@
   var base_url = "",
     pagination_next_url = base_url + '/page2',
     pagination_next_page_number = '2',
-    pagination_available_pages_number = '0';
+    pagination_available_pages_number = '1';
 </script>
     </div>
 

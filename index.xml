@@ -6,7 +6,15 @@
     <description>Recent content on 志謙&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Thu, 08 Feb 2024 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://twcch.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java中的Comparable與Comparator比較器的教學</title>
+      <link>https://twcch.github.io/posts/java-comparable-and-comparator/</link>
+      <pubDate>Thu, 08 Feb 2024 00:00:00 +0800</pubDate>
+      <guid>https://twcch.github.io/posts/java-comparable-and-comparator/</guid>
+      <description>在Java中，比較器（Comparator）是一個常用的工具，用於對對象進行比較和排序。而Comparable接口則是一種內建的機制，用於對類的對象進行自然排序。本文將深入探討這兩種方法的使用，並示範如何在Java程序中實現它們。&#xA;Comparable接口 Comparable接口位於java.lang包中，它包含單個方法compareTo()，該方法用於定義對象之間的自然排序順序。當一個類實現了Comparable接口時，它必須實現compareTo()方法，這使得該類的對象可以直接通過調用Collections.sort()方法進行排序。&#xA;下面是一個簡單的例子，展示了如何實現Comparable接口：&#xA;import java.util.*; class Person implements Comparable&amp;lt;Person&amp;gt; { private String name; private int age; public Person(String name, int age) { this.name = name; this.age = age; } @Override public int compareTo(Person otherPerson) { return this.age - otherPerson.age; } @Override public String toString() { return &amp;#34;Person{name=&amp;#39;&amp;#34; + name + &amp;#34;&amp;#39;, age=&amp;#34; + age + &amp;#39;}&amp;#39;; } } public class ComparableExample { public static void main(String[] args) { List&amp;lt;Person&amp;gt; people = new ArrayList&amp;lt;&amp;gt;(); people.</description>
+    </item>
     <item>
       <title>👨🏻‍💻 About</title>
       <link>https://twcch.github.io/about/</link>
