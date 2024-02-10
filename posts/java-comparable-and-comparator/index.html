@@ -289,6 +289,86 @@ import java.util.*; class Person implements Comparable&lt;Person&gt; { private S
 
   
 
+
+<div class="section-related">
+  <h4 class="section-related__title">You may also like...</h4>
+  <div class="row grid">
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/java-generic-erasure-and-limit/">Java中的泛型擦除與限制</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="https://twcch.github.io/tags/java/" class="article__tag">Java</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2024-02-10T00:00:00&#43;08:00">10 Feb, 2024</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">1 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">Java的泛型是一個強大的特性，它使得我們可以編寫更通用、更安全的程式碼。然而，Java的泛型也有一些限制，其中最主要的限制之一就是泛型擦除。本文將深入探討Java中的泛型擦除機制及其帶來的限制，並提供相應的解決方案。
+泛型擦除的概念 Java的泛型是通過擦除機制來實現的，這意味著在編譯時期，泛型類型信息將被擦除，並在運行時期不存在。具體來說，泛型類型的參數化信息將被擦除為其邊界（如果有的話）或Object類型。這一機制是為了確保舊的Java程式碼與新的泛型程式碼保持兼容，同時也是為了提高運行時期的效率。
+例如，考慮以下泛型類：
+public class Box&lt;T&gt; { private T data; public void setData(T data) { this.data = data; } public T getData() { return data; } } 在實例化Box類時，例如Box box = new Box&lt;&gt;();，編譯器會檢查並確保操作符右邊的類型符合泛型類型的要求。然而，生成的字節碼將不包含任何有關泛型類型的信息，對於JVM來說，這個類型是Box。
+泛型擦除的限制 泛型擦除帶來了一些限制，這些限制在實際開發中需要特別注意：
+無法創建泛型數組：由於泛型擦除，無法創建泛型數組。例如，List[] arrays = new List[10];是不合法的。 無法直接創建泛型實例：由於泛型擦除，無法直接創建泛型類的實例。例如，new Box()是不合法的，應改為new Box&lt;&gt;()。 靜態上下文中無法使用泛型類型：在靜態上下文中，無法使用泛型類型作為類型參數。例如，static Box box;是不合法的。 無法檢查泛型類型的實際類型：在運行時期，無法檢查泛型類型的實際類型。例如，對於List和List，在運行時期它們都被視為List。 解決泛型擦除的限制 儘管泛型擦除帶來了一些限制，但我們仍然可以通過一些技巧來解決這些限制：
+使用通配符：在某些情況下，可以使用通配符extends和super來定義泛型類型的上限和下限，從而在運行時期進行相應的檢查。 使用反射：通過使用反射機制，我們可以在運行時期獲取泛型類型的實際類型信息。雖然這種方法比較複雜且效率較低，但在某些情況下是一個有效的解決方案。 使用原始類型：在某些情況下，可以使用原始類型來規避泛型擦除的限制。例如，List代表原始的List類型，它可以在某些情況下用於舊的程式碼兼容性。 總結 泛型擦除是Java中一個重要且具有影響的機制，它在編譯時期擦除了泛型類型信息，從而確保了新的泛型程式碼與舊的非泛型程式碼的兼容性。儘管泛型擦除帶來了一些限制，但通過合理的設計和應用，我們仍然可以充分利用泛型的強大功能。通過深入理解泛型擦除的原理和限制，開發人員可以更好地設計和編寫泛型程式碼，從而提高程式碼的可讀性和可維護性。</p>
+  </div>
+
+
+</div>
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/java-coneable/">Java中的Cloneable接口的教學</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="https://twcch.github.io/tags/java/" class="article__tag">Java</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2024-02-09T00:00:00&#43;08:00">9 Feb, 2024</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">2 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">在Java中，Cloneable接口是一個標記接口（marker interface），用於指示該類的對象可以進行克隆操作。克隆（Cloning）是指創建一個對象的精確複製，而Java中的克隆可以分為淺拷貝（Shallow Copy）和深拷貝（Deep Copy）兩種類型。本文將介紹Cloneable接口的使用，並深入討論淺拷貝與深拷貝的應用。
+Cloneable接口 Cloneable接口位於java.lang包中，它是一個空接口，用於指示該類的對象可以進行克隆操作。要實現克隆操作，需要重寫clone()方法。clone()方法是Object類的一個protected方法，因此在子類中需要對其進行覆蓋，並將其訪問權限設置為public。
+下面是一個示例，展示了如何實現Cloneable接口以進行淺拷貝：
+class Person implements Cloneable { private String name; private int age; public Person(String name, int age) { this.name = name; this.age = age; } // 淺拷貝 @Override public Object clone() throws CloneNotSupportedException { return super.clone(); } @Override public String toString() { return &#34;Person{name=&#39;&#34; + name + &#34;&#39;, age=&#34; + age + &#39;}&#39;; } } public class CloneableExample { public static void main(String[] args) { try { Person person1 = new Person(&#34;Alice&#34;, 25); Person person2 = (Person) person1.</p>
+  </div>
+
+
+</div>
+    
+  </div>
+</div>
+
+
 </article>
 
 

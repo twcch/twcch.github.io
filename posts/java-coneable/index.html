@@ -7,21 +7,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>✍️ Writing | 志謙&#39;s Blog</title>
+  <title>Java中的Cloneable接口的教學 | 志謙&#39;s Blog</title>
   <meta name="description" content="">
 
-  <link rel="alternate" type="application/rss+xml" href="https://twcch.github.io/posts/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="✍️ Writing | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="Alan&#39;s blog, provides java teaching.">
+  <meta name="twitter:title" content="Java中的Cloneable接口的教學 | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="在Java中，Cloneable接口是一個標記接口（marker interface），用於指示該類的對象可以進行克隆操作。克隆（Cloning）是指創建一個對象的精確複製，而Java中的克隆可以分為淺拷貝（Shallow Copy）和深拷貝（Deep Copy）兩種類型。本文將介紹Cloneable接口的使用，並深入討論淺拷貝與深拷貝的應用。
+Cloneable接口 Cloneable接口位於java.lang包中，它是一個空接口，用於指示該類的對象可以進行克隆操作。要實現克隆操作，需要重寫clone()方法。clone()方法是Object類的一個protected方法，因此在子類中需要對其進行覆蓋，並將其訪問權限設置為public。
+下面是一個示例，展示了如何實現Cloneable接口以進行淺拷貝：
+class Person implements Cloneable { private String name; private int age; public Person(String name, int age) { this.name = name; this.age = age; } // 淺拷貝 @Override public Object clone() throws CloneNotSupportedException { return super.clone(); } @Override public String toString() { return &#34;Person{name=&#39;&#34; &#43; name &#43; &#34;&#39;, age=&#34; &#43; age &#43; &#39;}&#39;; } } public class CloneableExample { public static void main(String[] args) { try { Person person1 = new Person(&#34;Alice&#34;, 25); Person person2 = (Person) person1.">
   <meta name="twitter:image" content="https://twcch.github.io/">
 
   
-  <meta property="og:title" content="✍️ Writing | 志謙&#39;s Blog">
-  <meta property="og:description" content="Alan&#39;s blog, provides java teaching.">
+  <meta property="og:title" content="Java中的Cloneable接口的教學 | 志謙&#39;s Blog">
+  <meta property="og:description" content="在Java中，Cloneable接口是一個標記接口（marker interface），用於指示該類的對象可以進行克隆操作。克隆（Cloning）是指創建一個對象的精確複製，而Java中的克隆可以分為淺拷貝（Shallow Copy）和深拷貝（Deep Copy）兩種類型。本文將介紹Cloneable接口的使用，並深入討論淺拷貝與深拷貝的應用。
+Cloneable接口 Cloneable接口位於java.lang包中，它是一個空接口，用於指示該類的對象可以進行克隆操作。要實現克隆操作，需要重寫clone()方法。clone()方法是Object類的一個protected方法，因此在子類中需要對其進行覆蓋，並將其訪問權限設置為public。
+下面是一個示例，展示了如何實現Cloneable接口以進行淺拷貝：
+class Person implements Cloneable { private String name; private int age; public Person(String name, int age) { this.name = name; this.age = age; } // 淺拷貝 @Override public Object clone() throws CloneNotSupportedException { return super.clone(); } @Override public String toString() { return &#34;Person{name=&#39;&#34; &#43; name &#43; &#34;&#39;, age=&#34; &#43; age &#43; &#39;}&#39;; } } public class CloneableExample { public static void main(String[] args) { try { Person person1 = new Person(&#34;Alice&#34;, 25); Person person2 = (Person) person1.">
   <meta property="og:image" content="https://twcch.github.io/">
 
   
@@ -46,7 +51,7 @@
 
     
     <div class="global-cover">
-      <img src="https://twcch.github.io/images/banner.jpg" alt="✍️ Writing">
+      <img src="https://twcch.github.io/images/banner.jpg" alt="Java中的Cloneable接口的教學">
     </div>
     
 
@@ -81,7 +86,7 @@
             
             
               <li class="nav__item">
-                <a href="/posts/" class="nav__link active-link">✍️ 部落格</a>
+                <a href="/posts/" class="nav__link ">✍️ 部落格</a>
               </li>
             
             
@@ -116,6 +121,12 @@
         
           
           
+          » <a href='https://twcch.github.io/posts/java-coneable'>Java coneable</a>
+          
+        
+        
+          
+          
         
       </div>
     </div>
@@ -130,17 +141,183 @@
 
 
 
-<div class="page container">
+<article class="post container">
 
-  <div class="page-head">
-    <h1 class="page-title">✍️ Writing</h1>
+  <div class="post-head">
+    <h1 class="post-title">Java中的Cloneable接口的教學</h1>
+    <div class="post-meta">
+      
+      <div class="post-tags">
+        Publish in&nbsp;
+        
+          <a href="https://twcch.github.io/tags/java/" class="post__tag">Java</a>
+        
+      </div>
+      &nbsp;&bull;&nbsp;
+      
+      <time class="post-date" datetime="2024-02-09T00:00:00&#43;08:00">9 Feb, 2024</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="post-minutes">2 min read</span>
+      
+    </div>
     
   </div>
 
-  <div class="page__blog">
-    <div class="row">
-      
-        <div class="article col col-6 col-t-12 animate">
+  
+
+  
+
+  
+
+  <div class="post__content">
+    
+    <p>在Java中，Cloneable接口是一個標記接口（marker interface），用於指示該類的對象可以進行克隆操作。克隆（Cloning）是指創建一個對象的精確複製，而Java中的克隆可以分為淺拷貝（Shallow Copy）和深拷貝（Deep Copy）兩種類型。本文將介紹Cloneable接口的使用，並深入討論淺拷貝與深拷貝的應用。</p>
+<h3 id="cloneable接口">Cloneable接口</h3>
+<p>Cloneable接口位於java.lang包中，它是一個空接口，用於指示該類的對象可以進行克隆操作。要實現克隆操作，需要重寫clone()方法。clone()方法是Object類的一個protected方法，因此在子類中需要對其進行覆蓋，並將其訪問權限設置為public。</p>
+<p>下面是一個示例，展示了如何實現Cloneable接口以進行淺拷貝：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Person</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Cloneable</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Person</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 淺拷貝</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="nf">clone</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">CloneNotSupportedException</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kd">super</span><span class="p">.</span><span class="na">clone</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;Person{name=&#39;&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;&#39;, age=&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sc">&#39;}&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CloneableExample</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">Person</span><span class="w"> </span><span class="n">person1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">(</span><span class="s">&#34;Alice&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">25</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">Person</span><span class="w"> </span><span class="n">person2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Person</span><span class="p">)</span><span class="w"> </span><span class="n">person1</span><span class="p">.</span><span class="na">clone</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;Original: &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">person1</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;Cloned: &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">person2</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">CloneNotSupportedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>在這個例子中，我們定義了一個Person類，並實現了Cloneable接口。clone()方法使用了Object類的默認實現，因此執行淺拷貝操作。在main方法中，我們創建了一個原始對象person1，並對其進行克隆操作得到了一個新的對象person2。</p>
+<h3 id="淺拷貝與深拷貝">淺拷貝與深拷貝</h3>
+<p>淺拷貝與深拷貝是兩種不同的克隆方式：</p>
+<ol>
+<li>淺拷貝（Shallow Copy）：淺拷貝僅複製對象本身，而不會複製其內部引用的對象。如果對象包含引用類型的成員變量，則新對象和原始對象將共享這些引用，對內部對象的修改將影響到兩個對象。</li>
+<li>深拷貝（Deep Copy）：深拷貝會複製對象本身以及其內部引用的對象，從而得到一個完全獨立的新對象。即使內部對象是引用類型，深拷貝操作也會遞歸地複製所有內部對象，從而保證新對象的修改不會影響到原始對象。</li>
+</ol>
+<p>下面是一個示例，展示了如何實現深拷貝：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Address</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Cloneable</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">city</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Address</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">city</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">city</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="nf">clone</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">CloneNotSupportedException</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kd">super</span><span class="p">.</span><span class="na">clone</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;Address{city=&#39;&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">city</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;&#39;}&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">class</span> <span class="nc">Person</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Cloneable</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Person</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="n">address</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 深拷貝</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="nf">clone</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">CloneNotSupportedException</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Person</span><span class="w"> </span><span class="n">cloned</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Person</span><span class="p">)</span><span class="w"> </span><span class="kd">super</span><span class="p">.</span><span class="na">clone</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">cloned</span><span class="p">.</span><span class="na">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Address</span><span class="p">)</span><span class="w"> </span><span class="n">address</span><span class="p">.</span><span class="na">clone</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">cloned</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;Person{name=&#39;&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;&#39;, age=&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;, address=&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sc">&#39;}&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DeepCopyExample</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">Address</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Address</span><span class="p">(</span><span class="s">&#34;New York&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">Person</span><span class="w"> </span><span class="n">person1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">(</span><span class="s">&#34;Alice&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">25</span><span class="p">,</span><span class="w"> </span><span class="n">address</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">Person</span><span class="w"> </span><span class="n">person2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Person</span><span class="p">)</span><span class="w"> </span><span class="n">person1</span><span class="p">.</span><span class="na">clone</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">// 修改原始對象的地址</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">address</span><span class="p">.</span><span class="na">city</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;Los Angeles&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;Original: &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">person1</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;Cloned: &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">person2</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">CloneNotSupportedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>在這個例子中，我們定義了一個Address類和一個Person類，並實現了Cloneable接口。在Person類的clone()方法中，我們對address成員變量進行了深拷貝操作，從而保證新對象的address是獨立的。在main方法中，我們修改了原始對象的地址，但新對象的地址保持不變，這證明了深拷貝的有效性。</p>
+<h3 id="總結">總結</h3>
+<p>在Java中，Cloneable接口提供了對象克隆的機制，通過實現該接口並重寫clone()方法，可以對對象進行淺拷貝或深拷貝操作。淺拷貝僅複製對象本身，而深拷貝則複製對象以及其內部引用的對象，從而保證了新對象的獨立性。通過掌握克隆操作的技巧，我們可以更靈活地處理對象的複製和共享，從而提高代碼的可讀性和可維護性。</p>
+
+  </div>
+
+  <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=Java%e4%b8%ad%e7%9a%84Cloneable%e6%8e%a5%e5%8f%a3%e7%9a%84%e6%95%99%e5%ad%b8&url=https%3a%2f%2ftwcch.github.io%2fposts%2fjava-coneable%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftwcch.github.io%2fposts%2fjava-coneable%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftwcch.github.io%2fposts%2fjava-coneable%2f&title=Java%e4%b8%ad%e7%9a%84Cloneable%e6%8e%a5%e5%8f%a3%e7%9a%84%e6%95%99%e5%ad%b8&summary=&source=Java%e4%b8%ad%e7%9a%84Cloneable%e6%8e%a5%e5%8f%a3%e7%9a%84%e6%95%99%e5%ad%b8"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2ftwcch.github.io%2fposts%2fjava-coneable%2f&amp;media=https%3a%2f%2ftwcch.github.io%2f&amp;description=Java%e4%b8%ad%e7%9a%84Cloneable%e6%8e%a5%e5%8f%a3%e7%9a%84%e6%95%99%e5%ad%b8"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+    </li>
+  </ul>
+</div>
+
+  
+
+
+<div class="section-related">
+  <h4 class="section-related__title">You may also like...</h4>
+  <div class="row grid">
+    
+      <div class="article col col-6 col-t-12 animate">
 
   <div class="article__content">
     
@@ -176,42 +353,8 @@ public class Box&lt;T&gt; { private T data; public void setData(T data) { this.d
 
 
 </div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
     
-  
-    <h2 class="article__title">
-      <a href="/posts/java-coneable/">Java中的Cloneable接口的教學</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="https://twcch.github.io/tags/java/" class="article__tag">Java</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2024-02-09T00:00:00&#43;08:00">9 Feb, 2024</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在Java中，Cloneable接口是一個標記接口（marker interface），用於指示該類的對象可以進行克隆操作。克隆（Cloning）是指創建一個對象的精確複製，而Java中的克隆可以分為淺拷貝（Shallow Copy）和深拷貝（Deep Copy）兩種類型。本文將介紹Cloneable接口的使用，並深入討論淺拷貝與深拷貝的應用。
-Cloneable接口 Cloneable接口位於java.lang包中，它是一個空接口，用於指示該類的對象可以進行克隆操作。要實現克隆操作，需要重寫clone()方法。clone()方法是Object類的一個protected方法，因此在子類中需要對其進行覆蓋，並將其訪問權限設置為public。
-下面是一個示例，展示了如何實現Cloneable接口以進行淺拷貝：
-class Person implements Cloneable { private String name; private int age; public Person(String name, int age) { this.name = name; this.age = age; } // 淺拷貝 @Override public Object clone() throws CloneNotSupportedException { return super.clone(); } @Override public String toString() { return &#34;Person{name=&#39;&#34; + name + &#34;&#39;, age=&#34; + age + &#39;}&#39;; } } public class CloneableExample { public static void main(String[] args) { try { Person person1 = new Person(&#34;Alice&#34;, 25); Person person2 = (Person) person1.</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
+      <div class="article col col-6 col-t-12 animate">
 
   <div class="article__content">
     
@@ -244,11 +387,50 @@ import java.util.*; class Person implements Comparable&lt;Person&gt; { private S
 
 
 </div>
-      
-    </div>
+    
   </div>
-
 </div>
+
+
+</article>
+
+
+
+  
+
+<div class="container">
+  <div class="show-comments">
+    <button class="button" id="show-comments-button" onclick="disqus();return false;">Comments</button>
+  </div>
+  
+  <div id="disqus_thread" class="post__comments">
+    <div id="disqus_empty"></div>
+  </div>
+  
+  <script>
+    var disqus_loaded = false;
+    var disqus_shortname = 'anvod-studio-test';
+    var disqus_container = document.getElementById("disqus_thread");
+    function disqus() {
+      if (!disqus_loaded) {
+        disqus_loaded = true;
+        var e = document.createElement("script");
+        e.type = "text/javascript";
+        e.async = true;
+        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0])
+          .appendChild(e);
+        
+        document.getElementById("show-comments-button").style.display = "none";
+        
+        disqus_container.classList.add("is-open");
+      }
+    }
+  </script>
+</div>
+
+
 
 
 

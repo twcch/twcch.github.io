@@ -7,21 +7,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>✍️ Writing | 志謙&#39;s Blog</title>
+  <title>Java中的泛型擦除與限制 | 志謙&#39;s Blog</title>
   <meta name="description" content="">
 
-  <link rel="alternate" type="application/rss+xml" href="https://twcch.github.io/posts/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="✍️ Writing | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="Alan&#39;s blog, provides java teaching.">
+  <meta name="twitter:title" content="Java中的泛型擦除與限制 | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="Java的泛型是一個強大的特性，它使得我們可以編寫更通用、更安全的程式碼。然而，Java的泛型也有一些限制，其中最主要的限制之一就是泛型擦除。本文將深入探討Java中的泛型擦除機制及其帶來的限制，並提供相應的解決方案。
+泛型擦除的概念 Java的泛型是通過擦除機制來實現的，這意味著在編譯時期，泛型類型信息將被擦除，並在運行時期不存在。具體來說，泛型類型的參數化信息將被擦除為其邊界（如果有的話）或Object類型。這一機制是為了確保舊的Java程式碼與新的泛型程式碼保持兼容，同時也是為了提高運行時期的效率。
+例如，考慮以下泛型類：
+public class Box&lt;T&gt; { private T data; public void setData(T data) { this.data = data; } public T getData() { return data; } } 在實例化Box類時，例如Box box = new Box&lt;&gt;();，編譯器會檢查並確保操作符右邊的類型符合泛型類型的要求。然而，生成的字節碼將不包含任何有關泛型類型的信息，對於JVM來說，這個類型是Box。
+泛型擦除的限制 泛型擦除帶來了一些限制，這些限制在實際開發中需要特別注意：
+無法創建泛型數組：由於泛型擦除，無法創建泛型數組。例如，List[] arrays = new List[10];是不合法的。 無法直接創建泛型實例：由於泛型擦除，無法直接創建泛型類的實例。例如，new Box()是不合法的，應改為new Box&lt;&gt;()。 靜態上下文中無法使用泛型類型：在靜態上下文中，無法使用泛型類型作為類型參數。例如，static Box box;是不合法的。 無法檢查泛型類型的實際類型：在運行時期，無法檢查泛型類型的實際類型。例如，對於List和List，在運行時期它們都被視為List。 解決泛型擦除的限制 儘管泛型擦除帶來了一些限制，但我們仍然可以通過一些技巧來解決這些限制：
+使用通配符：在某些情況下，可以使用通配符extends和super來定義泛型類型的上限和下限，從而在運行時期進行相應的檢查。 使用反射：通過使用反射機制，我們可以在運行時期獲取泛型類型的實際類型信息。雖然這種方法比較複雜且效率較低，但在某些情況下是一個有效的解決方案。 使用原始類型：在某些情況下，可以使用原始類型來規避泛型擦除的限制。例如，List代表原始的List類型，它可以在某些情況下用於舊的程式碼兼容性。 總結 泛型擦除是Java中一個重要且具有影響的機制，它在編譯時期擦除了泛型類型信息，從而確保了新的泛型程式碼與舊的非泛型程式碼的兼容性。儘管泛型擦除帶來了一些限制，但通過合理的設計和應用，我們仍然可以充分利用泛型的強大功能。通過深入理解泛型擦除的原理和限制，開發人員可以更好地設計和編寫泛型程式碼，從而提高程式碼的可讀性和可維護性。">
   <meta name="twitter:image" content="https://twcch.github.io/">
 
   
-  <meta property="og:title" content="✍️ Writing | 志謙&#39;s Blog">
-  <meta property="og:description" content="Alan&#39;s blog, provides java teaching.">
+  <meta property="og:title" content="Java中的泛型擦除與限制 | 志謙&#39;s Blog">
+  <meta property="og:description" content="Java的泛型是一個強大的特性，它使得我們可以編寫更通用、更安全的程式碼。然而，Java的泛型也有一些限制，其中最主要的限制之一就是泛型擦除。本文將深入探討Java中的泛型擦除機制及其帶來的限制，並提供相應的解決方案。
+泛型擦除的概念 Java的泛型是通過擦除機制來實現的，這意味著在編譯時期，泛型類型信息將被擦除，並在運行時期不存在。具體來說，泛型類型的參數化信息將被擦除為其邊界（如果有的話）或Object類型。這一機制是為了確保舊的Java程式碼與新的泛型程式碼保持兼容，同時也是為了提高運行時期的效率。
+例如，考慮以下泛型類：
+public class Box&lt;T&gt; { private T data; public void setData(T data) { this.data = data; } public T getData() { return data; } } 在實例化Box類時，例如Box box = new Box&lt;&gt;();，編譯器會檢查並確保操作符右邊的類型符合泛型類型的要求。然而，生成的字節碼將不包含任何有關泛型類型的信息，對於JVM來說，這個類型是Box。
+泛型擦除的限制 泛型擦除帶來了一些限制，這些限制在實際開發中需要特別注意：
+無法創建泛型數組：由於泛型擦除，無法創建泛型數組。例如，List[] arrays = new List[10];是不合法的。 無法直接創建泛型實例：由於泛型擦除，無法直接創建泛型類的實例。例如，new Box()是不合法的，應改為new Box&lt;&gt;()。 靜態上下文中無法使用泛型類型：在靜態上下文中，無法使用泛型類型作為類型參數。例如，static Box box;是不合法的。 無法檢查泛型類型的實際類型：在運行時期，無法檢查泛型類型的實際類型。例如，對於List和List，在運行時期它們都被視為List。 解決泛型擦除的限制 儘管泛型擦除帶來了一些限制，但我們仍然可以通過一些技巧來解決這些限制：
+使用通配符：在某些情況下，可以使用通配符extends和super來定義泛型類型的上限和下限，從而在運行時期進行相應的檢查。 使用反射：通過使用反射機制，我們可以在運行時期獲取泛型類型的實際類型信息。雖然這種方法比較複雜且效率較低，但在某些情況下是一個有效的解決方案。 使用原始類型：在某些情況下，可以使用原始類型來規避泛型擦除的限制。例如，List代表原始的List類型，它可以在某些情況下用於舊的程式碼兼容性。 總結 泛型擦除是Java中一個重要且具有影響的機制，它在編譯時期擦除了泛型類型信息，從而確保了新的泛型程式碼與舊的非泛型程式碼的兼容性。儘管泛型擦除帶來了一些限制，但通過合理的設計和應用，我們仍然可以充分利用泛型的強大功能。通過深入理解泛型擦除的原理和限制，開發人員可以更好地設計和編寫泛型程式碼，從而提高程式碼的可讀性和可維護性。">
   <meta property="og:image" content="https://twcch.github.io/">
 
   
@@ -46,7 +57,7 @@
 
     
     <div class="global-cover">
-      <img src="https://twcch.github.io/images/banner.jpg" alt="✍️ Writing">
+      <img src="https://twcch.github.io/images/banner.jpg" alt="Java中的泛型擦除與限制">
     </div>
     
 
@@ -81,7 +92,7 @@
             
             
               <li class="nav__item">
-                <a href="/posts/" class="nav__link active-link">✍️ 部落格</a>
+                <a href="/posts/" class="nav__link ">✍️ 部落格</a>
               </li>
             
             
@@ -116,6 +127,12 @@
         
           
           
+          » <a href='https://twcch.github.io/posts/java-generic-erasure-and-limit'>Java generic erasure and limit</a>
+          
+        
+        
+          
+          
         
       </div>
     </div>
@@ -130,54 +147,107 @@
 
 
 
-<div class="page container">
+<article class="post container">
 
-  <div class="page-head">
-    <h1 class="page-title">✍️ Writing</h1>
-    
-  </div>
-
-  <div class="page__blog">
-    <div class="row">
+  <div class="post-head">
+    <h1 class="post-title">Java中的泛型擦除與限制</h1>
+    <div class="post-meta">
       
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/java-generic-erasure-and-limit/">Java中的泛型擦除與限制</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
+      <div class="post-tags">
+        Publish in&nbsp;
         
-          <a href="https://twcch.github.io/tags/java/" class="article__tag">Java</a>
+          <a href="https://twcch.github.io/tags/java/" class="post__tag">Java</a>
         
-        </div>
-        &nbsp;&bull;&nbsp;
+      </div>
+      &nbsp;&bull;&nbsp;
       
-      <time class="article__date" datetime="2024-02-10T00:00:00&#43;08:00">10 Feb, 2024</time>
+      <time class="post-date" datetime="2024-02-10T00:00:00&#43;08:00">10 Feb, 2024</time>
       
         &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
+        <span class="post-minutes">1 min read</span>
       
     </div>
-  
-    <p class="article__excerpt">Java的泛型是一個強大的特性，它使得我們可以編寫更通用、更安全的程式碼。然而，Java的泛型也有一些限制，其中最主要的限制之一就是泛型擦除。本文將深入探討Java中的泛型擦除機制及其帶來的限制，並提供相應的解決方案。
-泛型擦除的概念 Java的泛型是通過擦除機制來實現的，這意味著在編譯時期，泛型類型信息將被擦除，並在運行時期不存在。具體來說，泛型類型的參數化信息將被擦除為其邊界（如果有的話）或Object類型。這一機制是為了確保舊的Java程式碼與新的泛型程式碼保持兼容，同時也是為了提高運行時期的效率。
-例如，考慮以下泛型類：
-public class Box&lt;T&gt; { private T data; public void setData(T data) { this.data = data; } public T getData() { return data; } } 在實例化Box類時，例如Box box = new Box&lt;&gt;();，編譯器會檢查並確保操作符右邊的類型符合泛型類型的要求。然而，生成的字節碼將不包含任何有關泛型類型的信息，對於JVM來說，這個類型是Box。
-泛型擦除的限制 泛型擦除帶來了一些限制，這些限制在實際開發中需要特別注意：
-無法創建泛型數組：由於泛型擦除，無法創建泛型數組。例如，List[] arrays = new List[10];是不合法的。 無法直接創建泛型實例：由於泛型擦除，無法直接創建泛型類的實例。例如，new Box()是不合法的，應改為new Box&lt;&gt;()。 靜態上下文中無法使用泛型類型：在靜態上下文中，無法使用泛型類型作為類型參數。例如，static Box box;是不合法的。 無法檢查泛型類型的實際類型：在運行時期，無法檢查泛型類型的實際類型。例如，對於List和List，在運行時期它們都被視為List。 解決泛型擦除的限制 儘管泛型擦除帶來了一些限制，但我們仍然可以通過一些技巧來解決這些限制：
-使用通配符：在某些情況下，可以使用通配符extends和super來定義泛型類型的上限和下限，從而在運行時期進行相應的檢查。 使用反射：通過使用反射機制，我們可以在運行時期獲取泛型類型的實際類型信息。雖然這種方法比較複雜且效率較低，但在某些情況下是一個有效的解決方案。 使用原始類型：在某些情況下，可以使用原始類型來規避泛型擦除的限制。例如，List代表原始的List類型，它可以在某些情況下用於舊的程式碼兼容性。 總結 泛型擦除是Java中一個重要且具有影響的機制，它在編譯時期擦除了泛型類型信息，從而確保了新的泛型程式碼與舊的非泛型程式碼的兼容性。儘管泛型擦除帶來了一些限制，但通過合理的設計和應用，我們仍然可以充分利用泛型的強大功能。通過深入理解泛型擦除的原理和限制，開發人員可以更好地設計和編寫泛型程式碼，從而提高程式碼的可讀性和可維護性。</p>
+    
   </div>
 
+  
 
+  
+
+  
+
+  <div class="post__content">
+    
+    <p>Java的泛型是一個強大的特性，它使得我們可以編寫更通用、更安全的程式碼。然而，Java的泛型也有一些限制，其中最主要的限制之一就是泛型擦除。本文將深入探討Java中的泛型擦除機制及其帶來的限制，並提供相應的解決方案。</p>
+<h3 id="泛型擦除的概念">泛型擦除的概念</h3>
+<p>Java的泛型是通過擦除機制來實現的，這意味著在編譯時期，泛型類型信息將被擦除，並在運行時期不存在。具體來說，泛型類型的參數化信息將被擦除為其邊界（如果有的話）或Object類型。這一機制是為了確保舊的Java程式碼與新的泛型程式碼保持兼容，同時也是為了提高運行時期的效率。</p>
+<p>例如，考慮以下泛型類：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Box</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">data</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setData</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="nf">getData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">data</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>在實例化Box類時，例如Box<Integer> box = new Box&lt;&gt;();，編譯器會檢查並確保操作符右邊的類型符合泛型類型的要求。然而，生成的字節碼將不包含任何有關泛型類型的信息，對於JVM來說，這個類型是Box<Object>。</p>
+<h3 id="泛型擦除的限制">泛型擦除的限制</h3>
+<p>泛型擦除帶來了一些限制，這些限制在實際開發中需要特別注意：</p>
+<ol>
+<li>無法創建泛型數組：由於泛型擦除，無法創建泛型數組。例如，List<Integer>[] arrays = new List<Integer>[10];是不合法的。</li>
+<li>無法直接創建泛型實例：由於泛型擦除，無法直接創建泛型類的實例。例如，new Box<Integer>()是不合法的，應改為new Box&lt;&gt;()。</li>
+<li>靜態上下文中無法使用泛型類型：在靜態上下文中，無法使用泛型類型作為類型參數。例如，static Box<T> box;是不合法的。</li>
+<li>無法檢查泛型類型的實際類型：在運行時期，無法檢查泛型類型的實際類型。例如，對於List<Integer>和List<String>，在運行時期它們都被視為List。</li>
+</ol>
+<h3 id="解決泛型擦除的限制">解決泛型擦除的限制</h3>
+<p>儘管泛型擦除帶來了一些限制，但我們仍然可以通過一些技巧來解決這些限制：</p>
+<ol>
+<li>使用通配符：在某些情況下，可以使用通配符extends和super來定義泛型類型的上限和下限，從而在運行時期進行相應的檢查。</li>
+<li>使用反射：通過使用反射機制，我們可以在運行時期獲取泛型類型的實際類型信息。雖然這種方法比較複雜且效率較低，但在某些情況下是一個有效的解決方案。</li>
+<li>使用原始類型：在某些情況下，可以使用原始類型來規避泛型擦除的限制。例如，List代表原始的List類型，它可以在某些情況下用於舊的程式碼兼容性。</li>
+</ol>
+<h3 id="總結">總結</h3>
+<p>泛型擦除是Java中一個重要且具有影響的機制，它在編譯時期擦除了泛型類型信息，從而確保了新的泛型程式碼與舊的非泛型程式碼的兼容性。儘管泛型擦除帶來了一些限制，但通過合理的設計和應用，我們仍然可以充分利用泛型的強大功能。通過深入理解泛型擦除的原理和限制，開發人員可以更好地設計和編寫泛型程式碼，從而提高程式碼的可讀性和可維護性。</p>
+
+  </div>
+
+  <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=Java%e4%b8%ad%e7%9a%84%e6%b3%9b%e5%9e%8b%e6%93%a6%e9%99%a4%e8%88%87%e9%99%90%e5%88%b6&url=https%3a%2f%2ftwcch.github.io%2fposts%2fjava-generic-erasure-and-limit%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftwcch.github.io%2fposts%2fjava-generic-erasure-and-limit%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftwcch.github.io%2fposts%2fjava-generic-erasure-and-limit%2f&title=Java%e4%b8%ad%e7%9a%84%e6%b3%9b%e5%9e%8b%e6%93%a6%e9%99%a4%e8%88%87%e9%99%90%e5%88%b6&summary=&source=Java%e4%b8%ad%e7%9a%84%e6%b3%9b%e5%9e%8b%e6%93%a6%e9%99%a4%e8%88%87%e9%99%90%e5%88%b6"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2ftwcch.github.io%2fposts%2fjava-generic-erasure-and-limit%2f&amp;media=https%3a%2f%2ftwcch.github.io%2f&amp;description=Java%e4%b8%ad%e7%9a%84%e6%b3%9b%e5%9e%8b%e6%93%a6%e9%99%a4%e8%88%87%e9%99%90%e5%88%b6"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+    </li>
+  </ul>
 </div>
-      
-        <div class="article col col-6 col-t-12 animate">
+
+  
+
+
+<div class="section-related">
+  <h4 class="section-related__title">You may also like...</h4>
+  <div class="row grid">
+    
+      <div class="article col col-6 col-t-12 animate">
 
   <div class="article__content">
     
@@ -210,8 +280,8 @@ class Person implements Cloneable { private String name; private int age; public
 
 
 </div>
-      
-        <div class="article col col-6 col-t-12 animate">
+    
+      <div class="article col col-6 col-t-12 animate">
 
   <div class="article__content">
     
@@ -244,11 +314,50 @@ import java.util.*; class Person implements Comparable&lt;Person&gt; { private S
 
 
 </div>
-      
-    </div>
+    
   </div>
-
 </div>
+
+
+</article>
+
+
+
+  
+
+<div class="container">
+  <div class="show-comments">
+    <button class="button" id="show-comments-button" onclick="disqus();return false;">Comments</button>
+  </div>
+  
+  <div id="disqus_thread" class="post__comments">
+    <div id="disqus_empty"></div>
+  </div>
+  
+  <script>
+    var disqus_loaded = false;
+    var disqus_shortname = 'anvod-studio-test';
+    var disqus_container = document.getElementById("disqus_thread");
+    function disqus() {
+      if (!disqus_loaded) {
+        disqus_loaded = true;
+        var e = document.createElement("script");
+        e.type = "text/javascript";
+        e.async = true;
+        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0])
+          .appendChild(e);
+        
+        document.getElementById("show-comments-button").style.display = "none";
+        
+        disqus_container.classList.add("is-open");
+      }
+    }
+  </script>
+</div>
+
+
 
 
 
