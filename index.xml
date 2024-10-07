@@ -6,8 +6,15 @@
     <description>Recent content on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 07 Oct 2024 00:00:00 +0800</lastBuildDate>
     <atom:link href="http://twcch.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Machine Learning - Linear Regression</title>
+      <link>http://twcch.github.io/posts/machine-learning-linear-regression-model/</link>
+      <pubDate>Mon, 07 Oct 2024 00:00:00 +0800</pubDate>
+      <guid>http://twcch.github.io/posts/machine-learning-linear-regression-model/</guid>
+      <description>&lt;p&gt;待補 &amp;hellip;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Elements</title>
       <link>http://twcch.github.io/elements/</link>
@@ -20,14 +27,14 @@
       <link>http://twcch.github.io/contact/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://twcch.github.io/contact/</guid>
-      <description>&lt;p&gt;Menca comes with a built-in contact form, that you can use with Formspree service to handle up to 50 submissions per month for free. You could also easily switch to another contact form service if you want.&lt;/p&gt;</description>
+      <description>&lt;p&gt;待補 &amp;hellip;&lt;/p&gt;</description>
     </item>
     <item>
       <title>關於我</title>
       <link>http://twcch.github.io/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://twcch.github.io/about/</guid>
-      <description>&lt;p&gt;Leverage agile frameworks to provide a robust Hugo Sousa synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.&lt;/p&gt;&#xA;&lt;p&gt;Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.&lt;/p&gt;</description>
+      <description>&lt;p&gt;待補 &amp;hellip;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
