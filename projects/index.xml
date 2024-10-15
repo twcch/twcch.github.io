@@ -1,54 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>🚀 Portfolio on 志謙&#39;s Blog</title>
+    <title>Portfolio on 志謙&#39;s Blog</title>
     <link>https://twcch.github.io/projects/</link>
-    <description>Recent content in 🚀 Portfolio on 志謙&#39;s Blog</description>
+    <description>Recent content in Portfolio on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 10 Jan 2023 08:01:35 +0300</lastBuildDate>
+    <lastBuildDate></lastBuildDate>
     <atom:link href="https://twcch.github.io/projects/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>The Foundation of Mobile Development</title>
-      <link>https://twcch.github.io/projects/the-foundation-of-mobile-development/</link>
-      <pubDate>Tue, 10 Jan 2023 08:01:35 +0300</pubDate>
-      <guid>https://twcch.github.io/projects/the-foundation-of-mobile-development/</guid>
-      <description>&lt;h2 id=&#34;the-role-of-wireframes-and-mockups&#34;&gt;The Role of Wireframes and Mockups&lt;/h2&gt;&#xA;&lt;p&gt;Mobile development is a dynamic and ever-evolving field, and staying ahead of the curve is essential. One effective way to achieve success in this realm is by leveraging wireframes. These simplified visual representations enable developers to iterate quickly, experiment with different layouts, and validate their ideas before investing time and resources into the actual coding process. When it comes to mobile app design, the significance of mockups cannot be overstated. They provide stakeholders with a realistic preview of the final product, allowing for valuable feedback and ensuring everyone is on the same page before moving forward with development.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Unleashing the Power of Wireframes</title>
-      <link>https://twcch.github.io/projects/unleashing-the-power-of-wireframes/</link>
-      <pubDate>Mon, 09 Jan 2023 08:01:35 +0300</pubDate>
-      <guid>https://twcch.github.io/projects/unleashing-the-power-of-wireframes/</guid>
-      <description>&lt;p&gt;Mockups are instrumental in the user-centered design process for mobile apps. They enable designers to test and refine their ideas, ensuring that the visual aesthetics and user interactions align with the app’s goals. By presenting a tangible representation of the app’s look and feel, mockups facilitate user feedback and allow for iterative improvements, resulting in a polished and engaging mobile experience.&lt;/p&gt;&#xA;&lt;div class=&#34;page__gallery__wrapper&#34;&gt;&#xA;  &lt;div class=&#34;page__gallery__images&#34;&gt;&#xA;    &lt;img src=&#34;https://via.placeholder.com/1200x800&#34; loading=&#34;lazy&#34; alt=&#34;Project&#34;&gt;&#xA;    &lt;img src=&#34;https://via.placeholder.com/1200x800&#34; loading=&#34;lazy&#34; alt=&#34;Project&#34;&gt;&#xA;    &lt;img src=&#34;https://via.placeholder.com/1200x800&#34; loading=&#34;lazy&#34; alt=&#34;Project&#34;&gt;&#xA;  &lt;/div&gt;&#xA;  &lt;em&gt;Gallery / &lt;a href=&#34;https://via.placeholder.com/1200x800&#34; target=&#34;_blank&#34;&gt;Unsplash&lt;/a&gt;&lt;/em&gt;&#xA;&lt;/div&gt;&#xA;&lt;p&gt;Wireframes are not just static sketches; they are a vital communication tool. They help designers, developers, and stakeholders visualize and discuss the app’s functionality and layout. Through wireframes, complex ideas can be simplified and conveyed effectively, fostering collaboration and alignment throughout the mobile development process.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Exploring Wireframes and Mockups</title>
-      <link>https://twcch.github.io/projects/exploring-wireframes-and-mockups/</link>
-      <pubDate>Sun, 08 Jan 2023 08:01:35 +0300</pubDate>
-      <guid>https://twcch.github.io/projects/exploring-wireframes-and-mockups/</guid>
-      <description>&lt;p&gt;Mockups are instrumental in the user-centered design process for mobile apps. They enable designers to test and refine their ideas, ensuring that the visual aesthetics and user interactions align with the app’s goals. By presenting a tangible representation of the app’s look and feel, mockups facilitate user feedback and allow for iterative improvements, resulting in a polished and engaging mobile experience.&lt;/p&gt;&#xA;&lt;div class=&#34;page__gallery__wrapper&#34;&gt;&#xA;  &lt;div class=&#34;page__gallery__images&#34;&gt;&#xA;    &lt;img src=&#34;https://via.placeholder.com/1200x800&#34; loading=&#34;lazy&#34; alt=&#34;Project&#34;&gt;&#xA;    &lt;img src=&#34;https://via.placeholder.com/1200x800&#34; loading=&#34;lazy&#34; alt=&#34;Project&#34;&gt;&#xA;    &lt;img src=&#34;https://via.placeholder.com/1200x800&#34; loading=&#34;lazy&#34; alt=&#34;Project&#34;&gt;&#xA;  &lt;/div&gt;&#xA;  &lt;em&gt;Gallery / &lt;a href=&#34;https://via.placeholder.com/1200x800&#34; target=&#34;_blank&#34;&gt;Unsplash&lt;/a&gt;&lt;/em&gt;&#xA;&lt;/div&gt;&#xA;&lt;p&gt;Wireframes are not just static sketches; they are a vital communication tool. They help designers, developers, and stakeholders visualize and discuss the app’s functionality and layout. Through wireframes, complex ideas can be simplified and conveyed effectively, fostering collaboration and alignment throughout the mobile development process.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>A Guide for Mobile App Design</title>
-      <link>https://twcch.github.io/projects/a-guide-for-mobile-app-design/</link>
-      <pubDate>Sat, 07 Jan 2023 08:01:35 +0300</pubDate>
-      <guid>https://twcch.github.io/projects/a-guide-for-mobile-app-design/</guid>
-      <description>&lt;p&gt;Mockups are instrumental in the user-centered design process for mobile apps. They enable designers to test and refine their ideas, ensuring that the visual aesthetics and user interactions align with the app’s goals. By presenting a tangible representation of the app’s look and feel, mockups facilitate user feedback and allow for iterative improvements, resulting in a polished and engaging mobile experience.&lt;/p&gt;&#xA;&lt;div class=&#34;page__gallery__wrapper&#34;&gt;&#xA;  &lt;div class=&#34;page__gallery__images&#34;&gt;&#xA;    &lt;img src=&#34;https://via.placeholder.com/1200x800&#34; loading=&#34;lazy&#34; alt=&#34;Project&#34;&gt;&#xA;    &lt;img src=&#34;https://via.placeholder.com/1200x800&#34; loading=&#34;lazy&#34; alt=&#34;Project&#34;&gt;&#xA;  &lt;/div&gt;&#xA;  &lt;em&gt;Gallery / &lt;a href=&#34;https://via.placeholder.com/1200x800&#34; target=&#34;_blank&#34;&gt;Unsplash&lt;/a&gt;&lt;/em&gt;&#xA;&lt;/div&gt;&#xA;&lt;p&gt;Wireframes are not just static sketches; they are a vital communication tool. They help designers, developers, and stakeholders visualize and discuss the app’s functionality and layout. Through wireframes, complex ideas can be simplified and conveyed effectively, fostering collaboration and alignment throughout the mobile development process.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Unlocking Innovation in Digital Design</title>
-      <link>https://twcch.github.io/projects/unlocking-innovation-in-digital-design/</link>
-      <pubDate>Fri, 06 Jan 2023 08:01:35 +0300</pubDate>
-      <guid>https://twcch.github.io/projects/unlocking-innovation-in-digital-design/</guid>
-      <description>&lt;p&gt;Mobile development is a dynamic and ever-evolving field, and staying ahead of the curve is essential. One effective way to achieve success in this realm is by leveraging wireframes. These simplified visual representations enable developers to iterate quickly, experiment with different layouts, and validate their ideas before investing time and resources into the actual coding process. When it comes to mobile app design, the significance of mockups cannot be overstated. They provide stakeholders with a realistic preview of the final product, allowing for valuable feedback and ensuring everyone is on the same page before moving forward with development.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Enhancing User-Centered Experiences</title>
-      <link>https://twcch.github.io/projects/enhancing-eser-centered-experiences/</link>
-      <pubDate>Thu, 05 Jan 2023 08:01:35 +0300</pubDate>
-      <guid>https://twcch.github.io/projects/enhancing-eser-centered-experiences/</guid>
-      <description>&lt;p&gt;Mockups are instrumental in the user-centered design process for mobile apps. They enable designers to test and refine their ideas, ensuring that the visual aesthetics and user interactions align with the app’s goals. By presenting a tangible representation of the app’s look and feel, mockups facilitate user feedback and allow for iterative improvements, resulting in a polished and engaging mobile experience.&lt;/p&gt;&#xA;&lt;div class=&#34;page__gallery__wrapper&#34;&gt;&#xA;  &lt;div class=&#34;page__gallery__images&#34;&gt;&#xA;    &lt;img src=&#34;https://via.placeholder.com/1200x800&#34; loading=&#34;lazy&#34; alt=&#34;Project&#34;&gt;&#xA;    &lt;img src=&#34;https://via.placeholder.com/1200x800&#34; loading=&#34;lazy&#34; alt=&#34;Project&#34;&gt;&#xA;  &lt;/div&gt;&#xA;  &lt;em&gt;Gallery / &lt;a href=&#34;https://via.placeholder.com/1200x800&#34; target=&#34;_blank&#34;&gt;Unsplash&lt;/a&gt;&lt;/em&gt;&#xA;&lt;/div&gt;&#xA;&lt;p&gt;Wireframes are not just static sketches; they are a vital communication tool. They help designers, developers, and stakeholders visualize and discuss the app’s functionality and layout. Through wireframes, complex ideas can be simplified and conveyed effectively, fostering collaboration and alignment throughout the mobile development process.&lt;/p&gt;</description>
-    </item>
   </channel>
 </rss>
