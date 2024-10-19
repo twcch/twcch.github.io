@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>志謙&#39;s Blog</title>
+    <link>https://twcch.github.io/</link>
+    <description>Recent content on 志謙&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Thu, 01 Aug 2024 00:00:00 +0800</lastBuildDate>
+    <atom:link href="https://twcch.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>什麼是商業分析師</title>
+      <link>https://twcch.github.io/posts/what-is-a-business-analyst/</link>
+      <pubDate>Thu, 01 Aug 2024 00:00:00 +0800</pubDate>
+      <guid>https://twcch.github.io/posts/what-is-a-business-analyst/</guid>
+      <description>&lt;h2 id=&#34;什麼是商業分析師&#34;&gt;什麼是商業分析師？&lt;/h2&gt;&#xA;&lt;p&gt;商業分析師的實際工作內容會因企業而異。根據國際商業分析師協會 (International Institute of Business Analysis，IIBA) 定義的商業分析師職業路徑圖，商業分析師可分為策略類 (Strategic)、戰術類 (Tactical) 和營運類 (Operational)。對於非該領域的人來說，對這個職業的想像可能更接近策略類的商業分析師。而我是一名營運類的商業分析師，本文將著重介紹此類型商業分析師的工作內容，以及我認為所需的技能。&lt;/p&gt;&#xA;&lt;img src=&#34;https://twcch.github.io/images/posts/continuing-evolution-of-business-analysis.png&#34; /&gt;&#xA;&lt;p style=&#34;text-align: center;&#34;&gt;Photo by &lt;a href=&#34;https://www.iiba.org/career-resources/develop-your-business-analysis-career/business-analyst-career-road-map/&#34; target=&#34;_blank&#34; rel=&#34;nofollow&#34;&gt;Business Analysis Career Path&lt;/a&gt; on &lt;a href=&#34;https://www.iiba.org/&#34; target=&#34;_blank&#34; rel=&#34;nofollow&#34;&gt;IIBA&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;關於 Business Analyst 的中文翻譯有多種稱呼，最常見的是「商業分析師」或「業務分析師」。在金融業的招聘網站上，可能會使用「系統規劃人員」或「業務流程規劃人員」等職稱。總的來說，這個職位的稱謂沒有統一的定義。&lt;/p&gt;&#xA;&lt;h2 id=&#34;商業分析師的工作內容&#34;&gt;商業分析師的工作內容&lt;/h2&gt;&#xA;&lt;p&gt;商業分析師的工作內容會隨著資歷和經驗的增長而有所不同。我將商業分析師的職涯發展分為三個階段。至於如何跨越到下一個階段，取決於個人的能力與努力。我見過許多資深的商業分析師仍然停留在第一階段。&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;第一階 (新進商業分析師)&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;該階的商業分析師做的最多個工作以下兩類：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;需求訪談、需求管理與需求規劃&lt;/li&gt;&#xA;&lt;li&gt;使用者驗收測試 (User Test Pass; UAT)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;在這個階段，商業分析師主要針對業務流程進行改善。有人可能會問，業務流程真的需要持續改善嗎？答案是肯定的。以金融業為例，業務流程會因法令調整、企業策略或產品銷售規劃等因素而需要修改。業務流程與相關系統必須做出相應的調整。由於商業分析師通常不是業務的直接執行者，因此在業務流程改變時，需要進行需求訪談、需求管理與需求規劃，確保第一線業務人員能夠充分理解相關變動，並負責最後的使用者驗收測試。&lt;/p&gt;&#xA;&lt;ol start=&#34;2&#34;&gt;&#xA;&lt;li&gt;第二階 (資深商業分析師)&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;我目前也是處於該階段，該階的商業分析師主要負責以下的工作：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;專案管理 (領導專案)&lt;/li&gt;&#xA;&lt;li&gt;數據分析或資料處理&lt;/li&gt;&#xA;&lt;li&gt;需求訪談、需求管理與需求規劃&lt;/li&gt;&#xA;&lt;li&gt;使用者驗收測試 (User Test Pass; UAT)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;在這個階段，商業分析師開始領導其他分析師完成專案目標。我經常需要啟動由十多人組成的專案團隊，帶領他們完成專案目標。進行使用者驗收測試的時間會逐漸減少，通常會委派給團隊中的其他分析師處理。在這個階段，專案管理能力變得非常重要。我見過許多商業分析師在這裡遇到瓶頸，因為他們缺乏對專案和團隊成員的掌控能力。&lt;/p&gt;&#xA;&lt;ol start=&#34;3&#34;&gt;&#xA;&lt;li&gt;第三階 (主管級商業分析師)&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;專案管理 (領導專案)&lt;/li&gt;&#xA;&lt;li&gt;領導團隊&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;通常，達到這個階段的商業分析師已經成為部門的小主管。他們不再從事基礎工作，而是專注於掌控專案全局，領導團隊執行各項任務。&lt;/p&gt;&#xA;&lt;h2 id=&#34;商業分析師需要什麼技能&#34;&gt;商業分析師需要什麼技能？&lt;/h2&gt;&#xA;&lt;p&gt;我認為商業分析師最重要的兩項技能是：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;業務領域的專業知識&lt;/li&gt;&#xA;&lt;li&gt;溝通協調&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;缺乏這兩項技能，連基本工作都難以勝任。此外，作為營運類的商業分析師，我經常需要進行系統規劃、需求規劃或數據處理，因此我透過持續進修，掌握了以下技能：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;SQL&lt;/li&gt;&#xA;&lt;li&gt;Python 數據分析&lt;/li&gt;&#xA;&lt;li&gt;Java Web 開發&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;持續提升這些技能，可以不斷增強工作能力。對於資深的商業分析師來說，以下技能也是必須掌握的：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;專案管理&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;結語&#34;&gt;結語&lt;/h2&gt;&#xA;&lt;p&gt;以上是對商業分析師這一職業的基本介紹，希望能讓大家對營運類商業分析師的工作內容和所需技能有更深入的了解。如果您對這個職業有興趣，建議從提升自身的業務知識和溝通能力開始，並逐步學習技術技能和專案管理方法，為未來的職涯發展做好準備。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Memories</title>
+      <link>https://twcch.github.io/gallery/memories/</link>
+      <pubDate>Fri, 09 Jun 2023 15:01:35 +0300</pubDate>
+      <guid>https://twcch.github.io/gallery/memories/</guid>
+      <description>&lt;p&gt;Photography and travel have always gone hand in hand, and for good reason. Traveling to new places provides photographers with endless opportunities to capture breathtaking landscapes, interesting people, and unique cultures. Through my travels, I&amp;rsquo;ve learned that photography isn&amp;rsquo;t just about taking pretty pictures, it&amp;rsquo;s about telling a story. Each photograph captures a moment in time, a feeling, a memory that can be revisited over and over again.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://via.placeholder.com/1200x800&#34; alt=&#34;Dog&#34;&gt;&#xA;&lt;em&gt;Photo by &lt;a href=&#34;https://via.placeholder.com/1200x800&#34;&gt;Jamie Street&lt;/a&gt; on &lt;a href=&#34;https://via.placeholder.com/1200x800&#34;&gt;Unsplash&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Califonia</title>
+      <link>https://twcch.github.io/gallery/california/</link>
+      <pubDate>Fri, 08 Jul 2022 15:01:35 +0300</pubDate>
+      <guid>https://twcch.github.io/gallery/california/</guid>
+      <description>&lt;p&gt;Photography and travel have always gone hand in hand, and for good reason. Traveling to new places provides photographers with endless opportunities to capture breathtaking landscapes, interesting people, and unique cultures. Through my travels, I&amp;rsquo;ve learned that photography isn&amp;rsquo;t just about taking pretty pictures, it&amp;rsquo;s about telling a story. Each photograph captures a moment in time, a feeling, a memory that can be revisited over and over again.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;It&amp;rsquo;s easy to get stuck in our own little worlds, but traveling forces us out of our comfort zones and exposes us to new ideas, people, and ways of life.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hawaii</title>
+      <link>https://twcch.github.io/gallery/hawaii/</link>
+      <pubDate>Sun, 08 May 2022 15:01:35 +0300</pubDate>
+      <guid>https://twcch.github.io/gallery/hawaii/</guid>
+      <description>&lt;p&gt;Photography and travel have always gone hand in hand, and for good reason. Traveling to new places provides photographers with endless opportunities to capture breathtaking landscapes, interesting people, and unique cultures. Through my travels, I&amp;rsquo;ve learned that photography isn&amp;rsquo;t just about taking pretty pictures, it&amp;rsquo;s about telling a story. Each photograph captures a moment in time, a feeling, a memory that can be revisited over and over again.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://via.placeholder.com/1200x800&#34; alt=&#34;Orange Car&#34;&gt;&#xA;&lt;em&gt;Photo by &lt;a href=&#34;https://via.placeholder.com/1200x800&#34;&gt;Tyler Nix&lt;/a&gt; on &lt;a href=&#34;https://via.placeholder.com/1200x800&#34;&gt;Unsplash&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Creating Engaging Videos for Your YouTube Channel</title>
+      <link>https://twcch.github.io/videos/creating-engaging-videos-for-your-youtube-channel/</link>
+      <pubDate>Fri, 07 Jan 2022 08:01:35 +0300</pubDate>
+      <guid>https://twcch.github.io/videos/creating-engaging-videos-for-your-youtube-channel/</guid>
+      <description>&lt;p&gt;In today&amp;rsquo;s digital age, video has become a powerful medium for storytelling, entertainment, and education. Whether you&amp;rsquo;re a filmmaker, content creator, or simply passionate about sharing your experiences, harnessing the potential of video can open up a world of creative possibilities.&lt;/p&gt;&#xA;&lt;h2 id=&#34;define-your-content-niche&#34;&gt;Define Your Content Niche:&lt;/h2&gt;&#xA;&lt;p&gt;As a filmmaker, your unique perspective and storytelling ability shape the way audiences perceive the world. Through the art of visual storytelling, you have the opportunity to evoke emotions, provoke thoughts, and inspire change. Embrace your creativity and use video as a tool to make a meaningful impact.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Crafting Compelling Content That Captivates</title>
+      <link>https://twcch.github.io/videos/crafting-compelling-content-that-captivates/</link>
+      <pubDate>Wed, 05 Jan 2022 08:01:35 +0300</pubDate>
+      <guid>https://twcch.github.io/videos/crafting-compelling-content-that-captivates/</guid>
+      <description>&lt;p&gt;In today&amp;rsquo;s digital age, video has become a powerful medium for storytelling, entertainment, and education. Whether you&amp;rsquo;re a filmmaker, content creator, or simply passionate about sharing your experiences, harnessing the potential of video can open up a world of creative possibilities.&lt;/p&gt;&#xA;&lt;p&gt;As a filmmaker, your unique perspective and storytelling ability shape the way audiences perceive the world. Through the art of visual storytelling, you have the opportunity to evoke emotions, provoke thoughts, and inspire change. Embrace your creativity and use video as a tool to make a meaningful impact.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Building a Thriving Channel from Scratch</title>
+      <link>https://twcch.github.io/videos/building-a-thriving-channel-from-scratch/</link>
+      <pubDate>Tue, 04 Jan 2022 08:01:35 +0300</pubDate>
+      <guid>https://twcch.github.io/videos/building-a-thriving-channel-from-scratch/</guid>
+      <description>&lt;p&gt;In today&amp;rsquo;s digital age, video has become a powerful medium for storytelling, entertainment, and education. Whether you&amp;rsquo;re a filmmaker, content creator, or simply passionate about sharing your experiences, harnessing the potential of video can open up a world of creative possibilities.&lt;/p&gt;&#xA;&lt;p&gt;As a filmmaker, your unique perspective and storytelling ability shape the way audiences perceive the world. Through the art of visual storytelling, you have the opportunity to evoke emotions, provoke thoughts, and inspire change. Embrace your creativity and use video as a tool to make a meaningful impact.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Boosting Traffic and Engaging Your Audience</title>
+      <link>https://twcch.github.io/videos/boosting-traffic-and-engaging-your-audience/</link>
+      <pubDate>Sun, 02 Jan 2022 08:01:35 +0300</pubDate>
+      <guid>https://twcch.github.io/videos/boosting-traffic-and-engaging-your-audience/</guid>
+      <description>&lt;p&gt;Aesthetics and visual storytelling go hand in hand. Pay attention to composition, lighting, color grading, and sound design to create a visually appealing and immersive experience for your viewers. Experiment with different techniques, styles, and editing approaches to develop your unique visual signature as a filmmaker.&lt;/p&gt;&#xA;&lt;p&gt;Building a loyal and engaged audience on YouTube requires consistent effort and engagement. Engage with your viewers by responding to comments, asking for feedback, and involving them in your content creation process. Foster a sense of community and make your viewers feel valued and appreciated.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Bike Trip</title>
+      <link>https://twcch.github.io/gallery/bike-trip/</link>
+      <pubDate>Thu, 12 Aug 2021 15:01:35 +0300</pubDate>
+      <guid>https://twcch.github.io/gallery/bike-trip/</guid>
+      <description>&lt;p&gt;Photography and travel have always gone hand in hand, and for good reason. Traveling to new places provides photographers with endless opportunities to capture breathtaking landscapes, interesting people, and unique cultures. Through my travels, I&amp;rsquo;ve learned that photography isn&amp;rsquo;t just about taking pretty pictures, it&amp;rsquo;s about telling a story. Each photograph captures a moment in time, a feeling, a memory that can be revisited over and over again.&lt;/p&gt;&#xA;&lt;p&gt;One of the greatest things about travel photography is the ability to share your experiences with others. I love nothing more than being able to take someone on a visual journey through my photographs, sharing the sights, sounds, and emotions of my travels with them. Whether it&amp;rsquo;s through social media, a blog, or a photo album, photography allows us to share our adventures and inspire others to get out and explore the world.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>📔 Elements</title>
+      <link>https://twcch.github.io/elements/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://twcch.github.io/elements/</guid>
+      <description>&lt;p&gt;A paragraph looks like this — Globally incubate standards compliant channels before scalable benefits. Quickly disseminate superior deliverables whereas web-enabled applications. Quickly drive clicks-and-mortar catalysts for change before vertical architectures. Credibly reintermediate backend ideas for cross-platform models. Continually reintermediate integrated processes through technically sound intellectual capital. Holistically foster superior methodologies.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;headings-by-default&#34;&gt;Headings by default:&lt;/h2&gt;&#xA;&lt;h1 id=&#34;h1-default-styles-for-headings&#34;&gt;H1 Default styles for headings&lt;/h1&gt;&#xA;&lt;h2 id=&#34;h2-default-styles-for-headings&#34;&gt;H2 Default styles for headings&lt;/h2&gt;&#xA;&lt;h3 id=&#34;h3-default-styles-for-headings&#34;&gt;H3 Default styles for headings&lt;/h3&gt;&#xA;&lt;h4 id=&#34;h4-default-styles-for-headings&#34;&gt;H4 Default styles for headings&lt;/h4&gt;&#xA;&lt;h5 id=&#34;h5-default-styles-for-headings&#34;&gt;H5 Default styles for headings&lt;/h5&gt;&#xA;&lt;h6 id=&#34;h6-default-styles-for-headings&#34;&gt;H6 Default styles for headings&lt;/h6&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;lists&#34;&gt;Lists&lt;/h2&gt;&#xA;&lt;h3 id=&#34;ordered-list-example&#34;&gt;Ordered list example:&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Poutine drinking vinegar bitters.&lt;/li&gt;&#xA;&lt;li&gt;Coloring book distillery fanny pack.&lt;/li&gt;&#xA;&lt;li&gt;Venmo biodiesel gentrify enamel pin meditation.&lt;/li&gt;&#xA;&lt;li&gt;Jean shorts shaman listicle pickled portland.&lt;/li&gt;&#xA;&lt;li&gt;Salvia mumblecore brunch iPhone migas.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;unordered-list-example&#34;&gt;Unordered list example:&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Bitters semiotics vice thundercats synth.&lt;/li&gt;&#xA;&lt;li&gt;Literally cred narwhal bitters wayfarers.&lt;/li&gt;&#xA;&lt;li&gt;Kale chips chartreuse paleo tbh street art marfa.&lt;/li&gt;&#xA;&lt;li&gt;Mlkshk polaroid sriracha brooklyn.&lt;/li&gt;&#xA;&lt;li&gt;Pug you probably haven&amp;rsquo;t heard of them air plant man bun.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;table&#34;&gt;Table&lt;/h2&gt;&#xA;&lt;div class=&#34;table-container&#34;&gt;&#xA;  &lt;table&gt;&#xA;    &lt;tr&gt;&lt;th&gt;Header 1&lt;/th&gt;&lt;th&gt;Header 2&lt;/th&gt;&lt;th&gt;Header 3&lt;/th&gt;&lt;th&gt;Header 4&lt;/th&gt;&lt;th&gt;Header 5&lt;/th&gt;&lt;/tr&gt;&#xA;    &lt;tr&gt;&lt;td&gt;Row:1 Cell:1&lt;/td&gt;&lt;td&gt;Row:1 Cell:2&lt;/td&gt;&lt;td&gt;Row:1 Cell:3&lt;/td&gt;&lt;td&gt;Row:1 Cell:4&lt;/td&gt;&lt;td&gt;Row:1 Cell:5&lt;/td&gt;&lt;/tr&gt;&#xA;    &lt;tr&gt;&lt;td&gt;Row:2 Cell:1&lt;/td&gt;&lt;td&gt;Row:2 Cell:2&lt;/td&gt;&lt;td&gt;Row:2 Cell:3&lt;/td&gt;&lt;td&gt;Row:2 Cell:4&lt;/td&gt;&lt;td&gt;Row:2 Cell:5&lt;/td&gt;&lt;/tr&gt;&#xA;    &lt;tr&gt;&lt;td&gt;Row:3 Cell:1&lt;/td&gt;&lt;td&gt;Row:3 Cell:2&lt;/td&gt;&lt;td&gt;Row:3 Cell:3&lt;/td&gt;&lt;td&gt;Row:3 Cell:4&lt;/td&gt;&lt;td&gt;Row:3 Cell:5&lt;/td&gt;&lt;/tr&gt;&#xA;    &lt;tr&gt;&lt;td&gt;Row:4 Cell:1&lt;/td&gt;&lt;td&gt;Row:4 Cell:2&lt;/td&gt;&lt;td&gt;Row:4 Cell:3&lt;/td&gt;&lt;td&gt;Row:4 Cell:4&lt;/td&gt;&lt;td&gt;Row:4 Cell:5&lt;/td&gt;&lt;/tr&gt;&#xA;    &lt;tr&gt;&lt;td&gt;Row:5 Cell:1&lt;/td&gt;&lt;td&gt;Row:5 Cell:2&lt;/td&gt;&lt;td&gt;Row:5 Cell:3&lt;/td&gt;&lt;td&gt;Row:5 Cell:4&lt;/td&gt;&lt;td&gt;Row:5 Cell:5&lt;/td&gt;&lt;/tr&gt;&#xA;    &lt;tr&gt;&lt;td&gt;Row:6 Cell:1&lt;/td&gt;&lt;td&gt;Row:6 Cell:2&lt;/td&gt;&lt;td&gt;Row:6 Cell:3&lt;/td&gt;&lt;td&gt;Row:6 Cell:4&lt;/td&gt;&lt;td&gt;Row:6 Cell:5&lt;/td&gt;&lt;/tr&gt;&#xA;  &lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;quotes&#34;&gt;Quotes&lt;/h2&gt;&#xA;&lt;h3 id=&#34;a-quote-looks-like-this&#34;&gt;A quote looks like this:&lt;/h3&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;The longer I live, the more I realize that I am never wrong about anything, and that all the pains I have so humbly taken to verify my notions have only wasted my time!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>人生專欄</title>
+      <link>https://twcch.github.io/as-a-business-analyst/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://twcch.github.io/as-a-business-analyst/</guid>
+      <description>&lt;p&gt;(&amp;hellip;)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>技術專欄</title>
+      <link>https://twcch.github.io/tech/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://twcch.github.io/tech/</guid>
+      <description>&lt;p&gt;(&amp;hellip;)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>聯絡我</title>
+      <link>https://twcch.github.io/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://twcch.github.io/contact/</guid>
+      <description>&lt;p&gt;如果你有任何問題，或是想要交流，可以透過 email 與我聯繫。&lt;/p&gt;&#xA;&lt;p&gt;Email: cchstw [at] gmail.com&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>關於我</title>
+      <link>https://twcch.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://twcch.github.io/about/</guid>
+      <description>&lt;img src=&#34;https://twcch.github.io/images/avatar.jpg&#34; width=&#34;200px&#34;&gt;&#xA;&lt;p&gt;&lt;/p&gt;&#xA;&lt;p&gt;I am Chih-Chien Hsieh, currently working as a Business Analyst in the financial industry. My primary expertise lies in insurance business analysis, data analysis, and project management. I am also interested in researching Machine Learning and Deep Learning. I mainly share knowledge related to machine learning and other programming languages, and I hope to learn and grow together with all of you.&lt;/p&gt;&#xA;&lt;h2 id=&#34;certificate&#34;&gt;Certificate&lt;/h2&gt;&#xA;&lt;div class=&#34;custom-table&#34;&gt;&#xA;    &lt;table&gt;&#xA;        &lt;thead&gt;&#xA;            &lt;tr&gt;&#xA;                &lt;th style=&#34;width: 40%;&#34;&gt;Certificate&lt;/th&gt;&#xA;                &lt;th style=&#34;width: 35%;&#34;&gt;Issuing Organization&lt;/th&gt;&#xA;                &lt;th style=&#34;width: 25%;&#34;&gt;Date of Issuance&lt;/th&gt;&#xA;            &lt;/tr&gt;&#xA;        &lt;/thead&gt;&#xA;        &lt;tbody&gt;&#xA;            &lt;tr&gt;&#xA;                &lt;td&gt;Project Management Professional (PMP)&lt;/td&gt;&#xA;                &lt;td&gt;Project Management Institute&lt;/td&gt;&#xA;                &lt;td&gt;2024-01&lt;/td&gt;&#xA;            &lt;/tr&gt;&#xA;            &lt;tr&gt;&#xA;                &lt;td&gt;Fellow, Life Management Institute (FLMI)&lt;/td&gt;&#xA;                &lt;td&gt;Life Office Management Association&lt;/td&gt;&#xA;                &lt;td&gt;2023-11&lt;/td&gt;&#xA;            &lt;/tr&gt;&#xA;        &lt;/tbody&gt;&#xA;    &lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
