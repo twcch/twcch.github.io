@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>機器學習 on 志謙&#39;s Blog</title>
-    <link>http://localhost:1313/tags/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92/</link>
+    <link>https://twcch.github.io/tags/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92/</link>
     <description>Recent content in 機器學習 on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
     <lastBuildDate>Sun, 15 Dec 2024 00:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://twcch.github.io/tags/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>介紹機器學習</title>
-      <link>http://localhost:1313/posts/introduction-machine-learning/</link>
+      <link>https://twcch.github.io/posts/introduction-machine-learning/</link>
       <pubDate>Sun, 15 Dec 2024 00:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/introduction-machine-learning/</guid>
-      <description>&lt;h2 id=&#34;什麼是機器學習&#34;&gt;什麼是機器學習？&lt;/h2&gt;&#xA;&lt;p&gt;我認為最好的機器學習定義是&lt;em&gt;Field of study that gives computers the ability to learn without being explicitly programmed&lt;/em&gt; (Arthur Samuel, 1959)的定義，所有的機器學習問題可以歸類於兩大類：監督式學習(Supervised Learning)、無監督式學習(Unsupervised Learning)或強化學習(Reinforcement Learning)。當然還有其他延伸的半監督式學習(Semi-Supervised Learning)與自監督學習(Self-Supervised Learning)，就不再討論範圍。&lt;/p&gt;&#xA;&lt;h2 id=&#34;機器學習的概念&#34;&gt;機器學習的概念&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;先選擇一個模型(Model)，也可以稱作函數集，它擁有無窮個函數(function)&lt;/li&gt;&#xA;&lt;li&gt;透過機器找出最好的函數$f*$&lt;/li&gt;&#xA;&lt;li&gt;再透過這個最好的函數$f*$，幫我們做出預測&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;$f*$&lt;/p&gt;&#xA;&lt;p&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;mi&gt;f&lt;/mi&gt;&lt;mo&gt;∗&lt;/mo&gt;&lt;/math&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;監督式學習supervised-learning&#34;&gt;監督式學習(Supervised Learning)&lt;/h2&gt;&#xA;&lt;p&gt;基於有標籤的資料進行訓練的模型，目的是學習輸入與輸出之間的關係，用於預測新的輸入資料的結果。&lt;/p&gt;&#xA;&lt;script src=&#34;https://polyfill.io/v3/polyfill.min.js?features=es6&#34;&gt;&lt;/script&gt;&#xA;&lt;script id=&#34;MathJax-script&#34; async src=&#34;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&#34;&gt;&lt;/script&gt;</description>
+      <guid>https://twcch.github.io/posts/introduction-machine-learning/</guid>
+      <description>&lt;h2 id=&#34;什麼是機器學習&#34;&gt;什麼是機器學習？&lt;/h2&gt;&#xA;&lt;p&gt;我認為最好的機器學習定義是&lt;em&gt;Field of study that gives computers the ability to learn without being explicitly programmed&lt;/em&gt; (Arthur Samuel, 1959)的定義，所有的機器學習問題可以歸類於兩大類：監督式學習(Supervised Learning)、無監督式學習(Unsupervised Learning)或強化學習(Reinforcement Learning)。當然還有其他延伸的半監督式學習(Semi-Supervised Learning)與自監督學習(Self-Supervised Learning)，就不再討論範圍。&lt;/p&gt;&#xA;&lt;h2 id=&#34;機器學習的概念&#34;&gt;機器學習的概念&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;先選擇一個模型(Model)，也可以稱作函數集，它擁有無窮個函數(function)&lt;/li&gt;&#xA;&lt;li&gt;透過機器找出最好的函數&lt;/li&gt;&#xA;&lt;li&gt;再透過這個最好的函數，幫我們做出預測&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;mi&gt;f&lt;/mi&gt;&lt;mo&gt;∗&lt;/mo&gt;&lt;/math&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;監督式學習supervised-learning&#34;&gt;監督式學習(Supervised Learning)&lt;/h2&gt;&#xA;&lt;p&gt;基於有標籤的資料進行訓練的模型，目的是學習輸入與輸出之間的關係，用於預測新的輸入資料的結果。&lt;/p&gt;&#xA;&lt;h3 id=&#34;迴歸regression&#34;&gt;迴歸(Regression)&lt;/h3&gt;&#xA;&lt;h3 id=&#34;分類classification&#34;&gt;分類(Classification)&lt;/h3&gt;&#xA;&lt;h3 id=&#34;其他&#34;&gt;其他&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Semi-Supervised Learning&lt;/li&gt;&#xA;&lt;li&gt;Transfer Learning&lt;/li&gt;&#xA;&lt;li&gt;Unsupervised Learning&lt;/li&gt;&#xA;&lt;li&gt;Reinforcement Learning&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;监督学习&#xA;监督学习使用有标签的数据集，其任务是学习一个模型，使模型能够对任意给定的输入，对其相应的输出做出一个好的预测。&lt;/p&gt;&#xA;&lt;p&gt;监督学习问题被分为回归（Regression）和分类（Classification）问题：&lt;/p&gt;&#xA;&lt;p&gt;回归问题：将输入变量映射到某个连续函数，即预测一个连续值；&#xA;分类问题：将输入变量映射到离散的类别中，即预测一个离散值。&#xA;无监督学习&#xA;在无监督学习中，使用的数据集没有标签，不知道结果会是什么样子，但可以通过聚类的方式从数据中提取一个特殊的结构。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
