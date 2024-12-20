@@ -2,63 +2,63 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/projects/</loc>
+    <loc>https://twcch.github.io/projects/</loc>
     <lastmod>9999-01-10T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://twcch.github.io/</loc>
     <lastmod>9999-01-10T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://twcch.github.io/tags/</loc>
     <lastmod>2024-12-15T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/introduction-machine-learning/</loc>
+    <loc>https://twcch.github.io/posts/introduction-machine-learning/</loc>
     <lastmod>2024-12-15T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://twcch.github.io/posts/</loc>
     <lastmod>2024-12-15T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92/</loc>
+    <loc>https://twcch.github.io/tags/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92/</loc>
     <lastmod>2024-12-15T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/gallery/</loc>
+    <loc>https://twcch.github.io/gallery/</loc>
     <lastmod>2023-06-09T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/gallery/memories/</loc>
+    <loc>https://twcch.github.io/gallery/memories/</loc>
     <lastmod>2023-06-09T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/gallery/california/</loc>
+    <loc>https://twcch.github.io/gallery/california/</loc>
     <lastmod>2022-07-08T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/gallery/hawaii/</loc>
+    <loc>https://twcch.github.io/gallery/hawaii/</loc>
     <lastmod>2022-05-08T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/videos/</loc>
+    <loc>https://twcch.github.io/videos/</loc>
     <lastmod>2022-01-07T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/videos/creating-engaging-videos-for-your-youtube-channel/</loc>
+    <loc>https://twcch.github.io/videos/creating-engaging-videos-for-your-youtube-channel/</loc>
     <lastmod>2022-01-07T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/video/</loc>
+    <loc>https://twcch.github.io/tags/video/</loc>
     <lastmod>2022-01-07T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/videos/crafting-compelling-content-that-captivates/</loc>
+    <loc>https://twcch.github.io/videos/crafting-compelling-content-that-captivates/</loc>
     <lastmod>2022-01-05T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/videos/building-a-thriving-channel-from-scratch/</loc>
+    <loc>https://twcch.github.io/videos/building-a-thriving-channel-from-scratch/</loc>
     <lastmod>2022-01-04T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/videos/boosting-traffic-and-engaging-your-audience/</loc>
+    <loc>https://twcch.github.io/videos/boosting-traffic-and-engaging-your-audience/</loc>
     <lastmod>2022-01-02T08:01:35+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/gallery/bike-trip/</loc>
+    <loc>https://twcch.github.io/gallery/bike-trip/</loc>
     <lastmod>2021-08-12T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://twcch.github.io/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/publications/</loc>
+    <loc>https://twcch.github.io/publications/</loc>
   </url><url>
-    <loc>http://localhost:1313/contact/</loc>
+    <loc>https://twcch.github.io/contact/</loc>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://twcch.github.io/about/</loc>
   </url>
 </urlset>
