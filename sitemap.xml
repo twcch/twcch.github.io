@@ -2,16 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://twcch.github.io/projects/</loc>
-    <lastmod>9999-01-10T08:01:35+03:00</lastmod>
-  </url><url>
-    <loc>https://twcch.github.io/</loc>
-    <lastmod>9999-01-10T08:01:35+03:00</lastmod>
-  </url><url>
     <loc>https://twcch.github.io/tags/</loc>
     <lastmod>2024-12-21T00:00:00+08:00</lastmod>
   </url><url>
     <loc>https://twcch.github.io/posts/machine-learning-lab/introduction-machine-learning/</loc>
+    <lastmod>2024-12-21T00:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://twcch.github.io/</loc>
     <lastmod>2024-12-21T00:00:00+08:00</lastmod>
   </url><url>
     <loc>https://twcch.github.io/posts/</loc>
@@ -19,6 +16,12 @@
   </url><url>
     <loc>https://twcch.github.io/tags/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92/</loc>
     <lastmod>2024-12-21T00:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://twcch.github.io/projects/shopx/</loc>
+    <lastmod>2024-01-07T08:01:35+03:00</lastmod>
+  </url><url>
+    <loc>https://twcch.github.io/projects/</loc>
+    <lastmod>2024-01-07T08:01:35+03:00</lastmod>
   </url><url>
     <loc>https://twcch.github.io/gallery/</loc>
     <lastmod>2023-06-09T15:01:35+03:00</lastmod>
