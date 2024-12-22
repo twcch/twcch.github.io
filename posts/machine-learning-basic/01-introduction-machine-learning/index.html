@@ -2,27 +2,25 @@
 <html lang="zh-tw">
 
 <head>
-	<meta name="generator" content="Hugo 0.139.5">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>志謙&#39;s Blog</title>
-  <meta name="description" content="">
+  <title>機器學習入門(1)－初探機器學習 | 志謙&#39;s Blog</title>
+  <meta name="description" content="機器學習定義與三大類型，介紹監督與無監督學習應用，並探討損失函數與梯度下降等核心概念。">
 
-  <link rel="alternate" type="application/rss+xml" href="https://twcch.github.io/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="志謙&#39;s Blog">
-  <meta name="twitter:description" content="">
+  <meta name="twitter:title" content="機器學習入門(1)－初探機器學習 | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="機器學習定義與三大類型，介紹監督與無監督學習應用，並探討損失函數與梯度下降等核心概念。">
   <meta name="twitter:image" content="https://twcch.github.io/">
 
   
-  <meta property="og:title" content="志謙&#39;s Blog">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="機器學習入門(1)－初探機器學習 | 志謙&#39;s Blog">
+  <meta property="og:description" content="機器學習定義與三大類型，介紹監督與無監督學習應用，並探討損失函數與梯度下降等核心概念。">
   <meta property="og:image" content="https://twcch.github.io/">
 
   
@@ -47,52 +45,12 @@
 
     
     <div class="global-cover">
-      <img src="/images/banner.jpg" alt="志謙&#39;s Blog">
+      <img src="https://twcch.github.io/images/banner.jpg" alt="機器學習入門(1)－初探機器學習">
     </div>
     
 
     <div class="global-content">
     
-      
-        
-<section class="author">
-  <div class="container">
-    <div class="row">
-      <div class="col col-12">
-        <div class="contaniner__inner">
-
-          <div class="author__box with-global-cover">
-            <div class="author__info">
-              <div class="author__meta">
-                
-                <a href="/about/" class="author__avatar">
-                  <img src="/images/avatar.jpg" alt="謝志謙 Alan">
-                </a>
-                
-  
-                
-                  <h1 class="author__name"><a href="/about/">謝志謙 Alan</a></h1>
-                
-
-                
-                  <span class="author__role">Ph.D Student</span>
-                
-              </div>
-              
-                <a href="/contact/" class="cta-button"><i class="fa-regular fa-envelope"></i> 聯絡我</a>
-              
-            </div>
-            
-              <p class="author__bio">我是志謙，這個部落格主要分享機器學習(ML)與深度學習(DL)的相關教學。如果你對人工智慧有興趣或在學習過程中有任何疑問，歡迎一起交流與討論！</p>
-            
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
       
 
       
@@ -108,7 +66,7 @@
             
             
               <li class="nav__item">
-                <a href="/" class="nav__link active-link">首頁</a>
+                <a href="/" class="nav__link ">首頁</a>
               </li>
             
             
@@ -163,98 +121,144 @@
 
 
 
+<article class="post container">
 
-<section class="section blog">
-  <div class="container">
-
-    <div class="section__info">
-      <div class="section__head">
-        <h2 class="section__title"><i class="fa-solid fa-pencil"></i> 部落格</h2>
-      </div>
+  <div class="post-head">
+    <h1 class="post-title">機器學習入門(1)－初探機器學習</h1>
+    <div class="post-meta">
       
-    </div>
-
-    <div class="blog__wrapper animate">
-      <div class="grid">
+      <div class="post-tags">
+        Publish in&nbsp;
         
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/business-analysis-core/01-definition-problem-and-solution/">商業分析核心技能篇(1)－問題定義與解決方案</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="https://twcch.github.io/tags/%E5%95%86%E6%A5%AD%E5%88%86%E6%9E%90/" class="article-small__tag">商業分析</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2024-12-22T00:00:00&#43;08:00">22 Dec, 2024</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">1 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">重於如何準確定義問題並制訂解決方案，說明三大問題面向與四大解決方案關鍵，藉此設計出良好的解決方案。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/machine-learning-basic/01-introduction-machine-learning/">機器學習入門(1)－初探機器學習</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="https://twcch.github.io/tags/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92/" class="article-small__tag">機器學習</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2024-12-21T00:00:00&#43;08:00">21 Dec, 2024</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">1 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">機器學習定義與三大類型，介紹監督與無監督學習應用，並探討損失函數與梯度下降等核心概念。</p>
-            </div>
-
-          </div>
+          <a href="https://twcch.github.io/tags/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92/" class="post__tag">機器學習</a>
         
       </div>
-
+      &nbsp;&bull;&nbsp;
       
-
-
-
-<script>
-  var base_url = "",
-    pagination_next_url = base_url + '/page2',
-    pagination_next_page_number = '2',
-    pagination_available_pages_number = '1';
-</script>
+      <time class="post-date" datetime="2024-12-21T00:00:00&#43;08:00">21 Dec, 2024</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="post-minutes">1 min read</span>
+      
     </div>
+    
+      <p class="post-description">機器學習定義與三大類型，介紹監督與無監督學習應用，並探討損失函數與梯度下降等核心概念。</p>
+    
+  </div>
+
+  
+
+  
+
+  
+
+  <div class="post__content">
+    
+    <h2 id="什麼是機器學習">什麼是機器學習？</h2>
+<p>機器學習是一個讓電腦能夠在沒有明確編程的情況下學習的研究領域。Arthur Samuel 在 1959 年提出的經典定義：「Field of study that gives computers the ability to learn without being explicitly programmed」，至今仍然被廣泛引用。</p>
+<p>機器學習的問題主要可以歸類為以下三大類型：</p>
+<ol>
+<li>監督式學習(Supervised Learning)：基於有標籤的數據進行訓練，目的是學習輸入與輸出之間的關係。</li>
+<li>無監督式學習(Unsupervised Learning)：基於無標籤的數據進行訓練，目的是探索數據的結構或模式。</li>
+<li>強化學習(Reinforcement Learning)：透過與環境互動，學習策略以最大化獎勵。</li>
+</ol>
+<p>此外，還有一些延伸方法，例如半監督式學習(Semi-Supervised Learning)和自監督學習(Self-Supervised Learning)，這些技術在特定場景中發揮了重要作用，但不在本次討論範圍內。</p>
+<h2 id="機器學習的概念">機器學習的概念</h2>
+<ul>
+<li>先選擇一個模型(Model)，也可以稱作函數集，它擁有無窮個函數(function)</li>
+<li>透過機器找出最好的函數</li>
+<li>再透過這個最好的函數，幫我們做出預測</li>
+</ul>
+<h2 id="監督式學習supervised-learning">監督式學習(Supervised Learning)</h2>
+<p>監督式學習是一種基於有標籤數據的訓練方式，其目的是學習輸入與輸出之間的對應關係，並用於預測新數據的結果。
+常見的應用場景包括：</p>
+<h3 id="迴歸-regression">迴歸 (Regression)</h3>
+<p>用於預測連續值，例如房價預測、銷量預測。</p>
+<h3 id="分類-classification">分類 (Classification)</h3>
+<p>用於預測類別，例如垃圾郵件分類、影像中的物體識別。</p>
+<h2 id="無監督式學習unsupervised-learning">無監督式學習(Unsupervised Learning)</h2>
+<p>無監督式學習是一種基於無標籤數據的訓練方式，其目的是探索數據的內部結構或模式。</p>
+<p>常見方法包括：</p>
+<ul>
+<li>聚類(Clustering)：將數據分組，例如客戶分群。</li>
+<li>降維(Dimensionality Reduction)：壓縮數據維度，例如主成分分析(PCA)。</li>
+</ul>
+<h2 id="其他">其他</h2>
+<ol>
+<li>半監督式學習(Semi-Supervised Learning)：結合少量有標籤數據與大量無標籤數據進行訓練，應用於標籤成本較高的場景。</li>
+<li>遷移學習(Transfer Learning)：將已有模型的知識應用到新問題上，尤其在數據稀少的情況下非常有效。</li>
+<li>強化學習(Reinforcement Learning)：通過不斷與環境互動，學習如何採取最佳行動來獲取最大化回報。</li>
+</ol>
+<h2 id="損失函數loss-function">損失函數(Loss Function)</h2>
+<p>損失函數用於衡量模型的預測結果與實際目標之間的差距，是模型優化的關鍵指標。如：</p>
+<ul>
+<li>均方誤差 (Mean Squared Error, MSE)：用於迴歸問題。</li>
+<li>交叉熵損失 (Cross-Entropy Loss)：用於分類問題。</li>
+</ul>
+<h2 id="優化算法">優化算法</h2>
+<h3 id="梯度下降法gradient-descent">梯度下降法(Gradient Descent)</h3>
+<p>梯度下降是一種用於最小化損失函數的優化算法，通過不斷調整模型參數以逐步接近最優解。</p>
+<p>常見的變體包括：</p>
+<ul>
+<li>批量梯度下降(Batch Gradient Descent)</li>
+<li>隨機梯度下降(Stochastic Gradient Descent, SGD)</li>
+<li>小批量梯度下降(Mini-Batch Gradient Descent)</li>
+</ul>
 
   </div>
 
-</section>
+  <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e5%85%a5%e9%96%80%281%29%ef%bc%8d%e5%88%9d%e6%8e%a2%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92&url=https%3a%2f%2ftwcch.github.io%2fposts%2fmachine-learning-basic%2f01-introduction-machine-learning%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftwcch.github.io%2fposts%2fmachine-learning-basic%2f01-introduction-machine-learning%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftwcch.github.io%2fposts%2fmachine-learning-basic%2f01-introduction-machine-learning%2f&title=%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e5%85%a5%e9%96%80%281%29%ef%bc%8d%e5%88%9d%e6%8e%a2%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92&summary=%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e5%ae%9a%e7%be%a9%e8%88%87%e4%b8%89%e5%a4%a7%e9%a1%9e%e5%9e%8b%ef%bc%8c%e4%bb%8b%e7%b4%b9%e7%9b%a3%e7%9d%a3%e8%88%87%e7%84%a1%e7%9b%a3%e7%9d%a3%e5%ad%b8%e7%bf%92%e6%87%89%e7%94%a8%ef%bc%8c%e4%b8%a6%e6%8e%a2%e8%a8%8e%e6%90%8d%e5%a4%b1%e5%87%bd%e6%95%b8%e8%88%87%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d%e7%ad%89%e6%a0%b8%e5%bf%83%e6%a6%82%e5%bf%b5%e3%80%82&source=%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e5%85%a5%e9%96%80%281%29%ef%bc%8d%e5%88%9d%e6%8e%a2%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2ftwcch.github.io%2fposts%2fmachine-learning-basic%2f01-introduction-machine-learning%2f&amp;media=https%3a%2f%2ftwcch.github.io%2f&amp;description=%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e5%85%a5%e9%96%80%281%29%ef%bc%8d%e5%88%9d%e6%8e%a2%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+    </li>
+  </ul>
+</div>
+
+  
+
+</article>
+
+
+
+  
+
+
+
+<div class="container">
+  <div id="disqus_thread" class="post__comments">
+    <div id="disqus_empty"></div>
+  </div>
+  
+  <script>
+    var disqus_shortname = 'anvod-studio-test';
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+</div>
+
 
 
 

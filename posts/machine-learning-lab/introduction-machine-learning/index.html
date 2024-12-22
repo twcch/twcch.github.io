@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>初探機器學習 | 志謙&#39;s Blog</title>
+  <title>機器學習筆記(1)－初探機器學習 | 志謙&#39;s Blog</title>
   <meta name="description" content="機器學習定義與三大類型，介紹監督與無監督學習應用，並探討損失函數與梯度下降等核心概念。">
 
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="初探機器學習 | 志謙&#39;s Blog">
+  <meta name="twitter:title" content="機器學習筆記(1)－初探機器學習 | 志謙&#39;s Blog">
   <meta name="twitter:description" content="機器學習定義與三大類型，介紹監督與無監督學習應用，並探討損失函數與梯度下降等核心概念。">
-  <meta name="twitter:image" content="https://twcch.github.io/">
+  <meta name="twitter:image" content="http://localhost:1313/">
 
   
-  <meta property="og:title" content="初探機器學習 | 志謙&#39;s Blog">
+  <meta property="og:title" content="機器學習筆記(1)－初探機器學習 | 志謙&#39;s Blog">
   <meta property="og:description" content="機器學習定義與三大類型，介紹監督與無監督學習應用，並探討損失函數與梯度下降等核心概念。">
-  <meta property="og:image" content="https://twcch.github.io/">
+  <meta property="og:image" content="http://localhost:1313/">
 
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -45,7 +45,7 @@
 
     
     <div class="global-cover">
-      <img src="https://twcch.github.io/images/banner.jpg" alt="初探機器學習">
+      <img src="http://localhost:1313/images/banner.jpg" alt="機器學習筆記(1)－初探機器學習">
     </div>
     
 
@@ -124,13 +124,13 @@
 <article class="post container">
 
   <div class="post-head">
-    <h1 class="post-title">初探機器學習</h1>
+    <h1 class="post-title">機器學習筆記(1)－初探機器學習</h1>
     <div class="post-meta">
       
       <div class="post-tags">
         Publish in&nbsp;
         
-          <a href="https://twcch.github.io/tags/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92/" class="post__tag">機器學習</a>
+          <a href="http://localhost:1313/tags/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92/" class="post__tag">機器學習</a>
         
       </div>
       &nbsp;&bull;&nbsp;
@@ -210,23 +210,23 @@
   <div class="post__share">
   <ul class="share__list list-reset">
     <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%e5%88%9d%e6%8e%a2%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92&url=https%3a%2f%2ftwcch.github.io%2fposts%2fmachine-learning-lab%2fintroduction-machine-learning%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e7%ad%86%e8%a8%98%281%29%ef%bc%8d%e5%88%9d%e6%8e%a2%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92&url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmachine-learning-lab%2fintroduction-machine-learning%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftwcch.github.io%2fposts%2fmachine-learning-lab%2fintroduction-machine-learning%2f"
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2fmachine-learning-lab%2fintroduction-machine-learning%2f"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftwcch.github.io%2fposts%2fmachine-learning-lab%2fintroduction-machine-learning%2f&title=%e5%88%9d%e6%8e%a2%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92&summary=%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e5%ae%9a%e7%be%a9%e8%88%87%e4%b8%89%e5%a4%a7%e9%a1%9e%e5%9e%8b%ef%bc%8c%e4%bb%8b%e7%b4%b9%e7%9b%a3%e7%9d%a3%e8%88%87%e7%84%a1%e7%9b%a3%e7%9d%a3%e5%ad%b8%e7%bf%92%e6%87%89%e7%94%a8%ef%bc%8c%e4%b8%a6%e6%8e%a2%e8%a8%8e%e6%90%8d%e5%a4%b1%e5%87%bd%e6%95%b8%e8%88%87%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d%e7%ad%89%e6%a0%b8%e5%bf%83%e6%a6%82%e5%bf%b5%e3%80%82&source=%e5%88%9d%e6%8e%a2%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92"
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmachine-learning-lab%2fintroduction-machine-learning%2f&title=%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e7%ad%86%e8%a8%98%281%29%ef%bc%8d%e5%88%9d%e6%8e%a2%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92&summary=%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e5%ae%9a%e7%be%a9%e8%88%87%e4%b8%89%e5%a4%a7%e9%a1%9e%e5%9e%8b%ef%bc%8c%e4%bb%8b%e7%b4%b9%e7%9b%a3%e7%9d%a3%e8%88%87%e7%84%a1%e7%9b%a3%e7%9d%a3%e5%ad%b8%e7%bf%92%e6%87%89%e7%94%a8%ef%bc%8c%e4%b8%a6%e6%8e%a2%e8%a8%8e%e6%90%8d%e5%a4%b1%e5%87%bd%e6%95%b8%e8%88%87%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d%e7%ad%89%e6%a0%b8%e5%bf%83%e6%a6%82%e5%bf%b5%e3%80%82&source=%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e7%ad%86%e8%a8%98%281%29%ef%bc%8d%e5%88%9d%e6%8e%a2%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
     </li>
 
     <li class="share__item">
       <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2ftwcch.github.io%2fposts%2fmachine-learning-lab%2fintroduction-machine-learning%2f&amp;media=https%3a%2f%2ftwcch.github.io%2f&amp;description=%e5%88%9d%e6%8e%a2%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmachine-learning-lab%2fintroduction-machine-learning%2f&amp;media=http%3a%2f%2flocalhost%3a1313%2f&amp;description=%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e7%ad%86%e8%a8%98%281%29%ef%bc%8d%e5%88%9d%e6%8e%a2%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
     </li>
@@ -315,8 +315,8 @@
 
 
 
-<script src="/js/scripts.min.fec8b91a5559c0916e35e091775ada7e8a2f5461b313a24cfd0345f50dc77d08.js"></script>
-<script src="/js/common.min.3b85c942ef73935684ea1eafc134e74cd0c4bd70d5a138f43654120a3f32f709.js"></script>
+<script src="http://localhost:1313/js/scripts.js"></script>
+<script src="http://localhost:1313/js/common.js"></script>
 
 
   </body>

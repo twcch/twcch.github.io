@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>商業分析 on 志謙&#39;s Blog</title>
+    <link>https://twcch.github.io/tags/%E5%95%86%E6%A5%AD%E5%88%86%E6%9E%90/</link>
+    <description>Recent content in 商業分析 on 志謙&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Sun, 22 Dec 2024 00:00:00 +0800</lastBuildDate>
+    <atom:link href="https://twcch.github.io/tags/%E5%95%86%E6%A5%AD%E5%88%86%E6%9E%90/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>商業分析核心技能篇(1)－問題定義與解決方案</title>
+      <link>https://twcch.github.io/posts/business-analysis-core/01-definition-problem-and-solution/</link>
+      <pubDate>Sun, 22 Dec 2024 00:00:00 +0800</pubDate>
+      <guid>https://twcch.github.io/posts/business-analysis-core/01-definition-problem-and-solution/</guid>
+      <description>&lt;p&gt;定義問題這個技能，非常容易被忽略，然而這個技能會直接影響一件事情的成敗，許多失敗的項目，往往就是因為在初期未能明確定義問題的範圍與目標。&lt;/p&gt;&#xA;&lt;p&gt;定義問題也不會太難，我常常使用這三個面向來確認問題：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;是真的嗎？&lt;/li&gt;&#xA;&lt;li&gt;為什麼會發生？&lt;/li&gt;&#xA;&lt;li&gt;影響什麼？&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;假設今天收到一個問題「最近使用者反應系統很慢，怎麼處理？」&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;是真的嗎？把系統紀錄調出來，跟以前比，系統執行時間真的有變久？還是因為網路頻寬的影響？還是使用者自己的問題？ -&amp;gt; 找出不同面向證據，來確認問題&lt;/li&gt;&#xA;&lt;li&gt;為什麼會發生？為什麼系統會變慢？事出必有因，使用嚴謹的邏輯剖析整個問題，將模糊的問題，拆成細緻的小問題 -&amp;gt; 可以避免被表象所欺騙&lt;/li&gt;&#xA;&lt;li&gt;影響什麼？系統變得緩慢，目前有需要解決？ -&amp;gt; 有時候系統緩慢影響不大，也可能暫時無法解決，需要分析一下必要性&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;學會定義問題，已經是解決問題的一半。當我們能夠清晰地定義問題時，解決方案往往也會變得更加明確和具體。這樣不僅能夠提高解決問題的效率，還能夠避免在解決過程中出現偏差和誤判。&lt;/p&gt;&#xA;&lt;p&gt;接下來的重點就是提出好的解決方案，因為如果只是確定問題沒有對應的做法，討論便會停留在空想或抱怨中，難以帶來實際的進展，在我看來不如不要做，只有搭配提出具體的行動方案或可行策略，才是真正能推動事情前進的關鍵。&lt;/p&gt;&#xA;&lt;p&gt;我常常使用這四個面向來確認解決方案：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;需要投入什麼？&lt;/li&gt;&#xA;&lt;li&gt;有什麼限制？&lt;/li&gt;&#xA;&lt;li&gt;假如發生什麼，要怎麼辦？&lt;/li&gt;&#xA;&lt;li&gt;有沒有更好的做法？&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;假設我們發現系統很慢的主因是：「使用者在上傳圖像的時候，上傳時間太久」&lt;br&gt;&#xA;再假設，有人提出的解決方案是「增加網路頻寬，提升網速」&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;需要投入什麼？增加網路頻寬需要花多少錢？ -&amp;gt; 必須確認是否有這個資源執行&lt;/li&gt;&#xA;&lt;li&gt;有什麼限制？假設現在上傳50張圖，會很慢，如果下次變成上傳100張圖，怎麼辦？要限制上傳不能超過50張？ -&amp;gt; 要確認這個解決方案會有什麼限制，或是能不能被廣泛使用&lt;/li&gt;&#xA;&lt;li&gt;假如發生什麼，要怎麼辦？假如圖片張數不變，但是單張圖片的大小變大很多，怎麼處理？ -&amp;gt; 是否&lt;/li&gt;&#xA;&lt;li&gt;有沒有更好的做法？是否有可能是開發人員的演算法寫得太爛？ -&amp;gt; 是否有其他更好且可以根本解決的方法&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;在解決任何問題之前，關鍵是先確認問題是否真實存在，並從多個面向去剖析問題產生的原因與影響範圍，才能避免被表象所誤導。當問題被定義得足夠清晰，解決方案也會逐漸成形。只有在問題與解決方案都充分釐清後，才能真正推動事情進展、取得切實的成果。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
