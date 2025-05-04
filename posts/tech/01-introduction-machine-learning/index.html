@@ -7,21 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>商業分析 | 志謙&#39;s Blog</title>
-  <meta name="description" content="">
+  <title>機器學習入門(1)－初探機器學習 | 志謙&#39;s Blog</title>
+  <meta name="description" content="機器學習定義與三大類型，介紹監督與無監督學習應用，並探討損失函數與梯度下降等核心概念。">
 
-  <link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/%E5%95%86%E6%A5%AD%E5%88%86%E6%9E%90/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="商業分析 | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="">
+  <meta name="twitter:title" content="機器學習入門(1)－初探機器學習 | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="機器學習定義與三大類型，介紹監督與無監督學習應用，並探討損失函數與梯度下降等核心概念。">
   <meta name="twitter:image" content="http://localhost:1313/">
 
   
-  <meta property="og:title" content="商業分析 | 志謙&#39;s Blog">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="機器學習入門(1)－初探機器學習 | 志謙&#39;s Blog">
+  <meta property="og:description" content="機器學習定義與三大類型，介紹監督與無監督學習應用，並探討損失函數與梯度下降等核心概念。">
   <meta property="og:image" content="http://localhost:1313/">
 
   
@@ -44,6 +43,10 @@
 
     
 
+    
+    <div class="global-cover">
+      <img src="http://localhost:1313/images/banner.jpg" alt="機器學習入門(1)－初探機器學習">
+    </div>
     
 
     <div class="global-content">
@@ -84,7 +87,14 @@
             
             
               <li class="nav__item">
-                <a href="/posts/" class="nav__link ">Posts</a>
+                <a href="/tags/tech/" class="nav__link ">Tech</a>
+              </li>
+            
+            
+            
+            
+              <li class="nav__item">
+                <a href="/tags/insights/" class="nav__link ">Insights</a>
               </li>
             
           </ul>
@@ -104,50 +114,145 @@
 
 
 
-<div class="page container">
+<article class="post container">
 
-  <div class="page-head">
-    <h1 class="page-title">商業分析</h1>
-  </div>
-
-  <div class="page__tags">
-    <div class="row">
+  <div class="post-head">
+    <h1 class="post-title">機器學習入門(1)－初探機器學習</h1>
+    <div class="post-meta">
       
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
+      <div class="post-tags">
+        Publish in&nbsp;
+        
+          <a href="http://localhost:1313/tags/tech/" class="post__tag">Tech</a>
+        
+      </div>
+      &nbsp;&bull;&nbsp;
+      
+      <time class="post-date" datetime="2024-12-21T00:00:00&#43;08:00">21 Dec, 2024</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="post-minutes">1 min read</span>
+      
+    </div>
     
-  
-    <h2 class="article__title">
-      <a href="/posts/business-analysis-core/01-definition-problem-and-solution/">商業分析核心技能篇(1)－問題定義與解決方案</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://localhost:1313/tags/%E5%95%86%E6%A5%AD%E5%88%86%E6%9E%90/" class="article__tag">商業分析</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2024-12-28T00:00:00&#43;08:00">28 Dec, 2024</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">重於如何準確定義問題並制訂解決方案，說明三大問題面向與四大解決方案關鍵，藉此設計出良好的解決方案。</p>
+      <p class="post-description">機器學習定義與三大類型，介紹監督與無監督學習應用，並探討損失函數與梯度下降等核心概念。</p>
+    
   </div>
 
+  
 
-</div>
-      
-    </div>
+  
+
+  
+
+  <div class="post__content">
+    
+    <h2 id="什麼是機器學習">什麼是機器學習？</h2>
+<p>機器學習是一個讓電腦能夠在沒有明確編程的情況下學習的研究領域。Arthur Samuel 在 1959 年提出的經典定義：「Field of study that gives computers the ability to learn without being explicitly programmed」，至今仍然被廣泛引用。</p>
+<p>機器學習的問題主要可以歸類為以下三大類型：</p>
+<ol>
+<li>監督式學習(Supervised Learning)：基於有標籤的數據進行訓練，目的是學習輸入與輸出之間的關係。</li>
+<li>無監督式學習(Unsupervised Learning)：基於無標籤的數據進行訓練，目的是探索數據的結構或模式。</li>
+<li>強化學習(Reinforcement Learning)：透過與環境互動，學習策略以最大化獎勵。</li>
+</ol>
+<p>此外，還有一些延伸方法，例如半監督式學習(Semi-Supervised Learning)和自監督學習(Self-Supervised Learning)，這些技術在特定場景中發揮了重要作用，但不在本次討論範圍內。</p>
+<h2 id="機器學習的概念">機器學習的概念</h2>
+<ul>
+<li>先選擇一個模型(Model)，也可以稱作函數集，它擁有無窮個函數(function)</li>
+<li>透過機器找出最好的函數</li>
+<li>再透過這個最好的函數，幫我們做出預測</li>
+</ul>
+<h2 id="監督式學習supervised-learning">監督式學習(Supervised Learning)</h2>
+<p>監督式學習是一種基於有標籤數據的訓練方式，其目的是學習輸入與輸出之間的對應關係，並用於預測新數據的結果。
+常見的應用場景包括：</p>
+<h3 id="迴歸-regression">迴歸 (Regression)</h3>
+<p>用於預測連續值，例如房價預測、銷量預測。</p>
+<h3 id="分類-classification">分類 (Classification)</h3>
+<p>用於預測類別，例如垃圾郵件分類、影像中的物體識別。</p>
+<h2 id="無監督式學習unsupervised-learning">無監督式學習(Unsupervised Learning)</h2>
+<p>無監督式學習是一種基於無標籤數據的訓練方式，其目的是探索數據的內部結構或模式。</p>
+<p>常見方法包括：</p>
+<ul>
+<li>聚類(Clustering)：將數據分組，例如客戶分群。</li>
+<li>降維(Dimensionality Reduction)：壓縮數據維度，例如主成分分析(PCA)。</li>
+</ul>
+<h2 id="其他">其他</h2>
+<ol>
+<li>半監督式學習(Semi-Supervised Learning)：結合少量有標籤數據與大量無標籤數據進行訓練，應用於標籤成本較高的場景。</li>
+<li>遷移學習(Transfer Learning)：將已有模型的知識應用到新問題上，尤其在數據稀少的情況下非常有效。</li>
+<li>強化學習(Reinforcement Learning)：通過不斷與環境互動，學習如何採取最佳行動來獲取最大化回報。</li>
+</ol>
+<h2 id="損失函數loss-function">損失函數(Loss Function)</h2>
+<p>損失函數用於衡量模型的預測結果與實際目標之間的差距，是模型優化的關鍵指標。如：</p>
+<ul>
+<li>均方誤差 (Mean Squared Error, MSE)：用於迴歸問題。</li>
+<li>交叉熵損失 (Cross-Entropy Loss)：用於分類問題。</li>
+</ul>
+<h2 id="優化算法">優化算法</h2>
+<h3 id="梯度下降法gradient-descent">梯度下降法(Gradient Descent)</h3>
+<p>梯度下降是一種用於最小化損失函數的優化算法，通過不斷調整模型參數以逐步接近最優解。</p>
+<p>常見的變體包括：</p>
+<ul>
+<li>批量梯度下降(Batch Gradient Descent)</li>
+<li>隨機梯度下降(Stochastic Gradient Descent, SGD)</li>
+<li>小批量梯度下降(Mini-Batch Gradient Descent)</li>
+</ul>
+
   </div>
 
+  <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e5%85%a5%e9%96%80%281%29%ef%bc%8d%e5%88%9d%e6%8e%a2%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92&url=http%3a%2f%2flocalhost%3a1313%2fposts%2ftech%2f01-introduction-machine-learning%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2ftech%2f01-introduction-machine-learning%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2flocalhost%3a1313%2fposts%2ftech%2f01-introduction-machine-learning%2f&title=%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e5%85%a5%e9%96%80%281%29%ef%bc%8d%e5%88%9d%e6%8e%a2%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92&summary=%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e5%ae%9a%e7%be%a9%e8%88%87%e4%b8%89%e5%a4%a7%e9%a1%9e%e5%9e%8b%ef%bc%8c%e4%bb%8b%e7%b4%b9%e7%9b%a3%e7%9d%a3%e8%88%87%e7%84%a1%e7%9b%a3%e7%9d%a3%e5%ad%b8%e7%bf%92%e6%87%89%e7%94%a8%ef%bc%8c%e4%b8%a6%e6%8e%a2%e8%a8%8e%e6%90%8d%e5%a4%b1%e5%87%bd%e6%95%b8%e8%88%87%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d%e7%ad%89%e6%a0%b8%e5%bf%83%e6%a6%82%e5%bf%b5%e3%80%82&source=%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e5%85%a5%e9%96%80%281%29%ef%bc%8d%e5%88%9d%e6%8e%a2%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2flocalhost%3a1313%2fposts%2ftech%2f01-introduction-machine-learning%2f&amp;media=http%3a%2f%2flocalhost%3a1313%2f&amp;description=%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e5%85%a5%e9%96%80%281%29%ef%bc%8d%e5%88%9d%e6%8e%a2%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+    </li>
+  </ul>
 </div>
+
+  
+
+</article>
+
+
+
+  
+
+
+
+<div class="container">
+  <div id="disqus_thread" class="post__comments">
+    <div id="disqus_empty"></div>
+  </div>
+  
+  <script>
+    var disqus_shortname = 'anvod-studio-test';
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+</div>
+
+
 
 
 
