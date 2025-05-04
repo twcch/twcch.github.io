@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>📷 Gallery on 志謙&#39;s Blog</title>
-    <link>https://twcch.github.io/gallery/</link>
+    <link>http://localhost:1313/gallery/</link>
     <description>Recent content in 📷 Gallery on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
     <lastBuildDate>Fri, 09 Jun 2023 15:01:35 +0300</lastBuildDate>
-    <atom:link href="https://twcch.github.io/gallery/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/gallery/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Memories</title>
-      <link>https://twcch.github.io/gallery/memories/</link>
+      <link>http://localhost:1313/gallery/memories/</link>
       <pubDate>Fri, 09 Jun 2023 15:01:35 +0300</pubDate>
-      <guid>https://twcch.github.io/gallery/memories/</guid>
+      <guid>http://localhost:1313/gallery/memories/</guid>
       <description>&lt;p&gt;Photography and travel have always gone hand in hand, and for good reason. Traveling to new places provides photographers with endless opportunities to capture breathtaking landscapes, interesting people, and unique cultures. Through my travels, I&amp;rsquo;ve learned that photography isn&amp;rsquo;t just about taking pretty pictures, it&amp;rsquo;s about telling a story. Each photograph captures a moment in time, a feeling, a memory that can be revisited over and over again.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://via.placeholder.com/1200x800&#34; alt=&#34;Dog&#34;&gt;&#xA;&lt;em&gt;Photo by &lt;a href=&#34;https://via.placeholder.com/1200x800&#34;&gt;Jamie Street&lt;/a&gt; on &lt;a href=&#34;https://via.placeholder.com/1200x800&#34;&gt;Unsplash&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Califonia</title>
-      <link>https://twcch.github.io/gallery/california/</link>
+      <link>http://localhost:1313/gallery/california/</link>
       <pubDate>Fri, 08 Jul 2022 15:01:35 +0300</pubDate>
-      <guid>https://twcch.github.io/gallery/california/</guid>
+      <guid>http://localhost:1313/gallery/california/</guid>
       <description>&lt;p&gt;Photography and travel have always gone hand in hand, and for good reason. Traveling to new places provides photographers with endless opportunities to capture breathtaking landscapes, interesting people, and unique cultures. Through my travels, I&amp;rsquo;ve learned that photography isn&amp;rsquo;t just about taking pretty pictures, it&amp;rsquo;s about telling a story. Each photograph captures a moment in time, a feeling, a memory that can be revisited over and over again.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;It&amp;rsquo;s easy to get stuck in our own little worlds, but traveling forces us out of our comfort zones and exposes us to new ideas, people, and ways of life.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hawaii</title>
-      <link>https://twcch.github.io/gallery/hawaii/</link>
+      <link>http://localhost:1313/gallery/hawaii/</link>
       <pubDate>Sun, 08 May 2022 15:01:35 +0300</pubDate>
-      <guid>https://twcch.github.io/gallery/hawaii/</guid>
+      <guid>http://localhost:1313/gallery/hawaii/</guid>
       <description>&lt;p&gt;Photography and travel have always gone hand in hand, and for good reason. Traveling to new places provides photographers with endless opportunities to capture breathtaking landscapes, interesting people, and unique cultures. Through my travels, I&amp;rsquo;ve learned that photography isn&amp;rsquo;t just about taking pretty pictures, it&amp;rsquo;s about telling a story. Each photograph captures a moment in time, a feeling, a memory that can be revisited over and over again.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://via.placeholder.com/1200x800&#34; alt=&#34;Orange Car&#34;&gt;&#xA;&lt;em&gt;Photo by &lt;a href=&#34;https://via.placeholder.com/1200x800&#34;&gt;Tyler Nix&lt;/a&gt; on &lt;a href=&#34;https://via.placeholder.com/1200x800&#34;&gt;Unsplash&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Bike Trip</title>
-      <link>https://twcch.github.io/gallery/bike-trip/</link>
+      <link>http://localhost:1313/gallery/bike-trip/</link>
       <pubDate>Thu, 12 Aug 2021 15:01:35 +0300</pubDate>
-      <guid>https://twcch.github.io/gallery/bike-trip/</guid>
+      <guid>http://localhost:1313/gallery/bike-trip/</guid>
       <description>&lt;p&gt;Photography and travel have always gone hand in hand, and for good reason. Traveling to new places provides photographers with endless opportunities to capture breathtaking landscapes, interesting people, and unique cultures. Through my travels, I&amp;rsquo;ve learned that photography isn&amp;rsquo;t just about taking pretty pictures, it&amp;rsquo;s about telling a story. Each photograph captures a moment in time, a feeling, a memory that can be revisited over and over again.&lt;/p&gt;&#xA;&lt;p&gt;One of the greatest things about travel photography is the ability to share your experiences with others. I love nothing more than being able to take someone on a visual journey through my photographs, sharing the sights, sounds, and emotions of my travels with them. Whether it&amp;rsquo;s through social media, a blog, or a photo album, photography allows us to share our adventures and inspire others to get out and explore the world.&lt;/p&gt;</description>
     </item>
   </channel>
