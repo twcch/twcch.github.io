@@ -11,7 +11,6 @@
   <title>Chih-Chien Hsieh</title>
   <meta name="description" content="">
 
-  <link rel="alternate" type="application/rss+xml" href="https://twcch.github.io/index.xml" title="Chih-Chien Hsieh">
   
 
   
@@ -140,6 +139,9 @@
                 <a href="/posts/" class="nav__link ">Posts</a>
               </li>
             
+            <li class="nav__item">
+              <a href="javascript:void(0);" class="nav__link" onclick="openSearchModal()">Search</a>
+            </li>
           </ul>
         </nav>
       </div>
@@ -153,6 +155,129 @@
       
       <main class="content" aria-label="Content">
         
+
+<style>
+#searchModal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+#searchBox {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-sizing: border-box;
+}
+
+#searchClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.3rem;
+  background: #f2f2f2;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  cursor: pointer;
+  color: #333;
+  padding: 0;
+  transition: background 0.2s ease;
+}
+
+#searchClose:hover {
+  background: #ddd;
+}
+
+#searchBox input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1.1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  outline: none;
+  margin-top: 1.5rem;
+}
+
+#searchBox input:focus {
+  border-color: #339af0;
+  box-shadow: 0 0 0 2px rgba(51,154,240,0.2);
+}
+
+#searchResults li {
+  margin: 0.5rem 0;
+}
+</style>
+
+
+<div id="searchModal">
+<div id="searchBox">
+  <button id="searchClose" onclick="closeSearchModal()" aria-label="Close Search">×</button>
+  <input type="text" id="searchInput" placeholder="Search posts..." />
+  <ul id="searchResults"></ul>
+</div>
+</div>
+
+<script>
+let posts = [];
+
+fetch("/index.json")
+  .then((res) => res.json())
+  .then((data) => {
+    posts = data;
+  });
+
+function openSearchModal() {
+  document.getElementById("searchModal").style.display = "flex";
+  document.getElementById("searchInput").focus();
+}
+
+function closeSearchModal() {
+  document.getElementById("searchModal").style.display = "none";
+  document.getElementById("searchInput").value = "";
+  document.getElementById("searchResults").innerHTML = "";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("searchInput").addEventListener("input", function () {
+    const keyword = this.value.trim().toLowerCase();
+    const resultsEl = document.getElementById("searchResults");
+
+    
+    if (keyword === "") {
+      resultsEl.innerHTML = "";
+      return;
+    }
+
+    const results = posts.filter(p =>
+      p.title.toLowerCase().includes(keyword) ||
+      p.summary.toLowerCase().includes(keyword)
+    );
+
+    resultsEl.innerHTML = "";
+    results.forEach(p => {
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${p.url}">${p.title}</a>`;
+      resultsEl.appendChild(li);
+    });
+  });
+});
+</script>
+
+
 
 
 
@@ -189,7 +314,7 @@
 
     <div class="section__info">
       <div class="section__head">
-        <h2 class="section__title"><i class="fa-solid fa-pencil"></i> Activity</h2>
+        <h2 class="section__title"><i class="fa-solid fa-pencil"></i> Posts</h2>
       </div>
       
     </div>
@@ -197,6 +322,36 @@
     <div class="blog__wrapper animate">
       <div class="grid">
         
+        
+          <div class="article-small grid__post">
+
+            
+
+            <div class="article-small__content">
+              <h2 class="article-small__title">
+                <a href="/posts/01-definition-problem-and-solution/">商業分析核心技能篇(1)－問題定義與解決方案</a>
+              </h2>
+              
+              <div class="article-small__meta">
+                
+                <div class="article-small__tags">
+                  
+                    <a href="https://twcch.github.io/tags/insights/" class="article-small__tag">Insights</a>
+                  
+                </div>
+                &nbsp;&bull;&nbsp;
+                
+                <time class="article-small__date" datetime="2024-12-28T00:00:00&#43;08:00">28 Dec, 2024</time>
+                
+                  &nbsp;&bull;&nbsp;
+                  <span class="article-small__minutes">1 min read</span>
+                
+              </div>
+              
+              <p class="article-small__excerpt">重於如何準確定義問題並制訂解決方案，說明三大問題面向與四大解決方案關鍵，藉此設計出良好的解決方案。</p>
+            </div>
+
+          </div>
         
       </div>
 
@@ -208,7 +363,7 @@
   var base_url = "",
     pagination_next_url = base_url + '/page2',
     pagination_next_page_number = '2',
-    pagination_available_pages_number = '0';
+    pagination_available_pages_number = '1';
 </script>
     </div>
 
@@ -288,6 +443,129 @@
 
 <script src="/js/scripts.min.fec8b91a5559c0916e35e091775ada7e8a2f5461b313a24cfd0345f50dc77d08.js"></script>
 <script src="/js/common.min.3b85c942ef73935684ea1eafc134e74cd0c4bd70d5a138f43654120a3f32f709.js"></script>
+
+
+    <style>
+#searchModal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+#searchBox {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-sizing: border-box;
+}
+
+#searchClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.3rem;
+  background: #f2f2f2;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  cursor: pointer;
+  color: #333;
+  padding: 0;
+  transition: background 0.2s ease;
+}
+
+#searchClose:hover {
+  background: #ddd;
+}
+
+#searchBox input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1.1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  outline: none;
+  margin-top: 1.5rem;
+}
+
+#searchBox input:focus {
+  border-color: #339af0;
+  box-shadow: 0 0 0 2px rgba(51,154,240,0.2);
+}
+
+#searchResults li {
+  margin: 0.5rem 0;
+}
+</style>
+
+
+<div id="searchModal">
+<div id="searchBox">
+  <button id="searchClose" onclick="closeSearchModal()" aria-label="Close Search">×</button>
+  <input type="text" id="searchInput" placeholder="Search posts..." />
+  <ul id="searchResults"></ul>
+</div>
+</div>
+
+<script>
+let posts = [];
+
+fetch("/index.json")
+  .then((res) => res.json())
+  .then((data) => {
+    posts = data;
+  });
+
+function openSearchModal() {
+  document.getElementById("searchModal").style.display = "flex";
+  document.getElementById("searchInput").focus();
+}
+
+function closeSearchModal() {
+  document.getElementById("searchModal").style.display = "none";
+  document.getElementById("searchInput").value = "";
+  document.getElementById("searchResults").innerHTML = "";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("searchInput").addEventListener("input", function () {
+    const keyword = this.value.trim().toLowerCase();
+    const resultsEl = document.getElementById("searchResults");
+
+    
+    if (keyword === "") {
+      resultsEl.innerHTML = "";
+      return;
+    }
+
+    const results = posts.filter(p =>
+      p.title.toLowerCase().includes(keyword) ||
+      p.summary.toLowerCase().includes(keyword)
+    );
+
+    resultsEl.innerHTML = "";
+    results.forEach(p => {
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${p.url}">${p.title}</a>`;
+      resultsEl.appendChild(li);
+    });
+  });
+});
+</script>
+
 
 
   </body>

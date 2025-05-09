@@ -6,7 +6,14 @@
     <description>Recent content in Posts on Chih-Chien Hsieh</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate></lastBuildDate>
+    <lastBuildDate>Sat, 28 Dec 2024 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://twcch.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>商業分析核心技能篇(1)－問題定義與解決方案</title>
+      <link>https://twcch.github.io/posts/01-definition-problem-and-solution/</link>
+      <pubDate>Sat, 28 Dec 2024 00:00:00 +0800</pubDate>
+      <guid>https://twcch.github.io/posts/01-definition-problem-and-solution/</guid>
+      <description>&lt;p&gt;轉職到資料科學領域，比我想像中的難！&lt;/p&gt;&#xA;&lt;p&gt;在過去一年中，為了在 AI 的浪潮中保持競爭力，我決定將職涯重心轉向資料科學（Data Science），特別鎖定金融業的職缺。然而，履歷投遞的過程屢屢碰壁，甚至經常被轉介到與目標不符的商業分析（BA）職位。&lt;/p&gt;&#xA;&lt;p&gt;這段經歷讓我深刻體會到，單靠線上課程與自學提升技能仍然不夠，產業對資料科學家的期待遠超過技術本身。因此，我決定重返校園攻讀博士，深入研究先進技術，也很幸運地找到願意指導我的教授，期許自己未來能夠結合理論與實務，在 AI 應用上發揮更大價值。&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
