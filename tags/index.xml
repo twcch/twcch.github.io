@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on 志謙&#39;s Blog</title>
-    <link>http://twcch.github.io/tags/</link>
+    <link>http://twcch.io/tags/</link>
     <description>Recent content in Tags on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
     <lastBuildDate>Tue, 13 Nov 2018 15:01:35 +0300</lastBuildDate>
-    <atom:link href="http://twcch.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://twcch.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Lifestyle</title>
-      <link>http://twcch.github.io/tags/lifestyle/</link>
+      <link>http://twcch.io/tags/lifestyle/</link>
       <pubDate>Tue, 13 Nov 2018 15:01:35 +0300</pubDate>
-      <guid>http://twcch.github.io/tags/lifestyle/</guid>
+      <guid>http://twcch.io/tags/lifestyle/</guid>
       <description></description>
     </item>
     <item>
       <title>Work</title>
-      <link>http://twcch.github.io/tags/work/</link>
+      <link>http://twcch.io/tags/work/</link>
       <pubDate>Mon, 12 Nov 2018 15:01:35 +0300</pubDate>
-      <guid>http://twcch.github.io/tags/work/</guid>
+      <guid>http://twcch.io/tags/work/</guid>
       <description></description>
     </item>
     <item>
       <title>Travel</title>
-      <link>http://twcch.github.io/tags/travel/</link>
+      <link>http://twcch.io/tags/travel/</link>
       <pubDate>Sun, 11 Nov 2018 15:01:35 +0300</pubDate>
-      <guid>http://twcch.github.io/tags/travel/</guid>
+      <guid>http://twcch.io/tags/travel/</guid>
       <description></description>
     </item>
     <item>
       <title>Rest</title>
-      <link>http://twcch.github.io/tags/rest/</link>
+      <link>http://twcch.io/tags/rest/</link>
       <pubDate>Wed, 07 Nov 2018 15:01:35 +0300</pubDate>
-      <guid>http://twcch.github.io/tags/rest/</guid>
+      <guid>http://twcch.io/tags/rest/</guid>
       <description></description>
     </item>
   </channel>
