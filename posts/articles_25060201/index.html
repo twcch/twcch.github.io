@@ -7,22 +7,93 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>Tags | 志謙&#39;s Blog</title>
+  <title>為什麼用 AI 技術檢測企業舞弊，比想像中更困難？ | 志謙&#39;s Blog</title>
   <meta name="description" content="">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/tags/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Tags | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="志謙&#39;s Blog">
-  <meta name="twitter:image" content="http://twcch.io/">
+  <meta name="twitter:title" content="為什麼用 AI 技術檢測企業舞弊，比想像中更困難？ | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="在資料科學領域中，對企業進行舞弊檢測 (Fraud Detection) 被視為是一種分類問題: 輸入企業相關的數據，輸出舞弊或非舞弊。然而，真正投入研究後會發現，這個問題很難解決，非常具挑戰性。
+我目前主要研究方向，是運用人工智慧 (Artificial Intelligence) 技術，來解決企業進行財務報表舞弊的問題。這類型的議題與銀行信用卡詐欺、保險業中的理賠舞弊、甚至洗錢行為有相似之處，都是稀有事件、後知後覺、動態進化的「敵對性問題」。
+為什麼這不是一個單純的分類問題？
+在傳統機器學習框架下，分類問題的成功往往來自於充足的標記數據、清晰的邊界條件與相對穩定的資料分佈。然而，舞弊行為恰恰違反了這三項假設。
+可以從以下幾點具體說明：
+
+
+極度不平衡的資料 (Class Imbalance)
+在實務資料中，舞弊案件往往只佔所有資料的極小比例，可能是千分之一、甚至萬分之一。這意味著如果你採用傳統的精確度 (accuracy) 作為衡量指標，模型即使完全忽略舞弊也能達到 99% 以上的準確率，但這顯然毫無意義。
+
+
+標籤不完整且滯後揭露 (Label Latency &amp; Missing Labels)
+很多舞弊行為要經過數月、甚至數年後才會被調查揭露，更遑論那些永遠未被發現的案件。這使得訓練資料的標籤具有高度不確定性，導致模型容易學到錯誤的決策邊界。
+
+
+舞弊技術持續演化 (Concept Drift)
+犯罪者會根據監管與模型檢測方式持續更新手法，導致模型在部署後迅速失效。這使得即使當下訓練準確的模型，也難以長期維持效能。
+
+
+異常並非來自單一特徵，而是整體脈絡的矛盾 (Contextual Inconsistency)
+財報舞弊往往不是單一財務指標異常，而是多個指標之間出現結構性不一致。例如: 營收大增但現金流卻大減、獲利提升但存貨異常膨脹。這種多變量脈絡異常，遠比簡單的 outlier detection 更為複雜。
+
+
+問題不是模型選得不夠好，而是問題設定錯了
+如果僅停留在「用哪個模型比較準」、「要不要用 XGBoost 還是 LSTM」這種層級的思考，只會陷入技術細節的死胡同，無法解決核心困難。相反地，我認為更關鍵的兩個研究方向是：
+
+
+如何讓 AI 自己找到潛在的舞弊標籤？
+採用自監督學習 (Self-Supervised Learning)，不依賴人工標註，而是讓模型自行從大量正常樣本中學習「常態結構」，再對偏離常態的資料進行異常評分，進一步推論出可能的舞弊行為。
+
+
+如何讓深度模型的決策可以被人類審計人員理解？
+深度學習模型雖然強大，但往往是黑箱。導入可解釋性方法 (如 SHAP、LIME、Attention 可視化)，可以提升金融監理與內部稽核部門的信任與採用意願，也為模型導入實務場域鋪路。
+
+
+這不只是建模問題，更是科學問題
+用 AI 解決舞弊，不是一場簡單的技術堆疊競賽，而是對整個金融風險邏輯、舞弊行為模式、以及資料特性深刻理解的綜合挑戰。這將是我博士研究的起點，從理解問題本質出發，探索如何用 AI 技術建立可行的風險偵測系統，不只是要「分類得準」，更要讓人「信得過」。我認為這是一條難走的路，但也因此充滿價值。">
+  <meta name="twitter:image" content="http://twcch.io/images/post/image_001.png">
 
   
-  <meta property="og:title" content="Tags | 志謙&#39;s Blog">
-  <meta property="og:description" content="志謙&#39;s Blog">
-  <meta property="og:image" content="http://twcch.io/">
+  <meta property="og:title" content="為什麼用 AI 技術檢測企業舞弊，比想像中更困難？ | 志謙&#39;s Blog">
+  <meta property="og:description" content="在資料科學領域中，對企業進行舞弊檢測 (Fraud Detection) 被視為是一種分類問題: 輸入企業相關的數據，輸出舞弊或非舞弊。然而，真正投入研究後會發現，這個問題很難解決，非常具挑戰性。
+我目前主要研究方向，是運用人工智慧 (Artificial Intelligence) 技術，來解決企業進行財務報表舞弊的問題。這類型的議題與銀行信用卡詐欺、保險業中的理賠舞弊、甚至洗錢行為有相似之處，都是稀有事件、後知後覺、動態進化的「敵對性問題」。
+為什麼這不是一個單純的分類問題？
+在傳統機器學習框架下，分類問題的成功往往來自於充足的標記數據、清晰的邊界條件與相對穩定的資料分佈。然而，舞弊行為恰恰違反了這三項假設。
+可以從以下幾點具體說明：
+
+
+極度不平衡的資料 (Class Imbalance)
+在實務資料中，舞弊案件往往只佔所有資料的極小比例，可能是千分之一、甚至萬分之一。這意味著如果你採用傳統的精確度 (accuracy) 作為衡量指標，模型即使完全忽略舞弊也能達到 99% 以上的準確率，但這顯然毫無意義。
+
+
+標籤不完整且滯後揭露 (Label Latency &amp; Missing Labels)
+很多舞弊行為要經過數月、甚至數年後才會被調查揭露，更遑論那些永遠未被發現的案件。這使得訓練資料的標籤具有高度不確定性，導致模型容易學到錯誤的決策邊界。
+
+
+舞弊技術持續演化 (Concept Drift)
+犯罪者會根據監管與模型檢測方式持續更新手法，導致模型在部署後迅速失效。這使得即使當下訓練準確的模型，也難以長期維持效能。
+
+
+異常並非來自單一特徵，而是整體脈絡的矛盾 (Contextual Inconsistency)
+財報舞弊往往不是單一財務指標異常，而是多個指標之間出現結構性不一致。例如: 營收大增但現金流卻大減、獲利提升但存貨異常膨脹。這種多變量脈絡異常，遠比簡單的 outlier detection 更為複雜。
+
+
+問題不是模型選得不夠好，而是問題設定錯了
+如果僅停留在「用哪個模型比較準」、「要不要用 XGBoost 還是 LSTM」這種層級的思考，只會陷入技術細節的死胡同，無法解決核心困難。相反地，我認為更關鍵的兩個研究方向是：
+
+
+如何讓 AI 自己找到潛在的舞弊標籤？
+採用自監督學習 (Self-Supervised Learning)，不依賴人工標註，而是讓模型自行從大量正常樣本中學習「常態結構」，再對偏離常態的資料進行異常評分，進一步推論出可能的舞弊行為。
+
+
+如何讓深度模型的決策可以被人類審計人員理解？
+深度學習模型雖然強大，但往往是黑箱。導入可解釋性方法 (如 SHAP、LIME、Attention 可視化)，可以提升金融監理與內部稽核部門的信任與採用意願，也為模型導入實務場域鋪路。
+
+
+這不只是建模問題，更是科學問題
+用 AI 解決舞弊，不是一場簡單的技術堆疊競賽，而是對整個金融風險邏輯、舞弊行為模式、以及資料特性深刻理解的綜合挑戰。這將是我博士研究的起點，從理解問題本質出發，探索如何用 AI 技術建立可行的風險偵測系統，不只是要「分類得準」，更要讓人「信得過」。我認為這是一條難走的路，但也因此充滿價值。">
+  <meta property="og:image" content="http://twcch.io/images/post/image_001.png">
 
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -163,94 +234,182 @@
   <main class="content" aria-label="Content">
     
 
+
+
+
 <div class="container">
   <div class="row">
-    <div class="col col-8 col-d-10 col-m-12 push-m-0 push-d-1 push-2">
-      <div class="archive-box">
-        <span class="archive-counter">2 Articles</span>
-        <h1 class="archive-title">Tags</h1>
+    <div class="col col-12">
+      <div class="image-box">
+        <img class="post-image" src="http://twcch.io/images/post/image_001.png" alt="為什麼用 AI 技術檢測企業舞弊，比想像中更困難？">
       </div>
     </div>
   </div>
 </div>
+
 
 <div class="container">
-  <div class="row grid">
 
+  <div class="row">
+    <div class="col col-8 col-d-10 push-2 push-d-1 col-t-12 push-t-0">
     
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
+      
+      <article class="post amimate">
 
-    
+        <div class="post__head">
+          
+          <div class="post__tags">
+            
+            <a href="http://twcch.io/tags/data-science/" class="post-tags__tag">Data Science</a>
+            
+          </div>
+          
 
-    <a class="article__image" href="/tags/data-science/">
-      <img src="http://twcch.io/" alt="Data Science">
-    </a>
+          <h1 class="post__title">為什麼用 AI 技術檢測企業舞弊，比想像中更困難？</h1>
 
-    <div class="article__content">
+          <div class="post__meta">
+            <div class="post__author">
+              <a href="/about/" class="post__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="post__author-link">謝志謙</a>
+            </div>
+            <span class="post__date">
+              <time datetime=" 2025-06-02T00:00:00&#43;08:00">Jun 2, 2025</time>
+            </span>
+          </div>
 
-      <div class="article__bottom">
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/tags/data-science/">Data Science</a>
-      </h2>
-
-      <div class="article__excerpt"></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
         </div>
+    
+        <div class="post__content">
+          <p>在資料科學領域中，對企業進行舞弊檢測 (Fraud Detection) 被視為是一種分類問題: 輸入企業相關的數據，輸出舞弊或非舞弊。然而，真正投入研究後會發現，這個問題很難解決，非常具挑戰性。</p>
+<p>我目前主要研究方向，是運用人工智慧 (Artificial Intelligence) 技術，來解決企業進行財務報表舞弊的問題。這類型的議題與銀行信用卡詐欺、保險業中的理賠舞弊、甚至洗錢行為有相似之處，都是稀有事件、後知後覺、動態進化的「敵對性問題」。</p>
+<h2 id="為什麼這不是一個單純的分類問題">為什麼這不是一個單純的分類問題？</h2>
+<p>在傳統機器學習框架下，分類問題的成功往往來自於充足的標記數據、清晰的邊界條件與相對穩定的資料分佈。然而，舞弊行為恰恰違反了這三項假設。</p>
+<p>可以從以下幾點具體說明：</p>
+<ul>
+<li>
+<p>極度不平衡的資料 (Class Imbalance)</p>
+<p>在實務資料中，舞弊案件往往只佔所有資料的極小比例，可能是千分之一、甚至萬分之一。這意味著如果你採用傳統的精確度 (accuracy) 作為衡量指標，模型即使完全忽略舞弊也能達到 99% 以上的準確率，但這顯然毫無意義。</p>
+</li>
+<li>
+<p>標籤不完整且滯後揭露 (Label Latency &amp; Missing Labels)</p>
+<p>很多舞弊行為要經過數月、甚至數年後才會被調查揭露，更遑論那些永遠未被發現的案件。這使得訓練資料的標籤具有高度不確定性，導致模型容易學到錯誤的決策邊界。</p>
+</li>
+<li>
+<p>舞弊技術持續演化 (Concept Drift)</p>
+<p>犯罪者會根據監管與模型檢測方式持續更新手法，導致模型在部署後迅速失效。這使得即使當下訓練準確的模型，也難以長期維持效能。</p>
+</li>
+<li>
+<p>異常並非來自單一特徵，而是整體脈絡的矛盾 (Contextual Inconsistency)</p>
+<p>財報舞弊往往不是單一財務指標異常，而是多個指標之間出現結構性不一致。例如: 營收大增但現金流卻大減、獲利提升但存貨異常膨脹。這種多變量脈絡異常，遠比簡單的 outlier detection 更為複雜。</p>
+</li>
+</ul>
+<h2 id="問題不是模型選得不夠好而是問題設定錯了">問題不是模型選得不夠好，而是問題設定錯了</h2>
+<p>如果僅停留在「用哪個模型比較準」、「要不要用 XGBoost 還是 LSTM」這種層級的思考，只會陷入技術細節的死胡同，無法解決核心困難。相反地，我認為更關鍵的兩個研究方向是：</p>
+<ul>
+<li>
+<p>如何讓 AI 自己找到潛在的舞弊標籤？</p>
+<p>採用自監督學習 (Self-Supervised Learning)，不依賴人工標註，而是讓模型自行從大量正常樣本中學習「常態結構」，再對偏離常態的資料進行異常評分，進一步推論出可能的舞弊行為。</p>
+</li>
+<li>
+<p>如何讓深度模型的決策可以被人類審計人員理解？</p>
+<p>深度學習模型雖然強大，但往往是黑箱。導入可解釋性方法 (如 SHAP、LIME、Attention 可視化)，可以提升金融監理與內部稽核部門的信任與採用意願，也為模型導入實務場域鋪路。</p>
+</li>
+</ul>
+<h2 id="這不只是建模問題更是科學問題">這不只是建模問題，更是科學問題</h2>
+<p>用 AI 解決舞弊，不是一場簡單的技術堆疊競賽，而是對整個金融風險邏輯、舞弊行為模式、以及資料特性深刻理解的綜合挑戰。這將是我博士研究的起點，從理解問題本質出發，探索如何用 AI 技術建立可行的風險偵測系統，不只是要「分類得準」，更要讓人「信得過」。我認為這是一條難走的路，但也因此充滿價值。</p>
 
-        <time class="article__date" datetime="2025-06-02T00:00:00&#43;08:00">
-          Jun 2, 2025
-        </time>
-      </div>
+        </div>
+    
+        <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this article</div>
+  </div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2farticles_25060201%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%e7%82%ba%e4%bb%80%e9%ba%bc%e7%94%a8%20AI%20%e6%8a%80%e8%a1%93%e6%aa%a2%e6%b8%ac%e4%bc%81%e6%a5%ad%e8%88%9e%e5%bc%8a%ef%bc%8c%e6%af%94%e6%83%b3%e5%83%8f%e4%b8%ad%e6%9b%b4%e5%9b%b0%e9%9b%a3%ef%bc%9f&url=http%3a%2f%2ftwcch.io%2fposts%2farticles_25060201%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
 
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2farticles_25060201%2f&title=%e7%82%ba%e4%bb%80%e9%ba%bc%e7%94%a8%20AI%20%e6%8a%80%e8%a1%93%e6%aa%a2%e6%b8%ac%e4%bc%81%e6%a5%ad%e8%88%9e%e5%bc%8a%ef%bc%8c%e6%af%94%e6%83%b3%e5%83%8f%e4%b8%ad%e6%9b%b4%e5%9b%b0%e9%9b%a3%ef%bc%9f&summary=&source=%e7%82%ba%e4%bb%80%e9%ba%bc%e7%94%a8%20AI%20%e6%8a%80%e8%a1%93%e6%aa%a2%e6%b8%ac%e4%bc%81%e6%a5%ad%e8%88%9e%e5%bc%8a%ef%bc%8c%e6%af%94%e6%83%b3%e5%83%8f%e4%b8%ad%e6%9b%b4%e5%9b%b0%e9%9b%a3%ef%bc%9f"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2farticles_25060201%2f&amp;media=http%3a%2f%2ftwcch.io%2fimages%2fpost%2fimage_001.png&amp;description=%e7%82%ba%e4%bb%80%e9%ba%bc%e7%94%a8%20AI%20%e6%8a%80%e8%a1%93%e6%aa%a2%e6%b8%ac%e4%bc%81%e6%a5%ad%e8%88%9e%e5%bc%8a%ef%bc%8c%e6%af%94%e6%83%b3%e5%83%8f%e4%b8%ad%e6%9b%b4%e5%9b%b0%e9%9b%a3%ef%bc%9f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+  </ul>
+</div>
+
+        
+        <div class="post__navigation">
+          
+          <a class="prev" href="http://twcch.io/posts/articles_25040701/" style="background-image: url('./images/post/image_002.png')">
+            <div class="post__nav-box">
+              <div class="post__nav post__nav__prev"><i class="ion ion-ios-arrow-back"></i> Previous
+                Page</div>
+              <h4 class="post__nav__title">為什麼 AI 正在快速削弱低階 Business Analyst 的價值？</h4>
+            </div>
+          </a>
+          
+          
+        </div>
+        
+
+        
+          
+<div id="disqus_thread" class="post__comments">
+  <div id="disqus_empty"></div>
+</div>
+
+<script>
+  function load_disqus() {
+    var disqus_shortname = 'anvod-studio-aditu',
+      is_disqus_empty = document.getElementById('disqus_empty'),
+      disqus_target = document.getElementById('disqus_thread'),
+      disqus_embed = document.createElement('script'),
+      disqus_hook = (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]);
+
+    if (disqus_target && is_disqus_empty) {
+      disqus_embed.type = 'text/javascript';
+      disqus_embed.async = true;
+      disqus_embed.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      disqus_hook.appendChild(disqus_embed);
+      is_disqus_empty.remove();
+    }
+  }
+
+  window.addEventListener('scroll', function (e) {
+    var currentScroll = document.scrollingElement.scrollTop;
+    var disqus_target = document.getElementById('disqus_thread');
+
+    if (disqus_target && (currentScroll > disqus_target.getBoundingClientRect().top - 150)) {
+      load_disqus('disqus_shortname');
+    }
+  }, false);
+
+</script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+        
+    
+      </article>
+      
     </div>
   </div>
+
+
 </div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
 
-    
 
-    <a class="article__image" href="/tags/business-analysis/">
-      <img src="http://twcch.io/" alt="Business Analysis">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/tags/business-analysis/">Business Analysis</a>
-      </h2>
-
-      <div class="article__excerpt"></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-04-07T00:00:00&#43;08:00">
-          Apr 7, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-
-  </div>
-</div>
 
 
   </main>
