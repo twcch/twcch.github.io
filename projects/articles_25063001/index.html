@@ -1,29 +1,83 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
 
-<head>
-	<meta name="generator" content="Hugo 0.139.5">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>志謙&#39;s Blog</title>
-  <meta name="description" content="志謙&#39;s Blog">
+  <title>Machine Learning - Linear Regression 線性迴歸模型 | 志謙&#39;s Blog</title>
+  <meta name="description" content="">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="志謙&#39;s Blog">
-  <meta name="twitter:description" content="志謙&#39;s Blog">
-  <meta name="twitter:image" content="http://twcch.io/images/banner.png">
+  <meta name="twitter:title" content="Machine Learning - Linear Regression 線性迴歸模型 | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="線性迴歸 (Linear Regression) 是機器學習中最經典且最基礎的模型之一。雖然它簡單，但在實務中仍廣泛應用於預測與解釋變數間的線性關係，是資料分析、商業預測與建模的入門第一步。本文將從概念、數學推導到 Python 實作，一步步帶你理解線性迴歸的運作邏輯與應用情境。
+為什麼要學線性迴歸?
+在進入複雜模型之前，我們需要能「看懂資料」和「解釋預測結果」。線性迴歸具備以下優點：
+•	模型可解釋性強：每個係數都能代表一個變數的影響方向與強度
+•	訓練速度快：不需大量計算資源
+•	是進階模型的基礎：許多模型（如 Logistic Regression、Ridge、Lasso）都可視為線性迴歸的變體
+線性迴歸的基本概念
+線性迴歸的目標，是找到一條最佳直線，讓它能最小化預測值與真實值之間的誤差。
+假設有一筆資料:
+
+輸入特徵 (feature): x
+目標變數 (target): y
+
+線性迴歸模型可寫作:
+$$
+\hat{y} = w x &#43; b
+$$
+其中:
+
+$\hat{y}$ 為模型預測值
+$w$ 為權重 (斜率)
+$b$ 為偏差項 (截距)
+
+對於多變數情況 (Multivariate Linear Regression):
+$$
+\hat{y} = w_1 x_1 &#43; w_2 x_2 &#43; \cdots &#43; w_n x_n &#43; b = \mathbf{w}^T \mathbf{x} &#43; b
+$$
+模型學習原理: 最小化損失函數
+線性迴歸的學習過程是「找出一組參數 $(w, b)$ 使預測值 $\hat{y}$ 盡可能接近真實值 $y$」。">
+  <meta name="twitter:image" content="http://localhost:1313/images/post/common/machine_learning_01.png">
 
   
-  <meta property="og:title" content="志謙&#39;s Blog">
-  <meta property="og:description" content="志謙&#39;s Blog">
-  <meta property="og:image" content="http://twcch.io/images/banner.png">
+  <meta property="og:title" content="Machine Learning - Linear Regression 線性迴歸模型 | 志謙&#39;s Blog">
+  <meta property="og:description" content="線性迴歸 (Linear Regression) 是機器學習中最經典且最基礎的模型之一。雖然它簡單，但在實務中仍廣泛應用於預測與解釋變數間的線性關係，是資料分析、商業預測與建模的入門第一步。本文將從概念、數學推導到 Python 實作，一步步帶你理解線性迴歸的運作邏輯與應用情境。
+為什麼要學線性迴歸?
+在進入複雜模型之前，我們需要能「看懂資料」和「解釋預測結果」。線性迴歸具備以下優點：
+•	模型可解釋性強：每個係數都能代表一個變數的影響方向與強度
+•	訓練速度快：不需大量計算資源
+•	是進階模型的基礎：許多模型（如 Logistic Regression、Ridge、Lasso）都可視為線性迴歸的變體
+線性迴歸的基本概念
+線性迴歸的目標，是找到一條最佳直線，讓它能最小化預測值與真實值之間的誤差。
+假設有一筆資料:
+
+輸入特徵 (feature): x
+目標變數 (target): y
+
+線性迴歸模型可寫作:
+$$
+\hat{y} = w x &#43; b
+$$
+其中:
+
+$\hat{y}$ 為模型預測值
+$w$ 為權重 (斜率)
+$b$ 為偏差項 (截距)
+
+對於多變數情況 (Multivariate Linear Regression):
+$$
+\hat{y} = w_1 x_1 &#43; w_2 x_2 &#43; \cdots &#43; w_n x_n &#43; b = \mathbf{w}^T \mathbf{x} &#43; b
+$$
+模型學習原理: 最小化損失函數
+線性迴歸的學習過程是「找出一組參數 $(w, b)$ 使預測值 $\hat{y}$ 盡可能接近真實值 $y$」。">
+  <meta property="og:image" content="http://localhost:1313/images/post/common/machine_learning_01.png">
 
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -54,7 +108,7 @@
       <div class="header__inner col col-12">
 
         <div class="logo">
-          <a class="logo__link" href="http://twcch.io/">
+          <a class="logo__link" href="http://localhost:1313/">
             
               志謙&#39;s Blog
             
@@ -86,7 +140,7 @@
                       </li>
                       
                       <li class="nav__item">
-                        <a href="/tags/project" class="nav__link">個人專案</a>
+                        <a href="/projects" class="nav__link">個人專案</a>
                       </li>
                       
                       <li class="nav__item">
@@ -122,7 +176,7 @@
               </li>
               
               <li class="nav__item">
-                <a href="/tags/project" class="nav__link">個人專案</a>
+                <a href="/projects" class="nav__link">個人專案</a>
               </li>
               
               <li class="nav__item">
@@ -173,215 +227,141 @@
     
 
 
+
+
 <div class="container">
   <div class="row">
     <div class="col col-12">
-      
-      <section class="hero">
-        <div class="hero__inner">
-          <div class="hero__image">
-            <img src="./images/banner.png" alt="謝志謙">
-          </div>
-          <div class="hero__content">
-            <h1 class="hero__title">謝志謙</h1>
-            <p class="hero__desc">Ph.D. Student</p>
-          </div>
-        </div>
-      </section>
-      
+      <div class="image-box">
+        <img class="page-image" src="http://localhost:1313/images/post/common/machine_learning_01.png" alt="Machine Learning - Linear Regression 線性迴歸模型">
+      </div>
     </div>
   </div>
 </div>
 
 
 <div class="container">
-  <div class="row grid">
+  <div class="row">
+    <div class="col col-8 push-2 col-d-10 col-m-12 push-d-1 push-m-0">
 
-    
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/projects/articles_25063001/">
-      <img src="http://twcch.io/images/post/common/side_project_01.png" alt="實戰專案 - Titanic 生存預測專案">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/project/" class="article__tag">Project</a>
-          
+      
+      <article class="page animate">
+        <div class="page__head">
+          <h1 class="page__title">Machine Learning - Linear Regression 線性迴歸模型</h1>
         </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/projects/articles_25063001/">實戰專案 - Titanic 生存預測專案</a>
-      </h2>
-
-      <div class="article__excerpt"><p>這是我近期完成的一個資料科學專案，目標是透過 Kaggle 經典的 Titanic 生存預測題目，建立一套結構清晰、模組化的預測系統。我不只是想交出一份準確的預測結果，更希望藉由這個專案練 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
+        <div class="page__content">
+          <p>線性迴歸 (Linear Regression) 是機器學習中最經典且最基礎的模型之一。雖然它簡單，但在實務中仍廣泛應用於預測與解釋變數間的線性關係，是資料分析、商業預測與建模的入門第一步。本文將從概念、數學推導到 Python 實作，一步步帶你理解線性迴歸的運作邏輯與應用情境。</p>
+<h1 id="為什麼要學線性迴歸">為什麼要學線性迴歸?</h1>
+<p>在進入複雜模型之前，我們需要能「看懂資料」和「解釋預測結果」。線性迴歸具備以下優點：
+•	模型可解釋性強：每個係數都能代表一個變數的影響方向與強度
+•	訓練速度快：不需大量計算資源
+•	是進階模型的基礎：許多模型（如 Logistic Regression、Ridge、Lasso）都可視為線性迴歸的變體</p>
+<h1 id="線性迴歸的基本概念">線性迴歸的基本概念</h1>
+<p>線性迴歸的目標，是找到一條最佳直線，讓它能最小化預測值與真實值之間的誤差。</p>
+<p>假設有一筆資料:</p>
+<ul>
+<li>輸入特徵 (feature): x</li>
+<li>目標變數 (target): y</li>
+</ul>
+<p>線性迴歸模型可寫作:</p>
+<p>$$
+\hat{y} = w x + b
+$$</p>
+<p>其中:</p>
+<ul>
+<li>$\hat{y}$ 為模型預測值</li>
+<li>$w$ 為權重 (斜率)</li>
+<li>$b$ 為偏差項 (截距)</li>
+</ul>
+<p>對於多變數情況 (Multivariate Linear Regression):</p>
+<p>$$
+\hat{y} = w_1 x_1 + w_2 x_2 + \cdots + w_n x_n + b = \mathbf{w}^T \mathbf{x} + b
+$$</p>
+<h1 id="模型學習原理-最小化損失函數">模型學習原理: 最小化損失函數</h1>
+<p>線性迴歸的學習過程是「找出一組參數 $(w, b)$ 使預測值 $\hat{y}$ 盡可能接近真實值 $y$」。</p>
+<p>常見的損失函數是均方誤差 (Mean Squared Error, MSE):</p>
+<p>$$
+\mathcal{L}(w, b) = \frac{1}{n} \sum_{i=1}^{n} (\hat{y}_i - y_i)^2
+$$</p>
+<p>求解這個最小值的方法可用:</p>
+<ul>
+<li>對數學系背景： 封閉式解 (Normal Equation)</li>
+<li>實務場景: 梯度下降 (Gradient Descent)</li>
+</ul>
+<h1 id="模型的優缺點分析">模型的優缺點分析</h1>
+<h2 id="優點">優點</h2>
+<ul>
+<li>簡單直觀，易於實作與理解: 線性迴歸是最容易上手的機器學習模型之一，適合教學與概念驗證</li>
+<li>模型可解釋性強: 每個係數對應一個特徵的影響方向與強度，方便商業應用中的解釋與溝通</li>
+<li>訓練速度快，資源需求低: 適用於小型資料集或需要快速原型的場景</li>
+<li>可作為其他模型的基礎結構: 許多進階模型 (如 Logistic Regression、Ridge、Lasso) 皆以線性迴歸為基礎架構</li>
+</ul>
+<h2 id="缺點">缺點</h2>
+<ul>
+<li>只能捕捉線性關係: 無法處理特徵與目標之間的非線性結構，除非先進行特徵轉換 (如 polynomial features)</li>
+<li>對離群值與異常值敏感: 極端值會大幅影響模型的係數估計與預測結果</li>
+<li>容易受到共線性影響: 當多個特徵高度相關時，模型穩定性會下降，解釋性也會降低</li>
+<li>假設條件較嚴格: 包含誤差常態分布、變異數同質性、特徵獨立性等，若違反這些假設，模型效能與信賴度可能受損</li>
+</ul>
+<h1 id="適用情境">適用情境</h1>
+<h2 id="什麼情況適合用線性迴歸">什麼情況適合用線性迴歸</h2>
+<ul>
+<li>特徵與目標變數之間存在線性關係</li>
+<li>資料噪音不大，變數之間關係可被解釋</li>
+<li>想建立一個可解釋、可快速回應的模型</li>
+</ul>
+<h2 id="不適合的情況如">不適合的情況如</h2>
+<ul>
+<li>特徵與目標有非線性關係</li>
+<li>變數之間高度共線性 (Multicollinearity)</li>
+<li>資料極度不平衡或異常值眾多</li>
+</ul>
+<h1 id="延伸閱讀與模型擴展">延伸閱讀與模型擴展</h1>
+<p>學會 Linear Regression 後，可進一步探索:</p>
+<ul>
+<li>Polynomial Regression: 透過擴展特徵，捕捉非線性關係</li>
+<li>Lasso Regression: 加入 $L1$ 正則化，可自動進行特徵選擇</li>
+<li>Ridge Regression: 加入 $L2$ 正則化，防止 overfitting</li>
+<li>Generalized Linear Models (GLM): 延伸至分類 (如 logistic) 或其他分布假設</li>
+</ul>
+<h1 id="結語-線性迴歸是入門也是通往更深理解的起點">結語: 線性迴歸是入門，也是通往更深理解的起點</h1>
+<p>別小看線性迴歸的簡單，這個模型蘊藏了許多機器學習與統計推論的核心邏輯。學會它，不僅是為了應付資料分析任務，更是為了奠定你成為資料科學家的基礎。如果你能解釋一個線性模型的係數、殘差與效能評估指標，那麼你離進階模型的理解就不遠了。</p>
+<h1 id="python-實作-sklearn-版本">Python 實作: sklearn 版本</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 建立簡單資料</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 建立模型並訓練</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 預測與參數</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;斜率: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, 截距: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 畫圖</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Linear Regression Example&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div>
         </div>
-
-        <time class="article__date" datetime="2025-06-30T00:00:00&#43;08:00">
-          Jun 30, 2025
-        </time>
-      </div>
+      </article>
+      
 
     </div>
   </div>
 </div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/articles_25062501/">
-      <img src="http://twcch.io/images/post/common/heart_notes_01.png" alt="當老師只靠 ChatGPT 回信：我們期待的不是答案，而是理解">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/heart-notes/" class="article__tag">Heart Notes</a>
-          
-          <a href="http://twcch.io/tags/linkedin/" class="article__tag">LinkedIn</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25062501/">當老師只靠 ChatGPT 回信：我們期待的不是答案，而是理解</a>
-      </h2>
-
-      <div class="article__excerpt"><p>最近，我正在參加一門職訓課程。本來對這堂課滿懷期待，尤其是對某位老師的專業背景很感興趣。不過，隨著課程進行，我漸漸感到一股說不出的落差感：每當我主動提出深入問題， …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-06-25T00:00:00&#43;08:00">
-          Jun 25, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/articles_25060201/">
-      <img src="http://twcch.io/images/post/common/machine_learning_01.png" alt="為什麼用 AI 技術檢測企業舞弊，比想像中更困難？">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/linkedin/" class="article__tag">LinkedIn</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25060201/">為什麼用 AI 技術檢測企業舞弊，比想像中更困難？</a>
-      </h2>
-
-      <div class="article__excerpt"><p>在資料科學領域中，對企業進行舞弊檢測 (Fraud Detection) 被視為是一種分類問題: 輸入企業相關的數據，輸出舞弊或非舞弊。然而，真正投入研究後會發現，這個問題很難解決，非常具挑 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-06-02T00:00:00&#43;08:00">
-          Jun 2, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/articles_25040701/">
-      <img src="http://twcch.io/images/post/common/business_analysis_01.png" alt="為什麼 AI 正在快速削弱低階 Business Analyst 的價值？">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/business-analysis/" class="article__tag">Business Analysis</a>
-          
-          <a href="http://twcch.io/tags/linkedin/" class="article__tag">LinkedIn</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25040701/">為什麼 AI 正在快速削弱低階 Business Analyst 的價值？</a>
-      </h2>
-
-      <div class="article__excerpt"><p>五年前，我踏入壽險產業，成為一名 Business Analyst (BA)。當時的工作內容相當清晰：需求文件撰寫、報表製作、簡單的數據分析與溝通協調，是我每天的日常。那時候，這些任務仍需靠 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-04-07T00:00:00&#43;08:00">
-          Apr 7, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-
-  </div>
-</div>
 
 
-
-
-<script>
-  var base_url = "",
-  pagination_next_url = base_url + '/page2',
-  pagination_next_page_number = '2',
-  pagination_available_pages_number = '1';
-</script>
 
 
   </main>

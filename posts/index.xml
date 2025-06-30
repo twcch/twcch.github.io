@@ -6,8 +6,15 @@
     <description>Recent content in Posts on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 25 Jun 2025 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 30 Jun 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="http://twcch.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>實戰專案 - Titanic 生存預測專案</title>
+      <link>http://twcch.io/posts/projects/articles_25063001/</link>
+      <pubDate>Mon, 30 Jun 2025 00:00:00 +0800</pubDate>
+      <guid>http://twcch.io/posts/projects/articles_25063001/</guid>
+      <description>&lt;p&gt;這是我近期完成的一個資料科學專案，目標是透過 Kaggle 經典的 Titanic 生存預測題目，建立一套結構清晰、模組化的預測系統。我不只是想交出一份準確的預測結果，更希望藉由這個專案練習:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;如何設計可擴充、可維護的資料分析架構&lt;/li&gt;&#xA;&lt;li&gt;如何把模型訓練與推論流程標準化&lt;/li&gt;&#xA;&lt;li&gt;如何用設定檔 (config-driven) 控制整個 pipeline&lt;/li&gt;&#xA;&lt;li&gt;如何實踐工程導向的資料科學流程&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;GitHub 原始碼: &lt;a href=&#34;https://github.com/twcch/TitanicSurvivalPrediction&#34;&gt;https://github.com/twcch/TitanicSurvivalPrediction&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;專案定位不只是解題而是設計一套解法系統&#34;&gt;專案定位：不只是「解題」，而是「設計一套解法系統」&lt;/h2&gt;&#xA;&lt;p&gt;我不滿足於單純把資料丟進模型調整參數。我希望打造的是一個「可重複使用的機器學習預測框架」，因此我做了以下幾點設計:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;架構模組化: 依照功能拆分為 data/, features/, models/, utils/，程式碼清楚分工&lt;/li&gt;&#xA;&lt;li&gt;流程自動化: 所有步驟都由 main.py 控制，方便一鍵執行與重現實驗&lt;/li&gt;&#xA;&lt;li&gt;設定檔驅動: 核心設定集中管理於 config.json，可以快速切換特徵、模型參數與輸出路徑&lt;/li&gt;&#xA;&lt;li&gt;可擴充性設計: 未來若要換模型、加特徵、改評估指標，幾乎不需改動主程式碼&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;這些設計不只是在技術上提升效率，也讓我在做資料科學時，更接近實務工作者的思維模式&lt;/p&gt;&#xA;&lt;h2 id=&#34;資料前處理與特徵工程-每個欄位都要能解釋&#34;&gt;資料前處理與特徵工程: 每個欄位都要能「解釋」&lt;/h2&gt;&#xA;&lt;p&gt;我對特徵的要求是: 不只要對模型有用，更要有邏輯、可解釋&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;處理缺失值&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Age 用中位數填補&lt;/li&gt;&#xA;&lt;li&gt;Embarked 用眾數填補&lt;/li&gt;&#xA;&lt;li&gt;Fare 缺值極少，仍完整處理&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;創造新特徵&#xA;&lt;ul&gt;&#xA;&lt;li&gt;FamilySize = SibSp + Parch: 模擬家庭是否有互助效果&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;選定使用特徵&#xA;&lt;ul&gt;&#xA;&lt;li&gt;類別型: Pclass, Sex, Embarked, Title&lt;/li&gt;&#xA;&lt;li&gt;數值型: Age, Fare, FamilySize&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;模型設定-我選擇-xgboost但更重視可控性&#34;&gt;模型設定: 我選擇 XGBoost，但更重視可控性&lt;/h2&gt;&#xA;&lt;p&gt;雖然這個任務可以用很多模型解，但我選擇以 XGBoost 為主模型，理由如下:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Tree-based 模型不需要特徵標準化，工程處理更簡潔&lt;/li&gt;&#xA;&lt;li&gt;對類別特徵與數值特徵的混合表現良好&lt;/li&gt;&#xA;&lt;li&gt;在 Kaggle 類似任務中表現穩定，可作為 baseline&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;模型訓練與推論流程&#34;&gt;模型訓練與推論流程&lt;/h2&gt;&#xA;&lt;p&gt;整個流程包含以下幾步，由 main.py 控制:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>當老師只靠 ChatGPT 回信：我們期待的不是答案，而是理解</title>
       <link>http://twcch.io/posts/articles_25062501/</link>
