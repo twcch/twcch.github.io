@@ -26,22 +26,6 @@ GitHub 原始碼: https://github.com/twcch/TwoHundredYearsTwoHundredCountries
 互動與美感: 最終以 Plotly Express 強化動畫的動態感與互動性
 
 這是一個典型的「Proof of Concept」，驗證我能用純 Python 開源工具在本地完成動態資料視覺化，而不是依賴商業軟體。
-專案結構概覽
-我的程式檔案按用途拆分為四大模組，方便維護與可擴展性:
-├── core/                
-│   ├── data.py           # 資料抓取與整理邏輯
-│   └── sqlite_db.py      # 將處理後資料寫入 SQLite
-├── data/                 
-│   ├── raw/              # 原始 CSV 或下載資料
-│   └── processed.db      # 建好的 SQLite 資料庫
-├── scripts/              
-│   ├── build_database.py # 產生與清理資料庫
-│   ├── build_view_table.py # 聚合資料為視覺化用表
-│   ├── proof_of_concept.py # 使用 matplotlib 驗證動畫概念
-│   └── plot_with_px.py   # 使用 plotly.express 畫出互動畫面
-├── docs/                 # 最終視覺化圖或影片輸出
-└── README.md
-這種架構讓我可以很清楚地看到：從拉資料、整理、建立資料表，到生成動畫圖表，每一步皆可重現、測試與調整。
 處理流程解析
 
 資料擷取與清理
@@ -95,22 +79,6 @@ GitHub 原始碼: https://github.com/twcch/TwoHundredYearsTwoHundredCountries
 互動與美感: 最終以 Plotly Express 強化動畫的動態感與互動性
 
 這是一個典型的「Proof of Concept」，驗證我能用純 Python 開源工具在本地完成動態資料視覺化，而不是依賴商業軟體。
-專案結構概覽
-我的程式檔案按用途拆分為四大模組，方便維護與可擴展性:
-├── core/                
-│   ├── data.py           # 資料抓取與整理邏輯
-│   └── sqlite_db.py      # 將處理後資料寫入 SQLite
-├── data/                 
-│   ├── raw/              # 原始 CSV 或下載資料
-│   └── processed.db      # 建好的 SQLite 資料庫
-├── scripts/              
-│   ├── build_database.py # 產生與清理資料庫
-│   ├── build_view_table.py # 聚合資料為視覺化用表
-│   ├── proof_of_concept.py # 使用 matplotlib 驗證動畫概念
-│   └── plot_with_px.py   # 使用 plotly.express 畫出互動畫面
-├── docs/                 # 最終視覺化圖或影片輸出
-└── README.md
-這種架構讓我可以很清楚地看到：從拉資料、整理、建立資料表，到生成動畫圖表，每一步皆可重現、測試與調整。
 處理流程解析
 
 資料擷取與清理
@@ -354,22 +322,6 @@ GitHub 原始碼: <a href="https://github.com/twcch/TwoHundredYearsTwoHundredCou
 <li>互動與美感: 最終以 Plotly Express 強化動畫的動態感與互動性</li>
 </ul>
 <p>這是一個典型的「Proof of Concept」，驗證我能用純 Python 開源工具在本地完成動態資料視覺化，而不是依賴商業軟體。</p>
-<h2 id="專案結構概覽">專案結構概覽</h2>
-<p>我的程式檔案按用途拆分為四大模組，方便維護與可擴展性:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">core</span><span class="o">/</span>                
-</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">data</span><span class="o">.</span><span class="n">py</span>           <span class="c1"># 資料抓取與整理邏輯</span>
-</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">└──</span> <span class="n">sqlite_db</span><span class="o">.</span><span class="n">py</span>      <span class="c1"># 將處理後資料寫入 SQLite</span>
-</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">data</span><span class="o">/</span>                 
-</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">raw</span><span class="o">/</span>              <span class="c1"># 原始 CSV 或下載資料</span>
-</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">└──</span> <span class="n">processed</span><span class="o">.</span><span class="n">db</span>      <span class="c1"># 建好的 SQLite 資料庫</span>
-</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">scripts</span><span class="o">/</span>              
-</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">build_database</span><span class="o">.</span><span class="n">py</span> <span class="c1"># 產生與清理資料庫</span>
-</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">build_view_table</span><span class="o">.</span><span class="n">py</span> <span class="c1"># 聚合資料為視覺化用表</span>
-</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">├──</span> <span class="n">proof_of_concept</span><span class="o">.</span><span class="n">py</span> <span class="c1"># 使用 matplotlib 驗證動畫概念</span>
-</span></span><span class="line"><span class="cl"><span class="err">│</span>   <span class="err">└──</span> <span class="n">plot_with_px</span><span class="o">.</span><span class="n">py</span>   <span class="c1"># 使用 plotly.express 畫出互動畫面</span>
-</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">docs</span><span class="o">/</span>                 <span class="c1"># 最終視覺化圖或影片輸出</span>
-</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="n">README</span><span class="o">.</span><span class="n">md</span>
-</span></span></code></pre></div><p>這種架構讓我可以很清楚地看到：從拉資料、整理、建立資料表，到生成動畫圖表，每一步皆可重現、測試與調整。</p>
 <h2 id="處理流程解析">處理流程解析</h2>
 <ul>
 <li>資料擷取與清理
