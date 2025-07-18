@@ -7,117 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>視覺化專案 - 200 個國家 200 百年 4 分鐘 | 志謙&#39;s Blog</title>
+  <title>IThome 鐵人賽 2025 | 志謙&#39;s Blog</title>
   <meta name="description" content="">
 
+  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="視覺化專案 - 200 個國家 200 百年 4 分鐘 | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="這是一個資料視覺化專案——「Dynamic Visualization: 200 Countries, 200 Years, 4 Minutes」。它將涵蓋 1816 至 2016 年，200 個國家的歷史變遷以互動動畫呈現，整體動畫長度約四分鐘，旨在結合「時間」與「地理」維度，提供用戶沉浸式的歷史視覺體驗。
-成品呈現頁面: https://twcch.io/TwoHundredYearsTwoHundredCountries/views.html
-GitHub 原始碼: https://github.com/twcch/TwoHundredYearsTwoHundredCountries
-專案目標: 動態傳遞跨時代趨勢
-我這次的核心目的，是打造一段「高品質又美觀」的互動式動畫。相比靜態圖表，此動畫能讓使用者更直覺地感受到全球歷史變化的脈絡與節奏。
-
-跨國維度: 一次呈現 200 國家在相同指標上的變化
-跨年代視角: 覆蓋整整兩個世紀
-互動與美感: 最終以 Plotly Express 強化動畫的動態感與互動性
-
-這是一個典型的「Proof of Concept」，驗證我能用純 Python 開源工具在本地完成動態資料視覺化，而不是依賴商業軟體。
-處理流程解析
-
-資料擷取與清理
-
-使用 pandas 從 Gapminder 或其他開源來源讀入年份、國家與指標。
-透過 core/data.py 標準化欄位名稱、處理缺值、並轉換為長型結構，以利後續分析。
-
-
-寫入 SQLite
-
-為了方便查詢與存取，我用 core/sqlite_db.py 將清理後的資料匯入 SQLite 資料庫，一併記錄 metadata。
-
-
-產生視覺化資料表
-
-scripts/build_view_table.py 將資料按年與國家展開，組合成完整用於視覺化的 DataFrame。
-
-
-動態驗證：matplotlib 原型
-
-在 proof_of_concept.py 中，以 matplotlib 建立由靜態圖逐幀拼湊的基本動畫，確認播放邏輯與視覺節奏。
-
-
-互動動畫：Plotly Express
-
-最終在 plot_with_px.py 中改以 Plotly Express，產出包含滑動條、國家標籤、時間軸與音效的四分鐘互動畫面，並輸出至 docs/views.html。
-
-
-
-技術選擇與實務考量
-
-資料處理: pandas 濾除缺值、重塑表格、處理 metadata，全套操作都在 pandas 中完成。
-儲存管理: 使用 SQLite 儲存資料，方便查詢與重複執行，而不用每次都從頭開 CSV。
-動畫原型: matplotlib 可迅速驗證概念、調整幀率與時間間隔。
-互動視覺化: Plotly Express 能更快速加入滑桿、hover 標籤，動畫更加流暢美觀，也更適合網頁展示。
-
-展示成果
-最終輸出是一個 HTML 檔，內嵌動態 html5 視覺化:">
-  <meta name="twitter:image" content="http://twcch.io/images/post/common/side_project_01.png">
+  <meta name="twitter:title" content="IThome 鐵人賽 2025 | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="志謙&#39;s Blog">
+  <meta name="twitter:image" content="http://twcch.io/">
 
   
-  <meta property="og:title" content="視覺化專案 - 200 個國家 200 百年 4 分鐘 | 志謙&#39;s Blog">
-  <meta property="og:description" content="這是一個資料視覺化專案——「Dynamic Visualization: 200 Countries, 200 Years, 4 Minutes」。它將涵蓋 1816 至 2016 年，200 個國家的歷史變遷以互動動畫呈現，整體動畫長度約四分鐘，旨在結合「時間」與「地理」維度，提供用戶沉浸式的歷史視覺體驗。
-成品呈現頁面: https://twcch.io/TwoHundredYearsTwoHundredCountries/views.html
-GitHub 原始碼: https://github.com/twcch/TwoHundredYearsTwoHundredCountries
-專案目標: 動態傳遞跨時代趨勢
-我這次的核心目的，是打造一段「高品質又美觀」的互動式動畫。相比靜態圖表，此動畫能讓使用者更直覺地感受到全球歷史變化的脈絡與節奏。
-
-跨國維度: 一次呈現 200 國家在相同指標上的變化
-跨年代視角: 覆蓋整整兩個世紀
-互動與美感: 最終以 Plotly Express 強化動畫的動態感與互動性
-
-這是一個典型的「Proof of Concept」，驗證我能用純 Python 開源工具在本地完成動態資料視覺化，而不是依賴商業軟體。
-處理流程解析
-
-資料擷取與清理
-
-使用 pandas 從 Gapminder 或其他開源來源讀入年份、國家與指標。
-透過 core/data.py 標準化欄位名稱、處理缺值、並轉換為長型結構，以利後續分析。
-
-
-寫入 SQLite
-
-為了方便查詢與存取，我用 core/sqlite_db.py 將清理後的資料匯入 SQLite 資料庫，一併記錄 metadata。
-
-
-產生視覺化資料表
-
-scripts/build_view_table.py 將資料按年與國家展開，組合成完整用於視覺化的 DataFrame。
-
-
-動態驗證：matplotlib 原型
-
-在 proof_of_concept.py 中，以 matplotlib 建立由靜態圖逐幀拼湊的基本動畫，確認播放邏輯與視覺節奏。
-
-
-互動動畫：Plotly Express
-
-最終在 plot_with_px.py 中改以 Plotly Express，產出包含滑動條、國家標籤、時間軸與音效的四分鐘互動畫面，並輸出至 docs/views.html。
-
-
-
-技術選擇與實務考量
-
-資料處理: pandas 濾除缺值、重塑表格、處理 metadata，全套操作都在 pandas 中完成。
-儲存管理: 使用 SQLite 儲存資料，方便查詢與重複執行，而不用每次都從頭開 CSV。
-動畫原型: matplotlib 可迅速驗證概念、調整幀率與時間間隔。
-互動視覺化: Plotly Express 能更快速加入滑桿、hover 標籤，動畫更加流暢美觀，也更適合網頁展示。
-
-展示成果
-最終輸出是一個 HTML 檔，內嵌動態 html5 視覺化:">
-  <meta property="og:image" content="http://twcch.io/images/post/common/side_project_01.png">
+  <meta property="og:title" content="IThome 鐵人賽 2025 | 志謙&#39;s Blog">
+  <meta property="og:description" content="志謙&#39;s Blog">
+  <meta property="og:image" content="http://twcch.io/">
 
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -274,228 +179,67 @@ scripts/build_view_table.py 將資料按年與國家展開，組合成完整用�
   <main class="content" aria-label="Content">
     
 
-
-
-
 <div class="container">
   <div class="row">
-    <div class="col col-12">
-      <div class="image-box">
-        <img class="post-image" src="http://twcch.io/images/post/common/side_project_01.png" alt="視覺化專案 - 200 個國家 200 百年 4 分鐘">
+    <div class="col col-8 col-d-10 col-m-12 push-m-0 push-d-1 push-2">
+      <div class="archive-box">
+        <span class="archive-counter">1 Article</span>
+        <h1 class="archive-title">IThome 鐵人賽 2025</h1>
       </div>
     </div>
   </div>
 </div>
 
-
 <div class="container">
+  <div class="row grid">
 
-  <div class="row">
-    <div class="col col-8 col-d-10 push-2 push-d-1 col-t-12 push-t-0">
     
-      
-      <article class="post amimate">
+      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
+  <div class="article__inner">
 
-        <div class="post__head">
-          
-          <div class="post__tags">
-            
-            <a href="http://twcch.io/tags/project/" class="post-tags__tag">Project</a>
-            
-          </div>
-          
-
-          <h1 class="post__title">視覺化專案 - 200 個國家 200 百年 4 分鐘</h1>
-
-          <div class="post__meta">
-            <div class="post__author">
-              <a href="/about/" class="post__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="post__author-link">謝志謙</a>
-            </div>
-            <span class="post__date">
-              <time datetime=" 2025-07-09T00:00:00&#43;08:00">Jul 9, 2025</time>
-            </span>
-          </div>
-
-        </div>
     
-        <div class="post__content">
-          <p>這是一個資料視覺化專案——「Dynamic Visualization: 200 Countries, 200 Years, 4 Minutes」。它將涵蓋 1816 至 2016 年，200 個國家的歷史變遷以互動動畫呈現，整體動畫長度約四分鐘，旨在結合「時間」與「地理」維度，提供用戶沉浸式的歷史視覺體驗。</p>
-<p>成品呈現頁面: <a href="https://twcch.io/TwoHundredYearsTwoHundredCountries/views.html">https://twcch.io/TwoHundredYearsTwoHundredCountries/views.html</a><br>
-GitHub 原始碼: <a href="https://github.com/twcch/TwoHundredYearsTwoHundredCountries">https://github.com/twcch/TwoHundredYearsTwoHundredCountries</a></p>
-<h2 id="專案目標-動態傳遞跨時代趨勢">專案目標: 動態傳遞跨時代趨勢</h2>
-<p>我這次的核心目的，是打造一段「高品質又美觀」的互動式動畫。相比靜態圖表，此動畫能讓使用者更直覺地感受到全球歷史變化的脈絡與節奏。</p>
-<ul>
-<li>跨國維度: 一次呈現 200 國家在相同指標上的變化</li>
-<li>跨年代視角: 覆蓋整整兩個世紀</li>
-<li>互動與美感: 最終以 Plotly Express 強化動畫的動態感與互動性</li>
-</ul>
-<p>這是一個典型的「Proof of Concept」，驗證我能用純 Python 開源工具在本地完成動態資料視覺化，而不是依賴商業軟體。</p>
-<h2 id="處理流程解析">處理流程解析</h2>
-<ul>
-<li>資料擷取與清理
-<ul>
-<li>使用 pandas 從 Gapminder 或其他開源來源讀入年份、國家與指標。</li>
-<li>透過 core/data.py 標準化欄位名稱、處理缺值、並轉換為長型結構，以利後續分析。</li>
-</ul>
-</li>
-<li>寫入 SQLite
-<ul>
-<li>為了方便查詢與存取，我用 core/sqlite_db.py 將清理後的資料匯入 SQLite 資料庫，一併記錄 metadata。</li>
-</ul>
-</li>
-<li>產生視覺化資料表
-<ul>
-<li>scripts/build_view_table.py 將資料按年與國家展開，組合成完整用於視覺化的 DataFrame。</li>
-</ul>
-</li>
-<li>動態驗證：matplotlib 原型
-<ul>
-<li>在 proof_of_concept.py 中，以 matplotlib 建立由靜態圖逐幀拼湊的基本動畫，確認播放邏輯與視覺節奏。</li>
-</ul>
-</li>
-<li>互動動畫：Plotly Express
-<ul>
-<li>最終在 plot_with_px.py 中改以 Plotly Express，產出包含滑動條、國家標籤、時間軸與音效的四分鐘互動畫面，並輸出至 docs/views.html。</li>
-</ul>
-</li>
-</ul>
-<h2 id="技術選擇與實務考量">技術選擇與實務考量</h2>
-<ul>
-<li>資料處理: pandas 濾除缺值、重塑表格、處理 metadata，全套操作都在 pandas 中完成。</li>
-<li>儲存管理: 使用 SQLite 儲存資料，方便查詢與重複執行，而不用每次都從頭開 CSV。</li>
-<li>動畫原型: matplotlib 可迅速驗證概念、調整幀率與時間間隔。</li>
-<li>互動視覺化: Plotly Express 能更快速加入滑桿、hover 標籤，動畫更加流暢美觀，也更適合網頁展示。</li>
-</ul>
-<h2 id="展示成果">展示成果</h2>
-<p>最終輸出是一個 HTML 檔，內嵌動態 html5 視覺化:</p>
-<ul>
-<li>滑動時間軸：可從 1816 拉到 2016</li>
-<li>多國同步動態顯示：多線圖或泡泡圖隨時間變化</li>
-<li>互動細節：滑鼠懸停可顯示國家名稱、指標數值等資訊</li>
-</ul>
-<p>效果直觀、沉浸感強，彷彿看一部微縮版的全球變遷紀錄片。</p>
-<h2 id="收穫與未來展望">收穫與未來展望</h2>
-<ul>
-<li>已完成:
-<ul>
-<li>動態可互動圖表完成</li>
-<li>資料處理 pipeline 與資料庫架構完成</li>
-<li>概念驗證流程成熟</li>
-</ul>
-</li>
-<li>下一步:
-<ul>
-<li>加入更多指標：如教育、健康、人均收入等</li>
-<li>支援自選國家比較：讓使用者自訂要比較的國家組合</li>
-<li>優化動畫美感與效能：加入標註、顏色分群、手機友好版</li>
-<li>部署 Web 平台：例如將 Plotly 圖表嵌入 Dash/Flask 前端，打造動態歷史觀測器</li>
-</ul>
-</li>
-</ul>
-<h2 id="結語-一場資料與歷史的對話">結語: 一場資料與歷史的對話</h2>
-<p>這個專案不只是「1 個動畫」，它是一個 歷史與科技交集的創作——我用 Python 工程流程，搭配資料視覺設計，重現 200 年來人類發展的縮影。看著點隨時間移動，國家指標變化，彷彿穿梭時空，讓人再次感嘆資料的力量。</p>
-<p>歡迎有興趣的朋友參考原始碼，也希望與你交流更好的專案設計方式。</p>
 
-        </div>
-    
-        <div class="post__share">
-  <div class="share__head">
-    <div class="share__title">Share this article</div>
-  </div>
-  <ul class="share__list list-reset">
-    <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fprojects%2farticles_25070901%2f"
-        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
-        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
-    </li>
-    <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%e8%a6%96%e8%a6%ba%e5%8c%96%e5%b0%88%e6%a1%88%20-%20200%20%e5%80%8b%e5%9c%8b%e5%ae%b6%20200%20%e7%99%be%e5%b9%b4%204%20%e5%88%86%e9%90%98&url=http%3a%2f%2ftwcch.io%2fposts%2fprojects%2farticles_25070901%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
-    </li>
+    <a class="article__image" href="/posts/ironman/2025/articles_25071801/">
+      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 1) 為什麼我想使用機器學習技術建構企業風險預測模型?">
+    </a>
 
-    <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fprojects%2farticles_25070901%2f&title=%e8%a6%96%e8%a6%ba%e5%8c%96%e5%b0%88%e6%a1%88%20-%20200%20%e5%80%8b%e5%9c%8b%e5%ae%b6%20200%20%e7%99%be%e5%b9%b4%204%20%e5%88%86%e9%90%98&summary=&source=%e8%a6%96%e8%a6%ba%e5%8c%96%e5%b0%88%e6%a1%88%20-%20200%20%e5%80%8b%e5%9c%8b%e5%ae%b6%20200%20%e7%99%be%e5%b9%b4%204%20%e5%88%86%e9%90%98"
-      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
-    </li>
+    <div class="article__content">
 
-    <li class="share__item">
-      <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fprojects%2farticles_25070901%2f&amp;media=http%3a%2f%2ftwcch.io%2fimages%2fpost%2fcommon%2fside_project_01.png&amp;description=%e8%a6%96%e8%a6%ba%e5%8c%96%e5%b0%88%e6%a1%88%20-%20200%20%e5%80%8b%e5%9c%8b%e5%ae%b6%20200%20%e7%99%be%e5%b9%b4%204%20%e5%88%86%e9%90%98"
-        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
-        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="ion ion-logo-pinterest"></i></a>
-    </li>
-  </ul>
-</div>
-
+      <div class="article__bottom">
         
-        <div class="post__navigation">
+        <div class="article-tags__box">
           
-          <a class="prev" href="http://twcch.io/posts/projects/articles_25063001/" style="background-image: url('./images/post/common/side_project_01.png')">
-            <div class="post__nav-box">
-              <div class="post__nav post__nav__prev"><i class="ion ion-ios-arrow-back"></i> Previous
-                Page</div>
-              <h4 class="post__nav__title">實戰專案 - Titanic 生存預測專案</h4>
-            </div>
-          </a>
+          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
           
-          
-          <a class="next" href="http://twcch.io/posts/articles_25071601/" style="background-image: url('./images/post/common/heart_notes_01.png')">
-            <div class="post__nav-box">
-              <div class="post__nav post__nav__next">Next Page <i class="ion ion-ios-arrow-forward"></i></div>
-              <h4 class="post__nav__title">學歷無用？我仍相信學習的價值</h4>
-            </div>
-          </a>
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
           
         </div>
         
+      </div>
 
-        
-          
-<div id="disqus_thread" class="post__comments">
-  <div id="disqus_empty"></div>
-</div>
+      <h2 class="article__title">
+        <a href="/posts/ironman/2025/articles_25071801/">(Day 1) 為什麼我想使用機器學習技術建構企業風險預測模型?</a>
+      </h2>
 
-<script>
-  function load_disqus() {
-    var disqus_shortname = 'anvod-studio-aditu',
-      is_disqus_empty = document.getElementById('disqus_empty'),
-      disqus_target = document.getElementById('disqus_thread'),
-      disqus_embed = document.createElement('script'),
-      disqus_hook = (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]);
+      <div class="article__excerpt"><p>我是 Alan，目前正準備投入博士班的人，研究主題聚焦在「使用透過機器學習與深度學習技術，預測企業是否有潛在的財務報表舞弊或信用風險」，在進行研究架構的構思過程中，我觀察到一個有趣的現象「這 …</p></div>
 
-    if (disqus_target && is_disqus_empty) {
-      disqus_embed.type = 'text/javascript';
-      disqus_embed.async = true;
-      disqus_embed.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      disqus_hook.appendChild(disqus_embed);
-      is_disqus_empty.remove();
-    }
-  }
+      <div class="article__meta">
+        <div class="article__author">
+          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
+        </div>
 
-  window.addEventListener('scroll', function (e) {
-    var currentScroll = document.scrollingElement.scrollTop;
-    var disqus_target = document.getElementById('disqus_thread');
+        <time class="article__date" datetime="2025-07-18T00:00:00&#43;08:00">
+          Jul 18, 2025
+        </time>
+      </div>
 
-    if (disqus_target && (currentScroll > disqus_target.getBoundingClientRect().top - 150)) {
-      load_disqus('disqus_shortname');
-    }
-  }, false);
-
-</script>
-<noscript>Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-</noscript>
-
-        
-    
-      </article>
-      
     </div>
   </div>
-
-
 </div>
+    
 
-
+  </div>
+</div>
 
 
   </main>
