@@ -1,28 +1,171 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>IThome 鐵人賽 2025 | 志謙&#39;s Blog</title>
+  <title>(Day 2) 哪裡找企業財報資料? 我選擇 SimFin 的理由 | 志謙&#39;s Blog</title>
   <meta name="description" content="">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="IThome 鐵人賽 2025 | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="志謙&#39;s Blog">
-  <meta name="twitter:image" content="http://twcch.io/">
+  <meta name="twitter:title" content="(Day 2) 哪裡找企業財報資料? 我選擇 SimFin 的理由 | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="在機器學習模型的建構，無論你想用的是機器學習模型還是深度學習模型，本質上都要「資料從哪裡來?」，如果資料來源不夠公開、可靠、結構清晰，這個專案只會變成一場寫死的筆記或純展示。所以今天，就來談談我這次選用的資料來源 —— SimFin 財報資料集，並說明我為什麼不用台灣的公開財報網站、為什麼不使用 Kaggle 上那些現成 CSV，而選擇一個需要「自己拉、自己整理」的開源平台。
+
+📂 資料來源的選擇對比
+以下是我在啟動專案前，實際評估過的三個主要資料來源：
 
   
-  <meta property="og:title" content="IThome 鐵人賽 2025 | 志謙&#39;s Blog">
-  <meta property="og:description" content="志謙&#39;s Blog">
-  <meta property="og:image" content="http://twcch.io/">
+      
+          資料來源
+          優點
+          缺點
+      
+  
+  
+      
+          📉 台灣公開資訊觀測站
+          財報細節完整、符合本地語境
+          結構混亂、難以自動化擷取、缺乏 API
+      
+      
+          🧪 Kaggle 現成財報資料集
+          快速上手、乾淨清整
+          缺乏真實性與持續性、難以擴展至完整流程
+      
+      
+          ✅ SimFin（我最終選擇）
+          API 友善、資料標準化、可結構性查詢
+          主要為美股企業、部分財報項目較粗略
+      
+  
+
+
+✨ 結論：SimFin 是目前最適合用來構建企業風險預測原型的開源資料集
+
+
+🔎 SimFin 是什麼？它有什麼資料？
+SimFin（short for Simplifying Financial Data）是一個開源財務資料平台，由德國研究團隊建立，提供：
+
+📃 標準化財報（Income Statement、Balance Sheet、Cash Flow）
+📊 衍生財務比率（如 ROA, ROE, Current Ratio 等）
+⏳ 季度 / 年度歷史資料（回溯至 2007 年）
+🧾 公司代碼、部門分類、市值資訊
+📎 可選擇 CSV、SQLite 或 API 拉取
+
+其免費版本即包含 2000 多家美國上市公司數據，資料結構完整、維護活躍、具重現性。
+
+💡 為什麼我選 SimFin？
+
+  
+      
+          原因
+          說明
+      
+  
+  
+      
+          ✅ 開源 &#43; 可程式化操作
+          可以使用 Python &#43; API 直接下載、同步資料，不用手動抓 Excel
+      
+      
+          ✅ 結構化資料格式
+          欄位命名標準、日期正規、企業識別一致，利於資料清理與分析
+      
+      
+          ✅ 附衍生財務指標
+          減少前處理成本，可快速建模或用於可解釋性分析
+      
+      
+          ✅ 可轉換為 SQLite 或 Pandas DataFrame
+          適合後續做中繼儲存與模組化特徵工程流程
+      
+  
+
+此外，SimFin 提供免費註冊使用（只要有 Email），也有 API key 授權制度，對於像我這樣希望構建全流程模型並公開原始碼的人來說，是一個極其友善的資料源。">
+  <meta name="twitter:image" content="http://localhost:1313/images/post/common/data_science_competition_01.png">
+
+  
+  <meta property="og:title" content="(Day 2) 哪裡找企業財報資料? 我選擇 SimFin 的理由 | 志謙&#39;s Blog">
+  <meta property="og:description" content="在機器學習模型的建構，無論你想用的是機器學習模型還是深度學習模型，本質上都要「資料從哪裡來?」，如果資料來源不夠公開、可靠、結構清晰，這個專案只會變成一場寫死的筆記或純展示。所以今天，就來談談我這次選用的資料來源 —— SimFin 財報資料集，並說明我為什麼不用台灣的公開財報網站、為什麼不使用 Kaggle 上那些現成 CSV，而選擇一個需要「自己拉、自己整理」的開源平台。
+
+📂 資料來源的選擇對比
+以下是我在啟動專案前，實際評估過的三個主要資料來源：
+
+  
+      
+          資料來源
+          優點
+          缺點
+      
+  
+  
+      
+          📉 台灣公開資訊觀測站
+          財報細節完整、符合本地語境
+          結構混亂、難以自動化擷取、缺乏 API
+      
+      
+          🧪 Kaggle 現成財報資料集
+          快速上手、乾淨清整
+          缺乏真實性與持續性、難以擴展至完整流程
+      
+      
+          ✅ SimFin（我最終選擇）
+          API 友善、資料標準化、可結構性查詢
+          主要為美股企業、部分財報項目較粗略
+      
+  
+
+
+✨ 結論：SimFin 是目前最適合用來構建企業風險預測原型的開源資料集
+
+
+🔎 SimFin 是什麼？它有什麼資料？
+SimFin（short for Simplifying Financial Data）是一個開源財務資料平台，由德國研究團隊建立，提供：
+
+📃 標準化財報（Income Statement、Balance Sheet、Cash Flow）
+📊 衍生財務比率（如 ROA, ROE, Current Ratio 等）
+⏳ 季度 / 年度歷史資料（回溯至 2007 年）
+🧾 公司代碼、部門分類、市值資訊
+📎 可選擇 CSV、SQLite 或 API 拉取
+
+其免費版本即包含 2000 多家美國上市公司數據，資料結構完整、維護活躍、具重現性。
+
+💡 為什麼我選 SimFin？
+
+  
+      
+          原因
+          說明
+      
+  
+  
+      
+          ✅ 開源 &#43; 可程式化操作
+          可以使用 Python &#43; API 直接下載、同步資料，不用手動抓 Excel
+      
+      
+          ✅ 結構化資料格式
+          欄位命名標準、日期正規、企業識別一致，利於資料清理與分析
+      
+      
+          ✅ 附衍生財務指標
+          減少前處理成本，可快速建模或用於可解釋性分析
+      
+      
+          ✅ 可轉換為 SQLite 或 Pandas DataFrame
+          適合後續做中繼儲存與模組化特徵工程流程
+      
+  
+
+此外，SimFin 提供免費註冊使用（只要有 Email），也有 API key 授權制度，對於像我這樣希望構建全流程模型並公開原始碼的人來說，是一個極其友善的資料源。">
+  <meta property="og:image" content="http://localhost:1313/images/post/common/data_science_competition_01.png">
 
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -53,7 +196,7 @@
       <div class="header__inner col col-12">
 
         <div class="logo">
-          <a class="logo__link" href="http://twcch.io/">
+          <a class="logo__link" href="http://localhost:1313/">
             
               志謙&#39;s Blog
             
@@ -179,106 +322,247 @@
   <main class="content" aria-label="Content">
     
 
+
+
+
 <div class="container">
   <div class="row">
-    <div class="col col-8 col-d-10 col-m-12 push-m-0 push-d-1 push-2">
-      <div class="archive-box">
-        <span class="archive-counter">2 Articles</span>
-        <h1 class="archive-title">IThome 鐵人賽 2025</h1>
+    <div class="col col-12">
+      <div class="image-box">
+        <img class="post-image" src="http://localhost:1313/images/post/common/data_science_competition_01.png" alt="(Day 2) 哪裡找企業財報資料? 我選擇 SimFin 的理由">
       </div>
     </div>
   </div>
 </div>
+
 
 <div class="container">
-  <div class="row grid">
 
+  <div class="row">
+    <div class="col col-8 col-d-10 push-2 push-d-1 col-t-12 push-t-0">
     
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
+      
+      <article class="post amimate">
 
-    
-
-    <a class="article__image" href="/posts/ironman_2025/articles_25071801/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 2) 哪裡找企業財報資料? 我選擇 SimFin 的理由">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
+        <div class="post__head">
           
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+          <div class="post__tags">
+            
+            <a href="http://localhost:1313/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post-tags__tag">IThome 鐵人賽 2025</a>
+            
+          </div>
+          
+
+          <h1 class="post__title">(Day 2) 哪裡找企業財報資料? 我選擇 SimFin 的理由</h1>
+
+          <div class="post__meta">
+            <div class="post__author">
+              <a href="/about/" class="post__author-image" style="background-image: url('http://localhost:1313/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="post__author-link">謝志謙</a>
+            </div>
+            <span class="post__date">
+              <time datetime=" 2025-07-18T00:00:00&#43;08:00">Jul 18, 2025</time>
+            </span>
+          </div>
+
+        </div>
+    
+        <div class="post__content">
+          <p>在機器學習模型的建構，無論你想用的是機器學習模型還是深度學習模型，本質上都要「資料從哪裡來?」，如果資料來源不夠公開、可靠、結構清晰，這個專案只會變成一場寫死的筆記或純展示。所以今天，就來談談我這次選用的資料來源 —— <strong>SimFin 財報資料集</strong>，並說明我為什麼不用台灣的公開財報網站、為什麼不使用 Kaggle 上那些現成 CSV，而選擇一個需要「自己拉、自己整理」的開源平台。</p>
+<hr>
+<h2 id="-資料來源的選擇對比">📂 資料來源的選擇對比</h2>
+<p>以下是我在啟動專案前，實際評估過的三個主要資料來源：</p>
+<table>
+  <thead>
+      <tr>
+          <th>資料來源</th>
+          <th>優點</th>
+          <th>缺點</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>📉 台灣公開資訊觀測站</td>
+          <td>財報細節完整、符合本地語境</td>
+          <td>結構混亂、難以自動化擷取、缺乏 API</td>
+      </tr>
+      <tr>
+          <td>🧪 Kaggle 現成財報資料集</td>
+          <td>快速上手、乾淨清整</td>
+          <td>缺乏真實性與持續性、難以擴展至完整流程</td>
+      </tr>
+      <tr>
+          <td>✅ SimFin（我最終選擇）</td>
+          <td>API 友善、資料標準化、可結構性查詢</td>
+          <td>主要為美股企業、部分財報項目較粗略</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>✨ 結論：<strong>SimFin 是目前最適合用來構建企業風險預測原型的開源資料集</strong></p>
+</blockquote>
+<hr>
+<h2 id="-simfin-是什麼它有什麼資料">🔎 SimFin 是什麼？它有什麼資料？</h2>
+<p>SimFin（short for <em>Simplifying Financial Data</em>）是一個開源財務資料平台，由德國研究團隊建立，提供：</p>
+<ul>
+<li>📃 <strong>標準化財報</strong>（Income Statement、Balance Sheet、Cash Flow）</li>
+<li>📊 <strong>衍生財務比率</strong>（如 ROA, ROE, Current Ratio 等）</li>
+<li>⏳ <strong>季度 / 年度歷史資料</strong>（回溯至 2007 年）</li>
+<li>🧾 <strong>公司代碼、部門分類、市值資訊</strong></li>
+<li>📎 可選擇 <strong>CSV、SQLite</strong> 或 <strong>API 拉取</strong></li>
+</ul>
+<p>其免費版本即包含 2000 多家美國上市公司數據，<strong>資料結構完整、維護活躍、具重現性</strong>。</p>
+<hr>
+<h2 id="-為什麼我選-simfin">💡 為什麼我選 SimFin？</h2>
+<table>
+  <thead>
+      <tr>
+          <th>原因</th>
+          <th>說明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>✅ <strong>開源 + 可程式化操作</strong></td>
+          <td>可以使用 Python + API 直接下載、同步資料，不用手動抓 Excel</td>
+      </tr>
+      <tr>
+          <td>✅ <strong>結構化資料格式</strong></td>
+          <td>欄位命名標準、日期正規、企業識別一致，利於資料清理與分析</td>
+      </tr>
+      <tr>
+          <td>✅ <strong>附衍生財務指標</strong></td>
+          <td>減少前處理成本，可快速建模或用於可解釋性分析</td>
+      </tr>
+      <tr>
+          <td>✅ <strong>可轉換為 SQLite 或 Pandas DataFrame</strong></td>
+          <td>適合後續做中繼儲存與模組化特徵工程流程</td>
+      </tr>
+  </tbody>
+</table>
+<p>此外，SimFin 提供免費註冊使用（只要有 Email），也有 API key 授權制度，對於像我這樣希望<strong>構建全流程模型並公開原始碼</strong>的人來說，是一個極其友善的資料源。</p>
+<hr>
+<h2 id="-試試看用-python-拉下-simfin-資料預告">🧪 試試看：用 Python 拉下 SimFin 資料（預告）</h2>
+<p>我接下來會進行的第一步是：</p>
+<blockquote>
+<p>🔧 <strong>用 Python 自動下載 SimFin 財報資料，並整合為 SQLite 資料庫</strong>（Day 3 主題）</p>
+</blockquote>
+<p>這會包含以下幾個模塊：</p>
+<ol>
+<li><code>download_simfin_data.py</code> → 自動抓取與更新資料</li>
+<li><code>parse_financials.py</code> → 整併財報與公司基本資料</li>
+<li><code>build_database.py</code> → 建立 SQLite 中繼資料庫，方便後續特徵工程</li>
+</ol>
+<p>屆時我也會提供你可以直接套用的 Python 程式碼與 API 使用教學。</p>
+<hr>
+<h2 id="-延伸閱讀與資源">📦 延伸閱讀與資源</h2>
+<ul>
+<li>🔗 <a href="https://simfin.com/">SimFin 官方網站</a></li>
+<li>📘 <a href="https://docs.simfin.com/">SimFin API Docs (v2)</a></li>
+<li>🧪 <a href="https://github.com/SimFin/simfin">SimFin Python Library（非官方）</a></li>
+</ul>
+<hr>
+<h2 id="-day-3-預告-整合資料建立財報資料庫">🛤️ (Day 3 預告) 整合資料，建立財報資料庫！</h2>
+<p>明天我會：</p>
+<ul>
+<li>用 SimFin 的 CSV 建立 SQLite 資料庫</li>
+<li>撰寫基本的資料結構與欄位說明</li>
+<li>解釋為什麼財報整合需要資料庫結構，不能全靠 Pandas</li>
+</ul>
+<p>我們的企業風控系統，<strong>從這一步開始進入實作階段</strong>。</p>
+
+        </div>
+    
+        <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this article</div>
+  </div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2fironman_2025%2farticles_25071802%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%202%29%20%e5%93%aa%e8%a3%a1%e6%89%be%e4%bc%81%e6%a5%ad%e8%b2%a1%e5%a0%b1%e8%b3%87%e6%96%99%3f%20%e6%88%91%e9%81%b8%e6%93%87%20SimFin%20%e7%9a%84%e7%90%86%e7%94%b1&url=http%3a%2f%2flocalhost%3a1313%2fposts%2fironman_2025%2farticles_25071802%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2flocalhost%3a1313%2fposts%2fironman_2025%2farticles_25071802%2f&title=%28Day%202%29%20%e5%93%aa%e8%a3%a1%e6%89%be%e4%bc%81%e6%a5%ad%e8%b2%a1%e5%a0%b1%e8%b3%87%e6%96%99%3f%20%e6%88%91%e9%81%b8%e6%93%87%20SimFin%20%e7%9a%84%e7%90%86%e7%94%b1&summary=&source=%28Day%202%29%20%e5%93%aa%e8%a3%a1%e6%89%be%e4%bc%81%e6%a5%ad%e8%b2%a1%e5%a0%b1%e8%b3%87%e6%96%99%3f%20%e6%88%91%e9%81%b8%e6%93%87%20SimFin%20%e7%9a%84%e7%90%86%e7%94%b1"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fironman_2025%2farticles_25071802%2f&amp;media=http%3a%2f%2flocalhost%3a1313%2fimages%2fpost%2fcommon%2fdata_science_competition_01.png&amp;description=%28Day%202%29%20%e5%93%aa%e8%a3%a1%e6%89%be%e4%bc%81%e6%a5%ad%e8%b2%a1%e5%a0%b1%e8%b3%87%e6%96%99%3f%20%e6%88%91%e9%81%b8%e6%93%87%20SimFin%20%e7%9a%84%e7%90%86%e7%94%b1"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+  </ul>
+</div>
+
+        
+        <div class="post__navigation">
+          
+          <a class="prev" href="http://localhost:1313/posts/ironman_2025/articles_25071701/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
+            <div class="post__nav-box">
+              <div class="post__nav post__nav__prev"><i class="ion ion-ios-arrow-back"></i> Previous
+                Page</div>
+              <h4 class="post__nav__title">(Day 1) 為什麼我想使用機器學習技術建構企業風險預測模型?</h4>
+            </div>
+          </a>
+          
           
         </div>
         
-      </div>
 
-      <h2 class="article__title">
-        <a href="/posts/ironman_2025/articles_25071801/">(Day 2) 哪裡找企業財報資料? 我選擇 SimFin 的理由</a>
-      </h2>
+        
+          
+<div id="disqus_thread" class="post__comments">
+  <div id="disqus_empty"></div>
+</div>
 
-      <div class="article__excerpt"><p>在機器學習模型的建構，無論你想用的是機器學習模型還是深度學習模型，本質上都要「資料從哪裡來?」，如果資料來源不夠公開、可靠、結構清晰，這個專案只會變成一場寫死的筆記或純展示。所以今天，就來談 …</p></div>
+<script>
+  function load_disqus() {
+    var disqus_shortname = 'anvod-studio-aditu',
+      is_disqus_empty = document.getElementById('disqus_empty'),
+      disqus_target = document.getElementById('disqus_thread'),
+      disqus_embed = document.createElement('script'),
+      disqus_hook = (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]);
 
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
+    if (disqus_target && is_disqus_empty) {
+      disqus_embed.type = 'text/javascript';
+      disqus_embed.async = true;
+      disqus_embed.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      disqus_hook.appendChild(disqus_embed);
+      is_disqus_empty.remove();
+    }
+  }
 
-        <time class="article__date" datetime="2025-07-18T00:00:00&#43;08:00">
-          Jul 18, 2025
-        </time>
-      </div>
+  window.addEventListener('scroll', function (e) {
+    var currentScroll = document.scrollingElement.scrollTop;
+    var disqus_target = document.getElementById('disqus_thread');
 
+    if (disqus_target && (currentScroll > disqus_target.getBoundingClientRect().top - 150)) {
+      load_disqus('disqus_shortname');
+    }
+  }, false);
+
+</script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+        
+    
+      </article>
+      
     </div>
   </div>
+
+
 </div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
 
-    
 
-    <a class="article__image" href="/posts/ironman_2025/articles_25071701/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 1) 為什麼我想使用機器學習技術建構企業風險預測模型?">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/ironman_2025/articles_25071701/">(Day 1) 為什麼我想使用機器學習技術建構企業風險預測模型?</a>
-      </h2>
-
-      <div class="article__excerpt"><p>我是 Alan，目前正準備投入博士班的人，研究主題聚焦在「使用透過機器學習與深度學習技術，預測企業是否有潛在的財務報表舞弊或信用風險」，在進行研究架構的構思過程中，我觀察到一個有趣的現象「這 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-17T00:00:00&#43;08:00">
-          Jul 17, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-
-  </div>
-</div>
 
 
   </main>
