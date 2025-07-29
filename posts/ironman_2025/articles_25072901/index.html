@@ -2,28 +2,78 @@
 <html lang="zh-tw">
 
 <head>
-	<meta name="generator" content="Hugo 0.139.5">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>志謙&#39;s Blog</title>
-  <meta name="description" content="志謙&#39;s Blog">
+  <title>(Day 2) 線性迴歸 (Linear Regression) | 志謙&#39;s Blog</title>
+  <meta name="description" content="">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="志謙&#39;s Blog">
-  <meta name="twitter:description" content="志謙&#39;s Blog">
-  <meta name="twitter:image" content="http://twcch.io/images/banner.png">
+  <meta name="twitter:title" content="(Day 2) 線性迴歸 (Linear Regression) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="機器學習中的線性迴歸 (Linear Regression) 模型是最基礎、也最經典的機器學習模型之一，雖然它簡單，但是它是許多模型都是由線性迴歸模型延伸的，也是所有預測模型的入門門檻，本文章會從三個部分來介紹線性迴歸:
+
+為什麼要學 Linear Regression?
+線性迴歸的核心概念與行為特徵
+Python 實作與分析
+
+✅ 為什麼要學 Linear Regression?
+雖然線性模型簡單，但它不僅存在於理論書本中。以下是幾個學習 Linear Regression 的現實理由:
+
+所有迴歸模型的基礎，包括 Ridge、Lasso、Elastic Net 都是它的延伸 (後續會介紹)
+許多商業應用中仍具有價值 (如: 預測銷售額、估算財務變數、解釋變數影響力)
+適合作為 baseline 模型
+
+簡單來說，學好 Linear Regression，不只是學會一個模型，而是學會觀察資料與模型行為之間的互動。
+🧠 模型邏輯與核心概念
+📌 目標是什麼?
+回歸模型有一個假設在於，資料集與所有其他未知的點會位於一個超平面之上 (即為線性關係)；若資料集為非線性關係，可能就必須要考慮其他模型。所以我們想要學一個函數 $f(x)$，這個函數是「線性的」，也就是:
+$$
+\hat{y} = \beta_0 &#43; \mathbf{x}^\top \boldsymbol{\beta}
+$$
+其中:
+
+$\mathbf{x} = [x_1, x_2, \ldots, x_m]^\top \in \mathbb{R}^m$ 為特徵向量
+$\beta = [\beta_1, \beta_2, \ldots, \beta_m]^\top \in \mathbb{R}^m$ 為對應的係數向量
+$\beta_0 \in \mathbb{R}$ 為截距項 (intercept)
+
+這表示我們相信「每個變數的影響是線性可加的」。">
+  <meta name="twitter:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
-  <meta property="og:title" content="志謙&#39;s Blog">
-  <meta property="og:description" content="志謙&#39;s Blog">
-  <meta property="og:image" content="http://twcch.io/images/banner.png">
+  <meta property="og:title" content="(Day 2) 線性迴歸 (Linear Regression) | 志謙&#39;s Blog">
+  <meta property="og:description" content="機器學習中的線性迴歸 (Linear Regression) 模型是最基礎、也最經典的機器學習模型之一，雖然它簡單，但是它是許多模型都是由線性迴歸模型延伸的，也是所有預測模型的入門門檻，本文章會從三個部分來介紹線性迴歸:
+
+為什麼要學 Linear Regression?
+線性迴歸的核心概念與行為特徵
+Python 實作與分析
+
+✅ 為什麼要學 Linear Regression?
+雖然線性模型簡單，但它不僅存在於理論書本中。以下是幾個學習 Linear Regression 的現實理由:
+
+所有迴歸模型的基礎，包括 Ridge、Lasso、Elastic Net 都是它的延伸 (後續會介紹)
+許多商業應用中仍具有價值 (如: 預測銷售額、估算財務變數、解釋變數影響力)
+適合作為 baseline 模型
+
+簡單來說，學好 Linear Regression，不只是學會一個模型，而是學會觀察資料與模型行為之間的互動。
+🧠 模型邏輯與核心概念
+📌 目標是什麼?
+回歸模型有一個假設在於，資料集與所有其他未知的點會位於一個超平面之上 (即為線性關係)；若資料集為非線性關係，可能就必須要考慮其他模型。所以我們想要學一個函數 $f(x)$，這個函數是「線性的」，也就是:
+$$
+\hat{y} = \beta_0 &#43; \mathbf{x}^\top \boldsymbol{\beta}
+$$
+其中:
+
+$\mathbf{x} = [x_1, x_2, \ldots, x_m]^\top \in \mathbb{R}^m$ 為特徵向量
+$\beta = [\beta_1, \beta_2, \ldots, \beta_m]^\top \in \mathbb{R}^m$ 為對應的係數向量
+$\beta_0 \in \mathbb{R}$ 為截距項 (intercept)
+
+這表示我們相信「每個變數的影響是線性可加的」。">
+  <meta property="og:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -173,375 +223,245 @@
     
 
 
+
+
 <div class="container">
   <div class="row">
     <div class="col col-12">
-      
-      <section class="hero">
-        <div class="hero__inner">
-          <div class="hero__image">
-            <img src="./images/banner.png" alt="謝志謙">
-          </div>
-          <div class="hero__content">
-            <h1 class="hero__title">謝志謙</h1>
-            <p class="hero__desc">Ph.D. Student</p>
-          </div>
-        </div>
-      </section>
-      
+      <div class="image-box">
+        <img class="post-image" src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 2) 線性迴歸 (Linear Regression)">
+      </div>
     </div>
   </div>
 </div>
 
 
 <div class="container">
-  <div class="row grid">
 
+  <div class="row">
+    <div class="col col-8 col-d-10 push-2 push-d-1 col-t-12 push-t-0">
     
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
+      
+      <article class="post amimate">
 
-    
-
-    <a class="article__image" href="/posts/ironman_2025/articles_25072901/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 2) 線性迴歸 (Linear Regression)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
+        <div class="post__head">
           
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+          <div class="post__tags">
+            
+            <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post-tags__tag">IThome 鐵人賽 2025</a>
+            
+          </div>
           
+
+          <h1 class="post__title">(Day 2) 線性迴歸 (Linear Regression)</h1>
+
+          <div class="post__meta">
+            <div class="post__author">
+              <a href="/about/" class="post__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="post__author-link">謝志謙</a>
+            </div>
+            <span class="post__date">
+              <time datetime=" 2025-07-29T00:00:00&#43;08:00">Jul 29, 2025</time>
+            </span>
+          </div>
+
         </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/ironman_2025/articles_25072901/">(Day 2) 線性迴歸 (Linear Regression)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>機器學習中的線性迴歸 (Linear Regression) 模型是最基礎、也最經典的機器學習模型之一，雖然它簡單，但是它是許多模型都是由線性迴歸模型延伸的，也是所有預測模型的入門門檻，本文 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-29T00:00:00&#43;08:00">
-          Jul 29, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
     
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/ironman_2025/articles_25072801/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 1) 30 天入門常見的機器學習演算法">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/ironman_2025/articles_25072801/">(Day 1) 30 天入門常見的機器學習演算法</a>
-      </h2>
-
-      <div class="article__excerpt"><p>在學習機器學習 (Machine Learning) 的過程中，可能會陷入兩種極端，一種是只會調用套件 (套膜)，模型背後的機制一知半解，遇到問題只能「換模型試試看」，或者是過度陷入數學細 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-28T00:00:00&#43;08:00">
-          Jul 28, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/articles_25071601/">
-      <img src="http://twcch.io/images/post/common/heart_notes_01.png" alt="學歷無用？我仍相信學習的價值">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/heart-notes/" class="article__tag">Heart Notes</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25071601/">學歷無用？我仍相信學習的價值</a>
-      </h2>
-
-      <div class="article__excerpt"><p>近年來，我觀察到無論在台灣還是中國，「學歷無用論」的聲音愈發強烈。許多人開始質疑讀書是否還有意義，認為不靠學歷反而更能致富，網紅、直播、投資客、白手起家的商人充斥版面，讀書人反倒被視為落後 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-16T00:00:00&#43;08:00">
-          Jul 16, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/projects/articles_25070901/">
-      <img src="http://twcch.io/images/post/common/side_project_01.png" alt="視覺化專案 - 200 個國家 200 百年 4 分鐘">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/project/" class="article__tag">Project</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/projects/articles_25070901/">視覺化專案 - 200 個國家 200 百年 4 分鐘</a>
-      </h2>
-
-      <div class="article__excerpt"><p>這是一個資料視覺化專案——「Dynamic Visualization: 200 Countries, 200 Years, 4 Minutes」。它將涵蓋 1816 至 2016  …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-09T00:00:00&#43;08:00">
-          Jul 9, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/projects/articles_25063001/">
-      <img src="http://twcch.io/images/post/common/side_project_01.png" alt="實戰專案 - Titanic 生存預測專案">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/project/" class="article__tag">Project</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/projects/articles_25063001/">實戰專案 - Titanic 生存預測專案</a>
-      </h2>
-
-      <div class="article__excerpt"><p>這是一個資料科學專案，目標是透過 Kaggle 經典的 Titanic 生存預測題目，建立一套結構清晰、模組化的預測系統。我不只是想交出一份準確的預測結果，更希望藉由這個專案練習:</p>
+        <div class="post__content">
+          <p>機器學習中的線性迴歸 (Linear Regression) 模型是最基礎、也最經典的機器學習模型之一，雖然它簡單，但是它是許多模型都是由線性迴歸模型延伸的，也是所有預測模型的入門門檻，本文章會從三個部分來介紹線性迴歸:</p>
 <ul>
-<li>如何設 …</li></ul></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
+<li>為什麼要學 Linear Regression?</li>
+<li>線性迴歸的核心概念與行為特徵</li>
+<li>Python 實作與分析</li>
+</ul>
+<h2 id="-為什麼要學-linear-regression">✅ 為什麼要學 Linear Regression?</h2>
+<p>雖然線性模型簡單，但它不僅存在於理論書本中。以下是幾個學習 Linear Regression 的現實理由:</p>
+<ul>
+<li>所有迴歸模型的基礎，包括 Ridge、Lasso、Elastic Net 都是它的延伸 (後續會介紹)</li>
+<li>許多商業應用中仍具有價值 (如: 預測銷售額、估算財務變數、解釋變數影響力)</li>
+<li>適合作為 baseline 模型</li>
+</ul>
+<p>簡單來說，學好 Linear Regression，不只是學會一個模型，而是學會觀察資料與模型行為之間的互動。</p>
+<h2 id="-模型邏輯與核心概念">🧠 模型邏輯與核心概念</h2>
+<h3 id="-目標是什麼">📌 目標是什麼?</h3>
+<p>回歸模型有一個假設在於，資料集與所有其他未知的點會位於一個超平面之上 (即為線性關係)；若資料集為非線性關係，可能就必須要考慮其他模型。所以我們想要學一個函數 $f(x)$，這個函數是「線性的」，也就是:</p>
+<p>$$
+\hat{y} = \beta_0 + \mathbf{x}^\top \boldsymbol{\beta}
+$$</p>
+<p>其中:</p>
+<ul>
+<li>$\mathbf{x} = [x_1, x_2, \ldots, x_m]^\top \in \mathbb{R}^m$ 為特徵向量</li>
+<li>$\beta = [\beta_1, \beta_2, \ldots, \beta_m]^\top \in \mathbb{R}^m$ 為對應的係數向量</li>
+<li>$\beta_0 \in \mathbb{R}$ 為截距項 (intercept)</li>
+</ul>
+<p>這表示我們相信「每個變數的影響是線性可加的」。</p>
+<h3 id="-怎麼決定這些係數"><strong>📌 怎麼決定這些係數？</strong></h3>
+<p>我們會希望每一次的預測值 $\hat{y}$ 和實際值 $y$ 的誤差最小，在機器學習下，假設使用平均平方誤差 (mean-square error; MSE) 的損失函數 (Cost Function) 來衡量這誤差，再透過梯度下降 (Gradient Descent) 來調整權重，直到求出最佳回歸線 (誤差達到最小)。</p>
+<p>然而針對線性迴歸比較常用的會是透過最小平方法 (Ordinary Least Squares; OLS)，直接求出最佳回歸線 (Sklearn 的 Linear Regression 預設透過最小平方法進行求解)。</p>
+<h3 id="-模型會有哪些限制">📌 模型會有哪些限制?</h3>
+<ul>
+<li>假設資料是線性可分 → 若資料關係不是線性的，模型預測結果會很差</li>
+<li>對離群值很敏感 → 一個極端值會大幅影響回歸線</li>
+<li>不考慮變數之間的交互作用</li>
+</ul>
+<p>所以它雖然簡單，但也非常容易「做錯預測但不自知」，這也正是訓練觀察力的好機會。</p>
+<h2 id="-適用場景與模型行為判斷">🎯 適用場景與模型行為判斷</h2>
+<ul>
+<li>特徵 (feature) 與目標 (target) 之間存在線性關係</li>
+<li>需要高解釋性模型</li>
+<li>資料量不大或想快速建立 baseline 模型時</li>
+</ul>
+<h2 id="-模型評估指標">📊 模型評估指標</h2>
+<ul>
+<li>R-squared ($R^2$): 衡量解釋能力 (總體績效)</li>
+<li>Adjusted R-squared</li>
+<li>Mean Squared Error (MSE)</li>
+<li>Root Mean Squared Error (RMSE)</li>
+<li>MAE</li>
+<li>Residual Analysis: 檢查模型假設、異常、偏誤</li>
+</ul>
+<h2 id="-python-實作">🛠 Python 實作</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_regression</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_informative</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">noise</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># fit_intercept: 是否擬合截距項 (intercept $\beta_0$)，True 會估計截距，False 會強制通過原點</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># positive: 是否強制係數為非負數 ($\beta_i \ge 0$)，True 會在擬合時加上非負限制 (non-negative least squares, NNLS)，False 允許係數正負皆可 (傳統 OLS)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># n_jobs: 是否進行平行處理 (對多輸出迴歸才有意義)，None (預設) 為單核心，-1 為用盡所有核心，int 為指定核心數量</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">positive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;train data r2_score:&#39;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;train data mse:&#39;</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test data r2_score:&#39;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test data mse:&#39;</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Train data&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Train prediction&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Test data&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Test prediction&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Train vs Test Prediction&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div>
         </div>
-
-        <time class="article__date" datetime="2025-06-30T00:00:00&#43;08:00">
-          Jun 30, 2025
-        </time>
-      </div>
-
-    </div>
+    
+        <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this article</div>
   </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2farticles_25072901%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%202%29%20%e7%b7%9a%e6%80%a7%e8%bf%b4%e6%ad%b8%20%28Linear%20Regression%29&url=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2farticles_25072901%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
 
-    
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2farticles_25072901%2f&title=%28Day%202%29%20%e7%b7%9a%e6%80%a7%e8%bf%b4%e6%ad%b8%20%28Linear%20Regression%29&summary=&source=%28Day%202%29%20%e7%b7%9a%e6%80%a7%e8%bf%b4%e6%ad%b8%20%28Linear%20Regression%29"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
 
-    <a class="article__image" href="/posts/articles_25062501/">
-      <img src="http://twcch.io/images/post/common/heart_notes_01.png" alt="當老師只靠 ChatGPT 回信：我們期待的不是答案，而是理解">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/heart-notes/" class="article__tag">Heart Notes</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25062501/">當老師只靠 ChatGPT 回信：我們期待的不是答案，而是理解</a>
-      </h2>
-
-      <div class="article__excerpt"><p>最近，我正在參加一門職訓課程。本來對這堂課滿懷期待，尤其是對某位老師的專業背景很感興趣。不過，隨著課程進行，我漸漸感到一股說不出的落差感：每當我主動提出深入問題， …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-06-25T00:00:00&#43;08:00">
-          Jun 25, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/articles_25060201/">
-      <img src="http://twcch.io/images/post/common/machine_learning_01.png" alt="為什麼用 AI 技術檢測企業舞弊，比想像中更困難？">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25060201/">為什麼用 AI 技術檢測企業舞弊，比想像中更困難？</a>
-      </h2>
-
-      <div class="article__excerpt"><p>在資料科學領域中，對企業進行舞弊檢測 (Fraud Detection) 被視為是一種分類問題: 輸入企業相關的數據，輸出舞弊或非舞弊。然而，真正投入研究後會發現，這個問題很難解決，非常具挑 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-06-02T00:00:00&#43;08:00">
-          Jun 2, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/articles_25040701/">
-      <img src="http://twcch.io/images/post/common/business_analysis_01.png" alt="為什麼 AI 正在快速削弱低階 Business Analyst 的價值？">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/business-analysis/" class="article__tag">Business Analysis</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25040701/">為什麼 AI 正在快速削弱低階 Business Analyst 的價值？</a>
-      </h2>
-
-      <div class="article__excerpt"><p>五年前，我踏入壽險產業，成為一名 Business Analyst (BA)。當時的工作內容相當清晰：需求文件撰寫、報表製作、簡單的數據分析與溝通協調，是我每天的日常。那時候，這些任務仍需靠 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-04-07T00:00:00&#43;08:00">
-          Apr 7, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-
-  </div>
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2farticles_25072901%2f&amp;media=http%3a%2f%2ftwcch.io%2fimages%2fpost%2fcommon%2fdata_science_competition_01.png&amp;description=%28Day%202%29%20%e7%b7%9a%e6%80%a7%e8%bf%b4%e6%ad%b8%20%28Linear%20Regression%29"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+  </ul>
 </div>
 
+        
+        <div class="post__navigation">
+          
+          <a class="prev" href="http://twcch.io/posts/ironman_2025/articles_25072801/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
+            <div class="post__nav-box">
+              <div class="post__nav post__nav__prev"><i class="ion ion-ios-arrow-back"></i> Previous
+                Page</div>
+              <h4 class="post__nav__title">(Day 1) 30 天入門常見的機器學習演算法</h4>
+            </div>
+          </a>
+          
+          
+        </div>
+        
 
-
+        
+          
+<div id="disqus_thread" class="post__comments">
+  <div id="disqus_empty"></div>
+</div>
 
 <script>
-  var base_url = "",
-  pagination_next_url = base_url + '/page2',
-  pagination_next_page_number = '2',
-  pagination_available_pages_number = '1';
+  function load_disqus() {
+    var disqus_shortname = 'anvod-studio-aditu',
+      is_disqus_empty = document.getElementById('disqus_empty'),
+      disqus_target = document.getElementById('disqus_thread'),
+      disqus_embed = document.createElement('script'),
+      disqus_hook = (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]);
+
+    if (disqus_target && is_disqus_empty) {
+      disqus_embed.type = 'text/javascript';
+      disqus_embed.async = true;
+      disqus_embed.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      disqus_hook.appendChild(disqus_embed);
+      is_disqus_empty.remove();
+    }
+  }
+
+  window.addEventListener('scroll', function (e) {
+    var currentScroll = document.scrollingElement.scrollTop;
+    var disqus_target = document.getElementById('disqus_thread');
+
+    if (disqus_target && (currentScroll > disqus_target.getBoundingClientRect().top - 150)) {
+      load_disqus('disqus_shortname');
+    }
+  }, false);
+
 </script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+        
+    
+      </article>
+      
+    </div>
+  </div>
+
+
+</div>
+
+
 
 
   </main>

@@ -2,28 +2,136 @@
 <html lang="zh-tw">
 
 <head>
-	<meta name="generator" content="Hugo 0.139.5">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>志謙&#39;s Blog</title>
-  <meta name="description" content="志謙&#39;s Blog">
+  <title>(Day 1) 30 天入門常見的機器學習演算法 | 志謙&#39;s Blog</title>
+  <meta name="description" content="">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="志謙&#39;s Blog">
-  <meta name="twitter:description" content="志謙&#39;s Blog">
-  <meta name="twitter:image" content="http://twcch.io/images/banner.png">
+  <meta name="twitter:title" content="(Day 1) 30 天入門常見的機器學習演算法 | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="在學習機器學習 (Machine Learning) 的過程中，可能會陷入兩種極端，一種是只會調用套件 (套膜)，模型背後的機制一知半解，遇到問題只能「換模型試試看」，或者是過度陷入數學細節，花大量時間推導公式，卻無法轉化為實際應用與模型選擇能力。
+本系列的目的，希望建立一種扎實但務實的學習節奏，會用清晰直白的方式，介紹每個常見演算法的核心概念與使用情境，透過簡潔實作觀察模型行為，並學會在不同情境中做出合理的模型選擇與解釋判斷，所以本系列不會太詳細進行公式推導，但會清楚掌握每個模型「為什麼有效」「什麼時候用」「有什麼限制」。
+本系列的學習深度: 聚焦在 Level 2–3
 
   
-  <meta property="og:title" content="志謙&#39;s Blog">
-  <meta property="og:description" content="志謙&#39;s Blog">
-  <meta property="og:image" content="http://twcch.io/images/banner.png">
+      
+          等級
+          定義
+          在本系列的實踐目標
+      
+  
+  
+      
+          Level 1
+          會用套件建模
+          ✅ 使用 sklearn 等工具快速建模
+      
+      
+          Level 2
+          理解模型的概念與原理
+          ✅ 說得出每個模型的邏輯與核心機制
+      
+      
+          Level 3
+          能比較模型優劣與應用場景選擇
+          ✅ 理解適用時機、模型之間的 trade-off
+      
+      
+          Level 4&#43;
+          深入優化與理論推導
+          🚫 本系列不會深入涵蓋，建議另尋高階資源
+      
+  
+
+簡單來說，本系列是為了讓你從「能用」進展到「能理解、能比較、能選擇」。這是進入任何資料科學應用、研究或進階學習的必要中介層。
+三個核心理念
+
+模型導向: 每篇聚焦一個演算法
+
+從 Linear Regression 到 BERT，每一篇皆以單一模型為核心單元，深入該模型的動機、用途與限制。
+
+
+實作主線: 用程式理解模型邏輯
+
+不只是說明理論，每篇文章都會有乾淨的 Python 實作範例，幫助你從 input → training → evaluation 走完整流程。
+
+
+懂得選擇: 強調模型行為與應用場景判斷
+
+同樣一筆資料，你會選 Logistic Regression 還是 XGBoost? 本系列會訓練你從需求出發，做出有邏輯的建模決策。
+
+
+
+結語: 從演算法的眼中，重建你對機器學習的理解
+你無需一次學完所有理論、掌握所有工具，但你必須看懂模型是怎麼工作的、哪裡適用、為什麼失敗，這正是我們接下來 30 篇文章要完成的目標。
+我會陪你從簡單線性模型，一路走到深度架構與語言模型，系統性地建構你對機器學習演算法的語感與判斷力。">
+  <meta name="twitter:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
+
+  
+  <meta property="og:title" content="(Day 1) 30 天入門常見的機器學習演算法 | 志謙&#39;s Blog">
+  <meta property="og:description" content="在學習機器學習 (Machine Learning) 的過程中，可能會陷入兩種極端，一種是只會調用套件 (套膜)，模型背後的機制一知半解，遇到問題只能「換模型試試看」，或者是過度陷入數學細節，花大量時間推導公式，卻無法轉化為實際應用與模型選擇能力。
+本系列的目的，希望建立一種扎實但務實的學習節奏，會用清晰直白的方式，介紹每個常見演算法的核心概念與使用情境，透過簡潔實作觀察模型行為，並學會在不同情境中做出合理的模型選擇與解釋判斷，所以本系列不會太詳細進行公式推導，但會清楚掌握每個模型「為什麼有效」「什麼時候用」「有什麼限制」。
+本系列的學習深度: 聚焦在 Level 2–3
+
+  
+      
+          等級
+          定義
+          在本系列的實踐目標
+      
+  
+  
+      
+          Level 1
+          會用套件建模
+          ✅ 使用 sklearn 等工具快速建模
+      
+      
+          Level 2
+          理解模型的概念與原理
+          ✅ 說得出每個模型的邏輯與核心機制
+      
+      
+          Level 3
+          能比較模型優劣與應用場景選擇
+          ✅ 理解適用時機、模型之間的 trade-off
+      
+      
+          Level 4&#43;
+          深入優化與理論推導
+          🚫 本系列不會深入涵蓋，建議另尋高階資源
+      
+  
+
+簡單來說，本系列是為了讓你從「能用」進展到「能理解、能比較、能選擇」。這是進入任何資料科學應用、研究或進階學習的必要中介層。
+三個核心理念
+
+模型導向: 每篇聚焦一個演算法
+
+從 Linear Regression 到 BERT，每一篇皆以單一模型為核心單元，深入該模型的動機、用途與限制。
+
+
+實作主線: 用程式理解模型邏輯
+
+不只是說明理論，每篇文章都會有乾淨的 Python 實作範例，幫助你從 input → training → evaluation 走完整流程。
+
+
+懂得選擇: 強調模型行為與應用場景判斷
+
+同樣一筆資料，你會選 Logistic Regression 還是 XGBoost? 本系列會訓練你從需求出發，做出有邏輯的建模決策。
+
+
+
+結語: 從演算法的眼中，重建你對機器學習的理解
+你無需一次學完所有理論、掌握所有工具，但你必須看懂模型是怎麼工作的、哪裡適用、為什麼失敗，這正是我們接下來 30 篇文章要完成的目標。
+我會陪你從簡單線性模型，一路走到深度架構與語言模型，系統性地建構你對機器學習演算法的語感與判斷力。">
+  <meta property="og:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -173,375 +281,208 @@
     
 
 
+
+
 <div class="container">
   <div class="row">
     <div class="col col-12">
-      
-      <section class="hero">
-        <div class="hero__inner">
-          <div class="hero__image">
-            <img src="./images/banner.png" alt="謝志謙">
-          </div>
-          <div class="hero__content">
-            <h1 class="hero__title">謝志謙</h1>
-            <p class="hero__desc">Ph.D. Student</p>
-          </div>
-        </div>
-      </section>
-      
+      <div class="image-box">
+        <img class="post-image" src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 1) 30 天入門常見的機器學習演算法">
+      </div>
     </div>
   </div>
 </div>
 
 
 <div class="container">
-  <div class="row grid">
 
+  <div class="row">
+    <div class="col col-8 col-d-10 push-2 push-d-1 col-t-12 push-t-0">
     
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
+      
+      <article class="post amimate">
 
-    
-
-    <a class="article__image" href="/posts/ironman_2025/articles_25072901/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 2) 線性迴歸 (Linear Regression)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
+        <div class="post__head">
           
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+          <div class="post__tags">
+            
+            <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post-tags__tag">IThome 鐵人賽 2025</a>
+            
+          </div>
           
+
+          <h1 class="post__title">(Day 1) 30 天入門常見的機器學習演算法</h1>
+
+          <div class="post__meta">
+            <div class="post__author">
+              <a href="/about/" class="post__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="post__author-link">謝志謙</a>
+            </div>
+            <span class="post__date">
+              <time datetime=" 2025-07-28T00:00:00&#43;08:00">Jul 28, 2025</time>
+            </span>
+          </div>
+
         </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/ironman_2025/articles_25072901/">(Day 2) 線性迴歸 (Linear Regression)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>機器學習中的線性迴歸 (Linear Regression) 模型是最基礎、也最經典的機器學習模型之一，雖然它簡單，但是它是許多模型都是由線性迴歸模型延伸的，也是所有預測模型的入門門檻，本文 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-29T00:00:00&#43;08:00">
-          Jul 29, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
     
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/ironman_2025/articles_25072801/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 1) 30 天入門常見的機器學習演算法">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/ironman_2025/articles_25072801/">(Day 1) 30 天入門常見的機器學習演算法</a>
-      </h2>
-
-      <div class="article__excerpt"><p>在學習機器學習 (Machine Learning) 的過程中，可能會陷入兩種極端，一種是只會調用套件 (套膜)，模型背後的機制一知半解，遇到問題只能「換模型試試看」，或者是過度陷入數學細 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-28T00:00:00&#43;08:00">
-          Jul 28, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/articles_25071601/">
-      <img src="http://twcch.io/images/post/common/heart_notes_01.png" alt="學歷無用？我仍相信學習的價值">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/heart-notes/" class="article__tag">Heart Notes</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25071601/">學歷無用？我仍相信學習的價值</a>
-      </h2>
-
-      <div class="article__excerpt"><p>近年來，我觀察到無論在台灣還是中國，「學歷無用論」的聲音愈發強烈。許多人開始質疑讀書是否還有意義，認為不靠學歷反而更能致富，網紅、直播、投資客、白手起家的商人充斥版面，讀書人反倒被視為落後 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-16T00:00:00&#43;08:00">
-          Jul 16, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/projects/articles_25070901/">
-      <img src="http://twcch.io/images/post/common/side_project_01.png" alt="視覺化專案 - 200 個國家 200 百年 4 分鐘">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/project/" class="article__tag">Project</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/projects/articles_25070901/">視覺化專案 - 200 個國家 200 百年 4 分鐘</a>
-      </h2>
-
-      <div class="article__excerpt"><p>這是一個資料視覺化專案——「Dynamic Visualization: 200 Countries, 200 Years, 4 Minutes」。它將涵蓋 1816 至 2016  …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-09T00:00:00&#43;08:00">
-          Jul 9, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/projects/articles_25063001/">
-      <img src="http://twcch.io/images/post/common/side_project_01.png" alt="實戰專案 - Titanic 生存預測專案">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/project/" class="article__tag">Project</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/projects/articles_25063001/">實戰專案 - Titanic 生存預測專案</a>
-      </h2>
-
-      <div class="article__excerpt"><p>這是一個資料科學專案，目標是透過 Kaggle 經典的 Titanic 生存預測題目，建立一套結構清晰、模組化的預測系統。我不只是想交出一份準確的預測結果，更希望藉由這個專案練習:</p>
+        <div class="post__content">
+          <p>在學習機器學習 (Machine Learning) 的過程中，可能會陷入兩種極端，一種是只會調用套件 (套膜)，模型背後的機制一知半解，遇到問題只能「換模型試試看」，或者是過度陷入數學細節，花大量時間推導公式，卻無法轉化為實際應用與模型選擇能力。</p>
+<p>本系列的目的，希望建立一種扎實但務實的學習節奏，會用清晰直白的方式，介紹每個常見演算法的核心概念與使用情境，透過簡潔實作觀察模型行為，並學會在不同情境中做出合理的模型選擇與解釋判斷，所以本系列不會太詳細進行公式推導，但會清楚掌握每個模型「為什麼有效」「什麼時候用」「有什麼限制」。</p>
+<h2 id="本系列的學習深度-聚焦在-level-23">本系列的學習深度: 聚焦在 Level 2–3</h2>
+<table>
+  <thead>
+      <tr>
+          <th>等級</th>
+          <th>定義</th>
+          <th>在本系列的實踐目標</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Level 1</td>
+          <td>會用套件建模</td>
+          <td>✅ 使用 sklearn 等工具快速建模</td>
+      </tr>
+      <tr>
+          <td>Level 2</td>
+          <td>理解模型的概念與原理</td>
+          <td>✅ 說得出每個模型的邏輯與核心機制</td>
+      </tr>
+      <tr>
+          <td>Level 3</td>
+          <td>能比較模型優劣與應用場景選擇</td>
+          <td>✅ 理解適用時機、模型之間的 trade-off</td>
+      </tr>
+      <tr>
+          <td>Level 4+</td>
+          <td>深入優化與理論推導</td>
+          <td>🚫 本系列不會深入涵蓋，建議另尋高階資源</td>
+      </tr>
+  </tbody>
+</table>
+<p>簡單來說，本系列是為了讓你從「能用」進展到「能理解、能比較、能選擇」。這是進入任何資料科學應用、研究或進階學習的必要中介層。</p>
+<h2 id="三個核心理念">三個核心理念</h2>
 <ul>
-<li>如何設 …</li></ul></div>
+<li>模型導向: 每篇聚焦一個演算法
+<ul>
+<li>從 Linear Regression 到 BERT，每一篇皆以單一模型為核心單元，深入該模型的動機、用途與限制。</li>
+</ul>
+</li>
+<li>實作主線: 用程式理解模型邏輯
+<ul>
+<li>不只是說明理論，每篇文章都會有乾淨的 Python 實作範例，幫助你從 input → training → evaluation 走完整流程。</li>
+</ul>
+</li>
+<li>懂得選擇: 強調模型行為與應用場景判斷
+<ul>
+<li>同樣一筆資料，你會選 Logistic Regression 還是 XGBoost? 本系列會訓練你從需求出發，做出有邏輯的建模決策。</li>
+</ul>
+</li>
+</ul>
+<h2 id="結語-從演算法的眼中重建你對機器學習的理解">結語: 從演算法的眼中，重建你對機器學習的理解</h2>
+<p>你無需一次學完所有理論、掌握所有工具，但你必須看懂模型是怎麼工作的、哪裡適用、為什麼失敗，這正是我們接下來 30 篇文章要完成的目標。</p>
+<p>我會陪你從簡單線性模型，一路走到深度架構與語言模型，系統性地建構你對機器學習演算法的語感與判斷力。</p>
+<p>準備好了嗎? 下一篇我們將從 Linear Regression 線性迴歸開始。</p>
 
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
         </div>
-
-        <time class="article__date" datetime="2025-06-30T00:00:00&#43;08:00">
-          Jun 30, 2025
-        </time>
-      </div>
-
-    </div>
+    
+        <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this article</div>
   </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2farticles_25072801%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%201%29%2030%20%e5%a4%a9%e5%85%a5%e9%96%80%e5%b8%b8%e8%a6%8b%e7%9a%84%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e6%bc%94%e7%ae%97%e6%b3%95&url=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2farticles_25072801%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
 
-    
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2farticles_25072801%2f&title=%28Day%201%29%2030%20%e5%a4%a9%e5%85%a5%e9%96%80%e5%b8%b8%e8%a6%8b%e7%9a%84%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e6%bc%94%e7%ae%97%e6%b3%95&summary=&source=%28Day%201%29%2030%20%e5%a4%a9%e5%85%a5%e9%96%80%e5%b8%b8%e8%a6%8b%e7%9a%84%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e6%bc%94%e7%ae%97%e6%b3%95"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
 
-    <a class="article__image" href="/posts/articles_25062501/">
-      <img src="http://twcch.io/images/post/common/heart_notes_01.png" alt="當老師只靠 ChatGPT 回信：我們期待的不是答案，而是理解">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/heart-notes/" class="article__tag">Heart Notes</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25062501/">當老師只靠 ChatGPT 回信：我們期待的不是答案，而是理解</a>
-      </h2>
-
-      <div class="article__excerpt"><p>最近，我正在參加一門職訓課程。本來對這堂課滿懷期待，尤其是對某位老師的專業背景很感興趣。不過，隨著課程進行，我漸漸感到一股說不出的落差感：每當我主動提出深入問題， …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-06-25T00:00:00&#43;08:00">
-          Jun 25, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/articles_25060201/">
-      <img src="http://twcch.io/images/post/common/machine_learning_01.png" alt="為什麼用 AI 技術檢測企業舞弊，比想像中更困難？">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25060201/">為什麼用 AI 技術檢測企業舞弊，比想像中更困難？</a>
-      </h2>
-
-      <div class="article__excerpt"><p>在資料科學領域中，對企業進行舞弊檢測 (Fraud Detection) 被視為是一種分類問題: 輸入企業相關的數據，輸出舞弊或非舞弊。然而，真正投入研究後會發現，這個問題很難解決，非常具挑 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-06-02T00:00:00&#43;08:00">
-          Jun 2, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/articles_25040701/">
-      <img src="http://twcch.io/images/post/common/business_analysis_01.png" alt="為什麼 AI 正在快速削弱低階 Business Analyst 的價值？">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/business-analysis/" class="article__tag">Business Analysis</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25040701/">為什麼 AI 正在快速削弱低階 Business Analyst 的價值？</a>
-      </h2>
-
-      <div class="article__excerpt"><p>五年前，我踏入壽險產業，成為一名 Business Analyst (BA)。當時的工作內容相當清晰：需求文件撰寫、報表製作、簡單的數據分析與溝通協調，是我每天的日常。那時候，這些任務仍需靠 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-04-07T00:00:00&#43;08:00">
-          Apr 7, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-
-  </div>
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2farticles_25072801%2f&amp;media=http%3a%2f%2ftwcch.io%2fimages%2fpost%2fcommon%2fdata_science_competition_01.png&amp;description=%28Day%201%29%2030%20%e5%a4%a9%e5%85%a5%e9%96%80%e5%b8%b8%e8%a6%8b%e7%9a%84%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e6%bc%94%e7%ae%97%e6%b3%95"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+  </ul>
 </div>
 
+        
+        <div class="post__navigation">
+          
+          <a class="prev" href="http://twcch.io/posts/articles_25071601/" style="background-image: url('./images/post/common/heart_notes_01.png')">
+            <div class="post__nav-box">
+              <div class="post__nav post__nav__prev"><i class="ion ion-ios-arrow-back"></i> Previous
+                Page</div>
+              <h4 class="post__nav__title">學歷無用？我仍相信學習的價值</h4>
+            </div>
+          </a>
+          
+          
+          <a class="next" href="http://twcch.io/posts/ironman_2025/articles_25072901/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
+            <div class="post__nav-box">
+              <div class="post__nav post__nav__next">Next Page <i class="ion ion-ios-arrow-forward"></i></div>
+              <h4 class="post__nav__title">(Day 2) 線性迴歸 (Linear Regression)</h4>
+            </div>
+          </a>
+          
+        </div>
+        
 
-
+        
+          
+<div id="disqus_thread" class="post__comments">
+  <div id="disqus_empty"></div>
+</div>
 
 <script>
-  var base_url = "",
-  pagination_next_url = base_url + '/page2',
-  pagination_next_page_number = '2',
-  pagination_available_pages_number = '1';
+  function load_disqus() {
+    var disqus_shortname = 'anvod-studio-aditu',
+      is_disqus_empty = document.getElementById('disqus_empty'),
+      disqus_target = document.getElementById('disqus_thread'),
+      disqus_embed = document.createElement('script'),
+      disqus_hook = (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]);
+
+    if (disqus_target && is_disqus_empty) {
+      disqus_embed.type = 'text/javascript';
+      disqus_embed.async = true;
+      disqus_embed.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      disqus_hook.appendChild(disqus_embed);
+      is_disqus_empty.remove();
+    }
+  }
+
+  window.addEventListener('scroll', function (e) {
+    var currentScroll = document.scrollingElement.scrollTop;
+    var disqus_target = document.getElementById('disqus_thread');
+
+    if (disqus_target && (currentScroll > disqus_target.getBoundingClientRect().top - 150)) {
+      load_disqus('disqus_shortname');
+    }
+  }, false);
+
 </script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+        
+    
+      </article>
+      
+    </div>
+  </div>
+
+
+</div>
+
+
 
 
   </main>
