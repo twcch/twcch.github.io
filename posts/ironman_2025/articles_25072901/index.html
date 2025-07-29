@@ -294,7 +294,7 @@ $$</p>
 <li>$\beta_0 \in \mathbb{R}$ 為截距項 (intercept)</li>
 </ul>
 <p>這表示我們相信「每個變數的影響是線性可加的」。</p>
-<h3 id="-怎麼決定這些係數"><strong>📌 怎麼決定這些係數？</strong></h3>
+<h3 id="-怎麼決定這些係數">📌 怎麼決定這些係數?</h3>
 <p>我們會希望每一次的預測值 $\hat{y}$ 和實際值 $y$ 的誤差最小，在機器學習下，假設使用平均平方誤差 (mean-square error; MSE) 的損失函數 (Cost Function) 來衡量這誤差，再透過梯度下降 (Gradient Descent) 來調整權重，直到求出最佳回歸線 (誤差達到最小)。</p>
 <p>然而針對線性迴歸比較常用的會是透過最小平方法 (Ordinary Least Squares; OLS)，直接求出最佳回歸線 (Sklearn 的 Linear Regression 預設透過最小平方法進行求解)。</p>
 <h3 id="-模型會有哪些限制">📌 模型會有哪些限制?</h3>
