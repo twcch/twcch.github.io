@@ -15,7 +15,8 @@
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="(Day 2) 線性迴歸 (Linear Regression) | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="機器學習中的線性迴歸 (Linear Regression) 模型是最基礎、也最經典的機器學習模型之一，雖然它簡單，但是它是許多模型都是由線性迴歸模型延伸的，也是所有預測模型的入門門檻，本文章會從三個部分來介紹線性迴歸:
+  <meta name="twitter:description" content="(Day 2) 線性迴歸 (Linear Regression)
+機器學習中的線性迴歸 (Linear Regression) 模型是最基礎、也最經典的機器學習模型之一，雖然它簡單，但是它是許多模型都是由線性迴歸模型延伸的，也是所有預測模型的入門門檻，本文章會從三個部分來介紹線性迴歸:
 
 為什麼要學 Linear Regression?
 線性迴歸的核心概念與行為特徵
@@ -46,7 +47,8 @@ $\beta_0 \in \mathbb{R}$ 為截距項 (intercept)
 
   
   <meta property="og:title" content="(Day 2) 線性迴歸 (Linear Regression) | 志謙&#39;s Blog">
-  <meta property="og:description" content="機器學習中的線性迴歸 (Linear Regression) 模型是最基礎、也最經典的機器學習模型之一，雖然它簡單，但是它是許多模型都是由線性迴歸模型延伸的，也是所有預測模型的入門門檻，本文章會從三個部分來介紹線性迴歸:
+  <meta property="og:description" content="(Day 2) 線性迴歸 (Linear Regression)
+機器學習中的線性迴歸 (Linear Regression) 模型是最基礎、也最經典的機器學習模型之一，雖然它簡單，但是它是許多模型都是由線性迴歸模型延伸的，也是所有預測模型的入門門檻，本文章會從三個部分來介紹線性迴歸:
 
 為什麼要學 Linear Regression?
 線性迴歸的核心概念與行為特徵
@@ -267,7 +269,8 @@ $\beta_0 \in \mathbb{R}$ 為截距項 (intercept)
         </div>
     
         <div class="post__content">
-          <p>機器學習中的線性迴歸 (Linear Regression) 模型是最基礎、也最經典的機器學習模型之一，雖然它簡單，但是它是許多模型都是由線性迴歸模型延伸的，也是所有預測模型的入門門檻，本文章會從三個部分來介紹線性迴歸:</p>
+          <h1 id="day-2-線性迴歸-linear-regression">(Day 2) 線性迴歸 (Linear Regression)</h1>
+<p>機器學習中的線性迴歸 (Linear Regression) 模型是最基礎、也最經典的機器學習模型之一，雖然它簡單，但是它是許多模型都是由線性迴歸模型延伸的，也是所有預測模型的入門門檻，本文章會從三個部分來介紹線性迴歸:</p>
 <ul>
 <li>為什麼要學 Linear Regression?</li>
 <li>線性迴歸的核心概念與行為特徵</li>
@@ -296,7 +299,7 @@ $$</p>
 <p>這表示我們相信「每個變數的影響是線性可加的」。</p>
 <h3 id="-怎麼決定這些係數">📌 怎麼決定這些係數?</h3>
 <p>我們會希望每一次的預測值 $\hat{y}$ 和實際值 $y$ 的誤差最小，在機器學習下，假設使用平均平方誤差 (mean-square error; MSE) 的損失函數 (Cost Function) 來衡量這誤差，再透過梯度下降 (Gradient Descent) 來調整權重，直到求出最佳回歸線 (誤差達到最小)。</p>
-<p>然而針對線性迴歸比較常用的會是透過最小平方法 (Ordinary Least Squares; OLS)，直接求出最佳回歸線 (Sklearn 的 Linear Regression 預設透過最小平方法進行求解)。</p>
+<p>然而針對線性迴歸比較常用的會是透過最小平方法 (Ordinary Least Squares; OLS)，直接求出最佳回歸線 (sklearn 的 Linear Regression 預設透過最小平方法進行求解)。</p>
 <h3 id="-模型會有哪些限制">📌 模型會有哪些限制?</h3>
 <ul>
 <li>假設資料是線性可分 → 若資料關係不是線性的，模型預測結果會很差</li>
@@ -320,6 +323,76 @@ $$</p>
 <li>Residual Analysis: 檢查模型假設、異常、偏誤</li>
 </ul>
 <h2 id="-python-實作">🛠 Python 實作</h2>
+<h3 id="1-建立資料集與訓練測試切分">1. 建立資料集與訓練/測試切分</h3>
+<p>這裡用 make_regression 快速產出模擬資料，幫助我們聚焦在模型訓練本身。真實專案中會改為匯入真實數據集。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_regression</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 建立線性資料（含噪音）</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>        <span class="c1"># 樣本數量</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>         <span class="c1"># 特徵維度 (1 維)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_informative</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>      <span class="c1"># 真正有用的特徵數</span>
+</span></span><span class="line"><span class="cl">    <span class="n">noise</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>             <span class="c1"># 加入隨機雜訊的程度</span>
+</span></span><span class="line"><span class="cl">    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 將資料切分為訓練集與測試集（80/20 分）</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><h3 id="2-建立模型與訓練-fitting">2. 建立模型與訓練 (fitting)</h3>
+<p>Linear Regression 在 sklearn 中預設使用 Ordinary Least Squares（OLS）演算法求解最佳係數。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 初始化線性迴歸模型</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>   <span class="c1"># 是否要自動加入截距項 β0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">positive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>       <span class="c1"># 是否限制係數為正（non-negative regression）</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span>           <span class="c1"># 平行運算核心數量，None 表示使用單核心</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用訓練資料擬合模型</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</span></span></code></pre></div><h3 id="3-預測與模型評估">3. 預測與模型評估</h3>
+<ul>
+<li>$R^2$ 分數: 衡量模型解釋變異的能力，值越接近 1 表示模型表現越好。</li>
+<li>MSE: 衡量預測值與實際值的平均誤差平方。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 訓練集預測與評估</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Train R²:&#39;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Train MSE:&#39;</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 測試集預測與評估</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test R²:&#39;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test MSE:&#39;</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">))</span>
+</span></span></code></pre></div><h3 id="4-可視化預測結果與回歸線">4. 可視化預測結果與回歸線</h3>
+<blockquote>
+<p>這裡我們將訓練與測試資料用不同顏色標示，方便觀察模型是否過擬合或預測偏差明顯。</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 訓練資料點與回歸線</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Train data&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Train prediction&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 測試資料點與預測線</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Test data&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Test prediction&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Train vs Test Prediction&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><h3 id="完整程式碼">完整程式碼</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_regression</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
