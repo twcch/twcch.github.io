@@ -68,89 +68,8 @@ degree 過高，容易導致 Overfitting (尤其在資料量小時)
 對比 Linear Regression 其模型可解釋性下降
 
 模型實作
-01 | 載入函式庫
-import requests
-import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.pipeline import Pipeline
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import PolynomialFeatures, StandardScaler
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, r2_score
-02 | 讀取數據
-def get_boston_housing_data() -&gt; pd.DataFrame:
-    url = &#34;http://lib.stat.cmu.edu/datasets/boston&#34;  # Boston Housing Dataset from Carnegie Mellon University
-    raw_data = requests.get(url).text.splitlines()[22:]  # 從第 23 行開始
-    
-    # 每筆資料分為 2 行 → 共 506 筆 → 總共 1012 行
-    data = []
-    for i in range(0, len(raw_data), 2):
-        line_1 = list(map(float, raw_data[i].strip().split()))
-        line_2 = list(map(float, raw_data[i &#43; 1].strip().split()))
-        data.append(line_1 &#43; line_2)
-    
-    column_names = [
-        &#34;CRIM&#34;,  # 每人平均犯罪率
-        &#34;ZN&#34;,  # 區域住宅用地比例
-        &#34;INDUS&#34;,  # 區域非零售商業用地比例
-        &#34;CHAS&#34;,  # 查爾斯河虛擬變數 (1 = 河流旁, 0 = 其他)
-        &#34;NOX&#34;,  # 一氧化氮濃度 (parts per 10 million)
-        &#34;RM&#34;,  # 每個住宅的平均房間數
-        &#34;AGE&#34;,  # 1940 年之前建造的自用住宅比例
-        &#34;DIS&#34;,  # 到波士頓五個中心區域的加權距離
-        &#34;RAD&#34;,  # 公路接近指數 (1 = 最接近, 24 = 最遠)
-        &#34;TAX&#34;,  # 每 $10,000 的財產稅率
-        &#34;PTRATIO&#34;,  # 學生與教師比例
-        &#34;B&#34;,  # 1000(Bk - 0.63)^2, Bk = 區域黑人比例
-        &#34;LSTAT&#34;,  # 區域人口中低收入者的比例
-        &#34;MEDV&#34;,  # 自用住宅的中位數價格 (單位: $1000s)
-    ]
-    
-    df = pd.DataFrame(data, columns=column_names)
-
-    return df
-
-original_data = get_boston_housing_data()  # 讀取資料
-03 | 資料前處理
-# ----- 資料前處理 -----
-
-cleaned_data = original_data.copy()
-
-## 因透過 print(cleaned_data.isnull().sum()) 檢查缺失值 (0 筆)
-## 且 Pearson 相關係數檢查，相關係數 &gt;= 0.8 (0 筆)    
-### correlation_matrix = cleaned_data.corr()
-### target_corr = correlation_matrix[&#39;MEDV&#39;]
-### high_corr_features = target_corr[target_corr &gt; 0.8].drop(&#39;MEDV&#39;)
-### print(f&#34;與 target 高度正相關的欄位:&#34;, high_corr_features)
-## 故不做資料前處理
-04 | 模型訓練
-
-使用 train_test_split 可避免過擬合，並正確估計模型效能
-訓練過程會找出使預測誤差最小的迴歸係數
-
-# ----- 模型訓練 -----
-
-## 資料分割
-X = cleaned_data.drop(columns=[&#34;MEDV&#34;])
-y = cleaned_data[&#34;MEDV&#34;]
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-## 建立模型
-model = Pipeline([
-	(&#34;poly&#34;, PolynomialFeatures(degree=2, include_bias=False)),
-	(&#34;scaler&#34;, StandardScaler()),
-	(&#34;lr&#34;, LinearRegression())
-])
-
-model.fit(X_train, y_train)
-05 | 預測
-
-使用訓練好的模型對測試集進行預測，y_pred 即為模型對房價的預估值
-
-y_train_pred = model.predict(X_train)
-y_test_pred = model.predict(X_test)
-06 | 評估
-對比昨天的結果，可以明顯看出在同一個數據集下，多項式迴歸的表現比線性迴歸更優秀">
+資料集介紹
+將使用經典的 Boston Housing Dataset 為例。由於 scikit-learn 已移除該資料集，我們改採自 Carnegie Mellon University 所提供的公開版本。樣本內容如下:">
   <meta name="twitter:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
@@ -196,89 +115,8 @@ degree 過高，容易導致 Overfitting (尤其在資料量小時)
 對比 Linear Regression 其模型可解釋性下降
 
 模型實作
-01 | 載入函式庫
-import requests
-import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.pipeline import Pipeline
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import PolynomialFeatures, StandardScaler
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, r2_score
-02 | 讀取數據
-def get_boston_housing_data() -&gt; pd.DataFrame:
-    url = &#34;http://lib.stat.cmu.edu/datasets/boston&#34;  # Boston Housing Dataset from Carnegie Mellon University
-    raw_data = requests.get(url).text.splitlines()[22:]  # 從第 23 行開始
-    
-    # 每筆資料分為 2 行 → 共 506 筆 → 總共 1012 行
-    data = []
-    for i in range(0, len(raw_data), 2):
-        line_1 = list(map(float, raw_data[i].strip().split()))
-        line_2 = list(map(float, raw_data[i &#43; 1].strip().split()))
-        data.append(line_1 &#43; line_2)
-    
-    column_names = [
-        &#34;CRIM&#34;,  # 每人平均犯罪率
-        &#34;ZN&#34;,  # 區域住宅用地比例
-        &#34;INDUS&#34;,  # 區域非零售商業用地比例
-        &#34;CHAS&#34;,  # 查爾斯河虛擬變數 (1 = 河流旁, 0 = 其他)
-        &#34;NOX&#34;,  # 一氧化氮濃度 (parts per 10 million)
-        &#34;RM&#34;,  # 每個住宅的平均房間數
-        &#34;AGE&#34;,  # 1940 年之前建造的自用住宅比例
-        &#34;DIS&#34;,  # 到波士頓五個中心區域的加權距離
-        &#34;RAD&#34;,  # 公路接近指數 (1 = 最接近, 24 = 最遠)
-        &#34;TAX&#34;,  # 每 $10,000 的財產稅率
-        &#34;PTRATIO&#34;,  # 學生與教師比例
-        &#34;B&#34;,  # 1000(Bk - 0.63)^2, Bk = 區域黑人比例
-        &#34;LSTAT&#34;,  # 區域人口中低收入者的比例
-        &#34;MEDV&#34;,  # 自用住宅的中位數價格 (單位: $1000s)
-    ]
-    
-    df = pd.DataFrame(data, columns=column_names)
-
-    return df
-
-original_data = get_boston_housing_data()  # 讀取資料
-03 | 資料前處理
-# ----- 資料前處理 -----
-
-cleaned_data = original_data.copy()
-
-## 因透過 print(cleaned_data.isnull().sum()) 檢查缺失值 (0 筆)
-## 且 Pearson 相關係數檢查，相關係數 &gt;= 0.8 (0 筆)    
-### correlation_matrix = cleaned_data.corr()
-### target_corr = correlation_matrix[&#39;MEDV&#39;]
-### high_corr_features = target_corr[target_corr &gt; 0.8].drop(&#39;MEDV&#39;)
-### print(f&#34;與 target 高度正相關的欄位:&#34;, high_corr_features)
-## 故不做資料前處理
-04 | 模型訓練
-
-使用 train_test_split 可避免過擬合，並正確估計模型效能
-訓練過程會找出使預測誤差最小的迴歸係數
-
-# ----- 模型訓練 -----
-
-## 資料分割
-X = cleaned_data.drop(columns=[&#34;MEDV&#34;])
-y = cleaned_data[&#34;MEDV&#34;]
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-## 建立模型
-model = Pipeline([
-	(&#34;poly&#34;, PolynomialFeatures(degree=2, include_bias=False)),
-	(&#34;scaler&#34;, StandardScaler()),
-	(&#34;lr&#34;, LinearRegression())
-])
-
-model.fit(X_train, y_train)
-05 | 預測
-
-使用訓練好的模型對測試集進行預測，y_pred 即為模型對房價的預估值
-
-y_train_pred = model.predict(X_train)
-y_test_pred = model.predict(X_test)
-06 | 評估
-對比昨天的結果，可以明顯看出在同一個數據集下，多項式迴歸的表現比線性迴歸更優秀">
+資料集介紹
+將使用經典的 Boston Housing Dataset 為例。由於 scikit-learn 已移除該資料集，我們改採自 Carnegie Mellon University 所提供的公開版本。樣本內容如下:">
   <meta property="og:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
@@ -518,109 +356,29 @@ $$</p>
 <li>對比 Linear Regression 其模型可解釋性下降</li>
 </ul>
 <h2 id="模型實作">模型實作</h2>
-<h3 id="01--載入函式庫">01 | 載入函式庫</h3>
+<h3 id="資料集介紹">資料集介紹</h3>
+<p>將使用經典的 Boston Housing Dataset 為例。由於 scikit-learn 已移除該資料集，我們改採自 Carnegie Mellon University 所提供的公開版本。樣本內容如下:</p>
+<p><img src="https://github.com/twcch/drive/raw/main/images/Image_2025-08-01_22-34-54.png" alt="Image_2025-08-01_22-34-54.png"></p>
+<p>欄位說明:</p>
+<ul>
+<li>CRIM: 每人平均犯罪率</li>
+<li>ZN: 區域住宅用地比例</li>
+<li>INDUS: 區域非零售商業用地比例</li>
+<li>CHAS: 查爾斯河虛擬變數 (1 = 河流旁, 0 = 其他)</li>
+<li>NOX: 一氧化氮濃度 (parts per 10 million)</li>
+<li>RM: 每個住宅的平均房間數</li>
+<li>AGE: 1940 年之前建造的自用住宅比例</li>
+<li>DIS: 到波士頓五個中心區域的加權距離</li>
+<li>RAD: 公路接近指數 (1 = 最接近, 24 = 最遠)</li>
+<li>TAX: 每 $10,000 的財產稅率</li>
+<li>PTRATIO: 學生與教師比例</li>
+<li>B: 1000(Bk - 0.63)^2, Bk = 區域黑人比例</li>
+<li>LSTAT: 區域人口中低收入者的比例</li>
+<li>MEDV: 自用住宅的中位數價格 (單位: $1000s)</li>
+</ul>
+<h3 id="程式實例">程式實例</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span><span class="p">,</span> <span class="n">StandardScaler</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
-</span></span></code></pre></div><h3 id="02--讀取數據">02 | 讀取數據</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_boston_housing_data</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://lib.stat.cmu.edu/datasets/boston&#34;</span>  <span class="c1"># Boston Housing Dataset from Carnegie Mellon University</span>
-</span></span><span class="line"><span class="cl">    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="mi">22</span><span class="p">:]</span>  <span class="c1"># 從第 23 行開始</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1"># 每筆資料分為 2 行 → 共 506 筆 → 總共 1012 行</span>
-</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">raw_data</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="n">line_1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">raw_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
-</span></span><span class="line"><span class="cl">        <span class="n">line_2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">raw_data</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
-</span></span><span class="line"><span class="cl">        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line_1</span> <span class="o">+</span> <span class="n">line_2</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CRIM&#34;</span><span class="p">,</span>  <span class="c1"># 每人平均犯罪率</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ZN&#34;</span><span class="p">,</span>  <span class="c1"># 區域住宅用地比例</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;INDUS&#34;</span><span class="p">,</span>  <span class="c1"># 區域非零售商業用地比例</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CHAS&#34;</span><span class="p">,</span>  <span class="c1"># 查爾斯河虛擬變數 (1 = 河流旁, 0 = 其他)</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;NOX&#34;</span><span class="p">,</span>  <span class="c1"># 一氧化氮濃度 (parts per 10 million)</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RM&#34;</span><span class="p">,</span>  <span class="c1"># 每個住宅的平均房間數</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;AGE&#34;</span><span class="p">,</span>  <span class="c1"># 1940 年之前建造的自用住宅比例</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;DIS&#34;</span><span class="p">,</span>  <span class="c1"># 到波士頓五個中心區域的加權距離</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RAD&#34;</span><span class="p">,</span>  <span class="c1"># 公路接近指數 (1 = 最接近, 24 = 最遠)</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;TAX&#34;</span><span class="p">,</span>  <span class="c1"># 每 $10,000 的財產稅率</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;PTRATIO&#34;</span><span class="p">,</span>  <span class="c1"># 學生與教師比例</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;B&#34;</span><span class="p">,</span>  <span class="c1"># 1000(Bk - 0.63)^2, Bk = 區域黑人比例</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LSTAT&#34;</span><span class="p">,</span>  <span class="c1"># 區域人口中低收入者的比例</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;MEDV&#34;</span><span class="p">,</span>  <span class="c1"># 自用住宅的中位數價格 (單位: $1000s)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">]</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">df</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">original_data</span> <span class="o">=</span> <span class="n">get_boston_housing_data</span><span class="p">()</span>  <span class="c1"># 讀取資料</span>
-</span></span></code></pre></div><h3 id="03--資料前處理">03 | 資料前處理</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ----- 資料前處理 -----</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">cleaned_data</span> <span class="o">=</span> <span class="n">original_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">## 因透過 print(cleaned_data.isnull().sum()) 檢查缺失值 (0 筆)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## 且 Pearson 相關係數檢查，相關係數 &gt;= 0.8 (0 筆)    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">### correlation_matrix = cleaned_data.corr()</span>
-</span></span><span class="line"><span class="cl"><span class="c1">### target_corr = correlation_matrix[&#39;MEDV&#39;]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">### high_corr_features = target_corr[target_corr &gt; 0.8].drop(&#39;MEDV&#39;)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">### print(f&#34;與 target 高度正相關的欄位:&#34;, high_corr_features)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## 故不做資料前處理</span>
-</span></span></code></pre></div><h3 id="04--模型訓練">04 | 模型訓練</h3>
-<ul>
-<li>使用 train_test_split 可避免過擬合，並正確估計模型效能</li>
-<li>訓練過程會找出使預測誤差最小的迴歸係數</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ----- 模型訓練 -----</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">## 資料分割</span>
-</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;MEDV&#34;</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="p">[</span><span class="s2">&#34;MEDV&#34;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">## 建立模型</span>
-</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
-</span></span><span class="line"><span class="cl">	<span class="p">(</span><span class="s2">&#34;poly&#34;</span><span class="p">,</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)),</span>
-</span></span><span class="line"><span class="cl">	<span class="p">(</span><span class="s2">&#34;scaler&#34;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
-</span></span><span class="line"><span class="cl">	<span class="p">(</span><span class="s2">&#34;lr&#34;</span><span class="p">,</span> <span class="n">LinearRegression</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl"><span class="p">])</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-</span></span></code></pre></div><h3 id="05--預測">05 | 預測</h3>
-<ul>
-<li>使用訓練好的模型對測試集進行預測，y_pred 即為模型對房價的預估值</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-</span></span></code></pre></div><h3 id="06--評估">06 | 評估</h3>
-<p>對比昨天的結果，可以明顯看出在同一個數據集下，多項式迴歸的表現比線性迴歸更優秀</p>
-<ul>
-<li>train data 均方誤差 (MSE): 5.1315</li>
-<li>train data 決定係數 R²: 0.9409</li>
-<li>test data 均方誤差 (MSE): 14.2573</li>
-<li>test data 決定係數 R²: 0.8056</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">train_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">train_r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;train data 均方誤差 (MSE): </span><span class="si">{</span><span class="n">train_mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;train data 決定係數 R²: </span><span class="si">{</span><span class="n">train_r2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">test_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">test_r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;test data 均方誤差 (MSE): </span><span class="si">{</span><span class="n">test_mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;test data 決定係數 R²: </span><span class="si">{</span><span class="n">test_r2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><h2 id="模型實作代碼">模型實作代碼</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span><span class="p">,</span> <span class="n">StandardScaler</span>
@@ -711,7 +469,45 @@ $$</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
-</span></span></code></pre></div><h2 id="結語">結語</h2>
+</span></span></code></pre></div><h3 id="執行結果">執行結果</h3>
+<ul>
+<li>train data 均方誤差 (MSE): 5.1315</li>
+<li>train data 決定係數 R²: 0.9409</li>
+<li>test data 均方誤差 (MSE): 14.2573</li>
+<li>test data 決定係數 R²: 0.8056</li>
+</ul>
+<h4 id="結果評估">結果評估</h4>
+<p>本次模型使用二次多項式特徵 (PolynomialFeatures(degree=2)) 結合標準化處理與線性回歸進行建模。</p>
+<p>從評估指標來看:</p>
+<ul>
+<li>訓練資料 R² 為 0.9409，代表模型在訓練集上可以解釋 94.09% 的房價變異，表現非常良好。</li>
+<li>測試資料 R² 為 0.8056，雖略低於訓練結果，但仍能解釋 80.56% 的變異，泛化能力尚可接受。</li>
+<li>測試 MSE 為 14.2573，對應均方根誤差（RMSE）約為 $3,775 美元，表示模型對房價的預測誤差多集中於 ±4 千元內，具備實用性。</li>
+</ul>
+<p>然而，我們也觀察到訓練與測試間的 R² 存在明顯落差 (0.94 → 0.81)，這可能表示模型在高階特徵下已出現一定程度的過擬合 (overfitting) 現象，應持續關注其在新資料上的穩定性。</p>
+<h4 id="下一步建議">下一步建議</h4>
+<p>為進一步強化模型的泛化能力與解釋力，採取以下方向優化:</p>
+<ul>
+<li>嘗試正則化回歸 (如 Ridge / Lasso / Elastic Net)
+<ul>
+<li>可有效控制多項式展開後參數數量膨脹所造成的 overfitting。</li>
+<li>搭配交叉驗證 (GridSearchCV) 選取最佳懲罰係數。</li>
+</ul>
+</li>
+<li>特徵選擇與降維
+<ul>
+<li>探索是否有冗餘或低貢獻的特徵，例如使用 SelectKBest、PCA、或基於模型的重要性 (feature importance) 進行刪減。</li>
+</ul>
+</li>
+<li>異常值檢查與資料轉換
+<ul>
+<li>若殘差分布存在明顯偏態，可考慮對目標變數 (如 MEDV) 做 log 轉換以提升穩定性。</li>
+<li>同時可檢查極端房價樣本對模型的影響程度 (例如 Cook’s distance)。</li>
+</ul>
+</li>
+</ul>
+<p>總體而言，本次結果已具備相當良好的建模基礎，後續重點將轉向「控制模型複雜度」與「提升泛化能力」，以邁向穩定、可解釋、可部署的預測系統。</p>
+<h2 id="結語">結語</h2>
 <p>多項式迴歸提供了一個簡單卻強大的手段，讓我們能在不改變演算法本身的情況下，用非線性特徵轉換擴展模型的表達能力。只需對原始特徵做一次轉換，就能讓線性模型擬合出曲線趨勢，這正是它的魅力所在。</p>
 <p>但能力越強，風險越高。多項式階數的提升固然能增加擬合度，但也極易導致過擬合 (overfitting)，特別是在資料量有限或特徵多樣時。此時就需要引入新的工具來協助我們控制模型的複雜度──這就是「正則化迴歸」。</p>
 <p>在邁向正則化模型之前，請記得: 多項式擬合本質上不是解決非線性的萬靈丹，它是一種「特徵空間重構」的技巧，適用於低維資料、可視化分析與 baseline 建立，但不適合直接套用在高維或多雜訊的真實問題中。</p>
