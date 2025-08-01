@@ -489,171 +489,27 @@
 <p>(其他模型後續會慢慢介紹 &hellip; )</p>
 <p>線性迴歸的最大價值在於它是所有模型的基線模型 (baseline)。若一個任務連線性迴歸都無法擊敗，則其他模型的表現很可能也是不穩定或過擬合的。</p>
 <h2 id="模型實作">模型實作</h2>
+<h3 id="資料集介紹">資料集介紹</h3>
+<p>將使用經典的 Boston Housing Dataset 為例。由於 scikit-learn 已移除該資料集，我們改採自 Carnegie Mellon University 所提供的公開版本。樣本內容如下:</p>
+<p><img src="https://github.com/twcch/drive/raw/main/images/Image_2025-08-01_22-34-54.png" alt="Image_2025-08-01_22-34-54.png"></p>
+<p>欄位說明:</p>
 <ul>
-<li>本次實作以經典的 Boston Housing Dataset 為例。由於 scikit-learn 已移除該資料集，我們改採自 Carnegie Mellon University 所提供的公開版本。</li>
-<li>本實作範例僅作為模型應用的示意，旨在引導理解與觀察模型行為，並未進行嚴謹的資料前處理 (例如特徵縮放等)，因此並非最佳化結果，亦不建議用於實際預測任務。</li>
+<li>CRIM: 每人平均犯罪率</li>
+<li>ZN: 區域住宅用地比例</li>
+<li>INDUS: 區域非零售商業用地比例</li>
+<li>CHAS: 查爾斯河虛擬變數 (1 = 河流旁, 0 = 其他)</li>
+<li>NOX: 一氧化氮濃度 (parts per 10 million)</li>
+<li>RM: 每個住宅的平均房間數</li>
+<li>AGE: 1940 年之前建造的自用住宅比例</li>
+<li>DIS: 到波士頓五個中心區域的加權距離</li>
+<li>RAD: 公路接近指數 (1 = 最接近, 24 = 最遠)</li>
+<li>TAX: 每 $10,000 的財產稅率</li>
+<li>PTRATIO: 學生與教師比例</li>
+<li>B: 1000(Bk - 0.63)^2, Bk = 區域黑人比例</li>
+<li>LSTAT: 區域人口中低收入者的比例</li>
+<li>MEDV: 自用住宅的中位數價格 (單位: $1000s)</li>
 </ul>
-<h3 id="01--載入函式庫">01 | 載入函式庫</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
-</span></span></code></pre></div><h3 id="02--讀取數據">02 | 讀取數據</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_boston_housing_data</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://lib.stat.cmu.edu/datasets/boston&#34;</span>  <span class="c1"># Boston Housing Dataset from Carnegie Mellon University</span>
-</span></span><span class="line"><span class="cl">    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="mi">22</span><span class="p">:]</span>  <span class="c1"># 從第 23 行開始</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1"># 每筆資料分為 2 行 → 共 506 筆 → 總共 1012 行</span>
-</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">raw_data</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="n">line_1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">raw_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
-</span></span><span class="line"><span class="cl">        <span class="n">line_2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">raw_data</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
-</span></span><span class="line"><span class="cl">        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line_1</span> <span class="o">+</span> <span class="n">line_2</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CRIM&#34;</span><span class="p">,</span>  <span class="c1"># 每人平均犯罪率</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ZN&#34;</span><span class="p">,</span>  <span class="c1"># 區域住宅用地比例</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;INDUS&#34;</span><span class="p">,</span>  <span class="c1"># 區域非零售商業用地比例</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CHAS&#34;</span><span class="p">,</span>  <span class="c1"># 查爾斯河虛擬變數 (1 = 河流旁, 0 = 其他)</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;NOX&#34;</span><span class="p">,</span>  <span class="c1"># 一氧化氮濃度 (parts per 10 million)</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RM&#34;</span><span class="p">,</span>  <span class="c1"># 每個住宅的平均房間數</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;AGE&#34;</span><span class="p">,</span>  <span class="c1"># 1940 年之前建造的自用住宅比例</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;DIS&#34;</span><span class="p">,</span>  <span class="c1"># 到波士頓五個中心區域的加權距離</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RAD&#34;</span><span class="p">,</span>  <span class="c1"># 公路接近指數 (1 = 最接近, 24 = 最遠)</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;TAX&#34;</span><span class="p">,</span>  <span class="c1"># 每 $10,000 的財產稅率</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;PTRATIO&#34;</span><span class="p">,</span>  <span class="c1"># 學生與教師比例</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;B&#34;</span><span class="p">,</span>  <span class="c1"># 1000(Bk - 0.63)^2, Bk = 區域黑人比例</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LSTAT&#34;</span><span class="p">,</span>  <span class="c1"># 區域人口中低收入者的比例</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;MEDV&#34;</span><span class="p">,</span>  <span class="c1"># 自用住宅的中位數價格 (單位: $1000s)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">]</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">df</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">original_data</span> <span class="o">=</span> <span class="n">get_boston_housing_data</span><span class="p">()</span>  <span class="c1"># 讀取資料</span>
-</span></span></code></pre></div><h3 id="03--資料前處理">03 | 資料前處理</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ----- 資料前處理 -----</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">cleaned_data</span> <span class="o">=</span> <span class="n">original_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">## 因透過 print(cleaned_data.isnull().sum()) 檢查缺失值 (0 筆)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## 且 Pearson 相關係數檢查，相關係數 &gt;= 0.8 (0 筆)    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">### correlation_matrix = cleaned_data.corr()</span>
-</span></span><span class="line"><span class="cl"><span class="c1">### target_corr = correlation_matrix[&#39;MEDV&#39;]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">### high_corr_features = target_corr[target_corr &gt; 0.8].drop(&#39;MEDV&#39;)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">### print(f&#34;與 target 高度正相關的欄位:&#34;, high_corr_features)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## 故不做資料前處理</span>
-</span></span></code></pre></div><h3 id="04--模型訓練">04 | 模型訓練</h3>
-<ul>
-<li>使用 train_test_split 可避免過擬合，並正確估計模型效能</li>
-<li>訓練過程會找出使預測誤差最小的迴歸係數</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ----- 模型訓練 -----</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">## 資料分割</span>
-</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;MEDV&#34;</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="p">[</span><span class="s2">&#34;MEDV&#34;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">## 建立模型</span>
-</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
-</span></span><span class="line"><span class="cl">	<span class="p">(</span><span class="s2">&#34;lr&#34;</span><span class="p">,</span> <span class="n">LinearRegression</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl"><span class="p">])</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-</span></span></code></pre></div><h3 id="05--預測">05 | 預測</h3>
-<ul>
-<li>使用訓練好的模型對測試集進行預測，y_pred 即為模型對房價的預估值</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-</span></span></code></pre></div><h3 id="06--評估">06 | 評估</h3>
-<ul>
-<li>train data 均方誤差 (MSE): 21.6414</li>
-<li>train data 決定係數 R²: 0.7509</li>
-<li>test data 均方誤差 (MSE): 24.2911</li>
-<li>test data 決定係數 R²: 0.6688 (模型可解釋變異的比例，通常 &gt; 0.6 為可接受表現)</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">train_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">train_r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;train data 均方誤差 (MSE): </span><span class="si">{</span><span class="n">train_mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;train data 決定係數 R²: </span><span class="si">{</span><span class="n">train_r2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">test_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">test_r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;test data 均方誤差 (MSE): </span><span class="si">{</span><span class="n">test_mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;test data 決定係數 R²: </span><span class="si">{</span><span class="n">test_r2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><h3 id="07--迴歸係數檢視">07 | 迴歸係數檢視</h3>
-<ul>
-<li>回歸係數 (coefficient) 反映每個特徵對結果的影響方向與大小</li>
-<li>幫助了解模型的決策邏輯，對「可解釋性」任務尤其重要</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">各特徵回歸係數 (依影響力排序):
-</span></span><span class="line"><span class="cl">    Feature  Coefficient
-</span></span><span class="line"><span class="cl">4       NOX   -17.202633
-</span></span><span class="line"><span class="cl">5        RM     4.438835
-</span></span><span class="line"><span class="cl">3      CHAS     2.784438
-</span></span><span class="line"><span class="cl">7       DIS    -1.447865
-</span></span><span class="line"><span class="cl">10  PTRATIO    -0.915456
-</span></span><span class="line"><span class="cl">12    LSTAT    -0.508571
-</span></span><span class="line"><span class="cl">8       RAD     0.262430
-</span></span><span class="line"><span class="cl">0      CRIM    -0.113056
-</span></span><span class="line"><span class="cl">2     INDUS     0.040381
-</span></span><span class="line"><span class="cl">1        ZN     0.030110
-</span></span><span class="line"><span class="cl">11        B     0.012351
-</span></span><span class="line"><span class="cl">9       TAX    -0.010647
-</span></span><span class="line"><span class="cl">6       AGE    -0.006296
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">## 回歸係數檢視</span>
-</span></span><span class="line"><span class="cl"><span class="n">lr_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;lr&#34;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="n">coefficients</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-</span></span><span class="line"><span class="cl">	<span class="s2">&#34;Feature&#34;</span><span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="s2">&#34;Coefficient&#34;</span><span class="p">:</span> <span class="n">lr_model</span><span class="o">.</span><span class="n">coef_</span>
-</span></span><span class="line"><span class="cl"><span class="p">})</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&#34;Coefficient&#34;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">abs</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;各特徵回歸係數 (依影響力排序):&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">coefficients</span><span class="p">)</span>
-</span></span></code></pre></div><h3 id="08--殘差分析">08 | 殘差分析</h3>
-<p>本文只有以殘差圖來解讀，會根據解讀的結果進行模型的調整，讓模型越來越精準，礙於篇幅所致就不多作後續演示，以下初步解讀殘差圖的結果:</p>
-<ul>
-<li>整體集中在 y=0 附近
-<ul>
-<li>表示模型預測值整體不偏頗，沒有系統性偏高或偏低，這是好的現象。</li>
-</ul>
-</li>
-<li>但出現明顯右側殘差擴散 (異常值明顯)
-<ul>
-<li>對於預測值 &gt; 30 的區段，殘差變異突然變大 (甚至超過 20)，呈現右側漏斗形分布 (heteroscedasticity) 傾向。
-這代表什麼？
-<ul>
-<li>模型對高房價的預測能力很差，誤差波動變大；</li>
-<li>回歸模型假設的「誤差項變異一致 (同變異性)」遭到破壞；</li>
-<li>線性模型對於極端值處理能力差，可能需要更複雜模型處理 (如 tree-based 模型、轉換、分段建模)。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>中段預測值集中 (10–25)但點偏密集
-<ul>
-<li>模型學會了中間區間的模式，但高低兩端表現不佳。</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/twcch/drive/main/images/Image_2025-08-01_19-12-34.png" alt="Image_2025-08-01_19-12-34"></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">## 殘差分析</span>
-</span></span><span class="line"><span class="cl"><span class="n">residuals</span> <span class="o">=</span> <span class="n">y_test</span> <span class="o">-</span> <span class="n">y_pred</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">residuals</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&#34;Predicted MEDV&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&#34;Residuals&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;Residual Plot&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><h2 id="模型實作代碼">模型實作代碼</h2>
+<h3 id="程式實例">程式實例</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -741,30 +597,108 @@
 </span></span><span class="line"><span class="cl">    <span class="n">test_r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;test data 均方誤差 (MSE): </span><span class="si">{</span><span class="n">test_mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;test data 決定係數 R²: </span><span class="si">{</span><span class="n">test_r2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1">## 回歸係數檢視</span>
-</span></span><span class="line"><span class="cl">    <span class="n">lr_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;lr&#34;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="n">coefficients</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Feature&#34;</span><span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Coefficient&#34;</span><span class="p">:</span> <span class="n">lr_model</span><span class="o">.</span><span class="n">coef_</span>
-</span></span><span class="line"><span class="cl">    <span class="p">})</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&#34;Coefficient&#34;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">abs</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;各特徵回歸係數 (依影響力排序):&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">coefficients</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1">## 殘差分析</span>
-</span></span><span class="line"><span class="cl">    <span class="n">residuals</span> <span class="o">=</span> <span class="n">y_test</span> <span class="o">-</span> <span class="n">y_test_pred</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test_pred</span><span class="p">,</span> <span class="n">residuals</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&#34;Predicted MEDV&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&#34;Residuals&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;Residual Plot&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
-</span></span></code></pre></div><h2 id="結語">結語</h2>
+</span></span></code></pre></div><h3 id="執行結果">執行結果</h3>
+<ul>
+<li>train data 均方誤差 (MSE): 21.6414</li>
+<li>train data 決定係數 R²: 0.7509</li>
+<li>test data 均方誤差 (MSE): 24.2911</li>
+<li>test data 決定係數 R²: 0.6688</li>
+</ul>
+<h4 id="結果評估">結果評估</h4>
+<p>進行執行結果評估前，先來回顧評估指標的含義:</p>
+<table>
+  <thead>
+      <tr>
+          <th>指標</th>
+          <th>意義</th>
+          <th>解釋方式</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>MSE (Mean Squared Error)</td>
+          <td>預測值與實際值之間的平方差平均值</td>
+          <td>越小越好，越接近 0 表示預測誤差越小</td>
+      </tr>
+      <tr>
+          <td>R² (決定係數)</td>
+          <td>模型能解釋的變異比例 (總變異中有多少被模型解釋)</td>
+          <td>越接近 1 越好；0 表示無解釋力；&lt;0 表示比常數預測還差</td>
+      </tr>
+  </tbody>
+</table>
+<p>接下來看一下訓練資料與測試資料的表現:</p>
+<ul>
+<li>訓練資料 (Train Data) 的表現
+<ul>
+<li>R² = 0.7509: 表示模型可以解釋訓練資料中 約 75% 的變異</li>
+<li>MSE = 21.64: 對應房價誤差約為 $\sqrt{21.64} \approx 4.65$ 千美元 ($4,650)</li>
+</ul>
+</li>
+<li>測試資料 (Test Data) 表現
+<ul>
+<li>R² = 0.6688: 模型在未見過的資料上仍解釋了 約 66.9% 的變異</li>
+<li>MSE = 24.29: 誤差略升，對應 RMSE 約 $\sqrt{24.29} \approx 4.93$ 千美元</li>
+</ul>
+</li>
+</ul>
+<p>以上的結果表現，都相當合理，表示模型在訓練資料上有不錯的擬合力，沒有明顯欠擬合 (underfitting)，測試資料預測略為劣化，但整體表現尚稱穩定，總結如下:</p>
+<table>
+  <thead>
+      <tr>
+          <th>指標</th>
+          <th>判斷</th>
+          <th>解釋</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Train R² 明顯 &gt; Test R²</td>
+          <td>輕微的 overfitting 傾向</td>
+          <td>差距不大，可接受</td>
+      </tr>
+      <tr>
+          <td>MSE 增加幅度有限 (+2.65)</td>
+          <td>模型泛化能力尚可</td>
+          <td>尚無高變異問題</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="下一步建議">下一步建議</h4>
+<table>
+  <thead>
+      <tr>
+          <th>方向</th>
+          <th>建議方法</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>增強模型</td>
+          <td>使用 PolynomialFeatures 擴展非線性項</td>
+      </tr>
+      <tr>
+          <td>加強泛化能力</td>
+          <td>使用 Ridge 或 Lasso 進行正則化</td>
+      </tr>
+      <tr>
+          <td>改用非線性模型</td>
+          <td>嘗試 RandomForestRegressor、XGBoostRegressor</td>
+      </tr>
+      <tr>
+          <td>模型比較</td>
+          <td>建立 baseline vs 進階模型比較報告 (MSE / R² / 殘差圖)</td>
+      </tr>
+      <tr>
+          <td>誤差分析</td>
+          <td>畫出 Residual Plot 檢查異常值與變異不一致性 (heteroscedasticity)</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="結語">結語</h2>
 <p>線性迴歸的價值不在於它能解決所有問題，而在於它讓我們對「資料與結果的關係」建立第一個清晰的架構。這種清晰，是日後面對複雜資料時，所有模型選擇的比較基準。當你真正理解一個模型的假設、信念、行為邏輯與表現訊號時，你不再是依賴工具，而是在與資料進行對話。</p>
 <h2 id="備註">備註</h2>
 <ul>
