@@ -27,7 +27,8 @@
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="(Day 3) 多項式迴歸 (Polynomial Regression) | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="昨天介紹了線性迴歸 (Linear Regression)，它適合用來處理特徵與目標之間為線性關係的情境。然而，真實世界的資料往往並非純粹線性，而是呈現複雜的非線性關係，例如曲線、拋物線、甚至更複雜的波動趨勢。
+  <meta name="twitter:description" content="(Day 3) 多項式迴歸 (Polynomial Regression)
+昨天介紹了線性迴歸 (Linear Regression)，它適合用來處理特徵與目標之間為線性關係的情境。然而，真實世界的資料往往並非純粹線性，而是呈現複雜的非線性關係，例如曲線、拋物線、甚至更複雜的波動趨勢。
 就有了多項式特徵 (Polynomial Feature) 的出現，而線性迴歸搭配多項式特徵，就是所謂的多項式迴歸 (Polynomial Regression)，便是為了解決線性模型難以處理的非線性問題。它的核心概念非常簡單就是透過對特徵進行多項式轉換，使模型能夠捕捉非線性趨勢。
 模型介紹
 模型邏輯與核心概念
@@ -155,7 +156,8 @@ y_test_pred = model.predict(X_test)
 
   
   <meta property="og:title" content="(Day 3) 多項式迴歸 (Polynomial Regression) | 志謙&#39;s Blog">
-  <meta property="og:description" content="昨天介紹了線性迴歸 (Linear Regression)，它適合用來處理特徵與目標之間為線性關係的情境。然而，真實世界的資料往往並非純粹線性，而是呈現複雜的非線性關係，例如曲線、拋物線、甚至更複雜的波動趨勢。
+  <meta property="og:description" content="(Day 3) 多項式迴歸 (Polynomial Regression)
+昨天介紹了線性迴歸 (Linear Regression)，它適合用來處理特徵與目標之間為線性關係的情境。然而，真實世界的資料往往並非純粹線性，而是呈現複雜的非線性關係，例如曲線、拋物線、甚至更複雜的波動趨勢。
 就有了多項式特徵 (Polynomial Feature) 的出現，而線性迴歸搭配多項式特徵，就是所謂的多項式迴歸 (Polynomial Regression)，便是為了解決線性模型難以處理的非線性問題。它的核心概念非常簡單就是透過對特徵進行多項式轉換，使模型能夠捕捉非線性趨勢。
 模型介紹
 模型邏輯與核心概念
@@ -477,7 +479,8 @@ y_test_pred = model.predict(X_test)
         </div>
     
         <div class="post__content">
-          <p>昨天介紹了線性迴歸 (Linear Regression)，它適合用來處理特徵與目標之間為線性關係的情境。然而，真實世界的資料往往並非純粹線性，而是呈現複雜的非線性關係，例如曲線、拋物線、甚至更複雜的波動趨勢。</p>
+          <h1 id="day-3-多項式迴歸-polynomial-regression">(Day 3) 多項式迴歸 (Polynomial Regression)</h1>
+<p>昨天介紹了線性迴歸 (Linear Regression)，它適合用來處理特徵與目標之間為線性關係的情境。然而，真實世界的資料往往並非純粹線性，而是呈現複雜的非線性關係，例如曲線、拋物線、甚至更複雜的波動趨勢。</p>
 <p>就有了多項式特徵 (Polynomial Feature) 的出現，而線性迴歸搭配多項式特徵，就是所謂的多項式迴歸 (Polynomial Regression)，便是為了解決線性模型難以處理的非線性問題。它的核心概念非常簡單就是透過對特徵進行多項式轉換，使模型能夠捕捉非線性趨勢。</p>
 <h2 id="模型介紹">模型介紹</h2>
 <h3 id="模型邏輯與核心概念">模型邏輯與核心概念</h3>
@@ -713,8 +716,8 @@ $$</p>
 </span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
 </span></span></code></pre></div><h2 id="結語">結語</h2>
 <p>多項式迴歸提供了一個簡單卻強大的手段，讓我們能在不改變演算法本身的情況下，用非線性特徵轉換擴展模型的表達能力。只需對原始特徵做一次轉換，就能讓線性模型擬合出曲線趨勢，這正是它的魅力所在。</p>
-<p>但能力越強，風險越高。多項式階數的提升固然能增加擬合度，但也極易導致過擬合 (overfitting)，特別是在資料量有限或特徵多樣時。此時就需要引入新的工具來協助我們控制模型的複雜度──這也就是下一篇我們將要介紹的「正則化迴歸」。</p>
-<p>在邁向正則化模型之前，請記得：多項式擬合本質上不是解決非線性的萬靈丹，它是一種「特徵空間重構」的技巧，適用於低維資料、可視化分析與 baseline 建立，但不適合直接套用在高維或多雜訊的真實問題中。</p>
+<p>但能力越強，風險越高。多項式階數的提升固然能增加擬合度，但也極易導致過擬合 (overfitting)，特別是在資料量有限或特徵多樣時。此時就需要引入新的工具來協助我們控制模型的複雜度──這就是「正則化迴歸」。</p>
+<p>在邁向正則化模型之前，請記得: 多項式擬合本質上不是解決非線性的萬靈丹，它是一種「特徵空間重構」的技巧，適用於低維資料、可視化分析與 baseline 建立，但不適合直接套用在高維或多雜訊的真實問題中。</p>
 <h2 id="備註">備註</h2>
 <ul>
 <li>同步發表於 iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</li>
