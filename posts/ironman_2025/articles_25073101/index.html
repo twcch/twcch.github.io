@@ -488,8 +488,6 @@
 </table>
 <p>(其他模型後續會慢慢介紹 &hellip; )</p>
 <p>線性迴歸的最大價值在於它是所有模型的基線模型 (baseline)。若一個任務連線性迴歸都無法擊敗，則其他模型的表現很可能也是不穩定或過擬合的。</p>
-<h3 id="小結">小結</h3>
-<p>線性迴歸的價值不在於它能解決所有問題，而在於它讓我們對「資料與結果的關係」建立第一個清晰的架構。這種清晰，是日後面對複雜資料時，所有模型選擇的比較基準。當你真正理解一個模型的假設、信念、行為邏輯與表現訊號時，你不再是依賴工具，而是在與資料進行對話。</p>
 <h2 id="模型實作">模型實作</h2>
 <ul>
 <li>本次實作以經典的 Boston Housing Dataset 為例。由於 scikit-learn 已移除該資料集，我們改採自 Carnegie Mellon University 所提供的公開版本。</li>
@@ -503,8 +501,9 @@
 <li>LinearRegression: 本次實作使用的模型</li>
 <li>mean_squared_error, r2_score: 模型評估用指標</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
@@ -605,7 +604,7 @@
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">📊 各特徵回歸係數 (依影響力排序):&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">coefficients</span><span class="p">)</span>
 </span></span></code></pre></div><h3 id="08--殘差分析">08 | 殘差分析</h3>
-<p>這邊就只有以殘差圖來解讀，會根據解讀的結果進行模型的調整，這邊就不多作後續演示。以下初步解讀殘差圖的結果:</p>
+<p>本文只有以殘差圖來解讀，會根據解讀的結果進行模型的調整，讓模型越來越精準，礙於篇幅所致就不多作後續演示，以下初步解讀殘差圖的結果:</p>
 <ul>
 <li>整體集中在 y=0 附近
 <ul>
@@ -732,10 +731,8 @@
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&#34;Residuals&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;Residual Plot&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><h2 id="備註">備註</h2>
-<ul>
-<li>同步發表於 iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</li>
-</ul>
+</span></span></code></pre></div><h2 id="結語">結語</h2>
+<p>線性迴歸的價值不在於它能解決所有問題，而在於它讓我們對「資料與結果的關係」建立第一個清晰的架構。這種清晰，是日後面對複雜資料時，所有模型選擇的比較基準。當你真正理解一個模型的假設、信念、行為邏輯與表現訊號時，你不再是依賴工具，而是在與資料進行對話。</p>
 
         </div>
     
