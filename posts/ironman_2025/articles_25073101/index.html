@@ -27,7 +27,7 @@
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="(Day 2) 線性迴歸 (Linear Regression) | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="線性迴歸 (Linear Regression) 是統計學中的一種預測方法，主要分為簡單線性迴歸 (Simple Linear Regression) 與多元線性迴歸 (Multiple Linear Regression)，又稱複迴歸，以及其他變形的迴歸等。但在線性迴歸中，通常會有 1~N 個自變數 (Independent Variable) X，也可以稱作特徵 (Feature)；和 1 個因變數 (Dependent Variable) Y，也可以稱作目標 (Target)。目的就是找出一條最佳直線，來擬合這些數據點，便可以用來預測未來的數據點。
+  <meta name="twitter:description" content="線性迴歸 (Linear Regression) 是統計學中的一種預測方法，主要分為簡單線性迴歸 (Simple Linear Regression) 與多元線性迴歸 (Multiple Linear Regression)，又稱複迴歸，以及其他變形的迴歸等，但在線性迴歸中，通常會有 1~N 個自變數 (Independent Variable) X，也可以稱作特徵 (Feature)；和 1 個因變數 (Dependent Variable) Y，也可以稱作目標 (Target)。而最終目的就是找出一條最佳迴歸線，來擬合這些數據點，便可以用來預測未來的數據點。
 模型介紹
 模型邏輯與核心概念
 線性迴歸假設
@@ -89,7 +89,7 @@
 
   
   <meta property="og:title" content="(Day 2) 線性迴歸 (Linear Regression) | 志謙&#39;s Blog">
-  <meta property="og:description" content="線性迴歸 (Linear Regression) 是統計學中的一種預測方法，主要分為簡單線性迴歸 (Simple Linear Regression) 與多元線性迴歸 (Multiple Linear Regression)，又稱複迴歸，以及其他變形的迴歸等。但在線性迴歸中，通常會有 1~N 個自變數 (Independent Variable) X，也可以稱作特徵 (Feature)；和 1 個因變數 (Dependent Variable) Y，也可以稱作目標 (Target)。目的就是找出一條最佳直線，來擬合這些數據點，便可以用來預測未來的數據點。
+  <meta property="og:description" content="線性迴歸 (Linear Regression) 是統計學中的一種預測方法，主要分為簡單線性迴歸 (Simple Linear Regression) 與多元線性迴歸 (Multiple Linear Regression)，又稱複迴歸，以及其他變形的迴歸等，但在線性迴歸中，通常會有 1~N 個自變數 (Independent Variable) X，也可以稱作特徵 (Feature)；和 1 個因變數 (Dependent Variable) Y，也可以稱作目標 (Target)。而最終目的就是找出一條最佳迴歸線，來擬合這些數據點，便可以用來預測未來的數據點。
 模型介紹
 模型邏輯與核心概念
 線性迴歸假設
@@ -345,7 +345,7 @@
         </div>
     
         <div class="post__content">
-          <p>線性迴歸 (Linear Regression) 是統計學中的一種預測方法，主要分為簡單線性迴歸 (Simple Linear Regression) 與多元線性迴歸 (Multiple Linear Regression)，又稱複迴歸，以及其他變形的迴歸等。但在線性迴歸中，通常會有 1~N 個自變數 (Independent Variable) X，也可以稱作特徵 (Feature)；和 1 個因變數 (Dependent Variable) Y，也可以稱作目標 (Target)。目的就是找出一條最佳直線，來擬合這些數據點，便可以用來預測未來的數據點。</p>
+          <p>線性迴歸 (Linear Regression) 是統計學中的一種預測方法，主要分為簡單線性迴歸 (Simple Linear Regression) 與多元線性迴歸 (Multiple Linear Regression)，又稱複迴歸，以及其他變形的迴歸等，但在線性迴歸中，通常會有 1~N 個自變數 (Independent Variable) X，也可以稱作特徵 (Feature)；和 1 個因變數 (Dependent Variable) Y，也可以稱作目標 (Target)。而最終目的就是找出一條最佳迴歸線，來擬合這些數據點，便可以用來預測未來的數據點。</p>
 <h2 id="模型介紹">模型介紹</h2>
 <h3 id="模型邏輯與核心概念">模型邏輯與核心概念</h3>
 <h4 id="線性迴歸假設">線性迴歸假設</h4>
@@ -404,17 +404,17 @@
 <h4 id="運作原理">運作原理</h4>
 <p>我們先回到線性迴歸的用途與目的，簡單來說就是「找出一條最佳直線，來擬合這些數據點，便可以用來預測未來的數據點」，如何找出最佳直線? 本文會簡單的介紹一下，詳細過程與原理，再請讀者自行尋找其他資源暸解。</p>
 <ul>
-<li>假設方程式: $\hat{y} = \beta_0 + \mathbf{x}^\top \boldsymbol{\beta}$</li>
+<li>假設方程式: $\hat{y} = \beta_0 + \mathbf{x}^\top \boldsymbol{\beta}$。</li>
 <li>統計學模型
 <ul>
-<li>假設誤差項 $\varepsilon_i$ 滿足期望值為 0、常態分布、同變異等條件</li>
-<li>根據 Gauss-Markov 定理，最小化殘差平方和 (RSS) 可得到 BLUE (最佳線性無偏估計量)，這就是 Ordinary Least Squares (OLS) 方法，使用最小二乘法的封閉解來最小化損失函數，該方法找到使誤差平方和最小的係數</li>
+<li>假設誤差項 $\varepsilon_i$ 滿足期望值為 0、常態分布、同變異等條件。</li>
+<li>根據 Gauss-Markov 定理，最小化殘差平方和 (RSS) 可得到 BLUE (最佳線性無偏估計量)，這就是 Ordinary Least Squares (OLS) 方法，使用最小二乘法的封閉解來最小化損失函數，該方法找到使誤差平方和最小的係數。</li>
 </ul>
 </li>
 <li>機器學習模型
 <ul>
-<li>假設損失函數 (Cost Function): $MSE = \frac{1}{2n} \sum\limits_{i=1}^{n} (y_{i} - \hat{y}_{i})^{2}$</li>
-<li>使用梯度下降 (Batch Gradient Descent) 來最小化損失函數，最符合機器學習的原理，但是通常只用於大數據 (而 sklearn 仍然是透過 OLS 來實現)</li>
+<li>假設損失函數 (Cost Function): $MSE = \frac{1}{2n} \sum\limits_{i=1}^{n} (y_{i} - \hat{y}_{i})^{2}$。</li>
+<li>使用梯度下降 (Batch Gradient Descent) 來最小化損失函數，最符合機器學習的原理，但是通常只用於大數據 (而 sklearn 仍然是透過 OLS 來實現)。</li>
 </ul>
 </li>
 </ul>
@@ -431,17 +431,17 @@
 <h3 id="適用情境">適用情境</h3>
 <p>線性迴歸的適用場景通常滿足以下條件:</p>
 <ul>
-<li>特徵與標籤之間關係接近線性 (可透過散佈圖觀察)</li>
-<li>預測任務對解釋能力有高度需求 (例如需要明確了解每個變數如何影響結果)</li>
-<li>需求偏向建構基準線 (baseline) 或快速估算</li>
+<li>特徵與標籤之間關係接近線性 (可透過散佈圖觀察)。</li>
+<li>預測任務對解釋能力有高度需求 (例如需要明確了解每個變數如何影響結果)。</li>
+<li>需求偏向建構基準線 (baseline) 或快速估算。</li>
 </ul>
 <h3 id="限制條件">限制條件</h3>
 <p>線性迴歸雖然簡潔，但在多數真實場景下可能面臨以下困境:</p>
 <ul>
-<li>資料非線性: 大多數實務資料都包含非線性結構，線性模型難以捕捉 (可以搭配 Polynomial Features 處理)</li>
-<li>高維資料與多重共線性: 特徵太多或高度相關，可能導致不穩定或過擬合</li>
-<li>不具備交互作用建模能力: 無法處理變數之間的聯合影響 (除非顯式創造交互項)</li>
-<li>差異質性與異常值敏感: 若誤差分布異常或出現極端值，模型容易偏誤</li>
+<li>資料非線性: 大多數實務資料都包含非線性結構，線性模型難以捕捉 (可以搭配 Polynomial Features 處理)。</li>
+<li>高維資料與多重共線性: 特徵太多或高度相關，可能導致不穩定或過擬合。</li>
+<li>不具備交互作用建模能力: 無法處理變數之間的聯合影響 (除非顯式創造交互項)。</li>
+<li>差異質性與異常值敏感: 若誤差分布異常或出現極端值，模型容易偏誤。</li>
 </ul>
 <h3 id="與其他模型的比較">與其他模型的比較</h3>
 <p>與其他模型相比，線性迴歸具備明確的比較基準:</p>
@@ -491,7 +491,10 @@
 <h3 id="小結">小結</h3>
 <p>線性迴歸的價值不在於它能解決所有問題，而在於它讓我們對「資料與結果的關係」建立第一個清晰的架構。這種清晰，是日後面對複雜資料時，所有模型選擇的比較基準。當你真正理解一個模型的假設、信念、行為邏輯與表現訊號時，你不再是依賴工具，而是在與資料進行對話。</p>
 <h2 id="模型實作">模型實作</h2>
-<p>使用知名的 Boston Housing Dataset 為例，但因 sklearn 的 Boston Housing Dataset 已被移除，資料來源改使用 Carnegie Mellon University 提供的資料集。</p>
+<ul>
+<li>本次實作以經典的 Boston Housing Dataset 為例。由於 scikit-learn 已移除該資料集，我們改採自 Carnegie Mellon University 所提供的公開版本。</li>
+<li>本實作範例僅作為模型應用的示意，旨在引導理解與觀察模型行為，並未進行嚴謹的資料前處理 (例如特徵縮放等)，因此並非最佳化結果，亦不建議用於實際預測任務。</li>
+</ul>
 <h3 id="01--載入函式庫">01 | 載入函式庫</h3>
 <ul>
 <li>pandas: 用於資料表格處理</li>
