@@ -572,8 +572,8 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 </span></span></code></pre></div><h3 id="06--評估">06 | 評估</h3>
 <ul>
-<li>$R^2$ 是模型可解釋變異的比例，通常 &gt; 0.6 為可接受表現</li>
-<li>MSE 反映平均誤差平方值，數值越小越好</li>
+<li>均方誤差 (MSE): 24.2911</li>
+<li>決定係數 R²: 0.6688 (模型可解釋變異的比例，通常 &gt; 0.6 為可接受表現)</li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
@@ -777,6 +777,13 @@
             </div>
           </a>
           
+          
+          <a class="next" href="http://twcch.io/posts/ironman_2025/articles_25080101/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
+            <div class="post__nav-box">
+              <div class="post__nav post__nav__next">Next Page <i class="ion ion-ios-arrow-forward"></i></div>
+              <h4 class="post__nav__title">(Day 3) 多項式迴歸 (Polynomial Regression)</h4>
+            </div>
+          </a>
           
         </div>
         
