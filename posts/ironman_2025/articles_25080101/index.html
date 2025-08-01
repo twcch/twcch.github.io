@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>(Day 2) 線性迴歸 (Linear Regression) | 志謙&#39;s Blog</title>
+  <title>(Day 3) 多項式迴歸 (Polynomial Regression) | 志謙&#39;s Blog</title>
 
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="..." crossorigin="anonymous">
@@ -26,127 +26,73 @@
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="(Day 2) 線性迴歸 (Linear Regression) | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="線性迴歸 (Linear Regression) 是統計學中的一種預測方法，主要分為簡單線性迴歸 (Simple Linear Regression) 與多元線性迴歸 (Multiple Linear Regression)，又稱複迴歸，以及其他變形的迴歸等。但在線性迴歸中，通常會有 1~N 個自變數 (Independent Variable) X，也可以稱作特徵 (Feature)；和 1 個因變數 (Dependent Variable) Y，也可以稱作目標 (Target)。目的就是找出一條最佳直線，來擬合這些數據點，便可以用來預測未來的數據點。
-模型介紹
-模型邏輯與核心概念
-線性迴歸假設
-統計學線性迴歸的經典的五大假設:
+  <meta name="twitter:title" content="(Day 3) 多項式迴歸 (Polynomial Regression) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="線性迴歸雖然簡單、實用，但它有一個明顯限制: 只能處理「線性關係」。一旦資料呈現彎曲、非線性趨勢，線性迴歸的預測能力會急劇下降，所以可以將 Linear Regression 搭配 Polynomial Features 的處理，來彌補這缺點，將線性迴歸擴展成多項式迴歸 (Polynomial Regression)，本文章會從三個部分來介紹多項式迴歸:
 
-線性關係: 自變數與因變數之間存在線性關係
-誤差項獨立 (Independence): 誤差項之間沒有相互關係
-同標準差性 (Homoscedasticity): 對於所有的自變數，誤差項具有相同的標準差
-誤差項常態性 (Normality of Errors): 誤差項應該成常態分佈
-高度共線性 (Multicollinearity): 自變數間高度線性相關
+多項式迴歸的核心概念與與線性模型的關聯
+模型行為與應用場景
+Python 實作與視覺化說明
 
-看到這邊會想說，為什麼要特別註明統計學? 跟機器學習無關? 先記住一句話「統計學重推論，機器學習重預測」，很多假設跟機器學習中的線性迴歸模型還真的沒有太大的關係，但是也不代表，機器學習模型完全沒有假設，但是相對比較不重要，這也是為什麼很多仿間的機器學習教材都會忽略假設這塊。
-總而言之，機器學習模型不像統計學模型需要那麼嚴謹的假設，但是若違反某些假設，也是會影響機器學習模型的表現，也會使得模型只能用於預測，無法用於推論，以下簡單整理假設對統計模型與機器學習模型的影響:
+✅ 為什麼要學 Polynomial Regression?
+在真實世界中，多數資料並非線性結構，例如:
 
-  
-      
-          假設
-          對傳統統計模型影響
-          對機器學習影響
-          建議處理方式
-      
-  
-  
-      
-          線性關係
-          ✅ 極高 (核心假設)
-          ❌ 可忽略 (可透過特徵轉換處理)
-          用非線性模型 / 特徵轉換
-      
-      
-          誤差獨立性
-          ✅ 高 (推論與解釋需此條件支持)
-          ✅ 高 (對 generalization 有直接影響)
-          使用適當資料分割策略
-      
-      
-          同變異性
-          ✅ 中高 (影響參數估計的信度)
-          ❌ 可忽略 (模型的估計值仍然準，但 p-value、CI 失真)
-          變數轉換、加權最小平方法
-      
-      
-          誤差常態性
-          ✅ 中高 (特定推論工具須常態性支持)
-          ❌ 可忽略
-          若僅做預測可忽略
-      
-      
-          共線性
-          ✅ 高 (嚴重影響模型可解釋性與推論)
-          ❌ 可忽略 (但建議修正以利解釋)
-          VIF、降維、正則化
-      
-  
+房價與面積: 可能呈現遞減邊際效應
+醫療劑量與治療效果: 過高或過低都可能無效
+財務指標與預測目標: 存在高階非線性關係
 
-運作原理
-我們先回到線性迴歸的用途與目的，簡單來說就是「找出一條最佳直線，來擬合這些數據點，便可以用來預測未來的數據點」，如何找出最佳直線? 本文會簡單的介紹一下，詳細過程與原理，再請讀者自行尋找其他資源暸解。">
+Polynomial Regression 可以有效擴展線性模型的表現力，仍保有易解釋、易實作的優點，是進入非線性模型的重要第一站。
+🧠 模型邏輯與核心概念
+📌 將線性模型「升維」
+Polynomial Regression 並非建立新的模型，而是將原始特徵做「非線性轉換」，再使用線性迴歸進行學習。例如：
+$$
+\hat{y} = \beta_0 &#43; \beta_1 x &#43; \beta_2 x^2 &#43; \beta_3 x^3 &#43; \dots &#43; \beta_n x^n
+$$
+這個模型仍然是線性模型 (對係數是線性的)，只是資料經過「多項式擴展」後可以擬合曲線。
+📌 使用 PolynomialFeatures 進行轉換
+在 Python 中，可以透過 sklearn.preprocessing.PolynomialFeatures 將資料升維，然後套用 LinearRegression 模型。
+🎯 適用場景與判斷指標
+
+當資料有明顯的非線性趨勢 (彎曲形狀)
+需要一個可解釋、簡單但能處理非線性問題的模型
+可作為非線性問題的 baseline 模型，與樹模型或 XGBoost 進行比較
+
+📊 模型評估指標
+與線性回歸相同:">
   <meta name="twitter:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
-  <meta property="og:title" content="(Day 2) 線性迴歸 (Linear Regression) | 志謙&#39;s Blog">
-  <meta property="og:description" content="線性迴歸 (Linear Regression) 是統計學中的一種預測方法，主要分為簡單線性迴歸 (Simple Linear Regression) 與多元線性迴歸 (Multiple Linear Regression)，又稱複迴歸，以及其他變形的迴歸等。但在線性迴歸中，通常會有 1~N 個自變數 (Independent Variable) X，也可以稱作特徵 (Feature)；和 1 個因變數 (Dependent Variable) Y，也可以稱作目標 (Target)。目的就是找出一條最佳直線，來擬合這些數據點，便可以用來預測未來的數據點。
-模型介紹
-模型邏輯與核心概念
-線性迴歸假設
-統計學線性迴歸的經典的五大假設:
+  <meta property="og:title" content="(Day 3) 多項式迴歸 (Polynomial Regression) | 志謙&#39;s Blog">
+  <meta property="og:description" content="線性迴歸雖然簡單、實用，但它有一個明顯限制: 只能處理「線性關係」。一旦資料呈現彎曲、非線性趨勢，線性迴歸的預測能力會急劇下降，所以可以將 Linear Regression 搭配 Polynomial Features 的處理，來彌補這缺點，將線性迴歸擴展成多項式迴歸 (Polynomial Regression)，本文章會從三個部分來介紹多項式迴歸:
 
-線性關係: 自變數與因變數之間存在線性關係
-誤差項獨立 (Independence): 誤差項之間沒有相互關係
-同標準差性 (Homoscedasticity): 對於所有的自變數，誤差項具有相同的標準差
-誤差項常態性 (Normality of Errors): 誤差項應該成常態分佈
-高度共線性 (Multicollinearity): 自變數間高度線性相關
+多項式迴歸的核心概念與與線性模型的關聯
+模型行為與應用場景
+Python 實作與視覺化說明
 
-看到這邊會想說，為什麼要特別註明統計學? 跟機器學習無關? 先記住一句話「統計學重推論，機器學習重預測」，很多假設跟機器學習中的線性迴歸模型還真的沒有太大的關係，但是也不代表，機器學習模型完全沒有假設，但是相對比較不重要，這也是為什麼很多仿間的機器學習教材都會忽略假設這塊。
-總而言之，機器學習模型不像統計學模型需要那麼嚴謹的假設，但是若違反某些假設，也是會影響機器學習模型的表現，也會使得模型只能用於預測，無法用於推論，以下簡單整理假設對統計模型與機器學習模型的影響:
+✅ 為什麼要學 Polynomial Regression?
+在真實世界中，多數資料並非線性結構，例如:
 
-  
-      
-          假設
-          對傳統統計模型影響
-          對機器學習影響
-          建議處理方式
-      
-  
-  
-      
-          線性關係
-          ✅ 極高 (核心假設)
-          ❌ 可忽略 (可透過特徵轉換處理)
-          用非線性模型 / 特徵轉換
-      
-      
-          誤差獨立性
-          ✅ 高 (推論與解釋需此條件支持)
-          ✅ 高 (對 generalization 有直接影響)
-          使用適當資料分割策略
-      
-      
-          同變異性
-          ✅ 中高 (影響參數估計的信度)
-          ❌ 可忽略 (模型的估計值仍然準，但 p-value、CI 失真)
-          變數轉換、加權最小平方法
-      
-      
-          誤差常態性
-          ✅ 中高 (特定推論工具須常態性支持)
-          ❌ 可忽略
-          若僅做預測可忽略
-      
-      
-          共線性
-          ✅ 高 (嚴重影響模型可解釋性與推論)
-          ❌ 可忽略 (但建議修正以利解釋)
-          VIF、降維、正則化
-      
-  
+房價與面積: 可能呈現遞減邊際效應
+醫療劑量與治療效果: 過高或過低都可能無效
+財務指標與預測目標: 存在高階非線性關係
 
-運作原理
-我們先回到線性迴歸的用途與目的，簡單來說就是「找出一條最佳直線，來擬合這些數據點，便可以用來預測未來的數據點」，如何找出最佳直線? 本文會簡單的介紹一下，詳細過程與原理，再請讀者自行尋找其他資源暸解。">
+Polynomial Regression 可以有效擴展線性模型的表現力，仍保有易解釋、易實作的優點，是進入非線性模型的重要第一站。
+🧠 模型邏輯與核心概念
+📌 將線性模型「升維」
+Polynomial Regression 並非建立新的模型，而是將原始特徵做「非線性轉換」，再使用線性迴歸進行學習。例如：
+$$
+\hat{y} = \beta_0 &#43; \beta_1 x &#43; \beta_2 x^2 &#43; \beta_3 x^3 &#43; \dots &#43; \beta_n x^n
+$$
+這個模型仍然是線性模型 (對係數是線性的)，只是資料經過「多項式擴展」後可以擬合曲線。
+📌 使用 PolynomialFeatures 進行轉換
+在 Python 中，可以透過 sklearn.preprocessing.PolynomialFeatures 將資料升維，然後套用 LinearRegression 模型。
+🎯 適用場景與判斷指標
+
+當資料有明顯的非線性趨勢 (彎曲形狀)
+需要一個可解釋、簡單但能處理非線性問題的模型
+可作為非線性問題的 baseline 模型，與樹模型或 XGBoost 進行比較
+
+📊 模型評估指標
+與線性回歸相同:">
   <meta property="og:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
@@ -303,7 +249,7 @@
   <div class="row">
     <div class="col col-12">
       <div class="image-box">
-        <img class="post-image" src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 2) 線性迴歸 (Linear Regression)">
+        <img class="post-image" src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 3) 多項式迴歸 (Polynomial Regression)">
       </div>
     </div>
   </div>
@@ -329,388 +275,152 @@
           </div>
           
 
-          <h1 class="post__title">(Day 2) 線性迴歸 (Linear Regression)</h1>
+          <h1 class="post__title">(Day 3) 多項式迴歸 (Polynomial Regression)</h1>
 
           <div class="post__meta">
             <div class="post__author">
               <a href="/about/" class="post__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="post__author-link">謝志謙</a>
             </div>
             <span class="post__date">
-              <time datetime=" 2025-07-31T00:00:00&#43;08:00">Jul 31, 2025</time>
+              <time datetime=" 2025-08-01T00:00:00&#43;08:00">Aug 1, 2025</time>
             </span>
           </div>
 
         </div>
     
         <div class="post__content">
-          <p>線性迴歸 (Linear Regression) 是統計學中的一種預測方法，主要分為簡單線性迴歸 (Simple Linear Regression) 與多元線性迴歸 (Multiple Linear Regression)，又稱複迴歸，以及其他變形的迴歸等。但在線性迴歸中，通常會有 1~N 個自變數 (Independent Variable) X，也可以稱作特徵 (Feature)；和 1 個因變數 (Dependent Variable) Y，也可以稱作目標 (Target)。目的就是找出一條最佳直線，來擬合這些數據點，便可以用來預測未來的數據點。</p>
-<h2 id="模型介紹">模型介紹</h2>
-<h3 id="模型邏輯與核心概念">模型邏輯與核心概念</h3>
-<h4 id="線性迴歸假設">線性迴歸假設</h4>
-<p>統計學線性迴歸的經典的五大假設:</p>
+          <p>線性迴歸雖然簡單、實用，但它有一個明顯限制: 只能處理「線性關係」。一旦資料呈現彎曲、非線性趨勢，線性迴歸的預測能力會急劇下降，所以可以將 Linear Regression 搭配 Polynomial Features 的處理，來彌補這缺點，將線性迴歸擴展成多項式迴歸 (Polynomial Regression)，本文章會從三個部分來介紹多項式迴歸:</p>
 <ul>
-<li>線性關係: 自變數與因變數之間存在線性關係</li>
-<li>誤差項獨立 (Independence): 誤差項之間沒有相互關係</li>
-<li>同標準差性 (Homoscedasticity): 對於所有的自變數，誤差項具有相同的標準差</li>
-<li>誤差項常態性 (Normality of Errors): 誤差項應該成常態分佈</li>
-<li>高度共線性 (Multicollinearity): 自變數間高度線性相關</li>
+<li>多項式迴歸的核心概念與與線性模型的關聯</li>
+<li>模型行為與應用場景</li>
+<li>Python 實作與視覺化說明</li>
 </ul>
-<p>看到這邊會想說，為什麼要特別註明統計學? 跟機器學習無關? 先記住一句話「統計學重推論，機器學習重預測」，很多假設跟機器學習中的線性迴歸模型還真的沒有太大的關係，但是也不代表，機器學習模型完全沒有假設，但是相對比較不重要，這也是為什麼很多仿間的機器學習教材都會忽略假設這塊。</p>
-<p>總而言之，機器學習模型不像統計學模型需要那麼嚴謹的假設，但是若違反某些假設，也是會影響機器學習模型的表現，也會使得模型只能用於預測，無法用於推論，以下簡單整理假設對統計模型與機器學習模型的影響:</p>
-<table>
-  <thead>
-      <tr>
-          <th>假設</th>
-          <th>對傳統統計模型影響</th>
-          <th>對機器學習影響</th>
-          <th>建議處理方式</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>線性關係</td>
-          <td>✅ 極高 (核心假設)</td>
-          <td>❌ 可忽略 (可透過特徵轉換處理)</td>
-          <td>用非線性模型 / 特徵轉換</td>
-      </tr>
-      <tr>
-          <td>誤差獨立性</td>
-          <td>✅ 高 (推論與解釋需此條件支持)</td>
-          <td>✅ 高 (對 generalization 有直接影響)</td>
-          <td>使用適當資料分割策略</td>
-      </tr>
-      <tr>
-          <td>同變異性</td>
-          <td>✅ 中高 (影響參數估計的信度)</td>
-          <td>❌ 可忽略 (模型的估計值仍然準，但 p-value、CI 失真)</td>
-          <td>變數轉換、加權最小平方法</td>
-      </tr>
-      <tr>
-          <td>誤差常態性</td>
-          <td>✅ 中高 (特定推論工具須常態性支持)</td>
-          <td>❌ 可忽略</td>
-          <td>若僅做預測可忽略</td>
-      </tr>
-      <tr>
-          <td>共線性</td>
-          <td>✅ 高 (嚴重影響模型可解釋性與推論)</td>
-          <td>❌ 可忽略 (但建議修正以利解釋)</td>
-          <td>VIF、降維、正則化</td>
-      </tr>
-  </tbody>
-</table>
-<h4 id="運作原理">運作原理</h4>
-<p>我們先回到線性迴歸的用途與目的，簡單來說就是「找出一條最佳直線，來擬合這些數據點，便可以用來預測未來的數據點」，如何找出最佳直線? 本文會簡單的介紹一下，詳細過程與原理，再請讀者自行尋找其他資源暸解。</p>
+<h2 id="-為什麼要學-polynomial-regression">✅ 為什麼要學 Polynomial Regression?</h2>
+<p>在真實世界中，多數資料並非線性結構，例如:</p>
 <ul>
-<li>假設方程式: $\hat{y} = \beta_0 + \mathbf{x}^\top \boldsymbol{\beta}$</li>
-<li>統計學模型
+<li>房價與面積: 可能呈現遞減邊際效應</li>
+<li>醫療劑量與治療效果: 過高或過低都可能無效</li>
+<li>財務指標與預測目標: 存在高階非線性關係</li>
+</ul>
+<p>Polynomial Regression 可以有效擴展線性模型的表現力，仍保有易解釋、易實作的優點，是進入非線性模型的重要第一站。</p>
+<h2 id="-模型邏輯與核心概念">🧠 模型邏輯與核心概念</h2>
+<h3 id="-將線性模型升維">📌 將線性模型「升維」</h3>
+<p>Polynomial Regression 並非建立新的模型，而是將原始特徵做「非線性轉換」，再使用線性迴歸進行學習。例如：</p>
+<p>$$
+\hat{y} = \beta_0 + \beta_1 x + \beta_2 x^2 + \beta_3 x^3 + \dots + \beta_n x^n
+$$</p>
+<p>這個模型仍然是線性模型 (對係數是線性的)，只是資料經過「多項式擴展」後可以擬合曲線。</p>
+<h3 id="-使用-polynomialfeatures-進行轉換">📌 使用 PolynomialFeatures 進行轉換</h3>
+<p>在 Python 中，可以透過 sklearn.preprocessing.PolynomialFeatures 將資料升維，然後套用 LinearRegression 模型。</p>
+<h2 id="-適用場景與判斷指標">🎯 適用場景與判斷指標</h2>
 <ul>
-<li>假設誤差項 $\varepsilon_i$ 滿足期望值為 0、常態分布、同變異等條件</li>
-<li>根據 Gauss-Markov 定理，最小化殘差平方和 (RSS) 可得到 BLUE (最佳線性無偏估計量)，這就是 Ordinary Least Squares (OLS) 方法，使用最小二乘法的封閉解來最小化損失函數，該方法找到使誤差平方和最小的係數</li>
+<li>當資料有明顯的非線性趨勢 (彎曲形狀)</li>
+<li>需要一個可解釋、簡單但能處理非線性問題的模型</li>
+<li>可作為非線性問題的 baseline 模型，與樹模型或 XGBoost 進行比較</li>
 </ul>
-</li>
-<li>機器學習模型
+<h2 id="-模型評估指標">📊 模型評估指標</h2>
+<p>與線性回歸相同:</p>
 <ul>
-<li>假設損失函數 (Cost Function): $MSE = \frac{1}{2n} \sum\limits_{i=1}^{n} (y_{i} - \hat{y}_{i})^{2}$</li>
-<li>使用梯度下降 (Batch Gradient Descent) 來最小化損失函數，最符合機器學習的原理，但是通常只用於大數據 (而 sklearn 仍然是透過 OLS 來實現)</li>
+<li>$R^2$, MSE, RMSE, MAE</li>
+<li>額外觀察：高階多項式是否造成過擬合 (overfitting)</li>
 </ul>
-</li>
-</ul>
-<p>所以不論是統計學還是機器學習的線性迴歸模型，就是要找出最佳的迴歸線，只是方式不同而已。</p>
-<h4 id="模型評估指標">模型評估指標</h4>
-<ul>
-<li>R-squared ($R^2$): 衡量解釋能力 (總體績效)</li>
-<li>Adjusted R-squared</li>
-<li>Mean Squared Error (MSE)</li>
-<li>Root Mean Squared Error (RMSE)</li>
-<li>Mean Absolute Error (MAE)</li>
-<li>Residual Analysis: 檢查模型假設、異常、偏誤</li>
-</ul>
-<h3 id="適用情境">適用情境</h3>
-<p>線性迴歸的適用場景通常滿足以下條件：</p>
-<ul>
-<li>特徵與標籤之間關係接近線性 (可透過散佈圖觀察)</li>
-<li>預測任務對解釋能力有高度需求 (例如需要明確了解每個變數如何影響結果)</li>
-<li>需求偏向建構基準線 (baseline) 或快速估算</li>
-</ul>
-<h3 id="限制條件">限制條件</h3>
-<p>線性迴歸雖然簡潔，但在多數真實場景下可能面臨以下困境：</p>
-<ul>
-<li>資料非線性: 大多數實務資料都包含非線性結構，線性模型難以捕捉 (可以搭配 Polynomial Features 處理)</li>
-<li>高維資料與多重共線性: 特徵太多或高度相關，可能導致不穩定或過擬合</li>
-<li>不具備交互作用建模能力: 無法處理變數之間的聯合影響 (除非顯式創造交互項)</li>
-<li>差異質性與異常值敏感: 若誤差分布異常或出現極端值，模型容易偏誤</li>
-</ul>
-<h3 id="與其他模型的比較">與其他模型的比較</h3>
-<p>與其他模型相比，線性迴歸具備明確的比較基準:</p>
-<table>
-  <thead>
-      <tr>
-          <th>模型</th>
-          <th>解釋性</th>
-          <th>應變能力</th>
-          <th>計算成本</th>
-          <th>擬合彈性</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>線性迴歸</td>
-          <td>✅ 高</td>
-          <td>❌ 低</td>
-          <td>✅ 低</td>
-          <td>❌ 低</td>
-      </tr>
-      <tr>
-          <td>決策樹 / 隨機森林</td>
-          <td>❌ 低</td>
-          <td>✅ 高</td>
-          <td>❌ 中</td>
-          <td>✅ 中</td>
-      </tr>
-      <tr>
-          <td>支持向量機</td>
-          <td>❌ 中</td>
-          <td>✅ 高</td>
-          <td>❌ 高</td>
-          <td>✅ 中</td>
-      </tr>
-      <tr>
-          <td>神經網路</td>
-          <td>❌ 極低</td>
-          <td>✅ 極高</td>
-          <td>❌ 極高</td>
-          <td>✅ 高</td>
-      </tr>
-  </tbody>
-</table>
-<p>(其他模型後續會慢慢介紹 &hellip; )</p>
-<p>線性迴歸的最大價值在於它是所有模型的基線模型 (baseline)。若一個任務連線性迴歸都無法擊敗，則其他模型的表現很可能也是不穩定或過擬合的。</p>
-<h3 id="小結">小結</h3>
-<p>線性迴歸的價值不在於它能解決所有問題，而在於它讓我們對「資料與結果的關係」建立第一個清晰的架構。這種清晰，是日後面對複雜資料時，所有模型選擇的比較基準。當你真正理解一個模型的假設、信念、行為邏輯與表現訊號時，你不再是依賴工具，而是在與資料進行對話。</p>
-<h2 id="模型實作">模型實作</h2>
-<p>使用知名的 Boston Housing Dataset 為例，但因 sklearn 的 Boston Housing Dataset 已被移除，資料來源改使用 Carnegie Mellon University 提供的資料集。</p>
-<h3 id="01--載入函式庫">01 | 載入函式庫</h3>
-<ul>
-<li>pandas: 用於資料表格處理</li>
-<li>requests: 從網路讀取遠端資料</li>
-<li>train_test_split: 將資料切分成訓練集與測試集</li>
-<li>LinearRegression: 本次實作使用的模型</li>
-<li>mean_squared_error, r2_score: 模型評估用指標</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+<h2 id="-python-實作步驟">🛠 Python 實作步驟</h2>
+<h3 id="1-建立非線性資料">1. 建立非線性資料</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 產生非線性資料（加入噪音）</span>
+</span></span><span class="line"><span class="cl"><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">6</span> <span class="o">-</span> <span class="mi">3</span>  <span class="c1"># 範圍 [-3, 3]</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">X</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">X</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">X</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 分割資料集</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><h3 id="2-多項式特徵擴展">2. 多項式特徵擴展</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 建立多項式特徵 (degree=3)</span>
+</span></span><span class="line"><span class="cl"><span class="n">poly</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_train_poly</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_test_poly</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</span></span></code></pre></div><h3 id="3-建立迴歸模型並訓練">3. 建立迴歸模型並訓練</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
-</span></span></code></pre></div><h3 id="02--讀取數據">02 | 讀取數據</h3>
-<p>這段程式碼，主要是將來源的 csv 資料轉換成 DataFrame 格式，以利後續操作</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 載入資料集 (Boston Housing Dataset from Carnegie Mellon University)</span>
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_boston_housing_data</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">	<span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://lib.stat.cmu.edu/datasets/boston&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="n">raw</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="mi">22</span><span class="p">:]</span> <span class="c1"># 從第 23 行開始</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="c1"># 每筆資料分為兩行 → 共 506 筆 → 總共 1012 行</span>
-</span></span><span class="line"><span class="cl">	<span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">raw</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">		<span class="n">line1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">raw</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
-</span></span><span class="line"><span class="cl">		<span class="n">line2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">raw</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
-</span></span><span class="line"><span class="cl">		<span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line1</span> <span class="o">+</span> <span class="n">line2</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;CRIM&#34;</span><span class="p">,</span> <span class="c1"># 每人平均犯罪率</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;ZN&#34;</span><span class="p">,</span> <span class="c1"># 區域住宅用地比例</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;INDUS&#34;</span><span class="p">,</span> <span class="c1"># 區域非零售商業用地比例</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;CHAS&#34;</span><span class="p">,</span> <span class="c1"># 查爾斯河虛擬變數 (1 = 河流旁, 0 = 其他)</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;NOX&#34;</span><span class="p">,</span> <span class="c1"># 一氧化氮濃度 (parts per 10 million)</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;RM&#34;</span><span class="p">,</span> <span class="c1"># 每個住宅的平均房間數</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;AGE&#34;</span><span class="p">,</span> <span class="c1"># 1940 年之前建造的自用住宅比例</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;DIS&#34;</span><span class="p">,</span> <span class="c1"># 到波士頓五個中心區域的加權距離</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;RAD&#34;</span><span class="p">,</span> <span class="c1"># 公路接近指數 (1 = 最接近, 24 = 最遠)</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;TAX&#34;</span><span class="p">,</span> <span class="c1"># 每 $10,000 的財產稅率</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;PTRATIO&#34;</span><span class="p">,</span> <span class="c1"># 學生與教師比例</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;B&#34;</span><span class="p">,</span> <span class="c1"># 1000(Bk - 0.63)^2, Bk = 區域黑人比例</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;LSTAT&#34;</span><span class="p">,</span> <span class="c1"># 區域人口中低收入者的比例</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;MEDV&#34;</span><span class="p">,</span> <span class="c1"># 自用住宅的中位數價格 (單位: $1000s)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">]</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">col_names</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">df</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">original_data</span> <span class="o">=</span> <span class="n">get_boston_housing_data</span><span class="p">()</span>
-</span></span></code></pre></div><h3 id="03--資料前處理">03 | 資料前處理</h3>
-<ul>
-<li>沒有缺失值，因此不需要填補處理</li>
-<li>使用皮爾森相關係數查看哪些特徵與目標變數 (MEDV) 高度正相關</li>
-<li>本實作主要專注在模型建構，前處理部分僅保留可擴充介面，實務中可加上標準化 (StandardScaler)、離群值處理等</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># --- 資料清洗 ---</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">cleaned_data</span> <span class="o">=</span> <span class="n">original_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 缺失值檢查 (0 筆)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">original_data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Pearson 相關係數檢查</span>
-</span></span><span class="line"><span class="cl"><span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="n">target_corr</span> <span class="o">=</span> <span class="n">correlation_matrix</span><span class="p">[</span><span class="s1">&#39;MEDV&#39;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="n">high_corr_features</span> <span class="o">=</span> <span class="n">target_corr</span><span class="p">[</span><span class="n">target_corr</span> <span class="o">&gt;</span> <span class="mf">0.8</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;MEDV&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;與 target 高度正相關的欄位:&#34;</span><span class="p">,</span> <span class="n">high_corr_features</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 資料前處理方法</span>
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">clean_data</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">	<span class="c1"># 因為經前面的檢查，已經確認沒有缺失值，所以這裡不需要進行缺失值處理</span>
-</span></span><span class="line"><span class="cl">	<span class="c1"># 這裡可以進行其他資料前處理步驟，例如標準化、正規化等</span>
-</span></span><span class="line"><span class="cl">	<span class="c1"># 目前沒有進行其他處理，直接返回原始資料</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">df</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 取得清洗後的資料</span>
-</span></span><span class="line"><span class="cl"><span class="n">cleaned_data</span> <span class="o">=</span> <span class="n">clean_data</span><span class="p">(</span><span class="n">cleaned_data</span><span class="p">)</span>
-</span></span></code></pre></div><h3 id="04--模型訓練">04 | 模型訓練</h3>
-<ul>
-<li>使用 train_test_split 可避免過擬合，並正確估計模型效能</li>
-<li>訓練過程會找出使預測誤差最小的迴歸係數</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># --- 模型訓練 ---</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 資料分割</span>
-</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;MEDV&#34;</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="p">[</span><span class="s2">&#34;MEDV&#34;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 建立與訓練模型</span>
 </span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-</span></span></code></pre></div><h3 id="05--預測">05 | 預測</h3>
-<ul>
-<li>使用訓練好的模型對測試集進行預測，y_pred 即為模型對房價的預估值</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-</span></span></code></pre></div><h3 id="06--評估">06 | 評估</h3>
-<ul>
-<li>$R^2$ 是模型可解釋變異的比例，通常 &gt; 0.6 為可接受表現</li>
-<li>MSE 反映平均誤差平方值，數值越小越好</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;📈 模型評估結果：&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;均方誤差 (MSE): </span><span class="si">{</span><span class="n">mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;決定係數 R²: </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><h3 id="07--迴歸係數檢視">07 | 迴歸係數檢視</h3>
-<ul>
-<li>回歸係數 (coefficient) 反映每個特徵對結果的影響方向與大小</li>
-<li>幫助了解模型的決策邏輯，對「可解釋性」任務尤其重要</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">coefficients</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-</span></span><span class="line"><span class="cl">	<span class="s2">&#34;Feature&#34;</span><span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="s2">&#34;Coefficient&#34;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span>
-</span></span><span class="line"><span class="cl"><span class="p">})</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&#34;Coefficient&#34;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">abs</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_poly</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">📊 各特徵回歸係數 (依影響力排序):&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">coefficients</span><span class="p">)</span>
-</span></span></code></pre></div><h2 id="模型實作代碼">模型實作代碼</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 預測</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train_poly</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_poly</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Train R²:&#34;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Test R²:&#34;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">))</span>
+</span></span></code></pre></div><h3 id="4-可視化結果">4. 可視化結果</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 建立平滑的 x 軸資料，用來畫預測曲線</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_plot_poly</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_plot</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_plot</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_plot_poly</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Train data&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Test data&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Prediction (deg=3)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Polynomial Regression (Degree=3)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><h3 id="完整程式碼">完整程式碼</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># --- 載入資料集 (Boston Housing Dataset from Carnegie Mellon University) ---</span>
+</span></span><span class="line"><span class="cl"><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">6</span> <span class="o">-</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">X</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">X</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">X</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_boston_housing_data</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">	<span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://lib.stat.cmu.edu/datasets/boston&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="n">raw</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="mi">22</span><span class="p">:]</span> <span class="c1"># 從第 23 行開始</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="c1"># 每筆資料分為兩行 → 共 506 筆 → 總共 1012 行</span>
-</span></span><span class="line"><span class="cl">	<span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">raw</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">		<span class="n">line1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">raw</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
-</span></span><span class="line"><span class="cl">		<span class="n">line2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">raw</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
-</span></span><span class="line"><span class="cl">		<span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line1</span> <span class="o">+</span> <span class="n">line2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">poly</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_train_poly</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_test_poly</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;CRIM&#34;</span><span class="p">,</span> <span class="c1"># 每人平均犯罪率</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;ZN&#34;</span><span class="p">,</span> <span class="c1"># 區域住宅用地比例</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;INDUS&#34;</span><span class="p">,</span> <span class="c1"># 區域非零售商業用地比例</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;CHAS&#34;</span><span class="p">,</span> <span class="c1"># 查爾斯河虛擬變數 (1 = 河流旁, 0 = 其他)</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;NOX&#34;</span><span class="p">,</span> <span class="c1"># 一氧化氮濃度 (parts per 10 million)</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;RM&#34;</span><span class="p">,</span> <span class="c1"># 每個住宅的平均房間數</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;AGE&#34;</span><span class="p">,</span> <span class="c1"># 1940 年之前建造的自用住宅比例</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;DIS&#34;</span><span class="p">,</span> <span class="c1"># 到波士頓五個中心區域的加權距離</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;RAD&#34;</span><span class="p">,</span> <span class="c1"># 公路接近指數 (1 = 最接近, 24 = 最遠)</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;TAX&#34;</span><span class="p">,</span> <span class="c1"># 每 $10,000 的財產稅率</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;PTRATIO&#34;</span><span class="p">,</span> <span class="c1"># 學生與教師比例</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;B&#34;</span><span class="p">,</span> <span class="c1"># 1000(Bk - 0.63)^2, Bk = 區域黑人比例</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;LSTAT&#34;</span><span class="p">,</span> <span class="c1"># 區域人口中低收入者的比例</span>
-</span></span><span class="line"><span class="cl">		<span class="s2">&#34;MEDV&#34;</span><span class="p">,</span> <span class="c1"># 自用住宅的中位數價格 (單位: $1000s)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">]</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">col_names</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">df</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">original_data</span> <span class="o">=</span> <span class="n">get_boston_housing_data</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># --- 資料清洗 ---</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">cleaned_data</span> <span class="o">=</span> <span class="n">original_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 缺失值檢查 (0 筆)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">original_data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Pearson 相關係數檢查</span>
-</span></span><span class="line"><span class="cl"><span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="n">target_corr</span> <span class="o">=</span> <span class="n">correlation_matrix</span><span class="p">[</span><span class="s1">&#39;MEDV&#39;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="n">high_corr_features</span> <span class="o">=</span> <span class="n">target_corr</span><span class="p">[</span><span class="n">target_corr</span> <span class="o">&gt;</span> <span class="mf">0.8</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;MEDV&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;與 target 高度正相關的欄位:&#34;</span><span class="p">,</span> <span class="n">high_corr_features</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 資料前處理方法</span>
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">clean_data</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">	<span class="c1"># 因為經前面的檢查，已經確認沒有缺失值，所以這裡不需要進行缺失值處理</span>
-</span></span><span class="line"><span class="cl">	<span class="c1"># 這裡可以進行其他資料前處理步驟，例如標準化、正規化等</span>
-</span></span><span class="line"><span class="cl">	<span class="c1"># 目前沒有進行其他處理，直接返回原始資料</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">df</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 取得清洗後的資料</span>
-</span></span><span class="line"><span class="cl"><span class="n">cleaned_data</span> <span class="o">=</span> <span class="n">clean_data</span><span class="p">(</span><span class="n">cleaned_data</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># --- 特徵工程 (忽略) ---</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># --- 模型訓練 ---</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 資料分割</span>
-</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;MEDV&#34;</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="p">[</span><span class="s2">&#34;MEDV&#34;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 建立與訓練模型</span>
 </span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_poly</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># --- 資料預測 ---</span>
-</span></span><span class="line"><span class="cl"><span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train_poly</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_poly</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># --- 結果評估 ---</span>
-</span></span><span class="line"><span class="cl"><span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;📈 模型評估結果：&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;均方誤差 (MSE): </span><span class="si">{</span><span class="n">mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;決定係數 R²: </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Train R²:&#34;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Test R²:&#34;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># --- 迴歸係數檢視 ---</span>
-</span></span><span class="line"><span class="cl"><span class="n">coefficients</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-</span></span><span class="line"><span class="cl">	<span class="s2">&#34;Feature&#34;</span><span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="s2">&#34;Coefficient&#34;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span>
-</span></span><span class="line"><span class="cl"><span class="p">})</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&#34;Coefficient&#34;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">abs</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_plot_poly</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_plot</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_plot</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_plot_poly</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">📊 各特徵回歸係數 (依影響力排序):&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">coefficients</span><span class="p">)</span>
-</span></span></code></pre></div><h2 id="備註">備註</h2>
-<ul>
-<li>同步發表於 iThome 鐵人賽 2025</li>
-</ul>
-
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Train data&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Test data&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Prediction (deg=3)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Polynomial Regression (Degree=3)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div>
         </div>
     
         <div class="post__share">
@@ -719,22 +429,22 @@
   </div>
   <ul class="share__list list-reset">
     <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2farticles_25073101%2f"
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2farticles_25080101%2f"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
     </li>
     <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%202%29%20%e7%b7%9a%e6%80%a7%e8%bf%b4%e6%ad%b8%20%28Linear%20Regression%29&url=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2farticles_25073101%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%203%29%20%e5%a4%9a%e9%a0%85%e5%bc%8f%e8%bf%b4%e6%ad%b8%20%28Polynomial%20Regression%29&url=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2farticles_25080101%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2farticles_25073101%2f&title=%28Day%202%29%20%e7%b7%9a%e6%80%a7%e8%bf%b4%e6%ad%b8%20%28Linear%20Regression%29&summary=&source=%28Day%202%29%20%e7%b7%9a%e6%80%a7%e8%bf%b4%e6%ad%b8%20%28Linear%20Regression%29"
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2farticles_25080101%2f&title=%28Day%203%29%20%e5%a4%9a%e9%a0%85%e5%bc%8f%e8%bf%b4%e6%ad%b8%20%28Polynomial%20Regression%29&summary=&source=%28Day%203%29%20%e5%a4%9a%e9%a0%85%e5%bc%8f%e8%bf%b4%e6%ad%b8%20%28Polynomial%20Regression%29"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
     </li>
 
     <li class="share__item">
       <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2farticles_25073101%2f&amp;media=http%3a%2f%2ftwcch.io%2fimages%2fpost%2fcommon%2fdata_science_competition_01.png&amp;description=%28Day%202%29%20%e7%b7%9a%e6%80%a7%e8%bf%b4%e6%ad%b8%20%28Linear%20Regression%29"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2farticles_25080101%2f&amp;media=http%3a%2f%2ftwcch.io%2fimages%2fpost%2fcommon%2fdata_science_competition_01.png&amp;description=%28Day%203%29%20%e5%a4%9a%e9%a0%85%e5%bc%8f%e8%bf%b4%e6%ad%b8%20%28Polynomial%20Regression%29"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Pinterest" aria-label="Share on Pinterest"><i class="ion ion-logo-pinterest"></i></a>
     </li>
@@ -744,21 +454,14 @@
         
         <div class="post__navigation">
           
-          <a class="prev" href="http://twcch.io/posts/ironman_2025/articles_25073001/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
+          <a class="prev" href="http://twcch.io/posts/ironman_2025/articles_25073101/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
             <div class="post__nav-box">
               <div class="post__nav post__nav__prev"><i class="ion ion-ios-arrow-back"></i> Previous
                 Page</div>
-              <h4 class="post__nav__title">(Day 1) 介紹與準備</h4>
+              <h4 class="post__nav__title">(Day 2) 線性迴歸 (Linear Regression)</h4>
             </div>
           </a>
           
-          
-          <a class="next" href="http://twcch.io/posts/ironman_2025/articles_25080101/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
-            <div class="post__nav-box">
-              <div class="post__nav post__nav__next">Next Page <i class="ion ion-ios-arrow-forward"></i></div>
-              <h4 class="post__nav__title">(Day 3) 多項式迴歸 (Polynomial Regression)</h4>
-            </div>
-          </a>
           
         </div>
         

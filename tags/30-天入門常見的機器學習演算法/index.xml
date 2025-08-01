@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>IThome 鐵人賽 2025 on 志謙&#39;s Blog</title>
-    <link>http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/</link>
-    <description>Recent content in IThome 鐵人賽 2025 on 志謙&#39;s Blog</description>
+    <title>30 天入門常見的機器學習演算法 on 志謙&#39;s Blog</title>
+    <link>http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/</link>
+    <description>Recent content in 30 天入門常見的機器學習演算法 on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
     <lastBuildDate>Fri, 01 Aug 2025 00:00:00 +0800</lastBuildDate>
-    <atom:link href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>(Day 3) 多項式迴歸 (Polynomial Regression)</title>
       <link>http://twcch.io/posts/ironman_2025/articles_25080101/</link>
