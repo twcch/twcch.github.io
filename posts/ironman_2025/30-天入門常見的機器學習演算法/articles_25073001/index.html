@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>Tags | 志謙&#39;s Blog</title>
+  <title>(Day 1) 介紹與準備 | 志謙&#39;s Blog</title>
 
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="..." crossorigin="anonymous">
@@ -22,19 +22,134 @@
 
   <meta name="description" content="">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/tags/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Tags | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="志謙&#39;s Blog">
-  <meta name="twitter:image" content="http://twcch.io/">
+  <meta name="twitter:title" content="(Day 1) 介紹與準備 | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="在學習機器學習 (Machine Learning) 的過程中，可能會陷入兩種極端，一種是只會調用套件 (套膜)，模型背後的機制一知半解，遇到問題只能「換模型試試看」，或者是過度陷入數學細節，花大量時間推導公式，卻無法轉化為實際應用與模型選擇能力。
+我本身是從商業分析背景轉入人工智慧領域的研究者。這段轉型過程中，逐漸體會到: 真正困難的不是學會用模型，而是理解模型為什麼有效、什麼時候該用、什麼時候該換、用了之後該觀察什麼訊號。這促使我開始重新梳理各類常見演算法的行為與應用邏輯。
+因此，我決定透過這次 iThome 鐵人賽的機會，整理與統整常見演算法的核心概念，並將每一篇視為一場與模型的深度對談。
+系列架構說明
+本系列分為兩大部分:
+
+經典機器學習模型: 聚焦於 Regression、Classification、Clustering 等常見方法，強調模型背後的核心邏輯、適用情境與評估指標。
+深度學習模型: 介紹常見神經網路架構，如全連接神經網路 (FCNN)、CNN、RNN、Transformer 等，並探討它們對資料型態、任務種類的適應性與限制。
+
+每篇文章皆會包含模型概念說明與簡潔的 Python 範例實作，並聚焦於模型本身的行為與選擇策略，不深入探討資料前處理、特徵工程、模型調參、數學推導等高階內容，以避免模糊焦點。
+技術範圍與預期對象
+本系列預設讀者已具備以下條件:
+
+具備基本 Python 語法能力
+具備 scikit-learn 基本建模流程
+對模型訓練、預測、評估具備初步理解
+
+實作部分主要使用 scikit-learn、matplotlib 等工具。每篇將以簡單模擬資料為例，從建模、預測、評估到可視化依序進行，幫助讀者觀察模型行為並建立直覺。
+學習深度定位: 聚焦在 Level 2–3 之間
 
   
-  <meta property="og:title" content="Tags | 志謙&#39;s Blog">
-  <meta property="og:description" content="志謙&#39;s Blog">
-  <meta property="og:image" content="http://twcch.io/">
+      
+          等級
+          定義
+          在本系列的實踐目標
+      
+  
+  
+      
+          Level 1
+          會用套件建模
+          ✅ 使用 sklearn 等工具快速建模
+      
+      
+          Level 2
+          理解模型的概念與原理
+          ✅ 說得出每個模型的邏輯與核心機制
+      
+      
+          Level 3
+          能比較模型優劣與應用場景選擇
+          ✅ 理解適用時機、模型之間的 trade-off
+      
+      
+          Level 4&#43;
+          深入優化與理論推導
+          🚫 本系列不會深入涵蓋，建議另尋高階資源
+      
+  
+
+系列預告與進展節奏
+本系列將以「一日一模型」為目標，每篇聚焦於一個經典或常見模型，從實用視角出發說明其:
+
+核心邏輯與設計理念
+適用情境與限制條件
+與其他模型的比較與選擇策略
+Python 範例實作與評估觀察
+
+預計涵蓋模型範圍包括: Linear Regression、Polynomial Regression、Logistic Regression、SVM、KNN、Decision Tree、Random Forest、XGBoost、PCA、KMeans、FCNN、CNN、RNN、Transformer &hellip; 等。">
+  <meta name="twitter:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
+
+  
+  <meta property="og:title" content="(Day 1) 介紹與準備 | 志謙&#39;s Blog">
+  <meta property="og:description" content="在學習機器學習 (Machine Learning) 的過程中，可能會陷入兩種極端，一種是只會調用套件 (套膜)，模型背後的機制一知半解，遇到問題只能「換模型試試看」，或者是過度陷入數學細節，花大量時間推導公式，卻無法轉化為實際應用與模型選擇能力。
+我本身是從商業分析背景轉入人工智慧領域的研究者。這段轉型過程中，逐漸體會到: 真正困難的不是學會用模型，而是理解模型為什麼有效、什麼時候該用、什麼時候該換、用了之後該觀察什麼訊號。這促使我開始重新梳理各類常見演算法的行為與應用邏輯。
+因此，我決定透過這次 iThome 鐵人賽的機會，整理與統整常見演算法的核心概念，並將每一篇視為一場與模型的深度對談。
+系列架構說明
+本系列分為兩大部分:
+
+經典機器學習模型: 聚焦於 Regression、Classification、Clustering 等常見方法，強調模型背後的核心邏輯、適用情境與評估指標。
+深度學習模型: 介紹常見神經網路架構，如全連接神經網路 (FCNN)、CNN、RNN、Transformer 等，並探討它們對資料型態、任務種類的適應性與限制。
+
+每篇文章皆會包含模型概念說明與簡潔的 Python 範例實作，並聚焦於模型本身的行為與選擇策略，不深入探討資料前處理、特徵工程、模型調參、數學推導等高階內容，以避免模糊焦點。
+技術範圍與預期對象
+本系列預設讀者已具備以下條件:
+
+具備基本 Python 語法能力
+具備 scikit-learn 基本建模流程
+對模型訓練、預測、評估具備初步理解
+
+實作部分主要使用 scikit-learn、matplotlib 等工具。每篇將以簡單模擬資料為例，從建模、預測、評估到可視化依序進行，幫助讀者觀察模型行為並建立直覺。
+學習深度定位: 聚焦在 Level 2–3 之間
+
+  
+      
+          等級
+          定義
+          在本系列的實踐目標
+      
+  
+  
+      
+          Level 1
+          會用套件建模
+          ✅ 使用 sklearn 等工具快速建模
+      
+      
+          Level 2
+          理解模型的概念與原理
+          ✅ 說得出每個模型的邏輯與核心機制
+      
+      
+          Level 3
+          能比較模型優劣與應用場景選擇
+          ✅ 理解適用時機、模型之間的 trade-off
+      
+      
+          Level 4&#43;
+          深入優化與理論推導
+          🚫 本系列不會深入涵蓋，建議另尋高階資源
+      
+  
+
+系列預告與進展節奏
+本系列將以「一日一模型」為目標，每篇聚焦於一個經典或常見模型，從實用視角出發說明其:
+
+核心邏輯與設計理念
+適用情境與限制條件
+與其他模型的比較與選擇策略
+Python 範例實作與評估觀察
+
+預計涵蓋模型範圍包括: Linear Regression、Polynomial Regression、Logistic Regression、SVM、KNN、Decision Tree、Random Forest、XGBoost、PCA、KMeans、FCNN、CNN、RNN、Transformer &hellip; 等。">
+  <meta property="og:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -183,199 +298,218 @@
   <main class="content" aria-label="Content">
     
 
+
+
+
 <div class="container">
   <div class="row">
-    <div class="col col-8 col-d-10 col-m-12 push-m-0 push-d-1 push-2">
-      <div class="archive-box">
-        <span class="archive-counter">5 Articles</span>
-        <h1 class="archive-title">Tags</h1>
+    <div class="col col-12">
+      <div class="image-box">
+        <img class="post-image" src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 1) 介紹與準備">
       </div>
     </div>
   </div>
 </div>
+
 
 <div class="container">
-  <div class="row grid">
 
+  <div class="row">
+    <div class="col col-8 col-d-10 push-2 push-d-1 col-t-12 push-t-0">
     
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
+      
+      <article class="post amimate">
 
-    
+        <div class="post__head">
+          
+          <div class="post__tags">
+            
+            <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post-tags__tag">IThome 鐵人賽 2025</a>
+            
+          </div>
+          
 
-    <a class="article__image" href="/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/">
-      <img src="http://twcch.io/" alt="IThome 鐵人賽 2025">
-    </a>
+          <h1 class="post__title">(Day 1) 介紹與準備</h1>
 
-    <div class="article__content">
+          <div class="post__meta">
+            <div class="post__author">
+              <a href="/about/" class="post__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="post__author-link">謝志謙</a>
+            </div>
+            <span class="post__date">
+              <time datetime=" 2025-07-30T00:00:00&#43;08:00">Jul 30, 2025</time>
+            </span>
+          </div>
 
-      <div class="article__bottom">
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/">IThome 鐵人賽 2025</a>
-      </h2>
-
-      <div class="article__excerpt"></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
         </div>
+    
+        <div class="post__content">
+          <p>在學習機器學習 (Machine Learning) 的過程中，可能會陷入兩種極端，一種是只會調用套件 (套膜)，模型背後的機制一知半解，遇到問題只能「換模型試試看」，或者是過度陷入數學細節，花大量時間推導公式，卻無法轉化為實際應用與模型選擇能力。</p>
+<p>我本身是從商業分析背景轉入人工智慧領域的研究者。這段轉型過程中，逐漸體會到: 真正困難的不是學會用模型，而是理解模型為什麼有效、什麼時候該用、什麼時候該換、用了之後該觀察什麼訊號。這促使我開始重新梳理各類常見演算法的行為與應用邏輯。</p>
+<p>因此，我決定透過這次 iThome 鐵人賽的機會，整理與統整常見演算法的核心概念，並將每一篇視為一場與模型的深度對談。</p>
+<h2 id="系列架構說明">系列架構說明</h2>
+<p>本系列分為兩大部分:</p>
+<ul>
+<li>經典機器學習模型: 聚焦於 Regression、Classification、Clustering 等常見方法，強調模型背後的核心邏輯、適用情境與評估指標。</li>
+<li>深度學習模型: 介紹常見神經網路架構，如全連接神經網路 (FCNN)、CNN、RNN、Transformer 等，並探討它們對資料型態、任務種類的適應性與限制。</li>
+</ul>
+<p>每篇文章皆會包含模型概念說明與簡潔的 Python 範例實作，並聚焦於模型本身的行為與選擇策略，不深入探討資料前處理、特徵工程、模型調參、數學推導等高階內容，以避免模糊焦點。</p>
+<h2 id="技術範圍與預期對象">技術範圍與預期對象</h2>
+<p>本系列預設讀者已具備以下條件:</p>
+<ul>
+<li>具備基本 Python 語法能力</li>
+<li>具備 scikit-learn 基本建模流程</li>
+<li>對模型訓練、預測、評估具備初步理解</li>
+</ul>
+<p>實作部分主要使用 scikit-learn、matplotlib 等工具。每篇將以簡單模擬資料為例，從建模、預測、評估到可視化依序進行，幫助讀者觀察模型行為並建立直覺。</p>
+<h2 id="學習深度定位-聚焦在-level-23-之間">學習深度定位: 聚焦在 Level 2–3 之間</h2>
+<table>
+  <thead>
+      <tr>
+          <th>等級</th>
+          <th>定義</th>
+          <th>在本系列的實踐目標</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Level 1</td>
+          <td>會用套件建模</td>
+          <td>✅ 使用 sklearn 等工具快速建模</td>
+      </tr>
+      <tr>
+          <td>Level 2</td>
+          <td>理解模型的概念與原理</td>
+          <td>✅ 說得出每個模型的邏輯與核心機制</td>
+      </tr>
+      <tr>
+          <td>Level 3</td>
+          <td>能比較模型優劣與應用場景選擇</td>
+          <td>✅ 理解適用時機、模型之間的 trade-off</td>
+      </tr>
+      <tr>
+          <td>Level 4+</td>
+          <td>深入優化與理論推導</td>
+          <td>🚫 本系列不會深入涵蓋，建議另尋高階資源</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="系列預告與進展節奏">系列預告與進展節奏</h2>
+<p>本系列將以「一日一模型」為目標，每篇聚焦於一個經典或常見模型，從實用視角出發說明其:</p>
+<ul>
+<li>核心邏輯與設計理念</li>
+<li>適用情境與限制條件</li>
+<li>與其他模型的比較與選擇策略</li>
+<li>Python 範例實作與評估觀察</li>
+</ul>
+<p>預計涵蓋模型範圍包括: Linear Regression、Polynomial Regression、Logistic Regression、SVM、KNN、Decision Tree、Random Forest、XGBoost、PCA、KMeans、FCNN、CNN、RNN、Transformer &hellip; 等。</p>
+<h2 id="結語">結語</h2>
+<p>在進入每個演算法之前，我希望你能先釐清這個系列的定位與期望。這不是一套填鴨式教材，也不是數學推導教科書，而是為了介紹模型的直覺、判斷力與選擇能力。每一篇文章都像是與一個模型深談五分鐘──理解它在想什麼、擅長什麼、又有哪些盲點。</p>
+<p>本系列更像是一本實務導向的演算法導覽手冊，不追求全面、但講求理解關鍵。你不需要一次學會所有細節，而應該學會如何觀察、思考與應變。</p>
+<h2 id="備註">備註</h2>
+<ul>
+<li>同步發表於 iThome 鐵人賽 2025</li>
+</ul>
 
-        <time class="article__date" datetime="2025-08-01T00:00:00&#43;08:00">
-          Aug 1, 2025
-        </time>
-      </div>
+        </div>
+    
+        <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this article</div>
+  </div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2f30-%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25073001%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%201%29%20%e4%bb%8b%e7%b4%b9%e8%88%87%e6%ba%96%e5%82%99&url=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2f30-%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25073001%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
 
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2f30-%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25073001%2f&title=%28Day%201%29%20%e4%bb%8b%e7%b4%b9%e8%88%87%e6%ba%96%e5%82%99&summary=&source=%28Day%201%29%20%e4%bb%8b%e7%b4%b9%e8%88%87%e6%ba%96%e5%82%99"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2f30-%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25073001%2f&amp;media=http%3a%2f%2ftwcch.io%2fimages%2fpost%2fcommon%2fdata_science_competition_01.png&amp;description=%28Day%201%29%20%e4%bb%8b%e7%b4%b9%e8%88%87%e6%ba%96%e5%82%99"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+  </ul>
+</div>
+
+        
+        <div class="post__navigation">
+          
+          <a class="prev" href="http://twcch.io/posts/articles_25071601/" style="background-image: url('./images/post/common/heart_notes_01.png')">
+            <div class="post__nav-box">
+              <div class="post__nav post__nav__prev"><i class="ion ion-ios-arrow-back"></i> Previous
+                Page</div>
+              <h4 class="post__nav__title">學歷無用? 我仍相信學習的價值</h4>
+            </div>
+          </a>
+          
+          
+          <a class="next" href="http://twcch.io/posts/ironman_2025/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25073101/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
+            <div class="post__nav-box">
+              <div class="post__nav post__nav__next">Next Page <i class="ion ion-ios-arrow-forward"></i></div>
+              <h4 class="post__nav__title">(Day 2) 線性迴歸 (Linear Regression)</h4>
+            </div>
+          </a>
+          
+        </div>
+        
+
+        
+          
+<div id="disqus_thread" class="post__comments">
+  <div id="disqus_empty"></div>
+</div>
+
+<script>
+  function load_disqus() {
+    var disqus_shortname = 'anvod-studio-aditu',
+      is_disqus_empty = document.getElementById('disqus_empty'),
+      disqus_target = document.getElementById('disqus_thread'),
+      disqus_embed = document.createElement('script'),
+      disqus_hook = (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]);
+
+    if (disqus_target && is_disqus_empty) {
+      disqus_embed.type = 'text/javascript';
+      disqus_embed.async = true;
+      disqus_embed.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      disqus_hook.appendChild(disqus_embed);
+      is_disqus_empty.remove();
+    }
+  }
+
+  window.addEventListener('scroll', function (e) {
+    var currentScroll = document.scrollingElement.scrollTop;
+    var disqus_target = document.getElementById('disqus_thread');
+
+    if (disqus_target && (currentScroll > disqus_target.getBoundingClientRect().top - 150)) {
+      load_disqus('disqus_shortname');
+    }
+  }, false);
+
+</script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+        
+    
+      </article>
+      
     </div>
   </div>
+
+
 </div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
 
-    
 
-    <a class="article__image" href="/tags/heart-notes/">
-      <img src="http://twcch.io/" alt="Heart Notes">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/tags/heart-notes/">Heart Notes</a>
-      </h2>
-
-      <div class="article__excerpt"></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-16T00:00:00&#43;08:00">
-          Jul 16, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/tags/project/">
-      <img src="http://twcch.io/" alt="Project">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/tags/project/">Project</a>
-      </h2>
-
-      <div class="article__excerpt"></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-09T00:00:00&#43;08:00">
-          Jul 9, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/tags/data-science/">
-      <img src="http://twcch.io/" alt="Data Science">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/tags/data-science/">Data Science</a>
-      </h2>
-
-      <div class="article__excerpt"></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-06-02T00:00:00&#43;08:00">
-          Jun 2, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/tags/business-analysis/">
-      <img src="http://twcch.io/" alt="Business Analysis">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/tags/business-analysis/">Business Analysis</a>
-      </h2>
-
-      <div class="article__excerpt"></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-04-07T00:00:00&#43;08:00">
-          Apr 7, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-
-  </div>
-</div>
 
 
   </main>

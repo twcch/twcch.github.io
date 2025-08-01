@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>Tags | 志謙&#39;s Blog</title>
+  <title>(Day 3) 多項式迴歸 (Polynomial Regression) | 志謙&#39;s Blog</title>
 
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="..." crossorigin="anonymous">
@@ -22,19 +22,78 @@
 
   <meta name="description" content="">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/tags/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Tags | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="志謙&#39;s Blog">
-  <meta name="twitter:image" content="http://twcch.io/">
+  <meta name="twitter:title" content="(Day 3) 多項式迴歸 (Polynomial Regression) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="線性迴歸雖然簡單、實用，但它有一個明顯限制: 只能處理「線性關係」。一旦資料呈現彎曲、非線性趨勢，線性迴歸的預測能力會急劇下降，所以可以將 Linear Regression 搭配 Polynomial Features 的處理，來彌補這缺點，將線性迴歸擴展成多項式迴歸 (Polynomial Regression)，本文章會從三個部分來介紹多項式迴歸:
+
+多項式迴歸的核心概念與與線性模型的關聯
+模型行為與應用場景
+Python 實作與視覺化說明
+
+✅ 為什麼要學 Polynomial Regression?
+在真實世界中，多數資料並非線性結構，例如:
+
+房價與面積: 可能呈現遞減邊際效應
+醫療劑量與治療效果: 過高或過低都可能無效
+財務指標與預測目標: 存在高階非線性關係
+
+Polynomial Regression 可以有效擴展線性模型的表現力，仍保有易解釋、易實作的優點，是進入非線性模型的重要第一站。
+🧠 模型邏輯與核心概念
+📌 將線性模型「升維」
+Polynomial Regression 並非建立新的模型，而是將原始特徵做「非線性轉換」，再使用線性迴歸進行學習。例如：
+$$
+\hat{y} = \beta_0 &#43; \beta_1 x &#43; \beta_2 x^2 &#43; \beta_3 x^3 &#43; \dots &#43; \beta_n x^n
+$$
+這個模型仍然是線性模型 (對係數是線性的)，只是資料經過「多項式擴展」後可以擬合曲線。
+📌 使用 PolynomialFeatures 進行轉換
+在 Python 中，可以透過 sklearn.preprocessing.PolynomialFeatures 將資料升維，然後套用 LinearRegression 模型。
+🎯 適用場景與判斷指標
+
+當資料有明顯的非線性趨勢 (彎曲形狀)
+需要一個可解釋、簡單但能處理非線性問題的模型
+可作為非線性問題的 baseline 模型，與樹模型或 XGBoost 進行比較
+
+📊 模型評估指標
+與線性回歸相同:">
+  <meta name="twitter:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
-  <meta property="og:title" content="Tags | 志謙&#39;s Blog">
-  <meta property="og:description" content="志謙&#39;s Blog">
-  <meta property="og:image" content="http://twcch.io/">
+  <meta property="og:title" content="(Day 3) 多項式迴歸 (Polynomial Regression) | 志謙&#39;s Blog">
+  <meta property="og:description" content="線性迴歸雖然簡單、實用，但它有一個明顯限制: 只能處理「線性關係」。一旦資料呈現彎曲、非線性趨勢，線性迴歸的預測能力會急劇下降，所以可以將 Linear Regression 搭配 Polynomial Features 的處理，來彌補這缺點，將線性迴歸擴展成多項式迴歸 (Polynomial Regression)，本文章會從三個部分來介紹多項式迴歸:
+
+多項式迴歸的核心概念與與線性模型的關聯
+模型行為與應用場景
+Python 實作與視覺化說明
+
+✅ 為什麼要學 Polynomial Regression?
+在真實世界中，多數資料並非線性結構，例如:
+
+房價與面積: 可能呈現遞減邊際效應
+醫療劑量與治療效果: 過高或過低都可能無效
+財務指標與預測目標: 存在高階非線性關係
+
+Polynomial Regression 可以有效擴展線性模型的表現力，仍保有易解釋、易實作的優點，是進入非線性模型的重要第一站。
+🧠 模型邏輯與核心概念
+📌 將線性模型「升維」
+Polynomial Regression 並非建立新的模型，而是將原始特徵做「非線性轉換」，再使用線性迴歸進行學習。例如：
+$$
+\hat{y} = \beta_0 &#43; \beta_1 x &#43; \beta_2 x^2 &#43; \beta_3 x^3 &#43; \dots &#43; \beta_n x^n
+$$
+這個模型仍然是線性模型 (對係數是線性的)，只是資料經過「多項式擴展」後可以擬合曲線。
+📌 使用 PolynomialFeatures 進行轉換
+在 Python 中，可以透過 sklearn.preprocessing.PolynomialFeatures 將資料升維，然後套用 LinearRegression 模型。
+🎯 適用場景與判斷指標
+
+當資料有明顯的非線性趨勢 (彎曲形狀)
+需要一個可解釋、簡單但能處理非線性問題的模型
+可作為非線性問題的 baseline 模型，與樹模型或 XGBoost 進行比較
+
+📊 模型評估指標
+與線性回歸相同:">
+  <meta property="og:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -183,199 +242,276 @@
   <main class="content" aria-label="Content">
     
 
+
+
+
 <div class="container">
   <div class="row">
-    <div class="col col-8 col-d-10 col-m-12 push-m-0 push-d-1 push-2">
-      <div class="archive-box">
-        <span class="archive-counter">5 Articles</span>
-        <h1 class="archive-title">Tags</h1>
+    <div class="col col-12">
+      <div class="image-box">
+        <img class="post-image" src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 3) 多項式迴歸 (Polynomial Regression)">
       </div>
     </div>
   </div>
 </div>
+
 
 <div class="container">
-  <div class="row grid">
 
+  <div class="row">
+    <div class="col col-8 col-d-10 push-2 push-d-1 col-t-12 push-t-0">
     
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
+      
+      <article class="post amimate">
 
-    
+        <div class="post__head">
+          
+          <div class="post__tags">
+            
+            <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post-tags__tag">IThome 鐵人賽 2025</a>
+            
+          </div>
+          
 
-    <a class="article__image" href="/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/">
-      <img src="http://twcch.io/" alt="IThome 鐵人賽 2025">
-    </a>
+          <h1 class="post__title">(Day 3) 多項式迴歸 (Polynomial Regression)</h1>
 
-    <div class="article__content">
+          <div class="post__meta">
+            <div class="post__author">
+              <a href="/about/" class="post__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="post__author-link">謝志謙</a>
+            </div>
+            <span class="post__date">
+              <time datetime=" 2025-08-01T00:00:00&#43;08:00">Aug 1, 2025</time>
+            </span>
+          </div>
 
-      <div class="article__bottom">
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/">IThome 鐵人賽 2025</a>
-      </h2>
-
-      <div class="article__excerpt"></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
         </div>
+    
+        <div class="post__content">
+          <p>線性迴歸雖然簡單、實用，但它有一個明顯限制: 只能處理「線性關係」。一旦資料呈現彎曲、非線性趨勢，線性迴歸的預測能力會急劇下降，所以可以將 Linear Regression 搭配 Polynomial Features 的處理，來彌補這缺點，將線性迴歸擴展成多項式迴歸 (Polynomial Regression)，本文章會從三個部分來介紹多項式迴歸:</p>
+<ul>
+<li>多項式迴歸的核心概念與與線性模型的關聯</li>
+<li>模型行為與應用場景</li>
+<li>Python 實作與視覺化說明</li>
+</ul>
+<h2 id="-為什麼要學-polynomial-regression">✅ 為什麼要學 Polynomial Regression?</h2>
+<p>在真實世界中，多數資料並非線性結構，例如:</p>
+<ul>
+<li>房價與面積: 可能呈現遞減邊際效應</li>
+<li>醫療劑量與治療效果: 過高或過低都可能無效</li>
+<li>財務指標與預測目標: 存在高階非線性關係</li>
+</ul>
+<p>Polynomial Regression 可以有效擴展線性模型的表現力，仍保有易解釋、易實作的優點，是進入非線性模型的重要第一站。</p>
+<h2 id="-模型邏輯與核心概念">🧠 模型邏輯與核心概念</h2>
+<h3 id="-將線性模型升維">📌 將線性模型「升維」</h3>
+<p>Polynomial Regression 並非建立新的模型，而是將原始特徵做「非線性轉換」，再使用線性迴歸進行學習。例如：</p>
+<p>$$
+\hat{y} = \beta_0 + \beta_1 x + \beta_2 x^2 + \beta_3 x^3 + \dots + \beta_n x^n
+$$</p>
+<p>這個模型仍然是線性模型 (對係數是線性的)，只是資料經過「多項式擴展」後可以擬合曲線。</p>
+<h3 id="-使用-polynomialfeatures-進行轉換">📌 使用 PolynomialFeatures 進行轉換</h3>
+<p>在 Python 中，可以透過 sklearn.preprocessing.PolynomialFeatures 將資料升維，然後套用 LinearRegression 模型。</p>
+<h2 id="-適用場景與判斷指標">🎯 適用場景與判斷指標</h2>
+<ul>
+<li>當資料有明顯的非線性趨勢 (彎曲形狀)</li>
+<li>需要一個可解釋、簡單但能處理非線性問題的模型</li>
+<li>可作為非線性問題的 baseline 模型，與樹模型或 XGBoost 進行比較</li>
+</ul>
+<h2 id="-模型評估指標">📊 模型評估指標</h2>
+<p>與線性回歸相同:</p>
+<ul>
+<li>$R^2$, MSE, RMSE, MAE</li>
+<li>額外觀察：高階多項式是否造成過擬合 (overfitting)</li>
+</ul>
+<h2 id="-python-實作步驟">🛠 Python 實作步驟</h2>
+<h3 id="1-建立非線性資料">1. 建立非線性資料</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 產生非線性資料（加入噪音）</span>
+</span></span><span class="line"><span class="cl"><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">6</span> <span class="o">-</span> <span class="mi">3</span>  <span class="c1"># 範圍 [-3, 3]</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">X</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">X</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">X</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 分割資料集</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><h3 id="2-多項式特徵擴展">2. 多項式特徵擴展</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 建立多項式特徵 (degree=3)</span>
+</span></span><span class="line"><span class="cl"><span class="n">poly</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_train_poly</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_test_poly</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</span></span></code></pre></div><h3 id="3-建立迴歸模型並訓練">3. 建立迴歸模型並訓練</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_poly</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 預測</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train_poly</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_poly</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Train R²:&#34;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Test R²:&#34;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">))</span>
+</span></span></code></pre></div><h3 id="4-可視化結果">4. 可視化結果</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 建立平滑的 x 軸資料，用來畫預測曲線</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_plot_poly</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_plot</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_plot</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_plot_poly</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Train data&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Test data&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Prediction (deg=3)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Polynomial Regression (Degree=3)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><h3 id="完整程式碼">完整程式碼</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">6</span> <span class="o">-</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">X</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">X</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">X</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">poly</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_train_poly</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_test_poly</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_poly</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train_poly</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_poly</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Train R²:&#34;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Test R²:&#34;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">X_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_plot_poly</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_plot</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_plot</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_plot_poly</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Train data&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Test data&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Prediction (deg=3)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Polynomial Regression (Degree=3)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div>
+        </div>
+    
+        <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this article</div>
+  </div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2f30-%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080101%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%203%29%20%e5%a4%9a%e9%a0%85%e5%bc%8f%e8%bf%b4%e6%ad%b8%20%28Polynomial%20Regression%29&url=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2f30-%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080101%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
 
-        <time class="article__date" datetime="2025-08-01T00:00:00&#43;08:00">
-          Aug 1, 2025
-        </time>
-      </div>
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2f30-%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080101%2f&title=%28Day%203%29%20%e5%a4%9a%e9%a0%85%e5%bc%8f%e8%bf%b4%e6%ad%b8%20%28Polynomial%20Regression%29&summary=&source=%28Day%203%29%20%e5%a4%9a%e9%a0%85%e5%bc%8f%e8%bf%b4%e6%ad%b8%20%28Polynomial%20Regression%29"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
 
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fironman_2025%2f30-%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080101%2f&amp;media=http%3a%2f%2ftwcch.io%2fimages%2fpost%2fcommon%2fdata_science_competition_01.png&amp;description=%28Day%203%29%20%e5%a4%9a%e9%a0%85%e5%bc%8f%e8%bf%b4%e6%ad%b8%20%28Polynomial%20Regression%29"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+  </ul>
+</div>
+
+        
+        <div class="post__navigation">
+          
+          <a class="prev" href="http://twcch.io/posts/ironman_2025/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25073101/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
+            <div class="post__nav-box">
+              <div class="post__nav post__nav__prev"><i class="ion ion-ios-arrow-back"></i> Previous
+                Page</div>
+              <h4 class="post__nav__title">(Day 2) 線性迴歸 (Linear Regression)</h4>
+            </div>
+          </a>
+          
+          
+        </div>
+        
+
+        
+          
+<div id="disqus_thread" class="post__comments">
+  <div id="disqus_empty"></div>
+</div>
+
+<script>
+  function load_disqus() {
+    var disqus_shortname = 'anvod-studio-aditu',
+      is_disqus_empty = document.getElementById('disqus_empty'),
+      disqus_target = document.getElementById('disqus_thread'),
+      disqus_embed = document.createElement('script'),
+      disqus_hook = (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]);
+
+    if (disqus_target && is_disqus_empty) {
+      disqus_embed.type = 'text/javascript';
+      disqus_embed.async = true;
+      disqus_embed.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      disqus_hook.appendChild(disqus_embed);
+      is_disqus_empty.remove();
+    }
+  }
+
+  window.addEventListener('scroll', function (e) {
+    var currentScroll = document.scrollingElement.scrollTop;
+    var disqus_target = document.getElementById('disqus_thread');
+
+    if (disqus_target && (currentScroll > disqus_target.getBoundingClientRect().top - 150)) {
+      load_disqus('disqus_shortname');
+    }
+  }, false);
+
+</script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+        
+    
+      </article>
+      
     </div>
   </div>
+
+
 </div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
 
-    
 
-    <a class="article__image" href="/tags/heart-notes/">
-      <img src="http://twcch.io/" alt="Heart Notes">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/tags/heart-notes/">Heart Notes</a>
-      </h2>
-
-      <div class="article__excerpt"></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-16T00:00:00&#43;08:00">
-          Jul 16, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/tags/project/">
-      <img src="http://twcch.io/" alt="Project">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/tags/project/">Project</a>
-      </h2>
-
-      <div class="article__excerpt"></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-09T00:00:00&#43;08:00">
-          Jul 9, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/tags/data-science/">
-      <img src="http://twcch.io/" alt="Data Science">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/tags/data-science/">Data Science</a>
-      </h2>
-
-      <div class="article__excerpt"></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-06-02T00:00:00&#43;08:00">
-          Jun 2, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/tags/business-analysis/">
-      <img src="http://twcch.io/" alt="Business Analysis">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/tags/business-analysis/">Business Analysis</a>
-      </h2>
-
-      <div class="article__excerpt"></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-04-07T00:00:00&#43;08:00">
-          Apr 7, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-
-  </div>
-</div>
 
 
   </main>
