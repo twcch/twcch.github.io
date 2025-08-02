@@ -30,9 +30,11 @@
   <meta name="twitter:description" content="延續昨日的多項式迴歸中，我們觀察到一個現象: 雖然二次特徵提升了模型的表現，但同時也引入過擬合 (Overfitting) 風險。這是因為當特徵數量暴增，模型就會變得過於「貪婪」，試圖將每個資料點都擬合得極好，結果反而喪失了在新資料上的泛化 (Generalization) 能力。
 那怎麼辦? 就是在多項式迴歸的基礎上，限制模型的自由度，也就是今天要介紹的——正則化回歸 (Regularized Regression)。
 這是一種透過在模型參數加上限制，以提升泛化能力 (該操作並非為了提高準確度)，讓它在「解釋資料」與「控制複雜度」間取得平衡。最常見的三種正則化技術分別為:
-•	套索回歸 (Lasso Regression): L1 Normalization
-•	脊回歸 (Ridge Regression): L2 Normalization
-•	Elastic Net Regression: L1 &#43; L2 Normalization
+
+套索回歸 (Lasso Regression): L1 Normalization
+脊回歸 (Ridge Regression): L2 Normalization
+Elastic Net Regression: L1 &#43; L2 Normalization
+
 模型介紹
 模型邏輯與核心概念
 先回到 Day 2 的線性迴歸，線性迴歸如何找出最佳的迴歸線?
@@ -54,9 +56,11 @@ Elastic Net Regression: $\lambda_1 \sum |\beta_i| &#43; \lambda_2 \sum \beta_i^2
   <meta property="og:description" content="延續昨日的多項式迴歸中，我們觀察到一個現象: 雖然二次特徵提升了模型的表現，但同時也引入過擬合 (Overfitting) 風險。這是因為當特徵數量暴增，模型就會變得過於「貪婪」，試圖將每個資料點都擬合得極好，結果反而喪失了在新資料上的泛化 (Generalization) 能力。
 那怎麼辦? 就是在多項式迴歸的基礎上，限制模型的自由度，也就是今天要介紹的——正則化回歸 (Regularized Regression)。
 這是一種透過在模型參數加上限制，以提升泛化能力 (該操作並非為了提高準確度)，讓它在「解釋資料」與「控制複雜度」間取得平衡。最常見的三種正則化技術分別為:
-•	套索回歸 (Lasso Regression): L1 Normalization
-•	脊回歸 (Ridge Regression): L2 Normalization
-•	Elastic Net Regression: L1 &#43; L2 Normalization
+
+套索回歸 (Lasso Regression): L1 Normalization
+脊回歸 (Ridge Regression): L2 Normalization
+Elastic Net Regression: L1 &#43; L2 Normalization
+
 模型介紹
 模型邏輯與核心概念
 先回到 Day 2 的線性迴歸，線性迴歸如何找出最佳的迴歸線?
@@ -272,9 +276,11 @@ Elastic Net Regression: $\lambda_1 \sum |\beta_i| &#43; \lambda_2 \sum \beta_i^2
           <p>延續昨日的多項式迴歸中，我們觀察到一個現象: 雖然二次特徵提升了模型的表現，但同時也引入過擬合 (Overfitting) 風險。這是因為當特徵數量暴增，模型就會變得過於「貪婪」，試圖將每個資料點都擬合得極好，結果反而喪失了在新資料上的泛化 (Generalization) 能力。</p>
 <p>那怎麼辦? 就是在多項式迴歸的基礎上，限制模型的自由度，也就是今天要介紹的——正則化回歸 (Regularized Regression)。</p>
 <p>這是一種透過在模型參數加上限制，以提升泛化能力 (該操作並非為了提高準確度)，讓它在「解釋資料」與「控制複雜度」間取得平衡。最常見的三種正則化技術分別為:</p>
-<p>•	套索回歸 (Lasso Regression): L1 Normalization
-•	脊回歸 (Ridge Regression): L2 Normalization
-•	Elastic Net Regression: L1 + L2 Normalization</p>
+<ul>
+<li>套索回歸 (Lasso Regression): L1 Normalization</li>
+<li>脊回歸 (Ridge Regression): L2 Normalization</li>
+<li>Elastic Net Regression: L1 + L2 Normalization</li>
+</ul>
 <h2 id="模型介紹">模型介紹</h2>
 <h3 id="模型邏輯與核心概念">模型邏輯與核心概念</h3>
 <p>先回到 Day 2 的線性迴歸，線性迴歸如何找出最佳的迴歸線?</p>
@@ -480,6 +486,10 @@ Elastic Net Regression: $\lambda_1 \sum |\beta_i| &#43; \lambda_2 \sum \beta_i^2
 <p>這篇是迴歸模型系列的首尾，補上了最後一塊重要拼圖「正則化」。這不只是技術手段，更是一種建模哲學: 我們不再一味追求最小誤差，而是學會控制模型自由度，讓模型在複雜度與泛化能力間取得平衡。</p>
 <p>正則化迴歸讓我們能在特徵維度增長、模型變得脆弱時，透過懲罰機制維持穩定與解釋性。這一策略並非萬靈丹，但卻是進入高維度問題、開始關注模型可解釋性與風險管理時不可或缺的工具。</p>
 <p>至此，我們已經完成線性迴歸、多項式擴展與正則化等主流回歸方法。這些模型的共通點在於它們假設輸入與輸出之間存在線性或可線性擴展的關係。下一階段，我們將把焦點移到分類問題的建模。</p>
+<h2 id="備註">備註</h2>
+<ul>
+<li>同步發表於 iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</li>
+</ul>
 
         </div>
     
