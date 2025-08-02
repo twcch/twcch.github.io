@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://twcch.io/posts/ironman_2025/articles_25080201/</loc>
+    <loc>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080201/</loc>
     <lastmod>2025-08-02T00:00:00+08:00</lastmod>
   </url><url>
     <loc>http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/</loc>
@@ -23,13 +23,13 @@
     <loc>http://twcch.io/</loc>
     <lastmod>2025-08-02T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://twcch.io/posts/ironman_2025/articles_25080101/</loc>
+    <loc>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080101/</loc>
     <lastmod>2025-08-01T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://twcch.io/posts/ironman_2025/articles_25073101/</loc>
+    <loc>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25073101/</loc>
     <lastmod>2025-07-31T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://twcch.io/posts/ironman_2025/articles_25073001/</loc>
+    <loc>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25073001/</loc>
     <lastmod>2025-07-30T00:00:00+08:00</lastmod>
   </url><url>
     <loc>http://twcch.io/tags/heart-notes/</loc>
@@ -60,6 +60,8 @@
     <lastmod>2025-04-07T00:00:00+08:00</lastmod>
   </url><url>
     <loc>http://twcch.io/categories/</loc>
+  </url><url>
+    <loc>http://twcch.io/column_article/</loc>
   </url><url>
     <loc>http://twcch.io/research/</loc>
   </url><url>

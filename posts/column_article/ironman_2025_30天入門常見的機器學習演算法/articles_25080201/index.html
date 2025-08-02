@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>關於我 | 志謙&#39;s Blog</title>
+  <title>(Day 4) 正規化迴歸 (Regularization Regression) | 志謙&#39;s Blog</title>
 
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="..." crossorigin="anonymous">
@@ -26,46 +26,56 @@
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="關於我 | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="我是志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，希望可以跟各位一起學習成長。
-主要經歷
+  <meta name="twitter:title" content="(Day 4) 正規化迴歸 (Regularization Regression) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="延續昨日的多項式迴歸中，我們觀察到一個現象: 雖然二次特徵提升了模型的表現，但同時也引入過擬合 (Overfitting) 風險。這是因為當特徵數量暴增，模型就會變得過於「貪婪」，試圖將每個資料點都擬合得極好，結果反而喪失了在新資料上的泛化 (Generalization) 能力。
+那怎麼辦? 就是在多項式迴歸的基礎上，限制模型的自由度，也就是今天要介紹的——正則化回歸 (Regularized Regression)。
+這是一種透過在模型參數加上限制，以提升泛化能力 (該操作並非為了提高準確度)，讓它在「解釋資料」與「控制複雜度」間取得平衡。最常見的三種正則化技術分別為:
 
-[2022.04 – 2025.06] 富邦人壽保險股份有限公司 專案襄理 (商業分析師)
-[2020.04 – 2022.03] 南山人壽保險股份有限公司 專員 (商業分析師)
+套索回歸 (Lasso Regression): L1 Normalization
+脊回歸 (Ridge Regression): L2 Normalization
+Elastic Net Regression: L1 &#43; L2 Normalization
 
-技術與框架
+模型介紹
+模型邏輯與核心概念
+先回到 Day 2 的線性迴歸，線性迴歸如何找出最佳的迴歸線?
 
-Python (PyTorch, Flask, Flask-RESTful)
-Java (Spring Framework)
-SQL (PostgreSQL, MySQL)
+先設定損失函數 (Cost Function) 假設為 $MSE = \frac{1}{2n} \sum\limits_{i=1}^{n} (y_{i} - \hat{y}_{i})^{2}$。
+再使用梯度下降 (Batch Gradient Descent) 來最小化損失函數。
 
-專業認證
+而所謂的正規化迴歸就是在損失函數加上懲罰項，而前述那些不同的正規化迴歸名稱，就只是懲罰項的差異而已，以下是正規化迴歸的懲罰項:
 
-美國壽險管理師, 2025
-國際專案管理師, 2024
-">
-  <meta name="twitter:image" content="http://twcch.io/images/banner.png">
+套索迴歸: $\lambda \sum |\beta_i|$
+脊迴歸: $\lambda \sum \beta_i^2$
+Elastic Net Regression: $\lambda_1 \sum |\beta_i| &#43; \lambda_2 \sum \beta_i^2$
+
+我們先來看看這幾種正規化的效果差異:">
+  <meta name="twitter:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
-  <meta property="og:title" content="關於我 | 志謙&#39;s Blog">
-  <meta property="og:description" content="我是志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，希望可以跟各位一起學習成長。
-主要經歷
+  <meta property="og:title" content="(Day 4) 正規化迴歸 (Regularization Regression) | 志謙&#39;s Blog">
+  <meta property="og:description" content="延續昨日的多項式迴歸中，我們觀察到一個現象: 雖然二次特徵提升了模型的表現，但同時也引入過擬合 (Overfitting) 風險。這是因為當特徵數量暴增，模型就會變得過於「貪婪」，試圖將每個資料點都擬合得極好，結果反而喪失了在新資料上的泛化 (Generalization) 能力。
+那怎麼辦? 就是在多項式迴歸的基礎上，限制模型的自由度，也就是今天要介紹的——正則化回歸 (Regularized Regression)。
+這是一種透過在模型參數加上限制，以提升泛化能力 (該操作並非為了提高準確度)，讓它在「解釋資料」與「控制複雜度」間取得平衡。最常見的三種正則化技術分別為:
 
-[2022.04 – 2025.06] 富邦人壽保險股份有限公司 專案襄理 (商業分析師)
-[2020.04 – 2022.03] 南山人壽保險股份有限公司 專員 (商業分析師)
+套索回歸 (Lasso Regression): L1 Normalization
+脊回歸 (Ridge Regression): L2 Normalization
+Elastic Net Regression: L1 &#43; L2 Normalization
 
-技術與框架
+模型介紹
+模型邏輯與核心概念
+先回到 Day 2 的線性迴歸，線性迴歸如何找出最佳的迴歸線?
 
-Python (PyTorch, Flask, Flask-RESTful)
-Java (Spring Framework)
-SQL (PostgreSQL, MySQL)
+先設定損失函數 (Cost Function) 假設為 $MSE = \frac{1}{2n} \sum\limits_{i=1}^{n} (y_{i} - \hat{y}_{i})^{2}$。
+再使用梯度下降 (Batch Gradient Descent) 來最小化損失函數。
 
-專業認證
+而所謂的正規化迴歸就是在損失函數加上懲罰項，而前述那些不同的正規化迴歸名稱，就只是懲罰項的差異而已，以下是正規化迴歸的懲罰項:
 
-美國壽險管理師, 2025
-國際專案管理師, 2024
-">
-  <meta property="og:image" content="http://twcch.io/images/banner.png">
+套索迴歸: $\lambda \sum |\beta_i|$
+脊迴歸: $\lambda \sum \beta_i^2$
+Elastic Net Regression: $\lambda_1 \sum |\beta_i| &#43; \lambda_2 \sum \beta_i^2$
+
+我們先來看看這幾種正規化的效果差異:">
+  <meta property="og:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -221,7 +231,7 @@ SQL (PostgreSQL, MySQL)
   <div class="row">
     <div class="col col-12">
       <div class="image-box">
-        <img class="page-image" src="http://twcch.io/images/banner.png" alt="關於我">
+        <img class="post-image" src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 4) 正規化迴歸 (Regularization Regression)">
       </div>
     </div>
   </div>
@@ -229,39 +239,348 @@ SQL (PostgreSQL, MySQL)
 
 
 <div class="container">
+
   <div class="row">
-    <div class="col col-8 push-2 col-d-10 col-m-12 push-d-1 push-m-0">
-
+    <div class="col col-8 col-d-10 push-2 push-d-1 col-t-12 push-t-0">
+    
       
-      <article class="page animate">
-        <div class="page__head">
-          <h1 class="page__title">關於我</h1>
+      <article class="post amimate">
+
+        <div class="post__head">
+          
+          <div class="post__tags">
+            
+            <a href="http://twcch.io/tags/data-science/" class="post-tags__tag">Data Science</a>
+            
+            <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post-tags__tag">IThome 鐵人賽 2025</a>
+            
+            <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post-tags__tag">30 天入門常見的機器學習演算法</a>
+            
+          </div>
+          
+
+          <h1 class="post__title">(Day 4) 正規化迴歸 (Regularization Regression)</h1>
+
+          <div class="post__meta">
+            <div class="post__author">
+              <a href="/about/" class="post__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="post__author-link">謝志謙</a>
+            </div>
+            <span class="post__date">
+              <time datetime=" 2025-08-02T00:00:00&#43;08:00">Aug 2, 2025</time>
+            </span>
+          </div>
+
         </div>
-        <div class="page__content">
-          <p>我是志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，希望可以跟各位一起學習成長。</p>
-<h4 id="主要經歷">主要經歷</h4>
+    
+        <div class="post__content">
+          <p>延續昨日的多項式迴歸中，我們觀察到一個現象: 雖然二次特徵提升了模型的表現，但同時也引入過擬合 (Overfitting) 風險。這是因為當特徵數量暴增，模型就會變得過於「貪婪」，試圖將每個資料點都擬合得極好，結果反而喪失了在新資料上的泛化 (Generalization) 能力。</p>
+<p>那怎麼辦? 就是在多項式迴歸的基礎上，限制模型的自由度，也就是今天要介紹的——正則化回歸 (Regularized Regression)。</p>
+<p>這是一種透過在模型參數加上限制，以提升泛化能力 (該操作並非為了提高準確度)，讓它在「解釋資料」與「控制複雜度」間取得平衡。最常見的三種正則化技術分別為:</p>
 <ul>
-<li>[2022.04 – 2025.06] 富邦人壽保險股份有限公司 專案襄理 (商業分析師)</li>
-<li>[2020.04 – 2022.03] 南山人壽保險股份有限公司 專員 (商業分析師)</li>
+<li>套索回歸 (Lasso Regression): L1 Normalization</li>
+<li>脊回歸 (Ridge Regression): L2 Normalization</li>
+<li>Elastic Net Regression: L1 + L2 Normalization</li>
 </ul>
-<h4 id="技術與框架">技術與框架</h4>
+<h2 id="模型介紹">模型介紹</h2>
+<h3 id="模型邏輯與核心概念">模型邏輯與核心概念</h3>
+<p>先回到 Day 2 的線性迴歸，線性迴歸如何找出最佳的迴歸線?</p>
 <ul>
-<li>Python (PyTorch, Flask, Flask-RESTful)</li>
-<li>Java (Spring Framework)</li>
-<li>SQL (PostgreSQL, MySQL)</li>
+<li>先設定損失函數 (Cost Function) 假設為 $MSE = \frac{1}{2n} \sum\limits_{i=1}^{n} (y_{i} - \hat{y}_{i})^{2}$。</li>
+<li>再使用梯度下降 (Batch Gradient Descent) 來最小化損失函數。</li>
 </ul>
-<h4 id="專業認證">專業認證</h4>
+<p>而所謂的正規化迴歸就是在損失函數加上懲罰項，而前述那些不同的正規化迴歸名稱，就只是懲罰項的差異而已，以下是正規化迴歸的懲罰項:</p>
 <ul>
-<li>美國壽險管理師, 2025</li>
-<li>國際專案管理師, 2024</li>
+<li>套索迴歸: $\lambda \sum |\beta_i|$</li>
+<li>脊迴歸: $\lambda \sum \beta_i^2$</li>
+<li>Elastic Net Regression: $\lambda_1 \sum |\beta_i| + \lambda_2 \sum \beta_i^2$</li>
+</ul>
+<p>我們先來看看這幾種正規化的效果差異:</p>
+<table>
+  <thead>
+      <tr>
+          <th>正規化迴歸</th>
+          <th>特性</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>套索回歸</td>
+          <td>1. 適用高維度資料 (p &raquo; n)<br>2. 可以自動選擇重要特徵</td>
+      </tr>
+      <tr>
+          <td>脊回歸</td>
+          <td>1. 適合處理共線性問題<br>2. 解具封閉形式 (可解析求解)</td>
+      </tr>
+      <tr>
+          <td>Elastic Net Regression</td>
+          <td>1. 同時具備: 特徵選擇 (L1) + 稳定性 (L2)，可在 L1 與 L2 間彈性調整，實務表現常優於純 Lasso 或 Ridge<br>2. 適合特徵高度相關、且數量多的資料集</td>
+      </tr>
+  </tbody>
+</table>
+<p>一般來說，比較常用的會是脊回歸 (Ridge Regression)，不會是 Elastic Net Regression，因為會考量模型的複雜度，Elastic Net Regression 很難去做超參數的實驗。</p>
+<h3 id="適用情境">適用情境</h3>
+<ul>
+<li>訓練誤差低，但測試誤差高 (Overfitting)</li>
+<li>權重變化劇烈，解釋困難</li>
+<li>高維資料下，模型不穩定</li>
+</ul>
+<h3 id="限制條件">限制條件</h3>
+<ul>
+<li>套索回歸
+<ul>
+<li>具備特徵選擇功能 (feature 可能會被壓縮為 0)</li>
+<li>解不具封閉解 (需使用坐標下降等方法)</li>
+<li>當特徵高度相關時，會隨機選擇其中一個而非平均分配</li>
+</ul>
+</li>
+<li>脊回歸
+<ul>
+<li>不具備特徵選擇功能 (feature 不會被壓縮為 0)</li>
+</ul>
+</li>
+<li>Elastic Net Regression
+<ul>
+<li>超參數實驗複雜</li>
+</ul>
+</li>
+</ul>
+<h2 id="模型實作">模型實作</h2>
+<h3 id="資料集介紹">資料集介紹</h3>
+<p>將使用經典的 Boston Housing Dataset 為例。由於 scikit-learn 已移除該資料集，我們改採自 Carnegie Mellon University 所提供的公開版本。樣本內容如下:</p>
+<p><img src="https://github.com/twcch/drive/raw/main/images/Image_2025-08-01_22-34-54.png" alt="Image_2025-08-01_22-34-54.png"></p>
+<p>欄位說明:</p>
+<ul>
+<li>CRIM: 每人平均犯罪率</li>
+<li>ZN: 區域住宅用地比例</li>
+<li>INDUS: 區域非零售商業用地比例</li>
+<li>CHAS: 查爾斯河虛擬變數 (1 = 河流旁, 0 = 其他)</li>
+<li>NOX: 一氧化氮濃度 (parts per 10 million)</li>
+<li>RM: 每個住宅的平均房間數</li>
+<li>AGE: 1940 年之前建造的自用住宅比例</li>
+<li>DIS: 到波士頓五個中心區域的加權距離</li>
+<li>RAD: 公路接近指數 (1 = 最接近, 24 = 最遠)</li>
+<li>TAX: 每 $10,000 的財產稅率</li>
+<li>PTRATIO: 學生與教師比例</li>
+<li>B: 1000(Bk - 0.63)^2, Bk = 區域黑人比例</li>
+<li>LSTAT: 區域人口中低收入者的比例</li>
+<li>MEDV: 自用住宅的中位數價格 (單位: $1000s)</li>
+</ul>
+<h3 id="程式實例">程式實例</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span><span class="p">,</span> <span class="n">StandardScaler</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_boston_housing_data</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://lib.stat.cmu.edu/datasets/boston&#34;</span>  <span class="c1"># Boston Housing Dataset from Carnegie Mellon University</span>
+</span></span><span class="line"><span class="cl">    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="mi">22</span><span class="p">:]</span>  <span class="c1"># 從第 23 行開始</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 每筆資料分為 2 行 → 共 506 筆 → 總共 1012 行</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">raw_data</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">line_1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">raw_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">line_2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">raw_data</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line_1</span> <span class="o">+</span> <span class="n">line_2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CRIM&#34;</span><span class="p">,</span>  <span class="c1"># 每人平均犯罪率</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ZN&#34;</span><span class="p">,</span>  <span class="c1"># 區域住宅用地比例</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;INDUS&#34;</span><span class="p">,</span>  <span class="c1"># 區域非零售商業用地比例</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CHAS&#34;</span><span class="p">,</span>  <span class="c1"># 查爾斯河虛擬變數 (1 = 河流旁, 0 = 其他)</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;NOX&#34;</span><span class="p">,</span>  <span class="c1"># 一氧化氮濃度 (parts per 10 million)</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RM&#34;</span><span class="p">,</span>  <span class="c1"># 每個住宅的平均房間數</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;AGE&#34;</span><span class="p">,</span>  <span class="c1"># 1940 年之前建造的自用住宅比例</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;DIS&#34;</span><span class="p">,</span>  <span class="c1"># 到波士頓五個中心區域的加權距離</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RAD&#34;</span><span class="p">,</span>  <span class="c1"># 公路接近指數 (1 = 最接近, 24 = 最遠)</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;TAX&#34;</span><span class="p">,</span>  <span class="c1"># 每 $10,000 的財產稅率</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;PTRATIO&#34;</span><span class="p">,</span>  <span class="c1"># 學生與教師比例</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;B&#34;</span><span class="p">,</span>  <span class="c1"># 1000(Bk - 0.63)^2, Bk = 區域黑人比例</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LSTAT&#34;</span><span class="p">,</span>  <span class="c1"># 區域人口中低收入者的比例</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;MEDV&#34;</span><span class="p">,</span>  <span class="c1"># 自用住宅的中位數價格 (單位: $1000s)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">df</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># ----- 讀取資料 -----</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">original_data</span> <span class="o">=</span> <span class="n">get_boston_housing_data</span><span class="p">()</span>  <span class="c1"># 讀取資料</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># ----- 資料前處理 -----</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">cleaned_data</span> <span class="o">=</span> <span class="n">original_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">## 因透過 print(cleaned_data.isnull().sum()) 檢查缺失值 (0 筆)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">## 且 Pearson 相關係數檢查，相關係數 &gt;= 0.8 (0 筆)    </span>
+</span></span><span class="line"><span class="cl">    <span class="c1">### correlation_matrix = cleaned_data.corr()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">### target_corr = correlation_matrix[&#39;MEDV&#39;]</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">### high_corr_features = target_corr[target_corr &gt; 0.8].drop(&#39;MEDV&#39;)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">### print(f&#34;與 target 高度正相關的欄位:&#34;, high_corr_features)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">## 故不做資料前處理</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># ----- 模型訓練 -----</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">## 資料分割</span>
+</span></span><span class="line"><span class="cl">    <span class="n">X</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;MEDV&#34;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="p">[</span><span class="s2">&#34;MEDV&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">## 建立模型</span>
+</span></span><span class="line"><span class="cl">    <span class="n">model</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;poly&#34;</span><span class="p">,</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;scaler&#34;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;lr&#34;</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="p">])</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">## 預測</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">## 評估</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">train_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">train_r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;train data 均方誤差 (MSE): </span><span class="si">{</span><span class="n">train_mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;train data 決定係數 R²: </span><span class="si">{</span><span class="n">train_r2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">test_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">test_r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;test data 均方誤差 (MSE): </span><span class="si">{</span><span class="n">test_mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;test data 決定係數 R²: </span><span class="si">{</span><span class="n">test_r2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></div><h3 id="執行結果">執行結果</h3>
+<ul>
+<li>train data 均方誤差 (MSE): 6.9778</li>
+<li>train data 決定係數 R²: 0.9197</li>
+<li>test data 均方誤差 (MSE): 11.2069</li>
+<li>test data 決定係數 R²: 0.8472</li>
+</ul>
+<h4 id="結果評估">結果評估</h4>
+<p>先回顧昨天多項式迴歸的結果:</p>
+<ul>
+<li>train data 均方誤差 (MSE): 5.1315</li>
+<li>train data 決定係數 R²: 0.9409</li>
+<li>test data 均方誤差 (MSE): 14.2573</li>
+<li>test data 決定係數 R²: 0.8056</li>
+</ul>
+<p>整體而言，Ridge 模型透過引入懲罰項，確實有效約束了參數大小，抑制模型過度依賴特定特徵，成功降低過擬合現象，這就是典型的 bias-variance tradeoff 成功案例: 增加 bias，降低 variance，整體泛化誤差下降。</p>
+<h4 id="下一步建議">下一步建議</h4>
+<p>如果接下來想要進一步優化模型效能與可解釋性，建議可從以下幾點推進:</p>
+<ul>
+<li>自動化正則化強度 (alpha) 調整: 目前 Ridge() 採用預設 $\alpha=1$，並非最佳選擇，需要透過實驗尋找最適 $\alpha$ 值。</li>
+<li>嘗試其他正則化方式: 使用 Lasso Regression 或 Elastic Net Regression 看是否有更好的效果。</li>
+<li>特徵工程精緻化: 目前直接使用 PolynomialFeatures 擴充所有變數的二次項，可能引入過多冗餘項，也許可以搭配 SelectKBest 或 Recursive Feature Elimination (RFE) 精簡高維特徵空間。</li>
+<li>引入模型穩定性驗證: 可已加入 k-fold cross-validation 評估模型在不同資料分割下的穩定性。</li>
+</ul>
+<h2 id="結語">結語</h2>
+<p>這篇是迴歸模型系列的首尾，補上了最後一塊重要拼圖「正則化」。這不只是技術手段，更是一種建模哲學: 我們不再一味追求最小誤差，而是學會控制模型自由度，讓模型在複雜度與泛化能力間取得平衡。</p>
+<p>正則化迴歸讓我們能在特徵維度增長、模型變得脆弱時，透過懲罰機制維持穩定與解釋性。這一策略並非萬靈丹，但卻是進入高維度問題、開始關注模型可解釋性與風險管理時不可或缺的工具。</p>
+<p>至此，我們已經完成線性迴歸、多項式擴展與正則化等主流回歸方法。這些模型的共通點在於它們假設輸入與輸出之間存在線性或可線性擴展的關係。下一階段，我們將把焦點移到分類問題的建模。</p>
+<h2 id="備註">備註</h2>
+<ul>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
 </ul>
 
         </div>
+    
+        <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this article</div>
+  </div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080201%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%204%29%20%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%bf%b4%e6%ad%b8%20%28Regularization%20Regression%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080201%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080201%2f&title=%28Day%204%29%20%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%bf%b4%e6%ad%b8%20%28Regularization%20Regression%29&summary=&source=%28Day%204%29%20%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%bf%b4%e6%ad%b8%20%28Regularization%20Regression%29"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080201%2f&amp;media=http%3a%2f%2ftwcch.io%2fimages%2fpost%2fcommon%2fdata_science_competition_01.png&amp;description=%28Day%204%29%20%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%bf%b4%e6%ad%b8%20%28Regularization%20Regression%29"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+  </ul>
+</div>
+
+        
+        <div class="post__navigation">
+          
+          <a class="prev" href="http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080101/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
+            <div class="post__nav-box">
+              <div class="post__nav post__nav__prev"><i class="ion ion-ios-arrow-back"></i> Previous
+                Page</div>
+              <h4 class="post__nav__title">(Day 3) 多項式迴歸 (Polynomial Regression)</h4>
+            </div>
+          </a>
+          
+          
+        </div>
+        
+
+        
+          
+<div id="disqus_thread" class="post__comments">
+  <div id="disqus_empty"></div>
+</div>
+
+<script>
+  function load_disqus() {
+    var disqus_shortname = 'anvod-studio-aditu',
+      is_disqus_empty = document.getElementById('disqus_empty'),
+      disqus_target = document.getElementById('disqus_thread'),
+      disqus_embed = document.createElement('script'),
+      disqus_hook = (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]);
+
+    if (disqus_target && is_disqus_empty) {
+      disqus_embed.type = 'text/javascript';
+      disqus_embed.async = true;
+      disqus_embed.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      disqus_hook.appendChild(disqus_embed);
+      is_disqus_empty.remove();
+    }
+  }
+
+  window.addEventListener('scroll', function (e) {
+    var currentScroll = document.scrollingElement.scrollTop;
+    var disqus_target = document.getElementById('disqus_thread');
+
+    if (disqus_target && (currentScroll > disqus_target.getBoundingClientRect().top - 150)) {
+      load_disqus('disqus_shortname');
+    }
+  }, false);
+
+</script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+        
+    
       </article>
       
-
     </div>
   </div>
+
+
 </div>
 
 
