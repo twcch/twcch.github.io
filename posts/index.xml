@@ -6,8 +6,15 @@
     <description>Recent content in Posts on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Fri, 01 Aug 2025 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 02 Aug 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="http://twcch.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>(Day 4) 正規化迴歸 (Regularization Regression)</title>
+      <link>http://twcch.io/posts/ironman_2025/articles_25080201/</link>
+      <pubDate>Sat, 02 Aug 2025 00:00:00 +0800</pubDate>
+      <guid>http://twcch.io/posts/ironman_2025/articles_25080201/</guid>
+      <description>&lt;p&gt;延續昨日的多項式迴歸中，我們觀察到一個現象: 雖然二次特徵提升了模型的表現，但同時也引入過擬合 (Overfitting) 風險。這是因為當特徵數量暴增，模型就會變得過於「貪婪」，試圖將每個資料點都擬合得極好，結果反而喪失了在新資料上的泛化 (Generalization) 能力。&lt;/p&gt;&#xA;&lt;p&gt;那怎麼辦? 就是在多項式迴歸的基礎上，限制模型的自由度，也就是今天要介紹的——正則化回歸 (Regularized Regression)。&lt;/p&gt;&#xA;&lt;p&gt;這是一種透過在模型參數加上限制，以提升泛化能力 (該操作並非為了提高準確度)，讓它在「解釋資料」與「控制複雜度」間取得平衡。最常見的三種正則化技術分別為:&lt;/p&gt;&#xA;&lt;p&gt;•&#x9;套索回歸 (Lasso Regression): L1 Normalization&#xA;•&#x9;脊回歸 (Ridge Regression): L2 Normalization&#xA;•&#x9;Elastic Net Regression: L1 + L2 Normalization&lt;/p&gt;&#xA;&lt;h2 id=&#34;模型介紹&#34;&gt;模型介紹&lt;/h2&gt;&#xA;&lt;h3 id=&#34;模型邏輯與核心概念&#34;&gt;模型邏輯與核心概念&lt;/h3&gt;&#xA;&lt;p&gt;先回到 Day 2 的線性迴歸，線性迴歸如何找出最佳的迴歸線?&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;先設定損失函數 (Cost Function) 假設為 $MSE = \frac{1}{2n} \sum\limits_{i=1}^{n} (y_{i} - \hat{y}_{i})^{2}$。&lt;/li&gt;&#xA;&lt;li&gt;再使用梯度下降 (Batch Gradient Descent) 來最小化損失函數。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;而所謂的正規化迴歸就是在損失函數加上懲罰項，而前述那些不同的正規化迴歸名稱，就只是懲罰項的差異而已，以下是正規化迴歸的懲罰項:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;套索迴歸: $\lambda \sum |\beta_i|$&lt;/li&gt;&#xA;&lt;li&gt;脊迴歸: $\lambda \sum \beta_i^2$&lt;/li&gt;&#xA;&lt;li&gt;Elastic Net Regression: $\lambda_1 \sum |\beta_i| + \lambda_2 \sum \beta_i^2$&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;我們先來看看這幾種正規化的效果差異:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>(Day 3) 多項式迴歸 (Polynomial Regression)</title>
       <link>http://twcch.io/posts/ironman_2025/articles_25080101/</link>
