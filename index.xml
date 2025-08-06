@@ -6,8 +6,15 @@
     <description>Recent content on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 05 Aug 2025 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 06 Aug 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="http://twcch.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>(Day 8) K-近鄰 (K-Nearest Neighbors)</title>
+      <link>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080601/</link>
+      <pubDate>Wed, 06 Aug 2025 00:00:00 +0800</pubDate>
+      <guid>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080601/</guid>
+      <description>&lt;h1 id=&#34;day-8-k-近鄰-k-nearest-neighbors&#34;&gt;(Day 8) K-近鄰 (K-Nearest Neighbors)&lt;/h1&gt;&#xA;&lt;p&gt;K-近鄰 (K-Nearest Neighbors; KNN) 是一種很直學的機器學習演算法。它沒有模型參數、沒有訓練過程，卻可以在某些任務上有不錯的效果。它的核心理念只有一句話: 「你是誰，由你周圍最像你的人決定。」&lt;/p&gt;&#xA;&lt;p&gt;K-近鄰的預測邏輯其實就是投票機制。當一筆新資料進來時，K-近鄰會計算它與訓練集中每一筆資料的距離，選出最近的 K 筆，根據這些鄰居的標籤來進行分類或回歸。&lt;/p&gt;&#xA;&lt;p&gt;舉個例子，如果你住進一個新的社區，而這個社區 5 戶人家中有 4 戶都是教師，那麼你很可能也被視為教師。這就是K-近鄰的基本邏輯：用「距離」定義相似度，用「投票」進行預測。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;無需訓練、實作簡單&lt;/li&gt;&#xA;&lt;li&gt;可處理多類別分類問題&lt;/li&gt;&#xA;&lt;li&gt;非常適合 baseline 模型或少量資料的場景&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;模型介紹&#34;&gt;模型介紹&lt;/h2&gt;&#xA;&lt;h3 id=&#34;模型邏輯與核心概念&#34;&gt;模型邏輯與核心概念&lt;/h3&gt;&#xA;&lt;h4 id=&#34;運作原理&#34;&gt;運作原理&lt;/h4&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;定義距離度量: 最常見的是歐幾里得距離。&lt;/li&gt;&#xA;&lt;li&gt;標準化資料: 避免不同特徵尺度影響距離計算。&lt;/li&gt;&#xA;&lt;li&gt;選擇 K 值: K 值太小容易過擬合，太大容易欠擬合。&lt;/li&gt;&#xA;&lt;li&gt;查找最近鄰: 找出距離最近的 K 筆資料。&lt;/li&gt;&#xA;&lt;li&gt;分類或回歸: 分類就多數決，回歸就取平均。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 id=&#34;模型評估指標&#34;&gt;模型評估指標&lt;/h4&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Accuracy: 整體正確率&lt;/li&gt;&#xA;&lt;li&gt;Precision / Recall / F1-score: 評估正例預測品質與召回&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;適用情境&#34;&gt;適用情境&lt;/h3&gt;&#xA;&lt;p&gt;•&#x9;資料量不大、特徵數量低的任務&#xA;•&#x9;資料本身具備明顯群聚性質&#xA;•&#x9;需要快速做出初步 baseline 的時候&lt;/p&gt;&#xA;&lt;h3 id=&#34;限制條件&#34;&gt;限制條件&lt;/h3&gt;&#xA;&lt;p&gt;•&#x9;計算成本高 (尤其資料量大時)&#xA;•&#x9;對資料標準化非常敏感&#xA;•&#x9;高維度下效果會大幅下降 (維度災難)&lt;/p&gt;&#xA;&lt;h2 id=&#34;模型實作&#34;&gt;模型實作&lt;/h2&gt;&#xA;&lt;p&gt;這個 K-近鄰的案例，我們來聊聊簡單的操參數實驗，我們先準備一組資料，這個過程就不過多敘述。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>(Day 7) 回顧迴歸：從線性邏輯到學習本質</title>
       <link>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080501/</link>
