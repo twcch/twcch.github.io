@@ -27,8 +27,7 @@
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="(Day 8) K-近鄰 (K-Nearest Neighbors) | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="(Day 8) K-近鄰 (K-Nearest Neighbors)
-K-近鄰 (K-Nearest Neighbors; KNN) 是一種很直學的機器學習演算法。它沒有模型參數、沒有訓練過程，卻可以在某些任務上有不錯的效果。它的核心理念只有一句話: 「你是誰，由你周圍最像你的人決定。」
+  <meta name="twitter:description" content="K-近鄰 (K-Nearest Neighbors; KNN) 是一種很直學的機器學習演算法。它沒有模型參數、沒有訓練過程，卻可以在某些任務上有不錯的效果。它的核心理念只有一句話: 「你是誰，由你周圍最像你的人決定。」
 K-近鄰的預測邏輯其實就是投票機制。當一筆新資料進來時，K-近鄰會計算它與訓練集中每一筆資料的距離，選出最近的 K 筆，根據這些鄰居的標籤來進行分類或回歸。
 舉個例子，如果你住進一個新的社區，而這個社區 5 戶人家中有 4 戶都是教師，那麼你很可能也被視為教師。這就是K-近鄰的基本邏輯：用「距離」定義相似度，用「投票」進行預測。
 
@@ -60,13 +59,34 @@ Precision / Recall / F1-score: 評估正例預測品質與召回
 •	對資料標準化非常敏感
 •	高維度下效果會大幅下降 (維度災難)
 模型實作
-這個 K-近鄰的案例，我們來聊聊簡單的操參數實驗，我們先準備一組資料，這個過程就不過多敘述。">
+這個 K-近鄰的案例，我們來聊聊簡單的操參數實驗，我們先準備一組資料，這個過程就不過多敘述。
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, classification_report
+from sklearn.model_selection import cross_val_score
+
+# 資料產生
+X, y = make_classification(
+    n_samples=1000, n_features=2, n_informative=2, n_redundant=0, 
+    n_clusters_per_class=1, class_sep=1.2, random_state=42
+)
+
+# 資料分割與標準化
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+scaler = StandardScaler()
+X_train_std = scaler.fit_transform(X_train)
+在建模的部分就跟之前不一樣，而是在外層寫了一個迴圈，因為 K-近鄰的 K 值，沒有人知道要用多少，K=1 表示我只抓最近的一個來比，完全就沒有那種投票的概念，所以 k 不應該選 1，再來是怕有平票的問題所以 k 會以奇數為主，而且 k 如果太小會有個問題，容易過擬合，越小越準，那怎麼辦? 所以這邊搭配了 Cross Validation 做設計，可以避免這個問題 (Cross Validation 請讀者自行找資源學習)。">
   <meta name="twitter:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
   <meta property="og:title" content="(Day 8) K-近鄰 (K-Nearest Neighbors) | 志謙&#39;s Blog">
-  <meta property="og:description" content="(Day 8) K-近鄰 (K-Nearest Neighbors)
-K-近鄰 (K-Nearest Neighbors; KNN) 是一種很直學的機器學習演算法。它沒有模型參數、沒有訓練過程，卻可以在某些任務上有不錯的效果。它的核心理念只有一句話: 「你是誰，由你周圍最像你的人決定。」
+  <meta property="og:description" content="K-近鄰 (K-Nearest Neighbors; KNN) 是一種很直學的機器學習演算法。它沒有模型參數、沒有訓練過程，卻可以在某些任務上有不錯的效果。它的核心理念只有一句話: 「你是誰，由你周圍最像你的人決定。」
 K-近鄰的預測邏輯其實就是投票機制。當一筆新資料進來時，K-近鄰會計算它與訓練集中每一筆資料的距離，選出最近的 K 筆，根據這些鄰居的標籤來進行分類或回歸。
 舉個例子，如果你住進一個新的社區，而這個社區 5 戶人家中有 4 戶都是教師，那麼你很可能也被視為教師。這就是K-近鄰的基本邏輯：用「距離」定義相似度，用「投票」進行預測。
 
@@ -98,7 +118,29 @@ Precision / Recall / F1-score: 評估正例預測品質與召回
 •	對資料標準化非常敏感
 •	高維度下效果會大幅下降 (維度災難)
 模型實作
-這個 K-近鄰的案例，我們來聊聊簡單的操參數實驗，我們先準備一組資料，這個過程就不過多敘述。">
+這個 K-近鄰的案例，我們來聊聊簡單的操參數實驗，我們先準備一組資料，這個過程就不過多敘述。
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, classification_report
+from sklearn.model_selection import cross_val_score
+
+# 資料產生
+X, y = make_classification(
+    n_samples=1000, n_features=2, n_informative=2, n_redundant=0, 
+    n_clusters_per_class=1, class_sep=1.2, random_state=42
+)
+
+# 資料分割與標準化
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+scaler = StandardScaler()
+X_train_std = scaler.fit_transform(X_train)
+在建模的部分就跟之前不一樣，而是在外層寫了一個迴圈，因為 K-近鄰的 K 值，沒有人知道要用多少，K=1 表示我只抓最近的一個來比，完全就沒有那種投票的概念，所以 k 不應該選 1，再來是怕有平票的問題所以 k 會以奇數為主，而且 k 如果太小會有個問題，容易過擬合，越小越準，那怎麼辦? 所以這邊搭配了 Cross Validation 做設計，可以避免這個問題 (Cross Validation 請讀者自行找資源學習)。">
   <meta property="og:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
@@ -297,8 +339,7 @@ Precision / Recall / F1-score: 評估正例預測品質與召回
         </div>
     
         <div class="post__content">
-          <h1 id="day-8-k-近鄰-k-nearest-neighbors">(Day 8) K-近鄰 (K-Nearest Neighbors)</h1>
-<p>K-近鄰 (K-Nearest Neighbors; KNN) 是一種很直學的機器學習演算法。它沒有模型參數、沒有訓練過程，卻可以在某些任務上有不錯的效果。它的核心理念只有一句話: 「你是誰，由你周圍最像你的人決定。」</p>
+          <p>K-近鄰 (K-Nearest Neighbors; KNN) 是一種很直學的機器學習演算法。它沒有模型參數、沒有訓練過程，卻可以在某些任務上有不錯的效果。它的核心理念只有一句話: 「你是誰，由你周圍最像你的人決定。」</p>
 <p>K-近鄰的預測邏輯其實就是投票機制。當一筆新資料進來時，K-近鄰會計算它與訓練集中每一筆資料的距離，選出最近的 K 筆，根據這些鄰居的標籤來進行分類或回歸。</p>
 <p>舉個例子，如果你住進一個新的社區，而這個社區 5 戶人家中有 4 戶都是教師，那麼你很可能也被視為教師。這就是K-近鄰的基本邏輯：用「距離」定義相似度，用「投票」進行預測。</p>
 <ul>
