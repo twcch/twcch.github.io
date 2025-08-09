@@ -27,7 +27,7 @@
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="(Day 11) 分類任務驗證指標 | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="今天要介紹的是常見的分類任務驗證指標，會以二元分類問題為例，因為多元分類也是用相同的指標，只是計算方式會有所不同而已，預計會用 2-3 天的篇幅介紹完，分類與迴歸任務的驗證指標
+  <meta name="twitter:description" content="今天要介紹的是常見的分類任務驗證指標，會以二元分類問題為例，因為多元分類也是用相同的指標，只是計算方式會有所不同而已，預計會用 2-3 天的篇幅介紹完，分類與迴歸任務的驗證指標；先給各位讀者一個正確的觀念，選指標時必須回到業務背景與資料特性，不要迷信某個數值越高越好，真正有價值的模型評估，是能在技術表現與業務需求之間找到平衡。
 指標介紹
 混淆矩陣 (Confusion Matrix)
 分類任務的所有核心指標，幾乎都來自 Confusion Matrix，它是用來統計分類模型在測試集上的結果，Confusion Matrix 在 Binary Classification 問題上，它是一個 2x2 表格:
@@ -66,7 +66,7 @@ $$">
 
   
   <meta property="og:title" content="(Day 11) 分類任務驗證指標 | 志謙&#39;s Blog">
-  <meta property="og:description" content="今天要介紹的是常見的分類任務驗證指標，會以二元分類問題為例，因為多元分類也是用相同的指標，只是計算方式會有所不同而已，預計會用 2-3 天的篇幅介紹完，分類與迴歸任務的驗證指標
+  <meta property="og:description" content="今天要介紹的是常見的分類任務驗證指標，會以二元分類問題為例，因為多元分類也是用相同的指標，只是計算方式會有所不同而已，預計會用 2-3 天的篇幅介紹完，分類與迴歸任務的驗證指標；先給各位讀者一個正確的觀念，選指標時必須回到業務背景與資料特性，不要迷信某個數值越高越好，真正有價值的模型評估，是能在技術表現與業務需求之間找到平衡。
 指標介紹
 混淆矩陣 (Confusion Matrix)
 分類任務的所有核心指標，幾乎都來自 Confusion Matrix，它是用來統計分類模型在測試集上的結果，Confusion Matrix 在 Binary Classification 問題上，它是一個 2x2 表格:
@@ -299,7 +299,7 @@ $$">
         </div>
     
         <div class="post__content">
-          <p>今天要介紹的是常見的分類任務驗證指標，會以二元分類問題為例，因為多元分類也是用相同的指標，只是計算方式會有所不同而已，預計會用 2-3 天的篇幅介紹完，分類與迴歸任務的驗證指標</p>
+          <p>今天要介紹的是常見的分類任務驗證指標，會以二元分類問題為例，因為多元分類也是用相同的指標，只是計算方式會有所不同而已，預計會用 2-3 天的篇幅介紹完，分類與迴歸任務的驗證指標；先給各位讀者一個正確的觀念，選指標時必須回到業務背景與資料特性，不要迷信某個數值越高越好，真正有價值的模型評估，是能在技術表現與業務需求之間找到平衡。</p>
 <h2 id="指標介紹">指標介紹</h2>
 <h3 id="混淆矩陣-confusion-matrix">混淆矩陣 (Confusion Matrix)</h3>
 <p>分類任務的所有核心指標，幾乎都來自 Confusion Matrix，它是用來統計分類模型在測試集上的結果，Confusion Matrix 在 Binary Classification 問題上，它是一個 2x2 表格:</p>
@@ -611,7 +611,7 @@ $$</p>
 </span></span><span class="line"><span class="cl"><span class="n">pr_auc</span> <span class="o">=</span> <span class="n">average_precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_proba</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&#34;macro&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Macro PR-AUC:&#34;</span><span class="p">,</span> <span class="n">pr_auc</span><span class="p">)</span>
 </span></span></code></pre></div><h2 id="結語">結語</h2>
-<p>混淆矩陣是分類評估的根基，所有指標都只是對它不同切面的計算與加權，選指標時必須回到業務背景與資料特性，不要迷信某個數值越高越好，真正有價值的模型評估，是能在技術表現與業務需求之間找到平衡。</p>
+<p>混淆矩陣是分類評估的根基，所有指標都只是對它不同切面的計算與加權，再次提醒，選指標時必須回到業務背景與資料特性，不要迷信某個數值越高越好，真正有價值的模型評估，是能在技術表現與業務需求之間找到平衡。</p>
 <h2 id="備註">備註</h2>
 <ul>
 <li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
