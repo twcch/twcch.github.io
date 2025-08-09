@@ -6,8 +6,15 @@
     <description>Recent content in IThome 鐵人賽 2025 on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Fri, 08 Aug 2025 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 09 Aug 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>(Day 11) 分類任務驗證指標</title>
+      <link>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080901/</link>
+      <pubDate>Sat, 09 Aug 2025 00:00:00 +0800</pubDate>
+      <guid>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080901/</guid>
+      <description>&lt;p&gt;今天要介紹的是常見的分類任務驗證指標，會以二元分類問題為例，因為多元分類也是用相同的指標，只是計算方式會有所不同而已，預計會用 2-3 天的篇幅介紹完，分類與迴歸任務的驗證指標&lt;/p&gt;&#xA;&lt;h2 id=&#34;指標介紹&#34;&gt;指標介紹&lt;/h2&gt;&#xA;&lt;h3 id=&#34;混淆矩陣-confusion-matrix&#34;&gt;混淆矩陣 (Confusion Matrix)&lt;/h3&gt;&#xA;&lt;p&gt;分類任務的所有核心指標，幾乎都來自 Confusion Matrix，它是用來統計分類模型在測試集上的結果，Confusion Matrix 在 Binary Classification 問題上，它是一個 2x2 表格:&lt;/p&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;&lt;/th&gt;&#xA;          &lt;th&gt;True Condition - Positive&lt;/th&gt;&#xA;          &lt;th&gt;True Condition - Negative&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Predict Outcome - Positive&lt;/td&gt;&#xA;          &lt;td&gt;TP (True Positve)&lt;/td&gt;&#xA;          &lt;td&gt;FP (False Positve) (誤報)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Predict Outcome - Negative&lt;/td&gt;&#xA;          &lt;td&gt;FN (False Negative) (漏報)&lt;/td&gt;&#xA;          &lt;td&gt;TN (True Negative)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;TP: 實際是 Positive，模型也預測 Positive (預測正確)&lt;/li&gt;&#xA;&lt;li&gt;TN: 實際是 Negative，模型也預測 Negative (預測正確)&lt;/li&gt;&#xA;&lt;li&gt;FP: 實際是 Negative，但模型預測 Positive (誤報 / 假警報) (Type I error)&lt;/li&gt;&#xA;&lt;li&gt;FN: 實際是 Positive，但模型預測 Negative (漏報 / 漏檢) (Type II error)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;accuracy-準確率&#34;&gt;Accuracy (準確率)&lt;/h3&gt;&#xA;&lt;p&gt;$$&#xA;Accuracy = \frac{TP + TN}{TP + TN + FP + FN}&#xA;$$&lt;/p&gt;</description>
+    </item>
     <item>
       <title>(Day 10) 支援向量機 (Support Vector Machine)</title>
       <link>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080801/</link>

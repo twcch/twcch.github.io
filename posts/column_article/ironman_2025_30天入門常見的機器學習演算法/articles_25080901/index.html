@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>Tags | 志謙&#39;s Blog</title>
+  <title>(Day 11) 分類任務驗證指標 | 志謙&#39;s Blog</title>
 
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="..." crossorigin="anonymous">
@@ -22,19 +22,86 @@
 
   <meta name="description" content="">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/tags/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Tags | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="志謙&#39;s Blog">
-  <meta name="twitter:image" content="http://twcch.io/">
+  <meta name="twitter:title" content="(Day 11) 分類任務驗證指標 | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="今天要介紹的是常見的分類任務驗證指標，會以二元分類問題為例，因為多元分類也是用相同的指標，只是計算方式會有所不同而已，預計會用 2-3 天的篇幅介紹完，分類與迴歸任務的驗證指標
+指標介紹
+混淆矩陣 (Confusion Matrix)
+分類任務的所有核心指標，幾乎都來自 Confusion Matrix，它是用來統計分類模型在測試集上的結果，Confusion Matrix 在 Binary Classification 問題上，它是一個 2x2 表格:
 
   
-  <meta property="og:title" content="Tags | 志謙&#39;s Blog">
-  <meta property="og:description" content="志謙&#39;s Blog">
-  <meta property="og:image" content="http://twcch.io/">
+      
+          
+          True Condition - Positive
+          True Condition - Negative
+      
+  
+  
+      
+          Predict Outcome - Positive
+          TP (True Positve)
+          FP (False Positve) (誤報)
+      
+      
+          Predict Outcome - Negative
+          FN (False Negative) (漏報)
+          TN (True Negative)
+      
+  
+
+
+TP: 實際是 Positive，模型也預測 Positive (預測正確)
+TN: 實際是 Negative，模型也預測 Negative (預測正確)
+FP: 實際是 Negative，但模型預測 Positive (誤報 / 假警報) (Type I error)
+FN: 實際是 Positive，但模型預測 Negative (漏報 / 漏檢) (Type II error)
+
+Accuracy (準確率)
+$$
+Accuracy = \frac{TP &#43; TN}{TP &#43; TN &#43; FP &#43; FN}
+$$">
+  <meta name="twitter:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
+
+  
+  <meta property="og:title" content="(Day 11) 分類任務驗證指標 | 志謙&#39;s Blog">
+  <meta property="og:description" content="今天要介紹的是常見的分類任務驗證指標，會以二元分類問題為例，因為多元分類也是用相同的指標，只是計算方式會有所不同而已，預計會用 2-3 天的篇幅介紹完，分類與迴歸任務的驗證指標
+指標介紹
+混淆矩陣 (Confusion Matrix)
+分類任務的所有核心指標，幾乎都來自 Confusion Matrix，它是用來統計分類模型在測試集上的結果，Confusion Matrix 在 Binary Classification 問題上，它是一個 2x2 表格:
+
+  
+      
+          
+          True Condition - Positive
+          True Condition - Negative
+      
+  
+  
+      
+          Predict Outcome - Positive
+          TP (True Positve)
+          FP (False Positve) (誤報)
+      
+      
+          Predict Outcome - Negative
+          FN (False Negative) (漏報)
+          TN (True Negative)
+      
+  
+
+
+TP: 實際是 Positive，模型也預測 Positive (預測正確)
+TN: 實際是 Negative，模型也預測 Negative (預測正確)
+FP: 實際是 Negative，但模型預測 Positive (誤報 / 假警報) (Type I error)
+FN: 實際是 Positive，但模型預測 Negative (漏報 / 漏檢) (Type II error)
+
+Accuracy (準確率)
+$$
+Accuracy = \frac{TP &#43; TN}{TP &#43; TN &#43; FP &#43; FN}
+$$">
+  <meta property="og:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -183,234 +250,466 @@
   <main class="content" aria-label="Content">
     
 
+
+
+
 <div class="container">
   <div class="row">
-    <div class="col col-8 col-d-10 col-m-12 push-m-0 push-d-1 push-2">
-      <div class="archive-box">
-        <span class="archive-counter">6 Articles</span>
-        <h1 class="archive-title">Tags</h1>
+    <div class="col col-12">
+      <div class="image-box">
+        <img class="post-image" src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 11) 分類任務驗證指標">
       </div>
     </div>
   </div>
 </div>
+
 
 <div class="container">
-  <div class="row grid">
 
+  <div class="row">
+    <div class="col col-8 col-d-10 push-2 push-d-1 col-t-12 push-t-0">
     
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
+      
+      <article class="post amimate">
 
-    
+        <div class="post__head">
+          
+          <div class="post__tags">
+            
+            <a href="http://twcch.io/tags/data-science/" class="post-tags__tag">Data Science</a>
+            
+            <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post-tags__tag">IThome 鐵人賽 2025</a>
+            
+            <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post-tags__tag">30 天入門常見的機器學習演算法</a>
+            
+          </div>
+          
 
-    <a class="article__image" href="/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/">
-      <img src="http://twcch.io/" alt="30 天入門常見的機器學習演算法">
-    </a>
+          <h1 class="post__title">(Day 11) 分類任務驗證指標</h1>
 
-    <div class="article__content">
+          <div class="post__meta">
+            <div class="post__author">
+              <a href="/about/" class="post__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="post__author-link">謝志謙</a>
+            </div>
+            <span class="post__date">
+              <time datetime=" 2025-08-09T00:00:00&#43;08:00">Aug 9, 2025</time>
+            </span>
+          </div>
 
-      <div class="article__bottom">
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/">30 天入門常見的機器學習演算法</a>
-      </h2>
-
-      <div class="article__excerpt"></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
         </div>
+    
+        <div class="post__content">
+          <p>今天要介紹的是常見的分類任務驗證指標，會以二元分類問題為例，因為多元分類也是用相同的指標，只是計算方式會有所不同而已，預計會用 2-3 天的篇幅介紹完，分類與迴歸任務的驗證指標</p>
+<h2 id="指標介紹">指標介紹</h2>
+<h3 id="混淆矩陣-confusion-matrix">混淆矩陣 (Confusion Matrix)</h3>
+<p>分類任務的所有核心指標，幾乎都來自 Confusion Matrix，它是用來統計分類模型在測試集上的結果，Confusion Matrix 在 Binary Classification 問題上，它是一個 2x2 表格:</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>True Condition - Positive</th>
+          <th>True Condition - Negative</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Predict Outcome - Positive</td>
+          <td>TP (True Positve)</td>
+          <td>FP (False Positve) (誤報)</td>
+      </tr>
+      <tr>
+          <td>Predict Outcome - Negative</td>
+          <td>FN (False Negative) (漏報)</td>
+          <td>TN (True Negative)</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>TP: 實際是 Positive，模型也預測 Positive (預測正確)</li>
+<li>TN: 實際是 Negative，模型也預測 Negative (預測正確)</li>
+<li>FP: 實際是 Negative，但模型預測 Positive (誤報 / 假警報) (Type I error)</li>
+<li>FN: 實際是 Positive，但模型預測 Negative (漏報 / 漏檢) (Type II error)</li>
+</ul>
+<h3 id="accuracy-準確率">Accuracy (準確率)</h3>
+<p>$$
+Accuracy = \frac{TP + TN}{TP + TN + FP + FN}
+$$</p>
+<p>就是看所有預測中，有多少的比例是預測正確的</p>
+<ul>
+<li>優點
+<ul>
+<li>簡單直觀</li>
+<li>如果類別分佈平均 (Positive / Negative 差不多)，可以直接解讀</li>
+</ul>
+</li>
+<li>缺點
+<ul>
+<li>如果類別分佈不平均 (e.g. 99% negative, 1% positive)，即使全猜 negative 也能有 99% accuracy → 失真</li>
+</ul>
+</li>
+<li>解讀
+<ul>
+<li>數值越高越好</li>
+</ul>
+</li>
+</ul>
+<h3 id="precision-精確率">Precision (精確率)</h3>
+<p>Precision 是防止誤報 (Type I error) 的指標，適合保守策略，但單獨用它評估模型非常危險，因為它忽略漏報 (Type II error) 問題</p>
+<p>$$
+Precision = \frac{TP}{TP + FP}
+$$</p>
+<p>優點:</p>
+<ul>
+<li>抑制誤報 (False Positive, FP, Type I error): 高 Precision 代表 False Positive 少，模型很少有 Type I error</li>
+<li>在類別極度不平衡時，比 Accuracy 更能反映模型的實際效益 (尤其 Positive 很稀有時)</li>
+</ul>
+<p>缺點:</p>
+<ul>
+<li>忽略漏報 (False Negative, FN, Type II error): 完全不管 FN，所以可能 Precision 很高，但可能 Recall 很低，對一些應用 (如詐欺偵測) 是致命的</li>
+<li>容易被閾值操控: 提高分類 threshold，確實可以提升 Precision，但會犧牲 Recall，導致模型只在「很確定」時才預測 Positive</li>
+<li>對整體表現無法單獨衡量: 單看 Precision 無法知道模型是否有廣泛檢出正例，需要搭配 Recall 或 F1-score</li>
+</ul>
+<p>適用高誤報成本場景:</p>
+<ul>
+<li>醫療診斷 (假陽性會導致不必要的侵入性檢查)</li>
+<li>信用評分 (誤把壞客戶當好客戶會造成損失)</li>
+</ul>
+<h3 id="recall-召回率--敏感度">Recall (召回率 / 敏感度)</h3>
+<p>Recall 是防止漏報 (Type II error) 的指標，適合在漏報代價高的情境使用，但單看 Recall 容易造成誤報氾濫，因此常和 Precision 一起使用 (F1-score 或 Precision-Recall 曲線)</p>
+<p>$$
+Recall = \frac{TP}{TP + FN}
+$$</p>
+<p>優點:</p>
+<ul>
+<li>抑制漏報 (False Negative, FN, Type II error): 高 Recall 代表 False Negative 少，模型很少有 Type II error</li>
+</ul>
+<p>缺點:</p>
+<ul>
+<li>忽略誤報 (False Positive, FP, Type I error): 完全不管 FN，所以可能 Recall 很高，但可能 Precision 很低</li>
+<li>容易被閾值操控:  降低分類 threshold，確實可以提升 Recall，但會犧牲 Precision (大量誤報)</li>
+</ul>
+<p>適用高漏報成本場景:</p>
+<p>(在安全性應用中重要，寧可多報也不能漏報)</p>
+<ul>
+<li>入侵檢測、工業故障預警</li>
+<li>癌症篩檢 (漏掉病人可能致命)、詐欺交易偵測 (漏掉會直接造成金錢損失)</li>
+</ul>
+<h3 id="f1-score">F1-score</h3>
+<p>Precision 與 Recall 的調和平均 (harmonic mean)，想同時兼顧 Precision (正例預測的正確性) 和 Recall (正例檢出的完整性) 時，用 F1-score 評估整體表現</p>
+<p>$$
+F1-score = 2 \times \frac{Precision \times Recall}{Precision + Recall}
+$$</p>
+<p>優點:</p>
+<ul>
+<li>平衡 Precision 與 Recall	適合同時重視誤報與漏報的情境</li>
+<li>對極端值敏感: 如果 Precision 或 Recall 有一個很低，F1 會反映這個缺陷 (不像普通平均可能被掩蓋)</li>
+<li>適用類別不平衡情境: 當 Positive 樣本很少時，比 Accuracy 更能反映模型品質</li>
+<li>簡單單一分數: 能把 Precision、Recall 濃縮成一個可比較的指標，方便模型之間比較</li>
+</ul>
+<p>缺點:</p>
+<ul>
+<li>權重固定: F1 默認 Precision 和 Recall 的重要性一樣，但實務中可能某一方更重要 (此時應用 Fβ-score 調整權重)</li>
+<li>無法反映全域表現: 只是一個閾值下的結果，無法取代 ROC-AUC / PR-AUC 那種「不同閾值下的整體能力評估」</li>
+<li>容易被閾值影響: 和 Precision、Recall 一樣，閾值選擇不同，F1 會大幅變動</li>
+<li>忽略 TN:	F1 完全不考慮 True Negative 的數量，對於負例判斷好壞的場景不敏感
+<ul>
+<li>優點
+<ul>
+<li>更專注稀有類別的檢測能力: TN 不會沖淡結果，F1 更能反映正例檢出的真實能力</li>
+<li>避免類別不平衡下的高分假象: 即使 99% TN，F1 也不會被刷高</li>
+</ul>
+</li>
+<li>缺點
+<ul>
+<li>低估模型在負例上的表現: 如果應用中 Negative 也很重要 (例如垃圾郵件分類中「正確放行正常郵件」很重要)，F1 可能低估模型價值</li>
+<li>不適用需要同時關注 TN 與 TP 的場景: 例如醫療檢測中，誤把健康人當病人 (FP) 雖然嚴重，但正確判斷健康人 (TN) 也是有價值的，這時 Accuracy、Specificity 可能更適合補充</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>典型使用場景:</p>
+<ul>
+<li>正例與負例數量差異大 (類別不平衡)</li>
+<li>誤報與漏報代價相近: 想用一個分數快速比較多個模型的整體分類能力</li>
+</ul>
+<h3 id="roc-auc-receiver-operating-characteristic---area-under-curve">ROC-AUC (Receiver Operating Characteristic - Area Under Curve)</h3>
+<p>ROC-AUC 是「排序能力」的評估指標，不是「預測正確率」，高 AUC 意味著模型傾向將正例分數排得比負例高，在類別極度不平衡的情況下，ROC-AUC 可能會給出過於樂觀的結果 (建議搭配 PR-AUC 與實際混淆矩陣分析)</p>
+<p>優點:</p>
+<ul>
+<li>閾值無關: 評估的是模型在所有可能閾值下的整體表現，不依賴特定 cut-off</li>
+<li>對類別比例不敏感 (相對 Accuracy): 在類別不平衡的情況下，仍可提供較穩定的比較依據</li>
+<li>可視化能力強: 曲線可以直觀看出模型在不同 FPR 下的 TPR 表現</li>
+<li>可用於排序模型: 特別適合用在需要排序預測分數 (如風險評分、推薦系統) 的場景</li>
+</ul>
+<p>缺點:</p>
+<ul>
+<li>在極端類別不平衡時可能過於樂觀: 因為 FPR 的分母是 TN，負例很多時，錯一些負例對 FPR 影響很小，AUC 看起來很好，但實際 Precision 可能很差</li>
+<li>無法反映預測機率的絕對校準性: 只看排序，不看分數本身準不準 (Calibration)</li>
+<li>不適合只關注正例的場景	如果漏報成本很高 (正例稀少)，PR-AUC 更合適</li>
+</ul>
+<p>典型使用場景:</p>
+<ul>
+<li>ROC-AUC 特別適合:
+<ul>
+<li>需要在不同閾值下比較模型整體區分能力</li>
+<li>正負例比例沒有極端不平衡</li>
+<li>想用單一數值比較排序能力 (例如風險評分模型)</li>
+</ul>
+</li>
+<li>不適用:
+<ul>
+<li>正例極少 (如詐欺偵測、罕見病檢測): 這時 PR-AUC 更能反映真實效果</li>
+</ul>
+</li>
+</ul>
+<h4 id="roc-receiver-operating-characteristic-曲線">ROC (Receiver Operating Characteristic) 曲線</h4>
+<p>當你改變分類閾值 (threshold) 時，模型會有不同的 TPR 與 FPR 組合，連起來就形成 ROC 曲線</p>
+<ul>
+<li>x 軸 (False Positive Rate; FPR)</li>
+<li>y 軸 (True Positive Rate; TPR), Recall</li>
+</ul>
+<h4 id="auc-area-under-curve-曲線">AUC (Area Under Curve) 曲線</h4>
+<p>ROC 曲線下的面積，就是 AUC</p>
+<p>數值範圍:</p>
+<ul>
+<li>0.9 ≦ AUC ≦ 1.0 (outstanding discrimination極佳的鑑別力)</li>
+<li>0.8 ≦ AUC ≦ 0.9 (excellent discrimination優良的鑑別力)</li>
+<li>0.7 ≦ AUC ≦ 0.8 (acceptable discrimination可接受的鑑別力)</li>
+<li>AUC = 0.5 (no discrimination 無鑑別力)，ROC剛好是對角線</li>
+<li>AUC &lt; 0.5 分類方向顛倒 (把預測反過來就變好)</li>
+</ul>
+<p>統計解讀:</p>
+<ul>
+<li>AUC 等於「隨機取一個正例與一個負例時，模型把正例排在負例前的機率」</li>
+</ul>
+<h3 id="pr-auc-precision-recall-auc">PR-AUC (Precision-Recall AUC)</h3>
+<p>PR-AUC 更貼近「找出稀有重要事件」的實務需求，在極度不平衡資料中，比 ROC-AUC 更真實，但它對正例比例非常敏感，因此跨資料集比較要小心</p>
+<p>優點:</p>
+<ul>
+<li>適合稀有事件偵測: 在正例比例極低時，ROC-AUC 可能樂觀，但 PR-AUC 會真實反映誤報多寡</li>
+<li>直接反映 Precision-Recall 平衡: Precision 和 Recall 都直接與實務成本相關 (誤報 vs 漏報)</li>
+<li>曲線解讀直觀: 看得出在不同檢出率下，Precision 是否快速下降</li>
+</ul>
+<p>缺點:</p>
+<ul>
+<li>受正例比例影響大: 正例比例變化會改變基準線 (baseline precision)，不同數據集之間不一定可直接比較</li>
+<li>變動性高: 當正例數很少時，Precision 和 Recall 在高閾值下的波動大，曲線可能很抖</li>
+<li>計算結果不如 ROC 平滑: 因為 Precision 與 Recall 對少量樣本非常敏感</li>
+</ul>
+<p>典型使用場景:</p>
+<ul>
+<li>PR-AUC 特別適合:
+<ul>
+<li>正例極少 (詐欺偵測、罕見病診斷)</li>
+<li>關注誤報與漏報的平衡</li>
+<li>想知道模型在不同 Recall 水平下能維持多少 Precision</li>
+</ul>
+</li>
+<li>不適用:
+<ul>
+<li>正負例比例接近且負例表現也同等重要 → ROC-AUC 更全面</li>
+</ul>
+</li>
+</ul>
+<h4 id="pr-曲線">PR 曲線</h4>
+<p>當你改變分類閾值 (threshold) 時，模型會有不同的 TPR 與 FPR 組合，連起來就形成 ROC 曲線</p>
+<ul>
+<li>x 軸 (Precision)</li>
+<li>y 軸 (Recall)</li>
+</ul>
+<h4 id="auc-area-under-curve-曲線-1">AUC (Area Under Curve) 曲線</h4>
+<p>PR 曲線下的面積</p>
+<ul>
+<li>範圍 0 ~ 1 (越接近 1 越好)</li>
+</ul>
+<h3 id="pr-auc-vs-roc-auc-的差異">PR-AUC vs ROC-AUC 的差異</h3>
+<table>
+  <thead>
+      <tr>
+          <th>特性</th>
+          <th>ROC-AUC</th>
+          <th>PR-AUC</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>橫軸</td>
+          <td>FPR</td>
+          <td>Recall</td>
+      </tr>
+      <tr>
+          <td>縱軸</td>
+          <td>TPR</td>
+          <td>Precision</td>
+      </tr>
+      <tr>
+          <td>適用場景</td>
+          <td>類別分布均衡或中等不平衡</td>
+          <td>極度類別不平衡 (正例極少)</td>
+      </tr>
+      <tr>
+          <td>敏感度</td>
+          <td>對負例數量不太敏感</td>
+          <td>對正例數量敏感 (專注於正例表現)</td>
+      </tr>
+      <tr>
+          <td>誤報反映</td>
+          <td>間接反映 (FPR)</td>
+          <td>直接反映 (Precision)</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="程式實例">程式實例</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">ConfusionMatrixDisplay</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">average_precision_score</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 資料</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 模型</span>
+</span></span><span class="line"><span class="cl"><span class="n">clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="s2">&#34;scaler&#34;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="s2">&#34;svc&#34;</span><span class="p">,</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s2">&#34;rbf&#34;</span><span class="p">,</span> <span class="n">probability</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 預測</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_proba</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 混淆矩陣</span>
+</span></span><span class="line"><span class="cl"><span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">disp</span> <span class="o">=</span> <span class="n">ConfusionMatrixDisplay</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="o">=</span><span class="n">cm</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">disp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 評估</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Accuracy:&#34;</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Macro Precision:&#34;</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&#34;macro&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Macro Recall:&#34;</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&#34;macro&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Macro F1:&#34;</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&#34;macro&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Weighted F1:&#34;</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&#34;weighted&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 多分類 ROC-AUC</span>
+</span></span><span class="line"><span class="cl"><span class="n">roc_auc</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_proba</span><span class="p">,</span> <span class="n">multi_class</span><span class="o">=</span><span class="s2">&#34;ovr&#34;</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&#34;macro&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Macro ROC-AUC:&#34;</span><span class="p">,</span> <span class="n">roc_auc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 多分類 PR-AUC</span>
+</span></span><span class="line"><span class="cl"><span class="n">pr_auc</span> <span class="o">=</span> <span class="n">average_precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_proba</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&#34;macro&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Macro PR-AUC:&#34;</span><span class="p">,</span> <span class="n">pr_auc</span><span class="p">)</span>
+</span></span></code></pre></div><h2 id="結語">結語</h2>
+<p>混淆矩陣是分類評估的根基，所有指標都只是對它不同切面的計算與加權，選指標時必須回到業務背景與資料特性，不要迷信某個數值越高越好，真正有價值的模型評估，是能在技術表現與業務需求之間找到平衡。</p>
+<h2 id="備註">備註</h2>
+<ul>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
+</ul>
 
-        <time class="article__date" datetime="2025-08-09T00:00:00&#43;08:00">
-          Aug 9, 2025
-        </time>
-      </div>
+        </div>
+    
+        <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this article</div>
+  </div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080901%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2011%29%20%e5%88%86%e9%a1%9e%e4%bb%bb%e5%8b%99%e9%a9%97%e8%ad%89%e6%8c%87%e6%a8%99&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080901%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
 
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080901%2f&title=%28Day%2011%29%20%e5%88%86%e9%a1%9e%e4%bb%bb%e5%8b%99%e9%a9%97%e8%ad%89%e6%8c%87%e6%a8%99&summary=&source=%28Day%2011%29%20%e5%88%86%e9%a1%9e%e4%bb%bb%e5%8b%99%e9%a9%97%e8%ad%89%e6%8c%87%e6%a8%99"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080901%2f&amp;media=http%3a%2f%2ftwcch.io%2fimages%2fpost%2fcommon%2fdata_science_competition_01.png&amp;description=%28Day%2011%29%20%e5%88%86%e9%a1%9e%e4%bb%bb%e5%8b%99%e9%a9%97%e8%ad%89%e6%8c%87%e6%a8%99"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+  </ul>
+</div>
+
+        
+        <div class="post__navigation">
+          
+          <a class="prev" href="http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080801/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
+            <div class="post__nav-box">
+              <div class="post__nav post__nav__prev"><i class="ion ion-ios-arrow-back"></i> Previous
+                Page</div>
+              <h4 class="post__nav__title">(Day 10) 支援向量機 (Support Vector Machine)</h4>
+            </div>
+          </a>
+          
+          
+        </div>
+        
+
+        
+          
+<div id="disqus_thread" class="post__comments">
+  <div id="disqus_empty"></div>
+</div>
+
+<script>
+  function load_disqus() {
+    var disqus_shortname = 'anvod-studio-aditu',
+      is_disqus_empty = document.getElementById('disqus_empty'),
+      disqus_target = document.getElementById('disqus_thread'),
+      disqus_embed = document.createElement('script'),
+      disqus_hook = (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]);
+
+    if (disqus_target && is_disqus_empty) {
+      disqus_embed.type = 'text/javascript';
+      disqus_embed.async = true;
+      disqus_embed.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      disqus_hook.appendChild(disqus_embed);
+      is_disqus_empty.remove();
+    }
+  }
+
+  window.addEventListener('scroll', function (e) {
+    var currentScroll = document.scrollingElement.scrollTop;
+    var disqus_target = document.getElementById('disqus_thread');
+
+    if (disqus_target && (currentScroll > disqus_target.getBoundingClientRect().top - 150)) {
+      load_disqus('disqus_shortname');
+    }
+  }, false);
+
+</script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+        
+    
+      </article>
+      
     </div>
   </div>
+
+
 </div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
 
-    
 
-    <a class="article__image" href="/tags/data-science/">
-      <img src="http://twcch.io/" alt="Data Science">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/tags/data-science/">Data Science</a>
-      </h2>
-
-      <div class="article__excerpt"></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-09T00:00:00&#43;08:00">
-          Aug 9, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/">
-      <img src="http://twcch.io/" alt="IThome 鐵人賽 2025">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/">IThome 鐵人賽 2025</a>
-      </h2>
-
-      <div class="article__excerpt"></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-09T00:00:00&#43;08:00">
-          Aug 9, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/tags/heart-notes/">
-      <img src="http://twcch.io/" alt="Heart Notes">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/tags/heart-notes/">Heart Notes</a>
-      </h2>
-
-      <div class="article__excerpt"></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-16T00:00:00&#43;08:00">
-          Jul 16, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/tags/project/">
-      <img src="http://twcch.io/" alt="Project">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/tags/project/">Project</a>
-      </h2>
-
-      <div class="article__excerpt"></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-09T00:00:00&#43;08:00">
-          Jul 9, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/tags/business-analysis/">
-      <img src="http://twcch.io/" alt="Business Analysis">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/tags/business-analysis/">Business Analysis</a>
-      </h2>
-
-      <div class="article__excerpt"></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-04-07T00:00:00&#43;08:00">
-          Apr 7, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-
-  </div>
-</div>
 
 
   </main>
