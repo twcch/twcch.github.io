@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>(Day 14) 決策樹 (Decision Tree) | 志謙&#39;s Blog</title>
+  <title>(Day 16) K-Means | 志謙&#39;s Blog</title>
 
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="..." crossorigin="anonymous">
@@ -26,291 +26,363 @@
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="(Day 14) 決策樹 (Decision Tree) | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="Decision Tree 是一種基於條件分支的監督式學習模型，可用於分類與回歸任務。它透過一連串的「是/否」判斷，將資料不斷切分成更純淨的子集，最終形成一個由節點 (Nodes) 與邊 (Edges) 組成的樹狀結構。直覺上，你可以將它想成一連串的決策問句:  「乘客的性別是女性嗎？」 → 是 → 「年齡是否小於 12 歲？」 → 是 → 存活機率高。其最大特色是 可解釋性高，每個決策規則都能清楚對應到特徵與閾值，便於與非技術背景的利害關係人溝通。
+  <meta name="twitter:title" content="(Day 16) K-Means | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="今天本來要說極限梯度提升數 (XGBoost)，但是我發現後面的篇幅可能快不夠了，今天開始的內容會調整成，無監督式學習 → 深度學習 → 如果有時間再回來補充 One-Class SVM 跟 XGBoost。
+K-Means 是一種無監督學習中的聚類演算法，旨在將資料分為 K 個群集，使同一群集內的資料點之間相似度最高，而不同群集之間相似度最低。到這邊可能會有疑問，分類跟聚類差在哪? 分類要有標籤 (監督式學習)，而聚類不需要有標籤 (無監督式學習)，可以想像一下原始資料，如果要訓練分類模型，你在訓練之前就會知道每筆資料要分成什麼類別，但是到了聚類，你的資料完全分不出來該筆資料要分成什麼類別，只知道我這組資料要分成幾群。
 模型介紹
 模型邏輯與核心概念
-決策樹 (Decision Tree) 是一種監督式學習演算法，可用於分類與回歸任務。模型的結構類似一棵樹，由節點 (Node) 與分支 (Branch) 組成
 
-內部節點 (Internal Node):  表示一個特徵的條件判斷
-葉節點 (Leaf Node):  對應模型的預測結果 (類別或數值)
+依照 K 的數量，隨機選出 K 個資料點作為初始質心 (centroids)
+每筆資料進行窮舉比較與 centroids 的歐幾里得距離，與距離最小的 centroids 為一群
+計算每個群集的平均值，為該群集所有資料點的 centroids
+重複指派與更新步驟，直到 centroids 不再顯著變動或達到最大迭代次數
 
-建構過程是「貪婪式遞迴分割 (Greedy Recursive Splitting)」，根據資訊增益 (Information Gain) 最大或吉尼不純度 (Gini Impurity) 最小的原則進行
-模型建構說明
-決策樹使用「貪婪演算法」建構模型，並無使用梯度下降類優化器，主要特徵:
+Cost Function
+$$
+J = \sum_{i=1}^K \sum_{x \in C_i} |x - \mu_i|^2
+$$
+肘部法
 
-每次分裂僅考慮當前最佳特徵 (不做全局最優)
-使用遞迴方式構建整棵樹
-終止條件包括:
+K 值得決定，可以依照肘部法進行判斷
 
-節點樣本數過小
-不再能提升資訊增益
-最大深度限制
+K-Means 的核心弱點
 
+初始中心點敏感問題 (Initialization Sensitivity): 當第一次初始化結果不好，導致誤差就很大，且沒辦法降低怎麼辦，即使資料本身具有明確的群聚特徵，也可能被錯誤分群，可以透過 K-Means&#43;&#43; 解決
 
-節點的特徵選擇:  每次分裂節點時，會從候選特徵中選出最佳分割特徵，其依據如下:
-
-DecisionTreeClassifier
-
-Information Gain
-Gini Impurity
-
-
-DecisionTreeRegressor
-
-MSE 減少量
-MAE 減少量
+替代隨機初始化，透過機率機制選出「較分散」的中心點
+能顯著降低收斂到壞解的風險，推薦預設使用
+sklearn 中內建支援: KMeans(init=&lsquo;k-means&#43;&#43;&rsquo;) (預設就是這個)
 
 
 
-
-
-模型優缺點
+優缺點
 
   
       
           優點
           缺點
-          
       
   
   
       
-          模型結構直觀，可視覺化
-          易過擬合，尤其是深樹
-          
+          計算快速、可擴展、易平行
+          需先給定 k，對初始化與尺度敏感
       
       
-          對特徵縮放不敏感 (不需標準化)
-          對資料擾動敏感 (小變化可能改變樹結構)
-          
+          易實作、常作為分群基線
+          假設球形/大小相近群，對離群值非常敏感
       
       
-          可處理數值與類別型特徵
-          單棵樹表現有限 (通常需配合集成方法如 Random Forest, XGBoost)
-          
-      
-      
-          支援特徵重要性評估
-          分裂偏向多取值的特徵 (需調整)
-          
+          可搭配 MiniBatchKMeans 處理大規模資料
+          對非凸形狀或重疊群表現不佳
       
   
 
 模型實作
-程式實例
-import matplotlib.pyplot as plt
+# Day 16 - K-Means on Iris (library dataset, full pipeline)
+import seaborn as sns
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier, plot_tree
+import numpy as np
 
-# 讀取資料
-data = pd.read_csv(&#39;titanic.csv&#39;)
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans, MiniBatchKMeans
+from sklearn.metrics import silhouette_score, adjusted_rand_score
+from sklearn.model_selection import ParameterGrid
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
 
-# 特徵與標籤
-features = [&#34;Pclass&#34;, &#34;Sex&#34;, &#34;Age&#34;, &#34;Fare&#34;]
-data = data.dropna(subset=[&#34;Age&#34;])  # 簡單處理缺失值
-X = pd.get_dummies(data[features])  # One-Hot Encoding
-y = data[&#34;Survived&#34;]
+# 1) 載入資料（無需外部檔案）
+iris = sns.load_dataset(&#34;iris&#34;)  # columns: sepal_length, sepal_width, petal_length, petal_width, species
+X = iris.drop(columns=[&#34;species&#34;])
+y_true = iris[&#34;species&#34;]  # 僅作對照評估，不參與訓練（非監督）
 
-# 訓練 / 測試切分
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# 2) 工程化 Pipeline：標準化 &#43; KMeans
+def make_kmeans_pipe(k):
+    return Pipeline([
+        (&#34;scaler&#34;, StandardScaler()),
+        (&#34;kmeans&#34;, KMeans(
+            n_clusters=k,
+            init=&#34;k-means&#43;&#43;&#34;,
+            n_init=10,            # 提升穩定性
+            max_iter=300,
+            random_state=42
+        ))
+    ])
 
-# 建立模型
-clf = DecisionTreeClassifier(
-    criterion=&#39;gini&#39;, 
-    max_depth=4, 
-    random_state=42
-)
-clf.fit(X_train, y_train)
+# 3) 用 Elbow 與 Silhouette 輔助挑 k
+K_RANGE = range(2, 8)  # Iris 通常 2~6 即可觀察
+wcss, sils = [], []
+for k in K_RANGE:
+    pipe = make_kmeans_pipe(k).fit(X)
+    labels = pipe.named_steps[&#34;kmeans&#34;].labels_
+    wcss.append(pipe.named_steps[&#34;kmeans&#34;].inertia_)  # WCSS
+    sils.append(silhouette_score(pipe.named_steps[&#34;scaler&#34;].transform(X), labels))
 
-# 評估
-print(&#34;Accuracy: &#34;, clf.score(X_test, y_test))
+print(&#34;k vs WCSS:&#34;, list(zip(K_RANGE, [round(v,2) for v in wcss])))
+print(&#34;k vs Silhouette:&#34;, list(zip(K_RANGE, [round(v,4) for v in sils])))
 
-# 視覺化
-plt.figure(figsize=(15,8))
-plot_tree(clf, feature_names=X.columns, class_names=[&#39;Not Survived&#39;, &#39;Survived&#39;], filled=True)
-plt.show()
+# 4) 以 k=3 做主實驗（Iris 有 3 個物種）
+k = 3
+pipe = make_kmeans_pipe(k)
+pipe.fit(X)
+labels = pipe.named_steps[&#34;kmeans&#34;].labels_
+
+# 5) 非監督情境下的評估指標
+sil = silhouette_score(pipe.named_steps[&#34;scaler&#34;].transform(X), labels)
+# 若有真實標籤可作參考（僅作對照用）：Adjusted Rand Index（ARI）
+ari = adjusted_rand_score(y_true, labels)
+print(f&#34;Silhouette Score (k={k}): {sil:.4f}&#34;)
+print(f&#34;Adjusted Rand Index vs species (k={k}): {ari:.4f}&#34;)
+
+# 6) 簡易視覺化（PCA 2D）
+Z = PCA(n_components=2, random_state=42).fit_transform(pipe.named_steps[&#34;scaler&#34;].transform(X))
+plt.figure(figsize=(6,5))
+plt.scatter(Z[:,0], Z[:,1], c=labels, s=30)
+plt.title(f&#34;K-Means (k={k}) on Iris (PCA 2D)\nSilhouette={sil:.3f}, ARI={ari:.3f}&#34;)
+plt.xlabel(&#34;PC1&#34;); plt.ylabel(&#34;PC2&#34;)
+plt.tight_layout(); plt.show()
+
+# 7) 進一步：MiniBatchKMeans（大資料時）
+mbk_pipe = Pipeline([
+    (&#34;scaler&#34;, StandardScaler()),
+    (&#34;kmeans&#34;, MiniBatchKMeans(
+        n_clusters=k, init=&#34;k-means&#43;&#43;&#34;, random_state=42, batch_size=64, n_init=10
+    ))
+]).fit(X)
+mbk_labels = mbk_pipe.named_steps[&#34;kmeans&#34;].labels_
+mbk_sil = silhouette_score(mbk_pipe.named_steps[&#34;scaler&#34;].transform(X), mbk_labels)
+print(f&#34;MiniBatchKMeans Silhouette (k={k}): {mbk_sil:.4f}&#34;)
+
+# 8) 粗略參數掃描（僅示例）
+grid = {&#34;kmeans__n_clusters&#34;: [2,3,4], &#34;kmeans__n_init&#34;: [10,20]}
+best = None
+for params in ParameterGrid(grid):
+    candidate = Pipeline([(&#34;scaler&#34;, StandardScaler()), (&#34;kmeans&#34;, KMeans(init=&#34;k-means&#43;&#43;&#34;, max_iter=300, random_state=42))])
+    candidate.set_params(**params).fit(X)
+    labels_c = candidate.named_steps[&#34;kmeans&#34;].labels_
+    sil_c = silhouette_score(candidate.named_steps[&#34;scaler&#34;].transform(X), labels_c)
+    if (best is None) or (sil_c &gt; best[0]):
+        best = (sil_c, params)
+print(&#34;Best by Silhouette:&#34;, round(best[0],4), best[1])
 執行結果
-Test Accuracy:  0.8268
-              precision    recall  f1-score   support
-
-           0     0.8319    0.9000    0.8646       110
-           1     0.8167    0.7101    0.7597        69
-
-    accuracy                         0.8268       179
-   macro avg     0.8243    0.8051    0.8122       179
-weighted avg     0.8260    0.8268    0.8242       179
-
-
-Top Feature Importances: 
-         feature  importance
- adult_male_True    0.588332
-     class_Third    0.185393
-            fare    0.156906
-             age    0.045641
-    class_Second    0.014194
-           parch    0.009535
-      embarked_S    0.000000
-     alone_False    0.000000
-adult_male_False    0.000000
-       who_woman    0.000000
-         who_man    0.000000
-       who_child    0.000000
-      embarked_C    0.000000
-      embarked_Q    0.000000
-     class_First    0.000000
+k vs WCSS: [(2, 222.36), (3, 139.82), (4, 114.09), (5, 90.93), (6, 81.54), (7, 72.63)]
+k vs Silhouette: [(2, 0.5818), (3, 0.4599), (4, 0.3869), (5, 0.3459), (6, 0.3171), (7, 0.3202)]
+Silhouette Score (k=3): 0.4599
+Adjusted Rand Index vs species (k=3): 0.6201
+MiniBatchKMeans Silhouette (k=3): 0.4557
+Best by Silhouette: 0.5818 {&#39;kmeans__n_clusters&#39;: 2, &#39;kmeans__n_init
 結果評估
 
-模型整體準確率尚可，但對「正類 (存活)」的 召回率僅 0.71，代表仍有 約 29% 的存活樣本被判成未存活；若你的業務目標重視「找出潛在存活 (或正類)」的能力，現況偏保守。
-對正類的錯失 (FN) 明顯多於將負類誤判為正類 (FP)。在成本敏感情境（例如「漏抓到的正類」代價更高）下，這是不理想的權衡。
+k 值與 WCSS (Elbow 法)
 
-下一步建議
-我會先驗證的 6 件事:">
+WCSS 從 k=2 到 k=7 持續下降，且在 k=3 後下降幅度明顯趨緩 (139.82 → 114.09 → 90.93)
+這符合 Elbow 法的典型訊號：在 k=3 之後邊際效益降低
+
+
+k 值與 Silhouette Score
+
+最高分在 k=2 (0.5818)，k=3 則下降至 0.4599，之後隨著 k 增加分數持續降低
+這意味著，若純粹以內部結構 (凝聚度與分離度) 來衡量，k=2 是最緊密且分離度最佳的分群方案
+但 Silhouette 只考慮幾何結構，不代表與實際業務需求或真實標籤完全對應
+
+
+k=3 的分群表現
+
+Silhouette Score = 0.4599，屬於中等偏弱的群分離度，叢集邊界可能有交疊
+Adjusted Rand Index (ARI) = 0.6201：與真實 species 標籤有中等對齊程度，表示模型能部分復原真實物種結構，但錯分率仍顯著
+與 MiniBatchKMeans 相比，Silhouette 由 0.4599 降至 0.4557，效能損失不大，但 MiniBatch 在大資料場景下能顯著節省計算時間
+
+
+參數搜尋結果
+
+最佳 Silhouette 方案是 k=2, n_init=10 (0.5818)
+這與初步觀察一致，顯示在內部幾何結構下，Iris 資料更適合分成兩群，但這不符合三物種的領域先驗
+
+
+
+結語
+K-Means 在本篇範例中清楚展現了它作為無監督式分群基線的特性: 計算效率高、實作簡單、可快速提供初步的資料結構洞察。透過 Elbow 法與 Silhouette Score 的雙重分析，我們觀察到在 Iris 資料集上，幾何結構最佳的分群數為 k=2，而符合領域知識的 k=3 則在分群品質上略顯不足，顯示資料真實分佈與理想分群假設之間的落差。這種差異提醒我們，分群結果不能僅憑數學指標決定，還需結合業務目標與領域先驗做取捨。">
   <meta name="twitter:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
-  <meta property="og:title" content="(Day 14) 決策樹 (Decision Tree) | 志謙&#39;s Blog">
-  <meta property="og:description" content="Decision Tree 是一種基於條件分支的監督式學習模型，可用於分類與回歸任務。它透過一連串的「是/否」判斷，將資料不斷切分成更純淨的子集，最終形成一個由節點 (Nodes) 與邊 (Edges) 組成的樹狀結構。直覺上，你可以將它想成一連串的決策問句:  「乘客的性別是女性嗎？」 → 是 → 「年齡是否小於 12 歲？」 → 是 → 存活機率高。其最大特色是 可解釋性高，每個決策規則都能清楚對應到特徵與閾值，便於與非技術背景的利害關係人溝通。
+  <meta property="og:title" content="(Day 16) K-Means | 志謙&#39;s Blog">
+  <meta property="og:description" content="今天本來要說極限梯度提升數 (XGBoost)，但是我發現後面的篇幅可能快不夠了，今天開始的內容會調整成，無監督式學習 → 深度學習 → 如果有時間再回來補充 One-Class SVM 跟 XGBoost。
+K-Means 是一種無監督學習中的聚類演算法，旨在將資料分為 K 個群集，使同一群集內的資料點之間相似度最高，而不同群集之間相似度最低。到這邊可能會有疑問，分類跟聚類差在哪? 分類要有標籤 (監督式學習)，而聚類不需要有標籤 (無監督式學習)，可以想像一下原始資料，如果要訓練分類模型，你在訓練之前就會知道每筆資料要分成什麼類別，但是到了聚類，你的資料完全分不出來該筆資料要分成什麼類別，只知道我這組資料要分成幾群。
 模型介紹
 模型邏輯與核心概念
-決策樹 (Decision Tree) 是一種監督式學習演算法，可用於分類與回歸任務。模型的結構類似一棵樹，由節點 (Node) 與分支 (Branch) 組成
 
-內部節點 (Internal Node):  表示一個特徵的條件判斷
-葉節點 (Leaf Node):  對應模型的預測結果 (類別或數值)
+依照 K 的數量，隨機選出 K 個資料點作為初始質心 (centroids)
+每筆資料進行窮舉比較與 centroids 的歐幾里得距離，與距離最小的 centroids 為一群
+計算每個群集的平均值，為該群集所有資料點的 centroids
+重複指派與更新步驟，直到 centroids 不再顯著變動或達到最大迭代次數
 
-建構過程是「貪婪式遞迴分割 (Greedy Recursive Splitting)」，根據資訊增益 (Information Gain) 最大或吉尼不純度 (Gini Impurity) 最小的原則進行
-模型建構說明
-決策樹使用「貪婪演算法」建構模型，並無使用梯度下降類優化器，主要特徵:
+Cost Function
+$$
+J = \sum_{i=1}^K \sum_{x \in C_i} |x - \mu_i|^2
+$$
+肘部法
 
-每次分裂僅考慮當前最佳特徵 (不做全局最優)
-使用遞迴方式構建整棵樹
-終止條件包括:
+K 值得決定，可以依照肘部法進行判斷
 
-節點樣本數過小
-不再能提升資訊增益
-最大深度限制
+K-Means 的核心弱點
 
+初始中心點敏感問題 (Initialization Sensitivity): 當第一次初始化結果不好，導致誤差就很大，且沒辦法降低怎麼辦，即使資料本身具有明確的群聚特徵，也可能被錯誤分群，可以透過 K-Means&#43;&#43; 解決
 
-節點的特徵選擇:  每次分裂節點時，會從候選特徵中選出最佳分割特徵，其依據如下:
-
-DecisionTreeClassifier
-
-Information Gain
-Gini Impurity
-
-
-DecisionTreeRegressor
-
-MSE 減少量
-MAE 減少量
+替代隨機初始化，透過機率機制選出「較分散」的中心點
+能顯著降低收斂到壞解的風險，推薦預設使用
+sklearn 中內建支援: KMeans(init=&lsquo;k-means&#43;&#43;&rsquo;) (預設就是這個)
 
 
 
-
-
-模型優缺點
+優缺點
 
   
       
           優點
           缺點
-          
       
   
   
       
-          模型結構直觀，可視覺化
-          易過擬合，尤其是深樹
-          
+          計算快速、可擴展、易平行
+          需先給定 k，對初始化與尺度敏感
       
       
-          對特徵縮放不敏感 (不需標準化)
-          對資料擾動敏感 (小變化可能改變樹結構)
-          
+          易實作、常作為分群基線
+          假設球形/大小相近群，對離群值非常敏感
       
       
-          可處理數值與類別型特徵
-          單棵樹表現有限 (通常需配合集成方法如 Random Forest, XGBoost)
-          
-      
-      
-          支援特徵重要性評估
-          分裂偏向多取值的特徵 (需調整)
-          
+          可搭配 MiniBatchKMeans 處理大規模資料
+          對非凸形狀或重疊群表現不佳
       
   
 
 模型實作
-程式實例
-import matplotlib.pyplot as plt
+# Day 16 - K-Means on Iris (library dataset, full pipeline)
+import seaborn as sns
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier, plot_tree
+import numpy as np
 
-# 讀取資料
-data = pd.read_csv(&#39;titanic.csv&#39;)
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans, MiniBatchKMeans
+from sklearn.metrics import silhouette_score, adjusted_rand_score
+from sklearn.model_selection import ParameterGrid
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
 
-# 特徵與標籤
-features = [&#34;Pclass&#34;, &#34;Sex&#34;, &#34;Age&#34;, &#34;Fare&#34;]
-data = data.dropna(subset=[&#34;Age&#34;])  # 簡單處理缺失值
-X = pd.get_dummies(data[features])  # One-Hot Encoding
-y = data[&#34;Survived&#34;]
+# 1) 載入資料（無需外部檔案）
+iris = sns.load_dataset(&#34;iris&#34;)  # columns: sepal_length, sepal_width, petal_length, petal_width, species
+X = iris.drop(columns=[&#34;species&#34;])
+y_true = iris[&#34;species&#34;]  # 僅作對照評估，不參與訓練（非監督）
 
-# 訓練 / 測試切分
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# 2) 工程化 Pipeline：標準化 &#43; KMeans
+def make_kmeans_pipe(k):
+    return Pipeline([
+        (&#34;scaler&#34;, StandardScaler()),
+        (&#34;kmeans&#34;, KMeans(
+            n_clusters=k,
+            init=&#34;k-means&#43;&#43;&#34;,
+            n_init=10,            # 提升穩定性
+            max_iter=300,
+            random_state=42
+        ))
+    ])
 
-# 建立模型
-clf = DecisionTreeClassifier(
-    criterion=&#39;gini&#39;, 
-    max_depth=4, 
-    random_state=42
-)
-clf.fit(X_train, y_train)
+# 3) 用 Elbow 與 Silhouette 輔助挑 k
+K_RANGE = range(2, 8)  # Iris 通常 2~6 即可觀察
+wcss, sils = [], []
+for k in K_RANGE:
+    pipe = make_kmeans_pipe(k).fit(X)
+    labels = pipe.named_steps[&#34;kmeans&#34;].labels_
+    wcss.append(pipe.named_steps[&#34;kmeans&#34;].inertia_)  # WCSS
+    sils.append(silhouette_score(pipe.named_steps[&#34;scaler&#34;].transform(X), labels))
 
-# 評估
-print(&#34;Accuracy: &#34;, clf.score(X_test, y_test))
+print(&#34;k vs WCSS:&#34;, list(zip(K_RANGE, [round(v,2) for v in wcss])))
+print(&#34;k vs Silhouette:&#34;, list(zip(K_RANGE, [round(v,4) for v in sils])))
 
-# 視覺化
-plt.figure(figsize=(15,8))
-plot_tree(clf, feature_names=X.columns, class_names=[&#39;Not Survived&#39;, &#39;Survived&#39;], filled=True)
-plt.show()
+# 4) 以 k=3 做主實驗（Iris 有 3 個物種）
+k = 3
+pipe = make_kmeans_pipe(k)
+pipe.fit(X)
+labels = pipe.named_steps[&#34;kmeans&#34;].labels_
+
+# 5) 非監督情境下的評估指標
+sil = silhouette_score(pipe.named_steps[&#34;scaler&#34;].transform(X), labels)
+# 若有真實標籤可作參考（僅作對照用）：Adjusted Rand Index（ARI）
+ari = adjusted_rand_score(y_true, labels)
+print(f&#34;Silhouette Score (k={k}): {sil:.4f}&#34;)
+print(f&#34;Adjusted Rand Index vs species (k={k}): {ari:.4f}&#34;)
+
+# 6) 簡易視覺化（PCA 2D）
+Z = PCA(n_components=2, random_state=42).fit_transform(pipe.named_steps[&#34;scaler&#34;].transform(X))
+plt.figure(figsize=(6,5))
+plt.scatter(Z[:,0], Z[:,1], c=labels, s=30)
+plt.title(f&#34;K-Means (k={k}) on Iris (PCA 2D)\nSilhouette={sil:.3f}, ARI={ari:.3f}&#34;)
+plt.xlabel(&#34;PC1&#34;); plt.ylabel(&#34;PC2&#34;)
+plt.tight_layout(); plt.show()
+
+# 7) 進一步：MiniBatchKMeans（大資料時）
+mbk_pipe = Pipeline([
+    (&#34;scaler&#34;, StandardScaler()),
+    (&#34;kmeans&#34;, MiniBatchKMeans(
+        n_clusters=k, init=&#34;k-means&#43;&#43;&#34;, random_state=42, batch_size=64, n_init=10
+    ))
+]).fit(X)
+mbk_labels = mbk_pipe.named_steps[&#34;kmeans&#34;].labels_
+mbk_sil = silhouette_score(mbk_pipe.named_steps[&#34;scaler&#34;].transform(X), mbk_labels)
+print(f&#34;MiniBatchKMeans Silhouette (k={k}): {mbk_sil:.4f}&#34;)
+
+# 8) 粗略參數掃描（僅示例）
+grid = {&#34;kmeans__n_clusters&#34;: [2,3,4], &#34;kmeans__n_init&#34;: [10,20]}
+best = None
+for params in ParameterGrid(grid):
+    candidate = Pipeline([(&#34;scaler&#34;, StandardScaler()), (&#34;kmeans&#34;, KMeans(init=&#34;k-means&#43;&#43;&#34;, max_iter=300, random_state=42))])
+    candidate.set_params(**params).fit(X)
+    labels_c = candidate.named_steps[&#34;kmeans&#34;].labels_
+    sil_c = silhouette_score(candidate.named_steps[&#34;scaler&#34;].transform(X), labels_c)
+    if (best is None) or (sil_c &gt; best[0]):
+        best = (sil_c, params)
+print(&#34;Best by Silhouette:&#34;, round(best[0],4), best[1])
 執行結果
-Test Accuracy:  0.8268
-              precision    recall  f1-score   support
-
-           0     0.8319    0.9000    0.8646       110
-           1     0.8167    0.7101    0.7597        69
-
-    accuracy                         0.8268       179
-   macro avg     0.8243    0.8051    0.8122       179
-weighted avg     0.8260    0.8268    0.8242       179
-
-
-Top Feature Importances: 
-         feature  importance
- adult_male_True    0.588332
-     class_Third    0.185393
-            fare    0.156906
-             age    0.045641
-    class_Second    0.014194
-           parch    0.009535
-      embarked_S    0.000000
-     alone_False    0.000000
-adult_male_False    0.000000
-       who_woman    0.000000
-         who_man    0.000000
-       who_child    0.000000
-      embarked_C    0.000000
-      embarked_Q    0.000000
-     class_First    0.000000
+k vs WCSS: [(2, 222.36), (3, 139.82), (4, 114.09), (5, 90.93), (6, 81.54), (7, 72.63)]
+k vs Silhouette: [(2, 0.5818), (3, 0.4599), (4, 0.3869), (5, 0.3459), (6, 0.3171), (7, 0.3202)]
+Silhouette Score (k=3): 0.4599
+Adjusted Rand Index vs species (k=3): 0.6201
+MiniBatchKMeans Silhouette (k=3): 0.4557
+Best by Silhouette: 0.5818 {&#39;kmeans__n_clusters&#39;: 2, &#39;kmeans__n_init
 結果評估
 
-模型整體準確率尚可，但對「正類 (存活)」的 召回率僅 0.71，代表仍有 約 29% 的存活樣本被判成未存活；若你的業務目標重視「找出潛在存活 (或正類)」的能力，現況偏保守。
-對正類的錯失 (FN) 明顯多於將負類誤判為正類 (FP)。在成本敏感情境（例如「漏抓到的正類」代價更高）下，這是不理想的權衡。
+k 值與 WCSS (Elbow 法)
 
-下一步建議
-我會先驗證的 6 件事:">
+WCSS 從 k=2 到 k=7 持續下降，且在 k=3 後下降幅度明顯趨緩 (139.82 → 114.09 → 90.93)
+這符合 Elbow 法的典型訊號：在 k=3 之後邊際效益降低
+
+
+k 值與 Silhouette Score
+
+最高分在 k=2 (0.5818)，k=3 則下降至 0.4599，之後隨著 k 增加分數持續降低
+這意味著，若純粹以內部結構 (凝聚度與分離度) 來衡量，k=2 是最緊密且分離度最佳的分群方案
+但 Silhouette 只考慮幾何結構，不代表與實際業務需求或真實標籤完全對應
+
+
+k=3 的分群表現
+
+Silhouette Score = 0.4599，屬於中等偏弱的群分離度，叢集邊界可能有交疊
+Adjusted Rand Index (ARI) = 0.6201：與真實 species 標籤有中等對齊程度，表示模型能部分復原真實物種結構，但錯分率仍顯著
+與 MiniBatchKMeans 相比，Silhouette 由 0.4599 降至 0.4557，效能損失不大，但 MiniBatch 在大資料場景下能顯著節省計算時間
+
+
+參數搜尋結果
+
+最佳 Silhouette 方案是 k=2, n_init=10 (0.5818)
+這與初步觀察一致，顯示在內部幾何結構下，Iris 資料更適合分成兩群，但這不符合三物種的領域先驗
+
+
+
+結語
+K-Means 在本篇範例中清楚展現了它作為無監督式分群基線的特性: 計算效率高、實作簡單、可快速提供初步的資料結構洞察。透過 Elbow 法與 Silhouette Score 的雙重分析，我們觀察到在 Iris 資料集上，幾何結構最佳的分群數為 k=2，而符合領域知識的 k=3 則在分群品質上略顯不足，顯示資料真實分佈與理想分群假設之間的落差。這種差異提醒我們，分群結果不能僅憑數學指標決定，還需結合業務目標與領域先驗做取捨。">
   <meta property="og:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
@@ -467,7 +539,7 @@ adult_male_False    0.000000
   <div class="row">
     <div class="col col-12">
       <div class="image-box">
-        <img class="post-image" src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 14) 決策樹 (Decision Tree)">
+        <img class="post-image" src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 16) K-Means">
       </div>
     </div>
   </div>
@@ -495,198 +567,197 @@ adult_male_False    0.000000
           </div>
           
 
-          <h1 class="post__title">(Day 14) 決策樹 (Decision Tree)</h1>
+          <h1 class="post__title">(Day 16) K-Means</h1>
 
           <div class="post__meta">
             <div class="post__author">
               <a href="/about/" class="post__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="post__author-link">謝志謙</a>
             </div>
             <span class="post__date">
-              <time datetime=" 2025-08-12T00:00:00&#43;08:00">Aug 12, 2025</time>
+              <time datetime=" 2025-08-13T00:00:00&#43;08:00">Aug 13, 2025</time>
             </span>
           </div>
 
         </div>
     
         <div class="post__content">
-          <p>Decision Tree 是一種基於條件分支的監督式學習模型，可用於分類與回歸任務。它透過一連串的「是/否」判斷，將資料不斷切分成更純淨的子集，最終形成一個由節點 (Nodes) 與邊 (Edges) 組成的樹狀結構。直覺上，你可以將它想成一連串的決策問句:  「乘客的性別是女性嗎？」 → 是 → 「年齡是否小於 12 歲？」 → 是 → 存活機率高。其最大特色是 可解釋性高，每個決策規則都能清楚對應到特徵與閾值，便於與非技術背景的利害關係人溝通。</p>
+          <p>今天本來要說極限梯度提升數 (XGBoost)，但是我發現後面的篇幅可能快不夠了，今天開始的內容會調整成，無監督式學習 → 深度學習 → 如果有時間再回來補充 One-Class SVM 跟 XGBoost。</p>
+<p>K-Means 是一種無監督學習中的聚類演算法，旨在將資料分為 K 個群集，使同一群集內的資料點之間相似度最高，而不同群集之間相似度最低。到這邊可能會有疑問，分類跟聚類差在哪? 分類要有標籤 (監督式學習)，而聚類不需要有標籤 (無監督式學習)，可以想像一下原始資料，如果要訓練分類模型，你在訓練之前就會知道每筆資料要分成什麼類別，但是到了聚類，你的資料完全分不出來該筆資料要分成什麼類別，只知道我這組資料要分成幾群。</p>
 <h2 id="模型介紹">模型介紹</h2>
 <h3 id="模型邏輯與核心概念">模型邏輯與核心概念</h3>
-<p>決策樹 (Decision Tree) 是一種監督式學習演算法，可用於分類與回歸任務。模型的結構類似一棵樹，由節點 (Node) 與分支 (Branch) 組成</p>
 <ul>
-<li>內部節點 (Internal Node):  表示一個特徵的條件判斷</li>
-<li>葉節點 (Leaf Node):  對應模型的預測結果 (類別或數值)</li>
+<li>依照 K 的數量，隨機選出 K 個資料點作為初始質心 (centroids)</li>
+<li>每筆資料進行窮舉比較與 centroids 的歐幾里得距離，與距離最小的 centroids 為一群</li>
+<li>計算每個群集的平均值，為該群集所有資料點的 centroids</li>
+<li>重複指派與更新步驟，直到 centroids 不再顯著變動或達到最大迭代次數</li>
 </ul>
-<p>建構過程是「貪婪式遞迴分割 (Greedy Recursive Splitting)」，根據資訊增益 (Information Gain) 最大或吉尼不純度 (Gini Impurity) 最小的原則進行</p>
-<h4 id="模型建構說明">模型建構說明</h4>
-<p>決策樹使用「貪婪演算法」建構模型，並無使用梯度下降類優化器，主要特徵:</p>
+<h4 id="cost-function">Cost Function</h4>
+<p>$$
+J = \sum_{i=1}^K \sum_{x \in C_i} |x - \mu_i|^2
+$$</p>
+<h4 id="肘部法">肘部法</h4>
 <ul>
-<li>每次分裂僅考慮當前最佳特徵 (不做全局最優)</li>
-<li>使用遞迴方式構建整棵樹</li>
-<li>終止條件包括:
-<ul>
-<li>節點樣本數過小</li>
-<li>不再能提升資訊增益</li>
-<li>最大深度限制</li>
+<li>K 值得決定，可以依照肘部法進行判斷</li>
 </ul>
-</li>
-<li>節點的特徵選擇:  每次分裂節點時，會從候選特徵中選出最佳分割特徵，其依據如下:
+<h4 id="k-means-的核心弱點">K-Means 的核心弱點</h4>
 <ul>
-<li>DecisionTreeClassifier
+<li>初始中心點敏感問題 (Initialization Sensitivity): 當第一次初始化結果不好，導致誤差就很大，且沒辦法降低怎麼辦，即使資料本身具有明確的群聚特徵，也可能被錯誤分群，可以透過 K-Means++ 解決
 <ul>
-<li>Information Gain</li>
-<li>Gini Impurity</li>
-</ul>
-</li>
-<li>DecisionTreeRegressor
-<ul>
-<li>MSE 減少量</li>
-<li>MAE 減少量</li>
+<li>替代隨機初始化，透過機率機制選出「較分散」的中心點</li>
+<li>能顯著降低收斂到壞解的風險，推薦預設使用</li>
+<li>sklearn 中內建支援: KMeans(init=&lsquo;k-means++&rsquo;) (預設就是這個)</li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<h3 id="模型優缺點">模型優缺點</h3>
+<h3 id="優缺點">優缺點</h3>
 <table>
   <thead>
       <tr>
           <th>優點</th>
           <th>缺點</th>
-          <th></th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td>模型結構直觀，可視覺化</td>
-          <td>易過擬合，尤其是深樹</td>
-          <td></td>
+          <td>計算快速、可擴展、易平行</td>
+          <td>需先給定 k，對初始化與尺度敏感</td>
       </tr>
       <tr>
-          <td>對特徵縮放不敏感 (不需標準化)</td>
-          <td>對資料擾動敏感 (小變化可能改變樹結構)</td>
-          <td></td>
+          <td>易實作、常作為分群基線</td>
+          <td>假設球形/大小相近群，對離群值非常敏感</td>
       </tr>
       <tr>
-          <td>可處理數值與類別型特徵</td>
-          <td>單棵樹表現有限 (通常需配合集成方法如 Random Forest, XGBoost)</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>支援特徵重要性評估</td>
-          <td>分裂偏向多取值的特徵 (需調整)</td>
-          <td></td>
+          <td>可搭配 MiniBatchKMeans 處理大規模資料</td>
+          <td>對非凸形狀或重疊群表現不佳</td>
       </tr>
   </tbody>
 </table>
 <h2 id="模型實作">模型實作</h2>
-<h3 id="程式實例">程式實例</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Day 16 - K-Means on Iris (library dataset, full pipeline)</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span><span class="p">,</span> <span class="n">plot_tree</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 讀取資料</span>
-</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;titanic.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span><span class="p">,</span> <span class="n">MiniBatchKMeans</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">silhouette_score</span><span class="p">,</span> <span class="n">adjusted_rand_score</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">ParameterGrid</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 特徵與標籤</span>
-</span></span><span class="line"><span class="cl"><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Pclass&#34;</span><span class="p">,</span> <span class="s2">&#34;Sex&#34;</span><span class="p">,</span> <span class="s2">&#34;Age&#34;</span><span class="p">,</span> <span class="s2">&#34;Fare&#34;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;Age&#34;</span><span class="p">])</span>  <span class="c1"># 簡單處理缺失值</span>
-</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">features</span><span class="p">])</span>  <span class="c1"># One-Hot Encoding</span>
-</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&#34;Survived&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 1) 載入資料（無需外部檔案）</span>
+</span></span><span class="line"><span class="cl"><span class="n">iris</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&#34;iris&#34;</span><span class="p">)</span>  <span class="c1"># columns: sepal_length, sepal_width, petal_length, petal_width, species</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;species&#34;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_true</span> <span class="o">=</span> <span class="n">iris</span><span class="p">[</span><span class="s2">&#34;species&#34;</span><span class="p">]</span>  <span class="c1"># 僅作對照評估，不參與訓練（非監督）</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 訓練 / 測試切分</span>
-</span></span><span class="line"><span class="cl"><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2) 工程化 Pipeline：標準化 + KMeans</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">make_kmeans_pipe</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Pipeline</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;scaler&#34;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;kmeans&#34;</span><span class="p">,</span> <span class="n">KMeans</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">init</span><span class="o">=</span><span class="s2">&#34;k-means++&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>            <span class="c1"># 提升穩定性</span>
+</span></span><span class="line"><span class="cl">            <span class="n">max_iter</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+</span></span><span class="line"><span class="cl">        <span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">])</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 建立模型</span>
-</span></span><span class="line"><span class="cl"><span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span> 
-</span></span><span class="line"><span class="cl">    <span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> 
-</span></span><span class="line"><span class="cl">    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 3) 用 Elbow 與 Silhouette 輔助挑 k</span>
+</span></span><span class="line"><span class="cl"><span class="n">K_RANGE</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>  <span class="c1"># Iris 通常 2~6 即可觀察</span>
+</span></span><span class="line"><span class="cl"><span class="n">wcss</span><span class="p">,</span> <span class="n">sils</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">K_RANGE</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pipe</span> <span class="o">=</span> <span class="n">make_kmeans_pipe</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">labels</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;kmeans&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">labels_</span>
+</span></span><span class="line"><span class="cl">    <span class="n">wcss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;kmeans&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">inertia_</span><span class="p">)</span>  <span class="c1"># WCSS</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sils</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">silhouette_score</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;scaler&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">labels</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 評估</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Accuracy: &#34;</span><span class="p">,</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;k vs WCSS:&#34;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">K_RANGE</span><span class="p">,</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">wcss</span><span class="p">])))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;k vs Silhouette:&#34;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">K_RANGE</span><span class="p">,</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sils</span><span class="p">])))</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 視覺化</span>
-</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="n">plot_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Not Survived&#39;</span><span class="p">,</span> <span class="s1">&#39;Survived&#39;</span><span class="p">],</span> <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 4) 以 k=3 做主實驗（Iris 有 3 個物種）</span>
+</span></span><span class="line"><span class="cl"><span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">pipe</span> <span class="o">=</span> <span class="n">make_kmeans_pipe</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">labels</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;kmeans&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">labels_</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 5) 非監督情境下的評估指標</span>
+</span></span><span class="line"><span class="cl"><span class="n">sil</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;scaler&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">labels</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 若有真實標籤可作參考（僅作對照用）：Adjusted Rand Index（ARI）</span>
+</span></span><span class="line"><span class="cl"><span class="n">ari</span> <span class="o">=</span> <span class="n">adjusted_rand_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Silhouette Score (k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">sil</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Adjusted Rand Index vs species (k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">ari</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 6) 簡易視覺化（PCA 2D）</span>
+</span></span><span class="line"><span class="cl"><span class="n">Z</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;scaler&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Z</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">Z</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;K-Means (k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">) on Iris (PCA 2D)</span><span class="se">\n</span><span class="s2">Silhouette=</span><span class="si">{</span><span class="n">sil</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, ARI=</span><span class="si">{</span><span class="n">ari</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&#34;PC1&#34;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&#34;PC2&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 7) 進一步：MiniBatchKMeans（大資料時）</span>
+</span></span><span class="line"><span class="cl"><span class="n">mbk_pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="s2">&#34;scaler&#34;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="s2">&#34;kmeans&#34;</span><span class="p">,</span> <span class="n">MiniBatchKMeans</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s2">&#34;k-means++&#34;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span>
+</span></span><span class="line"><span class="cl">    <span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">])</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">mbk_labels</span> <span class="o">=</span> <span class="n">mbk_pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;kmeans&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">labels_</span>
+</span></span><span class="line"><span class="cl"><span class="n">mbk_sil</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">mbk_pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;scaler&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">mbk_labels</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;MiniBatchKMeans Silhouette (k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">mbk_sil</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 8) 粗略參數掃描（僅示例）</span>
+</span></span><span class="line"><span class="cl"><span class="n">grid</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;kmeans__n_clusters&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="s2">&#34;kmeans__n_init&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">]}</span>
+</span></span><span class="line"><span class="cl"><span class="n">best</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">params</span> <span class="ow">in</span> <span class="n">ParameterGrid</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">candidate</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s2">&#34;scaler&#34;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s2">&#34;kmeans&#34;</span><span class="p">,</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s2">&#34;k-means++&#34;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">))])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">candidate</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">labels_c</span> <span class="o">=</span> <span class="n">candidate</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;kmeans&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">labels_</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sil_c</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">candidate</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;scaler&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">labels_c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">best</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">sil_c</span> <span class="o">&gt;</span> <span class="n">best</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">best</span> <span class="o">=</span> <span class="p">(</span><span class="n">sil_c</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Best by Silhouette:&#34;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">best</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">4</span><span class="p">),</span> <span class="n">best</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </span></span></code></pre></div><h3 id="執行結果">執行結果</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Test Accuracy:  0.8268
-</span></span><span class="line"><span class="cl">              precision    recall  f1-score   support
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">           0     0.8319    0.9000    0.8646       110
-</span></span><span class="line"><span class="cl">           1     0.8167    0.7101    0.7597        69
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    accuracy                         0.8268       179
-</span></span><span class="line"><span class="cl">   macro avg     0.8243    0.8051    0.8122       179
-</span></span><span class="line"><span class="cl">weighted avg     0.8260    0.8268    0.8242       179
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">Top Feature Importances: 
-</span></span><span class="line"><span class="cl">         feature  importance
-</span></span><span class="line"><span class="cl"> adult_male_True    0.588332
-</span></span><span class="line"><span class="cl">     class_Third    0.185393
-</span></span><span class="line"><span class="cl">            fare    0.156906
-</span></span><span class="line"><span class="cl">             age    0.045641
-</span></span><span class="line"><span class="cl">    class_Second    0.014194
-</span></span><span class="line"><span class="cl">           parch    0.009535
-</span></span><span class="line"><span class="cl">      embarked_S    0.000000
-</span></span><span class="line"><span class="cl">     alone_False    0.000000
-</span></span><span class="line"><span class="cl">adult_male_False    0.000000
-</span></span><span class="line"><span class="cl">       who_woman    0.000000
-</span></span><span class="line"><span class="cl">         who_man    0.000000
-</span></span><span class="line"><span class="cl">       who_child    0.000000
-</span></span><span class="line"><span class="cl">      embarked_C    0.000000
-</span></span><span class="line"><span class="cl">      embarked_Q    0.000000
-</span></span><span class="line"><span class="cl">     class_First    0.000000
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">k vs WCSS: [(2, 222.36), (3, 139.82), (4, 114.09), (5, 90.93), (6, 81.54), (7, 72.63)]
+</span></span><span class="line"><span class="cl">k vs Silhouette: [(2, 0.5818), (3, 0.4599), (4, 0.3869), (5, 0.3459), (6, 0.3171), (7, 0.3202)]
+</span></span><span class="line"><span class="cl">Silhouette Score (k=3): 0.4599
+</span></span><span class="line"><span class="cl">Adjusted Rand Index vs species (k=3): 0.6201
+</span></span><span class="line"><span class="cl">MiniBatchKMeans Silhouette (k=3): 0.4557
+</span></span><span class="line"><span class="cl">Best by Silhouette: 0.5818 {&#39;kmeans__n_clusters&#39;: 2, &#39;kmeans__n_init
 </span></span></code></pre></div><h4 id="結果評估">結果評估</h4>
 <ul>
-<li>模型整體準確率尚可，但對「正類 (存活)」的 召回率僅 0.71，代表仍有 約 29% 的存活樣本被判成未存活；若你的業務目標重視「找出潛在存活 (或正類)」的能力，現況偏保守。</li>
-<li>對正類的錯失 (FN) 明顯多於將負類誤判為正類 (FP)。在成本敏感情境（例如「漏抓到的正類」代價更高）下，這是不理想的權衡。</li>
-</ul>
-<h4 id="下一步建議">下一步建議</h4>
-<p>我會先驗證的 6 件事:</p>
+<li>k 值與 WCSS (Elbow 法)
 <ul>
-<li>閾值與召回的權衡
-<ul>
-<li>目前採預設 0.5 閾值 (葉節點多數決)，導致正類召回僅 0.71。</li>
-<li>行動: 改以機率輸出 (predict_proba)，嘗試 下降決策閾值 或以 ROC/PR 曲線 找到業務最適點；同時回報 PR-AUC 與 ROC-AUC (正類不均衡時 PR-AUC更具辨識力)。</li>
+<li>WCSS 從 k=2 到 k=7 持續下降，且在 k=3 後下降幅度明顯趨緩 (139.82 → 114.09 → 90.93)</li>
+<li>這符合 Elbow 法的典型訊號：在 k=3 之後邊際效益降低</li>
 </ul>
 </li>
-<li>成本敏感學習 (class_weight)
+<li>k 值與 Silhouette Score
 <ul>
-<li>目標: 提升正類召回、降低 FN。</li>
-<li>行動: 設定 class_weight={0: 1, 1: α} (α&gt;1) 或使用 balanced，再比較 Recall/FPR 變化與實際成本。</li>
+<li>最高分在 k=2 (0.5818)，k=3 則下降至 0.4599，之後隨著 k 增加分數持續降低</li>
+<li>這意味著，若純粹以內部結構 (凝聚度與分離度) 來衡量，k=2 是最緊密且分離度最佳的分群方案</li>
+<li>但 Silhouette 只考慮幾何結構，不代表與實際業務需求或真實標籤完全對應</li>
 </ul>
 </li>
-<li>後剪枝 (Cost-Complexity Pruning, ccp_alpha)
+<li>k=3 的分群表現
 <ul>
-<li>目的: 降低方差、提升泛化穩定性。</li>
-<li>行動: 以交叉驗證掃描 ccp_alpha，觀察 AUC/F1 的變化，並記錄每次樹深與節點數以利報告「複雜度—效能曲線」。</li>
+<li>Silhouette Score = 0.4599，屬於中等偏弱的群分離度，叢集邊界可能有交疊</li>
+<li>Adjusted Rand Index (ARI) = 0.6201：與真實 species 標籤有中等對齊程度，表示模型能部分復原真實物種結構，但錯分率仍顯著</li>
+<li>與 MiniBatchKMeans 相比，Silhouette 由 0.4599 降至 0.4557，效能損失不大，但 MiniBatch 在大資料場景下能顯著節省計算時間</li>
 </ul>
 </li>
-<li>特徵脫敏與冗餘檢驗
+<li>參數搜尋結果
 <ul>
-<li>行動 A: 移除 adult_male、who、alone 等「與 sex/age 高度重疊的衍生欄位」，只保留原始訊息，觀察規則是否更穩健。</li>
-<li>行動 B: 完全移除敏感變數 (sex 及其 proxy)，評估效能下降幅度與可接受性。</li>
-</ul>
-</li>
-<li>穩定性與方差評估
-<ul>
-<li>行動: 使用 Stratified K-Fold (k=5 或 10) 做交叉驗證，回報平均與標準差，檢驗在不同隨機切分下的波動。決策樹屬高變化模型，單次切分的 0.8268 不足以定論。</li>
-</ul>
-</li>
-<li>與基線／集成法比較
-<ul>
-<li>行動: 與 Logistic Regression (可加 L2)、Random Forest、Gradient Boosting / XGBoost 比較，特別關注 召回、PR-AUC 與穩定性。單棵樹常作為可解釋基線，若要實戰表現，集成通常更穩。</li>
+<li>最佳 Silhouette 方案是 k=2, n_init=10 (0.5818)</li>
+<li>這與初步觀察一致，顯示在內部幾何結構下，Iris 資料更適合分成兩群，但這不符合三物種的領域先驗</li>
 </ul>
 </li>
 </ul>
 <h2 id="結語">結語</h2>
-<p>Decision Tree 的最大優勢在於 可解釋性與直觀性，適合需要明確規則與透明決策邏輯的情境。然而，單棵決策樹在泛化能力上有限，常與集成方法 (Random Forest、Gradient Boosting) 結合以提升表現。在實務中，若你需要快速建立一個能與商業部門對話的模型，Decision Tree 是一個高性價比的選擇。</p>
+<p>K-Means 在本篇範例中清楚展現了它作為無監督式分群基線的特性: 計算效率高、實作簡單、可快速提供初步的資料結構洞察。透過 Elbow 法與 Silhouette Score 的雙重分析，我們觀察到在 Iris 資料集上，幾何結構最佳的分群數為 k=2，而符合領域知識的 k=3 則在分群品質上略顯不足，顯示資料真實分佈與理想分群假設之間的落差。這種差異提醒我們，分群結果不能僅憑數學指標決定，還需結合業務目標與領域先驗做取捨。</p>
+<p>總結來說，K-Means 是值得在專案初期引入的分群起點模型，但應搭配多種指標與方法驗證，並在必要時替換為更契合資料幾何與業務需求的分群策略。</p>
 <h2 id="備註">備註</h2>
 <ul>
 <li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
@@ -700,22 +771,22 @@ adult_male_False    0.000000
   </div>
   <ul class="share__list list-reset">
     <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25081201%2f"
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25081401%2f"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
     </li>
     <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2014%29%20%e6%b1%ba%e7%ad%96%e6%a8%b9%20%28Decision%20Tree%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25081201%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2016%29%20K-Means&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25081401%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25081201%2f&title=%28Day%2014%29%20%e6%b1%ba%e7%ad%96%e6%a8%b9%20%28Decision%20Tree%29&summary=&source=%28Day%2014%29%20%e6%b1%ba%e7%ad%96%e6%a8%b9%20%28Decision%20Tree%29"
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25081401%2f&title=%28Day%2016%29%20K-Means&summary=&source=%28Day%2016%29%20K-Means"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
     </li>
 
     <li class="share__item">
       <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25081201%2f&amp;media=http%3a%2f%2ftwcch.io%2fimages%2fpost%2fcommon%2fdata_science_competition_01.png&amp;description=%28Day%2014%29%20%e6%b1%ba%e7%ad%96%e6%a8%b9%20%28Decision%20Tree%29"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25081401%2f&amp;media=http%3a%2f%2ftwcch.io%2fimages%2fpost%2fcommon%2fdata_science_competition_01.png&amp;description=%28Day%2016%29%20K-Means"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Pinterest" aria-label="Share on Pinterest"><i class="ion ion-logo-pinterest"></i></a>
     </li>
@@ -725,19 +796,19 @@ adult_male_False    0.000000
         
         <div class="post__navigation">
           
-          <a class="prev" href="http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081101/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
+          <a class="prev" href="http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081201/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
             <div class="post__nav-box">
               <div class="post__nav post__nav__prev"><i class="ion ion-ios-arrow-back"></i> Previous
                 Page</div>
-              <h4 class="post__nav__title">(Day 13) 迴歸任務驗證指標</h4>
+              <h4 class="post__nav__title">(Day 14) 決策樹 (Decision Tree)</h4>
             </div>
           </a>
           
           
-          <a class="next" href="http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081401/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
+          <a class="next" href="http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081301/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
             <div class="post__nav-box">
               <div class="post__nav post__nav__next">Next Page <i class="ion ion-ios-arrow-forward"></i></div>
-              <h4 class="post__nav__title">(Day 16) K-Means</h4>
+              <h4 class="post__nav__title">(Day 15) 隨機森林 (Random Forest)</h4>
             </div>
           </a>
           
