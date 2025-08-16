@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>Posts | 志謙&#39;s Blog</title>
+  <title>(Day 17) 淺談深度學習 (Deep Learning) | 志謙&#39;s Blog</title>
 
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="..." crossorigin="anonymous">
@@ -22,19 +22,118 @@
 
   <meta name="description" content="">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/posts/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Posts | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="志謙&#39;s Blog">
-  <meta name="twitter:image" content="http://twcch.io/">
+  <meta name="twitter:title" content="(Day 17) 淺談深度學習 (Deep Learning) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="我們機器學習的部分還有 XGBoost、PCA、OneClass SVM 都還沒有談，只是篇幅限制，原本規劃深度學習大概就要花 15 篇左右的內容來談談，如果後續有篇幅我再補充，如果沒有日後我有空，會再補到我的部落格，最近課業太忙非常抱歉。
+從這篇開始，系列會進入另一個階段: 深度學習 (Deep Learning)。這部分的內容將與前 16 天有明顯不同，因為重點不再是數學公式與演算法推導，而是各種網路架構 (Architectures) 的原理、設計思維與應用。
+機器學習 vs. 深度學習
+
+機器學習 (Machine Learning)
+
+特徵工程往往是關鍵: 要先設計、轉換、挑選特徵，才能把問題丟給模型學習
+模型通常較淺，例如: 決策樹、SVM、線性回歸
+適合中小型資料集，計算需求相對低
+優點: 可解釋性高、對資料量需求不大
+
+
+深度學習 (Deep Learning)
+
+以多層神經網路為核心，能自動從原始資料中學習特徵
+不再依賴繁重的人工特徵設計，例如圖像處理不需要先抽 SIFT/HOG，網路會自己學
+特別適合高維度、非結構化資料 (圖像、語音、文字)
+需要大量資料與算力支撐，否則容易過擬合
+
+
+
+一句話總結: 機器學習的「重點」在於 人設計特徵 → 模型學習規則；深度學習則是 模型自己學特徵 &#43; 規則。
+為什麼需要深度學習？
+
+處理高維與非結構化資料
+
+傳統 ML 模型處理數值表格非常好用，但面對影像像素矩陣、語音頻譜、自然語言文字序列就顯得力不從心。
+深度學習的 CNN、RNN、Transformer 等架構正好能捕捉這些資料的內在結構。
+
+
+表達能力強大
+
+理論上，一個足夠深的神經網路能近似任何函數 (Universal Approximation Theorem)。
+在實務上，這意味著深度學習能擬合遠比傳統演算法更複雜的非線性關係。
+
+
+自動化特徵抽取
+
+從手動設計特徵到「端到端」學習，深度學習大幅降低了人工干預，提升了跨領域可遷移性。
+
+
+
+深度學習的挑戰
+
+資料需求: 需要大量標註資料，否則效果有限
+計算需求: 需要 GPU/TPU 等硬體加速
+可解釋性低: 模型往往是「黑盒子」，難以直接解釋決策依據
+訓練難度: 需要調整大量超參數 (學習率、層數、激活函數、正則化方法等)
+
+結語
+深度學習並不是「更高級的機器學習」，而是一種 不同思維：它將特徵學習與規則學習合而為一，讓模型能直接面對複雜且原始的資料。這篇文章作為深度學習的起手式，主要幫助讀者建立心態轉換：從「演算法」的框架，轉向「架構」的世界。">
+  <meta name="twitter:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
-  <meta property="og:title" content="Posts | 志謙&#39;s Blog">
-  <meta property="og:description" content="志謙&#39;s Blog">
-  <meta property="og:image" content="http://twcch.io/">
+  <meta property="og:title" content="(Day 17) 淺談深度學習 (Deep Learning) | 志謙&#39;s Blog">
+  <meta property="og:description" content="我們機器學習的部分還有 XGBoost、PCA、OneClass SVM 都還沒有談，只是篇幅限制，原本規劃深度學習大概就要花 15 篇左右的內容來談談，如果後續有篇幅我再補充，如果沒有日後我有空，會再補到我的部落格，最近課業太忙非常抱歉。
+從這篇開始，系列會進入另一個階段: 深度學習 (Deep Learning)。這部分的內容將與前 16 天有明顯不同，因為重點不再是數學公式與演算法推導，而是各種網路架構 (Architectures) 的原理、設計思維與應用。
+機器學習 vs. 深度學習
+
+機器學習 (Machine Learning)
+
+特徵工程往往是關鍵: 要先設計、轉換、挑選特徵，才能把問題丟給模型學習
+模型通常較淺，例如: 決策樹、SVM、線性回歸
+適合中小型資料集，計算需求相對低
+優點: 可解釋性高、對資料量需求不大
+
+
+深度學習 (Deep Learning)
+
+以多層神經網路為核心，能自動從原始資料中學習特徵
+不再依賴繁重的人工特徵設計，例如圖像處理不需要先抽 SIFT/HOG，網路會自己學
+特別適合高維度、非結構化資料 (圖像、語音、文字)
+需要大量資料與算力支撐，否則容易過擬合
+
+
+
+一句話總結: 機器學習的「重點」在於 人設計特徵 → 模型學習規則；深度學習則是 模型自己學特徵 &#43; 規則。
+為什麼需要深度學習？
+
+處理高維與非結構化資料
+
+傳統 ML 模型處理數值表格非常好用，但面對影像像素矩陣、語音頻譜、自然語言文字序列就顯得力不從心。
+深度學習的 CNN、RNN、Transformer 等架構正好能捕捉這些資料的內在結構。
+
+
+表達能力強大
+
+理論上，一個足夠深的神經網路能近似任何函數 (Universal Approximation Theorem)。
+在實務上，這意味著深度學習能擬合遠比傳統演算法更複雜的非線性關係。
+
+
+自動化特徵抽取
+
+從手動設計特徵到「端到端」學習，深度學習大幅降低了人工干預，提升了跨領域可遷移性。
+
+
+
+深度學習的挑戰
+
+資料需求: 需要大量標註資料，否則效果有限
+計算需求: 需要 GPU/TPU 等硬體加速
+可解釋性低: 模型往往是「黑盒子」，難以直接解釋決策依據
+訓練難度: 需要調整大量超參數 (學習率、層數、激活函數、正則化方法等)
+
+結語
+深度學習並不是「更高級的機器學習」，而是一種 不同思維：它將特徵學習與規則學習合而為一，讓模型能直接面對複雜且原始的資料。這篇文章作為深度學習的起手式，主要幫助讀者建立心態轉換：從「演算法」的框架，轉向「架構」的世界。">
+  <meta property="og:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -183,1038 +282,205 @@
   <main class="content" aria-label="Content">
     
 
+
+
+
 <div class="container">
   <div class="row">
-    <div class="col col-8 col-d-10 col-m-12 push-m-0 push-d-1 push-2">
-      <div class="archive-box">
-        <span class="archive-counter">23 Articles</span>
-        <h1 class="archive-title">Posts</h1>
+    <div class="col col-12">
+      <div class="image-box">
+        <img class="post-image" src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 17) 淺談深度學習 (Deep Learning)">
       </div>
     </div>
   </div>
 </div>
+
 
 <div class="container">
-  <div class="row grid">
 
+  <div class="row">
+    <div class="col col-8 col-d-10 push-2 push-d-1 col-t-12 push-t-0">
     
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
+      
+      <article class="post amimate">
 
-    
+        <div class="post__head">
+          
+          <div class="post__tags">
+            
+            <a href="http://twcch.io/tags/data-science/" class="post-tags__tag">Data Science</a>
+            
+            <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post-tags__tag">IThome 鐵人賽 2025</a>
+            
+            <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post-tags__tag">30 天入門常見的機器學習演算法</a>
+            
+          </div>
+          
 
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081501/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 17) 淺談深度學習 (Deep Learning)">
-    </a>
+          <h1 class="post__title">(Day 17) 淺談深度學習 (Deep Learning)</h1>
 
-    <div class="article__content">
+          <div class="post__meta">
+            <div class="post__author">
+              <a href="/about/" class="post__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="post__author-link">謝志謙</a>
+            </div>
+            <span class="post__date">
+              <time datetime=" 2025-08-15T00:00:00&#43;08:00">Aug 15, 2025</time>
+            </span>
+          </div>
 
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
         </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081501/">(Day 17) 淺談深度學習 (Deep Learning)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>我們機器學習的部分還有 XGBoost、PCA、OneClass SVM 都還沒有談，只是篇幅限制，原本規劃深度學習大概就要花 15 篇左右的內容來談談，如果後續有篇幅我再補充，如果沒有日後 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-15T00:00:00&#43;08:00">
-          Aug 15, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
     
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081401/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 16) K-Means">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081401/">(Day 16) K-Means</a>
-      </h2>
-
-      <div class="article__excerpt"><p>今天本來要說極限梯度提升數 (XGBoost)，但是我發現後面的篇幅可能快不夠了，今天開始的內容會調整成，無監督式學習 → 深度學習 → 如果有時間再回來補充 One-Class SVM …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-14T00:00:00&#43;08:00">
-          Aug 14, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081301/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 15) 隨機森林 (Random Forest)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081301/">(Day 15) 隨機森林 (Random Forest)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>隨機森林是以「多棵弱學習器 (決策樹)」為基底的集成學習 (Ensemble) 方法，透過資料抽樣 (Bagging) 與特徵隨機子抽樣 (Random Subspace)  降低單棵樹的方 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-13T00:00:00&#43;08:00">
-          Aug 13, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081201/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 14) 決策樹 (Decision Tree)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081201/">(Day 14) 決策樹 (Decision Tree)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>Decision Tree 是一種基於條件分支的監督式學習模型，可用於分類與回歸任務。它透過一連串的「是/否」判斷，將資料不斷切分成更純淨的子集，最終形成一個由節點 (Nodes) …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-12T00:00:00&#43;08:00">
-          Aug 12, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081101/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 13) 迴歸任務驗證指標">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081101/">(Day 13) 迴歸任務驗證指標</a>
-      </h2>
-
-      <div class="article__excerpt"><p>分類任務有混淆矩陣作為指標的核心基礎，迴歸任務則建立在誤差分佈 (Error Distribution) 之上。所有迴歸指標，都是在真實值與預測值的差異上進行數學運算。迴歸的評估相對分類簡 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-11T00:00:00&#43;08:00">
-          Aug 11, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081001/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 12) 多元分類任務驗證指標">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081001/">(Day 12) 多元分類任務驗證指標</a>
-      </h2>
-
-      <div class="article__excerpt"><p>多元分類任務驗證指標就只是從二元分類任務驗證指標延伸而來，核心概念一樣是二元分類任務驗證指標，而兩者只是在計算內容上有些許差異， …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-10T00:00:00&#43;08:00">
-          Aug 10, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080901/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 11) 二元分類任務驗證指標">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080901/">(Day 11) 二元分類任務驗證指標</a>
-      </h2>
-
-      <div class="article__excerpt"><p>今天要介紹的是常見的分類任務驗證指標，會以二元分類問題為例，因為多元分類也是用相同的指標，只是計算方式會有所不同而已，預計會用 2-3 天的篇幅介紹完，分類與迴歸任務的驗證指標；先給各位讀者 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-09T00:00:00&#43;08:00">
-          Aug 9, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080801/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 10) 支援向量機 (Support Vector Machine)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080801/">(Day 10) 支援向量機 (Support Vector Machine)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>終於來到 SVM，這也是本系列介紹 Machine Learning 中分類演算法的最後一個，當然在機器學習中還有很多的監督式分類演算法，我個人認為相對沒我介紹的這幾個經典，就留給讀者自行學 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-08T00:00:00&#43;08:00">
-          Aug 8, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080701/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 9) 樸素貝氏分類器 (Naive Bayes Classifier)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080701/">(Day 9) 樸素貝氏分類器 (Naive Bayes Classifier)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>前幾天的討論中，我們已經探討了迴歸分析、邏輯迴歸，以及最近兩天介紹的 K-Nearest Neighbors (KNN)。今天要討論的是另一種基礎且直覺性極強的分類演算法: …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-07T00:00:00&#43;08:00">
-          Aug 7, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080601/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 8) K-近鄰 (K-Nearest Neighbors)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080601/">(Day 8) K-近鄰 (K-Nearest Neighbors)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>K-近鄰 (K-Nearest Neighbors; KNN) 是一種很直學的機器學習演算法。它沒有模型參數、沒有訓練過程，卻可以在某些任務上有不錯的效果。它的核心理念只有一句話: 「你是 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-06T00:00:00&#43;08:00">
-          Aug 6, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080501/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 7) 回顧迴歸：從線性邏輯到學習本質">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080501/">(Day 7) 回顧迴歸：從線性邏輯到學習本質</a>
-      </h2>
-
-      <div class="article__excerpt"><p>前面 5 天我們聚焦於「回歸系列」模型: 線性迴歸 (Linear Regression)、多項式迴歸 (Polynomial Regression)、正則化迴歸 (Lasso / …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-05T00:00:00&#43;08:00">
-          Aug 5, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080401/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 6) 邏輯迴歸 (多項式 &#43; 正規化)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080401/">(Day 6) 邏輯迴歸 (多項式 &#43; 正規化)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>在上一篇中，我們深入介紹了邏輯迴歸的模型邏輯、損失函數與分類行為。這篇則要進一步延伸這個經典模型，回答一個關鍵問題: 邏輯迴歸能否結合多項式特徵與正規化機制，來對抗非線性與過擬合問題?</p>
-<p>在實 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-04T00:00:00&#43;08:00">
-          Aug 4, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080301/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 5) 邏輯迴歸 (Logistic Regression)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080301/">(Day 5) 邏輯迴歸 (Logistic Regression)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>邏輯迴歸 (Logistic Regression) 是一種常見的分類模型，主要用於預測二元分類或多元分類，有別於先前的線性迴歸是用來預測無邊界的連數據值，而邏輯迴歸間單來說就是預測有邊界的 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-03T00:00:00&#43;08:00">
-          Aug 3, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080201/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 4) 正規化迴歸 (Regularization Regression)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080201/">(Day 4) 正規化迴歸 (Regularization Regression)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>延續昨日的多項式迴歸中，我們觀察到一個現象: 雖然二次特徵提升了模型的表現，但同時也引入過擬合 (Overfitting) 風險。這是因為當特徵數量暴增，模型就會變得過於「貪婪」，試圖將每個 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-02T00:00:00&#43;08:00">
-          Aug 2, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080101/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 3) 多項式迴歸 (Polynomial Regression)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080101/">(Day 3) 多項式迴歸 (Polynomial Regression)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>昨天介紹了線性迴歸 (Linear Regression)，它適合用來處理特徵與目標之間為線性關係的情境。然而，真實世界的資料往往並非純粹線性，而是呈現複雜的非線性關係，例如曲線、拋物線、甚 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-01T00:00:00&#43;08:00">
-          Aug 1, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25073101/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 2) 線性迴歸 (Linear Regression)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25073101/">(Day 2) 線性迴歸 (Linear Regression)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>線性迴歸 (Linear Regression) 是統計學中的一種預測方法，主要分為簡單線性迴歸 (Simple Linear Regression) 與多元線性迴歸 (Multiple …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-31T00:00:00&#43;08:00">
-          Jul 31, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25073001/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 1) 介紹與準備">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25073001/">(Day 1) 介紹與準備</a>
-      </h2>
-
-      <div class="article__excerpt"><p>在學習機器學習 (Machine Learning) 的過程中，可能會陷入兩種極端，一種是只會調用套件 (套模)，模型背後的機制一知半解，遇到問題只能「換模型試試看」，或者是過度陷入數學細 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-30T00:00:00&#43;08:00">
-          Jul 30, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/articles_25071601/">
-      <img src="http://twcch.io/images/post/common/heart_notes_01.png" alt="學歷無用? 我仍相信學習的價值">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/heart-notes/" class="article__tag">Heart Notes</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25071601/">學歷無用? 我仍相信學習的價值</a>
-      </h2>
-
-      <div class="article__excerpt"><p>近年來，我觀察到無論在台灣還是中國，「學歷無用論」的聲音愈發強烈。許多人開始質疑讀書是否還有意義，認為不靠學歷反而更能致富，網紅、直播、投資客、白手起家的商人充斥版面，讀書人反倒被視為落後 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-16T00:00:00&#43;08:00">
-          Jul 16, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/projects/articles_25070901/">
-      <img src="http://twcch.io/images/post/common/side_project_01.png" alt="視覺化專案 - 200 個國家 200 百年 4 分鐘">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/project/" class="article__tag">Project</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/projects/articles_25070901/">視覺化專案 - 200 個國家 200 百年 4 分鐘</a>
-      </h2>
-
-      <div class="article__excerpt"><p>這是一個資料視覺化專案——「Dynamic Visualization: 200 Countries, 200 Years, 4 Minutes」。它將涵蓋 1816 至 2016  …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-09T00:00:00&#43;08:00">
-          Jul 9, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/projects/articles_25063001/">
-      <img src="http://twcch.io/images/post/common/side_project_01.png" alt="實戰專案 - Titanic 生存預測專案">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/project/" class="article__tag">Project</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/projects/articles_25063001/">實戰專案 - Titanic 生存預測專案</a>
-      </h2>
-
-      <div class="article__excerpt"><p>這是一個資料科學專案，目標是透過 Kaggle 經典的 Titanic 生存預測題目，建立一套結構清晰、模組化的預測系統。我不只是想交出一份準確的預測結果，更希望藉由這個專案練習:</p>
+        <div class="post__content">
+          <p>我們機器學習的部分還有 XGBoost、PCA、OneClass SVM 都還沒有談，只是篇幅限制，原本規劃深度學習大概就要花 15 篇左右的內容來談談，如果後續有篇幅我再補充，如果沒有日後我有空，會再補到我的<a href="https://twcch.io/">部落格</a>，最近課業太忙非常抱歉。</p>
+<p>從這篇開始，系列會進入另一個階段: 深度學習 (Deep Learning)。這部分的內容將與前 16 天有明顯不同，因為重點不再是數學公式與演算法推導，而是各種網路架構 (Architectures) 的原理、設計思維與應用。</p>
+<h2 id="機器學習-vs-深度學習">機器學習 vs. 深度學習</h2>
 <ul>
-<li>如何設 …</li></ul></div>
+<li>機器學習 (Machine Learning)
+<ul>
+<li>特徵工程往往是關鍵: 要先設計、轉換、挑選特徵，才能把問題丟給模型學習</li>
+<li>模型通常較淺，例如: 決策樹、SVM、線性回歸</li>
+<li>適合中小型資料集，計算需求相對低</li>
+<li>優點: 可解釋性高、對資料量需求不大</li>
+</ul>
+</li>
+<li>深度學習 (Deep Learning)
+<ul>
+<li>以多層神經網路為核心，能自動從原始資料中學習特徵</li>
+<li>不再依賴繁重的人工特徵設計，例如圖像處理不需要先抽 SIFT/HOG，網路會自己學</li>
+<li>特別適合高維度、非結構化資料 (圖像、語音、文字)</li>
+<li>需要大量資料與算力支撐，否則容易過擬合</li>
+</ul>
+</li>
+</ul>
+<p>一句話總結: 機器學習的「重點」在於 人設計特徵 → 模型學習規則；深度學習則是 模型自己學特徵 + 規則。</p>
+<h2 id="為什麼需要深度學習">為什麼需要深度學習？</h2>
+<ul>
+<li>處理高維與非結構化資料
+<ul>
+<li>傳統 ML 模型處理數值表格非常好用，但面對影像像素矩陣、語音頻譜、自然語言文字序列就顯得力不從心。</li>
+<li>深度學習的 CNN、RNN、Transformer 等架構正好能捕捉這些資料的內在結構。</li>
+</ul>
+</li>
+<li>表達能力強大
+<ul>
+<li>理論上，一個足夠深的神經網路能近似任何函數 (Universal Approximation Theorem)。</li>
+<li>在實務上，這意味著深度學習能擬合遠比傳統演算法更複雜的非線性關係。</li>
+</ul>
+</li>
+<li>自動化特徵抽取
+<ul>
+<li>從手動設計特徵到「端到端」學習，深度學習大幅降低了人工干預，提升了跨領域可遷移性。</li>
+</ul>
+</li>
+</ul>
+<h2 id="深度學習的挑戰">深度學習的挑戰</h2>
+<ul>
+<li>資料需求: 需要大量標註資料，否則效果有限</li>
+<li>計算需求: 需要 GPU/TPU 等硬體加速</li>
+<li>可解釋性低: 模型往往是「黑盒子」，難以直接解釋決策依據</li>
+<li>訓練難度: 需要調整大量超參數 (學習率、層數、激活函數、正則化方法等)</li>
+</ul>
+<h2 id="結語">結語</h2>
+<p>深度學習並不是「更高級的機器學習」，而是一種 不同思維：它將特徵學習與規則學習合而為一，讓模型能直接面對複雜且原始的資料。這篇文章作為深度學習的起手式，主要幫助讀者建立心態轉換：從「演算法」的框架，轉向「架構」的世界。</p>
+<p>接下來，我會先介紹最基礎的 人工神經網路，再逐步進入深度學習的各種變體與應用場景。</p>
+<h2 id="備註">備註</h2>
+<ul>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
+</ul>
 
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
         </div>
+    
+        <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this article</div>
+  </div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25081501%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2017%29%20%e6%b7%ba%e8%ab%87%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%20%28Deep%20Learning%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25081501%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
 
-        <time class="article__date" datetime="2025-06-30T00:00:00&#43;08:00">
-          Jun 30, 2025
-        </time>
-      </div>
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25081501%2f&title=%28Day%2017%29%20%e6%b7%ba%e8%ab%87%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%20%28Deep%20Learning%29&summary=&source=%28Day%2017%29%20%e6%b7%ba%e8%ab%87%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%20%28Deep%20Learning%29"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
 
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25081501%2f&amp;media=http%3a%2f%2ftwcch.io%2fimages%2fpost%2fcommon%2fdata_science_competition_01.png&amp;description=%28Day%2017%29%20%e6%b7%ba%e8%ab%87%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%20%28Deep%20Learning%29"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+  </ul>
+</div>
+
+        
+        <div class="post__navigation">
+          
+          <a class="prev" href="http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081401/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
+            <div class="post__nav-box">
+              <div class="post__nav post__nav__prev"><i class="ion ion-ios-arrow-back"></i> Previous
+                Page</div>
+              <h4 class="post__nav__title">(Day 16) K-Means</h4>
+            </div>
+          </a>
+          
+          
+        </div>
+        
+
+        
+          
+<div id="disqus_thread" class="post__comments">
+  <div id="disqus_empty"></div>
+</div>
+
+<script>
+  function load_disqus() {
+    var disqus_shortname = 'anvod-studio-aditu',
+      is_disqus_empty = document.getElementById('disqus_empty'),
+      disqus_target = document.getElementById('disqus_thread'),
+      disqus_embed = document.createElement('script'),
+      disqus_hook = (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]);
+
+    if (disqus_target && is_disqus_empty) {
+      disqus_embed.type = 'text/javascript';
+      disqus_embed.async = true;
+      disqus_embed.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      disqus_hook.appendChild(disqus_embed);
+      is_disqus_empty.remove();
+    }
+  }
+
+  window.addEventListener('scroll', function (e) {
+    var currentScroll = document.scrollingElement.scrollTop;
+    var disqus_target = document.getElementById('disqus_thread');
+
+    if (disqus_target && (currentScroll > disqus_target.getBoundingClientRect().top - 150)) {
+      load_disqus('disqus_shortname');
+    }
+  }, false);
+
+</script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+        
+    
+      </article>
+      
     </div>
   </div>
+
+
 </div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
 
-    
 
-    <a class="article__image" href="/posts/articles_25062501/">
-      <img src="http://twcch.io/images/post/common/heart_notes_01.png" alt="當老師只靠 ChatGPT 回信：我們期待的不是答案，而是理解">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/heart-notes/" class="article__tag">Heart Notes</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25062501/">當老師只靠 ChatGPT 回信：我們期待的不是答案，而是理解</a>
-      </h2>
-
-      <div class="article__excerpt"><p>最近，我正在參加一門職訓課程。本來對這堂課滿懷期待，尤其是對某位老師的專業背景很感興趣。不過，隨著課程進行，我漸漸感到一股說不出的落差感：每當我主動提出深入問題， …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-06-25T00:00:00&#43;08:00">
-          Jun 25, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/articles_25060201/">
-      <img src="http://twcch.io/images/post/common/machine_learning_01.png" alt="為什麼用 AI 技術檢測企業舞弊，比想像中更困難？">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25060201/">為什麼用 AI 技術檢測企業舞弊，比想像中更困難？</a>
-      </h2>
-
-      <div class="article__excerpt"><p>在資料科學領域中，對企業進行舞弊檢測 (Fraud Detection) 被視為是一種分類問題: 輸入企業相關的數據，輸出舞弊或非舞弊。然而，真正投入研究後會發現，這個問題很難解決，非常具挑 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-06-02T00:00:00&#43;08:00">
-          Jun 2, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/articles_25040701/">
-      <img src="http://twcch.io/images/post/common/business_analysis_01.png" alt="為什麼 AI 正在快速削弱低階 Business Analyst 的價值？">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/business-analysis/" class="article__tag">Business Analysis</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25040701/">為什麼 AI 正在快速削弱低階 Business Analyst 的價值？</a>
-      </h2>
-
-      <div class="article__excerpt"><p>五年前，我踏入壽險產業，成為一名 Business Analyst (BA)。當時的工作內容相當清晰：需求文件撰寫、報表製作、簡單的數據分析與溝通協調，是我每天的日常。那時候，這些任務仍需靠 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-04-07T00:00:00&#43;08:00">
-          Apr 7, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-
-  </div>
-</div>
 
 
   </main>
