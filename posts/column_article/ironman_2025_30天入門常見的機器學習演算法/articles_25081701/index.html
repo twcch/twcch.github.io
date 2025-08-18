@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>(Day 18) 全連接神經網絡 (Fully Connected Neural Network) | 志謙&#39;s Blog</title>
+  <title>(Day 19) 神經元 (Neuron) | 志謙&#39;s Blog</title>
 
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="..." crossorigin="anonymous">
@@ -26,91 +26,67 @@
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="(Day 18) 全連接神經網絡 (Fully Connected Neural Network) | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="在進入深度學習的第一步，必須要先認識最基礎的深度學習架構，這個架構稱為:
+  <meta name="twitter:title" content="(Day 19) 神經元 (Neuron) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="前一篇我們先介紹了全連接神經網絡 (Fully Connected Neural Network)，相信大家還是不太清楚這是什麼，接下來會用幾天的篇幅一一介紹相關的專有名詞，若要理解神經網路，必須先從最小的組成單位 —— 神經元 (Neuron) 開始。
+人工神經元的靈感來自於生物神經科學中「神經元」的概念: 人腦中的神經細胞會接收訊號、處理並傳遞訊號給下一個神經元，形成複雜的網絡。人工神經網路 (Artificial Neural Network, ANN) 正是透過數學方式去模擬這樣的運作。
+神經元數學模型
+一個人工神經元的輸入與輸出過程可以寫成:
+$$
+z = \sum\limits_{i=1}^{n} w_i x_i &#43; b
+$$
+$$
+a = \sigma(z)
+$$
+其中:
 
-全連接神經網路 (Fully Connected Neural Network; FCNN)
-多層感知機 (Multi-Layer Perceptron; MLP)
+$x_i$: 輸入特徵
+$w_i$: 權重 (weight)，決定輸入的重要性
+$b$: 偏差 (bias)，調整整體的輸入偏移量
+$\sigma(\cdot)$: 激活函數 (Activation Function)，將線性組合轉換為非線性輸出
+$a$: 神經元的輸出
 
-這兩個都是指同一個東西，這個架構也是所有深度學習架構的基石，CNN、RNN、Transformer 都可以看作是在 FCNN 上加入特殊結構與限制後的延伸
-基本架構
-大家可以使用這個 網站 看一下神經網絡的架構與運行過程，簡單來說最基礎的神經網絡架構一定有以下三個 layer:
+先不看激活函數的部分，是不是第一眼會覺得好像在哪裡看過? 沒錯就是我們 Day 2 介紹的線性迴歸，所以神經元本身並不是什麼太高級的東西，就是一個線性輸出而已，為了要讓神經元能夠模擬更複雜的非線性關係，才會在線性輸出後再加上激活函數 (激活函數是什麼明天介紹)
+神經元的運作流程
+以一個簡單的二元分類例子來看
 
-輸入層 (Input Layer): 接收原始特徵，大小等於特徵數量
-隱藏層 (Hidden Layers): 由多個神經元 (Neurons) 組成，每個神經元與前一層的所有神經元相連
-輸出層 (Output Layer): 對應任務需求，分類問題常用 softmax、多類別輸出；回歸問題則可能是單一實值，簡單的區分如下:
+輸入層: 假設有三個特徵 $x_1$, $x_2$, $x_3$
+加權求和: 每個特徵乘上權重 $w_i$，再加上偏差 $b$
+激活函數：輸入 ReLU 或 Sigmoid，得到輸出 a
+傳遞至下一層: 這個輸出作為下一層神經元的輸入
 
-回歸問題
-
-輸出層神經元數 = 1 (代表一個連續數值)
-常用激活函數: 無激活 (linear)
-Loss function: MSE, MAE
-
-
-二元分類
-
-寫法一: 1 個神經元 &#43; Sigmoid 激活 (輸出機率 [0,1])
-寫法二: 2 個神經元 &#43; Softmax (輸出兩類的機率分佈)
-Loss function: Binary Crossentropy / Categorical Crossentropy
-✅ 工程上最常用的是 1 個輸出神經元 &#43; Sigmoid
-
-
-多元分類 (N 類別)
-
-輸出層神經元數 = N
-激活函數: Softmax (保證所有輸出加起來 = 1，形成機率分布)
-Loss function: Categorical Crossentropy / Sparse Categorical Crossentropy
-
-
-
-
-
-運作流程
-整個神經網絡的運做過程，核心就是「輸入資料 (X) → 正向傳播 (Forward) → 計算 Loss → 反向傳播 (Backward) → 更新參數 (Gradient Descent) → 再正向傳播」，說明如下:">
+當多層神經元堆疊，就形成所謂的「多層感知機 (MLP)」">
   <meta name="twitter:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
-  <meta property="og:title" content="(Day 18) 全連接神經網絡 (Fully Connected Neural Network) | 志謙&#39;s Blog">
-  <meta property="og:description" content="在進入深度學習的第一步，必須要先認識最基礎的深度學習架構，這個架構稱為:
+  <meta property="og:title" content="(Day 19) 神經元 (Neuron) | 志謙&#39;s Blog">
+  <meta property="og:description" content="前一篇我們先介紹了全連接神經網絡 (Fully Connected Neural Network)，相信大家還是不太清楚這是什麼，接下來會用幾天的篇幅一一介紹相關的專有名詞，若要理解神經網路，必須先從最小的組成單位 —— 神經元 (Neuron) 開始。
+人工神經元的靈感來自於生物神經科學中「神經元」的概念: 人腦中的神經細胞會接收訊號、處理並傳遞訊號給下一個神經元，形成複雜的網絡。人工神經網路 (Artificial Neural Network, ANN) 正是透過數學方式去模擬這樣的運作。
+神經元數學模型
+一個人工神經元的輸入與輸出過程可以寫成:
+$$
+z = \sum\limits_{i=1}^{n} w_i x_i &#43; b
+$$
+$$
+a = \sigma(z)
+$$
+其中:
 
-全連接神經網路 (Fully Connected Neural Network; FCNN)
-多層感知機 (Multi-Layer Perceptron; MLP)
+$x_i$: 輸入特徵
+$w_i$: 權重 (weight)，決定輸入的重要性
+$b$: 偏差 (bias)，調整整體的輸入偏移量
+$\sigma(\cdot)$: 激活函數 (Activation Function)，將線性組合轉換為非線性輸出
+$a$: 神經元的輸出
 
-這兩個都是指同一個東西，這個架構也是所有深度學習架構的基石，CNN、RNN、Transformer 都可以看作是在 FCNN 上加入特殊結構與限制後的延伸
-基本架構
-大家可以使用這個 網站 看一下神經網絡的架構與運行過程，簡單來說最基礎的神經網絡架構一定有以下三個 layer:
+先不看激活函數的部分，是不是第一眼會覺得好像在哪裡看過? 沒錯就是我們 Day 2 介紹的線性迴歸，所以神經元本身並不是什麼太高級的東西，就是一個線性輸出而已，為了要讓神經元能夠模擬更複雜的非線性關係，才會在線性輸出後再加上激活函數 (激活函數是什麼明天介紹)
+神經元的運作流程
+以一個簡單的二元分類例子來看
 
-輸入層 (Input Layer): 接收原始特徵，大小等於特徵數量
-隱藏層 (Hidden Layers): 由多個神經元 (Neurons) 組成，每個神經元與前一層的所有神經元相連
-輸出層 (Output Layer): 對應任務需求，分類問題常用 softmax、多類別輸出；回歸問題則可能是單一實值，簡單的區分如下:
+輸入層: 假設有三個特徵 $x_1$, $x_2$, $x_3$
+加權求和: 每個特徵乘上權重 $w_i$，再加上偏差 $b$
+激活函數：輸入 ReLU 或 Sigmoid，得到輸出 a
+傳遞至下一層: 這個輸出作為下一層神經元的輸入
 
-回歸問題
-
-輸出層神經元數 = 1 (代表一個連續數值)
-常用激活函數: 無激活 (linear)
-Loss function: MSE, MAE
-
-
-二元分類
-
-寫法一: 1 個神經元 &#43; Sigmoid 激活 (輸出機率 [0,1])
-寫法二: 2 個神經元 &#43; Softmax (輸出兩類的機率分佈)
-Loss function: Binary Crossentropy / Categorical Crossentropy
-✅ 工程上最常用的是 1 個輸出神經元 &#43; Sigmoid
-
-
-多元分類 (N 類別)
-
-輸出層神經元數 = N
-激活函數: Softmax (保證所有輸出加起來 = 1，形成機率分布)
-Loss function: Categorical Crossentropy / Sparse Categorical Crossentropy
-
-
-
-
-
-運作流程
-整個神經網絡的運做過程，核心就是「輸入資料 (X) → 正向傳播 (Forward) → 計算 Loss → 反向傳播 (Backward) → 更新參數 (Gradient Descent) → 再正向傳播」，說明如下:">
+當多層神經元堆疊，就形成所謂的「多層感知機 (MLP)」">
   <meta property="og:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
@@ -267,7 +243,7 @@ Loss function: Categorical Crossentropy / Sparse Categorical Crossentropy
   <div class="row">
     <div class="col col-12">
       <div class="image-box">
-        <img class="post-image" src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 18) 全連接神經網絡 (Fully Connected Neural Network)">
+        <img class="post-image" src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 19) 神經元 (Neuron)">
       </div>
     </div>
   </div>
@@ -295,281 +271,81 @@ Loss function: Categorical Crossentropy / Sparse Categorical Crossentropy
           </div>
           
 
-          <h1 class="post__title">(Day 18) 全連接神經網絡 (Fully Connected Neural Network)</h1>
+          <h1 class="post__title">(Day 19) 神經元 (Neuron)</h1>
 
           <div class="post__meta">
             <div class="post__author">
               <a href="/about/" class="post__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="post__author-link">謝志謙</a>
             </div>
             <span class="post__date">
-              <time datetime=" 2025-08-16T00:00:00&#43;08:00">Aug 16, 2025</time>
+              <time datetime=" 2025-08-17T00:00:00&#43;08:00">Aug 17, 2025</time>
             </span>
           </div>
 
         </div>
     
         <div class="post__content">
-          <p>在進入深度學習的第一步，必須要先認識最基礎的深度學習架構，這個架構稱為:</p>
+          <p>前一篇我們先介紹了全連接神經網絡 (Fully Connected Neural Network)，相信大家還是不太清楚這是什麼，接下來會用幾天的篇幅一一介紹相關的專有名詞，若要理解神經網路，必須先從最小的組成單位 —— 神經元 (Neuron) 開始。</p>
+<p>人工神經元的靈感來自於生物神經科學中「神經元」的概念: 人腦中的神經細胞會接收訊號、處理並傳遞訊號給下一個神經元，形成複雜的網絡。人工神經網路 (Artificial Neural Network, ANN) 正是透過數學方式去模擬這樣的運作。</p>
+<h2 id="神經元數學模型">神經元數學模型</h2>
+<p>一個人工神經元的輸入與輸出過程可以寫成:</p>
+<p>$$
+z = \sum\limits_{i=1}^{n} w_i x_i + b
+$$</p>
+<p>$$
+a = \sigma(z)
+$$</p>
+<p>其中:</p>
 <ul>
-<li>全連接神經網路 (Fully Connected Neural Network; FCNN)</li>
-<li>多層感知機 (Multi-Layer Perceptron; MLP)</li>
+<li>$x_i$: 輸入特徵</li>
+<li>$w_i$: 權重 (weight)，決定輸入的重要性</li>
+<li>$b$: 偏差 (bias)，調整整體的輸入偏移量</li>
+<li>$\sigma(\cdot)$: 激活函數 (Activation Function)，將線性組合轉換為非線性輸出</li>
+<li>$a$: 神經元的輸出</li>
 </ul>
-<p>這兩個都是指同一個東西，這個架構也是所有深度學習架構的基石，CNN、RNN、Transformer 都可以看作是在 FCNN 上加入特殊結構與限制後的延伸</p>
-<h2 id="基本架構">基本架構</h2>
-<p>大家可以使用這個 <a href="https://playground.tensorflow.org/#activation=tanh&amp;batchSize=10&amp;dataset=circle&amp;regDataset=reg-plane&amp;learningRate=0.03&amp;regularizationRate=0&amp;noise=0&amp;networkShape=4,2&amp;seed=0.61546&amp;showTestData=false&amp;discretize=false&amp;percTrainData=50&amp;x=true&amp;y=true&amp;xTimesY=false&amp;xSquared=false&amp;ySquared=false&amp;cosX=false&amp;sinX=false&amp;cosY=false&amp;sinY=false&amp;collectStats=false&amp;problem=classification&amp;initZero=false&amp;hideText=false">網站</a> 看一下神經網絡的架構與運行過程，簡單來說最基礎的神經網絡架構一定有以下三個 layer:</p>
+<p>先不看激活函數的部分，是不是第一眼會覺得好像在哪裡看過? 沒錯就是我們 Day 2 介紹的線性迴歸，所以神經元本身並不是什麼太高級的東西，就是一個線性輸出而已，為了要讓神經元能夠模擬更複雜的非線性關係，才會在線性輸出後再加上激活函數 (激活函數是什麼明天介紹)</p>
+<h2 id="神經元的運作流程">神經元的運作流程</h2>
+<p>以一個簡單的二元分類例子來看</p>
 <ul>
-<li>輸入層 (Input Layer): 接收原始特徵，大小等於特徵數量</li>
-<li>隱藏層 (Hidden Layers): 由多個神經元 (Neurons) 組成，每個神經元與前一層的所有神經元相連</li>
-<li>輸出層 (Output Layer): 對應任務需求，分類問題常用 softmax、多類別輸出；回歸問題則可能是單一實值，簡單的區分如下:
-<ul>
-<li>回歸問題
-<ul>
-<li>輸出層神經元數 = 1 (代表一個連續數值)</li>
-<li>常用激活函數: 無激活 (linear)</li>
-<li>Loss function: MSE, MAE</li>
+<li>輸入層: 假設有三個特徵 $x_1$, $x_2$, $x_3$</li>
+<li>加權求和: 每個特徵乘上權重 $w_i$，再加上偏差 $b$</li>
+<li>激活函數：輸入 ReLU 或 Sigmoid，得到輸出 a</li>
+<li>傳遞至下一層: 這個輸出作為下一層神經元的輸入</li>
 </ul>
-</li>
-<li>二元分類
-<ul>
-<li>寫法一: 1 個神經元 + Sigmoid 激活 (輸出機率 [0,1])</li>
-<li>寫法二: 2 個神經元 + Softmax (輸出兩類的機率分佈)</li>
-<li>Loss function: Binary Crossentropy / Categorical Crossentropy</li>
-<li>✅ 工程上最常用的是 1 個輸出神經元 + Sigmoid</li>
-</ul>
-</li>
-<li>多元分類 (N 類別)
-<ul>
-<li>輸出層神經元數 = N</li>
-<li>激活函數: Softmax (保證所有輸出加起來 = 1，形成機率分布)</li>
-<li>Loss function: Categorical Crossentropy / Sparse Categorical Crossentropy</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="運作流程">運作流程</h2>
-<p>整個神經網絡的運做過程，核心就是「輸入資料 (X) → 正向傳播 (Forward) → 計算 Loss → 反向傳播 (Backward) → 更新參數 (Gradient Descent) → 再正向傳播」，說明如下:</p>
-<ul>
-<li>輸入資料 (X): 把影像、數值或文字丟進神經網絡</li>
-<li>正向傳播 (Forward): 一層一層計算，得到模型的輸出</li>
-<li>計算 Loss: 拿模型輸出 (output layer 的結果) 和真實標籤比對，計算誤差</li>
-<li>反向傳播 (Backward): 誤差往回傳，算每個參數對誤差的影響 (梯度)</li>
-<li>更新參數 (Gradient Descent): 用梯度下降修正權重</li>
-<li>新的參數 → 下一輪: 進入下一個 batch，再次 forward</li>
-</ul>
-<p>這邊先破個梗，什麼時候會停止? 這也是人為控制，透過一個 epoch 的參數，來決定要做幾輪 (N 次的正向傳播 + 反向傳播)，所以當 epoch=1 就是表示做 1 次的正向傳播 + 反向傳播</p>
-<h3 id="正向傳播">正向傳播</h3>
-<p>就像「預測」或「算成績」的過程:</p>
-<ul>
-<li>你把輸入資料 (例如一張圖片) 丟進去模型</li>
-<li>每一層神經元就像一個公式：輸入數字 × 權重 + 偏差 → 經過激活函數 → 輸出</li>
-<li>一層一層傳下去，最後在輸出層算出結果（例如：這張圖片是「貓」的機率 0.8，「狗」0.2）</li>
-</ul>
-<p>重點:</p>
-<ul>
-<li>正向傳播就是單純「照著模型算一次結果」</li>
-<li>這時候你拿到的只是「模型的猜測」</li>
-</ul>
-<h3 id="反向傳播">反向傳播</h3>
-<p>就像「檢討錯誤」和「調整公式」的過程:</p>
-<ul>
-<li>模型算出一個結果後，會跟真實答案比對
-<ul>
-<li>例如：模型說「貓 0.8，狗 0.2」，但真實答案是「狗」</li>
-</ul>
-</li>
-<li>用 Loss Function (損失函數) 計算「模型猜錯的程度」
-<ul>
-<li>想像成「考試分數差多少」</li>
-</ul>
-</li>
-<li>反向傳播就是把這個錯誤，從輸出層往回傳，算出每個權重對錯誤的「貢獻」
-<ul>
-<li>哪些權重害錯最多，就調整得更多</li>
-<li>哪些影響小，就調整得少</li>
-</ul>
-</li>
-<li>調整的方法就是用 梯度下降 (Gradient Descent)</li>
-</ul>
-<p>重點:</p>
-<ul>
-<li>反向傳播不是在「重跑」，而是在「反推責任歸屬」，然後「更新參數」</li>
-<li>正向傳播像是「做題目」，反向傳播像是「老師改考卷，告訴你哪裡要修正」</li>
-</ul>
-<h3 id="沒有-label-就不能用神經網絡">沒有 label 就不能用神經網絡?</h3>
-<p>經過前面 10 多天的洗禮，我相信看到這邊大家都會有個疑問，分群 (Clustering) 沒有 label 的，那表示神經網絡沒有分群 (Clustering) 這個概念? 當然不是，神經網絡不會這麼弱，差別在於 Loss 的設計邏輯不一樣:</p>
-<ul>
-<li>Supervised Learning (with labels)
-<ul>
-<li>有明確答案，loss 直接來自「預測 vs. 真實答案」的差異</li>
-</ul>
-</li>
-<li>Unsupervised Learning (without labels)
-<ul>
-<li>沒有 y，所以不能用 cross entropy 這種監督式的 Loss</li>
-<li>改成「自我監督 / 結構化目標」來建 Loss，例如:
-<ul>
-<li>自編碼器 (Autoencoder)</li>
-<li>GANs (生成對抗網絡)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>這些技術後面慢慢談，所以神經網絡的應用場景很廣的</p>
-<h2 id="優缺點">優缺點</h2>
-<p>目前大多數的研究都顯示出，面對真實問題的情況下，深度學習模型都比經典機器學習模型表現更好，但是模型的訓練不能只看準確度，還要看成本跟訓練速度，很多複雜的問題，神經網絡寫好，訓練執行下去，可能一次就要跑一週以上，大概率你的筆電也很難訓練這種模型，但是在經典機器學習就不會出現這種問題，深度學習主要的缺點:</p>
-<ul>
-<li>訓練成本高，對大資料需求大</li>
-<li>參數數量龐大，容易過擬合</li>
-<li>可解釋性差，屬於黑盒模型</li>
-</ul>
-<h2 id="模型實作">模型實作</h2>
+<p>當多層神經元堆疊，就形成所謂的「多層感知機 (MLP)」</p>
+<h2 id="實作範例-用-pytorch-示範單一神經元">實作範例 (用 PyTorch 示範單一神經元)</h2>
+<p>(要完整的過程，看昨天的全連接神經網絡即可)</p>
+<p>這段程式碼展示了「一個神經元」如何運算: 輸入三個特徵，經過線性加權、加上偏差，再通過 Sigmoid 激活函數，最後輸出一個介於 (0,1) 的數值</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">transforms</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 1. 數據準備 (MNIST)</span>
-</span></span><span class="line"><span class="cl"><span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span>  <span class="c1"># 組合多個前處理步驟，會依序做 ToTensor() → Normalize()</span>
-</span></span><span class="line"><span class="cl">    <span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>  <span class="c1"># 把圖片 (通常是 PIL image 或 numpy array) 轉成 PyTorch Tensor，同時會把像素值 從 [0,255] 縮放到 [0,1]</span>
-</span></span><span class="line"><span class="cl">        <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="mf">0.5</span><span class="p">,),</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,))</span>  <span class="c1"># 標準化 (Normalization) $x_{norm} = \frac{x - mean}{std}$</span>
-</span></span><span class="line"><span class="cl">    <span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">## 這是 torchvision 提供的資料集接口，可以直接下載或載入 MNIST 手寫數字資料集</span>
-</span></span><span class="line"><span class="cl"><span class="c1">##  - root=&#34;./data&#34;: 指定資料儲存的目錄 (如果沒下載過，會自動下載到這個資料夾)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## 	- train=True: 載入訓練集 (60,000 筆資料)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## 	- train=False: 載入測試集 (10,000 筆資料)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## 	- download=True: 如果資料不存在，會自動下載</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## 	- transform=transform: 指定前處理方法 (剛剛定義的 ToTensor() + Normalize())</span>
-</span></span><span class="line"><span class="cl"><span class="n">train_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s2">&#34;./data&#34;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">test_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s2">&#34;./data&#34;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">## 前面執行後會得到 Dataset 物件，但還不能直接拿來訓練，需要包裝成 DataLoader</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## PyTorch 提供的 資料批次處理器，負責把資料分批 (batch) 餵給模型</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## 	- train_loader = DataLoader(train_data, batch_size=64, shuffle=True)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## 	- 把訓練資料 train_data 包裝成 DataLoader</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## 	- batch_size=64: 每次會取 64 筆資料出來訓練</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## 	- shuffle=True: 每個 epoch 開始時會隨機打亂資料，避免模型學到資料順序的偏差</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## 	- test_loader = DataLoader(test_data, batch_size=1000, shuffle=False)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## 	- 測試資料一次取 1000 筆出來測試</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## 	- shuffle=False: 測試時不需要打亂，保持固定順序即可</span>
-</span></span><span class="line"><span class="cl"><span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 2. 建立模型</span>
-</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">FCNN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 定義一個簡單的單層神經元 (3 個輸入 -&gt; 1 輸出)</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">SimpleNeuron</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># 如果不寫 nn.Module 的初始化沒被呼叫，forward() 裡用的 self.fc1 = nn.Linear(...) 雖然看起來「存在」，但 模型不會追蹤到它的參數</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">(</span><span class="n">SimpleNeuron</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">linear</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1"># 3 input features, 1 output</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1"># NIST 的圖片是 28 × 28 灰階，一張圖片攤平成一個向量，長度就是 28×28 = 784</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># 輸出是 128 個神經元</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1"># 自由選，這是超參數 (hyperparameter)，你完全可以改:</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># nn.Linear(784, 256) → nn.Linear(256, 128) → nn.Linear(128, 10) 或者再多加幾層、更寬 (512, 1024…)</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># 這個不影響「輸入跟輸出」的對齊，只會影響模型容量與訓練難度</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># 輸出是 64 個神經元</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1"># MNIST 的標籤是 0–9，總共 10 個類別，所以最後一層要輸出 10 維 logits，對應到 softmax 之後的 10 類機率分佈</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># 如果是二元分類 (例如貓/狗)，輸出就會設成 1 或 2 (看你選 binary sigmoid 還是 softmax)</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1"># 在訓練時，有 20% 的神經元會被隨機「丟掉」(設成 0)，其餘 80% 的神經元會被保留，但會 放大輸出 (除以 0.8)，確保整體期望值不變</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># 為什麼要這樣設計?</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">#  - 假設一個神經元輸出值是 h=0.5：</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># 	 - 如果被丟掉 → 輸出 = 0</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># 	 - 如果沒被丟掉 → 輸出 = 0.5 ÷ 0.8 = 0.625</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">#  - 這樣的好處是：在測試時不用再做任何調整，因為訓練時的期望值已經被 scale 過了</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># 常見的 p 值選擇</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">#  - p=0.1 ~ 0.3：小模型 (例如 MNIST)，避免太多資訊丟掉</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">#  - p=0.5：經典值，常用在大模型的全連接層</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">#  - p=0.7+：幾乎不用，因為會把大部分資訊都丟掉，網路很難收斂</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1"># 資料流動定義</span>
 </span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># -1: 自動推算 batch_size，不用你自己算。例如 batch_size=64，那這裡就是 64</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># 28*28: 固定每張圖片攤平成 784 維的向量</span>
-</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="c1"># 使用 sigmoid 激活</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 建立神經元</span>
+</span></span><span class="line"><span class="cl"><span class="n">neuron</span> <span class="o">=</span> <span class="n">SimpleNeuron</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1"># 第一層參數最多</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">#  - MNIST 784 → 128: 這裡的權重數量是 784×128 ≈ 100k，容易過擬合</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">#  - Dropout 可以迫使網路不要過度依賴某幾個輸入維度</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># 高維度 → 容易記憶資料</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">#  - 如果沒有 Dropout，網路可能直接「記住」訓練資料而不是學 general 特徵</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">#  - 在大維度特徵處加 Dropout，可以降低這種風險</span>
-</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># 為什麼第二層常常不用 Dropout?</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># - 後面神經元比較少</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">#   - 128 → 64，參數數量大幅減少，過擬合風險相對低</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># - 避免過度稀疏</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">#   - 如果每一層都 Dropout，訊號可能被「打掉太多」，模型學不到東西</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># 	- 一般經驗: 對大的全連接層用 Dropout，小層就不一定需要</span>
-</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 假設輸入三個特徵</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl"><span class="n">output</span> <span class="o">=</span> <span class="n">neuron</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">FCNN</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 3. 訓練設置</span>
-</span></span><span class="line"><span class="cl"><span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 4. 訓練迴圈</span>
-</span></span><span class="line"><span class="cl"><span class="n">epochs</span> <span class="o">=</span> <span class="mi">10</span>
-</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">ep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">epochs</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">    <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>  <span class="c1"># 切換成訓練模式 (啟用 Dropout、BatchNorm 等): PyTorch 底層邏輯</span>
-</span></span><span class="line"><span class="cl">    <span class="n">loss</span> <span class="o">=</span> <span class="mf">0.0</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">train_loader</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>  <span class="c1"># 關鍵: 清空上一步的梯度 (PyTorch 預設會把梯度「累加」，如果不清空，第二個 batch 的梯度會加到第一個 batch 上，導致更新錯誤，所以每次迭代前必須先歸零)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>  <span class="c1"># 執行模型的 forward()</span>
-</span></span><span class="line"><span class="cl">        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>  <span class="c1"># 這裡會自動做 softmax + cross entropy</span>
-</span></span><span class="line"><span class="cl">        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>  <span class="c1"># 自動計算每個參數的梯度，梯度會存放在對應的 param.grad 裡 (這是 PyTorch 的 autograd 機制)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>  <span class="c1"># 用計算好的梯度更新參數，這裡使用的是 SGD (w ← w - lr * grad)，如果你換成 Adam，會是另一種更新規則</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Epoch </span><span class="si">{</span><span class="n">ep</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">epochs</span><span class="si">}</span><span class="s2">, Loss: </span><span class="si">{</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 5. 測試</span>
-</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>  <span class="c1"># 切換模型到評估模式 (evaluation mode)</span>
-</span></span><span class="line"><span class="cl"><span class="n">correct</span> <span class="o">=</span> <span class="mf">0.0</span>
-</span></span><span class="line"><span class="cl"><span class="n">total</span> <span class="o">=</span> <span class="mf">0.0</span>
-</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>  <span class="c1"># 關閉梯度計算，測試時我們只需要 forward pass，不需要反向傳播</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>  <span class="c1"># 把影像送進模型，得到輸出 logits (還沒 softmax 的值)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">pred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 功能: 在維度 dim=1 上找出最大值的 index → 代表模型預測的類別，例：[0.1, 0.7, 0.2] → argmax=1 → 預測為類別 1</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1"># (pred == labels) → 逐元素比較，產生 True/False 的 tensor</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># .sum() → 計算這個 batch 預測正確的數量</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># .item() → 把 tensor 轉成純數字 (int/float)</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># correct → 累加正確數量</span>
-</span></span><span class="line"><span class="cl">        <span class="n">correct</span> <span class="o">+=</span> <span class="p">(</span><span class="n">pred</span> <span class="o">==</span> <span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1"># images.size(0) → batch 的樣本數 (通常等於 batch_size，最後一批可能比較小)</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># total → 累加測試資料總數。</span>
-</span></span><span class="line"><span class="cl">        <span class="n">total</span> <span class="o">+=</span> <span class="n">images</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Accuracy: </span><span class="si">{</span><span class="n">correct</span><span class="o">/</span><span class="n">total</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;輸入:&#34;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;輸出:&#34;</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
 </span></span></code></pre></div><h2 id="結語">結語</h2>
-<p>今天簡單的介紹了全連接神經網絡 (FCNN) 是深度學習的起點與基石，雖然在高維與非結構化資料上不是最佳選擇，但它提供了一個理解神經網路如何運作的直觀框架: 輸入 → 加權和 → 非線性轉換 → 多層堆疊 → 輸出。</p>
-<p>實務上，FCNN 常用於:</p>
+<p>神經元是深度學習的基礎構件。它本身的數學原理不複雜，但一旦大量堆疊並透過反向傳播訓練，就能展現強大的表示能力。</p>
+<p>理解神經元，能幫助我們看清楚:</p>
 <ul>
-<li>表格數據的分類/回歸</li>
-<li>特徵壓縮與嵌入</li>
-<li>作為複雜架構的子模組</li>
+<li>為什麼需要激活函數?</li>
+<li>為什麼要有權重與偏差?</li>
+<li>為什麼多層網路能捕捉到複雜模式?</li>
 </ul>
-<p>理解 FCNN，不只是為了使用它本身，而是為了更好地理解 CNN、RNN、Transformer 等深度學習架構的共同底層邏輯</p>
+<p>接下來，我們將在這個基礎上，進一步介紹其他相關的基礎</p>
 <h2 id="備註">備註</h2>
 <ul>
 <li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
@@ -583,22 +359,22 @@ Loss function: Categorical Crossentropy / Sparse Categorical Crossentropy
   </div>
   <ul class="share__list list-reset">
     <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25081601%2f"
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25081701%2f"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
     </li>
     <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2018%29%20%e5%85%a8%e9%80%a3%e6%8e%a5%e7%a5%9e%e7%b6%93%e7%b6%b2%e7%b5%a1%20%28Fully%20Connected%20Neural%20Network%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25081601%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2019%29%20%e7%a5%9e%e7%b6%93%e5%85%83%20%28Neuron%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25081701%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25081601%2f&title=%28Day%2018%29%20%e5%85%a8%e9%80%a3%e6%8e%a5%e7%a5%9e%e7%b6%93%e7%b6%b2%e7%b5%a1%20%28Fully%20Connected%20Neural%20Network%29&summary=&source=%28Day%2018%29%20%e5%85%a8%e9%80%a3%e6%8e%a5%e7%a5%9e%e7%b6%93%e7%b6%b2%e7%b5%a1%20%28Fully%20Connected%20Neural%20Network%29"
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25081701%2f&title=%28Day%2019%29%20%e7%a5%9e%e7%b6%93%e5%85%83%20%28Neuron%29&summary=&source=%28Day%2019%29%20%e7%a5%9e%e7%b6%93%e5%85%83%20%28Neuron%29"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
     </li>
 
     <li class="share__item">
       <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25081601%2f&amp;media=http%3a%2f%2ftwcch.io%2fimages%2fpost%2fcommon%2fdata_science_competition_01.png&amp;description=%28Day%2018%29%20%e5%85%a8%e9%80%a3%e6%8e%a5%e7%a5%9e%e7%b6%93%e7%b6%b2%e7%b5%a1%20%28Fully%20Connected%20Neural%20Network%29"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25081701%2f&amp;media=http%3a%2f%2ftwcch.io%2fimages%2fpost%2fcommon%2fdata_science_competition_01.png&amp;description=%28Day%2019%29%20%e7%a5%9e%e7%b6%93%e5%85%83%20%28Neuron%29"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Pinterest" aria-label="Share on Pinterest"><i class="ion ion-logo-pinterest"></i></a>
     </li>
@@ -608,21 +384,14 @@ Loss function: Categorical Crossentropy / Sparse Categorical Crossentropy
         
         <div class="post__navigation">
           
-          <a class="prev" href="http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081501/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
+          <a class="prev" href="http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081601/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
             <div class="post__nav-box">
               <div class="post__nav post__nav__prev"><i class="ion ion-ios-arrow-back"></i> Previous
                 Page</div>
-              <h4 class="post__nav__title">(Day 17) 淺談深度學習 (Deep Learning)</h4>
+              <h4 class="post__nav__title">(Day 18) 全連接神經網絡 (Fully Connected Neural Network)</h4>
             </div>
           </a>
           
-          
-          <a class="next" href="http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081701/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
-            <div class="post__nav-box">
-              <div class="post__nav post__nav__next">Next Page <i class="ion ion-ios-arrow-forward"></i></div>
-              <h4 class="post__nav__title">(Day 19) 神經元 (Neuron)</h4>
-            </div>
-          </a>
           
         </div>
         

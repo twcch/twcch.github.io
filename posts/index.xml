@@ -6,8 +6,15 @@
     <description>Recent content in Posts on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sat, 16 Aug 2025 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 Aug 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="http://twcch.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>(Day 19) 神經元 (Neuron)</title>
+      <link>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081701/</link>
+      <pubDate>Sun, 17 Aug 2025 00:00:00 +0800</pubDate>
+      <guid>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081701/</guid>
+      <description>&lt;p&gt;前一篇我們先介紹了全連接神經網絡 (Fully Connected Neural Network)，相信大家還是不太清楚這是什麼，接下來會用幾天的篇幅一一介紹相關的專有名詞，若要理解神經網路，必須先從最小的組成單位 —— 神經元 (Neuron) 開始。&lt;/p&gt;&#xA;&lt;p&gt;人工神經元的靈感來自於生物神經科學中「神經元」的概念: 人腦中的神經細胞會接收訊號、處理並傳遞訊號給下一個神經元，形成複雜的網絡。人工神經網路 (Artificial Neural Network, ANN) 正是透過數學方式去模擬這樣的運作。&lt;/p&gt;&#xA;&lt;h2 id=&#34;神經元數學模型&#34;&gt;神經元數學模型&lt;/h2&gt;&#xA;&lt;p&gt;一個人工神經元的輸入與輸出過程可以寫成:&lt;/p&gt;&#xA;&lt;p&gt;$$&#xA;z = \sum\limits_{i=1}^{n} w_i x_i + b&#xA;$$&lt;/p&gt;&#xA;&lt;p&gt;$$&#xA;a = \sigma(z)&#xA;$$&lt;/p&gt;&#xA;&lt;p&gt;其中:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;$x_i$: 輸入特徵&lt;/li&gt;&#xA;&lt;li&gt;$w_i$: 權重 (weight)，決定輸入的重要性&lt;/li&gt;&#xA;&lt;li&gt;$b$: 偏差 (bias)，調整整體的輸入偏移量&lt;/li&gt;&#xA;&lt;li&gt;$\sigma(\cdot)$: 激活函數 (Activation Function)，將線性組合轉換為非線性輸出&lt;/li&gt;&#xA;&lt;li&gt;$a$: 神經元的輸出&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;先不看激活函數的部分，是不是第一眼會覺得好像在哪裡看過? 沒錯就是我們 Day 2 介紹的線性迴歸，所以神經元本身並不是什麼太高級的東西，就是一個線性輸出而已，為了要讓神經元能夠模擬更複雜的非線性關係，才會在線性輸出後再加上激活函數 (激活函數是什麼明天介紹)&lt;/p&gt;&#xA;&lt;h2 id=&#34;神經元的運作流程&#34;&gt;神經元的運作流程&lt;/h2&gt;&#xA;&lt;p&gt;以一個簡單的二元分類例子來看&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;輸入層: 假設有三個特徵 $x_1$, $x_2$, $x_3$&lt;/li&gt;&#xA;&lt;li&gt;加權求和: 每個特徵乘上權重 $w_i$，再加上偏差 $b$&lt;/li&gt;&#xA;&lt;li&gt;激活函數：輸入 ReLU 或 Sigmoid，得到輸出 a&lt;/li&gt;&#xA;&lt;li&gt;傳遞至下一層: 這個輸出作為下一層神經元的輸入&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;當多層神經元堆疊，就形成所謂的「多層感知機 (MLP)」&lt;/p&gt;</description>
+    </item>
     <item>
       <title>(Day 18) 全連接神經網絡 (Fully Connected Neural Network)</title>
       <link>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081601/</link>
