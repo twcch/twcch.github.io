@@ -2,13 +2,12 @@
 <html lang="zh-tw">
 
 <head>
-	<meta name="generator" content="Hugo 0.139.5">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>志謙&#39;s Blog</title>
+  <title>(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning) | 志謙&#39;s Blog</title>
 
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="..." crossorigin="anonymous">
@@ -21,21 +20,132 @@
     ]
   });"></script>
 
-  <meta name="description" content="志謙&#39;s Blog">
+  <meta name="description" content="">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="志謙&#39;s Blog">
-  <meta name="twitter:description" content="志謙&#39;s Blog">
-  <meta name="twitter:image" content="http://twcch.io/images/banner.png">
+  <meta name="twitter:title" content="(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。
+今天我們要談的主題「正規化 (Normalization) 與正則化 (Regularization)」，就是專門為了解決這類問題而設計的工具。這兩個詞在中文裡常常被混淆，但在深度學習中有明確的區分:
+
+正規化 (Normalization): 處理資料或中間層輸出的「分布」，讓訓練更穩定。
+正則化 (Regularization): 在模型學習過程中「限制參數自由度」，避免過度擬合。
+
+可以把它們理解成:
+
+正規化是「讓訓練跑得順暢」
+正則化是「讓模型不要學壞」
+
+為什麼需要正規化與正則化?
+深度學習的挑戰主要來自於以下幾點:
+
+參數數量龐大
+
+FCNN、CNN、RNN 等模型的參數動輒上百萬，模型表達能力非常強。這雖然能學習複雜模式，但也極容易記住「訓練資料」而不是「一般化規律」。
+
+
+梯度傳遞問題
+
+深層網路容易遇到梯度消失或爆炸，導致學習不穩定。
+即便是設計良好的激活函數 (如 ReLU)，也可能因資料分布不均而造成某些神經元失效。
+
+
+資料有限
+
+真實世界中，資料集往往有限，無法支撐一個龐大模型完全「正確」學習。若沒有適當限制，模型就會死記硬背訓練資料，導致測試集表現不佳。
+
+
+
+為了應對這些問題，正規化與正則化技術被廣泛應用在深度學習的訓練流程中。
+正規化 (Normalization)
+正規化的核心目標是: 讓輸入資料或中間層輸出的數值保持在合理範圍內，以便模型更容易學習。在模型訓練前，我們通常會對輸入資料進行縮放，例如:
+
+Min-Max Scaling
+Z-score Standardization
+
+正則化 (Regularization)
+正則化的核心目標是：避免模型過擬合，提升泛化能力。
+
+L1 與 L2 正則化
+Dropout
+
+正規化與正則化的互補關係
+雖然名稱相似，但正規化與正則化針對的問題不同:
+
+正規化 → 解決訓練穩定性、加速收斂
+正則化 → 解決過擬合、提升泛化
+
+在實務上，它們通常是 同時使用 的。例如:
+
+CNN: 資料正規化 &#43; Batch Normalization &#43; Dropout &#43; Weight Decay
+RNN/Transformer: Layer Normalization &#43; Early Stopping &#43; Data Augmentation
+
+結語
+深度學習之所以能夠在近十年迅速崛起，不只是因為 GPU 算力提升或資料量增大，還有賴於一系列 正規化與正則化技術 的發展，讓深度模型可以被穩定地訓練並具備良好的泛化能力。">
+  <meta name="twitter:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
-  <meta property="og:title" content="志謙&#39;s Blog">
-  <meta property="og:description" content="志謙&#39;s Blog">
-  <meta property="og:image" content="http://twcch.io/images/banner.png">
+  <meta property="og:title" content="(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning) | 志謙&#39;s Blog">
+  <meta property="og:description" content="在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。
+今天我們要談的主題「正規化 (Normalization) 與正則化 (Regularization)」，就是專門為了解決這類問題而設計的工具。這兩個詞在中文裡常常被混淆，但在深度學習中有明確的區分:
+
+正規化 (Normalization): 處理資料或中間層輸出的「分布」，讓訓練更穩定。
+正則化 (Regularization): 在模型學習過程中「限制參數自由度」，避免過度擬合。
+
+可以把它們理解成:
+
+正規化是「讓訓練跑得順暢」
+正則化是「讓模型不要學壞」
+
+為什麼需要正規化與正則化?
+深度學習的挑戰主要來自於以下幾點:
+
+參數數量龐大
+
+FCNN、CNN、RNN 等模型的參數動輒上百萬，模型表達能力非常強。這雖然能學習複雜模式，但也極容易記住「訓練資料」而不是「一般化規律」。
+
+
+梯度傳遞問題
+
+深層網路容易遇到梯度消失或爆炸，導致學習不穩定。
+即便是設計良好的激活函數 (如 ReLU)，也可能因資料分布不均而造成某些神經元失效。
+
+
+資料有限
+
+真實世界中，資料集往往有限，無法支撐一個龐大模型完全「正確」學習。若沒有適當限制，模型就會死記硬背訓練資料，導致測試集表現不佳。
+
+
+
+為了應對這些問題，正規化與正則化技術被廣泛應用在深度學習的訓練流程中。
+正規化 (Normalization)
+正規化的核心目標是: 讓輸入資料或中間層輸出的數值保持在合理範圍內，以便模型更容易學習。在模型訓練前，我們通常會對輸入資料進行縮放，例如:
+
+Min-Max Scaling
+Z-score Standardization
+
+正則化 (Regularization)
+正則化的核心目標是：避免模型過擬合，提升泛化能力。
+
+L1 與 L2 正則化
+Dropout
+
+正規化與正則化的互補關係
+雖然名稱相似，但正規化與正則化針對的問題不同:
+
+正規化 → 解決訓練穩定性、加速收斂
+正則化 → 解決過擬合、提升泛化
+
+在實務上，它們通常是 同時使用 的。例如:
+
+CNN: 資料正規化 &#43; Batch Normalization &#43; Dropout &#43; Weight Decay
+RNN/Transformer: Layer Normalization &#43; Early Stopping &#43; Data Augmentation
+
+結語
+深度學習之所以能夠在近十年迅速崛起，不只是因為 GPU 算力提升或資料量增大，還有賴於一系列 正規化與正則化技術 的發展，讓深度模型可以被穩定地訓練並具備良好的泛化能力。">
+  <meta property="og:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -185,444 +295,215 @@
     
 
 
+
+
 <div class="container">
   <div class="row">
     <div class="col col-12">
-      
-      <section class="hero">
-        <div class="hero__inner">
-          <div class="hero__image">
-            <img src="./images/banner.png" alt="謝志謙">
-          </div>
-          <div class="hero__content">
-            <h1 class="hero__title">謝志謙</h1>
-            <p class="hero__desc">Ph.D. Student</p>
-          </div>
-        </div>
-      </section>
-      
+      <div class="image-box">
+        <img class="post-image" src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning)">
+      </div>
     </div>
   </div>
 </div>
 
 
 <div class="container">
-  <div class="row grid">
 
+  <div class="row">
+    <div class="col col-8 col-d-10 push-2 push-d-1 col-t-12 push-t-0">
     
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
+      
+      <article class="post amimate">
 
-    
+        <div class="post__head">
+          
+          <div class="post__tags">
+            
+            <a href="http://twcch.io/tags/data-science/" class="post-tags__tag">Data Science</a>
+            
+            <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post-tags__tag">IThome 鐵人賽 2025</a>
+            
+            <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post-tags__tag">30 天入門常見的機器學習演算法</a>
+            
+          </div>
+          
 
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080201/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 4) 正規化迴歸 (Regularization Regression)">
-    </a>
+          <h1 class="post__title">(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning)</h1>
 
-    <div class="article__content">
+          <div class="post__meta">
+            <div class="post__author">
+              <a href="/about/" class="post__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="post__author-link">謝志謙</a>
+            </div>
+            <span class="post__date">
+              <time datetime=" 2025-08-20T00:00:00&#43;08:00">Aug 20, 2025</time>
+            </span>
+          </div>
 
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
         </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080201/">(Day 4) 正規化迴歸 (Regularization Regression)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>延續昨日的多項式迴歸中，我們觀察到一個現象: 雖然二次特徵提升了模型的表現，但同時也引入過擬合 (Overfitting) 風險。這是因為當特徵數量暴增，模型就會變得過於「貪婪」，試圖將每個 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-02T00:00:00&#43;08:00">
-          Aug 2, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
     
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080101/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 3) 多項式迴歸 (Polynomial Regression)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080101/">(Day 3) 多項式迴歸 (Polynomial Regression)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>昨天介紹了線性迴歸 (Linear Regression)，它適合用來處理特徵與目標之間為線性關係的情境。然而，真實世界的資料往往並非純粹線性，而是呈現複雜的非線性關係，例如曲線、拋物線、甚 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-01T00:00:00&#43;08:00">
-          Aug 1, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25073101/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 2) 線性迴歸 (Linear Regression)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25073101/">(Day 2) 線性迴歸 (Linear Regression)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>線性迴歸 (Linear Regression) 是統計學中的一種預測方法，主要分為簡單線性迴歸 (Simple Linear Regression) 與多元線性迴歸 (Multiple …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-31T00:00:00&#43;08:00">
-          Jul 31, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25073001/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 1) 介紹與準備">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25073001/">(Day 1) 介紹與準備</a>
-      </h2>
-
-      <div class="article__excerpt"><p>在學習機器學習 (Machine Learning) 的過程中，可能會陷入兩種極端，一種是只會調用套件 (套模)，模型背後的機制一知半解，遇到問題只能「換模型試試看」，或者是過度陷入數學細 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-30T00:00:00&#43;08:00">
-          Jul 30, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/articles_25071601/">
-      <img src="http://twcch.io/images/post/common/heart_notes_01.png" alt="學歷無用? 我仍相信學習的價值">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/heart-notes/" class="article__tag">Heart Notes</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25071601/">學歷無用? 我仍相信學習的價值</a>
-      </h2>
-
-      <div class="article__excerpt"><p>近年來，我觀察到無論在台灣還是中國，「學歷無用論」的聲音愈發強烈。許多人開始質疑讀書是否還有意義，認為不靠學歷反而更能致富，網紅、直播、投資客、白手起家的商人充斥版面，讀書人反倒被視為落後 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-16T00:00:00&#43;08:00">
-          Jul 16, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/projects/articles_25070901/">
-      <img src="http://twcch.io/images/post/common/side_project_01.png" alt="視覺化專案 - 200 個國家 200 百年 4 分鐘">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/project/" class="article__tag">Project</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/projects/articles_25070901/">視覺化專案 - 200 個國家 200 百年 4 分鐘</a>
-      </h2>
-
-      <div class="article__excerpt"><p>這是一個資料視覺化專案——「Dynamic Visualization: 200 Countries, 200 Years, 4 Minutes」。它將涵蓋 1816 至 2016  …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-09T00:00:00&#43;08:00">
-          Jul 9, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/projects/articles_25063001/">
-      <img src="http://twcch.io/images/post/common/side_project_01.png" alt="實戰專案 - Titanic 生存預測專案">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/project/" class="article__tag">Project</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/projects/articles_25063001/">實戰專案 - Titanic 生存預測專案</a>
-      </h2>
-
-      <div class="article__excerpt"><p>這是一個資料科學專案，目標是透過 Kaggle 經典的 Titanic 生存預測題目，建立一套結構清晰、模組化的預測系統。我不只是想交出一份準確的預測結果，更希望藉由這個專案練習:</p>
+        <div class="post__content">
+          <p>在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。</p>
+<p>今天我們要談的主題「正規化 (Normalization) 與正則化 (Regularization)」，就是專門為了解決這類問題而設計的工具。這兩個詞在中文裡常常被混淆，但在深度學習中有明確的區分:</p>
 <ul>
-<li>如何設 …</li></ul></div>
+<li>正規化 (Normalization): 處理資料或中間層輸出的「分布」，讓訓練更穩定。</li>
+<li>正則化 (Regularization): 在模型學習過程中「限制參數自由度」，避免過度擬合。</li>
+</ul>
+<p>可以把它們理解成:</p>
+<ul>
+<li>正規化是「讓訓練跑得順暢」</li>
+<li>正則化是「讓模型不要學壞」</li>
+</ul>
+<h2 id="為什麼需要正規化與正則化">為什麼需要正規化與正則化?</h2>
+<p>深度學習的挑戰主要來自於以下幾點:</p>
+<ol>
+<li>參數數量龐大
+<ul>
+<li>FCNN、CNN、RNN 等模型的參數動輒上百萬，模型表達能力非常強。這雖然能學習複雜模式，但也極容易記住「訓練資料」而不是「一般化規律」。</li>
+</ul>
+</li>
+<li>梯度傳遞問題
+<ul>
+<li>深層網路容易遇到梯度消失或爆炸，導致學習不穩定。</li>
+<li>即便是設計良好的激活函數 (如 ReLU)，也可能因資料分布不均而造成某些神經元失效。</li>
+</ul>
+</li>
+<li>資料有限
+<ul>
+<li>真實世界中，資料集往往有限，無法支撐一個龐大模型完全「正確」學習。若沒有適當限制，模型就會死記硬背訓練資料，導致測試集表現不佳。</li>
+</ul>
+</li>
+</ol>
+<p>為了應對這些問題，正規化與正則化技術被廣泛應用在深度學習的訓練流程中。</p>
+<h3 id="正規化-normalization">正規化 (Normalization)</h3>
+<p>正規化的核心目標是: 讓輸入資料或中間層輸出的數值保持在合理範圍內，以便模型更容易學習。在模型訓練前，我們通常會對輸入資料進行縮放，例如:</p>
+<ul>
+<li>Min-Max Scaling</li>
+<li>Z-score Standardization</li>
+</ul>
+<h3 id="正則化-regularization">正則化 (Regularization)</h3>
+<p>正則化的核心目標是：避免模型過擬合，提升泛化能力。</p>
+<ul>
+<li>L1 與 L2 正則化</li>
+<li>Dropout</li>
+</ul>
+<h2 id="正規化與正則化的互補關係">正規化與正則化的互補關係</h2>
+<p>雖然名稱相似，但正規化與正則化針對的問題不同:</p>
+<ul>
+<li>正規化 → 解決訓練穩定性、加速收斂</li>
+<li>正則化 → 解決過擬合、提升泛化</li>
+</ul>
+<p>在實務上，它們通常是 同時使用 的。例如:</p>
+<ul>
+<li>CNN: 資料正規化 + Batch Normalization + Dropout + Weight Decay</li>
+<li>RNN/Transformer: Layer Normalization + Early Stopping + Data Augmentation</li>
+</ul>
+<h2 id="結語">結語</h2>
+<p>深度學習之所以能夠在近十年迅速崛起，不只是因為 GPU 算力提升或資料量增大，還有賴於一系列 正規化與正則化技術 的發展，讓深度模型可以被穩定地訓練並具備良好的泛化能力。</p>
+<p>可以這樣理解:</p>
+<ul>
+<li>沒有正規化，模型可能訓練不起來</li>
+<li>沒有正則化，模型可能學壞掉</li>
+</ul>
+<p>在進入 RNN、LSTM、Transformer 之前，理解這些基礎的訓練技巧，能讓我們更清楚地看到深度學習從「能跑」到「能用」的過程。</p>
+<h2 id="備註">備註</h2>
+<ul>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
+</ul>
 
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
         </div>
-
-        <time class="article__date" datetime="2025-06-30T00:00:00&#43;08:00">
-          Jun 30, 2025
-        </time>
-      </div>
-
-    </div>
+    
+        <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this article</div>
   </div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25082001%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2022%29%20%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e4%b8%ad%e7%9a%84%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%88%87%e6%ad%a3%e5%89%87%e5%8c%96%20%28Regularization%20in%20Deep%20Learning%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25082001%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25082001%2f&title=%28Day%2022%29%20%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e4%b8%ad%e7%9a%84%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%88%87%e6%ad%a3%e5%89%87%e5%8c%96%20%28Regularization%20in%20Deep%20Learning%29&summary=&source=%28Day%2022%29%20%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e4%b8%ad%e7%9a%84%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%88%87%e6%ad%a3%e5%89%87%e5%8c%96%20%28Regularization%20in%20Deep%20Learning%29"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25082001%2f&amp;media=http%3a%2f%2ftwcch.io%2fimages%2fpost%2fcommon%2fdata_science_competition_01.png&amp;description=%28Day%2022%29%20%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e4%b8%ad%e7%9a%84%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%88%87%e6%ad%a3%e5%89%87%e5%8c%96%20%28Regularization%20in%20Deep%20Learning%29"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+  </ul>
 </div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
 
-    
-
-    <a class="article__image" href="/posts/articles_25062501/">
-      <img src="http://twcch.io/images/post/common/heart_notes_01.png" alt="當老師只靠 ChatGPT 回信：我們期待的不是答案，而是理解">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
         
-        <div class="article-tags__box">
+        <div class="post__navigation">
           
-          <a href="http://twcch.io/tags/heart-notes/" class="article__tag">Heart Notes</a>
+          <a class="prev" href="http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081901/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
+            <div class="post__nav-box">
+              <div class="post__nav post__nav__prev"><i class="ion ion-ios-arrow-back"></i> Previous
+                Page</div>
+              <h4 class="post__nav__title">(Day 21) 卷積神經網絡 (Convolutional Neural Network)</h4>
+            </div>
+          </a>
           
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25062501/">當老師只靠 ChatGPT 回信：我們期待的不是答案，而是理解</a>
-      </h2>
-
-      <div class="article__excerpt"><p>最近，我正在參加一門職訓課程。本來對這堂課滿懷期待，尤其是對某位老師的專業背景很感興趣。不過，隨著課程進行，我漸漸感到一股說不出的落差感：每當我主動提出深入問題， …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-06-25T00:00:00&#43;08:00">
-          Jun 25, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/articles_25060201/">
-      <img src="http://twcch.io/images/post/common/machine_learning_01.png" alt="為什麼用 AI 技術檢測企業舞弊，比想像中更困難？">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
           
         </div>
         
-      </div>
 
-      <h2 class="article__title">
-        <a href="/posts/articles_25060201/">為什麼用 AI 技術檢測企業舞弊，比想像中更困難？</a>
-      </h2>
-
-      <div class="article__excerpt"><p>在資料科學領域中，對企業進行舞弊檢測 (Fraud Detection) 被視為是一種分類問題: 輸入企業相關的數據，輸出舞弊或非舞弊。然而，真正投入研究後會發現，這個問題很難解決，非常具挑 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-06-02T00:00:00&#43;08:00">
-          Jun 2, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
+        
+          
+<div id="disqus_thread" class="post__comments">
+  <div id="disqus_empty"></div>
 </div>
-    
-
-  </div>
-</div>
-
-
-
-
-<div class="container">
-  <div class="row">
-    <div class="col col-12">
-      <div class="load-more-section">
-        <button class="load-more-posts button button--middle">Load More Posts <i class="ion ion-ios-arrow-down"></i></button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 
 <script>
-  var base_url = "",
-  pagination_next_url = base_url + '/page2',
-  pagination_next_page_number = '4',
-  pagination_available_pages_number = '4';
+  function load_disqus() {
+    var disqus_shortname = 'anvod-studio-aditu',
+      is_disqus_empty = document.getElementById('disqus_empty'),
+      disqus_target = document.getElementById('disqus_thread'),
+      disqus_embed = document.createElement('script'),
+      disqus_hook = (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]);
+
+    if (disqus_target && is_disqus_empty) {
+      disqus_embed.type = 'text/javascript';
+      disqus_embed.async = true;
+      disqus_embed.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      disqus_hook.appendChild(disqus_embed);
+      is_disqus_empty.remove();
+    }
+  }
+
+  window.addEventListener('scroll', function (e) {
+    var currentScroll = document.scrollingElement.scrollTop;
+    var disqus_target = document.getElementById('disqus_thread');
+
+    if (disqus_target && (currentScroll > disqus_target.getBoundingClientRect().top - 150)) {
+      load_disqus('disqus_shortname');
+    }
+  }, false);
+
 </script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+        
+    
+      </article>
+      
+    </div>
+  </div>
+
+
+</div>
+
+
 
 
   </main>
