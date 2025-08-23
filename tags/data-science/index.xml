@@ -6,8 +6,15 @@
     <description>Recent content in Data Science on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Thu, 21 Aug 2025 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 22 Aug 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="http://twcch.io/tags/data-science/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>(Day 24) Adam 優化器 (Adaptive Moment Estimation)</title>
+      <link>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082201/</link>
+      <pubDate>Fri, 22 Aug 2025 00:00:00 +0800</pubDate>
+      <guid>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082201/</guid>
+      <description>&lt;p&gt;在前一天，我們整理了深度學習中常見的優化方法，從最基本的隨機梯度下降 (SGD)，到 Momentum、RMSProp、Adagrad 等。今天我們要深入介紹其中最具代表性、也是實務中最常見的優化方法之一——Adam (Adaptive Moment Estimation)。&lt;/p&gt;&#xA;&lt;p&gt;Adam 幾乎是深度學習的「預設優化器」。不論是電腦視覺、自然語言處理，還是時間序列預測，只要使用主流深度學習框架 (PyTorch、TensorFlow、Keras)，Adam 幾乎總是第一個被嘗試的選擇。&lt;/p&gt;&#xA;&lt;h2 id=&#34;adam-的動機&#34;&gt;Adam 的動機&lt;/h2&gt;&#xA;&lt;p&gt;為什麼會有 Adam? 它的出發點是想同時結合 Momentum 與 RMSProp 的優點:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Momentum: 透過累積一階動量 (過去梯度的加權平均)，能加速收斂並減少震盪。&lt;/li&gt;&#xA;&lt;li&gt;RMSProp: 透過維護二階動量 (梯度平方的移動平均)，能自動調整不同維度的學習率。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Adam 的設計思想是: 既要考慮梯度的方向 (Momentum)，又要考慮不同維度的學習率 (RMSProp)，並在數值上進行偏差修正，確保更新穩定。&lt;/p&gt;&#xA;&lt;h2 id=&#34;數學公式&#34;&gt;數學公式&lt;/h2&gt;&#xA;&lt;p&gt;Adam 的更新規則如下:&lt;/p&gt;&#xA;&lt;h3 id=&#34;初始化&#34;&gt;初始化&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;參數 $\theta_0$&lt;/li&gt;&#xA;&lt;li&gt;一階動量 $m_0 = 0$&lt;/li&gt;&#xA;&lt;li&gt;二階動量 $v_0 = 0$&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;更新規則&#34;&gt;更新規則&lt;/h3&gt;&#xA;&lt;p&gt;在第 $t$ 次迭代時:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;計算梯度:&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;$$&#xA;g_t = \nabla_\theta L(\theta_t)&#xA;$$&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;一階動量 (類似 Momentum):&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;$$&#xA;m_t = \beta_1 m_{t-1} + (1-\beta_1) g_t&#xA;$$&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;二階動量 (類似 RMSProp):&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;$$&#xA;v_t = \beta_2 v_{t-1} + (1-\beta_2) g_t^2&#xA;$$&lt;/p&gt;</description>
+    </item>
     <item>
       <title>(Day 23) 深度學習中的優化方法 (Optimization in Deep Learning)</title>
       <link>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082101/</link>
