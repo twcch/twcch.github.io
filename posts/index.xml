@@ -6,8 +6,15 @@
     <description>Recent content in Posts on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Fri, 22 Aug 2025 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 23 Aug 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="http://twcch.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>(Day 25) 循環神經網路 (Recurrent Neural Network)</title>
+      <link>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082301/</link>
+      <pubDate>Sat, 23 Aug 2025 00:00:00 +0800</pubDate>
+      <guid>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082301/</guid>
+      <description>&lt;p&gt;在前面幾天，我們介紹了全連接神經網路 (FCNN) 與卷積神經網路 (CNN)。這些架構在處理結構化數據或影像資料上非常成功，但若應用到「序列資料」時就顯得不足。例如:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;文字句子 (自然語言處理)&lt;/li&gt;&#xA;&lt;li&gt;聲音波形 (語音辨識)&lt;/li&gt;&#xA;&lt;li&gt;時間序列 (股價、氣象、感測器數據)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;這些資料都有一個共同特性：前後之間具有順序與依賴關係。傳統的神經網路會把輸入展平成固定維度向量，忽略了序列的時間結構，這時就需要 循環神經網路 (Recurrent Neural Network, RNN)。&lt;/p&gt;&#xA;&lt;h2 id=&#34;為什麼需要-rnn&#34;&gt;為什麼需要 RNN?&lt;/h2&gt;&#xA;&lt;p&gt;假設我們要預測一句話的下一個單字:&lt;/p&gt;&#xA;&lt;p&gt;“我今天心情很好，所以想去 ___”&lt;/p&gt;&#xA;&lt;p&gt;在這個任務中，模型不僅要知道「今天心情很好」，還要能理解語境，才可能正確預測「散步」、「旅行」等合理詞彙。這就意味著模型需要「記憶」前文資訊。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;FCNN: 輸入固定維度，無法表達序列依賴。&lt;/li&gt;&#xA;&lt;li&gt;CNN: 能捕捉局部特徵，但難以捕捉長距離依賴。&lt;/li&gt;&#xA;&lt;li&gt;RNN: 透過循環結構，將「上一時間步的輸出」作為「下一時間步的輸入」的一部分，實現狀態的傳遞。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;rnn-的結構&#34;&gt;RNN 的結構&lt;/h2&gt;&#xA;&lt;p&gt;RNN 的核心是一個「循環單元 (Recurrent Cell)」，其計算公式如下:&lt;/p&gt;&#xA;&lt;p&gt;$$&#xA;h_t = \tanh(W_h h_{t-1} + W_x x_t + b)&#xA;$$&lt;/p&gt;&#xA;&lt;p&gt;其中:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;$x_t$: 在時間步 $t$ 的輸入&lt;/li&gt;&#xA;&lt;li&gt;$h_{t-1}$: 前一時間步的隱藏狀態 (hidden state)&lt;/li&gt;&#xA;&lt;li&gt;$h_t$: 當前時間步的隱藏狀態&lt;/li&gt;&#xA;&lt;li&gt;$W_h, W_x, b$: 可學習參數&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;這個設計讓 RNN 可以把前一時刻的資訊「帶到下一個時刻」，實現序列建模。&lt;/p&gt;&#xA;&lt;h2 id=&#34;rnn-的展開視角&#34;&gt;RNN 的展開視角&lt;/h2&gt;&#xA;&lt;p&gt;RNN 看起來是「循環」的，但在數學運算中，我們可以把它展開成多層結構:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;時間步 $t=1$：$h_1 = f(x_1, h_0)$&lt;/li&gt;&#xA;&lt;li&gt;時間步 $t=2$：$h_2 = f(x_2, h_1)$&lt;/li&gt;&#xA;&lt;li&gt;…&lt;/li&gt;&#xA;&lt;li&gt;時間步 $t=T$：$h_T = f(x_T, h_{T-1})$&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;展開後的 RNN 就像一個「深層神經網路」，但每一層的參數 $W_h, W_x$ 是 共享的。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>(Day 24) Adam 優化器 (Adaptive Moment Estimation)</title>
       <link>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082201/</link>
