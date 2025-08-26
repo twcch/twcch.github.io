@@ -2,13 +2,12 @@
 <html lang="zh-tw">
 
 <head>
-	<meta name="generator" content="Hugo 0.139.5">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>志謙&#39;s Blog</title>
+  <title>(Day 27) 閘控循環單元 (Gated Recurrent Unit) | 志謙&#39;s Blog</title>
 
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="..." crossorigin="anonymous">
@@ -21,21 +20,140 @@
     ]
   });"></script>
 
-  <meta name="description" content="志謙&#39;s Blog">
+  <meta name="description" content="">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="志謙&#39;s Blog">
-  <meta name="twitter:description" content="志謙&#39;s Blog">
-  <meta name="twitter:image" content="http://twcch.io/images/banner.png">
+  <meta name="twitter:title" content="(Day 27) 閘控循環單元 (Gated Recurrent Unit) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="在前兩篇文章，我們分別介紹了 RNN (Recurrent Neural Network) 與 LSTM (Long Short-Term Memory)。RNN 為序列建模提供了基礎架構，但受限於梯度消失與爆炸問題，難以捕捉長距離依賴；LSTM 則透過引入 記憶單元 (Cell State) 與 門控機制 (Gating Mechanism)，成功緩解了這一問題。
+然而，LSTM 的設計相對複雜，每個時間步需要更新三個門 (遺忘門、輸入門、輸出門) 與一個記憶單元，計算成本高且參數量龐大。2014 年，Cho 等人在處理機器翻譯問題時提出了一種更簡化的替代方案——GRU (Gated Recurrent Unit)。
+GRU 的核心思想是: 保留 LSTM 的核心優勢 (門控記憶機制)，但去除冗餘設計，讓模型更輕量、更高效。
+GRU 的設計動機
+LSTM 雖然強大，但存在兩個痛點:
+
+參數多，訓練慢: 每個 LSTM 單元有三個門與一個記憶單元，計算開銷大。
+模型過於複雜: 在某些任務中，LSTM 的輸出門設計顯得多餘，因為輸出與記憶單元的分離未必必要。
+
+GRU 將 LSTM 的「遺忘門」與「輸入門」合併為「更新門 (Update Gate)」，並去掉獨立的記憶單元，直接用隱藏狀態 $h_t$ 來承載資訊。這樣的設計大幅簡化了結構，同時保留了建模長距依賴的能力。
+GRU 的結構直觀理解
+可以用「筆記本」的比喻來理解:
+
+更新門: 決定要不要覆蓋舊的內容。
+重置門: 決定在寫新內容時，要不要忽略舊的資訊。
+隱藏狀態: 同時扮演了 LSTM 的「記憶單元」與「輸出」，簡化了設計。
+
+因此，GRU 本質上是 LSTM 的精簡版，保留長期記憶能力，但運算量較小。
+GRU 與 LSTM 的比較
 
   
-  <meta property="og:title" content="志謙&#39;s Blog">
-  <meta property="og:description" content="志謙&#39;s Blog">
-  <meta property="og:image" content="http://twcch.io/images/banner.png">
+      
+          特性
+          LSTM
+          GRU
+      
+  
+  
+      
+          記憶單元
+          有獨立的 Cell State $C_t$
+          無，僅用隱藏狀態 $h_t$
+      
+      
+          門的數量
+          三個門 (輸入、遺忘、輸出)
+          兩個門 (更新、重置)
+      
+      
+          參數量
+          較多
+          較少
+      
+      
+          訓練速度
+          較慢
+          較快
+      
+      
+          表現
+          適合複雜長序列
+          在多數任務上與 LSTM 相近
+      
+      
+          應用
+          NLP、翻譯、語音辨識
+          NLP、時間序列、邊緣運算
+      
+  
+
+研究結果顯示，在許多應用中，GRU 與 LSTM 的表現非常接近，有時甚至更好；但在特別長的序列上，LSTM 仍可能優於 GRU。">
+  <meta name="twitter:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
+
+  
+  <meta property="og:title" content="(Day 27) 閘控循環單元 (Gated Recurrent Unit) | 志謙&#39;s Blog">
+  <meta property="og:description" content="在前兩篇文章，我們分別介紹了 RNN (Recurrent Neural Network) 與 LSTM (Long Short-Term Memory)。RNN 為序列建模提供了基礎架構，但受限於梯度消失與爆炸問題，難以捕捉長距離依賴；LSTM 則透過引入 記憶單元 (Cell State) 與 門控機制 (Gating Mechanism)，成功緩解了這一問題。
+然而，LSTM 的設計相對複雜，每個時間步需要更新三個門 (遺忘門、輸入門、輸出門) 與一個記憶單元，計算成本高且參數量龐大。2014 年，Cho 等人在處理機器翻譯問題時提出了一種更簡化的替代方案——GRU (Gated Recurrent Unit)。
+GRU 的核心思想是: 保留 LSTM 的核心優勢 (門控記憶機制)，但去除冗餘設計，讓模型更輕量、更高效。
+GRU 的設計動機
+LSTM 雖然強大，但存在兩個痛點:
+
+參數多，訓練慢: 每個 LSTM 單元有三個門與一個記憶單元，計算開銷大。
+模型過於複雜: 在某些任務中，LSTM 的輸出門設計顯得多餘，因為輸出與記憶單元的分離未必必要。
+
+GRU 將 LSTM 的「遺忘門」與「輸入門」合併為「更新門 (Update Gate)」，並去掉獨立的記憶單元，直接用隱藏狀態 $h_t$ 來承載資訊。這樣的設計大幅簡化了結構，同時保留了建模長距依賴的能力。
+GRU 的結構直觀理解
+可以用「筆記本」的比喻來理解:
+
+更新門: 決定要不要覆蓋舊的內容。
+重置門: 決定在寫新內容時，要不要忽略舊的資訊。
+隱藏狀態: 同時扮演了 LSTM 的「記憶單元」與「輸出」，簡化了設計。
+
+因此，GRU 本質上是 LSTM 的精簡版，保留長期記憶能力，但運算量較小。
+GRU 與 LSTM 的比較
+
+  
+      
+          特性
+          LSTM
+          GRU
+      
+  
+  
+      
+          記憶單元
+          有獨立的 Cell State $C_t$
+          無，僅用隱藏狀態 $h_t$
+      
+      
+          門的數量
+          三個門 (輸入、遺忘、輸出)
+          兩個門 (更新、重置)
+      
+      
+          參數量
+          較多
+          較少
+      
+      
+          訓練速度
+          較慢
+          較快
+      
+      
+          表現
+          適合複雜長序列
+          在多數任務上與 LSTM 相近
+      
+      
+          應用
+          NLP、翻譯、語音辨識
+          NLP、時間序列、邊緣運算
+      
+  
+
+研究結果顯示，在許多應用中，GRU 與 LSTM 的表現非常接近，有時甚至更好；但在特別長的序列上，LSTM 仍可能優於 GRU。">
+  <meta property="og:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -185,463 +303,283 @@
     
 
 
-<div class="container">
-  <div class="row">
-    <div class="col col-12">
-      
-      <section class="hero">
-        <div class="hero__inner">
-          <div class="hero__image">
-            <img src="./images/banner.png" alt="謝志謙">
-          </div>
-          <div class="hero__content">
-            <h1 class="hero__title">謝志謙</h1>
-            <p class="hero__desc">Ph.D. Student</p>
-          </div>
-        </div>
-      </section>
-      
-    </div>
-  </div>
-</div>
-
-
-<div class="container">
-  <div class="row grid">
-
-    
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080701/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 9) 樸素貝氏分類器 (Naive Bayes Classifier)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080701/">(Day 9) 樸素貝氏分類器 (Naive Bayes Classifier)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>前幾天的討論中，我們已經探討了迴歸分析、邏輯迴歸，以及最近兩天介紹的 K-Nearest Neighbors (KNN)。今天要討論的是另一種基礎且直覺性極強的分類演算法: …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-07T00:00:00&#43;08:00">
-          Aug 7, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080601/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 8) K-近鄰 (K-Nearest Neighbors)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080601/">(Day 8) K-近鄰 (K-Nearest Neighbors)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>K-近鄰 (K-Nearest Neighbors; KNN) 是一種很直學的機器學習演算法。它沒有模型參數、沒有訓練過程，卻可以在某些任務上有不錯的效果。它的核心理念只有一句話: 「你是 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-06T00:00:00&#43;08:00">
-          Aug 6, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080501/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 7) 回顧迴歸：從線性邏輯到學習本質">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080501/">(Day 7) 回顧迴歸：從線性邏輯到學習本質</a>
-      </h2>
-
-      <div class="article__excerpt"><p>前面 5 天我們聚焦於「回歸系列」模型: 線性迴歸 (Linear Regression)、多項式迴歸 (Polynomial Regression)、正則化迴歸 (Lasso / …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-05T00:00:00&#43;08:00">
-          Aug 5, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080401/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 6) 邏輯迴歸 (多項式 &#43; 正規化)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080401/">(Day 6) 邏輯迴歸 (多項式 &#43; 正規化)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>在上一篇中，我們深入介紹了邏輯迴歸的模型邏輯、損失函數與分類行為。這篇則要進一步延伸這個經典模型，回答一個關鍵問題: 邏輯迴歸能否結合多項式特徵與正規化機制，來對抗非線性與過擬合問題?</p>
-<p>在實 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-04T00:00:00&#43;08:00">
-          Aug 4, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080301/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 5) 邏輯迴歸 (Logistic Regression)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080301/">(Day 5) 邏輯迴歸 (Logistic Regression)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>邏輯迴歸 (Logistic Regression) 是一種常見的分類模型，主要用於預測二元分類或多元分類，有別於先前的線性迴歸是用來預測無邊界的連數據值，而邏輯迴歸間單來說就是預測有邊界的 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-03T00:00:00&#43;08:00">
-          Aug 3, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080201/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 4) 正規化迴歸 (Regularization Regression)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080201/">(Day 4) 正規化迴歸 (Regularization Regression)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>延續昨日的多項式迴歸中，我們觀察到一個現象: 雖然二次特徵提升了模型的表現，但同時也引入過擬合 (Overfitting) 風險。這是因為當特徵數量暴增，模型就會變得過於「貪婪」，試圖將每個 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-02T00:00:00&#43;08:00">
-          Aug 2, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080101/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 3) 多項式迴歸 (Polynomial Regression)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080101/">(Day 3) 多項式迴歸 (Polynomial Regression)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>昨天介紹了線性迴歸 (Linear Regression)，它適合用來處理特徵與目標之間為線性關係的情境。然而，真實世界的資料往往並非純粹線性，而是呈現複雜的非線性關係，例如曲線、拋物線、甚 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-08-01T00:00:00&#43;08:00">
-          Aug 1, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25073101/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 2) 線性迴歸 (Linear Regression)">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25073101/">(Day 2) 線性迴歸 (Linear Regression)</a>
-      </h2>
-
-      <div class="article__excerpt"><p>線性迴歸 (Linear Regression) 是統計學中的一種預測方法，主要分為簡單線性迴歸 (Simple Linear Regression) 與多元線性迴歸 (Multiple …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-31T00:00:00&#43;08:00">
-          Jul 31, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25073001/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 1) 介紹與準備">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25073001/">(Day 1) 介紹與準備</a>
-      </h2>
-
-      <div class="article__excerpt"><p>在學習機器學習 (Machine Learning) 的過程中，可能會陷入兩種極端，一種是只會調用套件 (套模)，模型背後的機制一知半解，遇到問題只能「換模型試試看」，或者是過度陷入數學細 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-30T00:00:00&#43;08:00">
-          Jul 30, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-
-  </div>
-</div>
-
-
 
 
 <div class="container">
   <div class="row">
     <div class="col col-12">
-      <div class="load-more-section">
-        <button class="load-more-posts button button--middle">Load More Posts <i class="ion ion-ios-arrow-down"></i></button>
+      <div class="image-box">
+        <img class="post-image" src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 27) 閘控循環單元 (Gated Recurrent Unit)">
       </div>
     </div>
   </div>
 </div>
 
 
+<div class="container">
+
+  <div class="row">
+    <div class="col col-8 col-d-10 push-2 push-d-1 col-t-12 push-t-0">
+    
+      
+      <article class="post amimate">
+
+        <div class="post__head">
+          
+          <div class="post__tags">
+            
+            <a href="http://twcch.io/tags/data-science/" class="post-tags__tag">Data Science</a>
+            
+            <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post-tags__tag">IThome 鐵人賽 2025</a>
+            
+            <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post-tags__tag">30 天入門常見的機器學習演算法</a>
+            
+          </div>
+          
+
+          <h1 class="post__title">(Day 27) 閘控循環單元 (Gated Recurrent Unit)</h1>
+
+          <div class="post__meta">
+            <div class="post__author">
+              <a href="/about/" class="post__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="post__author-link">謝志謙</a>
+            </div>
+            <span class="post__date">
+              <time datetime=" 2025-08-25T00:00:00&#43;08:00">Aug 25, 2025</time>
+            </span>
+          </div>
+
+        </div>
+    
+        <div class="post__content">
+          <p>在前兩篇文章，我們分別介紹了 RNN (Recurrent Neural Network) 與 LSTM (Long Short-Term Memory)。RNN 為序列建模提供了基礎架構，但受限於梯度消失與爆炸問題，難以捕捉長距離依賴；LSTM 則透過引入 記憶單元 (Cell State) 與 門控機制 (Gating Mechanism)，成功緩解了這一問題。</p>
+<p>然而，LSTM 的設計相對複雜，每個時間步需要更新三個門 (遺忘門、輸入門、輸出門) 與一個記憶單元，計算成本高且參數量龐大。2014 年，Cho 等人在處理機器翻譯問題時提出了一種更簡化的替代方案——GRU (Gated Recurrent Unit)。</p>
+<p>GRU 的核心思想是: 保留 LSTM 的核心優勢 (門控記憶機制)，但去除冗餘設計，讓模型更輕量、更高效。</p>
+<h2 id="gru-的設計動機">GRU 的設計動機</h2>
+<p>LSTM 雖然強大，但存在兩個痛點:</p>
+<ul>
+<li>參數多，訓練慢: 每個 LSTM 單元有三個門與一個記憶單元，計算開銷大。</li>
+<li>模型過於複雜: 在某些任務中，LSTM 的輸出門設計顯得多餘，因為輸出與記憶單元的分離未必必要。</li>
+</ul>
+<p>GRU 將 LSTM 的「遺忘門」與「輸入門」合併為「更新門 (Update Gate)」，並去掉獨立的記憶單元，直接用隱藏狀態 $h_t$ 來承載資訊。這樣的設計大幅簡化了結構，同時保留了建模長距依賴的能力。</p>
+<h2 id="gru-的結構直觀理解">GRU 的結構直觀理解</h2>
+<p>可以用「筆記本」的比喻來理解:</p>
+<ul>
+<li>更新門: 決定要不要覆蓋舊的內容。</li>
+<li>重置門: 決定在寫新內容時，要不要忽略舊的資訊。</li>
+<li>隱藏狀態: 同時扮演了 LSTM 的「記憶單元」與「輸出」，簡化了設計。</li>
+</ul>
+<p>因此，GRU 本質上是 LSTM 的精簡版，保留長期記憶能力，但運算量較小。</p>
+<h2 id="gru-與-lstm-的比較">GRU 與 LSTM 的比較</h2>
+<table>
+  <thead>
+      <tr>
+          <th>特性</th>
+          <th>LSTM</th>
+          <th>GRU</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>記憶單元</td>
+          <td>有獨立的 Cell State $C_t$</td>
+          <td>無，僅用隱藏狀態 $h_t$</td>
+      </tr>
+      <tr>
+          <td>門的數量</td>
+          <td>三個門 (輸入、遺忘、輸出)</td>
+          <td>兩個門 (更新、重置)</td>
+      </tr>
+      <tr>
+          <td>參數量</td>
+          <td>較多</td>
+          <td>較少</td>
+      </tr>
+      <tr>
+          <td>訓練速度</td>
+          <td>較慢</td>
+          <td>較快</td>
+      </tr>
+      <tr>
+          <td>表現</td>
+          <td>適合複雜長序列</td>
+          <td>在多數任務上與 LSTM 相近</td>
+      </tr>
+      <tr>
+          <td>應用</td>
+          <td>NLP、翻譯、語音辨識</td>
+          <td>NLP、時間序列、邊緣運算</td>
+      </tr>
+  </tbody>
+</table>
+<p>研究結果顯示，在許多應用中，GRU 與 LSTM 的表現非常接近，有時甚至更好；但在特別長的序列上，LSTM 仍可能優於 GRU。</p>
+<h2 id="gru-的優點">GRU 的優點</h2>
+<ul>
+<li>結構簡單，訓練更快
+<ul>
+<li>門數少，參數更少，計算量更低。</li>
+</ul>
+</li>
+<li>效果接近 LSTM
+<ul>
+<li>多數 NLP 與語音任務中，GRU 與 LSTM 準確率相差不大。</li>
+</ul>
+</li>
+<li>記憶力強於 RNN
+<ul>
+<li>能有效捕捉長距依賴。</li>
+</ul>
+</li>
+</ul>
+<h2 id="gru-的缺點">GRU 的缺點</h2>
+<ul>
+<li>靈活性略低於 LSTM
+<ul>
+<li>由於沒有獨立的記憶單元，對特別長的序列可能不如 LSTM 表現穩定。</li>
+</ul>
+</li>
+<li>缺乏標準共識
+<ul>
+<li>在某些任務上，研究者仍更偏好使用 LSTM 作為基準模型。</li>
+</ul>
+</li>
+</ul>
+<h2 id="實務應用">實務應用</h2>
+<ul>
+<li>自然語言處理 (NLP)
+<ul>
+<li>機器翻譯 (GRU Encoder-Decoder)</li>
+<li>聊天機器人</li>
+<li>文本情感分析</li>
+</ul>
+</li>
+<li>語音任務
+<ul>
+<li>語音辨識</li>
+<li>語音合成</li>
+</ul>
+</li>
+<li>時間序列分析
+<ul>
+<li>股價、天氣、IoT 感測器預測</li>
+</ul>
+</li>
+<li>邊緣運算環境
+<ul>
+<li>計算資源有限時，GRU 相較 LSTM 更高效。</li>
+</ul>
+</li>
+</ul>
+<h2 id="gru-在深度學習發展中的地位">GRU 在深度學習發展中的地位</h2>
+<p>GRU 的誕生可以看作是 RNN → LSTM 的進一步演化:</p>
+<ul>
+<li>RNN: 基礎的序列建模，但梯度消失嚴重。</li>
+<li>LSTM: 透過門控與記憶單元，解決長期依賴問題。</li>
+<li>GRU: 在保留門控機制的同時，簡化結構、減少參數。</li>
+</ul>
+<p>雖然近年來 Transformer 已經取代了 LSTM/GRU，成為 NLP 的主流，但在計算資源有限、序列長度中等的情境下，GRU 仍然是一個高性價比的選擇。</p>
+<h2 id="結語">結語</h2>
+<p>GRU (Gated Recurrent Unit) 是 LSTM 的簡化版本，將遺忘門與輸入門合併為更新門，並移除了獨立的記憶單元，直接使用隱藏狀態 $h_t$ 來同時承擔「記憶」與「輸出」。</p>
+<p>這樣的設計讓 GRU 在保有建模長距依賴能力的同時，參數更少、訓練更快，特別適合於 資源受限的應用場景。在大部分任務中，GRU 的表現與 LSTM 相差無幾，是一個實務上非常有吸引力的選擇。</p>
+<p>然而，隨著 Transformer 的興起，LSTM 與 GRU 在 NLP 領域的應用逐漸退居次要地位。但在 時間序列預測、語音處理、邊緣設備 等任務中，GRU 依然有不可替代的價值。</p>
+<p>下一篇，我們將延伸到 序列到序列 (Seq2Seq) 架構，看看如何將 LSTM 或 GRU 應用在機器翻譯等多對多的序列建模任務中。</p>
+<h2 id="備註">備註</h2>
+<ul>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
+</ul>
+
+        </div>
+    
+        <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this article</div>
+  </div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25082501%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2027%29%20%e9%96%98%e6%8e%a7%e5%be%aa%e7%92%b0%e5%96%ae%e5%85%83%20%28Gated%20Recurrent%20Unit%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25082501%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25082501%2f&title=%28Day%2027%29%20%e9%96%98%e6%8e%a7%e5%be%aa%e7%92%b0%e5%96%ae%e5%85%83%20%28Gated%20Recurrent%20Unit%29&summary=&source=%28Day%2027%29%20%e9%96%98%e6%8e%a7%e5%be%aa%e7%92%b0%e5%96%ae%e5%85%83%20%28Gated%20Recurrent%20Unit%29"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25082501%2f&amp;media=http%3a%2f%2ftwcch.io%2fimages%2fpost%2fcommon%2fdata_science_competition_01.png&amp;description=%28Day%2027%29%20%e9%96%98%e6%8e%a7%e5%be%aa%e7%92%b0%e5%96%ae%e5%85%83%20%28Gated%20Recurrent%20Unit%29"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+  </ul>
+</div>
+
+        
+        <div class="post__navigation">
+          
+          <a class="prev" href="http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082301/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
+            <div class="post__nav-box">
+              <div class="post__nav post__nav__prev"><i class="ion ion-ios-arrow-back"></i> Previous
+                Page</div>
+              <h4 class="post__nav__title">(Day 25) 循環神經網路 (Recurrent Neural Network)</h4>
+            </div>
+          </a>
+          
+          
+        </div>
+        
+
+        
+          
+<div id="disqus_thread" class="post__comments">
+  <div id="disqus_empty"></div>
+</div>
 
 <script>
-  var base_url = "",
-  pagination_next_url = base_url + '/page2',
-  pagination_next_page_number = '4',
-  pagination_available_pages_number = '4';
+  function load_disqus() {
+    var disqus_shortname = 'anvod-studio-aditu',
+      is_disqus_empty = document.getElementById('disqus_empty'),
+      disqus_target = document.getElementById('disqus_thread'),
+      disqus_embed = document.createElement('script'),
+      disqus_hook = (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]);
+
+    if (disqus_target && is_disqus_empty) {
+      disqus_embed.type = 'text/javascript';
+      disqus_embed.async = true;
+      disqus_embed.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      disqus_hook.appendChild(disqus_embed);
+      is_disqus_empty.remove();
+    }
+  }
+
+  window.addEventListener('scroll', function (e) {
+    var currentScroll = document.scrollingElement.scrollTop;
+    var disqus_target = document.getElementById('disqus_thread');
+
+    if (disqus_target && (currentScroll > disqus_target.getBoundingClientRect().top - 150)) {
+      load_disqus('disqus_shortname');
+    }
+  }, false);
+
 </script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+        
+    
+      </article>
+      
+    </div>
+  </div>
+
+
+</div>
+
+
 
 
   </main>
