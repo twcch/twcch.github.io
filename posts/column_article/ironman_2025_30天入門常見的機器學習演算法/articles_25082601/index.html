@@ -2,13 +2,12 @@
 <html lang="zh-tw">
 
 <head>
-	<meta name="generator" content="Hugo 0.139.5">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>志謙&#39;s Blog</title>
+  <title>(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU) | 志謙&#39;s Blog</title>
 
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="..." crossorigin="anonymous">
@@ -21,21 +20,106 @@
     ]
   });"></script>
 
-  <meta name="description" content="志謙&#39;s Blog">
+  <meta name="description" content="">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="志謙&#39;s Blog">
-  <meta name="twitter:description" content="志謙&#39;s Blog">
-  <meta name="twitter:image" content="http://twcch.io/images/banner.png">
+  <meta name="twitter:title" content="(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="在前幾天的文章中，我們依序介紹了 RNN、LSTM、GRU，並討論它們如何建模序列資料。這些模型能夠捕捉序列中的上下文關係，並緩解傳統 RNN 的梯度消失問題。然而，若我們想要處理更複雜的任務——例如機器翻譯 (Machine Translation)，僅僅依靠單向 RNN 或 LSTM 並不夠。
+這就引出了今天的主角: Seq2Seq 架構 (Sequence-to-Sequence Model)。它的核心思想是利用「編碼器 (Encoder)」將輸入序列壓縮成一個上下文表示，再由「解碼器 (Decoder)」生成輸出序列。這種架構在 2014 年被 Sutskever 等人首次提出，用於神經機器翻譯 (Neural Machine Translation, NMT)，開啟了 NLP 領域的一個新時代。
+Seq2Seq 的核心思想
+假設我們要將一句英文句子翻譯成中文:
+輸入: “I am happy today.”
+輸出: “我今天很高興。”
+傳統的 RNN/LSTM 模型只能處理輸入和輸出的對應關係，但無法直接處理「序列到序列」的轉換問題。Seq2Seq 則透過 Encoder-Decoder 的設計，讓模型能夠處理 輸入與輸出長度不同的情況，這正是翻譯、摘要、對話等任務的核心需求。
+核心流程:
+
+Encoder：讀取輸入序列，將其壓縮成一個固定維度的上下文向量 $c$。
+Decoder：根據上下文向量 $c$ 與先前輸出的資訊，逐步生成輸出序列。
+
+Seq2Seq 的數學形式
+
+編碼器 (Encoder)
+
+輸入序列: $X = (x_1, x_2, \dots, x_T)$
+隱藏狀態更新:
+$$
+h_t = f(h_{t-1}, x_t)
+$$
+最後的隱藏狀態 $h_T$ 作為上下文向量 $c$。
+
+
+解碼器 (Decoder)
+
+初始狀態: $s_0 = c$
+每一步輸出:
+$$
+s_t = f(s_{t-1}, y_{t-1})
+$$
+$$
+\hat{y}_t = g(s_t)
+$$
+其中:
+
+
+
+
+$f$ 可以是 RNN / LSTM / GRU 單元
+$g$ 通常是 softmax 層，用來輸出詞彙的機率分布
+
+Encoder-Decoder 結構
+從結構上看，Seq2Seq 就像是一個「兩段式」神經網路:">
+  <meta name="twitter:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
-  <meta property="og:title" content="志謙&#39;s Blog">
-  <meta property="og:description" content="志謙&#39;s Blog">
-  <meta property="og:image" content="http://twcch.io/images/banner.png">
+  <meta property="og:title" content="(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU) | 志謙&#39;s Blog">
+  <meta property="og:description" content="在前幾天的文章中，我們依序介紹了 RNN、LSTM、GRU，並討論它們如何建模序列資料。這些模型能夠捕捉序列中的上下文關係，並緩解傳統 RNN 的梯度消失問題。然而，若我們想要處理更複雜的任務——例如機器翻譯 (Machine Translation)，僅僅依靠單向 RNN 或 LSTM 並不夠。
+這就引出了今天的主角: Seq2Seq 架構 (Sequence-to-Sequence Model)。它的核心思想是利用「編碼器 (Encoder)」將輸入序列壓縮成一個上下文表示，再由「解碼器 (Decoder)」生成輸出序列。這種架構在 2014 年被 Sutskever 等人首次提出，用於神經機器翻譯 (Neural Machine Translation, NMT)，開啟了 NLP 領域的一個新時代。
+Seq2Seq 的核心思想
+假設我們要將一句英文句子翻譯成中文:
+輸入: “I am happy today.”
+輸出: “我今天很高興。”
+傳統的 RNN/LSTM 模型只能處理輸入和輸出的對應關係，但無法直接處理「序列到序列」的轉換問題。Seq2Seq 則透過 Encoder-Decoder 的設計，讓模型能夠處理 輸入與輸出長度不同的情況，這正是翻譯、摘要、對話等任務的核心需求。
+核心流程:
+
+Encoder：讀取輸入序列，將其壓縮成一個固定維度的上下文向量 $c$。
+Decoder：根據上下文向量 $c$ 與先前輸出的資訊，逐步生成輸出序列。
+
+Seq2Seq 的數學形式
+
+編碼器 (Encoder)
+
+輸入序列: $X = (x_1, x_2, \dots, x_T)$
+隱藏狀態更新:
+$$
+h_t = f(h_{t-1}, x_t)
+$$
+最後的隱藏狀態 $h_T$ 作為上下文向量 $c$。
+
+
+解碼器 (Decoder)
+
+初始狀態: $s_0 = c$
+每一步輸出:
+$$
+s_t = f(s_{t-1}, y_{t-1})
+$$
+$$
+\hat{y}_t = g(s_t)
+$$
+其中:
+
+
+
+
+$f$ 可以是 RNN / LSTM / GRU 單元
+$g$ 通常是 softmax 層，用來輸出詞彙的機率分布
+
+Encoder-Decoder 結構
+從結構上看，Seq2Seq 就像是一個「兩段式」神經網路:">
+  <meta property="og:image" content="http://twcch.io/images/post/common/data_science_competition_01.png">
 
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -185,350 +269,260 @@
     
 
 
+
+
 <div class="container">
   <div class="row">
     <div class="col col-12">
-      
-      <section class="hero">
-        <div class="hero__inner">
-          <div class="hero__image">
-            <img src="./images/banner.png" alt="謝志謙">
-          </div>
-          <div class="hero__content">
-            <h1 class="hero__title">謝志謙</h1>
-            <p class="hero__desc">Ph.D. Student</p>
-          </div>
-        </div>
-      </section>
-      
+      <div class="image-box">
+        <img class="post-image" src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU)">
+      </div>
     </div>
   </div>
 </div>
 
 
 <div class="container">
-  <div class="row grid">
 
+  <div class="row">
+    <div class="col col-8 col-d-10 push-2 push-d-1 col-t-12 push-t-0">
     
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
+      
+      <article class="post amimate">
 
-    
+        <div class="post__head">
+          
+          <div class="post__tags">
+            
+            <a href="http://twcch.io/tags/data-science/" class="post-tags__tag">Data Science</a>
+            
+            <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post-tags__tag">IThome 鐵人賽 2025</a>
+            
+            <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post-tags__tag">30 天入門常見的機器學習演算法</a>
+            
+          </div>
+          
 
-    <a class="article__image" href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25073001/">
-      <img src="http://twcch.io/images/post/common/data_science_competition_01.png" alt="(Day 1) 介紹與準備">
-    </a>
+          <h1 class="post__title">(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU)</h1>
 
-    <div class="article__content">
+          <div class="post__meta">
+            <div class="post__author">
+              <a href="/about/" class="post__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="post__author-link">謝志謙</a>
+            </div>
+            <span class="post__date">
+              <time datetime=" 2025-08-26T00:00:00&#43;08:00">Aug 26, 2025</time>
+            </span>
+          </div>
 
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-          
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-          
         </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25073001/">(Day 1) 介紹與準備</a>
-      </h2>
-
-      <div class="article__excerpt"><p>在學習機器學習 (Machine Learning) 的過程中，可能會陷入兩種極端，一種是只會調用套件 (套模)，模型背後的機制一知半解，遇到問題只能「換模型試試看」，或者是過度陷入數學細 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-30T00:00:00&#43;08:00">
-          Jul 30, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
     
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/articles_25071601/">
-      <img src="http://twcch.io/images/post/common/heart_notes_01.png" alt="學歷無用? 我仍相信學習的價值">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/heart-notes/" class="article__tag">Heart Notes</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25071601/">學歷無用? 我仍相信學習的價值</a>
-      </h2>
-
-      <div class="article__excerpt"><p>近年來，我觀察到無論在台灣還是中國，「學歷無用論」的聲音愈發強烈。許多人開始質疑讀書是否還有意義，認為不靠學歷反而更能致富，網紅、直播、投資客、白手起家的商人充斥版面，讀書人反倒被視為落後 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-16T00:00:00&#43;08:00">
-          Jul 16, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/projects/articles_25070901/">
-      <img src="http://twcch.io/images/post/common/side_project_01.png" alt="視覺化專案 - 200 個國家 200 百年 4 分鐘">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/project/" class="article__tag">Project</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/projects/articles_25070901/">視覺化專案 - 200 個國家 200 百年 4 分鐘</a>
-      </h2>
-
-      <div class="article__excerpt"><p>這是一個資料視覺化專案——「Dynamic Visualization: 200 Countries, 200 Years, 4 Minutes」。它將涵蓋 1816 至 2016  …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-07-09T00:00:00&#43;08:00">
-          Jul 9, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/projects/articles_25063001/">
-      <img src="http://twcch.io/images/post/common/side_project_01.png" alt="實戰專案 - Titanic 生存預測專案">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/project/" class="article__tag">Project</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/projects/articles_25063001/">實戰專案 - Titanic 生存預測專案</a>
-      </h2>
-
-      <div class="article__excerpt"><p>這是一個資料科學專案，目標是透過 Kaggle 經典的 Titanic 生存預測題目，建立一套結構清晰、模組化的預測系統。我不只是想交出一份準確的預測結果，更希望藉由這個專案練習:</p>
+        <div class="post__content">
+          <p>在前幾天的文章中，我們依序介紹了 RNN、LSTM、GRU，並討論它們如何建模序列資料。這些模型能夠捕捉序列中的上下文關係，並緩解傳統 RNN 的梯度消失問題。然而，若我們想要處理更複雜的任務——例如機器翻譯 (Machine Translation)，僅僅依靠單向 RNN 或 LSTM 並不夠。</p>
+<p>這就引出了今天的主角: Seq2Seq 架構 (Sequence-to-Sequence Model)。它的核心思想是利用「編碼器 (Encoder)」將輸入序列壓縮成一個上下文表示，再由「解碼器 (Decoder)」生成輸出序列。這種架構在 2014 年被 Sutskever 等人首次提出，用於神經機器翻譯 (Neural Machine Translation, NMT)，開啟了 NLP 領域的一個新時代。</p>
+<h2 id="seq2seq-的核心思想">Seq2Seq 的核心思想</h2>
+<p>假設我們要將一句英文句子翻譯成中文:</p>
+<p>輸入: “I am happy today.”
+輸出: “我今天很高興。”</p>
+<p>傳統的 RNN/LSTM 模型只能處理輸入和輸出的對應關係，但無法直接處理「序列到序列」的轉換問題。Seq2Seq 則透過 Encoder-Decoder 的設計，讓模型能夠處理 輸入與輸出長度不同的情況，這正是翻譯、摘要、對話等任務的核心需求。</p>
+<p>核心流程:</p>
+<ol>
+<li>Encoder：讀取輸入序列，將其壓縮成一個固定維度的上下文向量 $c$。</li>
+<li>Decoder：根據上下文向量 $c$ 與先前輸出的資訊，逐步生成輸出序列。</li>
+</ol>
+<h2 id="seq2seq-的數學形式">Seq2Seq 的數學形式</h2>
+<ol>
+<li>編碼器 (Encoder)
 <ul>
-<li>如何設 …</li></ul></div>
+<li>輸入序列: $X = (x_1, x_2, \dots, x_T)$</li>
+<li>隱藏狀態更新:
+$$
+h_t = f(h_{t-1}, x_t)
+$$</li>
+<li>最後的隱藏狀態 $h_T$ 作為上下文向量 $c$。</li>
+</ul>
+</li>
+<li>解碼器 (Decoder)
+<ul>
+<li>初始狀態: $s_0 = c$</li>
+<li>每一步輸出:
+$$
+s_t = f(s_{t-1}, y_{t-1})
+$$
+$$
+\hat{y}_t = g(s_t)
+$$
+其中:</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>$f$ 可以是 RNN / LSTM / GRU 單元</li>
+<li>$g$ 通常是 softmax 層，用來輸出詞彙的機率分布</li>
+</ul>
+<h2 id="encoder-decoder-結構">Encoder-Decoder 結構</h2>
+<p>從結構上看，Seq2Seq 就像是一個「兩段式」神經網路:</p>
+<ul>
+<li>Encoder: 讀完整個輸入序列，把資訊壓縮成一個向量。</li>
+<li>Decoder: 依靠這個向量，不斷生成輸出，直到遇到「結束符號 (EOS)」。</li>
+</ul>
+<p>這種設計使得模型能處理輸入長度與輸出長度不相等的情境。例如:</p>
+<ul>
+<li>英文翻譯成中文 (詞數不同)</li>
+<li>長文章生成短摘要</li>
+<li>對話系統生成多輪回覆</li>
+</ul>
+<h2 id="seq2seq-的直觀比喻">Seq2Seq 的直觀比喻</h2>
+<p>你可以把 Encoder 想成一個「翻譯助理」，把整段英文聽完後，壓縮成腦海中的一個「意思總結」；而 Decoder 則像是「翻譯員」，根據這個意思總結，再逐字逐句地說出中文。</p>
+<h2 id="seq2seq-的優缺點">Seq2Seq 的優缺點</h2>
+<p>優點:</p>
+<ol>
+<li>靈活性：能處理輸入與輸出長度不一致的任務。</li>
+<li>通用性：同一個框架可應用於翻譯、摘要、對話、時間序列預測。</li>
+<li>端到端學習：避免了傳統 NLP 中複雜的特徵工程。</li>
+</ol>
+<p>缺點:</p>
+<ol>
+<li>瓶頸效應 (Bottleneck Problem)
+<ul>
+<li>所有資訊被壓縮到單一向量 $c$，在長序列時容易遺失細節。</li>
+</ul>
+</li>
+<li>長序列困難
+<ul>
+<li>即便使用 LSTM/GRU，仍難以捕捉超長依賴。</li>
+</ul>
+</li>
+<li>生成速度慢
+<ul>
+<li>Decoder 是逐步生成，無法並行化。</li>
+</ul>
+</li>
+</ol>
+<h2 id="seq2seq-的實務應用">Seq2Seq 的實務應用</h2>
+<ol>
+<li>機器翻譯 (Neural Machine Translation)
+<ul>
+<li>最經典的應用，將英文翻譯成中文、法文翻譯成英文。</li>
+</ul>
+</li>
+<li>摘要生成 (Text Summarization)
+<ul>
+<li>輸入一篇長文章，輸出簡短摘要。</li>
+</ul>
+</li>
+<li>對話系統 (Dialogue System)
+<ul>
+<li>輸入使用者的問題，輸出合適的回覆。</li>
+</ul>
+</li>
+<li>時間序列預測
+<ul>
+<li>輸入過去的數據 (例如股價)，輸出未來的預測值。</li>
+</ul>
+</li>
+</ol>
+<h2 id="結語">結語</h2>
+<p>Seq2Seq 架構 (Encoder-Decoder) 是深度學習處理序列到序列任務的經典解法。它透過 Encoder 壓縮輸入，再由 Decoder 逐步生成輸出，成功應用於機器翻譯、摘要生成、對話系統等多種任務。</p>
+<p>然而，Seq2Seq 最大的瓶頸在於所有資訊都被壓縮到單一上下文向量，導致長序列表現不佳。這個缺陷直接促使了 Attention 機制的誕生，並最終引領 Transformer 成為 NLP 的主流。</p>
+<p>在下一篇，我們將深入探討 Attention 機制，看看它是如何突破 Seq2Seq 的限制，並奠定後來 GPT 與大型語言模型的基礎。</p>
+<h2 id="備註">備註</h2>
+<ul>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
+</ul>
 
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
         </div>
-
-        <time class="article__date" datetime="2025-06-30T00:00:00&#43;08:00">
-          Jun 30, 2025
-        </time>
-      </div>
-
-    </div>
+    
+        <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this article</div>
   </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25082601%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2028%29%20Seq2Seq%20%28Encoder%20Decoder%20with%20RNN%2c%20LSTM%2c%20GRU%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25082601%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
 
-    
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25082601%2f&title=%28Day%2028%29%20Seq2Seq%20%28Encoder%20Decoder%20with%20RNN%2c%20LSTM%2c%20GRU%29&summary=&source=%28Day%2028%29%20Seq2Seq%20%28Encoder%20Decoder%20with%20RNN%2c%20LSTM%2c%20GRU%29"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
 
-    <a class="article__image" href="/posts/articles_25062501/">
-      <img src="http://twcch.io/images/post/common/heart_notes_01.png" alt="當老師只靠 ChatGPT 回信：我們期待的不是答案，而是理解">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/heart-notes/" class="article__tag">Heart Notes</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25062501/">當老師只靠 ChatGPT 回信：我們期待的不是答案，而是理解</a>
-      </h2>
-
-      <div class="article__excerpt"><p>最近，我正在參加一門職訓課程。本來對這堂課滿懷期待，尤其是對某位老師的專業背景很感興趣。不過，隨著課程進行，我漸漸感到一股說不出的落差感：每當我主動提出深入問題， …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-06-25T00:00:00&#43;08:00">
-          Jun 25, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/articles_25060201/">
-      <img src="http://twcch.io/images/post/common/machine_learning_01.png" alt="為什麼用 AI 技術檢測企業舞弊，比想像中更困難？">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25060201/">為什麼用 AI 技術檢測企業舞弊，比想像中更困難？</a>
-      </h2>
-
-      <div class="article__excerpt"><p>在資料科學領域中，對企業進行舞弊檢測 (Fraud Detection) 被視為是一種分類問題: 輸入企業相關的數據，輸出舞弊或非舞弊。然而，真正投入研究後會發現，這個問題很難解決，非常具挑 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-06-02T00:00:00&#43;08:00">
-          Jun 2, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-      <div class="article col col-4 col-d-6 col-t-12 grid__post animate">
-  <div class="article__inner">
-
-    
-
-    <a class="article__image" href="/posts/articles_25040701/">
-      <img src="http://twcch.io/images/post/common/business_analysis_01.png" alt="為什麼 AI 正在快速削弱低階 Business Analyst 的價值？">
-    </a>
-
-    <div class="article__content">
-
-      <div class="article__bottom">
-        
-        <div class="article-tags__box">
-          
-          <a href="http://twcch.io/tags/business-analysis/" class="article__tag">Business Analysis</a>
-          
-        </div>
-        
-      </div>
-
-      <h2 class="article__title">
-        <a href="/posts/articles_25040701/">為什麼 AI 正在快速削弱低階 Business Analyst 的價值？</a>
-      </h2>
-
-      <div class="article__excerpt"><p>五年前，我踏入壽險產業，成為一名 Business Analyst (BA)。當時的工作內容相當清晰：需求文件撰寫、報表製作、簡單的數據分析與溝通協調，是我每天的日常。那時候，這些任務仍需靠 …</p></div>
-
-      <div class="article__meta">
-        <div class="article__author">
-          <a href="/about/" class="article__author-image" style="background-image: url('http://twcch.io/images/avatar.jpg')" aria-label="謝志謙's Picture"></a> <a href="/about/" class="article__author-link">謝志謙</a>
-        </div>
-
-        <time class="article__date" datetime="2025-04-07T00:00:00&#43;08:00">
-          Apr 7, 2025
-        </time>
-      </div>
-
-    </div>
-  </div>
-</div>
-    
-
-  </div>
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025_30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25082601%2f&amp;media=http%3a%2f%2ftwcch.io%2fimages%2fpost%2fcommon%2fdata_science_competition_01.png&amp;description=%28Day%2028%29%20Seq2Seq%20%28Encoder%20Decoder%20with%20RNN%2c%20LSTM%2c%20GRU%29"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+  </ul>
 </div>
 
+        
+        <div class="post__navigation">
+          
+          <a class="prev" href="http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082501/" style="background-image: url('./images/post/common/data_science_competition_01.png')">
+            <div class="post__nav-box">
+              <div class="post__nav post__nav__prev"><i class="ion ion-ios-arrow-back"></i> Previous
+                Page</div>
+              <h4 class="post__nav__title">(Day 27) 閘控循環單元 (Gated Recurrent Unit)</h4>
+            </div>
+          </a>
+          
+          
+        </div>
+        
 
-
-
-<div class="container">
-  <div class="row">
-    <div class="col col-12">
-      <div class="load-more-section">
-        <button class="load-more-posts button button--middle">Load More Posts <i class="ion ion-ios-arrow-down"></i></button>
-      </div>
-    </div>
-  </div>
+        
+          
+<div id="disqus_thread" class="post__comments">
+  <div id="disqus_empty"></div>
 </div>
-
-
 
 <script>
-  var base_url = "",
-  pagination_next_url = base_url + '/page2',
-  pagination_next_page_number = '5',
-  pagination_available_pages_number = '4';
+  function load_disqus() {
+    var disqus_shortname = 'anvod-studio-aditu',
+      is_disqus_empty = document.getElementById('disqus_empty'),
+      disqus_target = document.getElementById('disqus_thread'),
+      disqus_embed = document.createElement('script'),
+      disqus_hook = (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]);
+
+    if (disqus_target && is_disqus_empty) {
+      disqus_embed.type = 'text/javascript';
+      disqus_embed.async = true;
+      disqus_embed.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      disqus_hook.appendChild(disqus_embed);
+      is_disqus_empty.remove();
+    }
+  }
+
+  window.addEventListener('scroll', function (e) {
+    var currentScroll = document.scrollingElement.scrollTop;
+    var disqus_target = document.getElementById('disqus_thread');
+
+    if (disqus_target && (currentScroll > disqus_target.getBoundingClientRect().top - 150)) {
+      load_disqus('disqus_shortname');
+    }
+  }, false);
+
 </script>
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+        
+    
+      </article>
+      
+    </div>
+  </div>
+
+
+</div>
+
+
 
 
   </main>

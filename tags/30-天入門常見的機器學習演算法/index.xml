@@ -6,8 +6,15 @@
     <description>Recent content in 30 天入門常見的機器學習演算法 on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Mon, 25 Aug 2025 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 26 Aug 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU)</title>
+      <link>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082601/</link>
+      <pubDate>Tue, 26 Aug 2025 00:00:00 +0800</pubDate>
+      <guid>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082601/</guid>
+      <description>&lt;p&gt;在前幾天的文章中，我們依序介紹了 RNN、LSTM、GRU，並討論它們如何建模序列資料。這些模型能夠捕捉序列中的上下文關係，並緩解傳統 RNN 的梯度消失問題。然而，若我們想要處理更複雜的任務——例如機器翻譯 (Machine Translation)，僅僅依靠單向 RNN 或 LSTM 並不夠。&lt;/p&gt;&#xA;&lt;p&gt;這就引出了今天的主角: Seq2Seq 架構 (Sequence-to-Sequence Model)。它的核心思想是利用「編碼器 (Encoder)」將輸入序列壓縮成一個上下文表示，再由「解碼器 (Decoder)」生成輸出序列。這種架構在 2014 年被 Sutskever 等人首次提出，用於神經機器翻譯 (Neural Machine Translation, NMT)，開啟了 NLP 領域的一個新時代。&lt;/p&gt;&#xA;&lt;h2 id=&#34;seq2seq-的核心思想&#34;&gt;Seq2Seq 的核心思想&lt;/h2&gt;&#xA;&lt;p&gt;假設我們要將一句英文句子翻譯成中文:&lt;/p&gt;&#xA;&lt;p&gt;輸入: “I am happy today.”&#xA;輸出: “我今天很高興。”&lt;/p&gt;&#xA;&lt;p&gt;傳統的 RNN/LSTM 模型只能處理輸入和輸出的對應關係，但無法直接處理「序列到序列」的轉換問題。Seq2Seq 則透過 Encoder-Decoder 的設計，讓模型能夠處理 輸入與輸出長度不同的情況，這正是翻譯、摘要、對話等任務的核心需求。&lt;/p&gt;&#xA;&lt;p&gt;核心流程:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Encoder：讀取輸入序列，將其壓縮成一個固定維度的上下文向量 $c$。&lt;/li&gt;&#xA;&lt;li&gt;Decoder：根據上下文向量 $c$ 與先前輸出的資訊，逐步生成輸出序列。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;seq2seq-的數學形式&#34;&gt;Seq2Seq 的數學形式&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;編碼器 (Encoder)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;輸入序列: $X = (x_1, x_2, \dots, x_T)$&lt;/li&gt;&#xA;&lt;li&gt;隱藏狀態更新:&#xA;$$&#xA;h_t = f(h_{t-1}, x_t)&#xA;$$&lt;/li&gt;&#xA;&lt;li&gt;最後的隱藏狀態 $h_T$ 作為上下文向量 $c$。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;解碼器 (Decoder)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;初始狀態: $s_0 = c$&lt;/li&gt;&#xA;&lt;li&gt;每一步輸出:&#xA;$$&#xA;s_t = f(s_{t-1}, y_{t-1})&#xA;$$&#xA;$$&#xA;\hat{y}_t = g(s_t)&#xA;$$&#xA;其中:&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;$f$ 可以是 RNN / LSTM / GRU 單元&lt;/li&gt;&#xA;&lt;li&gt;$g$ 通常是 softmax 層，用來輸出詞彙的機率分布&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;encoder-decoder-結構&#34;&gt;Encoder-Decoder 結構&lt;/h2&gt;&#xA;&lt;p&gt;從結構上看，Seq2Seq 就像是一個「兩段式」神經網路:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>(Day 27) 閘控循環單元 (Gated Recurrent Unit)</title>
       <link>http://twcch.io/posts/column_article/ironman_2025_30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082501/</link>
