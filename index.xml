@@ -274,5 +274,12 @@
       <guid>http://twcch.io/contact/</guid>
       <description>&lt;p&gt;如果你有任何問題，或是想要交流，可以透過 email 與我聯繫。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Email: twcch1218 [at] gmail.com&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
+    <item>
+      <title>🚀 作品集</title>
+      <link>http://twcch.io/project/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://twcch.io/project/</guid>
+      <description>&lt;h1 id=&#34;實戰專案---titanic-生存預測專案&#34;&gt;實戰專案 - Titanic 生存預測專案&lt;/h1&gt;&#xA;&lt;p&gt;&lt;a href=&#34;../posts/project/articles_25063001/&#34;&gt;posts/articles_25063001/&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;視覺化專案---200-個國家-200-百年-4-分鐘&#34;&gt;視覺化專案 - 200 個國家 200 百年 4 分鐘&lt;/h1&gt;&#xA;&lt;p&gt;&lt;a href=&#34;../posts/project/articles_25070901/&#34;&gt;posts/articles_25070901/&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
