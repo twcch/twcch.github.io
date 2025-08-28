@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>\&#39;IThome 鐵人賽 2025&#39; on 志謙&#39;s Blog</title>
+    <link>http://localhost:1313/tags/%5Cithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/</link>
+    <description>Recent content in \&#39;IThome 鐵人賽 2025&#39; on 志謙&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 10 Aug 2025 00:00:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%5Cithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>(Day 12) 多元分類任務驗證指標</title>
+      <link>http://localhost:1313/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081001/</link>
+      <pubDate>Sun, 10 Aug 2025 00:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081001/</guid>
+      <description>&lt;p&gt;多元分類任務驗證指標就只是從二元分類任務驗證指標延伸而來，核心概念一樣是二元分類任務驗證指標，而兩者只是在計算內容上有些許差異，所以指標仍然是 Accuracy、Recall、F1-score 等，所以請讀者先將二元分類任務驗證指標熟練後再來看。&lt;/p&gt;&#xA;&lt;h2 id=&#34;指標介紹&#34;&gt;指標介紹&lt;/h2&gt;&#xA;&lt;h3 id=&#34;混淆矩陣-confusion-matrix&#34;&gt;混淆矩陣 (Confusion Matrix)&lt;/h3&gt;&#xA;&lt;p&gt;假設我們有 3 個類別 [A, B, C]，模型的預測結果如下:&lt;/p&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;實際 \ 預測&lt;/th&gt;&#xA;          &lt;th&gt;A&lt;/th&gt;&#xA;          &lt;th&gt;B&lt;/th&gt;&#xA;          &lt;th&gt;C&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;A&lt;/td&gt;&#xA;          &lt;td&gt;50&lt;/td&gt;&#xA;          &lt;td&gt;2&lt;/td&gt;&#xA;          &lt;td&gt;3&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;B&lt;/td&gt;&#xA;          &lt;td&gt;4&lt;/td&gt;&#xA;          &lt;td&gt;45&lt;/td&gt;&#xA;          &lt;td&gt;1&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;C&lt;/td&gt;&#xA;          &lt;td&gt;5&lt;/td&gt;&#xA;          &lt;td&gt;2&lt;/td&gt;&#xA;          &lt;td&gt;43&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;列 (row) = 實際標籤&lt;/li&gt;&#xA;&lt;li&gt;行 (column) = 模型預測&lt;/li&gt;&#xA;&lt;li&gt;對角線 (50、45、43) = 預測正確的數量&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;從多元分類矩陣取出-tp--fp--fn--tn&#34;&gt;從多元分類矩陣取出 TP / FP / FN / TN&lt;/h3&gt;&#xA;&lt;p&gt;對單一類別 (One-vs-All)，例如要計算「類別 A」的指標:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;TP_A = 混淆矩陣中 A–A 的數字 = 50&lt;/li&gt;&#xA;&lt;li&gt;FP_A = 預測為 A 但實際不是 A 的數字總和 = 4 (B→A) + 5 (C→A) = 9&lt;/li&gt;&#xA;&lt;li&gt;FN_A = 實際為 A 但預測不是 A 的數字總和 = 2 (A→B) + 3 (A→C) = 5&lt;/li&gt;&#xA;&lt;li&gt;TN_A = 其他所有正確分類的數字 = 全部總數 - (TP_A + FP_A + FN_A)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;這樣每個類別都能得到對應的 TP、FP、FN、TN&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>(Day 3) 多項式迴歸 (Polynomial Regression) | 志謙&#39;s Blog</title>
-  <meta name="description" content="昨天介紹了線性迴歸 (Linear Regression)，它適合用來處理特徵與目標之間為線性關係的情境。然而，真實世界的資料往往並非純粹線性，而是呈現複雜的非線性關係，例如曲線、拋物線、甚至更複雜的波動趨勢。">
+  <title>\&#39;IThome 鐵人賽 2025&#39; | 志謙&#39;s Blog</title>
+  <meta name="description" content="">
 
+  <link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/%5Cithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="(Day 3) 多項式迴歸 (Polynomial Regression) | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="昨天介紹了線性迴歸 (Linear Regression)，它適合用來處理特徵與目標之間為線性關係的情境。然而，真實世界的資料往往並非純粹線性，而是呈現複雜的非線性關係，例如曲線、拋物線、甚至更複雜的波動趨勢。">
-  <meta name="twitter:image" content="http://twcch.io/">
+  <meta name="twitter:title" content="\&#39;IThome 鐵人賽 2025&#39; | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="我是志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。">
+  <meta name="twitter:image" content="http://localhost:1313/">
 
   
-  <meta property="og:title" content="(Day 3) 多項式迴歸 (Polynomial Regression) | 志謙&#39;s Blog">
-  <meta property="og:description" content="昨天介紹了線性迴歸 (Linear Regression)，它適合用來處理特徵與目標之間為線性關係的情境。然而，真實世界的資料往往並非純粹線性，而是呈現複雜的非線性關係，例如曲線、拋物線、甚至更複雜的波動趨勢。">
-  <meta property="og:image" content="http://twcch.io/">
+  <meta property="og:title" content="\&#39;IThome 鐵人賽 2025&#39; | 志謙&#39;s Blog">
+  <meta property="og:description" content="我是志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。">
+  <meta property="og:image" content="http://localhost:1313/">
 
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -57,10 +58,6 @@
 
     
 
-    
-    <div class="global-cover">
-      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 3) 多項式迴歸 (Polynomial Regression)">
-    </div>
     
 
     <div class="global-content">
@@ -135,407 +132,52 @@
 
 
 
-<article class="post container">
+<div class="page container">
 
-  <div class="post-head">
-    <h1 class="post-title">(Day 3) 多項式迴歸 (Polynomial Regression)</h1>
-    <div class="post-meta">
-      
-      <div class="post-tags">
-        Publish in&nbsp;
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">30 天入門常見的機器學習演算法</a>
-        
-      </div>
-      &nbsp;&bull;&nbsp;
-      
-      <time class="post-date" datetime="2025-08-01T00:00:00&#43;08:00">1 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="post-minutes">3 min read</span>
-      
-    </div>
-    
+  <div class="page-head">
+    <h1 class="page-title">\&#39; ithome 鐵人賽 2025&#39;</h1>
   </div>
 
-  
-
-  
-
-  
-
-  <div class="post__content">
-    
-    <div class="table-of-contents">
-      <h2 class="table-of-contents__title">Table of Contents</h2>
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#模型介紹">模型介紹</a>
-      <ul>
-        <li><a href="#模型邏輯與核心概念">模型邏輯與核心概念</a></li>
-        <li><a href="#適用情境">適用情境</a></li>
-        <li><a href="#限制條件">限制條件</a></li>
-      </ul>
-    </li>
-    <li><a href="#模型實作">模型實作</a>
-      <ul>
-        <li><a href="#資料集介紹">資料集介紹</a></li>
-        <li><a href="#程式實例">程式實例</a></li>
-        <li><a href="#執行結果">執行結果</a></li>
-      </ul>
-    </li>
-    <li><a href="#結語">結語</a></li>
-    <li><a href="#備註">備註</a></li>
-  </ul>
-</nav>
-    </div>
-    
-    <p>昨天介紹了線性迴歸 (Linear Regression)，它適合用來處理特徵與目標之間為線性關係的情境。然而，真實世界的資料往往並非純粹線性，而是呈現複雜的非線性關係，例如曲線、拋物線、甚至更複雜的波動趨勢。</p>
-<p>就有了多項式特徵 (Polynomial Feature) 的出現，而線性迴歸搭配多項式特徵，就是所謂的多項式迴歸 (Polynomial Regression)，便是為了解決線性模型難以處理的非線性問題。它的核心概念非常簡單就是透過對特徵進行多項式轉換，使模型能夠捕捉非線性趨勢。</p>
-<h2 id="模型介紹">模型介紹</h2>
-<h3 id="模型邏輯與核心概念">模型邏輯與核心概念</h3>
-<p>這塊幾乎與昨天介紹的線性迴歸一樣，重複的部分就不多做介紹。因為多項式迴歸本質上仍是線性迴歸，但特徵空間經過非線性轉換，讓模型能擬合更複雜的曲線。以下為多項式迴歸的公式:</p>
-<p>$$
-\hat{y} = \beta_0 + \beta_1 x + \beta_2 x^2 + \dots + \beta_d x^d
-$$</p>
-<ul>
-<li>d 稱為 polynomial degree (多項式階數)，是模型中最重要的超參數之一。</li>
-<li>特徵不只可以加入單一變數的高次項，也可加入多個變數間的交互項 (例如 $x_1x_2$)。</li>
-</ul>
-<h4 id="運作原理">運作原理</h4>
-<ul>
-<li>假設方程式 (degree = 3): $\hat{y} = \beta_0 + \beta_1 x + \beta_2 x^2 + \beta_3 x^3$
-<ul>
-<li>透過將輸入特徵 $x$ 映射為高階次多項式 (如 $x^2, x^3, \dots$)，使模型能擬合彎曲或非線性趨勢，特徵會經過變換形成新的變數，然後再應用一般線性回歸模型進行估計。</li>
-</ul>
-</li>
-<li>degree = 3 (對所有 features 做所有「總次數 ≤ 3」的項次組合)
-<ul>
-<li>多項式特徵的處理會產生新的特徵</li>
-<li>要特別注意，如果在特徵工程有人工建立交互項，不可直接使用 PolynomialFeatures 來處理，因為不會辨識你手動做出的交互項，會產生重複或邏輯不一致的問題，要特別處理。
-<ul>
-<li>舉例: 假設有一組資料，特徵有 [&lsquo;x1&rsquo;, &lsquo;x2&rsquo;]，設定 degree=3 做 PolynomialFeatures，這組資料的特徵會變成 [&lsquo;x1&rsquo;, &lsquo;x2&rsquo;, &lsquo;x1^2&rsquo;, &lsquo;x1 x2&rsquo;, &lsquo;x2^2&rsquo;, &lsquo;x1^3&rsquo;, &lsquo;x1^2 x2&rsquo;, &lsquo;x1 x2^2&rsquo;, &lsquo;x2^3&rsquo;]，他會自動做交互項處理，如果有手動生成交互項就不能再做 PolynomialFeatures</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="適用情境">適用情境</h3>
-<ul>
-<li>當資料呈現曲線趨勢時，線性回歸無法捕捉其變化</li>
-</ul>
-<h3 id="限制條件">限制條件</h3>
-<ul>
-<li>degree 過高，容易導致 Overfitting (尤其在資料量小時)</li>
-<li>高維度下容易產生特徵爆炸</li>
-<li>對比 Linear Regression 其模型可解釋性下降</li>
-</ul>
-<h2 id="模型實作">模型實作</h2>
-<h3 id="資料集介紹">資料集介紹</h3>
-<p>將使用經典的 Boston Housing Dataset 為例。由於 scikit-learn 已移除該資料集，我們改採自 Carnegie Mellon University 所提供的公開版本。樣本內容如下:</p>
-<p><img src="https://github.com/twcch/drive/raw/main/images/Image_2025-08-01_22-34-54.png" alt="Image_2025-08-01_22-34-54.png"></p>
-<p>欄位說明:</p>
-<ul>
-<li>CRIM: 每人平均犯罪率</li>
-<li>ZN: 區域住宅用地比例</li>
-<li>INDUS: 區域非零售商業用地比例</li>
-<li>CHAS: 查爾斯河虛擬變數 (1 = 河流旁, 0 = 其他)</li>
-<li>NOX: 一氧化氮濃度 (parts per 10 million)</li>
-<li>RM: 每個住宅的平均房間數</li>
-<li>AGE: 1940 年之前建造的自用住宅比例</li>
-<li>DIS: 到波士頓五個中心區域的加權距離</li>
-<li>RAD: 公路接近指數 (1 = 最接近, 24 = 最遠)</li>
-<li>TAX: 每 $10,000 的財產稅率</li>
-<li>PTRATIO: 學生與教師比例</li>
-<li>B: 1000(Bk - 0.63)^2, Bk = 區域黑人比例</li>
-<li>LSTAT: 區域人口中低收入者的比例</li>
-<li>MEDV: 自用住宅的中位數價格 (單位: $1000s)</li>
-</ul>
-<h3 id="程式實例">程式實例</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span><span class="p">,</span> <span class="n">StandardScaler</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_boston_housing_data</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://lib.stat.cmu.edu/datasets/boston&#34;</span>  <span class="c1"># Boston Housing Dataset from Carnegie Mellon University</span>
-</span></span><span class="line"><span class="cl">    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="mi">22</span><span class="p">:]</span>  <span class="c1"># 從第 23 行開始</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1"># 每筆資料分為 2 行 → 共 506 筆 → 總共 1012 行</span>
-</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">raw_data</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="n">line_1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">raw_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
-</span></span><span class="line"><span class="cl">        <span class="n">line_2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">raw_data</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
-</span></span><span class="line"><span class="cl">        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line_1</span> <span class="o">+</span> <span class="n">line_2</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CRIM&#34;</span><span class="p">,</span>  <span class="c1"># 每人平均犯罪率</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ZN&#34;</span><span class="p">,</span>  <span class="c1"># 區域住宅用地比例</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;INDUS&#34;</span><span class="p">,</span>  <span class="c1"># 區域非零售商業用地比例</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CHAS&#34;</span><span class="p">,</span>  <span class="c1"># 查爾斯河虛擬變數 (1 = 河流旁, 0 = 其他)</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;NOX&#34;</span><span class="p">,</span>  <span class="c1"># 一氧化氮濃度 (parts per 10 million)</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RM&#34;</span><span class="p">,</span>  <span class="c1"># 每個住宅的平均房間數</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;AGE&#34;</span><span class="p">,</span>  <span class="c1"># 1940 年之前建造的自用住宅比例</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;DIS&#34;</span><span class="p">,</span>  <span class="c1"># 到波士頓五個中心區域的加權距離</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RAD&#34;</span><span class="p">,</span>  <span class="c1"># 公路接近指數 (1 = 最接近, 24 = 最遠)</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;TAX&#34;</span><span class="p">,</span>  <span class="c1"># 每 $10,000 的財產稅率</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;PTRATIO&#34;</span><span class="p">,</span>  <span class="c1"># 學生與教師比例</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;B&#34;</span><span class="p">,</span>  <span class="c1"># 1000(Bk - 0.63)^2, Bk = 區域黑人比例</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LSTAT&#34;</span><span class="p">,</span>  <span class="c1"># 區域人口中低收入者的比例</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;MEDV&#34;</span><span class="p">,</span>  <span class="c1"># 自用住宅的中位數價格 (單位: $1000s)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">]</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">df</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># ----- 讀取資料 -----</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">original_data</span> <span class="o">=</span> <span class="n">get_boston_housing_data</span><span class="p">()</span>  <span class="c1"># 讀取資料</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1"># ----- 資料前處理 -----</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">cleaned_data</span> <span class="o">=</span> <span class="n">original_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1">## 因透過 print(cleaned_data.isnull().sum()) 檢查缺失值 (0 筆)</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">## 且 Pearson 相關係數檢查，相關係數 &gt;= 0.8 (0 筆)    </span>
-</span></span><span class="line"><span class="cl">    <span class="c1">### correlation_matrix = cleaned_data.corr()</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">### target_corr = correlation_matrix[&#39;MEDV&#39;]</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">### high_corr_features = target_corr[target_corr &gt; 0.8].drop(&#39;MEDV&#39;)</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">### print(f&#34;與 target 高度正相關的欄位:&#34;, high_corr_features)</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">## 故不做資料前處理</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1"># ----- 模型訓練 -----</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1">## 資料分割</span>
-</span></span><span class="line"><span class="cl">    <span class="n">X</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;MEDV&#34;</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl">    <span class="n">y</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="p">[</span><span class="s2">&#34;MEDV&#34;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1">## 建立模型</span>
-</span></span><span class="line"><span class="cl">    <span class="n">model</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
-</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;poly&#34;</span><span class="p">,</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)),</span>
-</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;scaler&#34;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
-</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;lr&#34;</span><span class="p">,</span> <span class="n">LinearRegression</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">    <span class="p">])</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1">## 預測</span>
-</span></span><span class="line"><span class="cl">    <span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1">## 評估</span>
-</span></span><span class="line"><span class="cl">    <span class="n">train_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">train_r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;train data 均方誤差 (MSE): </span><span class="si">{</span><span class="n">train_mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;train data 決定係數 R²: </span><span class="si">{</span><span class="n">train_r2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">test_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">test_r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;test data 均方誤差 (MSE): </span><span class="si">{</span><span class="n">test_mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;test data 決定係數 R²: </span><span class="si">{</span><span class="n">test_r2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
-</span></span></code></pre></div><h3 id="執行結果">執行結果</h3>
-<ul>
-<li>train data 均方誤差 (MSE): 5.1315</li>
-<li>train data 決定係數 R²: 0.9409</li>
-<li>test data 均方誤差 (MSE): 14.2573</li>
-<li>test data 決定係數 R²: 0.8056</li>
-</ul>
-<h4 id="結果評估">結果評估</h4>
-<p>本次模型使用二次多項式特徵 (PolynomialFeatures(degree=2)) 結合標準化處理與線性回歸進行建模。</p>
-<p>從評估指標來看:</p>
-<ul>
-<li>訓練資料 R² 為 0.9409，代表模型在訓練集上可以解釋 94.09% 的房價變異，表現非常良好。</li>
-<li>測試資料 R² 為 0.8056，雖略低於訓練結果，但仍能解釋 80.56% 的變異，泛化能力尚可接受。</li>
-<li>測試 MSE 為 14.2573，對應均方根誤差（RMSE）約為 $3,775 美元，表示模型對房價的預測誤差多集中於 ±4 千元內，具備實用性。</li>
-</ul>
-<p>然而，我們也觀察到訓練與測試間的 R² 存在明顯落差 (0.94 → 0.81)，這可能表示模型在高階特徵下已出現一定程度的過擬合 (overfitting) 現象，應持續關注其在新資料上的穩定性。</p>
-<h4 id="下一步建議">下一步建議</h4>
-<p>為進一步強化模型的泛化能力與解釋力，採取以下方向優化:</p>
-<ul>
-<li>嘗試正則化回歸 (如 Ridge / Lasso / Elastic Net)
-<ul>
-<li>可有效控制多項式展開後參數數量膨脹所造成的 overfitting。</li>
-<li>搭配交叉驗證 (GridSearchCV) 選取最佳懲罰係數。</li>
-</ul>
-</li>
-<li>特徵選擇與降維
-<ul>
-<li>探索是否有冗餘或低貢獻的特徵，例如使用 SelectKBest、PCA、或基於模型的重要性 (feature importance) 進行刪減。</li>
-</ul>
-</li>
-<li>異常值檢查與資料轉換
-<ul>
-<li>若殘差分布存在明顯偏態，可考慮對目標變數 (如 MEDV) 做 log 轉換以提升穩定性。</li>
-<li>同時可檢查極端房價樣本對模型的影響程度 (例如 Cook’s distance)。</li>
-</ul>
-</li>
-</ul>
-<p>總體而言，本次結果已具備相當良好的建模基礎，後續重點將轉向「控制模型複雜度」與「提升泛化能力」，以邁向穩定、可解釋、可部署的預測系統。</p>
-<h2 id="結語">結語</h2>
-<p>多項式迴歸提供了一個簡單卻強大的手段，讓我們能在不改變演算法本身的情況下，用非線性特徵轉換擴展模型的表達能力。只需對原始特徵做一次轉換，就能讓線性模型擬合出曲線趨勢，這正是它的魅力所在。</p>
-<p>但能力越強，風險越高。多項式階數的提升固然能增加擬合度，但也極易導致過擬合 (overfitting)，特別是在資料量有限或特徵多樣時。此時就需要引入新的工具來協助我們控制模型的複雜度──這就是「正則化迴歸」。</p>
-<p>在邁向正則化模型之前，請記得: 多項式擬合本質上不是解決非線性的萬靈丹，它是一種「特徵空間重構」的技巧，適用於低維資料、可視化分析與 baseline 建立，但不適合直接套用在高維或多雜訊的真實問題中。</p>
-<h2 id="備註">備註</h2>
-<ul>
-<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
-</ul>
-
-  </div>
-
-  <div class="post__share">
-  <ul class="share__list list-reset">
-    <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%203%29%20%e5%a4%9a%e9%a0%85%e5%bc%8f%e8%bf%b4%e6%ad%b8%20%28Polynomial%20Regression%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080101%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
-    </li>
-
-    <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080101%2f"
-        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
-        title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
-    </li>
-
-    <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080101%2f&title=%28Day%203%29%20%e5%a4%9a%e9%a0%85%e5%bc%8f%e8%bf%b4%e6%ad%b8%20%28Polynomial%20Regression%29&summary=%e6%98%a8%e5%a4%a9%e4%bb%8b%e7%b4%b9%e4%ba%86%e7%b7%9a%e6%80%a7%e8%bf%b4%e6%ad%b8%20%28Linear%20Regression%29%ef%bc%8c%e5%ae%83%e9%81%a9%e5%90%88%e7%94%a8%e4%be%86%e8%99%95%e7%90%86%e7%89%b9%e5%be%b5%e8%88%87%e7%9b%ae%e6%a8%99%e4%b9%8b%e9%96%93%e7%82%ba%e7%b7%9a%e6%80%a7%e9%97%9c%e4%bf%82%e7%9a%84%e6%83%85%e5%a2%83%e3%80%82%e7%84%b6%e8%80%8c%ef%bc%8c%e7%9c%9f%e5%af%a6%e4%b8%96%e7%95%8c%e7%9a%84%e8%b3%87%e6%96%99%e5%be%80%e5%be%80%e4%b8%a6%e9%9d%9e%e7%b4%94%e7%b2%b9%e7%b7%9a%e6%80%a7%ef%bc%8c%e8%80%8c%e6%98%af%e5%91%88%e7%8f%be%e8%a4%87%e9%9b%9c%e7%9a%84%e9%9d%9e%e7%b7%9a%e6%80%a7%e9%97%9c%e4%bf%82%ef%bc%8c%e4%be%8b%e5%a6%82%e6%9b%b2%e7%b7%9a%e3%80%81%e6%8b%8b%e7%89%a9%e7%b7%9a%e3%80%81%e7%94%9a%e8%87%b3%e6%9b%b4%e8%a4%87%e9%9b%9c%e7%9a%84%e6%b3%a2%e5%8b%95%e8%b6%a8%e5%8b%a2%e3%80%82&source=%28Day%203%29%20%e5%a4%9a%e9%a0%85%e5%bc%8f%e8%bf%b4%e6%ad%b8%20%28Polynomial%20Regression%29"
-      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
-    </li>
-
-    <li class="share__item">
-      <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080101%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%203%29%20%e5%a4%9a%e9%a0%85%e5%bc%8f%e8%bf%b4%e6%ad%b8%20%28Polynomial%20Regression%29"
-        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
-        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
-    </li>
-  </ul>
-</div>
-
-  
-
-
-<div class="section-related">
-  <h4 class="section-related__title">You may also like...</h4>
-  <div class="row grid">
-    
-      <div class="article col col-6 col-t-12 animate">
+  <div class="page__tags">
+    <div class="row">
+      
+        <div class="article col col-6 col-t-12 animate">
 
   <div class="article__content">
     
   
     <h2 class="article__title">
-      <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082601/">(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU)</a>
+      <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081001/">(Day 12) 多元分類任務驗證指標</a>
     </h2>
   
     <div class="article__meta">
       
         <div class="article-tags__box">
         
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+          <a href="http://localhost:1313/tags/%5Cithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">\&#39;IThome 鐵人賽 2025&#39;</a>
         
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-26T00:00:00&#43;08:00">26 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在前幾天的文章中，我們依序介紹了 RNN、LSTM、GRU，並討論它們如何建模序列資料。這些模型能夠捕捉序列中的上下文關係，並緩解傳統 RNN 的梯度消失問題。然而，若我們想要處理更複雜的任務——例如機器翻譯 (Machine Translation)，僅僅依靠單向 RNN 或 LSTM 並不夠。</p>
-  </div>
-
-
-</div>
-    
-      <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082501/">(Day 27) 閘控循環單元 (Gated Recurrent Unit)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
+          <a href="http://localhost:1313/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
         
         </div>
         &nbsp;&bull;&nbsp;
       
-      <time class="article__date" datetime="2025-08-25T00:00:00&#43;08:00">25 Aug, 2025</time>
+      <time class="article__date" datetime="2025-08-10T00:00:00&#43;08:00">10 Aug, 2025</time>
       
         &nbsp;&bull;&nbsp;
         <span class="article__minutes">2 min read</span>
       
     </div>
   
-    <p class="article__excerpt">在前兩篇文章，我們分別介紹了 RNN (Recurrent Neural Network) 與 LSTM (Long Short-Term Memory)。RNN 為序列建模提供了基礎架構，但受限於梯度消失與爆炸問題，難以捕捉長距離依賴；LSTM 則透過引入 記憶單元 (Cell State) 與 門控機制 (Gating Mechanism)，成功緩解了這一問題。</p>
+    <p class="article__excerpt">多元分類任務驗證指標就只是從二元分類任務驗證指標延伸而來，核心概念一樣是二元分類任務驗證指標，而兩者只是在計算內容上有些許差異，所以指標仍然是 Accuracy、Recall、F1-score 等，所以請讀者先將二元分類任務驗證指標熟練後再來看。</p>
   </div>
 
 
 </div>
-    
+      
+    </div>
   </div>
+
 </div>
-
-
-</article>
-
-
-
-  
-
-<div class="container">
-  <div class="show-comments">
-    <button class="button" id="show-comments-button" onclick="disqus();return false;">Comments</button>
-  </div>
-  
-  <div id="disqus_thread" class="post__comments">
-    <div id="disqus_empty"></div>
-  </div>
-  
-  <script>
-    var disqus_loaded = false;
-    var disqus_shortname = 'anvod-studio-test';
-    var disqus_container = document.getElementById("disqus_thread");
-    function disqus() {
-      if (!disqus_loaded) {
-        disqus_loaded = true;
-        var e = document.createElement("script");
-        e.type = "text/javascript";
-        e.async = true;
-        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
-        (document.getElementsByTagName("head")[0] ||
-          document.getElementsByTagName("body")[0])
-          .appendChild(e);
-        
-        document.getElementById("show-comments-button").style.display = "none";
-        
-        disqus_container.classList.add("is-open");
-      }
-    }
-  </script>
-</div>
-
-
 
 
 
