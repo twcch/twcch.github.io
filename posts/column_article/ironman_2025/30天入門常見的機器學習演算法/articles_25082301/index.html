@@ -16,12 +16,12 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="(Day 25) 循環神經網路 (Recurrent Neural Network) | 志謙&#39;s Blog">
   <meta name="twitter:description" content="在前面幾天，我們介紹了全連接神經網路 (FCNN) 與卷積神經網路 (CNN)。這些架構在處理結構化數據或影像資料上非常成功，但若應用到「序列資料」時就顯得不足。">
-  <meta name="twitter:image" content="http://example.org/">
+  <meta name="twitter:image" content="http://twcch.io/">
 
   
   <meta property="og:title" content="(Day 25) 循環神經網路 (Recurrent Neural Network) | 志謙&#39;s Blog">
   <meta property="og:description" content="在前面幾天，我們介紹了全連接神經網路 (FCNN) 與卷積神經網路 (CNN)。這些架構在處理結構化數據或影像資料上非常成功，但若應用到「序列資料」時就顯得不足。">
-  <meta property="og:image" content="http://example.org/">
+  <meta property="og:image" content="http://twcch.io/">
 
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -59,7 +59,7 @@
 
     
     <div class="global-cover">
-      <img src="http://example.org/images/common/page_cover.jpg" alt="(Day 25) 循環神經網路 (Recurrent Neural Network)">
+      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 25) 循環神經網路 (Recurrent Neural Network)">
     </div>
     
 
@@ -144,11 +144,11 @@
       <div class="post-tags">
         Publish in&nbsp;
         
-          <a href="http://example.org/tags/data-science/" class="post__tag">Data Science</a>
+          <a href="http://twcch.io/tags/data-science/" class="post__tag">Data Science</a>
         
-          <a href="http://example.org/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
         
-          <a href="http://example.org/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">30 天入門常見的機器學習演算法</a>
+          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">30 天入門常見的機器學習演算法</a>
         
       </div>
       &nbsp;&bull;&nbsp;
@@ -319,23 +319,23 @@ $$</p>
   <div class="post__share">
   <ul class="share__list list-reset">
     <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2025%29%20%e5%be%aa%e7%92%b0%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%20%28Recurrent%20Neural%20Network%29&url=http%3a%2f%2fexample.org%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25082301%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2025%29%20%e5%be%aa%e7%92%b0%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%20%28Recurrent%20Neural%20Network%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25082301%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fexample.org%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25082301%2f"
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25082301%2f"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fexample.org%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25082301%2f&title=%28Day%2025%29%20%e5%be%aa%e7%92%b0%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%20%28Recurrent%20Neural%20Network%29&summary=%e5%9c%a8%e5%89%8d%e9%9d%a2%e5%b9%be%e5%a4%a9%ef%bc%8c%e6%88%91%e5%80%91%e4%bb%8b%e7%b4%b9%e4%ba%86%e5%85%a8%e9%80%a3%e6%8e%a5%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%20%28FCNN%29%20%e8%88%87%e5%8d%b7%e7%a9%8d%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%20%28CNN%29%e3%80%82%e9%80%99%e4%ba%9b%e6%9e%b6%e6%a7%8b%e5%9c%a8%e8%99%95%e7%90%86%e7%b5%90%e6%a7%8b%e5%8c%96%e6%95%b8%e6%93%9a%e6%88%96%e5%bd%b1%e5%83%8f%e8%b3%87%e6%96%99%e4%b8%8a%e9%9d%9e%e5%b8%b8%e6%88%90%e5%8a%9f%ef%bc%8c%e4%bd%86%e8%8b%a5%e6%87%89%e7%94%a8%e5%88%b0%e3%80%8c%e5%ba%8f%e5%88%97%e8%b3%87%e6%96%99%e3%80%8d%e6%99%82%e5%b0%b1%e9%a1%af%e5%be%97%e4%b8%8d%e8%b6%b3%e3%80%82&source=%28Day%2025%29%20%e5%be%aa%e7%92%b0%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%20%28Recurrent%20Neural%20Network%29"
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25082301%2f&title=%28Day%2025%29%20%e5%be%aa%e7%92%b0%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%20%28Recurrent%20Neural%20Network%29&summary=%e5%9c%a8%e5%89%8d%e9%9d%a2%e5%b9%be%e5%a4%a9%ef%bc%8c%e6%88%91%e5%80%91%e4%bb%8b%e7%b4%b9%e4%ba%86%e5%85%a8%e9%80%a3%e6%8e%a5%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%20%28FCNN%29%20%e8%88%87%e5%8d%b7%e7%a9%8d%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%20%28CNN%29%e3%80%82%e9%80%99%e4%ba%9b%e6%9e%b6%e6%a7%8b%e5%9c%a8%e8%99%95%e7%90%86%e7%b5%90%e6%a7%8b%e5%8c%96%e6%95%b8%e6%93%9a%e6%88%96%e5%bd%b1%e5%83%8f%e8%b3%87%e6%96%99%e4%b8%8a%e9%9d%9e%e5%b8%b8%e6%88%90%e5%8a%9f%ef%bc%8c%e4%bd%86%e8%8b%a5%e6%87%89%e7%94%a8%e5%88%b0%e3%80%8c%e5%ba%8f%e5%88%97%e8%b3%87%e6%96%99%e3%80%8d%e6%99%82%e5%b0%b1%e9%a1%af%e5%be%97%e4%b8%8d%e8%b6%b3%e3%80%82&source=%28Day%2025%29%20%e5%be%aa%e7%92%b0%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%20%28Recurrent%20Neural%20Network%29"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
     </li>
 
     <li class="share__item">
       <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fexample.org%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25082301%2f&amp;media=http%3a%2f%2fexample.org%2f&amp;description=%28Day%2025%29%20%e5%be%aa%e7%92%b0%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%20%28Recurrent%20Neural%20Network%29"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25082301%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2025%29%20%e5%be%aa%e7%92%b0%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%20%28Recurrent%20Neural%20Network%29"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
     </li>
@@ -362,11 +362,11 @@ $$</p>
       
         <div class="article-tags__box">
         
-          <a href="http://example.org/tags/data-science/" class="article__tag">Data Science</a>
+          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
         
-          <a href="http://example.org/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
         
-          <a href="http://example.org/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
+          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
         
         </div>
         &nbsp;&bull;&nbsp;
@@ -397,11 +397,11 @@ $$</p>
       
         <div class="article-tags__box">
         
-          <a href="http://example.org/tags/data-science/" class="article__tag">Data Science</a>
+          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
         
-          <a href="http://example.org/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
         
-          <a href="http://example.org/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
+          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
         
         </div>
         &nbsp;&bull;&nbsp;

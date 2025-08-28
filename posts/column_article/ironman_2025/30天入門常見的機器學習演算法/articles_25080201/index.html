@@ -16,12 +16,12 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="(Day 4) 正規化迴歸 (Regularization Regression) | 志謙&#39;s Blog">
   <meta name="twitter:description" content="延續昨日的多項式迴歸中，我們觀察到一個現象: 雖然二次特徵提升了模型的表現，但同時也引入過擬合 (Overfitting) 風險。這是因為當特徵數量暴增，模型就會變得過於「貪婪」，試圖將每個資料點都擬合得極好，結果反而喪失了在新資料上的泛化 (Generalization) 能力。">
-  <meta name="twitter:image" content="http://example.org/">
+  <meta name="twitter:image" content="http://twcch.io/">
 
   
   <meta property="og:title" content="(Day 4) 正規化迴歸 (Regularization Regression) | 志謙&#39;s Blog">
   <meta property="og:description" content="延續昨日的多項式迴歸中，我們觀察到一個現象: 雖然二次特徵提升了模型的表現，但同時也引入過擬合 (Overfitting) 風險。這是因為當特徵數量暴增，模型就會變得過於「貪婪」，試圖將每個資料點都擬合得極好，結果反而喪失了在新資料上的泛化 (Generalization) 能力。">
-  <meta property="og:image" content="http://example.org/">
+  <meta property="og:image" content="http://twcch.io/">
 
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -59,7 +59,7 @@
 
     
     <div class="global-cover">
-      <img src="http://example.org/images/common/page_cover.jpg" alt="(Day 4) 正規化迴歸 (Regularization Regression)">
+      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 4) 正規化迴歸 (Regularization Regression)">
     </div>
     
 
@@ -144,11 +144,11 @@
       <div class="post-tags">
         Publish in&nbsp;
         
-          <a href="http://example.org/tags/data-science/" class="post__tag">Data Science</a>
+          <a href="http://twcch.io/tags/data-science/" class="post__tag">Data Science</a>
         
-          <a href="http://example.org/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
         
-          <a href="http://example.org/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">30 天入門常見的機器學習演算法</a>
+          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">30 天入門常見的機器學習演算法</a>
         
       </div>
       &nbsp;&bull;&nbsp;
@@ -418,23 +418,23 @@
   <div class="post__share">
   <ul class="share__list list-reset">
     <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%204%29%20%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%bf%b4%e6%ad%b8%20%28Regularization%20Regression%29&url=http%3a%2f%2fexample.org%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080201%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%204%29%20%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%bf%b4%e6%ad%b8%20%28Regularization%20Regression%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080201%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fexample.org%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080201%2f"
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080201%2f"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fexample.org%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080201%2f&title=%28Day%204%29%20%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%bf%b4%e6%ad%b8%20%28Regularization%20Regression%29&summary=%e5%bb%b6%e7%ba%8c%e6%98%a8%e6%97%a5%e7%9a%84%e5%a4%9a%e9%a0%85%e5%bc%8f%e8%bf%b4%e6%ad%b8%e4%b8%ad%ef%bc%8c%e6%88%91%e5%80%91%e8%a7%80%e5%af%9f%e5%88%b0%e4%b8%80%e5%80%8b%e7%8f%be%e8%b1%a1%3a%20%e9%9b%96%e7%84%b6%e4%ba%8c%e6%ac%a1%e7%89%b9%e5%be%b5%e6%8f%90%e5%8d%87%e4%ba%86%e6%a8%a1%e5%9e%8b%e7%9a%84%e8%a1%a8%e7%8f%be%ef%bc%8c%e4%bd%86%e5%90%8c%e6%99%82%e4%b9%9f%e5%bc%95%e5%85%a5%e9%81%8e%e6%93%ac%e5%90%88%20%28Overfitting%29%20%e9%a2%a8%e9%9a%aa%e3%80%82%e9%80%99%e6%98%af%e5%9b%a0%e7%82%ba%e7%95%b6%e7%89%b9%e5%be%b5%e6%95%b8%e9%87%8f%e6%9a%b4%e5%a2%9e%ef%bc%8c%e6%a8%a1%e5%9e%8b%e5%b0%b1%e6%9c%83%e8%ae%8a%e5%be%97%e9%81%8e%e6%96%bc%e3%80%8c%e8%b2%aa%e5%a9%aa%e3%80%8d%ef%bc%8c%e8%a9%a6%e5%9c%96%e5%b0%87%e6%af%8f%e5%80%8b%e8%b3%87%e6%96%99%e9%bb%9e%e9%83%bd%e6%93%ac%e5%90%88%e5%be%97%e6%a5%b5%e5%a5%bd%ef%bc%8c%e7%b5%90%e6%9e%9c%e5%8f%8d%e8%80%8c%e5%96%aa%e5%a4%b1%e4%ba%86%e5%9c%a8%e6%96%b0%e8%b3%87%e6%96%99%e4%b8%8a%e7%9a%84%e6%b3%9b%e5%8c%96%20%28Generalization%29%20%e8%83%bd%e5%8a%9b%e3%80%82&source=%28Day%204%29%20%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%bf%b4%e6%ad%b8%20%28Regularization%20Regression%29"
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080201%2f&title=%28Day%204%29%20%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%bf%b4%e6%ad%b8%20%28Regularization%20Regression%29&summary=%e5%bb%b6%e7%ba%8c%e6%98%a8%e6%97%a5%e7%9a%84%e5%a4%9a%e9%a0%85%e5%bc%8f%e8%bf%b4%e6%ad%b8%e4%b8%ad%ef%bc%8c%e6%88%91%e5%80%91%e8%a7%80%e5%af%9f%e5%88%b0%e4%b8%80%e5%80%8b%e7%8f%be%e8%b1%a1%3a%20%e9%9b%96%e7%84%b6%e4%ba%8c%e6%ac%a1%e7%89%b9%e5%be%b5%e6%8f%90%e5%8d%87%e4%ba%86%e6%a8%a1%e5%9e%8b%e7%9a%84%e8%a1%a8%e7%8f%be%ef%bc%8c%e4%bd%86%e5%90%8c%e6%99%82%e4%b9%9f%e5%bc%95%e5%85%a5%e9%81%8e%e6%93%ac%e5%90%88%20%28Overfitting%29%20%e9%a2%a8%e9%9a%aa%e3%80%82%e9%80%99%e6%98%af%e5%9b%a0%e7%82%ba%e7%95%b6%e7%89%b9%e5%be%b5%e6%95%b8%e9%87%8f%e6%9a%b4%e5%a2%9e%ef%bc%8c%e6%a8%a1%e5%9e%8b%e5%b0%b1%e6%9c%83%e8%ae%8a%e5%be%97%e9%81%8e%e6%96%bc%e3%80%8c%e8%b2%aa%e5%a9%aa%e3%80%8d%ef%bc%8c%e8%a9%a6%e5%9c%96%e5%b0%87%e6%af%8f%e5%80%8b%e8%b3%87%e6%96%99%e9%bb%9e%e9%83%bd%e6%93%ac%e5%90%88%e5%be%97%e6%a5%b5%e5%a5%bd%ef%bc%8c%e7%b5%90%e6%9e%9c%e5%8f%8d%e8%80%8c%e5%96%aa%e5%a4%b1%e4%ba%86%e5%9c%a8%e6%96%b0%e8%b3%87%e6%96%99%e4%b8%8a%e7%9a%84%e6%b3%9b%e5%8c%96%20%28Generalization%29%20%e8%83%bd%e5%8a%9b%e3%80%82&source=%28Day%204%29%20%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%bf%b4%e6%ad%b8%20%28Regularization%20Regression%29"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
     </li>
 
     <li class="share__item">
       <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fexample.org%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080201%2f&amp;media=http%3a%2f%2fexample.org%2f&amp;description=%28Day%204%29%20%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%bf%b4%e6%ad%b8%20%28Regularization%20Regression%29"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2farticles_25080201%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%204%29%20%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%bf%b4%e6%ad%b8%20%28Regularization%20Regression%29"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
     </li>
@@ -461,11 +461,11 @@
       
         <div class="article-tags__box">
         
-          <a href="http://example.org/tags/data-science/" class="article__tag">Data Science</a>
+          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
         
-          <a href="http://example.org/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
         
-          <a href="http://example.org/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
+          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
         
         </div>
         &nbsp;&bull;&nbsp;
@@ -496,11 +496,11 @@
       
         <div class="article-tags__box">
         
-          <a href="http://example.org/tags/data-science/" class="article__tag">Data Science</a>
+          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
         
-          <a href="http://example.org/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
         
-          <a href="http://example.org/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
+          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
         
         </div>
         &nbsp;&bull;&nbsp;

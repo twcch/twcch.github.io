@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>🎥 Videos on 志謙&#39;s Blog</title>
-    <link>http://example.org/videos/</link>
+    <link>http://twcch.io/videos/</link>
     <description>Recent content in 🎥 Videos on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate></lastBuildDate>
-    <atom:link href="http://example.org/videos/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://twcch.io/videos/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
