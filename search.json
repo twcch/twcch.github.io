@@ -1,0 +1,97 @@
+[{
+    "title": "(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082601/"
+  },{
+    "title": "(Day 27) 閘控循環單元 (Gated Recurrent Unit)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082501/"
+  },{
+    "title": "(Day 26) 長短期記憶網路 (Long Short-Term Memory)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082401/"
+  },{
+    "title": "(Day 25) 循環神經網路 (Recurrent Neural Network)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082301/"
+  },{
+    "title": "(Day 24) Adam 優化器 (Adaptive Moment Estimation)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082201/"
+  },{
+    "title": "(Day 23) 深度學習中的優化方法 (Optimization in Deep Learning)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082101/"
+  },{
+    "title": "(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082001/"
+  },{
+    "title": "(Day 21) 卷積神經網絡 (Convolutional Neural Network)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081901/"
+  },{
+    "title": "(Day 20) 激活函數 (Activation Function)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081801/"
+  },{
+    "title": "(Day 19) 神經元 (Neuron)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081701/"
+  },{
+    "title": "(Day 18) 全連接神經網絡 (Fully Connected Neural Network)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081601/"
+  },{
+    "title": "(Day 17) 淺談深度學習 (Deep Learning)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081501/"
+  },{
+    "title": "(Day 16) K-Means",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081401/"
+  },{
+    "title": "(Day 15) 隨機森林 (Random Forest)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081301/"
+  },{
+    "title": "(Day 14) 決策樹 (Decision Tree)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081201/"
+  },{
+    "title": "(Day 13) 迴歸任務驗證指標",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081101/"
+  },{
+    "title": "(Day 12) 多元分類任務驗證指標",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25081001/"
+  },{
+    "title": "(Day 11) 二元分類任務驗證指標",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080901/"
+  },{
+    "title": "(Day 10) 支援向量機 (Support Vector Machine)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080801/"
+  },{
+    "title": "(Day 9) 樸素貝氏分類器 (Naive Bayes Classifier)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080701/"
+  },{
+    "title": "(Day 8) K-近鄰 (K-Nearest Neighbors)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080601/"
+  },{
+    "title": "(Day 7) 回顧迴歸：從線性邏輯到學習本質",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080501/"
+  },{
+    "title": "(Day 6) 邏輯迴歸 (多項式 + 正規化)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080401/"
+  },{
+    "title": "(Day 5) 邏輯迴歸 (Logistic Regression)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080301/"
+  },{
+    "title": "(Day 4) 正規化迴歸 (Regularization Regression)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080201/"
+  },{
+    "title": "(Day 3) 多項式迴歸 (Polynomial Regression)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25080101/"
+  },{
+    "title": "(Day 2) 線性迴歸 (Linear Regression)",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25073101/"
+  },{
+    "title": "(Day 1) 介紹與準備",
+    "permalink": "/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25073001/"
+  },{
+    "title": "學歷無用：我仍相信學習的價值",
+    "permalink": "/posts/articles_25071601/"
+  },{
+    "title": "當老師只靠 ChatGPT 回信：我們期待的不是答案，而是理解",
+    "permalink": "/posts/articles_25062501/"
+  },{
+    "title": "為什麼用 AI 技術檢測企業舞弊，比想像中更困難？",
+    "permalink": "/posts/articles_25060201/"
+  },{
+    "title": "為什麼 AI 正在快速削弱低階 Business Analyst 的價值？",
+    "permalink": "/posts/articles_25040701/"
+  }]

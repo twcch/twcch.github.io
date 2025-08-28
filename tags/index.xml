@@ -2,52 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on 志謙&#39;s Blog</title>
-    <link>http://twcch.io/tags/</link>
+    <link>http://example.org/tags/</link>
     <description>Recent content in Tags on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
-    <language>zh-tw</language>
+    <language>en-us</language>
     <lastBuildDate>Tue, 26 Aug 2025 00:00:00 +0800</lastBuildDate>
-    <atom:link href="http://twcch.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>30 天入門常見的機器學習演算法</title>
-      <link>http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/</link>
+      <link>http://example.org/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/</link>
       <pubDate>Tue, 26 Aug 2025 00:00:00 +0800</pubDate>
-      <guid>http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/</guid>
+      <guid>http://example.org/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/</guid>
       <description></description>
     </item>
     <item>
       <title>Data Science</title>
-      <link>http://twcch.io/tags/data-science/</link>
+      <link>http://example.org/tags/data-science/</link>
       <pubDate>Tue, 26 Aug 2025 00:00:00 +0800</pubDate>
-      <guid>http://twcch.io/tags/data-science/</guid>
+      <guid>http://example.org/tags/data-science/</guid>
       <description></description>
     </item>
     <item>
       <title>IThome 鐵人賽 2025</title>
-      <link>http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/</link>
+      <link>http://example.org/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/</link>
       <pubDate>Tue, 26 Aug 2025 00:00:00 +0800</pubDate>
-      <guid>http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/</guid>
+      <guid>http://example.org/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/</guid>
       <description></description>
     </item>
     <item>
       <title>Heart Notes</title>
-      <link>http://twcch.io/tags/heart-notes/</link>
+      <link>http://example.org/tags/heart-notes/</link>
       <pubDate>Wed, 16 Jul 2025 00:00:00 +0800</pubDate>
-      <guid>http://twcch.io/tags/heart-notes/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Project</title>
-      <link>http://twcch.io/tags/project/</link>
-      <pubDate>Wed, 09 Jul 2025 00:00:00 +0800</pubDate>
-      <guid>http://twcch.io/tags/project/</guid>
+      <guid>http://example.org/tags/heart-notes/</guid>
       <description></description>
     </item>
     <item>
       <title>Business Analysis</title>
-      <link>http://twcch.io/tags/business-analysis/</link>
+      <link>http://example.org/tags/business-analysis/</link>
       <pubDate>Mon, 07 Apr 2025 00:00:00 +0800</pubDate>
-      <guid>http://twcch.io/tags/business-analysis/</guid>
+      <guid>http://example.org/tags/business-analysis/</guid>
       <description></description>
     </item>
   </channel>
