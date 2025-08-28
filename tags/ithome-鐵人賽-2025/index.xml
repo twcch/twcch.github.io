@@ -6,8 +6,15 @@
     <description>Recent content in IThome 鐵人賽 2025 on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 26 Aug 2025 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 27 Aug 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>(Day 29) 注意力機制 (Attention Mechanism)</title>
+      <link>http://twcch.io/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082701/</link>
+      <pubDate>Wed, 27 Aug 2025 00:00:00 +0800</pubDate>
+      <guid>http://twcch.io/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082701/</guid>
+      <description>&lt;p&gt;在前一天，我們介紹了 Seq2Seq 架構 (Encoder-Decoder)，它將輸入序列壓縮成一個固定維度的上下文向量 (Context Vector)，再交由解碼器 (Decoder) 逐步生成輸出。這種方法為機器翻譯、摘要生成等任務帶來了突破，但它也有一個致命的缺陷——瓶頸效應 (Bottleneck Problem)。&lt;/p&gt;&#xA;&lt;p&gt;不論輸入序列多長，最終都必須壓縮到單一向量 $c$，再交給解碼器使用。對短序列來說這還能接受，但一旦輸入序列過長，資訊勢必會大量遺失。這就像是要把一本書濃縮成一句話，再交給翻譯員去翻譯成另一種語言，結果可想而知。&lt;/p&gt;&#xA;&lt;p&gt;為了解決這個問題，Bahdanau 等人在 2015 年提出了 Attention 機制，讓模型在生成輸出時，不再依賴單一上下文，而是能夠「動態選擇性地關注輸入序列的不同部分」。這一設計徹底改變了序列建模的方式，並為後來的 Transformer 奠定了基礎。&lt;/p&gt;&#xA;&lt;h2 id=&#34;attention-的核心思想&#34;&gt;Attention 的核心思想&lt;/h2&gt;&#xA;&lt;p&gt;Attention 的直觀想法可以用一個比喻來理解:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;假設你在讀一本英文小說，並且要翻譯成中文。&lt;/li&gt;&#xA;&lt;li&gt;當你翻譯到某一句話的時候，你不會只依靠腦中模糊的整體印象，而是會反覆回頭看英文原文的相關部分。&lt;/li&gt;&#xA;&lt;li&gt;Attention 就是這種「回頭查看、選擇性關注」的能力。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;換句話說：Decoder 在生成每個輸出詞時，不僅依賴最後的上下文向量，而是能針對 Encoder 的所有隱藏狀態進行加權。&lt;/p&gt;&#xA;&lt;h2 id=&#34;attention-的數學公式&#34;&gt;Attention 的數學公式&lt;/h2&gt;&#xA;&lt;p&gt;假設輸入序列為 $(x_1, x_2, \dots, x_T)$，經 Encoder 後得到隱藏狀態序列 $h_1, h_2, \dots, h_T$。在生成輸出 $y_t$ 時:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;計算注意力權重 (Attention Weights)&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;對於輸入的每個隱藏狀態 $h_i$，計算它與當前解碼器狀態 $s_{t-1}$ 的相似度:&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;$$&#xA;e_{t,i} = \text{score}(s_{t-1}, h_i)&#xA;$$&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;使用 softmax 轉換為機率分布:&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;$$&#xA;\alpha_{t,i} = \frac{\exp(e_{t,i})}{\sum_j \exp(e_{t,j})}&#xA;$$&lt;/p&gt;&#xA;&lt;ol start=&#34;2&#34;&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;計算上下文向量 (Context Vector)&lt;/p&gt;</description>
+    </item>
     <item>
       <title>(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU)</title>
       <link>http://twcch.io/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/articles_25082601/</link>
