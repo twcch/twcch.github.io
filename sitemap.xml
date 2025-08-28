@@ -8,6 +8,9 @@
     <loc>http://twcch.io/</loc>
     <lastmod>9999-08-12T15:01:35+03:00</lastmod>
   </url><url>
+    <loc>http://twcch.io/projects/</loc>
+    <lastmod>9999-01-07T08:01:35+03:00</lastmod>
+  </url><url>
     <loc>http://twcch.io/videos/</loc>
     <lastmod>9999-01-02T08:01:35+03:00</lastmod>
   </url><url>
@@ -146,8 +149,6 @@
     <loc>http://twcch.io/contact/</loc>
   </url><url>
     <loc>http://twcch.io/project/</loc>
-  </url><url>
-    <loc>http://twcch.io/projects/</loc>
   </url><url>
     <loc>http://twcch.io/categories/</loc>
   </url>
