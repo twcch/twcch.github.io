@@ -113,13 +113,10 @@
     <loc>http://twcch.io/posts/articles_25071601/</loc>
     <lastmod>2025-07-16T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://twcch.io/projects/</loc>
-    <lastmod>2025-07-09T00:00:00+08:00</lastmod>
+    <loc>http://twcch.io/tags/project/</loc>
+    <lastmod>2025-06-30T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://twcch.io/projects/articles_25070901/</loc>
-    <lastmod>2025-07-09T00:00:00+08:00</lastmod>
-  </url><url>
-    <loc>http://twcch.io/projects/articles_25063001/</loc>
+    <loc>http://twcch.io/posts/project/articles_25063001/</loc>
     <lastmod>2025-06-30T00:00:00+08:00</lastmod>
   </url><url>
     <loc>http://twcch.io/posts/articles_25062501/</loc>
@@ -137,6 +134,9 @@
     <loc>http://twcch.io/posts/articles_25040701/</loc>
     <lastmod>2025-04-07T00:00:00+08:00</lastmod>
   </url><url>
+    <loc>http://twcch.io/posts/project/articles_25070901/</loc>
+    <lastmod>2025-04-07T00:00:00+08:00</lastmod>
+  </url><url>
     <loc>http://twcch.io/research/</loc>
   </url><url>
     <loc>http://twcch.io/about/</loc>
@@ -144,6 +144,8 @@
     <loc>http://twcch.io/column_article/</loc>
   </url><url>
     <loc>http://twcch.io/contact/</loc>
+  </url><url>
+    <loc>http://twcch.io/projects/</loc>
   </url><url>
     <loc>http://twcch.io/categories/</loc>
   </url>
