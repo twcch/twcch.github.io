@@ -2,27 +2,25 @@
 <html lang="en-us">
 
 <head>
-	<meta name="generator" content="Hugo 0.148.2">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>志謙&#39;s Blog</title>
-  <meta name="description" content="我是志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。">
+  <title>(Day 2) 陣列 (Array) | 志謙&#39;s Blog</title>
+  <meta name="description" content="Array 是一種 Static Data Structure 或稱為 Dense List，它是一種將有序串列的資料結構使用 Contiguous Allocation 來儲存，意味著儲存的元素必須是相同類型，且靜態資料結構的記憶體配置是在編譯時，就必須配置給相關的變數，因此在創建時必須先宣告空間大小。">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="志謙&#39;s Blog">
-  <meta name="twitter:description" content="我是志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。">
+  <meta name="twitter:title" content="(Day 2) 陣列 (Array) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="Array 是一種 Static Data Structure 或稱為 Dense List，它是一種將有序串列的資料結構使用 Contiguous Allocation 來儲存，意味著儲存的元素必須是相同類型，且靜態資料結構的記憶體配置是在編譯時，就必須配置給相關的變數，因此在創建時必須先宣告空間大小。">
   <meta name="twitter:image" content="http://twcch.io/">
 
   
-  <meta property="og:title" content="志謙&#39;s Blog">
-  <meta property="og:description" content="我是志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。">
+  <meta property="og:title" content="(Day 2) 陣列 (Array) | 志謙&#39;s Blog">
+  <meta property="og:description" content="Array 是一種 Static Data Structure 或稱為 Dense List，它是一種將有序串列的資料結構使用 Contiguous Allocation 來儲存，意味著儲存的元素必須是相同類型，且靜態資料結構的記憶體配置是在編譯時，就必須配置給相關的變數，因此在創建時必須先宣告空間大小。">
   <meta property="og:image" content="http://twcch.io/">
 
   
@@ -61,52 +59,12 @@
 
     
     <div class="global-cover">
-      <img src="images/common/page_cover.jpg" alt="志謙&#39;s Blog">
+      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 2) 陣列 (Array)">
     </div>
     
 
     <div class="global-content">
     
-      
-        
-<section class="author">
-  <div class="container">
-    <div class="row">
-      <div class="col col-12">
-        <div class="contaniner__inner">
-
-          <div class="author__box with-global-cover">
-            <div class="author__info">
-              <div class="author__meta">
-                
-                <a href="/about/" class="author__avatar">
-                  <img src="images/common/avatar.jpeg" alt="謝志謙">
-                </a>
-                
-  
-                
-                  <h1 class="author__name"><a href="/about/">謝志謙</a></h1>
-                
-
-                
-                  <span class="author__role">國立成功大學 博士生</span>
-                
-              </div>
-              
-                <a id="getInTouchBtn" href="" class="cta-button"><i class="fa-solid fa-magnifying-glass"></i> 搜索文章</a>
-              
-            </div>
-            
-              <p class="author__bio">我是謝志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。</p>
-            
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
       
 
       
@@ -122,7 +80,7 @@
             
             
               <li class="nav__item">
-                <a href="/" class="nav__link active-link">首頁</a>
+                <a href="/" class="nav__link ">首頁</a>
               </li>
             
             
@@ -184,104 +142,392 @@
 
 
 
+<article class="post container">
 
-<section class="section blog">
-  <div class="container">
-
-    <div class="section__info">
-      <div class="section__head">
-        <h2 class="section__title"><i class="fa-solid fa-pencil"></i> 最新文章</h2>
-      </div>
+  <div class="post-head">
+    <h1 class="post-title">(Day 2) 陣列 (Array)</h1>
+    <div class="post-meta">
       
-    </div>
-
-    <div class="blog__wrapper animate">
-      <div class="grid">
+      <div class="post-tags">
+        Publish in&nbsp;
         
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
         
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/articles_25040701/">為什麼 AI 正在快速削弱低階 Business Analyst 的價值？</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/business-analysis/" class="article-small__tag">Business Analysis</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-04-07T00:00:00&#43;08:00">7 Apr, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">1 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">五年前，我踏入壽險產業，成為一名 Business Analyst (BA)。當時的工作內容相當清晰: 需求文件撰寫、報表製作、簡單的數據分析與溝通協調，是我每天的日常。那時候，這些任務仍需靠人力一項一項完成，效率與品質全憑個人經驗與熟練度。但如今，這些「核心能力」正快速被人工智慧工具重塑，甚至取代。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/project/project_02/">視覺化專案 - 200 個國家 200 百年 4 分鐘</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/project/" class="article-small__tag">Project</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-04-07T00:00:00&#43;08:00">7 Apr, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">1 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">這是一個資料視覺化專案——「Dynamic Visualization: 200 Countries, 200 Years, 4 Minutes」。它將涵蓋 1816 至 2016 年，200 個國家的歷史變遷以互動動畫呈現，整體動畫長度約四分鐘，旨在結合「時間」與「地理」維度，提供用戶沉浸式的歷史視覺體驗。</p>
-            </div>
-
-          </div>
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">快速掌握資料結構與演算法</a>
         
       </div>
-
+      &nbsp;&bull;&nbsp;
       
-
-
-
-<div class="pagination">
-  <button class="button button--big load-more-posts">Load More Posts</button>
-</div>
-
-
-
-<script>
-  var base_url = "",
-    pagination_next_url = base_url + '/page2',
-    pagination_next_page_number = '6',
-    pagination_available_pages_number = '5';
-</script>
+      <time class="post-date" datetime="2025-08-31T00:00:00&#43;08:00">31 Aug, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="post-minutes">4 min read</span>
+      
     </div>
+    
+  </div>
+
+  
+
+  
+
+  
+
+  <div class="post__content">
+    
+    <div class="table-of-contents" id="table-of-contents">
+      <h2 class="table-of-contents__title">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="margin-right: 8px; vertical-align: -2px;">
+          <path d="M2 3h12a1 1 0 110 2H2a1 1 0 110-2zm0 4h12a1 1 0 110 2H2a1 1 0 110-2zm0 4h12a1 1 0 110 2H2a1 1 0 110-2z"/>
+        </svg>
+        目錄
+      </h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#常見的-array-類型-n-dimensional-array">常見的 Array 類型 (N-Dimensional Array)</a>
+      <ul>
+        <li><a href="#one-dimensional-array">One-Dimensional Array</a></li>
+        <li><a href="#two-dimensional-array">Two-Dimensional Array</a></li>
+        <li><a href="#three-dimensional-array">Three-Dimensional Array</a></li>
+      </ul>
+    </li>
+    <li><a href="#常見的-array-操作">常見的 Array 操作</a>
+      <ul>
+        <li><a href="#創建-array">創建 Array</a></li>
+        <li><a href="#添加元素">添加元素</a></li>
+        <li><a href="#訪問元素">訪問元素</a></li>
+        <li><a href="#修改元素">修改元素</a></li>
+        <li><a href="#刪除元素">刪除元素</a></li>
+        <li><a href="#遍歷-array">遍歷 Array</a></li>
+        <li><a href="#查找元素">查找元素</a></li>
+        <li><a href="#array-的長度">Array 的長度</a></li>
+        <li><a href="#array-的排序">Array 的排序</a></li>
+      </ul>
+    </li>
+    <li><a href="#leetcode">LeetCode</a></li>
+    <li><a href="#結語">結語</a></li>
+    <li><a href="#備註">備註</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    <h1 id="day-2-陣列-array">(Day 2) 陣列 (Array)</h1>
+<p>Array 是一種 Static Data Structure 或稱為 Dense List，它是一種將有序串列的資料結構使用 Contiguous Allocation 來儲存，意味著儲存的元素必須是相同類型，且靜態資料結構的記憶體配置是在編譯時，就必須配置給相關的變數，因此在創建時必須先宣告空間大小。</p>
+<h2 id="常見的-array-類型-n-dimensional-array">常見的 Array 類型 (N-Dimensional Array)</h2>
+<p>Array 應該是有無限多維，基本上到了 3 維除了圖片外就很少看到，4 維含以上我沒見過，也有可能是我才疏學淺，所以這裡就代表性的介紹 1 ~ 3 維的 Array</p>
+<h3 id="one-dimensional-array">One-Dimensional Array</h3>
+<p>One-Dimensional Array 是一個在記憶體中連續配置 (contiguously allocated) 的元素序列，所有元素型態一致、大小相同，可透過固定大小的偏移量 element_size 在 O(1) 時間計算任意元素的位址。簡單來說，只要給定起始的位置跟每個空間的大小，就能夠直接算出任意元素的位址，位址公式如下:</p>
+<p>$$
+\text{LOC}(A[i]) = \text{Base}(A) + (i - L) \times w
+$$</p>
+<p>其中:</p>
+<ul>
+<li>$\text{LOC}(A[i])$: 表示陣列中第 i 個元素的記憶體位址。</li>
+<li>$\text{Base}(A)$: 陣列的起始位址。</li>
+<li>$i$: 要找的索引位置。</li>
+<li>$L$: 陣列的下標起點 (lower bound)，在大多數語言 (Python, Java, C++)，$L = 0$。</li>
+<li>$(i - L)$: 表示從起點偏移了幾個元素。</li>
+<li>$w$: 每個元素的大小 (word size)，以位元組 (bytes) 為單位。</li>
+</ul>
+<p>接下來直接帶入實例計算，假設 $\text{Base}(A) = 1000$、$L = 0$、陣列 ints[5]，型別是 int (4 bytes)，求 A[3] 的位址:</p>
+<p>$$
+\text{LOC}(A[3]) = 1000 + (3 - 0) \times 4 = 1012
+$$</p>
+<h3 id="two-dimensional-array">Two-Dimensional Array</h3>
+<p>Two-Dimensional Array 是一個在記憶體中連續配置的矩形資料表，所有元素型態一致、大小相同，使用二維索引尋址，底層實際儲存為一塊連續記憶體，索引轉換為位移運算後直接定位到值本身(注意: 真二維陣列是無法有鋸齒狀結構，一般如 Java 的 int[][] 等都不是真二維陣列)。</p>
+<p>所以 Two-Dimensional Array 跟 One-Dimensional Array 一樣，也可以計算位址，但是必須先瞭解 Row-major 與 Column-major 的差異，假設要將一組資料 [1, 2, 3, 4] 存入 2x2 的陣列中，其差異如下:</p>
+<ul>
+<li>Row-major (代表語言 Python, Java, C++ &hellip;): 記憶體順序會是 [1, 2, 3, 4]，也就是 [[1, 2], [3, 4]]</li>
+<li>Column-major (代表語言 MATLAB, R &hellip;): 記憶體順序會是 [1, 3, 2, 4]，也就是 [[1, 3], [2, 4]]</li>
+</ul>
+<p>依照主流的程式語言來說，Row-major 是最常見的，所以位址公式就會以 Row-major 為例，位址公式如下:</p>
+<p>$$
+\text{LOC}(A[i][j]) = \text{Base}(A) + \Big((i - L_r) \times n + (j - L_c)\Big) \times w
+$$</p>
+<p>其中:</p>
+<ul>
+<li>$n$: 就是「每一列的元素個數」(欄數)</li>
+</ul>
+<p>方程式中的其他代號跟 One-Dimensional Array 大同小異就不多做說明，接下來直接帶入實例計算，假設 $\text{Base}(A) = 1000$、$L = 0$、陣列 ints[4][4]，型別是 int (4 bytes)，求 A[2][3] 的位址:</p>
+<p>$$
+\text{LOC}(A[i][j]) = 1000 + \Big((2 - 0) \times 4 + (3 - 0)\Big) \times 4 = 1044
+$$</p>
+<h3 id="three-dimensional-array">Three-Dimensional Array</h3>
+<p>不管是 Three-Dimensional Array 還是 N-Dimensional Array，其實都是 Two-Dimensional Array，所以它們的定義都是一樣的，直接來看位址公式如下:</p>
+<p>$$
+\text{LOC}(A[i][j][k]) = \text{Base}(A) + \Big( (i - L_x)\times(y \times z) + (j - L_y)\times z + (k - L_z) \Big) \times w
+$$</p>
+<p>接下來直接帶入實例計算，假設 $\text{Base}(A) = 1000$、$L = 0$、陣列 ints[4][4][4]，型別是 int (4 bytes)，求 A[2][3][0] 的位址:</p>
+<p>$$
+\text{LOC}(A[i][j][k]) = 1000 + \Big( (2 - 0)\times(4 \times 4) + (3 - 0)\times 4 + (0 - 0) \Big) \times 4 = 1176
+$$</p>
+<p>所以其實這些計算還蠻簡單的，一般來說，除非像我是學校要考試，沒辦法必須背，不然其實看看就好了，正常狀況也不可能叫你算這東西。</p>
+<h2 id="常見的-array-操作">常見的 Array 操作</h2>
+<p>基本上，資料結構的操作可以分為以下 4 大類 (BigO 到後續的演算法分析會在介紹):</p>
+<table>
+  <thead>
+      <tr>
+          <th>操作</th>
+          <th>BigO</th>
+          <th>說明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>訪問 (Access)</td>
+          <td>$O(1)$</td>
+          <td>透過 index 直接取得 Array 中的元素</td>
+      </tr>
+      <tr>
+          <td>搜索 (Search)</td>
+          <td>$O(N)$</td>
+          <td>透過元素，從頭開始遍歷 Array 取回 index</td>
+      </tr>
+      <tr>
+          <td>插入 (Insert)</td>
+          <td>$O(N)$</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>刪除 (Delete)</td>
+          <td>$O(N)$</td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="創建-array">創建 Array</h3>
+<p>Array 常見的操作可以從前述的 4 大類進行延伸出，因為 Python 並不像 Java 或 C++ 有內建 Array，必須要使用 array 或是 numpy 這些函式庫來實現，以下就使用 Python 的 array 函式庫為例:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">array</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>  <span class="c1"># array(&#39;i&#39;, [1, 2, 3, 4, 5])</span>
+</span></span></code></pre></div><h3 id="添加元素">添加元素</h3>
+<p>因為 Python 的 Array 的本質上就是定型別的可變長動態陣列，所以單就 Python 來說有提供 append() 直接添加的方法，但是這樣學資料結構是不健康的，先假設 Python 跟 Java 一樣是沒有提供這些方法。</p>
+<p>還記得前面的定義，Array 的 size 是固定的，所以假設沒有空間下，要添加元素，必須用擴容的方式，就是先新增一個新的 Array 再把資料放進去，操作如下:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">array</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 假設要在 array 的末端添加 6 的元素 (array 每次擴容只擴剛好的空間)</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">new_arr</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 把 arr 的值搬到 new_arr</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">	<span class="n">new_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">new_arr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span> <span class="c1"># 把要新增的資料放到 array 末端 </span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">new_arr</span><span class="p">)</span>  <span class="c1"># array(&#39;i&#39;, [1, 2, 3, 4, 5, 6])</span>
+</span></span></code></pre></div><p>雖然這個程式有點蠢，但是可以讓讀者體會一下， Array 速度很快，但是操作起來有點麻煩。</p>
+<p>註: 聽說在業界真的要操作 Array，假設原始 array 的 size = 6，把資料放到位置 5 了，會一次擴容到 size = 12，這樣可以避免一次擴容太多導致佔用過多的記憶體，也可以避免一直要頻繁地做擴容。</p>
+<h3 id="訪問元素">訪問元素</h3>
+<p>Array 的訪問元素就簡單很多了，因為 Array 是在一個連續空間，所以可以直接用 index 來取回值，後續介紹更多的資料結構後，讀者就能發現有些資料結構是不能透過 index 直接取回值，其他的後續再談，Array 的操作如下:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">array</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>  <span class="c1"># 4</span>
+</span></span></code></pre></div><h3 id="修改元素">修改元素</h3>
+<p>Array 的修改元素，就是直接把指定位置的值直接替換而已，操作如下:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">array</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>  <span class="c1"># 9</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>  <span class="c1"># array(&#39;i&#39;, [1, 2, 3, 9, 5])</span>
+</span></span></code></pre></div><h3 id="刪除元素">刪除元素</h3>
+<p>Array 的刪除元素操作就相對麻煩很多，先回憶 Array 的特徵: 元素型態一致、大小相同，所以 Array 是固定的怎麼刪除? 看到這邊，其實讀者可能第一個想法，我在開一個新的 Array 把舊的 Array 資料搬過去，排除要刪除的元素就好，沒錯這是一個思路，但是一般不會這樣做。</p>
+<p>假設 Array = [1, 2, 3, 4, 5]，要將值為 2 的元素刪除，Array 會變成 [1, 3, 4, 5, 5]，一般的操作方式就是把要刪除的元素之後的元素都往前一格，操作如下:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">array</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">target</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># 要刪除值為 2 的元素</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">target</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>  <span class="c1"># array(&#39;i&#39;, [1, 3, 4, 5, 5])</span>
+</span></span></code></pre></div><p>到這邊可能會有疑惑說，那最後一個元素不是錯的嗎? 其實沒關係，要回傳的時候可以做 Slice 或是把它替換成 0，在整個回傳就好，這部分就要看當下要怎麼處理。</p>
+<h3 id="遍歷-array">遍歷 Array</h3>
+<p>這個就很簡單，我們前面都看過了，就是用 for loop 走一輪而已，操作如下:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">array</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">print</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+</span></span></code></pre></div><h3 id="查找元素">查找元素</h3>
+<p>查找跟訪問不太一樣，訪問是透過 index 把值取回來；而查找透過值把 index 取回來，最簡單的方式就是遍歷 Array，用 for loop 走一輪就知道，但是還有其他方法可以更快，所以這邊大家先知道最基礎的方式就好，等到後續的演算法部分應該會再說明這種 Search 有什麼寫法可以更快。</p>
+<h3 id="array-的長度">Array 的長度</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">array</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>  <span class="c1"># 5</span>
+</span></span></code></pre></div><h3 id="array-的排序">Array 的排序</h3>
+<p>排序也是，在這邊先留個伏筆，等到後續的演算法部分應該會再說明這種 Sort 有什麼寫法可以處理。</p>
+<h2 id="leetcode">LeetCode</h2>
+<p>因為專門再說明 LeetCode 解法的網站與影片真的太多，這邊就由讀者自行學習，以下題目是跟 Array 有相關:</p>
+<ul>
+<li><a href="https://leetcode.com/problems/max-consecutive-ones/">LeetCode 485. Max Consecutive Ones</a></li>
+<li><a href="https://leetcode.com/problems/move-zeroes/">LeetCode 283. Move Zeroes</a></li>
+<li><a href="https://leetcode.com/problems/remove-element/">LeetCode 27. Remove Element</a></li>
+</ul>
+<h2 id="結語">結語</h2>
+<p>今天我們從 Array 的定義、記憶體配置 談起，延伸到一維、二維、三維陣列的位址計算，再到常見的操作 (訪問、查找、插入、刪除、遍歷)。雖然在日常開發中，我們幾乎不需要自己計算記憶體位址，但理解這些原理能幫助我們知道為什麼 Array 的訪問是 $O(1)$，而插入與刪除是 $O(n)$。</p>
+<p>這些知識會是後續所有資料結構的基石，因為鏈表、堆疊、佇列乃至樹與圖，最後都會回歸到陣列或指標的實作。下一篇我們將進入 鏈表 (Linked List)，對比它和 Array 的差異，並理解為什麼兩者各有優劣。</p>
+<h2 id="備註">備註</h2>
+<ul>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8468">iThome 鐵人賽 2025 - 快速掌握資料結構與演算法</a></li>
+</ul>
 
   </div>
 
-</section>
+  <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%202%29%20%e9%99%a3%e5%88%97%20%28Array%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_2%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_2%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_2%2f&title=%28Day%202%29%20%e9%99%a3%e5%88%97%20%28Array%29&summary=Array%20%e6%98%af%e4%b8%80%e7%a8%ae%20Static%20Data%20Structure%20%e6%88%96%e7%a8%b1%e7%82%ba%20Dense%20List%ef%bc%8c%e5%ae%83%e6%98%af%e4%b8%80%e7%a8%ae%e5%b0%87%e6%9c%89%e5%ba%8f%e4%b8%b2%e5%88%97%e7%9a%84%e8%b3%87%e6%96%99%e7%b5%90%e6%a7%8b%e4%bd%bf%e7%94%a8%20Contiguous%20Allocation%20%e4%be%86%e5%84%b2%e5%ad%98%ef%bc%8c%e6%84%8f%e5%91%b3%e8%91%97%e5%84%b2%e5%ad%98%e7%9a%84%e5%85%83%e7%b4%a0%e5%bf%85%e9%a0%88%e6%98%af%e7%9b%b8%e5%90%8c%e9%a1%9e%e5%9e%8b%ef%bc%8c%e4%b8%94%e9%9d%9c%e6%85%8b%e8%b3%87%e6%96%99%e7%b5%90%e6%a7%8b%e7%9a%84%e8%a8%98%e6%86%b6%e9%ab%94%e9%85%8d%e7%bd%ae%e6%98%af%e5%9c%a8%e7%b7%a8%e8%ad%af%e6%99%82%ef%bc%8c%e5%b0%b1%e5%bf%85%e9%a0%88%e9%85%8d%e7%bd%ae%e7%b5%a6%e7%9b%b8%e9%97%9c%e7%9a%84%e8%ae%8a%e6%95%b8%ef%bc%8c%e5%9b%a0%e6%ad%a4%e5%9c%a8%e5%89%b5%e5%bb%ba%e6%99%82%e5%bf%85%e9%a0%88%e5%85%88%e5%ae%a3%e5%91%8a%e7%a9%ba%e9%96%93%e5%a4%a7%e5%b0%8f%e3%80%82&source=%28Day%202%29%20%e9%99%a3%e5%88%97%20%28Array%29"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_2%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%202%29%20%e9%99%a3%e5%88%97%20%28Array%29"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+    </li>
+  </ul>
+</div>
+
+  
+
+
+<div class="section-related">
+  <h4 class="section-related__title">You may also like...</h4>
+  <div class="row grid">
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_30/">(Day 30) 系列結尾</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-08-30T00:00:00&#43;08:00">30 Aug, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">1 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">終於來到這個系列的最後一天。老實說，如果要我替這 30 天打個分數，我大概只會給自己一個 勉強及格。原因很簡單: 這個系列從一開始就有宏大的規劃與期待，但在實際執行的過程中，遭遇了不少現實挑戰，也暴露了自己在知識深度、寫作規劃與時間管理上的不足。</p>
+  </div>
+
+
+</div>
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_article/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_1/">(Day 1) 介紹與準備</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-08-30T00:00:00&#43;08:00">30 Aug, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">1 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">我遇過很多學習程式語言的人，都一直學框架或是 API 怎麼用，都不是很注重底層的知識，我認為一棟樓要蓋多高取決於地基打得多深，因為框架與 API 會變，但時間複雜度、記憶體模型、資料結構設計是不會變的。</p>
+  </div>
+
+
+</div>
+    
+  </div>
+</div>
+
+
+</article>
+
+
+
+  
+
+<div class="container">
+  <div class="show-comments">
+    <button class="button" id="show-comments-button" onclick="disqus();return false;">Comments</button>
+  </div>
+  
+  <div id="disqus_thread" class="post__comments">
+    <div id="disqus_empty"></div>
+  </div>
+  
+  <script>
+    var disqus_loaded = false;
+    var disqus_shortname = 'twcch';
+    var disqus_container = document.getElementById("disqus_thread");
+    function disqus() {
+      if (!disqus_loaded) {
+        disqus_loaded = true;
+        var e = document.createElement("script");
+        e.type = "text/javascript";
+        e.async = true;
+        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0])
+          .appendChild(e);
+        
+        document.getElementById("show-comments-button").style.display = "none";
+        
+        disqus_container.classList.add("is-open");
+      }
+    }
+  </script>
+</div>
+
 
 
 
