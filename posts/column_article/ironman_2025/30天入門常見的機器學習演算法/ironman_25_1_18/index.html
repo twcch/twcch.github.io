@@ -2,27 +2,25 @@
 <html lang="en-us">
 
 <head>
-	<meta name="generator" content="Hugo 0.148.2">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>志謙&#39;s Blog</title>
-  <meta name="description" content="我是志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。">
+  <title>(Day 18) 全連接神經網絡 (Fully Connected Neural Network) | 志謙&#39;s Blog</title>
+  <meta name="description" content="在進入深度學習的第一步，必須要先認識最基礎的深度學習架構，這個架構稱為: 全連接神經網路 (Fully Connected Neural Network; FCNN)、多層感知機 (Multi-Layer Perceptron; MLP) 這兩個都是指同一個東西，這個架構也是所有深度學習架構的基石，CNN、RNN、Transformer 都可以看作是在 FCNN 上加入特殊結構與限制後的延伸">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="志謙&#39;s Blog">
-  <meta name="twitter:description" content="我是志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。">
+  <meta name="twitter:title" content="(Day 18) 全連接神經網絡 (Fully Connected Neural Network) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="在進入深度學習的第一步，必須要先認識最基礎的深度學習架構，這個架構稱為: 全連接神經網路 (Fully Connected Neural Network; FCNN)、多層感知機 (Multi-Layer Perceptron; MLP) 這兩個都是指同一個東西，這個架構也是所有深度學習架構的基石，CNN、RNN、Transformer 都可以看作是在 FCNN 上加入特殊結構與限制後的延伸">
   <meta name="twitter:image" content="http://twcch.io/">
 
   
-  <meta property="og:title" content="志謙&#39;s Blog">
-  <meta property="og:description" content="我是志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。">
+  <meta property="og:title" content="(Day 18) 全連接神經網絡 (Fully Connected Neural Network) | 志謙&#39;s Blog">
+  <meta property="og:description" content="在進入深度學習的第一步，必須要先認識最基礎的深度學習架構，這個架構稱為: 全連接神經網路 (Fully Connected Neural Network; FCNN)、多層感知機 (Multi-Layer Perceptron; MLP) 這兩個都是指同一個東西，這個架構也是所有深度學習架構的基石，CNN、RNN、Transformer 都可以看作是在 FCNN 上加入特殊結構與限制後的延伸">
   <meta property="og:image" content="http://twcch.io/">
 
   
@@ -61,52 +59,12 @@
 
     
     <div class="global-cover">
-      <img src="images/common/page_cover.jpg" alt="志謙&#39;s Blog">
+      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 18) 全連接神經網絡 (Fully Connected Neural Network)">
     </div>
     
 
     <div class="global-content">
     
-      
-        
-<section class="author">
-  <div class="container">
-    <div class="row">
-      <div class="col col-12">
-        <div class="contaniner__inner">
-
-          <div class="author__box with-global-cover">
-            <div class="author__info">
-              <div class="author__meta">
-                
-                <a href="/about/" class="author__avatar">
-                  <img src="images/common/avatar.jpeg" alt="謝志謙">
-                </a>
-                
-  
-                
-                  <h1 class="author__name"><a href="/about/">謝志謙</a></h1>
-                
-
-                
-                  <span class="author__role">國立成功大學 博士生</span>
-                
-              </div>
-              
-                <a id="getInTouchBtn" href="" class="cta-button"><i class="fa-solid fa-magnifying-glass"></i> 搜索文章</a>
-              
-            </div>
-            
-              <p class="author__bio">我是謝志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。</p>
-            
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
       
 
       
@@ -122,7 +80,7 @@
             
             
               <li class="nav__item">
-                <a href="/" class="nav__link active-link">首頁</a>
+                <a href="/" class="nav__link ">首頁</a>
               </li>
             
             
@@ -184,332 +142,473 @@
 
 
 
+<article class="post container">
 
-<section class="section blog">
-  <div class="container">
-
-    <div class="section__info">
-      <div class="section__head">
-        <h2 class="section__title"><i class="fa-solid fa-pencil"></i> 最新文章</h2>
-      </div>
+  <div class="post-head">
+    <h1 class="post-title">(Day 18) 全連接神經網絡 (Fully Connected Neural Network)</h1>
+    <div class="post-meta">
       
-    </div>
-
-    <div class="blog__wrapper animate">
-      <div class="grid">
+      <div class="post-tags">
+        Publish in&nbsp;
         
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
         
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_30/">(Day 30) 系列結尾</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-30T00:00:00&#43;08:00">30 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">1 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">終於來到這個系列的最後一天。老實說，如果要我替這 30 天打個分數，我大概只會給自己一個 勉強及格。原因很簡單: 這個系列從一開始就有宏大的規劃與期待，但在實際執行的過程中，遭遇了不少現實挑戰，也暴露了自己在知識深度、寫作規劃與時間管理上的不足。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_29/">(Day 29) 注意力機制 (Attention Mechanism)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-29T00:00:00&#43;08:00">29 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">2 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前一天，我們介紹了 Seq2Seq 架構 (Encoder-Decoder)，它將輸入序列壓縮成一個固定維度的上下文向量 (Context Vector)，再交由解碼器 (Decoder) 逐步生成輸出。這種方法為機器翻譯、摘要生成等任務帶來了突破，但它也有一個致命的缺陷——瓶頸效應 (Bottleneck Problem)。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_28/">(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-28T00:00:00&#43;08:00">28 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">1 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前幾天的文章中，我們依序介紹了 RNN、LSTM、GRU，並討論它們如何建模序列資料。這些模型能夠捕捉序列中的上下文關係，並緩解傳統 RNN 的梯度消失問題。然而，若我們想要處理更複雜的任務——例如機器翻譯 (Machine Translation)，僅僅依靠單向 RNN 或 LSTM 並不夠。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_27/">(Day 27) 閘控循環單元 (Gated Recurrent Unit)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-27T00:00:00&#43;08:00">27 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">2 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前兩篇文章，我們分別介紹了 RNN (Recurrent Neural Network) 與 LSTM (Long Short-Term Memory)。RNN 為序列建模提供了基礎架構，但受限於梯度消失與爆炸問題，難以捕捉長距離依賴；LSTM 則透過引入 記憶單元 (Cell State) 與 門控機制 (Gating Mechanism)，成功緩解了這一問題。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_26/">(Day 26) 長短期記憶網路 (Long Short-Term Memory)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-26T00:00:00&#43;08:00">26 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">2 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前一篇，我們介紹了循環神經網路 (RNN)，並指出了它在處理序列資料時的強大之處：透過「隱藏狀態」將前後資訊連結起來。然而，我們同時也看到了 RNN 的最大瓶頸——梯度消失與梯度爆炸，使得它在長距離依賴 (long-term dependency) 的學習上表現不佳。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_25/">(Day 25) 循環神經網路 (Recurrent Neural Network)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-25T00:00:00&#43;08:00">25 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">1 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前面幾天，我們介紹了全連接神經網路 (FCNN) 與卷積神經網路 (CNN)。這些架構在處理結構化數據或影像資料上非常成功，但若應用到「序列資料」時就顯得不足。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_24/">(Day 24) Adam 優化器 (Adaptive Moment Estimation)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-24T00:00:00&#43;08:00">24 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">2 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前一天，我們整理了深度學習中常見的優化方法，從最基本的隨機梯度下降 (SGD)，到 Momentum、RMSProp、Adagrad 等。今天我們要深入介紹其中最具代表性、也是實務中最常見的優化方法之一——Adam (Adaptive Moment Estimation)。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_23/">(Day 23) 深度學習中的優化方法 (Optimization in Deep Learning)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-23T00:00:00&#43;08:00">23 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">2 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前一篇，我們談到了深度學習中的正規化與正則化，重點在於如何避免過擬合並保持訓練穩定。然而，光是解決過擬合還不夠：在龐大的神經網路裡，我們還得面對另一個關鍵問題——如何有效率地找到參數的最佳解。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_22/">(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-22T00:00:00&#43;08:00">22 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">1 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。</p>
-            </div>
-
-          </div>
+          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">30 天入門常見的機器學習演算法</a>
         
       </div>
-
+      &nbsp;&bull;&nbsp;
       
-
-
-
-<div class="pagination">
-  <button class="button button--big load-more-posts">Load More Posts</button>
-</div>
-
-
-
-<script>
-  var base_url = "",
-    pagination_next_url = base_url + '/page2',
-    pagination_next_page_number = '2',
-    pagination_available_pages_number = '4';
-</script>
+      <time class="post-date" datetime="2025-08-18T00:00:00&#43;08:00">18 Aug, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="post-minutes">5 min read</span>
+      
     </div>
+    
+  </div>
+
+  
+
+  
+
+  
+
+  <div class="post__content">
+    
+    <div class="table-of-contents" id="table-of-contents">
+      <h2 class="table-of-contents__title">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="margin-right: 8px; vertical-align: -2px;">
+          <path d="M2 3h12a1 1 0 110 2H2a1 1 0 110-2zm0 4h12a1 1 0 110 2H2a1 1 0 110-2zm0 4h12a1 1 0 110 2H2a1 1 0 110-2z"/>
+        </svg>
+        目錄
+      </h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#基本架構">基本架構</a></li>
+    <li><a href="#運作流程">運作流程</a>
+      <ul>
+        <li><a href="#正向傳播">正向傳播</a></li>
+        <li><a href="#反向傳播">反向傳播</a></li>
+        <li><a href="#沒有-label-就不能用神經網絡">沒有 label 就不能用神經網絡?</a></li>
+      </ul>
+    </li>
+    <li><a href="#優缺點">優缺點</a></li>
+    <li><a href="#模型實作">模型實作</a></li>
+    <li><a href="#結語">結語</a></li>
+    <li><a href="#備註">備註</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    <p>在進入深度學習的第一步，必須要先認識最基礎的深度學習架構，這個架構稱為:</p>
+<ul>
+<li>全連接神經網路 (Fully Connected Neural Network; FCNN)</li>
+<li>多層感知機 (Multi-Layer Perceptron; MLP)</li>
+</ul>
+<p>這兩個都是指同一個東西，這個架構也是所有深度學習架構的基石，CNN、RNN、Transformer 都可以看作是在 FCNN 上加入特殊結構與限制後的延伸</p>
+<h2 id="基本架構">基本架構</h2>
+<p>大家可以使用這個 <a href="https://playground.tensorflow.org/#activation=tanh&amp;batchSize=10&amp;dataset=circle&amp;regDataset=reg-plane&amp;learningRate=0.03&amp;regularizationRate=0&amp;noise=0&amp;networkShape=4,2&amp;seed=0.61546&amp;showTestData=false&amp;discretize=false&amp;percTrainData=50&amp;x=true&amp;y=true&amp;xTimesY=false&amp;xSquared=false&amp;ySquared=false&amp;cosX=false&amp;sinX=false&amp;cosY=false&amp;sinY=false&amp;collectStats=false&amp;problem=classification&amp;initZero=false&amp;hideText=false">網站</a> 看一下神經網絡的架構與運行過程，簡單來說最基礎的神經網絡架構一定有以下三個 layer:</p>
+<ul>
+<li>輸入層 (Input Layer): 接收原始特徵，大小等於特徵數量</li>
+<li>隱藏層 (Hidden Layers): 由多個神經元 (Neurons) 組成，每個神經元與前一層的所有神經元相連</li>
+<li>輸出層 (Output Layer): 對應任務需求，分類問題常用 softmax、多類別輸出；回歸問題則可能是單一實值，簡單的區分如下:
+<ul>
+<li>回歸問題
+<ul>
+<li>輸出層神經元數 = 1 (代表一個連續數值)</li>
+<li>常用激活函數: 無激活 (linear)</li>
+<li>Loss function: MSE, MAE</li>
+</ul>
+</li>
+<li>二元分類
+<ul>
+<li>寫法一: 1 個神經元 + Sigmoid 激活 (輸出機率 [0,1])</li>
+<li>寫法二: 2 個神經元 + Softmax (輸出兩類的機率分佈)</li>
+<li>Loss function: Binary Crossentropy / Categorical Crossentropy</li>
+<li>✅ 工程上最常用的是 1 個輸出神經元 + Sigmoid</li>
+</ul>
+</li>
+<li>多元分類 (N 類別)
+<ul>
+<li>輸出層神經元數 = N</li>
+<li>激活函數: Softmax (保證所有輸出加起來 = 1，形成機率分布)</li>
+<li>Loss function: Categorical Crossentropy / Sparse Categorical Crossentropy</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="運作流程">運作流程</h2>
+<p>整個神經網絡的運做過程，核心就是「輸入資料 (X) → 正向傳播 (Forward) → 計算 Loss → 反向傳播 (Backward) → 更新參數 (Gradient Descent) → 再正向傳播」，說明如下:</p>
+<ul>
+<li>輸入資料 (X): 把影像、數值或文字丟進神經網絡</li>
+<li>正向傳播 (Forward): 一層一層計算，得到模型的輸出</li>
+<li>計算 Loss: 拿模型輸出 (output layer 的結果) 和真實標籤比對，計算誤差</li>
+<li>反向傳播 (Backward): 誤差往回傳，算每個參數對誤差的影響 (梯度)</li>
+<li>更新參數 (Gradient Descent): 用梯度下降修正權重</li>
+<li>新的參數 → 下一輪: 進入下一個 batch，再次 forward</li>
+</ul>
+<p>這邊先破個梗，什麼時候會停止? 這也是人為控制，透過一個 epoch 的參數，來決定要做幾輪 (N 次的正向傳播 + 反向傳播)，所以當 epoch=1 就是表示做 1 次的正向傳播 + 反向傳播</p>
+<h3 id="正向傳播">正向傳播</h3>
+<p>就像「預測」或「算成績」的過程:</p>
+<ul>
+<li>你把輸入資料 (例如一張圖片) 丟進去模型</li>
+<li>每一層神經元就像一個公式：輸入數字 × 權重 + 偏差 → 經過激活函數 → 輸出</li>
+<li>一層一層傳下去，最後在輸出層算出結果（例如：這張圖片是「貓」的機率 0.8，「狗」0.2）</li>
+</ul>
+<p>重點:</p>
+<ul>
+<li>正向傳播就是單純「照著模型算一次結果」</li>
+<li>這時候你拿到的只是「模型的猜測」</li>
+</ul>
+<h3 id="反向傳播">反向傳播</h3>
+<p>就像「檢討錯誤」和「調整公式」的過程:</p>
+<ul>
+<li>模型算出一個結果後，會跟真實答案比對
+<ul>
+<li>例如：模型說「貓 0.8，狗 0.2」，但真實答案是「狗」</li>
+</ul>
+</li>
+<li>用 Loss Function (損失函數) 計算「模型猜錯的程度」
+<ul>
+<li>想像成「考試分數差多少」</li>
+</ul>
+</li>
+<li>反向傳播就是把這個錯誤，從輸出層往回傳，算出每個權重對錯誤的「貢獻」
+<ul>
+<li>哪些權重害錯最多，就調整得更多</li>
+<li>哪些影響小，就調整得少</li>
+</ul>
+</li>
+<li>調整的方法就是用 梯度下降 (Gradient Descent)</li>
+</ul>
+<p>重點:</p>
+<ul>
+<li>反向傳播不是在「重跑」，而是在「反推責任歸屬」，然後「更新參數」</li>
+<li>正向傳播像是「做題目」，反向傳播像是「老師改考卷，告訴你哪裡要修正」</li>
+</ul>
+<h3 id="沒有-label-就不能用神經網絡">沒有 label 就不能用神經網絡?</h3>
+<p>經過前面 10 多天的洗禮，我相信看到這邊大家都會有個疑問，分群 (Clustering) 沒有 label 的，那表示神經網絡沒有分群 (Clustering) 這個概念? 當然不是，神經網絡不會這麼弱，差別在於 Loss 的設計邏輯不一樣:</p>
+<ul>
+<li>Supervised Learning (with labels)
+<ul>
+<li>有明確答案，loss 直接來自「預測 vs. 真實答案」的差異</li>
+</ul>
+</li>
+<li>Unsupervised Learning (without labels)
+<ul>
+<li>沒有 y，所以不能用 cross entropy 這種監督式的 Loss</li>
+<li>改成「自我監督 / 結構化目標」來建 Loss，例如:
+<ul>
+<li>自編碼器 (Autoencoder)</li>
+<li>GANs (生成對抗網絡)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>這些技術後面慢慢談，所以神經網絡的應用場景很廣的</p>
+<h2 id="優缺點">優缺點</h2>
+<p>目前大多數的研究都顯示出，面對真實問題的情況下，深度學習模型都比經典機器學習模型表現更好，但是模型的訓練不能只看準確度，還要看成本跟訓練速度，很多複雜的問題，神經網絡寫好，訓練執行下去，可能一次就要跑一週以上，大概率你的筆電也很難訓練這種模型，但是在經典機器學習就不會出現這種問題，深度學習主要的缺點:</p>
+<ul>
+<li>訓練成本高，對大資料需求大</li>
+<li>參數數量龐大，容易過擬合</li>
+<li>可解釋性差，屬於黑盒模型</li>
+</ul>
+<h2 id="模型實作">模型實作</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">transforms</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1. 數據準備 (MNIST)</span>
+</span></span><span class="line"><span class="cl"><span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span>  <span class="c1"># 組合多個前處理步驟，會依序做 ToTensor() → Normalize()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>  <span class="c1"># 把圖片 (通常是 PIL image 或 numpy array) 轉成 PyTorch Tensor，同時會把像素值 從 [0,255] 縮放到 [0,1]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="mf">0.5</span><span class="p">,),</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,))</span>  <span class="c1"># 標準化 (Normalization) $x_{norm} = \frac{x - mean}{std}$</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 這是 torchvision 提供的資料集接口，可以直接下載或載入 MNIST 手寫數字資料集</span>
+</span></span><span class="line"><span class="cl"><span class="c1">##  - root=&#34;./data&#34;: 指定資料儲存的目錄 (如果沒下載過，會自動下載到這個資料夾)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 	- train=True: 載入訓練集 (60,000 筆資料)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 	- train=False: 載入測試集 (10,000 筆資料)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 	- download=True: 如果資料不存在，會自動下載</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 	- transform=transform: 指定前處理方法 (剛剛定義的 ToTensor() + Normalize())</span>
+</span></span><span class="line"><span class="cl"><span class="n">train_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s2">&#34;./data&#34;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">test_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s2">&#34;./data&#34;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 前面執行後會得到 Dataset 物件，但還不能直接拿來訓練，需要包裝成 DataLoader</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## PyTorch 提供的 資料批次處理器，負責把資料分批 (batch) 餵給模型</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 	- train_loader = DataLoader(train_data, batch_size=64, shuffle=True)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 	- 把訓練資料 train_data 包裝成 DataLoader</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 	- batch_size=64: 每次會取 64 筆資料出來訓練</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 	- shuffle=True: 每個 epoch 開始時會隨機打亂資料，避免模型學到資料順序的偏差</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 	- test_loader = DataLoader(test_data, batch_size=1000, shuffle=False)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 	- 測試資料一次取 1000 筆出來測試</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 	- shuffle=False: 測試時不需要打亂，保持固定順序即可</span>
+</span></span><span class="line"><span class="cl"><span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 建立模型</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">FCNN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 如果不寫 nn.Module 的初始化沒被呼叫，forward() 裡用的 self.fc1 = nn.Linear(...) 雖然看起來「存在」，但 模型不會追蹤到它的參數</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># NIST 的圖片是 28 × 28 灰階，一張圖片攤平成一個向量，長度就是 28×28 = 784</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 輸出是 128 個神經元</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># 自由選，這是超參數 (hyperparameter)，你完全可以改:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># nn.Linear(784, 256) → nn.Linear(256, 128) → nn.Linear(128, 10) 或者再多加幾層、更寬 (512, 1024…)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 這個不影響「輸入跟輸出」的對齊，只會影響模型容量與訓練難度</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 輸出是 64 個神經元</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># MNIST 的標籤是 0–9，總共 10 個類別，所以最後一層要輸出 10 維 logits，對應到 softmax 之後的 10 類機率分佈</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 如果是二元分類 (例如貓/狗)，輸出就會設成 1 或 2 (看你選 binary sigmoid 還是 softmax)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># 在訓練時，有 20% 的神經元會被隨機「丟掉」(設成 0)，其餘 80% 的神經元會被保留，但會 放大輸出 (除以 0.8)，確保整體期望值不變</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 為什麼要這樣設計?</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#  - 假設一個神經元輸出值是 h=0.5：</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 	 - 如果被丟掉 → 輸出 = 0</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 	 - 如果沒被丟掉 → 輸出 = 0.5 ÷ 0.8 = 0.625</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#  - 這樣的好處是：在測試時不用再做任何調整，因為訓練時的期望值已經被 scale 過了</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 常見的 p 值選擇</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#  - p=0.1 ~ 0.3：小模型 (例如 MNIST)，避免太多資訊丟掉</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#  - p=0.5：經典值，常用在大模型的全連接層</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#  - p=0.7+：幾乎不用，因為會把大部分資訊都丟掉，網路很難收斂</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 資料流動定義</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># -1: 自動推算 batch_size，不用你自己算。例如 batch_size=64，那這裡就是 64</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 28*28: 固定每張圖片攤平成 784 維的向量</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># 第一層參數最多</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#  - MNIST 784 → 128: 這裡的權重數量是 784×128 ≈ 100k，容易過擬合</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#  - Dropout 可以迫使網路不要過度依賴某幾個輸入維度</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 高維度 → 容易記憶資料</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#  - 如果沒有 Dropout，網路可能直接「記住」訓練資料而不是學 general 特徵</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#  - 在大維度特徵處加 Dropout，可以降低這種風險</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 為什麼第二層常常不用 Dropout?</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># - 後面神經元比較少</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#   - 128 → 64，參數數量大幅減少，過擬合風險相對低</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># - 避免過度稀疏</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#   - 如果每一層都 Dropout，訊號可能被「打掉太多」，模型學不到東西</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 	- 一般經驗: 對大的全連接層用 Dropout，小層就不一定需要</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">FCNN</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. 訓練設置</span>
+</span></span><span class="line"><span class="cl"><span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. 訓練迴圈</span>
+</span></span><span class="line"><span class="cl"><span class="n">epochs</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">ep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">epochs</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>  <span class="c1"># 切換成訓練模式 (啟用 Dropout、BatchNorm 等): PyTorch 底層邏輯</span>
+</span></span><span class="line"><span class="cl">    <span class="n">loss</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">train_loader</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>  <span class="c1"># 關鍵: 清空上一步的梯度 (PyTorch 預設會把梯度「累加」，如果不清空，第二個 batch 的梯度會加到第一個 batch 上，導致更新錯誤，所以每次迭代前必須先歸零)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>  <span class="c1"># 執行模型的 forward()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>  <span class="c1"># 這裡會自動做 softmax + cross entropy</span>
+</span></span><span class="line"><span class="cl">        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>  <span class="c1"># 自動計算每個參數的梯度，梯度會存放在對應的 param.grad 裡 (這是 PyTorch 的 autograd 機制)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>  <span class="c1"># 用計算好的梯度更新參數，這裡使用的是 SGD (w ← w - lr * grad)，如果你換成 Adam，會是另一種更新規則</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Epoch </span><span class="si">{</span><span class="n">ep</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">epochs</span><span class="si">}</span><span class="s2">, Loss: </span><span class="si">{</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 5. 測試</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>  <span class="c1"># 切換模型到評估模式 (evaluation mode)</span>
+</span></span><span class="line"><span class="cl"><span class="n">correct</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span></span><span class="line"><span class="cl"><span class="n">total</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>  <span class="c1"># 關閉梯度計算，測試時我們只需要 forward pass，不需要反向傳播</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>  <span class="c1"># 把影像送進模型，得到輸出 logits (還沒 softmax 的值)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 功能: 在維度 dim=1 上找出最大值的 index → 代表模型預測的類別，例：[0.1, 0.7, 0.2] → argmax=1 → 預測為類別 1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># (pred == labels) → 逐元素比較，產生 True/False 的 tensor</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># .sum() → 計算這個 batch 預測正確的數量</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># .item() → 把 tensor 轉成純數字 (int/float)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># correct → 累加正確數量</span>
+</span></span><span class="line"><span class="cl">        <span class="n">correct</span> <span class="o">+=</span> <span class="p">(</span><span class="n">pred</span> <span class="o">==</span> <span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># images.size(0) → batch 的樣本數 (通常等於 batch_size，最後一批可能比較小)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># total → 累加測試資料總數。</span>
+</span></span><span class="line"><span class="cl">        <span class="n">total</span> <span class="o">+=</span> <span class="n">images</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Accuracy: </span><span class="si">{</span><span class="n">correct</span><span class="o">/</span><span class="n">total</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><h2 id="結語">結語</h2>
+<p>今天簡單的介紹了全連接神經網絡 (FCNN) 是深度學習的起點與基石，雖然在高維與非結構化資料上不是最佳選擇，但它提供了一個理解神經網路如何運作的直觀框架: 輸入 → 加權和 → 非線性轉換 → 多層堆疊 → 輸出。</p>
+<p>實務上，FCNN 常用於:</p>
+<ul>
+<li>表格數據的分類/回歸</li>
+<li>特徵壓縮與嵌入</li>
+<li>作為複雜架構的子模組</li>
+</ul>
+<p>理解 FCNN，不只是為了使用它本身，而是為了更好地理解 CNN、RNN、Transformer 等深度學習架構的共同底層邏輯</p>
+<h2 id="備註">備註</h2>
+<ul>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
+</ul>
 
   </div>
 
-</section>
+  <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2018%29%20%e5%85%a8%e9%80%a3%e6%8e%a5%e7%a5%9e%e7%b6%93%e7%b6%b2%e7%b5%a1%20%28Fully%20Connected%20Neural%20Network%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_18%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_18%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_18%2f&title=%28Day%2018%29%20%e5%85%a8%e9%80%a3%e6%8e%a5%e7%a5%9e%e7%b6%93%e7%b6%b2%e7%b5%a1%20%28Fully%20Connected%20Neural%20Network%29&summary=%e5%9c%a8%e9%80%b2%e5%85%a5%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e7%9a%84%e7%ac%ac%e4%b8%80%e6%ad%a5%ef%bc%8c%e5%bf%85%e9%a0%88%e8%a6%81%e5%85%88%e8%aa%8d%e8%ad%98%e6%9c%80%e5%9f%ba%e7%a4%8e%e7%9a%84%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e6%9e%b6%e6%a7%8b%ef%bc%8c%e9%80%99%e5%80%8b%e6%9e%b6%e6%a7%8b%e7%a8%b1%e7%82%ba%3a%20%e5%85%a8%e9%80%a3%e6%8e%a5%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%20%28Fully%20Connected%20Neural%20Network%3b%20FCNN%29%e3%80%81%e5%a4%9a%e5%b1%a4%e6%84%9f%e7%9f%a5%e6%a9%9f%20%28Multi-Layer%20Perceptron%3b%20MLP%29%20%e9%80%99%e5%85%a9%e5%80%8b%e9%83%bd%e6%98%af%e6%8c%87%e5%90%8c%e4%b8%80%e5%80%8b%e6%9d%b1%e8%a5%bf%ef%bc%8c%e9%80%99%e5%80%8b%e6%9e%b6%e6%a7%8b%e4%b9%9f%e6%98%af%e6%89%80%e6%9c%89%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e6%9e%b6%e6%a7%8b%e7%9a%84%e5%9f%ba%e7%9f%b3%ef%bc%8cCNN%e3%80%81RNN%e3%80%81Transformer%20%e9%83%bd%e5%8f%af%e4%bb%a5%e7%9c%8b%e4%bd%9c%e6%98%af%e5%9c%a8%20FCNN%20%e4%b8%8a%e5%8a%a0%e5%85%a5%e7%89%b9%e6%ae%8a%e7%b5%90%e6%a7%8b%e8%88%87%e9%99%90%e5%88%b6%e5%be%8c%e7%9a%84%e5%bb%b6%e4%bc%b8&source=%28Day%2018%29%20%e5%85%a8%e9%80%a3%e6%8e%a5%e7%a5%9e%e7%b6%93%e7%b6%b2%e7%b5%a1%20%28Fully%20Connected%20Neural%20Network%29"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_18%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2018%29%20%e5%85%a8%e9%80%a3%e6%8e%a5%e7%a5%9e%e7%b6%93%e7%b6%b2%e7%b5%a1%20%28Fully%20Connected%20Neural%20Network%29"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+    </li>
+  </ul>
+</div>
+
+  
+
+
+<div class="section-related">
+  <h4 class="section-related__title">You may also like...</h4>
+  <div class="row grid">
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_30/">(Day 30) 系列結尾</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-08-30T00:00:00&#43;08:00">30 Aug, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">1 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">終於來到這個系列的最後一天。老實說，如果要我替這 30 天打個分數，我大概只會給自己一個 勉強及格。原因很簡單: 這個系列從一開始就有宏大的規劃與期待，但在實際執行的過程中，遭遇了不少現實挑戰，也暴露了自己在知識深度、寫作規劃與時間管理上的不足。</p>
+  </div>
+
+
+</div>
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_29/">(Day 29) 注意力機制 (Attention Mechanism)</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-08-29T00:00:00&#43;08:00">29 Aug, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">2 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">在前一天，我們介紹了 Seq2Seq 架構 (Encoder-Decoder)，它將輸入序列壓縮成一個固定維度的上下文向量 (Context Vector)，再交由解碼器 (Decoder) 逐步生成輸出。這種方法為機器翻譯、摘要生成等任務帶來了突破，但它也有一個致命的缺陷——瓶頸效應 (Bottleneck Problem)。</p>
+  </div>
+
+
+</div>
+    
+  </div>
+</div>
+
+
+</article>
+
+
+
+  
+
+<div class="container">
+  <div class="show-comments">
+    <button class="button" id="show-comments-button" onclick="disqus();return false;">Comments</button>
+  </div>
+  
+  <div id="disqus_thread" class="post__comments">
+    <div id="disqus_empty"></div>
+  </div>
+  
+  <script>
+    var disqus_loaded = false;
+    var disqus_shortname = 'twcch';
+    var disqus_container = document.getElementById("disqus_thread");
+    function disqus() {
+      if (!disqus_loaded) {
+        disqus_loaded = true;
+        var e = document.createElement("script");
+        e.type = "text/javascript";
+        e.async = true;
+        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0])
+          .appendChild(e);
+        
+        document.getElementById("show-comments-button").style.display = "none";
+        
+        disqus_container.classList.add("is-open");
+      }
+    }
+  </script>
+</div>
+
 
 
 

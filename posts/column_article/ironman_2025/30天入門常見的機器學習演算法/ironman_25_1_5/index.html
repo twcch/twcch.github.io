@@ -2,27 +2,25 @@
 <html lang="en-us">
 
 <head>
-	<meta name="generator" content="Hugo 0.148.2">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>志謙&#39;s Blog</title>
-  <meta name="description" content="我是志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。">
+  <title>(Day 5) 邏輯迴歸 (Logistic Regression) | 志謙&#39;s Blog</title>
+  <meta name="description" content="邏輯迴歸 (Logistic Regression) 是一種常見的分類模型，主要用於預測二元分類或多元分類，有別於先前的線性迴歸是用來預測無邊界的連數據值，而邏輯迴歸間單來說就是預測有邊界的不連續數值，如 [0, 1], [1, 2, 3]。">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="志謙&#39;s Blog">
-  <meta name="twitter:description" content="我是志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。">
+  <meta name="twitter:title" content="(Day 5) 邏輯迴歸 (Logistic Regression) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="邏輯迴歸 (Logistic Regression) 是一種常見的分類模型，主要用於預測二元分類或多元分類，有別於先前的線性迴歸是用來預測無邊界的連數據值，而邏輯迴歸間單來說就是預測有邊界的不連續數值，如 [0, 1], [1, 2, 3]。">
   <meta name="twitter:image" content="http://twcch.io/">
 
   
-  <meta property="og:title" content="志謙&#39;s Blog">
-  <meta property="og:description" content="我是志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。">
+  <meta property="og:title" content="(Day 5) 邏輯迴歸 (Logistic Regression) | 志謙&#39;s Blog">
+  <meta property="og:description" content="邏輯迴歸 (Logistic Regression) 是一種常見的分類模型，主要用於預測二元分類或多元分類，有別於先前的線性迴歸是用來預測無邊界的連數據值，而邏輯迴歸間單來說就是預測有邊界的不連續數值，如 [0, 1], [1, 2, 3]。">
   <meta property="og:image" content="http://twcch.io/">
 
   
@@ -61,52 +59,12 @@
 
     
     <div class="global-cover">
-      <img src="images/common/page_cover.jpg" alt="志謙&#39;s Blog">
+      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 5) 邏輯迴歸 (Logistic Regression)">
     </div>
     
 
     <div class="global-content">
     
-      
-        
-<section class="author">
-  <div class="container">
-    <div class="row">
-      <div class="col col-12">
-        <div class="contaniner__inner">
-
-          <div class="author__box with-global-cover">
-            <div class="author__info">
-              <div class="author__meta">
-                
-                <a href="/about/" class="author__avatar">
-                  <img src="images/common/avatar.jpeg" alt="謝志謙">
-                </a>
-                
-  
-                
-                  <h1 class="author__name"><a href="/about/">謝志謙</a></h1>
-                
-
-                
-                  <span class="author__role">國立成功大學 博士生</span>
-                
-              </div>
-              
-                <a id="getInTouchBtn" href="" class="cta-button"><i class="fa-solid fa-magnifying-glass"></i> 搜索文章</a>
-              
-            </div>
-            
-              <p class="author__bio">我是謝志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。</p>
-            
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
       
 
       
@@ -122,7 +80,7 @@
             
             
               <li class="nav__item">
-                <a href="/" class="nav__link active-link">首頁</a>
+                <a href="/" class="nav__link ">首頁</a>
               </li>
             
             
@@ -184,332 +142,439 @@
 
 
 
+<article class="post container">
 
-<section class="section blog">
-  <div class="container">
-
-    <div class="section__info">
-      <div class="section__head">
-        <h2 class="section__title"><i class="fa-solid fa-pencil"></i> 最新文章</h2>
-      </div>
+  <div class="post-head">
+    <h1 class="post-title">(Day 5) 邏輯迴歸 (Logistic Regression)</h1>
+    <div class="post-meta">
       
-    </div>
-
-    <div class="blog__wrapper animate">
-      <div class="grid">
+      <div class="post-tags">
+        Publish in&nbsp;
         
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
         
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_30/">(Day 30) 系列結尾</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-30T00:00:00&#43;08:00">30 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">1 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">終於來到這個系列的最後一天。老實說，如果要我替這 30 天打個分數，我大概只會給自己一個 勉強及格。原因很簡單: 這個系列從一開始就有宏大的規劃與期待，但在實際執行的過程中，遭遇了不少現實挑戰，也暴露了自己在知識深度、寫作規劃與時間管理上的不足。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_29/">(Day 29) 注意力機制 (Attention Mechanism)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-29T00:00:00&#43;08:00">29 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">2 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前一天，我們介紹了 Seq2Seq 架構 (Encoder-Decoder)，它將輸入序列壓縮成一個固定維度的上下文向量 (Context Vector)，再交由解碼器 (Decoder) 逐步生成輸出。這種方法為機器翻譯、摘要生成等任務帶來了突破，但它也有一個致命的缺陷——瓶頸效應 (Bottleneck Problem)。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_28/">(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-28T00:00:00&#43;08:00">28 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">1 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前幾天的文章中，我們依序介紹了 RNN、LSTM、GRU，並討論它們如何建模序列資料。這些模型能夠捕捉序列中的上下文關係，並緩解傳統 RNN 的梯度消失問題。然而，若我們想要處理更複雜的任務——例如機器翻譯 (Machine Translation)，僅僅依靠單向 RNN 或 LSTM 並不夠。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_27/">(Day 27) 閘控循環單元 (Gated Recurrent Unit)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-27T00:00:00&#43;08:00">27 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">2 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前兩篇文章，我們分別介紹了 RNN (Recurrent Neural Network) 與 LSTM (Long Short-Term Memory)。RNN 為序列建模提供了基礎架構，但受限於梯度消失與爆炸問題，難以捕捉長距離依賴；LSTM 則透過引入 記憶單元 (Cell State) 與 門控機制 (Gating Mechanism)，成功緩解了這一問題。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_26/">(Day 26) 長短期記憶網路 (Long Short-Term Memory)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-26T00:00:00&#43;08:00">26 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">2 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前一篇，我們介紹了循環神經網路 (RNN)，並指出了它在處理序列資料時的強大之處：透過「隱藏狀態」將前後資訊連結起來。然而，我們同時也看到了 RNN 的最大瓶頸——梯度消失與梯度爆炸，使得它在長距離依賴 (long-term dependency) 的學習上表現不佳。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_25/">(Day 25) 循環神經網路 (Recurrent Neural Network)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-25T00:00:00&#43;08:00">25 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">1 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前面幾天，我們介紹了全連接神經網路 (FCNN) 與卷積神經網路 (CNN)。這些架構在處理結構化數據或影像資料上非常成功，但若應用到「序列資料」時就顯得不足。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_24/">(Day 24) Adam 優化器 (Adaptive Moment Estimation)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-24T00:00:00&#43;08:00">24 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">2 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前一天，我們整理了深度學習中常見的優化方法，從最基本的隨機梯度下降 (SGD)，到 Momentum、RMSProp、Adagrad 等。今天我們要深入介紹其中最具代表性、也是實務中最常見的優化方法之一——Adam (Adaptive Moment Estimation)。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_23/">(Day 23) 深度學習中的優化方法 (Optimization in Deep Learning)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-23T00:00:00&#43;08:00">23 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">2 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前一篇，我們談到了深度學習中的正規化與正則化，重點在於如何避免過擬合並保持訓練穩定。然而，光是解決過擬合還不夠：在龐大的神經網路裡，我們還得面對另一個關鍵問題——如何有效率地找到參數的最佳解。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_22/">(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-22T00:00:00&#43;08:00">22 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">1 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。</p>
-            </div>
-
-          </div>
+          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">30 天入門常見的機器學習演算法</a>
         
       </div>
-
+      &nbsp;&bull;&nbsp;
       
-
-
-
-<div class="pagination">
-  <button class="button button--big load-more-posts">Load More Posts</button>
-</div>
-
-
-
-<script>
-  var base_url = "",
-    pagination_next_url = base_url + '/page2',
-    pagination_next_page_number = '2',
-    pagination_available_pages_number = '4';
-</script>
+      <time class="post-date" datetime="2025-08-05T00:00:00&#43;08:00">5 Aug, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="post-minutes">4 min read</span>
+      
     </div>
+    
+  </div>
+
+  
+
+  
+
+  
+
+  <div class="post__content">
+    
+    <div class="table-of-contents" id="table-of-contents">
+      <h2 class="table-of-contents__title">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="margin-right: 8px; vertical-align: -2px;">
+          <path d="M2 3h12a1 1 0 110 2H2a1 1 0 110-2zm0 4h12a1 1 0 110 2H2a1 1 0 110-2zm0 4h12a1 1 0 110 2H2a1 1 0 110-2z"/>
+        </svg>
+        目錄
+      </h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#模型介紹">模型介紹</a>
+      <ul>
+        <li><a href="#模型邏輯與核心概念">模型邏輯與核心概念</a></li>
+        <li><a href="#適用情境">適用情境</a></li>
+        <li><a href="#限制條件">限制條件</a></li>
+      </ul>
+    </li>
+    <li><a href="#模型實作">模型實作</a>
+      <ul>
+        <li><a href="#sklearn-實作">Sklearn 實作</a></li>
+        <li><a href="#pytorch-實作">PyTorch 實作</a></li>
+        <li><a href="#執行結果">執行結果</a></li>
+      </ul>
+    </li>
+    <li><a href="#結語">結語</a></li>
+    <li><a href="#備註">備註</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    <p>邏輯迴歸 (Logistic Regression) 是一種常見的分類模型，主要用於預測二元分類或多元分類，有別於先前的線性迴歸是用來預測無邊界的連數據值，而邏輯迴歸間單來說就是預測有邊界的不連續數值，如 [0, 1], [1, 2, 3]。</p>
+<h2 id="模型介紹">模型介紹</h2>
+<h3 id="模型邏輯與核心概念">模型邏輯與核心概念</h3>
+<p>那邏輯回歸是如何運作? 其實不論是哪種邏輯迴歸，底層都是先透過線性迴歸來預測，只是分別透過不同的激活函數與損失函數來處理，但是邏輯迴歸一般來說還是比較常用於二元分類，來看看以下流程:</p>
+<ul>
+<li>假設有一條線性迴歸方程式: $\hat{y} = \beta_0 + \mathbf{x}^\top \boldsymbol{\beta}$。(注意: 這條不是最佳的線性迴歸線)</li>
+<li>會針對前述的線性迴歸方程式結果，透過 sigmoid 函數，將結果轉換成 [0, 1]</li>
+<li>假設損失函數 (Cost Function): Binary Cross Entropy</li>
+<li>最後使用梯度下降 (Batch Gradient Descent) 來最小化損失函數，找出最佳的邏輯迴歸線</li>
+</ul>
+<p>以上就是二元分類邏輯迴歸的原理，那麼我們來看看多元分類邏輯迴歸是如何處理</p>
+<ul>
+<li>假設有一條線性迴歸方程式: $\hat{y} = \beta_0 + \mathbf{x}^\top \boldsymbol{\beta}$。(注意: 這條不是最佳的線性迴歸線)</li>
+<li>會針對前述的線性迴歸方程式結果，透過 softmax 函數，將結果轉換成機率總和為 1 的組合</li>
+<li>假設損失函數 (Cost Function): Categorical Cross Entropy</li>
+<li>最後使用梯度下降 (Batch Gradient Descent) 來最小化損失函數，找出最佳的邏輯迴歸線</li>
+</ul>
+<p>可以看出不同的邏輯迴歸，只是分別透過不同的激活函數與損失函數來處理，雖然邏輯迴歸可以用於多元分類，但是一般來說還是比較常用於二元分類。</p>
+<h4 id="模型評估指標">模型評估指標</h4>
+<ul>
+<li>Accuracy: 整體正確率</li>
+<li>Precision / Recall / F1-score: 評估正例預測品質與召回</li>
+<li>ROC-AUC: 考量不同閾值下模型分類能力</li>
+<li>Confusion Matrix: TP、TN、FP、FN 分佈</li>
+<li>Log Loss: 概率預測與實際標籤差異</li>
+</ul>
+<h3 id="適用情境">適用情境</h3>
+<ul>
+<li>Target 為二元分類 (0/1、是/否) 或多元分類</li>
+<li>需要同時獲得概率估計與可解釋性</li>
+</ul>
+<h3 id="限制條件">限制條件</h3>
+<ul>
+<li>多重共線性: 高度相關特徵會影響係數穩定性</li>
+<li>極端值敏感: 離群點可能顯著扭曲模型</li>
+</ul>
+<h2 id="模型實作">模型實作</h2>
+<p>這個案例開始為了讓讀者有更好的感覺模型的過程，會分別使用 sklearn 與 PyTorch 來建模。但是必須先聲明，無論是手動撰寫或是透過 PyTorch 來模擬出來，都不一定有辦法比 sklearn 提供的演算法來得更優秀，所以除非有特殊目的，否則使用 sklearn 提供的演算法效能與準確性都會較高。</p>
+<p>因本篇實作的目的，是為了更好的體現出 Logistic Regression 的原理，所以說明會以 PyTorch 實作為主。</p>
+<h3 id="sklearn-實作">Sklearn 實作</h3>
+<p>從以下範例可以看出來，使用 sklearn 提供的方法簡單又快速，但是很難直觀的看出來他的原理，就也是 sklearn 的缺點，高度封裝帶來的便利性，也導致很多細節無法操作控制。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 預測</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 評估</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Accuracy: </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Accuracy: </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">))</span>
+</span></span></code></pre></div><h3 id="pytorch-實作">PyTorch 實作</h3>
+<p>使用 PyTorch 來做同一件事情，明顯的可以感覺到，比 sklearn 複雜很多，但是我們也可以透過這段程式碼來窺探 Logistic Regression 的細節。</p>
+<p>如前面所說的，因為 Logistic Regression 是先使用 Linear Regression 方程式預測出一個結果，再藉由 Sigmoid 函數逕行轉換。以下是用單層神經網絡，來模擬 Logistic Regression 的演算法，所以只定義 output layer 為線性輸出層 + Sigmoid function。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 模型定義</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">LogisticRegressionModel</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">(</span><span class="n">LogisticRegressionModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">linear</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">input_dim</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">()</span>  <span class="c1"># 1 個輸出 (sigmoid 之前)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+</span></span></code></pre></div><p>定義完模型的基礎架構後，來定義 Criterion 為 Binary Class Entropy 與 Optimizer 為 Batch Gradient Descent，讓整個架構符合我們前面介紹的核心概念。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 設定 criterion 與 optimizer</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BCELoss</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+</span></span></code></pre></div><p>從訓練代碼搭配前述的模型架構邏輯，可以看出來這個步驟也與前面模型介紹時呼應:</p>
+<ul>
+<li>會先有一條 Linear Regression 進行預測，輸出一個結果</li>
+<li>前述的結果，會再透過 sigmoid 進行處理</li>
+<li>使用 Binary Cross Entropy 來衡量損失</li>
+<li>最後使用梯度下降 (Batch Gradient Descent) 來最小化損失函數，找出最佳的邏輯迴歸線</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 訓練</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">n_epochs</span> <span class="o">=</span> <span class="mi">1000</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_epochs</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>  <span class="c1"># 告訴模型進入: 訓練模式</span>
+</span></span><span class="line"><span class="cl">    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>  <span class="c1"># 梯度歸零，預設梯度是累加的 (accumulated)，必須在每一回合開始前清空上一輪的梯度，否則梯度會疊加，導致錯誤的參數更新</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X_train_tensor</span><span class="p">)</span>  <span class="c1"># 前向傳播 (forward pass)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_train_tensor</span><span class="p">)</span>  <span class="c1"># 使用定義好的損失函數來計算預測值和真實標籤之間的損失</span>
+</span></span><span class="line"><span class="cl">    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>  <span class="c1"># 反向傳播 (Backward Pass)，這些梯度會儲存在每個參數的 .grad 屬性中</span>
+</span></span><span class="line"><span class="cl">    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>  <span class="c1"># 根據梯度更新模型參數</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Epoch </span><span class="si">{</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n_epochs</span><span class="si">}</span><span class="s2">, Loss: </span><span class="si">{</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><h4 id="完整程式碼">完整程式碼</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 資料產生與前處理</span>
+</span></span><span class="line"><span class="cl"><span class="n">features_size</span> <span class="o">=</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="n">features_size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_train_scaler</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 轉換為 tensor</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">X_train_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">X_train_scaler</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_train_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 模型定義</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">LogisticRegressionModel</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">(</span><span class="n">LogisticRegressionModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">linear</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">input_dim</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">()</span>  <span class="c1"># 1 個輸出 (sigmoid 之前)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegressionModel</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="n">features_size</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 設定 criterion 與 optimizer</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BCELoss</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 訓練</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">n_epochs</span> <span class="o">=</span> <span class="mi">1000</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_epochs</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>  <span class="c1"># 告訴模型進入: 訓練模式</span>
+</span></span><span class="line"><span class="cl">    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>  <span class="c1"># 梯度歸零，預設梯度是累加的 (accumulated)，必須在每一回合開始前清空上一輪的梯度，否則梯度會疊加，導致錯誤的參數更新</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X_train_tensor</span><span class="p">)</span>  <span class="c1"># 前向傳播 (forward pass)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_train_tensor</span><span class="p">)</span>  <span class="c1"># 使用定義好的損失函數來計算預測值和真實標籤之間的損失</span>
+</span></span><span class="line"><span class="cl">    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>  <span class="c1"># 反向傳播 (Backward Pass)，這些梯度會儲存在每個參數的 .grad 屬性中</span>
+</span></span><span class="line"><span class="cl">    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>  <span class="c1"># 根據梯度更新模型參數</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Epoch </span><span class="si">{</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n_epochs</span><span class="si">}</span><span class="s2">, Loss: </span><span class="si">{</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 預測</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">X_test_scaler</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_test_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">X_test_scaler</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_test_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">y_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>  <span class="c1"># 停用自動微分 (autograd)，不會追蹤張量的計算圖，減少記憶體消耗與加速推論，是測試與部署時的必備寫法，訓練需要追蹤梯度，測試不需要，這行就是明確告訴 PyTorch「這是測試」</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 預測機率</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_train_prob</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X_train_tensor</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_test_prob</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X_test_tensor</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.5</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">y_train_pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_train_prob</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span><span class="o">.</span><span class="n">int</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_test_pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_test_prob</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span><span class="o">.</span><span class="n">int</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 評估</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">[Train Accuracy] </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">[Test Accuracy] </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">))</span>
+</span></span></code></pre></div><h3 id="執行結果">執行結果</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[Train Accuracy] 0.87
+</span></span><span class="line"><span class="cl">              precision    recall  f1-score   support
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">           0       0.86      0.88      0.87     40060
+</span></span><span class="line"><span class="cl">           1       0.88      0.85      0.86     39940
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    accuracy                           0.87     80000
+</span></span><span class="line"><span class="cl">   macro avg       0.87      0.87      0.87     80000
+</span></span><span class="line"><span class="cl">weighted avg       0.87      0.87      0.87     80000
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[Test Accuracy] 0.87
+</span></span><span class="line"><span class="cl">              precision    recall  f1-score   support
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">           0       0.85      0.88      0.87      9954
+</span></span><span class="line"><span class="cl">           1       0.88      0.85      0.86     10046
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    accuracy                           0.87     20000
+</span></span><span class="line"><span class="cl">   macro avg       0.87      0.87      0.87     20000
+</span></span><span class="line"><span class="cl">weighted avg       0.87      0.87      0.87     20000
+</span></span></code></pre></div><h4 id="結果評估">結果評估</h4>
+<p>我們就直接以 PyTorh 執行結果來做分析，因為這個案例是直接使用假資料做，所以其實結果蠻漂亮的，大致上可以分析出一下的情況:</p>
+<ul>
+<li>模型在訓練集與測試集上沒有出現明顯 overfitting</li>
+<li>正負類別表現對稱性高 (precision/recall 差異不大)</li>
+<li>沒有出現模型偏向某一類別的現象 (常見於不平衡資料)</li>
+<li>Macro avg ≈ Weighted avg → 支援資料分布幾乎平衡</li>
+</ul>
+<h4 id="下一步建議">下一步建議</h4>
+<ul>
+<li>Logistic Regression 是線性模型，若資料有非線性邊界，它無法擬合，雖然目前表現不錯，但這是 make_classification 的功勞，套用到真實的數據集可能要進一步評估</li>
+<li>雖然 print loss，每 100 epoch 顯示，但未檢查是否有震盪、過早收斂等現象</li>
+<li>Threshold 直接設為 0.5，沒有評估決策閾值的調整，應該進一步評估</li>
+</ul>
+<h2 id="結語">結語</h2>
+<p>Logistic Regression 作為分類任務的入門模型，看似簡單，卻蘊含著機率思維、最佳化原理、以及模型評估等多層次概念。它在許多實務應用中仍佔有一席之地，尤其當我們追求的是高可解釋性與高效率的解法，例如信用評分、醫療預測或風險判斷等領域，Logistic Regression 往往仍是首選。</p>
+<p>本篇除了以 sklearn 快速建模，也特別採用 PyTorch 從底層還原 Logistic Regression 的運作過程，目的不在於提升準確率，而是釐清這個模型「為什麼有效」、「如何運作」、「可以控制哪些面向」。這種深入理解將為後續進入更複雜的分類模型奠定紮實基礎。</p>
+<h2 id="備註">備註</h2>
+<ul>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
+</ul>
 
   </div>
 
-</section>
+  <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%205%29%20%e9%82%8f%e8%bc%af%e8%bf%b4%e6%ad%b8%20%28Logistic%20Regression%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_5%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_5%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_5%2f&title=%28Day%205%29%20%e9%82%8f%e8%bc%af%e8%bf%b4%e6%ad%b8%20%28Logistic%20Regression%29&summary=%e9%82%8f%e8%bc%af%e8%bf%b4%e6%ad%b8%20%28Logistic%20Regression%29%20%e6%98%af%e4%b8%80%e7%a8%ae%e5%b8%b8%e8%a6%8b%e7%9a%84%e5%88%86%e9%a1%9e%e6%a8%a1%e5%9e%8b%ef%bc%8c%e4%b8%bb%e8%a6%81%e7%94%a8%e6%96%bc%e9%a0%90%e6%b8%ac%e4%ba%8c%e5%85%83%e5%88%86%e9%a1%9e%e6%88%96%e5%a4%9a%e5%85%83%e5%88%86%e9%a1%9e%ef%bc%8c%e6%9c%89%e5%88%a5%e6%96%bc%e5%85%88%e5%89%8d%e7%9a%84%e7%b7%9a%e6%80%a7%e8%bf%b4%e6%ad%b8%e6%98%af%e7%94%a8%e4%be%86%e9%a0%90%e6%b8%ac%e7%84%a1%e9%82%8a%e7%95%8c%e7%9a%84%e9%80%a3%e6%95%b8%e6%93%9a%e5%80%bc%ef%bc%8c%e8%80%8c%e9%82%8f%e8%bc%af%e8%bf%b4%e6%ad%b8%e9%96%93%e5%96%ae%e4%be%86%e8%aa%aa%e5%b0%b1%e6%98%af%e9%a0%90%e6%b8%ac%e6%9c%89%e9%82%8a%e7%95%8c%e7%9a%84%e4%b8%8d%e9%80%a3%e7%ba%8c%e6%95%b8%e5%80%bc%ef%bc%8c%e5%a6%82%20%5b0%2c%201%5d%2c%20%5b1%2c%202%2c%203%5d%e3%80%82&source=%28Day%205%29%20%e9%82%8f%e8%bc%af%e8%bf%b4%e6%ad%b8%20%28Logistic%20Regression%29"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_5%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%205%29%20%e9%82%8f%e8%bc%af%e8%bf%b4%e6%ad%b8%20%28Logistic%20Regression%29"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+    </li>
+  </ul>
+</div>
+
+  
+
+
+<div class="section-related">
+  <h4 class="section-related__title">You may also like...</h4>
+  <div class="row grid">
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_30/">(Day 30) 系列結尾</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-08-30T00:00:00&#43;08:00">30 Aug, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">1 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">終於來到這個系列的最後一天。老實說，如果要我替這 30 天打個分數，我大概只會給自己一個 勉強及格。原因很簡單: 這個系列從一開始就有宏大的規劃與期待，但在實際執行的過程中，遭遇了不少現實挑戰，也暴露了自己在知識深度、寫作規劃與時間管理上的不足。</p>
+  </div>
+
+
+</div>
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_29/">(Day 29) 注意力機制 (Attention Mechanism)</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-08-29T00:00:00&#43;08:00">29 Aug, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">2 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">在前一天，我們介紹了 Seq2Seq 架構 (Encoder-Decoder)，它將輸入序列壓縮成一個固定維度的上下文向量 (Context Vector)，再交由解碼器 (Decoder) 逐步生成輸出。這種方法為機器翻譯、摘要生成等任務帶來了突破，但它也有一個致命的缺陷——瓶頸效應 (Bottleneck Problem)。</p>
+  </div>
+
+
+</div>
+    
+  </div>
+</div>
+
+
+</article>
+
+
+
+  
+
+<div class="container">
+  <div class="show-comments">
+    <button class="button" id="show-comments-button" onclick="disqus();return false;">Comments</button>
+  </div>
+  
+  <div id="disqus_thread" class="post__comments">
+    <div id="disqus_empty"></div>
+  </div>
+  
+  <script>
+    var disqus_loaded = false;
+    var disqus_shortname = 'twcch';
+    var disqus_container = document.getElementById("disqus_thread");
+    function disqus() {
+      if (!disqus_loaded) {
+        disqus_loaded = true;
+        var e = document.createElement("script");
+        e.type = "text/javascript";
+        e.async = true;
+        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0])
+          .appendChild(e);
+        
+        document.getElementById("show-comments-button").style.display = "none";
+        
+        disqus_container.classList.add("is-open");
+      }
+    }
+  </script>
+</div>
+
 
 
 

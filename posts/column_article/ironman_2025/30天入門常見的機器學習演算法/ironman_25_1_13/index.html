@@ -2,27 +2,25 @@
 <html lang="en-us">
 
 <head>
-	<meta name="generator" content="Hugo 0.148.2">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>志謙&#39;s Blog</title>
-  <meta name="description" content="我是志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。">
+  <title>(Day 13) 迴歸任務驗證指標 | 志謙&#39;s Blog</title>
+  <meta name="description" content="分類任務有混淆矩陣作為指標的核心基礎，迴歸任務則建立在誤差分佈 (Error Distribution) 之上。所有迴歸指標，都是在真實值與預測值的差異上進行數學運算。迴歸的評估相對分類簡單，沒有多種 TP、FP 的組合，但每個指標關注的面向、對異常值的敏感度、在商業決策上的意義卻各有不同。">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="志謙&#39;s Blog">
-  <meta name="twitter:description" content="我是志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。">
+  <meta name="twitter:title" content="(Day 13) 迴歸任務驗證指標 | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="分類任務有混淆矩陣作為指標的核心基礎，迴歸任務則建立在誤差分佈 (Error Distribution) 之上。所有迴歸指標，都是在真實值與預測值的差異上進行數學運算。迴歸的評估相對分類簡單，沒有多種 TP、FP 的組合，但每個指標關注的面向、對異常值的敏感度、在商業決策上的意義卻各有不同。">
   <meta name="twitter:image" content="http://twcch.io/">
 
   
-  <meta property="og:title" content="志謙&#39;s Blog">
-  <meta property="og:description" content="我是志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。">
+  <meta property="og:title" content="(Day 13) 迴歸任務驗證指標 | 志謙&#39;s Blog">
+  <meta property="og:description" content="分類任務有混淆矩陣作為指標的核心基礎，迴歸任務則建立在誤差分佈 (Error Distribution) 之上。所有迴歸指標，都是在真實值與預測值的差異上進行數學運算。迴歸的評估相對分類簡單，沒有多種 TP、FP 的組合，但每個指標關注的面向、對異常值的敏感度、在商業決策上的意義卻各有不同。">
   <meta property="og:image" content="http://twcch.io/">
 
   
@@ -61,52 +59,12 @@
 
     
     <div class="global-cover">
-      <img src="images/common/page_cover.jpg" alt="志謙&#39;s Blog">
+      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 13) 迴歸任務驗證指標">
     </div>
     
 
     <div class="global-content">
     
-      
-        
-<section class="author">
-  <div class="container">
-    <div class="row">
-      <div class="col col-12">
-        <div class="contaniner__inner">
-
-          <div class="author__box with-global-cover">
-            <div class="author__info">
-              <div class="author__meta">
-                
-                <a href="/about/" class="author__avatar">
-                  <img src="images/common/avatar.jpeg" alt="謝志謙">
-                </a>
-                
-  
-                
-                  <h1 class="author__name"><a href="/about/">謝志謙</a></h1>
-                
-
-                
-                  <span class="author__role">國立成功大學 博士生</span>
-                
-              </div>
-              
-                <a id="getInTouchBtn" href="" class="cta-button"><i class="fa-solid fa-magnifying-glass"></i> 搜索文章</a>
-              
-            </div>
-            
-              <p class="author__bio">我是謝志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。</p>
-            
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
       
 
       
@@ -122,7 +80,7 @@
             
             
               <li class="nav__item">
-                <a href="/" class="nav__link active-link">首頁</a>
+                <a href="/" class="nav__link ">首頁</a>
               </li>
             
             
@@ -184,332 +142,384 @@
 
 
 
+<article class="post container">
 
-<section class="section blog">
-  <div class="container">
-
-    <div class="section__info">
-      <div class="section__head">
-        <h2 class="section__title"><i class="fa-solid fa-pencil"></i> 最新文章</h2>
-      </div>
+  <div class="post-head">
+    <h1 class="post-title">(Day 13) 迴歸任務驗證指標</h1>
+    <div class="post-meta">
       
-    </div>
-
-    <div class="blog__wrapper animate">
-      <div class="grid">
+      <div class="post-tags">
+        Publish in&nbsp;
         
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
         
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_30/">(Day 30) 系列結尾</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-30T00:00:00&#43;08:00">30 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">1 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">終於來到這個系列的最後一天。老實說，如果要我替這 30 天打個分數，我大概只會給自己一個 勉強及格。原因很簡單: 這個系列從一開始就有宏大的規劃與期待，但在實際執行的過程中，遭遇了不少現實挑戰，也暴露了自己在知識深度、寫作規劃與時間管理上的不足。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_29/">(Day 29) 注意力機制 (Attention Mechanism)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-29T00:00:00&#43;08:00">29 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">2 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前一天，我們介紹了 Seq2Seq 架構 (Encoder-Decoder)，它將輸入序列壓縮成一個固定維度的上下文向量 (Context Vector)，再交由解碼器 (Decoder) 逐步生成輸出。這種方法為機器翻譯、摘要生成等任務帶來了突破，但它也有一個致命的缺陷——瓶頸效應 (Bottleneck Problem)。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_28/">(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-28T00:00:00&#43;08:00">28 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">1 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前幾天的文章中，我們依序介紹了 RNN、LSTM、GRU，並討論它們如何建模序列資料。這些模型能夠捕捉序列中的上下文關係，並緩解傳統 RNN 的梯度消失問題。然而，若我們想要處理更複雜的任務——例如機器翻譯 (Machine Translation)，僅僅依靠單向 RNN 或 LSTM 並不夠。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_27/">(Day 27) 閘控循環單元 (Gated Recurrent Unit)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-27T00:00:00&#43;08:00">27 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">2 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前兩篇文章，我們分別介紹了 RNN (Recurrent Neural Network) 與 LSTM (Long Short-Term Memory)。RNN 為序列建模提供了基礎架構，但受限於梯度消失與爆炸問題，難以捕捉長距離依賴；LSTM 則透過引入 記憶單元 (Cell State) 與 門控機制 (Gating Mechanism)，成功緩解了這一問題。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_26/">(Day 26) 長短期記憶網路 (Long Short-Term Memory)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-26T00:00:00&#43;08:00">26 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">2 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前一篇，我們介紹了循環神經網路 (RNN)，並指出了它在處理序列資料時的強大之處：透過「隱藏狀態」將前後資訊連結起來。然而，我們同時也看到了 RNN 的最大瓶頸——梯度消失與梯度爆炸，使得它在長距離依賴 (long-term dependency) 的學習上表現不佳。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_25/">(Day 25) 循環神經網路 (Recurrent Neural Network)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-25T00:00:00&#43;08:00">25 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">1 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前面幾天，我們介紹了全連接神經網路 (FCNN) 與卷積神經網路 (CNN)。這些架構在處理結構化數據或影像資料上非常成功，但若應用到「序列資料」時就顯得不足。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_24/">(Day 24) Adam 優化器 (Adaptive Moment Estimation)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-24T00:00:00&#43;08:00">24 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">2 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前一天，我們整理了深度學習中常見的優化方法，從最基本的隨機梯度下降 (SGD)，到 Momentum、RMSProp、Adagrad 等。今天我們要深入介紹其中最具代表性、也是實務中最常見的優化方法之一——Adam (Adaptive Moment Estimation)。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_23/">(Day 23) 深度學習中的優化方法 (Optimization in Deep Learning)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-23T00:00:00&#43;08:00">23 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">2 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前一篇，我們談到了深度學習中的正規化與正則化，重點在於如何避免過擬合並保持訓練穩定。然而，光是解決過擬合還不夠：在龐大的神經網路裡，我們還得面對另一個關鍵問題——如何有效率地找到參數的最佳解。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_22/">(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-22T00:00:00&#43;08:00">22 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">1 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。</p>
-            </div>
-
-          </div>
+          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">30 天入門常見的機器學習演算法</a>
         
       </div>
-
+      &nbsp;&bull;&nbsp;
       
-
-
-
-<div class="pagination">
-  <button class="button button--big load-more-posts">Load More Posts</button>
-</div>
-
-
-
-<script>
-  var base_url = "",
-    pagination_next_url = base_url + '/page2',
-    pagination_next_page_number = '2',
-    pagination_available_pages_number = '4';
-</script>
+      <time class="post-date" datetime="2025-08-13T00:00:00&#43;08:00">13 Aug, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="post-minutes">2 min read</span>
+      
     </div>
+    
+  </div>
+
+  
+
+  
+
+  
+
+  <div class="post__content">
+    
+    <div class="table-of-contents" id="table-of-contents">
+      <h2 class="table-of-contents__title">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="margin-right: 8px; vertical-align: -2px;">
+          <path d="M2 3h12a1 1 0 110 2H2a1 1 0 110-2zm0 4h12a1 1 0 110 2H2a1 1 0 110-2zm0 4h12a1 1 0 110 2H2a1 1 0 110-2z"/>
+        </svg>
+        目錄
+      </h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#誤差的基本概念">誤差的基本概念</a></li>
+    <li><a href="#常見回歸驗證指標">常見回歸驗證指標</a>
+      <ul>
+        <li><a href="#mean-squared-error-mse">Mean Squared Error (MSE)</a></li>
+        <li><a href="#root-mean-squared-error-rmse">Root Mean Squared Error (RMSE)</a></li>
+        <li><a href="#mean-absolute-error-mae">Mean Absolute Error (MAE)</a></li>
+        <li><a href="#r-score-決定係數">R² Score (決定係數)</a></li>
+      </ul>
+    </li>
+    <li><a href="#程式實例">程式實例</a></li>
+    <li><a href="#結語">結語</a></li>
+    <li><a href="#備註">備註</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    <p>分類任務有混淆矩陣作為指標的核心基礎，迴歸任務則建立在誤差分佈 (Error Distribution) 之上。所有迴歸指標，都是在真實值與預測值的差異上進行數學運算。迴歸的評估相對分類簡單，沒有多種 TP、FP 的組合，但每個指標關注的面向、對異常值的敏感度、在商業決策上的意義卻各有不同。</p>
+<h2 id="誤差的基本概念">誤差的基本概念</h2>
+<p>回歸任務中，誤差 (Error) 定義為:
+$$
+e_i = y_i - \hat{y}_i
+$$</p>
+<p>其中:</p>
+<ul>
+<li>$y_i$: 第 i 筆資料的真實值</li>
+<li>$\hat{y}_i$: 模型的預測值</li>
+<li>$e_i$: 第 i 筆的殘差 (Residual)</li>
+</ul>
+<p>所有回歸評估指標，都是將 $e_i$ 做數學運算後的結果。</p>
+<h2 id="常見回歸驗證指標">常見回歸驗證指標</h2>
+<h3 id="mean-squared-error-mse">Mean Squared Error (MSE)</h3>
+<p>將每個誤差平方後取平均。平方的動作會讓大誤差的影響成倍放大，因此 MSE 對異常值 (outlier) 非常敏感。</p>
+<p>$$
+MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2
+$$</p>
+<p>特性分析</p>
+<ul>
+<li>誤差平方 → 大誤差懲罰重，小誤差影響相對被稀釋。</li>
+<li>單位為「原單位的平方」，如價格 (元) 預測的 MSE 單位是「元²」，因此不易直接解讀大小。</li>
+</ul>
+<p>優點</p>
+<ul>
+<li>適合用在不能容忍大誤差的場景，例如財務風險控管 (預測錯 10 倍金額的後果極其嚴重)。</li>
+<li>在模型優化 (特別是最小平方法回歸) 中，MSE 作為損失函數具有良好數學性質 (平滑、可微分)。</li>
+</ul>
+<p>缺點</p>
+<ul>
+<li>單位平方，對非數學背景讀者不直觀。</li>
+<li>極易被 outlier 影響，造成指標失真。</li>
+</ul>
+<p>商業案例</p>
+<ul>
+<li>預測每日電力負載，若預測值差太多會導致供電不足或浪費；此時使用 MSE 能強烈懲罰大偏差，促使模型在高峰時段更精準。</li>
+</ul>
+<h3 id="root-mean-squared-error-rmse">Root Mean Squared Error (RMSE)</h3>
+<p>MSE 的開平方版本，將誤差單位轉回與原資料一致，方便直接比較預測誤差與實際業務數值。</p>
+<p>$$
+RMSE = \sqrt{MSE}
+$$</p>
+<p>特性分析</p>
+<ul>
+<li>保留了 MSE 對大誤差的敏感性。</li>
+<li>單位與原資料相同 (例如預測房價，RMSE 單位仍是元)。</li>
+</ul>
+<p>優點</p>
+<ul>
+<li>便於解釋，數字意義清晰 (RMSE=500 表示預測誤差約 ±500 元的量級)。</li>
+<li>對 outlier 的反應較 MAE 強，可在需要懲罰大誤差時使用。</li>
+</ul>
+<p>缺點</p>
+<ul>
+<li>同樣受 outlier 影響嚴重。</li>
+</ul>
+<p>商業案例</p>
+<ul>
+<li>預測物流到貨時間，RMSE=2.5 小時，代表平均預測誤差約 2.5 小時，對排程管理與人力配置非常直觀。</li>
+</ul>
+<h3 id="mean-absolute-error-mae">Mean Absolute Error (MAE)</h3>
+<p>計算每個誤差的絕對值後取平均，所有誤差等權對待，不會放大大誤差的影響。</p>
+<p>$$
+MAE = \frac{1}{n} \sum_{i=1}^n |y_i - \hat{y}_i|
+$$</p>
+<p>特性分析</p>
+<ul>
+<li>對異常值更穩健 (robust)，不會像 MSE / RMSE 那樣被極端值拉高。</li>
+<li>單位與原資料一致，解釋性強。</li>
+</ul>
+<p>優點</p>
+<ul>
+<li>適合在需要公平對待每一筆樣本時使用。</li>
+<li>對非技術人員易於解讀：MAE=10 表示平均預測誤差為 10 單位。</li>
+</ul>
+<p>缺點</p>
+<ul>
+<li>對大誤差懲罰不如 MSE 嚴格，因此可能讓模型在少數極端情況下失誤較大。</li>
+</ul>
+<p>商業案例</p>
+<ul>
+<li>預測餐點製作時間，MAE=3 分鐘，代表平均延遲或提前約 3 分鐘，顧客體感差異可接受。</li>
+</ul>
+<h3 id="r-score-決定係數">R² Score (決定係數)</h3>
+<p>衡量模型解釋資料變異的比例。</p>
+<ul>
+<li>$R^2 = 1$: 完美預測</li>
+<li>$R^2 = 0$: 與用平均值預測沒差</li>
+<li>$R^2 &lt; 0$: 模型比單純用平均值預測還差</li>
+</ul>
+<p>$$
+R^2 = 1 - \frac{\sum_{i=1}^n (y_i - \hat{y}i)^2}{\sum{i=1}^n (y_i - \bar{y})^2}
+$$</p>
+<p>其中:</p>
+<ul>
+<li>$\bar{y}$ 為真實值平均。</li>
+</ul>
+<p>特性分析</p>
+<ul>
+<li>無單位，範圍理論上可小於 0。</li>
+<li>更適合作為模型解釋力指標，而非單純誤差衡量。</li>
+</ul>
+<p>優點</p>
+<ul>
+<li>可快速判斷模型是否比基準模型 (平均值預測) 更好。</li>
+<li>在相同資料集上，比較不同模型的相對表現方便。</li>
+</ul>
+<p>缺點</p>
+<ul>
+<li>不反映誤差大小。</li>
+<li>在非線性、異常值多、或變異極小的資料上，$R^2$ 容易誤導。</li>
+</ul>
+<p>商業案例</p>
+<ul>
+<li>預測房價變化，R²=0.85 表示模型可解釋 85% 的價格變異，剩餘 15% 為模型無法捕捉的隨機或未知因素。</li>
+</ul>
+<h2 id="程式實例">程式實例</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_california_housing</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 載入 California Housing 資料（回歸任務）</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">fetch_california_housing</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 訓練／測試分割</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 建立模型（Linear Regression）</span>
+</span></span><span class="line"><span class="cl"><span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="s2">&#34;scaler&#34;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="s2">&#34;lr&#34;</span><span class="p">,</span> <span class="n">LinearRegression</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 預測</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_pred</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 指標計算</span>
+</span></span><span class="line"><span class="cl"><span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mse</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">mape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">y_test</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">/</span> <span class="n">y_test</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl"><span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;MAE: </span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;MSE: </span><span class="si">{</span><span class="n">mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;RMSE: </span><span class="si">{</span><span class="n">rmse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;MAPE: </span><span class="si">{</span><span class="n">mape</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;R²: </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><h2 id="結語">結語</h2>
+<p>回歸任務的驗證指標，看似只是數學公式，但實際上反映的是模型在不同業務情境下的行為特性:</p>
+<ul>
+<li>MSE / RMSE: 對大誤差敏感，適合需要嚴懲極端錯誤的場景，但要注意異常值的影響。</li>
+<li>MAE: 對所有誤差一視同仁，穩健且易解釋，適合日常報告與非技術溝通。</li>
+<li>$R^2$: 衡量模型的解釋力，適合與基準模型或不同算法做相對比較，但不代表誤差大小。</li>
+</ul>
+<p>選擇指標時，不應只看「哪個分數高」，而是要先明確業務目標與成本結構:</p>
+<ul>
+<li>如果漏掉一個大誤差會造成嚴重後果，那就該優先 RMSE。</li>
+<li>如果希望報告直觀易懂，就該用 MAE。</li>
+<li>如果在做模型對比與研究發表，R² 可以快速反映相對優劣。</li>
+</ul>
+<p>指標本身不是目的，而是模型優化與決策的工具。理解每個指標背後的數學意義與業務含義，才能讓回歸模型的評估與優化真正服務於應用場景，而不只是停留在數字遊戲。</p>
+<h2 id="備註">備註</h2>
+<ul>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
+</ul>
 
   </div>
 
-</section>
+  <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2013%29%20%e8%bf%b4%e6%ad%b8%e4%bb%bb%e5%8b%99%e9%a9%97%e8%ad%89%e6%8c%87%e6%a8%99&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_13%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_13%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_13%2f&title=%28Day%2013%29%20%e8%bf%b4%e6%ad%b8%e4%bb%bb%e5%8b%99%e9%a9%97%e8%ad%89%e6%8c%87%e6%a8%99&summary=%e5%88%86%e9%a1%9e%e4%bb%bb%e5%8b%99%e6%9c%89%e6%b7%b7%e6%b7%86%e7%9f%a9%e9%99%a3%e4%bd%9c%e7%82%ba%e6%8c%87%e6%a8%99%e7%9a%84%e6%a0%b8%e5%bf%83%e5%9f%ba%e7%a4%8e%ef%bc%8c%e8%bf%b4%e6%ad%b8%e4%bb%bb%e5%8b%99%e5%89%87%e5%bb%ba%e7%ab%8b%e5%9c%a8%e8%aa%a4%e5%b7%ae%e5%88%86%e4%bd%88%20%28Error%20Distribution%29%20%e4%b9%8b%e4%b8%8a%e3%80%82%e6%89%80%e6%9c%89%e8%bf%b4%e6%ad%b8%e6%8c%87%e6%a8%99%ef%bc%8c%e9%83%bd%e6%98%af%e5%9c%a8%e7%9c%9f%e5%af%a6%e5%80%bc%e8%88%87%e9%a0%90%e6%b8%ac%e5%80%bc%e7%9a%84%e5%b7%ae%e7%95%b0%e4%b8%8a%e9%80%b2%e8%a1%8c%e6%95%b8%e5%ad%b8%e9%81%8b%e7%ae%97%e3%80%82%e8%bf%b4%e6%ad%b8%e7%9a%84%e8%a9%95%e4%bc%b0%e7%9b%b8%e5%b0%8d%e5%88%86%e9%a1%9e%e7%b0%a1%e5%96%ae%ef%bc%8c%e6%b2%92%e6%9c%89%e5%a4%9a%e7%a8%ae%20TP%e3%80%81FP%20%e7%9a%84%e7%b5%84%e5%90%88%ef%bc%8c%e4%bd%86%e6%af%8f%e5%80%8b%e6%8c%87%e6%a8%99%e9%97%9c%e6%b3%a8%e7%9a%84%e9%9d%a2%e5%90%91%e3%80%81%e5%b0%8d%e7%95%b0%e5%b8%b8%e5%80%bc%e7%9a%84%e6%95%8f%e6%84%9f%e5%ba%a6%e3%80%81%e5%9c%a8%e5%95%86%e6%a5%ad%e6%b1%ba%e7%ad%96%e4%b8%8a%e7%9a%84%e6%84%8f%e7%be%a9%e5%8d%bb%e5%90%84%e6%9c%89%e4%b8%8d%e5%90%8c%e3%80%82&source=%28Day%2013%29%20%e8%bf%b4%e6%ad%b8%e4%bb%bb%e5%8b%99%e9%a9%97%e8%ad%89%e6%8c%87%e6%a8%99"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_13%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2013%29%20%e8%bf%b4%e6%ad%b8%e4%bb%bb%e5%8b%99%e9%a9%97%e8%ad%89%e6%8c%87%e6%a8%99"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+    </li>
+  </ul>
+</div>
+
+  
+
+
+<div class="section-related">
+  <h4 class="section-related__title">You may also like...</h4>
+  <div class="row grid">
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_30/">(Day 30) 系列結尾</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-08-30T00:00:00&#43;08:00">30 Aug, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">1 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">終於來到這個系列的最後一天。老實說，如果要我替這 30 天打個分數，我大概只會給自己一個 勉強及格。原因很簡單: 這個系列從一開始就有宏大的規劃與期待，但在實際執行的過程中，遭遇了不少現實挑戰，也暴露了自己在知識深度、寫作規劃與時間管理上的不足。</p>
+  </div>
+
+
+</div>
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_29/">(Day 29) 注意力機制 (Attention Mechanism)</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-08-29T00:00:00&#43;08:00">29 Aug, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">2 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">在前一天，我們介紹了 Seq2Seq 架構 (Encoder-Decoder)，它將輸入序列壓縮成一個固定維度的上下文向量 (Context Vector)，再交由解碼器 (Decoder) 逐步生成輸出。這種方法為機器翻譯、摘要生成等任務帶來了突破，但它也有一個致命的缺陷——瓶頸效應 (Bottleneck Problem)。</p>
+  </div>
+
+
+</div>
+    
+  </div>
+</div>
+
+
+</article>
+
+
+
+  
+
+<div class="container">
+  <div class="show-comments">
+    <button class="button" id="show-comments-button" onclick="disqus();return false;">Comments</button>
+  </div>
+  
+  <div id="disqus_thread" class="post__comments">
+    <div id="disqus_empty"></div>
+  </div>
+  
+  <script>
+    var disqus_loaded = false;
+    var disqus_shortname = 'twcch';
+    var disqus_container = document.getElementById("disqus_thread");
+    function disqus() {
+      if (!disqus_loaded) {
+        disqus_loaded = true;
+        var e = document.createElement("script");
+        e.type = "text/javascript";
+        e.async = true;
+        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0])
+          .appendChild(e);
+        
+        document.getElementById("show-comments-button").style.display = "none";
+        
+        disqus_container.classList.add("is-open");
+      }
+    }
+  </script>
+</div>
+
 
 
 

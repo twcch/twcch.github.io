@@ -2,27 +2,25 @@
 <html lang="en-us">
 
 <head>
-	<meta name="generator" content="Hugo 0.148.2">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>志謙&#39;s Blog</title>
-  <meta name="description" content="我是志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。">
+  <title>(Day 21) 卷積神經網絡 (Convolutional Neural Network) | 志謙&#39;s Blog</title>
+  <meta name="description" content="在初步暸解全連接神經網絡 (Fully Connected Neural Network) 後，接下來必須介紹的經典架構就是卷積神經網絡 (Convolutional Neural Network; CNN)。卷積神經網絡可以說是深度學習的代表性架構之一，特別是在電腦視覺 (Computer Vision) 領域幾乎無處不在。">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="志謙&#39;s Blog">
-  <meta name="twitter:description" content="我是志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。">
+  <meta name="twitter:title" content="(Day 21) 卷積神經網絡 (Convolutional Neural Network) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="在初步暸解全連接神經網絡 (Fully Connected Neural Network) 後，接下來必須介紹的經典架構就是卷積神經網絡 (Convolutional Neural Network; CNN)。卷積神經網絡可以說是深度學習的代表性架構之一，特別是在電腦視覺 (Computer Vision) 領域幾乎無處不在。">
   <meta name="twitter:image" content="http://twcch.io/">
 
   
-  <meta property="og:title" content="志謙&#39;s Blog">
-  <meta property="og:description" content="我是志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。">
+  <meta property="og:title" content="(Day 21) 卷積神經網絡 (Convolutional Neural Network) | 志謙&#39;s Blog">
+  <meta property="og:description" content="在初步暸解全連接神經網絡 (Fully Connected Neural Network) 後，接下來必須介紹的經典架構就是卷積神經網絡 (Convolutional Neural Network; CNN)。卷積神經網絡可以說是深度學習的代表性架構之一，特別是在電腦視覺 (Computer Vision) 領域幾乎無處不在。">
   <meta property="og:image" content="http://twcch.io/">
 
   
@@ -61,52 +59,12 @@
 
     
     <div class="global-cover">
-      <img src="images/common/page_cover.jpg" alt="志謙&#39;s Blog">
+      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 21) 卷積神經網絡 (Convolutional Neural Network)">
     </div>
     
 
     <div class="global-content">
     
-      
-        
-<section class="author">
-  <div class="container">
-    <div class="row">
-      <div class="col col-12">
-        <div class="contaniner__inner">
-
-          <div class="author__box with-global-cover">
-            <div class="author__info">
-              <div class="author__meta">
-                
-                <a href="/about/" class="author__avatar">
-                  <img src="images/common/avatar.jpeg" alt="謝志謙">
-                </a>
-                
-  
-                
-                  <h1 class="author__name"><a href="/about/">謝志謙</a></h1>
-                
-
-                
-                  <span class="author__role">國立成功大學 博士生</span>
-                
-              </div>
-              
-                <a id="getInTouchBtn" href="" class="cta-button"><i class="fa-solid fa-magnifying-glass"></i> 搜索文章</a>
-              
-            </div>
-            
-              <p class="author__bio">我是謝志謙，目前就讀國立成功大學的博士生，以前是在金融業的商業分析師。目前主力是在研究機器學習與深度學習，部落格會以發佈機器學習或深度學習領域的技術文章為主，也希望可以跟各位互相交流。</p>
-            
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
       
 
       
@@ -122,7 +80,7 @@
             
             
               <li class="nav__item">
-                <a href="/" class="nav__link active-link">首頁</a>
+                <a href="/" class="nav__link ">首頁</a>
               </li>
             
             
@@ -184,332 +142,377 @@
 
 
 
+<article class="post container">
 
-<section class="section blog">
-  <div class="container">
-
-    <div class="section__info">
-      <div class="section__head">
-        <h2 class="section__title"><i class="fa-solid fa-pencil"></i> 最新文章</h2>
-      </div>
+  <div class="post-head">
+    <h1 class="post-title">(Day 21) 卷積神經網絡 (Convolutional Neural Network)</h1>
+    <div class="post-meta">
       
-    </div>
-
-    <div class="blog__wrapper animate">
-      <div class="grid">
+      <div class="post-tags">
+        Publish in&nbsp;
         
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
         
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_30/">(Day 30) 系列結尾</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-30T00:00:00&#43;08:00">30 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">1 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">終於來到這個系列的最後一天。老實說，如果要我替這 30 天打個分數，我大概只會給自己一個 勉強及格。原因很簡單: 這個系列從一開始就有宏大的規劃與期待，但在實際執行的過程中，遭遇了不少現實挑戰，也暴露了自己在知識深度、寫作規劃與時間管理上的不足。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_29/">(Day 29) 注意力機制 (Attention Mechanism)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-29T00:00:00&#43;08:00">29 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">2 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前一天，我們介紹了 Seq2Seq 架構 (Encoder-Decoder)，它將輸入序列壓縮成一個固定維度的上下文向量 (Context Vector)，再交由解碼器 (Decoder) 逐步生成輸出。這種方法為機器翻譯、摘要生成等任務帶來了突破，但它也有一個致命的缺陷——瓶頸效應 (Bottleneck Problem)。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_28/">(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-28T00:00:00&#43;08:00">28 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">1 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前幾天的文章中，我們依序介紹了 RNN、LSTM、GRU，並討論它們如何建模序列資料。這些模型能夠捕捉序列中的上下文關係，並緩解傳統 RNN 的梯度消失問題。然而，若我們想要處理更複雜的任務——例如機器翻譯 (Machine Translation)，僅僅依靠單向 RNN 或 LSTM 並不夠。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_27/">(Day 27) 閘控循環單元 (Gated Recurrent Unit)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-27T00:00:00&#43;08:00">27 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">2 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前兩篇文章，我們分別介紹了 RNN (Recurrent Neural Network) 與 LSTM (Long Short-Term Memory)。RNN 為序列建模提供了基礎架構，但受限於梯度消失與爆炸問題，難以捕捉長距離依賴；LSTM 則透過引入 記憶單元 (Cell State) 與 門控機制 (Gating Mechanism)，成功緩解了這一問題。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_26/">(Day 26) 長短期記憶網路 (Long Short-Term Memory)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-26T00:00:00&#43;08:00">26 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">2 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前一篇，我們介紹了循環神經網路 (RNN)，並指出了它在處理序列資料時的強大之處：透過「隱藏狀態」將前後資訊連結起來。然而，我們同時也看到了 RNN 的最大瓶頸——梯度消失與梯度爆炸，使得它在長距離依賴 (long-term dependency) 的學習上表現不佳。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_25/">(Day 25) 循環神經網路 (Recurrent Neural Network)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-25T00:00:00&#43;08:00">25 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">1 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前面幾天，我們介紹了全連接神經網路 (FCNN) 與卷積神經網路 (CNN)。這些架構在處理結構化數據或影像資料上非常成功，但若應用到「序列資料」時就顯得不足。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_24/">(Day 24) Adam 優化器 (Adaptive Moment Estimation)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-24T00:00:00&#43;08:00">24 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">2 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前一天，我們整理了深度學習中常見的優化方法，從最基本的隨機梯度下降 (SGD)，到 Momentum、RMSProp、Adagrad 等。今天我們要深入介紹其中最具代表性、也是實務中最常見的優化方法之一——Adam (Adaptive Moment Estimation)。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_23/">(Day 23) 深度學習中的優化方法 (Optimization in Deep Learning)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-23T00:00:00&#43;08:00">23 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">2 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前一篇，我們談到了深度學習中的正規化與正則化，重點在於如何避免過擬合並保持訓練穩定。然而，光是解決過擬合還不夠：在龐大的神經網路裡，我們還得面對另一個關鍵問題——如何有效率地找到參數的最佳解。</p>
-            </div>
-
-          </div>
-        
-          <div class="article-small grid__post">
-
-            
-
-            <div class="article-small__content">
-              <h2 class="article-small__title">
-                <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_22/">(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning)</a>
-              </h2>
-              
-              <div class="article-small__meta">
-                
-                <div class="article-small__tags">
-                  
-                    <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article-small__tag">IThome 鐵人賽 2025</a>
-                  
-                    <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article-small__tag">30 天入門常見的機器學習演算法</a>
-                  
-                </div>
-                &nbsp;&bull;&nbsp;
-                
-                <time class="article-small__date" datetime="2025-08-22T00:00:00&#43;08:00">22 Aug, 2025</time>
-                
-                  &nbsp;&bull;&nbsp;
-                  <span class="article-small__minutes">1 min read</span>
-                
-              </div>
-              
-              <p class="article-small__excerpt">在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。</p>
-            </div>
-
-          </div>
+          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">30 天入門常見的機器學習演算法</a>
         
       </div>
-
+      &nbsp;&bull;&nbsp;
       
-
-
-
-<div class="pagination">
-  <button class="button button--big load-more-posts">Load More Posts</button>
-</div>
-
-
-
-<script>
-  var base_url = "",
-    pagination_next_url = base_url + '/page2',
-    pagination_next_page_number = '2',
-    pagination_available_pages_number = '4';
-</script>
+      <time class="post-date" datetime="2025-08-21T00:00:00&#43;08:00">21 Aug, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="post-minutes">3 min read</span>
+      
     </div>
+    
+  </div>
+
+  
+
+  
+
+  
+
+  <div class="post__content">
+    
+    <div class="table-of-contents" id="table-of-contents">
+      <h2 class="table-of-contents__title">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="margin-right: 8px; vertical-align: -2px;">
+          <path d="M2 3h12a1 1 0 110 2H2a1 1 0 110-2zm0 4h12a1 1 0 110 2H2a1 1 0 110-2zm0 4h12a1 1 0 110 2H2a1 1 0 110-2z"/>
+        </svg>
+        目錄
+      </h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#為什麼需要-cnn">為什麼需要 CNN？</a></li>
+    <li><a href="#cnn-的基本組件">CNN 的基本組件</a>
+      <ul>
+        <li><a href="#激活函數-activation-function">激活函數 (Activation Function)</a></li>
+        <li><a href="#正則化">正則化</a></li>
+      </ul>
+    </li>
+    <li><a href="#cnn-的運作流程">CNN 的運作流程</a></li>
+    <li><a href="#程式實作">程式實作</a></li>
+    <li><a href="#結論">結論</a></li>
+    <li><a href="#備註">備註</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    <p>在初步暸解全連接神經網絡 (Fully Connected Neural Network) 後，接下來必須介紹的經典架構就是卷積神經網絡 (Convolutional Neural Network; CNN)。卷積神經網絡可以說是深度學習的代表性架構之一，特別是在電腦視覺 (Computer Vision) 領域幾乎無處不在。</p>
+<p>在我們的日常生活中，從手機的人臉辨識、影像搜尋、自駕車的影像識別，到醫學影像的腫瘤檢測，都可以看到卷積神經網絡的身影。它能在海量影像資料中自動學習特徵，避免了傳統機器學習需要人工設計特徵的困難。</p>
+<h2 id="為什麼需要-cnn">為什麼需要 CNN？</h2>
+<p>在前面介紹的 全連接神經網路 (Fully Connected Neural Network, FCNN) 中，我們知道每一層神經元都與上一層的所有輸入相連。但如果我們把輸入換成圖片，就會發現一個很大的問題:</p>
+<ul>
+<li>假設輸入是一張大小為 $224 \times 224$ 的彩色圖片，這代表有 $224 \times 224 \times 3 = 150,528$ 個像素值。若將這些像素全部展平成一維向量再輸入 FCNN，第一層神經元若有 1000 個，就需要 1.5 億個參數。這樣的參數量幾乎不可訓練，既浪費計算資源，也容易過擬合。</li>
+<li>CNN 的設計靈感來自於生物學上對「視覺皮質 (Visual Cortex)」的研究：人類大腦在處理影像時，不是一次性看完整張圖，而是先觀察局部特徵 (邊緣、角落、紋理)，再逐步組合成更高層次的語意 (眼睛、鼻子、車輪等)。</li>
+<li>因此 CNN 引入了「局部感受野 (Local Receptive Field)」與「權重共享 (Weight Sharing)」兩個關鍵設計，使模型能夠高效處理圖片，同時降低參數數量。</li>
+</ul>
+<h2 id="cnn-的基本組件">CNN 的基本組件</h2>
+<p>CNN 主要由以下幾種層組成:</p>
+<ul>
+<li>卷積層 (Convolutional Layer)
+<ul>
+<li>透過多個卷積核從輸入影像中提取特徵。</li>
+<li>每個卷積核產生一張特徵圖 (Feature Map)。</li>
+<li>通常會搭配激活函數 (例如 ReLU)，引入非線性。</li>
+</ul>
+</li>
+<li>池化層 (Pooling Layer)
+<ul>
+<li>池化層的功能是「壓縮資料」並「保留重要特徵」。</li>
+<li>常見方法:
+<ul>
+<li>最大池化 (Max Pooling): 取區域內的最大值。</li>
+<li>平均池化 (Average Pooling)：取區域內的平均值。</li>
+</ul>
+</li>
+<li>池化的好處:
+<ul>
+<li>降低資料維度，減少參數數量。</li>
+<li>增加特徵的不變性 (例如影像的平移或縮放)。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>全連接層 (Fully Connected Layer)
+<ul>
+<li>通常位於 CNN 的尾端，將高層特徵輸出轉換為分類結果。</li>
+<li>與傳統神經網路類似，最後一層常使用 Softmax 作為多分類輸出。</li>
+</ul>
+</li>
+</ul>
+<h3 id="激活函數-activation-function">激活函數 (Activation Function)</h3>
+<p>CNN 常使用 ReLU (Rectified Linear Unit)，定義為:</p>
+<p>$$
+f(x)=max(0,x)
+$$</p>
+<p>其優點是計算簡單，能有效避免梯度消失問題。</p>
+<h3 id="正則化">正則化</h3>
+<p>為了提升模型的泛化能力，常見技術包括:</p>
+<ul>
+<li>Dropout：隨機丟棄部分神經元，防止過擬合。</li>
+<li>Batch Normalization：對每層的輸入做標準化，加快收斂速度。</li>
+</ul>
+<h2 id="cnn-的運作流程">CNN 的運作流程</h2>
+<p>舉例來說，假設我們要用 CNN 辨識一張手寫數字圖片，流程可能是:</p>
+<ul>
+<li>輸入影像 ($28 \times 28$ 像素的灰階圖)。</li>
+<li>卷積層 1: 用多個 $3 \times 3$ 卷積核提取邊緣特徵。</li>
+<li>池化層 1: 降低解析度，保留主要結構。</li>
+<li>卷積層 2: 學習更高階的特徵 (例如圓形、曲線)。</li>
+<li>池化層 2: 再度壓縮資料。</li>
+<li>全連接層: 將特徵展平，輸入全連接神經網路。</li>
+<li>輸出層 (Softmax): 輸出對應於 0–9 的分類機率。</li>
+</ul>
+<h2 id="程式實作">程式實作</h2>
+<p>給大家看一下就好，跟上一個實作差不多，只是改成 CNN 來預測，讓準確度可以在提升</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">transforms</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ---------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 1. 資料預處理與載入</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ---------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">    <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>  <span class="c1"># 轉成 tensor</span>
+</span></span><span class="line"><span class="cl">    <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="mf">0.1307</span><span class="p">,),</span> <span class="p">(</span><span class="mf">0.3081</span><span class="p">,))</span>  <span class="c1"># 標準化 MNIST 平均值與標準差</span>
+</span></span><span class="line"><span class="cl"><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">train_dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s2">&#34;./data&#34;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">test_dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s2">&#34;./data&#34;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ---------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 定義 CNN 模型</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ---------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CNN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">(</span><span class="n">CNN</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Conv2d(輸入通道數, 輸出通道數, kernel大小)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># (28x28 -&gt; 26x26)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># (26x26 -&gt; 24x24)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">dropout1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">dropout2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">9216</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>  <span class="c1"># 64*12*12 = 9216</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># (24x24 -&gt; 12x12)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># 攤平成一維</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">output</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 分類用 softmax</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">output</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">CNN</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ---------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. 訓練與測試流程</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ---------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">epoch</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_loader</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">target</span>
+</span></span><span class="line"><span class="cl">        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">loss</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">nll_loss</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">batch_idx</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Train Epoch: </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2"> [</span><span class="si">{</span><span class="n">batch_idx</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">train_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span><span class="si">}</span><span class="s2">] Loss: </span><span class="si">{</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">test_loader</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">test_loss</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">data</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">test_loss</span> <span class="o">+=</span> <span class="n">F</span><span class="o">.</span><span class="n">nll_loss</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">pred</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">correct</span> <span class="o">+=</span> <span class="n">pred</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">view_as</span><span class="p">(</span><span class="n">pred</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">test_loss</span> <span class="o">/=</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">accuracy</span> <span class="o">=</span> <span class="mf">100.</span> <span class="o">*</span> <span class="n">correct</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Test set: Avg loss: </span><span class="si">{</span><span class="n">test_loss</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, Accuracy: </span><span class="si">{</span><span class="n">correct</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">test_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">accuracy</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%)</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ---------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. 開始訓練</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ---------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&#34;cuda&#34;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&#34;cpu&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>  <span class="c1"># 訓練 5 個 epoch</span>
+</span></span><span class="line"><span class="cl">    <span class="n">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">epoch</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">test</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">test_loader</span><span class="p">)</span>
+</span></span></code></pre></div><h2 id="結論">結論</h2>
+<p>卷積神經網路之所以能成為深度學習領域的核心技術之一，關鍵在於它善於處理具有空間結構的資料。透過卷積層提取局部特徵、池化層降低維度並保留關鍵資訊，CNN 能有效捕捉圖像、語音等資料中的模式，避免傳統全連接網路因高維度而產生的參數爆炸問題。</p>
+<p>以 MNIST 手寫數字辨識為例，CNN 在短短幾個 epoch 內即可達到 98% 以上的準確率，遠優於單純的全連接網路。這顯示 CNN 的結構不僅能提升模型性能，也能在計算效率上取得平衡。
+然而，CNN 並非萬能。當資料缺乏明確的局部結構 (例如純結構化數值資料)，卷積層的優勢就不明顯；同時，CNN 的運算資源需求相對較高，對硬體 (GPU) 有一定依賴。</p>
+<p>總體來說，CNN 已經成為影像辨識與電腦視覺任務的標準解法，後續更衍生出 ResNet、Inception、EfficientNet 等更深更複雜的架構。對初學者而言，理解 CNN 的核心概念 (卷積、池化、權重共享、特徵提取) 是踏入深度學習應用的第一步；對進階研究者而言，則需要進一步思考如何結合 CNN 與其他模型 (如 Transformer) 來應對更複雜的任務。</p>
+<h2 id="備註">備註</h2>
+<ul>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
+</ul>
 
   </div>
 
-</section>
+  <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2021%29%20%e5%8d%b7%e7%a9%8d%e7%a5%9e%e7%b6%93%e7%b6%b2%e7%b5%a1%20%28Convolutional%20Neural%20Network%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_21%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_21%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_21%2f&title=%28Day%2021%29%20%e5%8d%b7%e7%a9%8d%e7%a5%9e%e7%b6%93%e7%b6%b2%e7%b5%a1%20%28Convolutional%20Neural%20Network%29&summary=%e5%9c%a8%e5%88%9d%e6%ad%a5%e6%9a%b8%e8%a7%a3%e5%85%a8%e9%80%a3%e6%8e%a5%e7%a5%9e%e7%b6%93%e7%b6%b2%e7%b5%a1%20%28Fully%20Connected%20Neural%20Network%29%20%e5%be%8c%ef%bc%8c%e6%8e%a5%e4%b8%8b%e4%be%86%e5%bf%85%e9%a0%88%e4%bb%8b%e7%b4%b9%e7%9a%84%e7%b6%93%e5%85%b8%e6%9e%b6%e6%a7%8b%e5%b0%b1%e6%98%af%e5%8d%b7%e7%a9%8d%e7%a5%9e%e7%b6%93%e7%b6%b2%e7%b5%a1%20%28Convolutional%20Neural%20Network%3b%20CNN%29%e3%80%82%e5%8d%b7%e7%a9%8d%e7%a5%9e%e7%b6%93%e7%b6%b2%e7%b5%a1%e5%8f%af%e4%bb%a5%e8%aa%aa%e6%98%af%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e7%9a%84%e4%bb%a3%e8%a1%a8%e6%80%a7%e6%9e%b6%e6%a7%8b%e4%b9%8b%e4%b8%80%ef%bc%8c%e7%89%b9%e5%88%a5%e6%98%af%e5%9c%a8%e9%9b%bb%e8%85%a6%e8%a6%96%e8%a6%ba%20%28Computer%20Vision%29%20%e9%a0%98%e5%9f%9f%e5%b9%be%e4%b9%8e%e7%84%a1%e8%99%95%e4%b8%8d%e5%9c%a8%e3%80%82&source=%28Day%2021%29%20%e5%8d%b7%e7%a9%8d%e7%a5%9e%e7%b6%93%e7%b6%b2%e7%b5%a1%20%28Convolutional%20Neural%20Network%29"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_article%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_21%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2021%29%20%e5%8d%b7%e7%a9%8d%e7%a5%9e%e7%b6%93%e7%b6%b2%e7%b5%a1%20%28Convolutional%20Neural%20Network%29"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+    </li>
+  </ul>
+</div>
+
+  
+
+
+<div class="section-related">
+  <h4 class="section-related__title">You may also like...</h4>
+  <div class="row grid">
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_30/">(Day 30) 系列結尾</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-08-30T00:00:00&#43;08:00">30 Aug, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">1 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">終於來到這個系列的最後一天。老實說，如果要我替這 30 天打個分數，我大概只會給自己一個 勉強及格。原因很簡單: 這個系列從一開始就有宏大的規劃與期待，但在實際執行的過程中，遭遇了不少現實挑戰，也暴露了自己在知識深度、寫作規劃與時間管理上的不足。</p>
+  </div>
+
+
+</div>
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_29/">(Day 29) 注意力機制 (Attention Mechanism)</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-08-29T00:00:00&#43;08:00">29 Aug, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">2 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">在前一天，我們介紹了 Seq2Seq 架構 (Encoder-Decoder)，它將輸入序列壓縮成一個固定維度的上下文向量 (Context Vector)，再交由解碼器 (Decoder) 逐步生成輸出。這種方法為機器翻譯、摘要生成等任務帶來了突破，但它也有一個致命的缺陷——瓶頸效應 (Bottleneck Problem)。</p>
+  </div>
+
+
+</div>
+    
+  </div>
+</div>
+
+
+</article>
+
+
+
+  
+
+<div class="container">
+  <div class="show-comments">
+    <button class="button" id="show-comments-button" onclick="disqus();return false;">Comments</button>
+  </div>
+  
+  <div id="disqus_thread" class="post__comments">
+    <div id="disqus_empty"></div>
+  </div>
+  
+  <script>
+    var disqus_loaded = false;
+    var disqus_shortname = 'twcch';
+    var disqus_container = document.getElementById("disqus_thread");
+    function disqus() {
+      if (!disqus_loaded) {
+        disqus_loaded = true;
+        var e = document.createElement("script");
+        e.type = "text/javascript";
+        e.async = true;
+        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0])
+          .appendChild(e);
+        
+        document.getElementById("show-comments-button").style.display = "none";
+        
+        disqus_container.classList.add("is-open");
+      }
+    }
+  </script>
+</div>
+
 
 
 
