@@ -9,6 +9,13 @@
     <lastBuildDate>Sat, 30 Aug 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>(Day 1) 介紹與準備</title>
+      <link>http://twcch.io/posts/column_article/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_1/</link>
+      <pubDate>Sat, 30 Aug 2025 00:00:00 +0800</pubDate>
+      <guid>http://twcch.io/posts/column_article/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_1/</guid>
+      <description>&lt;p&gt;我遇過很多學習程式語言的人，都一直學框架或是 API 怎麼用，都不是很注重底層的知識，我認為一棟樓要蓋多高取決於地基打得多深，因為框架與 API 會變，但時間複雜度、記憶體模型、資料結構設計是不會變的。&lt;/p&gt;&#xA;&lt;h2 id=&#34;為什麼要學資料結構與演算法&#34;&gt;為什麼要學資料結構與演算法?&lt;/h2&gt;&#xA;&lt;p&gt;資料結構與演算法是程式設計的基礎，它們除了能幫助你寫出更有效率的程式，也是很多公司技術面試中必考的內容。其實我個人認為這也是本科與分本科的分水嶺，熟練的掌握這部分，能夠讓你跟那些轉職的工程師拉開距離，脫穎而出。&lt;/p&gt;&#xA;&lt;h2 id=&#34;系列規劃說明&#34;&gt;系列規劃說明&lt;/h2&gt;&#xA;&lt;p&gt;本系列將會依照以下方向進行介紹:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;資料結構 (Data structure)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;陣列 (Array)&lt;/li&gt;&#xA;&lt;li&gt;鏈表 (Linked list)&lt;/li&gt;&#xA;&lt;li&gt;堆疊 (Stack)&lt;/li&gt;&#xA;&lt;li&gt;佇列 (Queue)&lt;/li&gt;&#xA;&lt;li&gt;樹 (Trees)&lt;/li&gt;&#xA;&lt;li&gt;圖 (Graphs)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;演算法 (Algorithms)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;演算法分析 (Algorithm analysis)&lt;/li&gt;&#xA;&lt;li&gt;圖演算法 (Graph algorithms)&lt;/li&gt;&#xA;&lt;li&gt;貪婪演算法 (Greedy algorithms)&lt;/li&gt;&#xA;&lt;li&gt;分治法 (Divide and conquer)&lt;/li&gt;&#xA;&lt;li&gt;動態規劃 (Dynamic programming)&lt;/li&gt;&#xA;&lt;li&gt;網路流 (Network flow)&lt;/li&gt;&#xA;&lt;li&gt;超越多項式運行時間的演算法 (Beyond polynomial running time)&lt;/li&gt;&#xA;&lt;li&gt;線性規劃 (Linear programming)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;本系列的重心會放在演算法的部分，如果有剩餘的篇幅會補充排序或是搜尋的演算法；我會盡量會在每個知識點找個 1 ~ 2 題的 Leetcode 來實作。&lt;/p&gt;&#xA;&lt;h2 id=&#34;技術範圍與預期對象&#34;&gt;技術範圍與預期對象&lt;/h2&gt;&#xA;&lt;p&gt;本系列會以 Python 為範例，但是其實你也不一定需要會 Python，理論上只要有理解，就應該要能夠使用你自己熟悉的語言寫出來，所以本系列只預設讀者至少具備一門程式語言 (Python, Java, C++, JavaScript &amp;hellip;) 的基礎即可。&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>(Day 30) 系列結尾</title>
       <link>http://twcch.io/posts/column_article/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_30/</link>
       <pubDate>Sat, 30 Aug 2025 00:00:00 +0800</pubDate>
