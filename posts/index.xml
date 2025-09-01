@@ -6,8 +6,15 @@
     <description>Recent content in ✍️ 所有文章 on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 Sep 2025 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 02 Sep 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="http://twcch.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>(Day 4) 鏈表 (Linked List)</title>
+      <link>http://twcch.io/posts/column_article/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_4/</link>
+      <pubDate>Tue, 02 Sep 2025 00:00:00 +0800</pubDate>
+      <guid>http://twcch.io/posts/column_article/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_4/</guid>
+      <description>&lt;p&gt;Linked List (鏈表) 是一種常見的資料結構，用來儲存一系列的元素。與陣列 (Array) 不同，Linked List 的元素稱為節點 (Node) 在記憶體中不必是連續的。每個節點除了儲存資料外，還會儲存一個指向下一個節點的參考 (指標)。&lt;/p&gt;&#xA;&lt;p&gt;但是很不巧的 Python 並沒有像 Java 有支援 Linked List，雖然本系列是以 Python 為主，但是也不會直接使用高階 API 來實作，因為這樣就沒有意義了，所以會使用 Python 來自己建立類別來實現，甚至之後的有些資料結構 Python 都沒有，我也會用 Python 來自定義出類別。&lt;/p&gt;&#xA;&lt;h2 id=&#34;為什麼要用-linked-list&#34;&gt;為什麼要用 Linked List?&lt;/h2&gt;&#xA;&lt;p&gt;相較 Array，Linked List 可以隨時增加或刪除元素，不需要事先宣告大小，而且在在已知位置插入或刪除元素時，只需改變指標，不需搬移其他元素，也就是說如果程式需要頻繁的新增與刪除，Linked List 表現會更為優秀；但是 Linked List 不論是哪種型態的，最多只會儲存前後 Node 的位址，所以當需要查詢的時候，就必須遍歷整個 Linked List，所以在這部分就不及 Array 的效率。&lt;/p&gt;&#xA;&lt;h2 id=&#34;linked-list-的種類&#34;&gt;Linked List 的種類&lt;/h2&gt;&#xA;&lt;p&gt;常見的 Linked List 有以下這幾種型態:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Singly Linked List (單向鏈表):  每個 Node 只指向下一個節點。&lt;/li&gt;&#xA;&lt;li&gt;Doubly Linked List (雙向鏈表): 每個 Node 同時指向前一個和下一個節點。&lt;/li&gt;&#xA;&lt;li&gt;Circular Linked List (循環鏈表): 最後一個 Node 指向第一個節點，形成一個環。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;node-的結構&#34;&gt;Node 的結構&lt;/h3&gt;&#xA;&lt;p&gt;看完 Linked List 的種類，其實會發現這些的差異都在 Node，有的 Node 只指向下一個節點，有 Node 同時指向前一個和下一個節點，接下來我們就用 Python 來演式 Node 的結構:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>(Day 3) 矩陣 (Matrix)</title>
       <link>http://twcch.io/posts/column_article/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_3/</link>
