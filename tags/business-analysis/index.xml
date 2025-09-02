@@ -10,9 +10,9 @@
     <atom:link href="http://twcch.io/tags/business-analysis/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>為什麼 AI 正在快速削弱低階 Business Analyst 的價值?</title>
-      <link>http://twcch.io/posts/articles_25040701/</link>
+      <link>http://twcch.io/posts/2025/articles_25040701/</link>
       <pubDate>Mon, 07 Apr 2025 00:00:00 +0800</pubDate>
-      <guid>http://twcch.io/posts/articles_25040701/</guid>
+      <guid>http://twcch.io/posts/2025/articles_25040701/</guid>
       <description>&lt;p&gt;五年前，我踏入壽險產業，成為一名 Business Analyst (BA)。當時的工作內容相當清晰: 需求文件撰寫、報表製作、簡單的數據分析與溝通協調，是我每天的日常。那時候，這些任務仍需靠人力一項一項完成，效率與品質全憑個人經驗與熟練度。但如今，這些「核心能力」正快速被人工智慧工具重塑，甚至取代。&lt;/p&gt;&#xA;&lt;h2 id=&#34;我親身感受到的衝擊工具進步得比我想像中快&#34;&gt;我親身感受到的衝擊：工具進步得比我想像中快&lt;/h2&gt;&#xA;&lt;p&gt;回到 2022 年底，當我首次使用生成式 AI 工具進行報告撰寫與 Python 代碼產出時，內心的震撼難以言喻。曾經需要數小時才能完成的分析報告，在幾分鐘內生成雛形；曾經為了釐清邏輯關係而反覆修改的流程圖，如今只需一句指令就能完成。&lt;/p&gt;&#xA;&lt;p&gt;我逐漸意識到，這並不是單一任務被加速，而是整個 BA 工作流程正被結構性重塑。換言之，AI 正在壓縮 BA 的邊際價值。這不只是主觀體感，更有明確的研究支持。根據美國 OpenAI 與賓州大學的聯合研究，約有 80% 的職業至少有 10% 的工作內容將受到 LLM 工具的影響；其中，高達 19% 的職業，其超過一半的工作可由 AI 完成。而 BA 尤其是負責初階文件處理、標準報表、流程規劃等工作的分析師，被列為高曝險族群。&lt;/p&gt;&#xA;&lt;p&gt;原因很明確因為 BA 所擅長的文字組織、資料彙整與需求敘述，正是 AI 最擅長模仿與執行的任務。&lt;/p&gt;&#xA;&lt;h2 id=&#34;市場變化正在發生不是未來式而是現在進行式&#34;&gt;市場變化正在發生，不是未來式，而是現在進行式&lt;/h2&gt;&#xA;&lt;p&gt;這樣的趨勢已經開始反映在勞動市場上：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;BA 的職缺增速放緩&lt;/p&gt;&#xA;&lt;p&gt;企業在內部導入 LLM 工具後，發現許多重複性任務可由 AI 初步完成，人力需求自然下降。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;初階 BA 的薪資競爭力下降&lt;/p&gt;&#xA;&lt;p&gt;對於只熟悉基本分析任務、無法主動創造洞察的人才，企業的願意支付薪資上升空間有限。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;高階 BA 的需求反而上升&lt;/p&gt;&#xA;&lt;p&gt;企業更看重能駕馭 AI 工具、快速整合資訊、提出具策略意義建議的分析人才。所謂「會用 AI 的人」，正逐步取代「被 AI 取代的人」。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;這代表，AI 並不是取代所有 BA，而是取代了不進化的 BA。&lt;/p&gt;&#xA;&lt;h2 id=&#34;我的轉型從反應式執行者到主動創造者&#34;&gt;我的轉型：從反應式執行者，到主動創造者&lt;/h2&gt;&#xA;&lt;p&gt;面對這樣的劇變，我無法視若無睹。&lt;/p&gt;&#xA;&lt;p&gt;於是我開始盤點自己的能力，明白單靠產業 Know-how 或不夠專精的技能，將難以應對未來的競爭。因此，我選擇投入更深層的技能學習: 博士班訓練，深度的掌握資料科學、機器學習與深度學習領域，建立自身的核心競爭力。不只是會用工具或套模，而是要能理解這些如何運作、能應用在哪些情境、又有何種侷限。這樣的技能，不僅能讓我在日常分析中脫穎而出，也為我開啟進入 AI 應用領域的可能性。&lt;/p&gt;</description>
     </item>
   </channel>
