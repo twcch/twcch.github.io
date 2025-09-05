@@ -7,21 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>快速掌握資料結構與演算法 | 志謙&#39;s Blog</title>
-  <meta name="description" content="">
+  <title>(Day 6) 隊列 (Queue) | 志謙&#39;s Blog</title>
+  <meta name="description" content="Queue (佇列) 與 Stack 一樣，是一種線性資料結構，但它遵循的是先進先出 (First-In-First-Out; FIFO) 的規則。你可以把 Queue 想像成排隊買票: 最早排隊的人會最先買到票並離開，而新加入的人只能站在隊伍最後。">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="快速掌握資料結構與演算法 | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="我是志謙，目前是學生，專注於機器學習與深度學習研究，也經營自媒體，部落格主要分享電腦科學技術文章，期待與各位交流。">
+  <meta name="twitter:title" content="(Day 6) 隊列 (Queue) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="Queue (佇列) 與 Stack 一樣，是一種線性資料結構，但它遵循的是先進先出 (First-In-First-Out; FIFO) 的規則。你可以把 Queue 想像成排隊買票: 最早排隊的人會最先買到票並離開，而新加入的人只能站在隊伍最後。">
   <meta name="twitter:image" content="http://twcch.io/">
 
   
-  <meta property="og:title" content="快速掌握資料結構與演算法 | 志謙&#39;s Blog">
-  <meta property="og:description" content="我是志謙，目前是學生，專注於機器學習與深度學習研究，也經營自媒體，部落格主要分享電腦科學技術文章，期待與各位交流。">
+  <meta property="og:title" content="(Day 6) 隊列 (Queue) | 志謙&#39;s Blog">
+  <meta property="og:description" content="Queue (佇列) 與 Stack 一樣，是一種線性資料結構，但它遵循的是先進先出 (First-In-First-Out; FIFO) 的規則。你可以把 Queue 想像成排隊買票: 最早排隊的人會最先買到票並離開，而新加入的人只能站在隊伍最後。">
   <meta property="og:image" content="http://twcch.io/">
 
   
@@ -58,6 +57,10 @@
 
     
 
+    
+    <div class="global-cover">
+      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 6) 隊列 (Queue)">
+    </div>
     
 
     <div class="global-content">
@@ -139,16 +142,209 @@
 
 
 
-<div class="page container">
+<article class="post container">
 
-  <div class="page-head">
-    <h1 class="page-title">快速掌握資料結構與演算法</h1>
+  <div class="post-head">
+    <h1 class="post-title">(Day 6) 隊列 (Queue)</h1>
+    <div class="post-meta">
+      
+      <div class="post-tags">
+        Publish in&nbsp;
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">快速掌握資料結構與演算法</a>
+        
+      </div>
+      &nbsp;&bull;&nbsp;
+      
+      <time class="post-date" datetime="2025-09-04T00:00:00&#43;08:00">4 Sep, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="post-minutes">2 min read</span>
+      
+    </div>
+    
   </div>
 
-  <div class="page__tags">
-    <div class="row">
-      
-        <div class="article col col-6 col-t-12 animate">
+  
+
+  
+
+  
+
+  <div class="post__content">
+    
+    <div class="table-of-contents" id="table-of-contents">
+      <h2 class="table-of-contents__title">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="margin-right: 8px; vertical-align: -2px;">
+          <path d="M2 3h12a1 1 0 110 2H2a1 1 0 110-2zm0 4h12a1 1 0 110 2H2a1 1 0 110-2zm0 4h12a1 1 0 110 2H2a1 1 0 110-2z"/>
+        </svg>
+        目錄
+      </h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#queue-的基本操作">Queue 的基本操作</a></li>
+    <li><a href="#自己建立一個-queue">自己建立一個 Queue</a></li>
+    <li><a href="#結語">結語</a></li>
+    <li><a href="#備註">備註</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    <p>Queue (佇列) 與 Stack 一樣，是一種線性資料結構，但它遵循的是先進先出 (First-In-First-Out; FIFO) 的規則。你可以把 Queue 想像成排隊買票: 最早排隊的人會最先買到票並離開，而新加入的人只能站在隊伍最後。</p>
+<p>簡單來說，Queue 的操作只允許在「尾端」加入元素，在「前端」移除元素。</p>
+<h2 id="queue-的基本操作">Queue 的基本操作</h2>
+<p>Queue 與 Stack 的差異就在於操作的方向：</p>
+<ul>
+<li>enqueue: 將元素放到 Queue 尾端</li>
+<li>dequeue: 將 Queue 前端的元素移除並回傳</li>
+<li>peek/front: 查看 Queue 前端的元素，但不移除</li>
+<li>is_empty: 檢查 Queue 是否為空</li>
+<li>size: 回傳 Queue 的大小</li>
+</ul>
+<h2 id="自己建立一個-queue">自己建立一個 Queue</h2>
+<p>其實 Queue 跟 Stack 差不多，操作都很簡單，直接使用 Python 來自定義一個 Queue 的資料結構，來進行演示。</p>
+<ul>
+<li>
+<p>Create a Queue class</p>
+<p>和 Stack 一樣，先建立建構子與迭代器，使用 Python 的 list 模擬：</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Queue</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">yield</span> <span class="n">item</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>Create an enqueue() method</p>
+<p>enqueue 就是將元素加到尾端，對應到 Python list 的 <code>append()</code>。</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Queue</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">yield</span> <span class="n">item</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>Create a dequeue() method</p>
+<p>dequeue 是移除前端元素，對應到 Python list 的 <code>pop(0)</code>。</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Queue</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">yield</span> <span class="n">item</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>Create a peek() method</p>
+<p>peek 是查看前端的元素，但不移除。</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Queue</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">yield</span> <span class="n">item</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>Create an is_empty() method</p>
+<p>檢查 Queue 是否為空。</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Queue</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">yield</span> <span class="n">item</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="p">[]</span>
+</span></span></code></pre></div><h2 id="結語">結語</h2>
+<p>今天介紹了 Queue，這是一種限制操作位置的線性資料結構，與 Stack 最大的不同是遵循 FIFO，新元素只能從尾端加入，舊元素只能從前端移除。</p>
+<p>Queue 在日常生活與程式設計中都非常常見，例如: 作業系統的工作排程、網路中的封包緩衝區、樹或圖的廣度優先搜尋 (BFS) 等，都需要用到 Queue。</p>
+<p>在 Python 中，可以用 list 或 collections.deque 來實作 Queue；在 Java 中，常用 LinkedList 或 ArrayDeque。雖然實作方式不同，但本質上都保留了 Queue 的特性。</p>
+<h2 id="備註">備註</h2>
+<ul>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8468">iThome 鐵人賽 2025 - 快速掌握資料結構與演算法</a></li>
+</ul>
+
+  </div>
+
+  <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%206%29%20%e9%9a%8a%e5%88%97%20%28Queue%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_6%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_6%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_6%2f&title=%28Day%206%29%20%e9%9a%8a%e5%88%97%20%28Queue%29&summary=Queue%20%28%e4%bd%87%e5%88%97%29%20%e8%88%87%20Stack%20%e4%b8%80%e6%a8%a3%ef%bc%8c%e6%98%af%e4%b8%80%e7%a8%ae%e7%b7%9a%e6%80%a7%e8%b3%87%e6%96%99%e7%b5%90%e6%a7%8b%ef%bc%8c%e4%bd%86%e5%ae%83%e9%81%b5%e5%be%aa%e7%9a%84%e6%98%af%e5%85%88%e9%80%b2%e5%85%88%e5%87%ba%20%28First-In-First-Out%3b%20FIFO%29%20%e7%9a%84%e8%a6%8f%e5%89%87%e3%80%82%e4%bd%a0%e5%8f%af%e4%bb%a5%e6%8a%8a%20Queue%20%e6%83%b3%e5%83%8f%e6%88%90%e6%8e%92%e9%9a%8a%e8%b2%b7%e7%a5%a8%3a%20%e6%9c%80%e6%97%a9%e6%8e%92%e9%9a%8a%e7%9a%84%e4%ba%ba%e6%9c%83%e6%9c%80%e5%85%88%e8%b2%b7%e5%88%b0%e7%a5%a8%e4%b8%a6%e9%9b%a2%e9%96%8b%ef%bc%8c%e8%80%8c%e6%96%b0%e5%8a%a0%e5%85%a5%e7%9a%84%e4%ba%ba%e5%8f%aa%e8%83%bd%e7%ab%99%e5%9c%a8%e9%9a%8a%e4%bc%8d%e6%9c%80%e5%be%8c%e3%80%82&source=%28Day%206%29%20%e9%9a%8a%e5%88%97%20%28Queue%29"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_6%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%206%29%20%e9%9a%8a%e5%88%97%20%28Queue%29"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+    </li>
+  </ul>
+</div>
+
+  
+
+
+<div class="section-related">
+  <h4 class="section-related__title">You may also like...</h4>
+  <div class="row grid">
+    
+      <div class="article col col-6 col-t-12 animate">
 
   <div class="article__content">
     
@@ -180,41 +376,8 @@
 
 
 </div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
     
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_6/">(Day 6) 隊列 (Queue)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-04T00:00:00&#43;08:00">4 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">Queue (佇列) 與 Stack 一樣，是一種線性資料結構，但它遵循的是先進先出 (First-In-First-Out; FIFO) 的規則。你可以把 Queue 想像成排隊買票: 最早排隊的人會最先買到票並離開，而新加入的人只能站在隊伍最後。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
+      <div class="article col col-6 col-t-12 animate">
 
   <div class="article__content">
     
@@ -246,143 +409,50 @@
 
 
 </div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
     
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_4/">(Day 4) 鏈表 (Linked List)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-02T00:00:00&#43;08:00">2 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">3 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">Linked List (鏈表) 是一種常見的資料結構，用來儲存一系列的元素。與陣列 (Array) 不同，Linked List 的元素稱為節點 (Node) 在記憶體中不必是連續的。每個節點除了儲存資料外，還會儲存一個指向下一個節點的參考 (指標)。</p>
   </div>
-
-
 </div>
-      
-        <div class="article col col-6 col-t-12 animate">
 
-  <div class="article__content">
-    
+
+</article>
+
+
+
   
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_3/">(Day 3) 矩陣 (Matrix)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-01T00:00:00&#43;08:00">1 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">4 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">我不知道大家看到這天會不會驚訝一下，不是應該接續鏈表 (Linked List) 這是什麼? Matrix 就是 Array 只是我單獨抽出來說明，如果你沒有在學習或處理資料科學相關的，應該不會使用到 Matrix，但是我認為這是一個蠻常被忽略的部分，也就花一點篇幅來介紹它。</p>
+
+<div class="container">
+  <div class="show-comments">
+    <button class="button" id="show-comments-button" onclick="disqus();return false;">Comments</button>
   </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
   
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_2/">(Day 2) 陣列 (Array)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-31T00:00:00&#43;08:00">31 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">4 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">Array 是一種 Static Data Structure 或稱為 Dense List，它是一種將有序串列的資料結構使用 Contiguous Allocation 來儲存，意味著儲存的元素必須是相同類型，且靜態資料結構的記憶體配置是在編譯時，就必須配置給相關的變數，因此在創建時必須先宣告空間大小。</p>
+  <div id="disqus_thread" class="post__comments">
+    <div id="disqus_empty"></div>
   </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
   
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_1/">(Day 1) 介紹與準備</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
+  <script>
+    var disqus_loaded = false;
+    var disqus_shortname = 'twcch';
+    var disqus_container = document.getElementById("disqus_thread");
+    function disqus() {
+      if (!disqus_loaded) {
+        disqus_loaded = true;
+        var e = document.createElement("script");
+        e.type = "text/javascript";
+        e.async = true;
+        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0])
+          .appendChild(e);
         
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        document.getElementById("show-comments-button").style.display = "none";
         
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-30T00:00:00&#43;08:00">30 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">我遇過很多學習程式語言的人，都一直學框架或是 API 怎麼用，都不是很注重底層的知識，我認為一棟樓要蓋多高取決於地基打得多深，因為框架與 API 會變，但時間複雜度、記憶體模型、資料結構設計是不會變的。</p>
-  </div>
-
-
+        disqus_container.classList.add("is-open");
+      }
+    }
+  </script>
 </div>
-      
-    </div>
-  </div>
 
-</div>
+
 
 
 

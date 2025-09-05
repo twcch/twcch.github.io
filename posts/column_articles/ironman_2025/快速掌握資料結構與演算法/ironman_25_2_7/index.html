@@ -7,21 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>快速掌握資料結構與演算法 | 志謙&#39;s Blog</title>
-  <meta name="description" content="">
+  <title>(Day 7) 二元樹 (Binary Tree) | 志謙&#39;s Blog</title>
+  <meta name="description" content="前面幾天所介紹的資料結構就是線性的資料結構，今天開始所介紹的樹資料節構是屬於非線性資料結構，也非常的重要。">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="快速掌握資料結構與演算法 | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="我是志謙，目前是學生，專注於機器學習與深度學習研究，也經營自媒體，部落格主要分享電腦科學技術文章，期待與各位交流。">
+  <meta name="twitter:title" content="(Day 7) 二元樹 (Binary Tree) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="前面幾天所介紹的資料結構就是線性的資料結構，今天開始所介紹的樹資料節構是屬於非線性資料結構，也非常的重要。">
   <meta name="twitter:image" content="http://twcch.io/">
 
   
-  <meta property="og:title" content="快速掌握資料結構與演算法 | 志謙&#39;s Blog">
-  <meta property="og:description" content="我是志謙，目前是學生，專注於機器學習與深度學習研究，也經營自媒體，部落格主要分享電腦科學技術文章，期待與各位交流。">
+  <meta property="og:title" content="(Day 7) 二元樹 (Binary Tree) | 志謙&#39;s Blog">
+  <meta property="og:description" content="前面幾天所介紹的資料結構就是線性的資料結構，今天開始所介紹的樹資料節構是屬於非線性資料結構，也非常的重要。">
   <meta property="og:image" content="http://twcch.io/">
 
   
@@ -58,6 +57,10 @@
 
     
 
+    
+    <div class="global-cover">
+      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 7) 二元樹 (Binary Tree)">
+    </div>
     
 
     <div class="global-content">
@@ -139,49 +142,191 @@
 
 
 
-<div class="page container">
+<article class="post container">
 
-  <div class="page-head">
-    <h1 class="page-title">快速掌握資料結構與演算法</h1>
-  </div>
-
-  <div class="page__tags">
-    <div class="row">
+  <div class="post-head">
+    <h1 class="post-title">(Day 7) 二元樹 (Binary Tree)</h1>
+    <div class="post-meta">
       
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_7/">(Day 7) 二元樹 (Binary Tree)</a>
-    </h2>
-  
-    <div class="article__meta">
+      <div class="post-tags">
+        Publish in&nbsp;
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">快速掌握資料結構與演算法</a>
+        
+      </div>
+      &nbsp;&bull;&nbsp;
       
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-05T00:00:00&#43;08:00">5 Sep, 2025</time>
+      <time class="post-date" datetime="2025-09-05T00:00:00&#43;08:00">5 Sep, 2025</time>
       
         &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
+        <span class="post-minutes">2 min read</span>
       
     </div>
-  
-    <p class="article__excerpt">前面幾天所介紹的資料結構就是線性的資料結構，今天開始所介紹的樹資料節構是屬於非線性資料結構，也非常的重要。</p>
+    
   </div>
 
+  
 
+  
+
+  
+
+  <div class="post__content">
+    
+    <div class="table-of-contents" id="table-of-contents">
+      <h2 class="table-of-contents__title">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="margin-right: 8px; vertical-align: -2px;">
+          <path d="M2 3h12a1 1 0 110 2H2a1 1 0 110-2zm0 4h12a1 1 0 110 2H2a1 1 0 110-2zm0 4h12a1 1 0 110 2H2a1 1 0 110-2z"/>
+        </svg>
+        目錄
+      </h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#基本定義">基本定義</a></li>
+    <li><a href="#資料儲存方式">資料儲存方式</a>
+      <ul>
+        <li><a href="#array-表示法">Array 表示法</a></li>
+        <li><a href="#linked-list-表示法">Linked List 表示法</a></li>
+      </ul>
+    </li>
+    <li><a href="#結語">結語</a></li>
+    <li><a href="#備註">備註</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    <p>前面幾天所介紹的資料結構就是線性的資料結構，今天開始所介紹的樹資料節構是屬於非線性資料結構，也非常的重要。</p>
+<h2 id="基本定義">基本定義</h2>
+<p>在進入 Binary Tree 之前，先來介紹一下基本的組成部分，可以搭配著下圖看:</p>
+<ul>
+<li>Root: 樹的起始點 (e.g. 2)</li>
+<li>Internal: 有子節點的節點 (e.g. 7, 5, 6, 9)</li>
+<li>Leaf: 沒有子節點的節點 (e.g. 2, 5, 11, 4)</li>
+</ul>
+<p><img src="https://github.com/twcch/drive/raw/main/images/Image_2025-09-04_16-42-59.png" alt="Image_2025-09-04_16-42-59.png"></p>
+<p>Binary Tree 就是一個由有限節點所組成的集合，或由一個 Root 及左右兩個子樹所組成。簡單來說，Binary Tree 最多只能有兩個子節點 (也可以是一個)，Binary Tree 還可以再細分:</p>
+<ul>
+<li>Fully Binary Tree</li>
+<li>Complete Binary Tree</li>
+<li>Skewed Binary Tree</li>
+<li>Strictly Binary Tree</li>
+</ul>
+<p>這邊就先點到為止，不一一的詳細介紹。</p>
+<h2 id="資料儲存方式">資料儲存方式</h2>
+<p>Binary Tree 有很多種的儲存方式，比較常見的會是 Array 與 Linked List 的儲存方式，本篇就會分別介紹這兩種儲存方式。</p>
+<h3 id="array-表示法">Array 表示法</h3>
+<p>就直接用上一張圖的部分來說明，先對照一下，由上至下、由左至右的放入 Array。</p>
+<ul>
+<li>A[1] = 2</li>
+<li>A[2] = 7, A[3] = 5</li>
+<li>A[4] = 2, A[5] = 6, A[6] = null, A[7] = 9</li>
+<li>A[8] = null, A[9] = null, A[10] = 5, A[11] = 11, A[12] = 4, A[13] = null</li>
+</ul>
+<p><img src="https://github.com/twcch/drive/raw/main/images/Image_2025-09-04_16-42-59.png" alt="Image_2025-09-04_16-42-59.png"></p>
+<p>我們可以發現，index 有以下關係:</p>
+<ul>
+<li>左子樹 index 是父節點 index*2。</li>
+<li>右子樹 index 是父節點 index*2+1。</li>
+</ul>
+<p>接下來，就用程式碼實作:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">tree</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="kc">None</span><span class="p">,</span>   <span class="c1"># index 0 不用</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">2</span><span class="p">,</span>      <span class="c1"># A[1]</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>   <span class="c1"># A[2], A[3]</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span>   <span class="c1"># A[4]...A[7]</span>
+</span></span><span class="line"><span class="cl">    <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="kc">None</span>  <span class="c1"># A[8]...A[13]</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">left</span><span class="p">(</span><span class="n">i</span><span class="p">):</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="k">if</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">right</span><span class="p">(</span><span class="n">i</span><span class="p">):</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">preorder</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">i</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span> <span class="ow">or</span> <span class="n">tree</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">tree</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">preorder</span><span class="p">(</span><span class="n">left</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">preorder</span><span class="p">(</span><span class="n">right</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 測試</span>
+</span></span><span class="line"><span class="cl"><span class="n">preorder</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 從根節點 A[1] 開始</span>
+</span></span></code></pre></div><h3 id="linked-list-表示法">Linked List 表示法</h3>
+<p>也是用程式碼實作:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 手動建樹</span>
+</span></span><span class="line"><span class="cl"><span class="n">root</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">root</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">root</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 遞迴遍歷 (前序)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">preorder</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="p">:</span> <span class="k">return</span>  <span class="c1"># 終止條件: 當傳進來的 node 為 None (樹的葉子沒有子節點時)，就直接返回，不做任何事。</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">preorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>  <span class="c1"># 遞迴遍歷左子樹。</span>
+</span></span><span class="line"><span class="cl">    <span class="n">preorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>  <span class="c1"># 遞迴遍歷右子樹。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">preorder</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>  <span class="c1"># 輸出: 2 7 2 6 5 11 5 9 4</span>
+</span></span></code></pre></div><h2 id="結語">結語</h2>
+<p>今天我們初步介紹了 Binary Tree，這是一種非線性資料結構，相較於前面提到的線性結構 (Array、Stack、Queue)，樹結構更能有效表達層次與關聯性。Binary Tree 的特性在於每個節點最多有兩個子節點，並且能用 Array 表示法 或 Linked List 表示法 來儲存，這兩種方式在不同應用場景中各有優缺點。</p>
+<p>理解 Binary Tree 的概念非常重要，因為後續許多資料結構 (Binary Search Tree、AVL Tree、Heap、Segment Tree) 都是基於二元樹演變而來。透過二元樹，我們可以更深入掌握如何在 搜尋、排序、圖形處理、編譯器語法樹 等問題中找到高效的解法。</p>
+<h2 id="備註">備註</h2>
+<ul>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8468">iThome 鐵人賽 2025 - 快速掌握資料結構與演算法</a></li>
+</ul>
+
+  </div>
+
+  <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%207%29%20%e4%ba%8c%e5%85%83%e6%a8%b9%20%28Binary%20Tree%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_7%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_7%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_7%2f&title=%28Day%207%29%20%e4%ba%8c%e5%85%83%e6%a8%b9%20%28Binary%20Tree%29&summary=%e5%89%8d%e9%9d%a2%e5%b9%be%e5%a4%a9%e6%89%80%e4%bb%8b%e7%b4%b9%e7%9a%84%e8%b3%87%e6%96%99%e7%b5%90%e6%a7%8b%e5%b0%b1%e6%98%af%e7%b7%9a%e6%80%a7%e7%9a%84%e8%b3%87%e6%96%99%e7%b5%90%e6%a7%8b%ef%bc%8c%e4%bb%8a%e5%a4%a9%e9%96%8b%e5%a7%8b%e6%89%80%e4%bb%8b%e7%b4%b9%e7%9a%84%e6%a8%b9%e8%b3%87%e6%96%99%e7%af%80%e6%a7%8b%e6%98%af%e5%b1%ac%e6%96%bc%e9%9d%9e%e7%b7%9a%e6%80%a7%e8%b3%87%e6%96%99%e7%b5%90%e6%a7%8b%ef%bc%8c%e4%b9%9f%e9%9d%9e%e5%b8%b8%e7%9a%84%e9%87%8d%e8%a6%81%e3%80%82&source=%28Day%207%29%20%e4%ba%8c%e5%85%83%e6%a8%b9%20%28Binary%20Tree%29"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_7%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%207%29%20%e4%ba%8c%e5%85%83%e6%a8%b9%20%28Binary%20Tree%29"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+    </li>
+  </ul>
 </div>
-      
-        <div class="article col col-6 col-t-12 animate">
+
+  
+
+
+<div class="section-related">
+  <h4 class="section-related__title">You may also like...</h4>
+  <div class="row grid">
+    
+      <div class="article col col-6 col-t-12 animate">
 
   <div class="article__content">
     
@@ -213,8 +358,8 @@
 
 
 </div>
-      
-        <div class="article col col-6 col-t-12 animate">
+    
+      <div class="article col col-6 col-t-12 animate">
 
   <div class="article__content">
     
@@ -246,143 +391,50 @@
 
 
 </div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
     
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_4/">(Day 4) 鏈表 (Linked List)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-02T00:00:00&#43;08:00">2 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">3 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">Linked List (鏈表) 是一種常見的資料結構，用來儲存一系列的元素。與陣列 (Array) 不同，Linked List 的元素稱為節點 (Node) 在記憶體中不必是連續的。每個節點除了儲存資料外，還會儲存一個指向下一個節點的參考 (指標)。</p>
   </div>
-
-
 </div>
-      
-        <div class="article col col-6 col-t-12 animate">
 
-  <div class="article__content">
-    
+
+</article>
+
+
+
   
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_3/">(Day 3) 矩陣 (Matrix)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-01T00:00:00&#43;08:00">1 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">4 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">我不知道大家看到這天會不會驚訝一下，不是應該接續鏈表 (Linked List) 這是什麼? Matrix 就是 Array 只是我單獨抽出來說明，如果你沒有在學習或處理資料科學相關的，應該不會使用到 Matrix，但是我認為這是一個蠻常被忽略的部分，也就花一點篇幅來介紹它。</p>
+
+<div class="container">
+  <div class="show-comments">
+    <button class="button" id="show-comments-button" onclick="disqus();return false;">Comments</button>
   </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
   
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_2/">(Day 2) 陣列 (Array)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-31T00:00:00&#43;08:00">31 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">4 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">Array 是一種 Static Data Structure 或稱為 Dense List，它是一種將有序串列的資料結構使用 Contiguous Allocation 來儲存，意味著儲存的元素必須是相同類型，且靜態資料結構的記憶體配置是在編譯時，就必須配置給相關的變數，因此在創建時必須先宣告空間大小。</p>
+  <div id="disqus_thread" class="post__comments">
+    <div id="disqus_empty"></div>
   </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
   
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_1/">(Day 1) 介紹與準備</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
+  <script>
+    var disqus_loaded = false;
+    var disqus_shortname = 'twcch';
+    var disqus_container = document.getElementById("disqus_thread");
+    function disqus() {
+      if (!disqus_loaded) {
+        disqus_loaded = true;
+        var e = document.createElement("script");
+        e.type = "text/javascript";
+        e.async = true;
+        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0])
+          .appendChild(e);
         
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        document.getElementById("show-comments-button").style.display = "none";
         
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-30T00:00:00&#43;08:00">30 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">我遇過很多學習程式語言的人，都一直學框架或是 API 怎麼用，都不是很注重底層的知識，我認為一棟樓要蓋多高取決於地基打得多深，因為框架與 API 會變，但時間複雜度、記憶體模型、資料結構設計是不會變的。</p>
-  </div>
-
-
+        disqus_container.classList.add("is-open");
+      }
+    }
+  </script>
 </div>
-      
-    </div>
-  </div>
 
-</div>
+
 
 
 
