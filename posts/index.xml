@@ -6,8 +6,15 @@
     <description>Recent content in 部落格 on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 06 Sep 2025 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 07 Sep 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="http://twcch.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>(Day 9) 其他樹 (Other Trees)</title>
+      <link>http://twcch.io/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_9/</link>
+      <pubDate>Sun, 07 Sep 2025 00:00:00 +0800</pubDate>
+      <guid>http://twcch.io/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_9/</guid>
+      <description>&lt;p&gt;在前面兩天，粗淺的介紹了 Binary Tree 與 Balanced Tree，今天更粗淺的介紹一下其他樹，因為本系列只是要做一個拋磚引玉的動作，如果讀者對於資料結構有興趣，建議可以買書來研讀。&lt;/p&gt;&#xA;&lt;p&gt;樹的資料結構他的應用場景非常廣，比如機器學習的決策樹、極限梯度提升樹，或者是資料庫、檔案系統等應用場景，所以樹的資料結構不是僅僅的理論而已，讀者也許會疑惑說，為什麼好像介紹到樹就沒什麼程式碼，向機器學習的決策樹，它是一種機器學習的演算法，它使用的樹的資料結構去設計，所以光這個演算法要講清楚，就會花很久，也不是本系列的範圍，如果要深入的學樹模型，需要讀者自行找資源學習。&lt;/p&gt;&#xA;&lt;h2 id=&#34;各種樹&#34;&gt;各種樹&lt;/h2&gt;&#xA;&lt;p&gt;接下來，淺淺的介紹一下其他樹還有什麼&lt;/p&gt;&#xA;&lt;h3 id=&#34;b-tree&#34;&gt;B-Tree&lt;/h3&gt;&#xA;&lt;p&gt;B-Tree 是一種多路搜尋樹 (multi-way search tree)，與二元搜尋樹不同的是，它的每個節點可以擁有多於兩個子節點。&lt;/p&gt;&#xA;&lt;p&gt;特點:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;節點可以存放多個 key。&lt;/li&gt;&#xA;&lt;li&gt;每個節點的子樹數量 = key 數量 + 1。&lt;/li&gt;&#xA;&lt;li&gt;適合用在「磁碟存取」的場景，因為可以減少磁碟 I/O 次數。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;B-Tree 是資料庫索引的基礎，例如 MySQL 就使用 B-Tree 來實作索引。&lt;/p&gt;&#xA;&lt;h3 id=&#34;b-tree-1&#34;&gt;B+ Tree&lt;/h3&gt;&#xA;&lt;p&gt;B+ Tree 是 B-Tree 的延伸，改進點在於:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;所有資料都存放在葉節點，非葉節點只用來導航。&lt;/li&gt;&#xA;&lt;li&gt;葉節點之間使用 &lt;strong&gt;鏈結串列&lt;/strong&gt; 串接，支援範圍查詢。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;這讓 B+ Tree 在查詢時更有效率，特別是需要「區間搜尋」的情境。&lt;/p&gt;&#xA;&lt;h3 id=&#34;紅黑樹-red-black-tree&#34;&gt;紅黑樹 (Red-Black Tree)&lt;/h3&gt;&#xA;&lt;p&gt;紅黑樹是一種自平衡二元搜尋樹 (self-balancing BST)**，常用於準程式庫的實作，例如:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Java 的 &lt;code&gt;TreeMap&lt;/code&gt;、&lt;code&gt;TreeSet&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;紅黑樹的規則:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;節點要嘛是紅色，要嘛是黑色。&lt;/li&gt;&#xA;&lt;li&gt;根節點一定是黑色。&lt;/li&gt;&#xA;&lt;li&gt;紅節點的子節點必須是黑色 (不能連續兩個紅色)。&lt;/li&gt;&#xA;&lt;li&gt;從根到每個葉節點的路徑，黑色節點數必須相同。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;這些限制保證了樹的高度維持在 $O(\log n)$，因此搜尋、插入、刪除都能保證在 $O(\log n)$ 完成。&lt;/p&gt;&#xA;&lt;h3 id=&#34;trie-樹-prefix-tree&#34;&gt;Trie 樹 (Prefix Tree)&lt;/h3&gt;&#xA;&lt;p&gt;Trie，又叫字典樹，專門用來處理字串集合的問題。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>(Day 8) 平衡樹 (Balanced Tree)</title>
       <link>http://twcch.io/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_8/</link>
