@@ -7,20 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning) | 志謙&#39;s Blog</title>
-  <meta name="description" content="在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。">
+  <title>(Day 10) 圖 (Graph) | 志謙&#39;s Blog</title>
+  <meta name="description" content="這是資料結構的最後一篇，明天開始進入本系列的重點驗算法，前面幾天，我們介紹了各種樹結構 Binary Tree、Balanced Tree，以及其他衍生樹。而樹是一種特殊的圖結構，今天我們正式進入 Graph 的世界。">
 
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning) | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。">
+  <meta name="twitter:title" content="(Day 10) 圖 (Graph) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="這是資料結構的最後一篇，明天開始進入本系列的重點驗算法，前面幾天，我們介紹了各種樹結構 Binary Tree、Balanced Tree，以及其他衍生樹。而樹是一種特殊的圖結構，今天我們正式進入 Graph 的世界。">
   <meta name="twitter:image" content="http://twcch.io/">
 
   
-  <meta property="og:title" content="(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning) | 志謙&#39;s Blog">
-  <meta property="og:description" content="在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。">
+  <meta property="og:title" content="(Day 10) 圖 (Graph) | 志謙&#39;s Blog">
+  <meta property="og:description" content="這是資料結構的最後一篇，明天開始進入本系列的重點驗算法，前面幾天，我們介紹了各種樹結構 Binary Tree、Balanced Tree，以及其他衍生樹。而樹是一種特殊的圖結構，今天我們正式進入 Graph 的世界。">
   <meta property="og:image" content="http://twcch.io/">
 
   
@@ -59,7 +59,7 @@
 
     
     <div class="global-cover">
-      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning)">
+      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 10) 圖 (Graph)">
     </div>
     
 
@@ -145,7 +145,7 @@
 <article class="post container">
 
   <div class="post-head">
-    <h1 class="post-title">(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning)</h1>
+    <h1 class="post-title">(Day 10) 圖 (Graph)</h1>
     <div class="post-meta">
       
       <div class="post-tags">
@@ -153,15 +153,15 @@
         
           <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
         
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">30 天入門常見的機器學習演算法</a>
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">快速掌握資料結構與演算法</a>
         
       </div>
       &nbsp;&bull;&nbsp;
       
-      <time class="post-date" datetime="2025-08-22T00:00:00&#43;08:00">22 Aug, 2025</time>
+      <time class="post-date" datetime="2025-09-08T00:00:00&#43;08:00">8 Sep, 2025</time>
       
         &nbsp;&bull;&nbsp;
-        <span class="post-minutes">1 min read</span>
+        <span class="post-minutes">2 min read</span>
       
     </div>
     
@@ -184,85 +184,173 @@
       </h2>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#為什麼需要正規化與正則化">為什麼需要正規化與正則化?</a>
+    <li><a href="#基本定義">基本定義</a></li>
+    <li><a href="#圖的分類">圖的分類</a></li>
+    <li><a href="#圖的表示方式">圖的表示方式</a>
       <ul>
-        <li><a href="#正規化-normalization">正規化 (Normalization)</a></li>
-        <li><a href="#正則化-regularization">正則化 (Regularization)</a></li>
+        <li><a href="#鄰接矩陣-adjacency-matrix">鄰接矩陣 (Adjacency Matrix)</a></li>
+        <li><a href="#鄰接串列-adjacency-list">鄰接串列 (Adjacency List)</a></li>
       </ul>
     </li>
-    <li><a href="#正規化與正則化的互補關係">正規化與正則化的互補關係</a></li>
+    <li><a href="#基本操作">基本操作</a></li>
+    <li><a href="#圖的遍歷">圖的遍歷</a>
+      <ul>
+        <li><a href="#深度優先搜尋-dfs">深度優先搜尋 (DFS)</a></li>
+        <li><a href="#廣度優先搜尋-bfs">廣度優先搜尋 (BFS)</a></li>
+      </ul>
+    </li>
+    <li><a href="#圖的應用">圖的應用</a></li>
     <li><a href="#結語">結語</a></li>
     <li><a href="#備註">備註</a></li>
   </ul>
 </nav>
     </div>
     
-    <p>在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。</p>
-<p>今天我們要談的主題「正規化 (Normalization) 與正則化 (Regularization)」，就是專門為了解決這類問題而設計的工具。這兩個詞在中文裡常常被混淆，但在深度學習中有明確的區分:</p>
+    <p>這是資料結構的最後一篇，明天開始進入本系列的重點驗算法，前面幾天，我們介紹了各種樹結構 Binary Tree、Balanced Tree，以及其他衍生樹。而樹是一種特殊的圖結構，今天我們正式進入 Graph 的世界。</p>
+<p>圖是比樹更一般化的資料結構，能表示任何實體之間的關係，例如:</p>
 <ul>
-<li>正規化 (Normalization): 處理資料或中間層輸出的「分布」，讓訓練更穩定。</li>
-<li>正則化 (Regularization): 在模型學習過程中「限制參數自由度」，避免過度擬合。</li>
+<li>社群網路 (人與人之間的連結)</li>
+<li>地圖 (城市與道路)</li>
+<li>網頁 (網頁與超連結)</li>
+<li>電腦網路 (節點與連線)</li>
 </ul>
-<p>可以把它們理解成:</p>
+<p>理解圖結構，幾乎等於打開了資料結構與演算法的第二扇大門。</p>
+<h2 id="基本定義">基本定義</h2>
+<p>圖 (Graph) 由以下兩個元素組成:</p>
 <ul>
-<li>正規化是「讓訓練跑得順暢」</li>
-<li>正則化是「讓模型不要學壞」</li>
+<li>V (Vertices): 頂點 (節點, nodes)</li>
+<li>E (Edges): 邊 (連線, edges)，用來表示兩個頂點之間的關係</li>
 </ul>
-<h2 id="為什麼需要正規化與正則化">為什麼需要正規化與正則化?</h2>
-<p>深度學習的挑戰主要來自於以下幾點:</p>
-<ol>
-<li>參數數量龐大
+<p>數學上通常記為:</p>
+<p>$$
+G = (V, E)
+$$</p>
+<h2 id="圖的分類">圖的分類</h2>
 <ul>
-<li>FCNN、CNN、RNN 等模型的參數動輒上百萬，模型表達能力非常強。這雖然能學習複雜模式，但也極容易記住「訓練資料」而不是「一般化規律」。</li>
-</ul>
-</li>
-<li>梯度傳遞問題
+<li>有向圖 (Directed Graph) vs 無向圖 (Undirected Graph)
 <ul>
-<li>深層網路容易遇到梯度消失或爆炸，導致學習不穩定。</li>
-<li>即便是設計良好的激活函數 (如 ReLU)，也可能因資料分布不均而造成某些神經元失效。</li>
-</ul>
-</li>
-<li>資料有限
-<ul>
-<li>真實世界中，資料集往往有限，無法支撐一個龐大模型完全「正確」學習。若沒有適當限制，模型就會死記硬背訓練資料，導致測試集表現不佳。</li>
+<li>有向圖的邊有方向，例如 Twitter 的「追蹤關係」。</li>
+<li>無向圖的邊無方向，例如 Facebook 的「好友關係」。</li>
 </ul>
 </li>
-</ol>
-<p>為了應對這些問題，正規化與正則化技術被廣泛應用在深度學習的訓練流程中。</p>
-<h3 id="正規化-normalization">正規化 (Normalization)</h3>
-<p>正規化的核心目標是: 讓輸入資料或中間層輸出的數值保持在合理範圍內，以便模型更容易學習。在模型訓練前，我們通常會對輸入資料進行縮放，例如:</p>
+<li>加權圖 (Weighted Graph) vs 無權圖 (Unweighted Graph)
 <ul>
-<li>Min-Max Scaling</li>
-<li>Z-score Standardization</li>
+<li>加權圖的邊帶有權重 (weight)，例如道路距離或網路傳輸延遲。</li>
+<li>無權圖則所有邊的權重相同。</li>
 </ul>
-<h3 id="正則化-regularization">正則化 (Regularization)</h3>
-<p>正則化的核心目標是：避免模型過擬合，提升泛化能力。</p>
+</li>
+<li>稠密圖 (Dense Graph) vs 稀疏圖 (Sparse Graph)
 <ul>
-<li>L1 與 L2 正則化</li>
-<li>Dropout</li>
+<li>若邊的數量接近 $|V|^2$，稱為稠密圖。</li>
+<li>若邊的數量遠小於 $|V|^2$，稱為稀疏圖。</li>
 </ul>
-<h2 id="正規化與正則化的互補關係">正規化與正則化的互補關係</h2>
-<p>雖然名稱相似，但正規化與正則化針對的問題不同:</p>
+</li>
+<li>循環圖 (Cyclic Graph) vs 非循環圖 (Acyclic Graph)
 <ul>
-<li>正規化 → 解決訓練穩定性、加速收斂</li>
-<li>正則化 → 解決過擬合、提升泛化</li>
+<li>有迴路的圖稱為循環圖。</li>
+<li>無迴路的圖則是非循環圖 (例如樹)。</li>
 </ul>
-<p>在實務上，它們通常是 同時使用 的。例如:</p>
+</li>
+</ul>
+<h2 id="圖的表示方式">圖的表示方式</h2>
+<h3 id="鄰接矩陣-adjacency-matrix">鄰接矩陣 (Adjacency Matrix)</h3>
+<p>使用二維陣列 $A[i][j]$ 表示是否存在一條從節點 i 到節點 j 的邊。</p>
 <ul>
-<li>CNN: 資料正規化 + Batch Normalization + Dropout + Weight Decay</li>
-<li>RNN/Transformer: Layer Normalization + Early Stopping + Data Augmentation</li>
+<li>優點: 判斷兩點是否相連 $O(1)$。</li>
+<li>缺點: 空間複雜度高，對於稀疏圖浪費記憶體。</li>
+</ul>
+<p>建立一個「無向圖 (undirected graph) 的鄰接矩陣 (adjacency matrix)」表示法:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 範例: 無向圖 0-1, 0-2, 1-2, 2-3</span>
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl"><span class="n">adj_matrix</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl"><span class="n">edges</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">u</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">adj_matrix</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">adj_matrix</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># 無向圖</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Adjacency Matrix:&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">adj_matrix</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</span></span></code></pre></div><h3 id="鄰接串列-adjacency-list">鄰接串列 (Adjacency List)</h3>
+<p>使用 list 或 dict 紀錄每個節點相鄰的節點。</p>
+<ul>
+<li>優點：空間效率高，適合稀疏圖。</li>
+<li>缺點：判斷是否相連需。</li>
+</ul>
+<p>建立一個「無向圖 (undirected graph) 的鄰接串列 (Adjacency List)」表示法:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl"><span class="n">adj_list</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">edges</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">u</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">adj_list</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">adj_list</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>  <span class="c1"># 無向圖</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Adjacency List:&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">adj_list</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="s2">&#34;:&#34;</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+</span></span></code></pre></div><h2 id="基本操作">基本操作</h2>
+<ul>
+<li>新增頂點</li>
+<li>新增邊</li>
+<li>刪除頂點</li>
+<li>刪除邊</li>
+<li>查詢兩節點是否相連</li>
+<li>圖的遍歷 (Traversal)</li>
+</ul>
+<h2 id="圖的遍歷">圖的遍歷</h2>
+<p>圖的遍歷是所有圖演算法的基礎。</p>
+<h3 id="深度優先搜尋-dfs">深度優先搜尋 (DFS)</h3>
+<p>使用遞迴或 Stack，先往一條路走到底再回頭。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">visited</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">visited</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">start</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">neighbor</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">dfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">neighbor</span><span class="p">,</span> <span class="n">visited</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">dfs</span><span class="p">(</span><span class="n">adj_list</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># 輸出: 0 1 2 3</span>
+</span></span></code></pre></div><h3 id="廣度優先搜尋-bfs">廣度優先搜尋 (BFS)</h3>
+<p>使用 Queue，從起點開始一層一層向外擴展。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">bfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">start</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="n">start</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">neighbor</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">bfs</span><span class="p">(</span><span class="n">adj_list</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># 輸出: 0 1 2 3</span>
+</span></span></code></pre></div><h2 id="圖的應用">圖的應用</h2>
+<ul>
+<li>最短路徑: Dijkstra、Bellman-Ford、Floyd-Warshall</li>
+<li>最小生成樹: Prim、Kruskal</li>
+<li>網路流: 最大流問題 (Ford-Fulkerson)</li>
+<li>拓樸排序: DAG 中的任務排程</li>
+<li>社群網路分析: PageRank、Centrality</li>
+<li>搜尋引擎: Web Page Ranking</li>
+<li>AI / 遊戲: 狀態空間搜尋 (A*)</li>
 </ul>
 <h2 id="結語">結語</h2>
-<p>深度學習之所以能夠在近十年迅速崛起，不只是因為 GPU 算力提升或資料量增大，還有賴於一系列 正規化與正則化技術 的發展，讓深度模型可以被穩定地訓練並具備良好的泛化能力。</p>
-<p>可以這樣理解:</p>
+<p>今天我們進入了圖結構 (Graph)，它比前面的線性結構與樹結構更通用，能夠描述任意的關聯關係。從 鄰接矩陣到鄰接串列，再到 DFS 與 BFS，這些都是後續更複雜圖演算法的基礎。</p>
+<p>圖結構的強大之處，在於它幾乎無所不在:</p>
 <ul>
-<li>沒有正規化，模型可能訓練不起來</li>
-<li>沒有正則化，模型可能學壞掉</li>
+<li>當你使用地圖導航，背後就是最短路徑演算法。</li>
+<li>當你搜尋網頁，背後是圖排名演算法。</li>
+<li>當你研究社群網路，背後是圖分析模型。</li>
 </ul>
-<p>在進入 RNN、LSTM、Transformer 之前，理解這些基礎的訓練技巧，能讓我們更清楚地看到深度學習從「能跑」到「能用」的過程。</p>
+<p>理解圖結構，能讓我們從資料結構的「儲存與操作」進一步走向「建模與分析」。</p>
 <h2 id="備註">備註</h2>
 <ul>
-<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8468">iThome 鐵人賽 2025 - 快速掌握資料結構與演算法</a></li>
 </ul>
 
   </div>
@@ -270,23 +358,23 @@
   <div class="post__share">
   <ul class="share__list list-reset">
     <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2022%29%20%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e4%b8%ad%e7%9a%84%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%88%87%e6%ad%a3%e5%89%87%e5%8c%96%20%28Regularization%20in%20Deep%20Learning%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_22%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2010%29%20%e5%9c%96%20%28Graph%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_10%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_22%2f"
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_10%2f"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_22%2f&title=%28Day%2022%29%20%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e4%b8%ad%e7%9a%84%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%88%87%e6%ad%a3%e5%89%87%e5%8c%96%20%28Regularization%20in%20Deep%20Learning%29&summary=%e5%9c%a8%e5%89%8d%e5%b9%be%e5%a4%a9%e7%9a%84%e6%96%87%e7%ab%a0%e8%a3%a1%ef%bc%8c%e6%88%91%e5%80%91%e5%b7%b2%e7%b6%93%e5%be%9e%e7%b7%9a%e6%80%a7%e8%bf%b4%e6%ad%b8%e3%80%81%e9%82%8f%e8%bc%af%e8%bf%b4%e6%ad%b8%e4%b8%80%e8%b7%af%e8%b5%b0%e5%88%b0%20CNN%20%28%e5%8d%b7%e7%a9%8d%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%29%ef%bc%8c%e9%80%90%e6%ad%a5%e9%ab%94%e9%a9%97%e4%ba%86%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e8%88%87%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e7%9a%84%e4%b8%8d%e5%90%8c%e3%80%82%e5%88%b0%e4%ba%86%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e9%9a%8e%e6%ae%b5%ef%bc%8c%e6%a8%a1%e5%9e%8b%e7%9a%84%e8%a4%87%e9%9b%9c%e5%ba%a6%e5%be%80%e5%be%80%e5%a4%a7%e5%b9%85%e5%a2%9e%e5%8a%a0%ef%bc%8c%e5%8f%83%e6%95%b8%e6%95%b8%e9%87%8f%e5%8b%95%e8%bc%92%e4%b8%8a%e7%99%be%e8%90%ac%e7%94%9a%e8%87%b3%e4%b8%8a%e5%84%84%ef%bc%8c%e9%80%99%e4%b9%9f%e5%b8%b6%e4%be%86%e4%ba%86%e4%b8%80%e5%80%8b%e9%9d%9e%e5%b8%b8%e5%9a%b4%e9%87%8d%e7%9a%84%e5%95%8f%e9%a1%8c%3a%20%e9%81%8e%e6%93%ac%e5%90%88%20%28Overfitting%29%e3%80%82&source=%28Day%2022%29%20%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e4%b8%ad%e7%9a%84%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%88%87%e6%ad%a3%e5%89%87%e5%8c%96%20%28Regularization%20in%20Deep%20Learning%29"
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_10%2f&title=%28Day%2010%29%20%e5%9c%96%20%28Graph%29&summary=%e9%80%99%e6%98%af%e8%b3%87%e6%96%99%e7%b5%90%e6%a7%8b%e7%9a%84%e6%9c%80%e5%be%8c%e4%b8%80%e7%af%87%ef%bc%8c%e6%98%8e%e5%a4%a9%e9%96%8b%e5%a7%8b%e9%80%b2%e5%85%a5%e6%9c%ac%e7%b3%bb%e5%88%97%e7%9a%84%e9%87%8d%e9%bb%9e%e9%a9%97%e7%ae%97%e6%b3%95%ef%bc%8c%e5%89%8d%e9%9d%a2%e5%b9%be%e5%a4%a9%ef%bc%8c%e6%88%91%e5%80%91%e4%bb%8b%e7%b4%b9%e4%ba%86%e5%90%84%e7%a8%ae%e6%a8%b9%e7%b5%90%e6%a7%8b%20Binary%20Tree%e3%80%81Balanced%20Tree%ef%bc%8c%e4%bb%a5%e5%8f%8a%e5%85%b6%e4%bb%96%e8%a1%8d%e7%94%9f%e6%a8%b9%e3%80%82%e8%80%8c%e6%a8%b9%e6%98%af%e4%b8%80%e7%a8%ae%e7%89%b9%e6%ae%8a%e7%9a%84%e5%9c%96%e7%b5%90%e6%a7%8b%ef%bc%8c%e4%bb%8a%e5%a4%a9%e6%88%91%e5%80%91%e6%ad%a3%e5%bc%8f%e9%80%b2%e5%85%a5%20Graph%20%e7%9a%84%e4%b8%96%e7%95%8c%e3%80%82&source=%28Day%2010%29%20%e5%9c%96%20%28Graph%29"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
     </li>
 
     <li class="share__item">
       <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_22%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2022%29%20%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e4%b8%ad%e7%9a%84%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%88%87%e6%ad%a3%e5%89%87%e5%8c%96%20%28Regularization%20in%20Deep%20Learning%29"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_10%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2010%29%20%e5%9c%96%20%28Graph%29"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
     </li>
@@ -299,39 +387,6 @@
 <div class="section-related">
   <h4 class="section-related__title">You may also like...</h4>
   <div class="row grid">
-    
-      <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_10/">(Day 10) 圖 (Graph)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-08T00:00:00&#43;08:00">8 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">這是資料結構的最後一篇，明天開始進入本系列的重點驗算法，前面幾天，我們介紹了各種樹結構 Binary Tree、Balanced Tree，以及其他衍生樹。而樹是一種特殊的圖結構，今天我們正式進入 Graph 的世界。</p>
-  </div>
-
-
-</div>
     
       <div class="article col col-6 col-t-12 animate">
 
@@ -361,6 +416,39 @@
     </div>
   
     <p class="article__excerpt">在前面兩天，粗淺的介紹了 Binary Tree 與 Balanced Tree，今天更粗淺的介紹一下其他樹，因為本系列只是要做一個拋磚引玉的動作，如果讀者對於資料結構有興趣，建議可以買書來研讀。</p>
+  </div>
+
+
+</div>
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_8/">(Day 8) 平衡樹 (Balanced Tree)</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-09-06T00:00:00&#43;08:00">6 Sep, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">1 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">Balanced Tree 是一種特殊的二元樹結構，旨在保持樹的高度盡可能低，以提高操作效率。常見的平衡樹包括 AVL 樹、紅黑樹和 B 樹等。以下是關於平衡樹的詳細介紹。</p>
   </div>
 
 

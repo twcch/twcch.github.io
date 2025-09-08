@@ -6,8 +6,15 @@
     <description>Recent content in 快速掌握資料結構與演算法 on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 07 Sep 2025 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 08 Sep 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>(Day 10) 圖 (Graph)</title>
+      <link>http://twcch.io/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_10/</link>
+      <pubDate>Mon, 08 Sep 2025 00:00:00 +0800</pubDate>
+      <guid>http://twcch.io/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_10/</guid>
+      <description>&lt;p&gt;這是資料結構的最後一篇，明天開始進入本系列的重點驗算法，前面幾天，我們介紹了各種樹結構 Binary Tree、Balanced Tree，以及其他衍生樹。而樹是一種特殊的圖結構，今天我們正式進入 Graph 的世界。&lt;/p&gt;&#xA;&lt;p&gt;圖是比樹更一般化的資料結構，能表示任何實體之間的關係，例如:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;社群網路 (人與人之間的連結)&lt;/li&gt;&#xA;&lt;li&gt;地圖 (城市與道路)&lt;/li&gt;&#xA;&lt;li&gt;網頁 (網頁與超連結)&lt;/li&gt;&#xA;&lt;li&gt;電腦網路 (節點與連線)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;理解圖結構，幾乎等於打開了資料結構與演算法的第二扇大門。&lt;/p&gt;&#xA;&lt;h2 id=&#34;基本定義&#34;&gt;基本定義&lt;/h2&gt;&#xA;&lt;p&gt;圖 (Graph) 由以下兩個元素組成:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;V (Vertices): 頂點 (節點, nodes)&lt;/li&gt;&#xA;&lt;li&gt;E (Edges): 邊 (連線, edges)，用來表示兩個頂點之間的關係&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;數學上通常記為:&lt;/p&gt;&#xA;&lt;p&gt;$$&#xA;G = (V, E)&#xA;$$&lt;/p&gt;&#xA;&lt;h2 id=&#34;圖的分類&#34;&gt;圖的分類&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;有向圖 (Directed Graph) vs 無向圖 (Undirected Graph)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;有向圖的邊有方向，例如 Twitter 的「追蹤關係」。&lt;/li&gt;&#xA;&lt;li&gt;無向圖的邊無方向，例如 Facebook 的「好友關係」。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;加權圖 (Weighted Graph) vs 無權圖 (Unweighted Graph)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;加權圖的邊帶有權重 (weight)，例如道路距離或網路傳輸延遲。&lt;/li&gt;&#xA;&lt;li&gt;無權圖則所有邊的權重相同。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;稠密圖 (Dense Graph) vs 稀疏圖 (Sparse Graph)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;若邊的數量接近 $|V|^2$，稱為稠密圖。&lt;/li&gt;&#xA;&lt;li&gt;若邊的數量遠小於 $|V|^2$，稱為稀疏圖。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;循環圖 (Cyclic Graph) vs 非循環圖 (Acyclic Graph)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;有迴路的圖稱為循環圖。&lt;/li&gt;&#xA;&lt;li&gt;無迴路的圖則是非循環圖 (例如樹)。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;圖的表示方式&#34;&gt;圖的表示方式&lt;/h2&gt;&#xA;&lt;h3 id=&#34;鄰接矩陣-adjacency-matrix&#34;&gt;鄰接矩陣 (Adjacency Matrix)&lt;/h3&gt;&#xA;&lt;p&gt;使用二維陣列 $A[i][j]$ 表示是否存在一條從節點 i 到節點 j 的邊。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>(Day 9) 其他樹 (Other Trees)</title>
       <link>http://twcch.io/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_9/</link>
