@@ -7,20 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning) | 志謙&#39;s Blog</title>
-  <meta name="description" content="在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。">
+  <title>(Day 13) 選擇排序 (Selection Sort) | 志謙&#39;s Blog</title>
+  <meta name="description" content="選擇排序 (Selection Sort) 是一種簡單直觀的排序演算法。核心概念: 每一輪從尚未排序的元素中挑出最小（或最大）者，放到目前應在的位置，一直重複直到完成。可以把它想成「選拔賽」: 第一輪選出最優放第一名，第二輪從剩下的人選次優放第二名，依此類推。">
 
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning) | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。">
+  <meta name="twitter:title" content="(Day 13) 選擇排序 (Selection Sort) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="選擇排序 (Selection Sort) 是一種簡單直觀的排序演算法。核心概念: 每一輪從尚未排序的元素中挑出最小（或最大）者，放到目前應在的位置，一直重複直到完成。可以把它想成「選拔賽」: 第一輪選出最優放第一名，第二輪從剩下的人選次優放第二名，依此類推。">
   <meta name="twitter:image" content="http://twcch.io/">
 
   
-  <meta property="og:title" content="(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning) | 志謙&#39;s Blog">
-  <meta property="og:description" content="在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。">
+  <meta property="og:title" content="(Day 13) 選擇排序 (Selection Sort) | 志謙&#39;s Blog">
+  <meta property="og:description" content="選擇排序 (Selection Sort) 是一種簡單直觀的排序演算法。核心概念: 每一輪從尚未排序的元素中挑出最小（或最大）者，放到目前應在的位置，一直重複直到完成。可以把它想成「選拔賽」: 第一輪選出最優放第一名，第二輪從剩下的人選次優放第二名，依此類推。">
   <meta property="og:image" content="http://twcch.io/">
 
   
@@ -59,7 +59,7 @@
 
     
     <div class="global-cover">
-      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning)">
+      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 13) 選擇排序 (Selection Sort)">
     </div>
     
 
@@ -138,7 +138,7 @@
 <article class="post container">
 
   <div class="post-head">
-    <h1 class="post-title">(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning)</h1>
+    <h1 class="post-title">(Day 13) 選擇排序 (Selection Sort)</h1>
     <div class="post-meta">
       
       <div class="post-tags">
@@ -146,12 +146,12 @@
         
           <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
         
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">30 天入門常見的機器學習演算法</a>
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">快速掌握資料結構與演算法</a>
         
       </div>
       &nbsp;&bull;&nbsp;
       
-      <time class="post-date" datetime="2025-08-22T00:00:00&#43;08:00">22 Aug, 2025</time>
+      <time class="post-date" datetime="2025-09-11T00:00:00&#43;08:00">11 Sep, 2025</time>
       
         &nbsp;&bull;&nbsp;
         <span class="post-minutes">1 min read</span>
@@ -177,85 +177,98 @@
       </h2>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#為什麼需要正規化與正則化">為什麼需要正規化與正則化?</a>
+    <li><a href="#演算法步驟">演算法步驟</a></li>
+    <li><a href="#範例說明">範例說明</a></li>
+    <li><a href="#程式碼範例">程式碼範例</a></li>
+    <li><a href="#複雜度分析">複雜度分析</a>
       <ul>
-        <li><a href="#正規化-normalization">正規化 (Normalization)</a></li>
-        <li><a href="#正則化-regularization">正則化 (Regularization)</a></li>
+        <li><a href="#時間複雜度">時間複雜度</a></li>
+        <li><a href="#空間複雜度">空間複雜度</a></li>
+        <li><a href="#穩定性">穩定性</a></li>
       </ul>
     </li>
-    <li><a href="#正規化與正則化的互補關係">正規化與正則化的互補關係</a></li>
+    <li><a href="#優缺點">優缺點</a></li>
     <li><a href="#結語">結語</a></li>
     <li><a href="#備註">備註</a></li>
   </ul>
 </nav>
     </div>
     
-    <p>在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。</p>
-<p>今天我們要談的主題「正規化 (Normalization) 與正則化 (Regularization)」，就是專門為了解決這類問題而設計的工具。這兩個詞在中文裡常常被混淆，但在深度學習中有明確的區分:</p>
+    <p>選擇排序 (Selection Sort) 是一種簡單直觀的排序演算法。核心概念: 每一輪從尚未排序的元素中挑出最小（或最大）者，放到目前應在的位置，一直重複直到完成。可以把它想成「選拔賽」: 第一輪選出最優放第一名，第二輪從剩下的人選次優放第二名，依此類推。</p>
+<h2 id="演算法步驟">演算法步驟</h2>
 <ul>
-<li>正規化 (Normalization): 處理資料或中間層輸出的「分布」，讓訓練更穩定。</li>
-<li>正則化 (Regularization): 在模型學習過程中「限制參數自由度」，避免過度擬合。</li>
+<li>從索引 i = 0 開始，掃描區間 [i..n-1] 找到最小值的索引 min_idx，把 arr[i] 與 arr[min_idx] 交換。</li>
+<li>將 i 前進一格，重複步驟 1，直到 i = n-1 為止。</li>
+<li>全部就緒時，陣列即為遞增序。</li>
 </ul>
-<p>可以把它們理解成:</p>
+<p>由於每一輪至少能確定一個元素的最終位置，總共需要執行 n-1 輪。</p>
+<h2 id="範例說明">範例說明</h2>
+<p>以序列 [29, 10, 14, 37, 13] 為例:</p>
 <ul>
-<li>正規化是「讓訓練跑得順暢」</li>
-<li>正則化是「讓模型不要學壞」</li>
+<li>全陣列最小值是 10，與開頭 29 交換 → [10, 29, 14, 37, 13]</li>
+<li>在剩餘 [29, 14, 37, 13] 中最小是 13，與 29 交換 → [10, 13, 14, 37, 29]</li>
+<li>在剩餘 [14, 37, 29] 中最小是 14，位置不變 → [10, 13, 14, 37, 29]</li>
+<li>在剩餘 [37, 29] 中最小是 29，與 37 交換 → [10, 13, 14, 29, 37]</li>
+<li>完成</li>
 </ul>
-<h2 id="為什麼需要正規化與正則化">為什麼需要正規化與正則化?</h2>
-<p>深度學習的挑戰主要來自於以下幾點:</p>
-<ol>
-<li>參數數量龐大
+<h2 id="程式碼範例">程式碼範例</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">selection_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">min_idx</span> <span class="o">=</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">min_idx</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">min_idx</span> <span class="o">=</span> <span class="n">j</span>
+</span></span><span class="line"><span class="cl">        <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">min_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">min_idx</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">arr</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">29</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">13</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">selection_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>  <span class="c1"># 輸出: [10, 13, 14, 29, 37]</span>
+</span></span></code></pre></div><h2 id="複雜度分析">複雜度分析</h2>
+<h3 id="時間複雜度">時間複雜度</h3>
 <ul>
-<li>FCNN、CNN、RNN 等模型的參數動輒上百萬，模型表達能力非常強。這雖然能學習複雜模式，但也極容易記住「訓練資料」而不是「一般化規律」。</li>
+<li>最佳情況: O(n^2)</li>
+<li>最壞情況: O(n^2)</li>
+<li>平均情況: O(n^2)</li>
 </ul>
-</li>
-<li>梯度傳遞問題
+<p>說明：即使資料本來已排序，外圈第 i 輪仍需在 [i..n-1] 全掃描以確認最小值，無法提前終止。</p>
+<h3 id="空間複雜度">空間複雜度</h3>
 <ul>
-<li>深層網路容易遇到梯度消失或爆炸，導致學習不穩定。</li>
-<li>即便是設計良好的激活函數 (如 ReLU)，也可能因資料分布不均而造成某些神經元失效。</li>
+<li>額外空間：O(1)（原地排序，不需輔助結構）</li>
 </ul>
-</li>
-<li>資料有限
+<h3 id="穩定性">穩定性</h3>
 <ul>
-<li>真實世界中，資料集往往有限，無法支撐一個龐大模型完全「正確」學習。若沒有適當限制，模型就會死記硬背訓練資料，導致測試集表現不佳。</li>
+<li>不穩定。因為「把最小值與前端元素交換」可能改變相同鍵值的相對次序。例：[4a, 5, 4b] 若選到的是後面的 4b 與前面的 4a 交換，排序後會變成 [4b, 5, 4a]，相對順序被打亂。</li>
 </ul>
-</li>
-</ol>
-<p>為了應對這些問題，正規化與正則化技術被廣泛應用在深度學習的訓練流程中。</p>
-<h3 id="正規化-normalization">正規化 (Normalization)</h3>
-<p>正規化的核心目標是: 讓輸入資料或中間層輸出的數值保持在合理範圍內，以便模型更容易學習。在模型訓練前，我們通常會對輸入資料進行縮放，例如:</p>
-<ul>
-<li>Min-Max Scaling</li>
-<li>Z-score Standardization</li>
-</ul>
-<h3 id="正則化-regularization">正則化 (Regularization)</h3>
-<p>正則化的核心目標是：避免模型過擬合，提升泛化能力。</p>
-<ul>
-<li>L1 與 L2 正則化</li>
-<li>Dropout</li>
-</ul>
-<h2 id="正規化與正則化的互補關係">正規化與正則化的互補關係</h2>
-<p>雖然名稱相似，但正規化與正則化針對的問題不同:</p>
-<ul>
-<li>正規化 → 解決訓練穩定性、加速收斂</li>
-<li>正則化 → 解決過擬合、提升泛化</li>
-</ul>
-<p>在實務上，它們通常是 同時使用 的。例如:</p>
-<ul>
-<li>CNN: 資料正規化 + Batch Normalization + Dropout + Weight Decay</li>
-<li>RNN/Transformer: Layer Normalization + Early Stopping + Data Augmentation</li>
-</ul>
+<h2 id="優缺點">優缺點</h2>
+<table>
+  <thead>
+      <tr>
+          <th>面向</th>
+          <th>說明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>優點</td>
+          <td>實作容易、流程清楚；原地排序 O(1)；每輪最多一次交換，交換成本低</td>
+      </tr>
+      <tr>
+          <td>缺點</td>
+          <td>無論資料狀態如何，掃描成本固定 → O(n^2)；不穩定</td>
+      </tr>
+  </tbody>
+</table>
 <h2 id="結語">結語</h2>
-<p>深度學習之所以能夠在近十年迅速崛起，不只是因為 GPU 算力提升或資料量增大，還有賴於一系列 正規化與正則化技術 的發展，讓深度模型可以被穩定地訓練並具備良好的泛化能力。</p>
-<p>可以這樣理解:</p>
+<p>選擇排序的價值在於思路清晰與交換成本低，雖然整體效率不佳 $O(n^2)$，但非常適合用來與其他基礎排序做對照:</p>
 <ul>
-<li>沒有正規化，模型可能訓練不起來</li>
-<li>沒有正則化，模型可能學壞掉</li>
+<li>和 Bubble 對比「交換策略」與是否能早停；</li>
+<li>為 Insertion 鋪路，理解「已排序區/未排序區」的概念；</li>
+<li>最後過渡到 O(n log n) 等級的演算法 (如 Merge/Quick)，理解為什麼在大規模資料上必須升級工具。</li>
 </ul>
-<p>在進入 RNN、LSTM、Transformer 之前，理解這些基礎的訓練技巧，能讓我們更清楚地看到深度學習從「能跑」到「能用」的過程。</p>
 <h2 id="備註">備註</h2>
 <ul>
-<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8468">iThome 鐵人賽 2025 - 快速掌握資料結構與演算法</a></li>
 </ul>
 
   </div>
@@ -263,23 +276,23 @@
   <div class="post__share">
   <ul class="share__list list-reset">
     <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2022%29%20%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e4%b8%ad%e7%9a%84%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%88%87%e6%ad%a3%e5%89%87%e5%8c%96%20%28Regularization%20in%20Deep%20Learning%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_22%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2013%29%20%e9%81%b8%e6%93%87%e6%8e%92%e5%ba%8f%20%28Selection%20Sort%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_13%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_22%2f"
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_13%2f"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_22%2f&title=%28Day%2022%29%20%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e4%b8%ad%e7%9a%84%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%88%87%e6%ad%a3%e5%89%87%e5%8c%96%20%28Regularization%20in%20Deep%20Learning%29&summary=%e5%9c%a8%e5%89%8d%e5%b9%be%e5%a4%a9%e7%9a%84%e6%96%87%e7%ab%a0%e8%a3%a1%ef%bc%8c%e6%88%91%e5%80%91%e5%b7%b2%e7%b6%93%e5%be%9e%e7%b7%9a%e6%80%a7%e8%bf%b4%e6%ad%b8%e3%80%81%e9%82%8f%e8%bc%af%e8%bf%b4%e6%ad%b8%e4%b8%80%e8%b7%af%e8%b5%b0%e5%88%b0%20CNN%20%28%e5%8d%b7%e7%a9%8d%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%29%ef%bc%8c%e9%80%90%e6%ad%a5%e9%ab%94%e9%a9%97%e4%ba%86%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e8%88%87%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e7%9a%84%e4%b8%8d%e5%90%8c%e3%80%82%e5%88%b0%e4%ba%86%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e9%9a%8e%e6%ae%b5%ef%bc%8c%e6%a8%a1%e5%9e%8b%e7%9a%84%e8%a4%87%e9%9b%9c%e5%ba%a6%e5%be%80%e5%be%80%e5%a4%a7%e5%b9%85%e5%a2%9e%e5%8a%a0%ef%bc%8c%e5%8f%83%e6%95%b8%e6%95%b8%e9%87%8f%e5%8b%95%e8%bc%92%e4%b8%8a%e7%99%be%e8%90%ac%e7%94%9a%e8%87%b3%e4%b8%8a%e5%84%84%ef%bc%8c%e9%80%99%e4%b9%9f%e5%b8%b6%e4%be%86%e4%ba%86%e4%b8%80%e5%80%8b%e9%9d%9e%e5%b8%b8%e5%9a%b4%e9%87%8d%e7%9a%84%e5%95%8f%e9%a1%8c%3a%20%e9%81%8e%e6%93%ac%e5%90%88%20%28Overfitting%29%e3%80%82&source=%28Day%2022%29%20%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e4%b8%ad%e7%9a%84%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%88%87%e6%ad%a3%e5%89%87%e5%8c%96%20%28Regularization%20in%20Deep%20Learning%29"
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_13%2f&title=%28Day%2013%29%20%e9%81%b8%e6%93%87%e6%8e%92%e5%ba%8f%20%28Selection%20Sort%29&summary=%e9%81%b8%e6%93%87%e6%8e%92%e5%ba%8f%20%28Selection%20Sort%29%20%e6%98%af%e4%b8%80%e7%a8%ae%e7%b0%a1%e5%96%ae%e7%9b%b4%e8%a7%80%e7%9a%84%e6%8e%92%e5%ba%8f%e6%bc%94%e7%ae%97%e6%b3%95%e3%80%82%e6%a0%b8%e5%bf%83%e6%a6%82%e5%bf%b5%3a%20%e6%af%8f%e4%b8%80%e8%bc%aa%e5%be%9e%e5%b0%9a%e6%9c%aa%e6%8e%92%e5%ba%8f%e7%9a%84%e5%85%83%e7%b4%a0%e4%b8%ad%e6%8c%91%e5%87%ba%e6%9c%80%e5%b0%8f%ef%bc%88%e6%88%96%e6%9c%80%e5%a4%a7%ef%bc%89%e8%80%85%ef%bc%8c%e6%94%be%e5%88%b0%e7%9b%ae%e5%89%8d%e6%87%89%e5%9c%a8%e7%9a%84%e4%bd%8d%e7%bd%ae%ef%bc%8c%e4%b8%80%e7%9b%b4%e9%87%8d%e8%a4%87%e7%9b%b4%e5%88%b0%e5%ae%8c%e6%88%90%e3%80%82%e5%8f%af%e4%bb%a5%e6%8a%8a%e5%ae%83%e6%83%b3%e6%88%90%e3%80%8c%e9%81%b8%e6%8b%94%e8%b3%bd%e3%80%8d%3a%20%e7%ac%ac%e4%b8%80%e8%bc%aa%e9%81%b8%e5%87%ba%e6%9c%80%e5%84%aa%e6%94%be%e7%ac%ac%e4%b8%80%e5%90%8d%ef%bc%8c%e7%ac%ac%e4%ba%8c%e8%bc%aa%e5%be%9e%e5%89%a9%e4%b8%8b%e7%9a%84%e4%ba%ba%e9%81%b8%e6%ac%a1%e5%84%aa%e6%94%be%e7%ac%ac%e4%ba%8c%e5%90%8d%ef%bc%8c%e4%be%9d%e6%ad%a4%e9%a1%9e%e6%8e%a8%e3%80%82&source=%28Day%2013%29%20%e9%81%b8%e6%93%87%e6%8e%92%e5%ba%8f%20%28Selection%20Sort%29"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
     </li>
 
     <li class="share__item">
       <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_22%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2022%29%20%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e4%b8%ad%e7%9a%84%e6%ad%a3%e8%a6%8f%e5%8c%96%e8%88%87%e6%ad%a3%e5%89%87%e5%8c%96%20%28Regularization%20in%20Deep%20Learning%29"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_13%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2013%29%20%e9%81%b8%e6%93%87%e6%8e%92%e5%ba%8f%20%28Selection%20Sort%29"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
     </li>
@@ -292,39 +305,6 @@
 <div class="section-related">
   <h4 class="section-related__title">You may also like...</h4>
   <div class="row grid">
-    
-      <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_13/">(Day 13) 選擇排序 (Selection Sort)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-11T00:00:00&#43;08:00">11 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">選擇排序 (Selection Sort) 是一種簡單直觀的排序演算法。核心概念: 每一輪從尚未排序的元素中挑出最小（或最大）者，放到目前應在的位置，一直重複直到完成。可以把它想成「選拔賽」: 第一輪選出最優放第一名，第二輪從剩下的人選次優放第二名，依此類推。</p>
-  </div>
-
-
-</div>
     
       <div class="article col col-6 col-t-12 animate">
 
@@ -354,6 +334,39 @@
     </div>
   
     <p class="article__excerpt">終於進入演算法的部分，預計會介紹 3~4 個很常見的排序演算法，所以光排序這個主題就會用掉 3~4 天的篇幅，今天除了介紹 Bubble Sort 外，會先簡單介紹一下排序，讓各位讀者更好地認識排序演算法。</p>
+  </div>
+
+
+</div>
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_11/">(Day 11) 演算法評估 (Algorithm Analysis)</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-09-09T00:00:00&#43;08:00">9 Sep, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">2 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">到目前為止，我們已經介紹了各種資料結構 (Array、Linked List、Stack、Queue、Tree、Graph)，也練習了基本操作。但光有資料結構還不夠，要能設計演算法，就必須懂得如何評估一個演算法的效率。</p>
   </div>
 
 
