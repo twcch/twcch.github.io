@@ -7,21 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>部落格 | 志謙&#39;s Blog</title>
-  <meta name="description" content="">
+  <title>(Day 14) 插入排序 (Insertion Sort) | 志謙&#39;s Blog</title>
+  <meta name="description" content="插入排序 (Insertion Sort) 也是一種簡單直觀的排序演算法。它的工作原理是通過構建有序序列，對於未排序資料，在已排序序列中從後向前掃描，找到相應位置並插入。">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/posts/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="部落格 | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="我是志謙，目前是學生，專注於機器學習與深度學習研究，也經營自媒體，部落格主要分享電腦科學技術文章，期待與各位交流。">
+  <meta name="twitter:title" content="(Day 14) 插入排序 (Insertion Sort) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="插入排序 (Insertion Sort) 也是一種簡單直觀的排序演算法。它的工作原理是通過構建有序序列，對於未排序資料，在已排序序列中從後向前掃描，找到相應位置並插入。">
   <meta name="twitter:image" content="http://twcch.io/">
 
   
-  <meta property="og:title" content="部落格 | 志謙&#39;s Blog">
-  <meta property="og:description" content="我是志謙，目前是學生，專注於機器學習與深度學習研究，也經營自媒體，部落格主要分享電腦科學技術文章，期待與各位交流。">
+  <meta property="og:title" content="(Day 14) 插入排序 (Insertion Sort) | 志謙&#39;s Blog">
+  <meta property="og:description" content="插入排序 (Insertion Sort) 也是一種簡單直觀的排序演算法。它的工作原理是通過構建有序序列，對於未排序資料，在已排序序列中從後向前掃描，找到相應位置並插入。">
   <meta property="og:image" content="http://twcch.io/">
 
   
@@ -60,7 +59,7 @@
 
     
     <div class="global-cover">
-      <img src="http://twcch.io/images/common/page_cover.jpg" alt="部落格">
+      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 14) 插入排序 (Insertion Sort)">
     </div>
     
 
@@ -88,7 +87,7 @@
             
             
               <li class="nav__item">
-                <a href="/posts/" class="nav__link active-link">所有文章</a>
+                <a href="/posts/" class="nav__link ">所有文章</a>
               </li>
             
             
@@ -136,50 +135,198 @@
 
 
 
-<div class="page container">
+<article class="post container">
 
-  <div class="page-head">
-    <h1 class="page-title">部落格</h1>
-    
-  </div>
-
-  <div class="page__blog">
-    <div class="row">
+  <div class="post-head">
+    <h1 class="post-title">(Day 14) 插入排序 (Insertion Sort)</h1>
+    <div class="post-meta">
       
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_14/">(Day 14) 插入排序 (Insertion Sort)</a>
-    </h2>
-  
-    <div class="article__meta">
+      <div class="post-tags">
+        Publish in&nbsp;
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">快速掌握資料結構與演算法</a>
+        
+      </div>
+      &nbsp;&bull;&nbsp;
       
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-12T00:00:00&#43;08:00">12 Sep, 2025</time>
+      <time class="post-date" datetime="2025-09-12T00:00:00&#43;08:00">12 Sep, 2025</time>
       
         &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
+        <span class="post-minutes">1 min read</span>
       
     </div>
-  
-    <p class="article__excerpt">插入排序 (Insertion Sort) 也是一種簡單直觀的排序演算法。它的工作原理是通過構建有序序列，對於未排序資料，在已排序序列中從後向前掃描，找到相應位置並插入。</p>
+    
   </div>
 
+  
 
+  
+
+  
+
+  <div class="post__content">
+    
+    <div class="table-of-contents" id="table-of-contents">
+      <h2 class="table-of-contents__title">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="margin-right: 8px; vertical-align: -2px;">
+          <path d="M2 3h12a1 1 0 110 2H2a1 1 0 110-2zm0 4h12a1 1 0 110 2H2a1 1 0 110-2zm0 4h12a1 1 0 110 2H2a1 1 0 110-2z"/>
+        </svg>
+        目錄
+      </h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#演算法步驟">演算法步驟</a></li>
+    <li><a href="#範例">範例</a></li>
+    <li><a href="#程式碼範例">程式碼範例</a></li>
+    <li><a href="#複雜度分析">複雜度分析</a></li>
+    <li><a href="#優缺點">優缺點</a></li>
+    <li><a href="#結語">結語</a></li>
+    <li><a href="#備註">備註</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    <h1 id="day-14-插入排序-insertion-sort">(Day 14) 插入排序 (Insertion Sort)</h1>
+<p>插入排序 (Insertion Sort) 也是一種簡單直觀的排序演算法。它的工作原理是通過構建有序序列，對於未排序資料，在已排序序列中從後向前掃描，找到相應位置並插入。</p>
+<h2 id="演算法步驟">演算法步驟</h2>
+<ol>
+<li>從第二個元素開始，將該元素與前面的元素進行比較。</li>
+<li>如果該元素比前面的元素小，則將前面的元素往後移動一位。</li>
+<li>重複步驟2，直到找到該元素應插入的位置。</li>
+<li>將該元素插入到正確的位置。</li>
+<li>重複步驟1~4，直到所有元素都排序完成。</li>
+</ol>
+<h2 id="範例">範例</h2>
+<p>假設有一個陣列 $A = [5, 2, 4, 6, 1, 3]$，插入排序的過程如下:</p>
+<table>
+  <thead>
+      <tr>
+          <th>步驟</th>
+          <th>陣列狀態</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>初始</td>
+          <td>5, 2, 4, 6, 1, 3</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>2, 5, 4, 6, 1, 3</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>2, 4, 5, 6, 1, 3</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>2, 4, 5, 6, 1, 3</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>1, 2, 4, 5, 6, 3</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>1, 2, 3, 4, 5, 6</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="程式碼範例">程式碼範例</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">insertion_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">key</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">key</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">arr</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 測試</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">insertion_sort</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
+</span></span></code></pre></div><h2 id="複雜度分析">複雜度分析</h2>
+<ul>
+<li>最佳情況：$O(n)$（已排序）</li>
+<li>最壞情況：$O(n^2)$（反向排序）</li>
+<li>穩定性：穩定排序</li>
+</ul>
+<h2 id="優缺點">優缺點</h2>
+<table>
+  <thead>
+      <tr>
+          <th>優點</th>
+          <th>缺點</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>實作簡單</td>
+          <td>效率較低，適合小型資料集</td>
+      </tr>
+      <tr>
+          <td>穩定排序</td>
+          <td>不適合大型資料集</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="結語">結語</h2>
+<p>插入排序雖然與氣泡排序、選擇排序一樣屬於 O(n^2) 的基礎排序演算法，但它的特性更貼近「人類整理資料」的直覺思維：就像整理撲克牌一樣，每次抽一張牌，插入到已經排好的手牌中。</p>
+<p>它的最大優勢在於:</p>
+<ul>
+<li>小型資料集: 程式碼簡單、常數因子小，在十幾筆甚至數十筆資料時，表現往往不輸更複雜的演算法。</li>
+<li>近乎有序的資料: 最佳情況下僅需一次掃描，時間複雜度可降到 O(n)，非常高效。</li>
+<li>穩定性: 插入排序是穩定排序，能保證相同元素的相對順序不被破壞。</li>
+</ul>
+<p>不過它的瓶頸也很明顯：在大型或高度無序的資料上，仍然需要大量比較與移動，最壞情況下的複雜度依然是 O(n^2)。因此，在真實應用中，插入排序常被用於:</p>
+<ul>
+<li>教學用途，幫助初學者理解排序與資料移動的直觀過程；</li>
+<li>作為高效排序演算法 (例如快速排序、Timsort) 的子程序，專門處理小規模或幾乎有序的子區間，提升整體效能。</li>
+</ul>
+<p>總體來說，插入排序是「簡單但不容忽視」的演算法。雖然它不是解決大型問題的最佳選擇，但它在小規模場景或混合演算法設計中，依然有獨特的價值。</p>
+<h2 id="備註">備註</h2>
+<ul>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8468">iThome 鐵人賽 2025 - 快速掌握資料結構與演算法</a></li>
+</ul>
+
+  </div>
+
+  <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2014%29%20%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8f%20%28Insertion%20Sort%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_14%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_14%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_14%2f&title=%28Day%2014%29%20%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8f%20%28Insertion%20Sort%29&summary=%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8f%20%28Insertion%20Sort%29%20%e4%b9%9f%e6%98%af%e4%b8%80%e7%a8%ae%e7%b0%a1%e5%96%ae%e7%9b%b4%e8%a7%80%e7%9a%84%e6%8e%92%e5%ba%8f%e6%bc%94%e7%ae%97%e6%b3%95%e3%80%82%e5%ae%83%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86%e6%98%af%e9%80%9a%e9%81%8e%e6%a7%8b%e5%bb%ba%e6%9c%89%e5%ba%8f%e5%ba%8f%e5%88%97%ef%bc%8c%e5%b0%8d%e6%96%bc%e6%9c%aa%e6%8e%92%e5%ba%8f%e8%b3%87%e6%96%99%ef%bc%8c%e5%9c%a8%e5%b7%b2%e6%8e%92%e5%ba%8f%e5%ba%8f%e5%88%97%e4%b8%ad%e5%be%9e%e5%be%8c%e5%90%91%e5%89%8d%e6%8e%83%e6%8f%8f%ef%bc%8c%e6%89%be%e5%88%b0%e7%9b%b8%e6%87%89%e4%bd%8d%e7%bd%ae%e4%b8%a6%e6%8f%92%e5%85%a5%e3%80%82&source=%28Day%2014%29%20%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8f%20%28Insertion%20Sort%29"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_14%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2014%29%20%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8f%20%28Insertion%20Sort%29"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+    </li>
+  </ul>
 </div>
-      
-        <div class="article col col-6 col-t-12 animate">
+
+  
+
+
+<div class="section-related">
+  <h4 class="section-related__title">You may also like...</h4>
+  <div class="row grid">
+    
+      <div class="article col col-6 col-t-12 animate">
 
   <div class="article__content">
     
@@ -211,8 +358,8 @@
 
 
 </div>
-      
-        <div class="article col col-6 col-t-12 animate">
+    
+      <div class="article col col-6 col-t-12 animate">
 
   <div class="article__content">
     
@@ -244,1574 +391,50 @@
 
 
 </div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
     
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_11/">(Day 11) 演算法評估 (Algorithm Analysis)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-09T00:00:00&#43;08:00">9 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">到目前為止，我們已經介紹了各種資料結構 (Array、Linked List、Stack、Queue、Tree、Graph)，也練習了基本操作。但光有資料結構還不夠，要能設計演算法，就必須懂得如何評估一個演算法的效率。</p>
   </div>
-
-
 </div>
-      
-        <div class="article col col-6 col-t-12 animate">
 
-  <div class="article__content">
-    
+
+</article>
+
+
+
   
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_10/">(Day 10) 圖 (Graph)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-08T00:00:00&#43;08:00">8 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">這是資料結構的最後一篇，明天開始進入本系列的重點驗算法，前面幾天，我們介紹了各種樹結構 Binary Tree、Balanced Tree，以及其他衍生樹。而樹是一種特殊的圖結構，今天我們正式進入 Graph 的世界。</p>
+
+<div class="container">
+  <div class="show-comments">
+    <button class="button" id="show-comments-button" onclick="disqus();return false;">Comments</button>
   </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
   
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_9/">(Day 9) 其他樹 (Other Trees)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-07T00:00:00&#43;08:00">7 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在前面兩天，粗淺的介紹了 Binary Tree 與 Balanced Tree，今天更粗淺的介紹一下其他樹，因為本系列只是要做一個拋磚引玉的動作，如果讀者對於資料結構有興趣，建議可以買書來研讀。</p>
+  <div id="disqus_thread" class="post__comments">
+    <div id="disqus_empty"></div>
   </div>
-
-
+  
+  <script>
+    var disqus_loaded = false;
+    var disqus_shortname = 'twcch';
+    var disqus_container = document.getElementById("disqus_thread");
+    function disqus() {
+      if (!disqus_loaded) {
+        disqus_loaded = true;
+        var e = document.createElement("script");
+        e.type = "text/javascript";
+        e.async = true;
+        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0])
+          .appendChild(e);
+        
+        document.getElementById("show-comments-button").style.display = "none";
+        
+        disqus_container.classList.add("is-open");
+      }
+    }
+  </script>
 </div>
-      
-        <div class="article col col-6 col-t-12 animate">
 
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_8/">(Day 8) 平衡樹 (Balanced Tree)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-06T00:00:00&#43;08:00">6 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">Balanced Tree 是一種特殊的二元樹結構，旨在保持樹的高度盡可能低，以提高操作效率。常見的平衡樹包括 AVL 樹、紅黑樹和 B 樹等。以下是關於平衡樹的詳細介紹。</p>
-  </div>
 
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_7/">(Day 7) 二元樹 (Binary Tree)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-05T00:00:00&#43;08:00">5 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">前面幾天所介紹的資料結構就是線性的資料結構，今天開始所介紹的樹資料節構是屬於非線性資料結構，也非常的重要。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_6/">(Day 6) 隊列 (Queue)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-04T00:00:00&#43;08:00">4 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">Queue (佇列) 與 Stack 一樣，是一種線性資料結構，但它遵循的是先進先出 (First-In-First-Out; FIFO) 的規則。你可以把 Queue 想像成排隊買票: 最早排隊的人會最先買到票並離開，而新加入的人只能站在隊伍最後。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_5/">(Day 5) 堆疊 (Stack)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-03T00:00:00&#43;08:00">3 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">Stack (堆疊) 是一種受限的線性資料結構，遵循先進後出 (Last-In-First-Out; LIFO) 的資料結構。你可想像有一疊盤子，最後放上去的盤子會最先被拿走，所以 Stack 只允許在「頂端」進行操作，簡單來說就是你不能看或是取非最上層的元素。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_4/">(Day 4) 鏈表 (Linked List)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-02T00:00:00&#43;08:00">2 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">3 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">Linked List (鏈表) 是一種常見的資料結構，用來儲存一系列的元素。與陣列 (Array) 不同，Linked List 的元素稱為節點 (Node) 在記憶體中不必是連續的。每個節點除了儲存資料外，還會儲存一個指向下一個節點的參考 (指標)。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/2025/articles_25090201/">讀書無用論，真的無用嗎?</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/heart-notes/" class="article__tag">Heart Notes</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-02T00:00:00&#43;08:00">2 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">前陣子在一個群組裡，我看到一個案例。一位年僅 19 歲的年輕人，沒有繼續升學，而是直接進入一家小型乙方軟體公司工作。他對此洋洋自得，甚至把「不讀書」當成一種優越感，強調「讀書無用」，彷彿他提早進入職場就是成功的證明。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_3/">(Day 3) 矩陣 (Matrix)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-01T00:00:00&#43;08:00">1 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">4 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">我不知道大家看到這天會不會驚訝一下，不是應該接續鏈表 (Linked List) 這是什麼? Matrix 就是 Array 只是我單獨抽出來說明，如果你沒有在學習或處理資料科學相關的，應該不會使用到 Matrix，但是我認為這是一個蠻常被忽略的部分，也就花一點篇幅來介紹它。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_2/">(Day 2) 陣列 (Array)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-31T00:00:00&#43;08:00">31 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">4 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">Array 是一種 Static Data Structure 或稱為 Dense List，它是一種將有序串列的資料結構使用 Contiguous Allocation 來儲存，意味著儲存的元素必須是相同類型，且靜態資料結構的記憶體配置是在編譯時，就必須配置給相關的變數，因此在創建時必須先宣告空間大小。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_1/">(Day 1) 介紹與準備</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-30T00:00:00&#43;08:00">30 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">我遇過很多學習程式語言的人，都一直學框架或是 API 怎麼用，都不是很注重底層的知識，我認為一棟樓要蓋多高取決於地基打得多深，因為框架與 API 會變，但時間複雜度、記憶體模型、資料結構設計是不會變的。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_30/">(Day 30) 系列結尾</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-30T00:00:00&#43;08:00">30 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">終於來到這個系列的最後一天。老實說，如果要我替這 30 天打個分數，我大概只會給自己一個 勉強及格。原因很簡單: 這個系列從一開始就有宏大的規劃與期待，但在實際執行的過程中，遭遇了不少現實挑戰，也暴露了自己在知識深度、寫作規劃與時間管理上的不足。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_29/">(Day 29) 注意力機制 (Attention Mechanism)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-29T00:00:00&#43;08:00">29 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在前一天，我們介紹了 Seq2Seq 架構 (Encoder-Decoder)，它將輸入序列壓縮成一個固定維度的上下文向量 (Context Vector)，再交由解碼器 (Decoder) 逐步生成輸出。這種方法為機器翻譯、摘要生成等任務帶來了突破，但它也有一個致命的缺陷——瓶頸效應 (Bottleneck Problem)。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_28/">(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-28T00:00:00&#43;08:00">28 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在前幾天的文章中，我們依序介紹了 RNN、LSTM、GRU，並討論它們如何建模序列資料。這些模型能夠捕捉序列中的上下文關係，並緩解傳統 RNN 的梯度消失問題。然而，若我們想要處理更複雜的任務——例如機器翻譯 (Machine Translation)，僅僅依靠單向 RNN 或 LSTM 並不夠。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_27/">(Day 27) 閘控循環單元 (Gated Recurrent Unit)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-27T00:00:00&#43;08:00">27 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在前兩篇文章，我們分別介紹了 RNN (Recurrent Neural Network) 與 LSTM (Long Short-Term Memory)。RNN 為序列建模提供了基礎架構，但受限於梯度消失與爆炸問題，難以捕捉長距離依賴；LSTM 則透過引入 記憶單元 (Cell State) 與 門控機制 (Gating Mechanism)，成功緩解了這一問題。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_26/">(Day 26) 長短期記憶網路 (Long Short-Term Memory)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-26T00:00:00&#43;08:00">26 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在前一篇，我們介紹了循環神經網路 (RNN)，並指出了它在處理序列資料時的強大之處：透過「隱藏狀態」將前後資訊連結起來。然而，我們同時也看到了 RNN 的最大瓶頸——梯度消失與梯度爆炸，使得它在長距離依賴 (long-term dependency) 的學習上表現不佳。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_25/">(Day 25) 循環神經網路 (Recurrent Neural Network)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-25T00:00:00&#43;08:00">25 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在前面幾天，我們介紹了全連接神經網路 (FCNN) 與卷積神經網路 (CNN)。這些架構在處理結構化數據或影像資料上非常成功，但若應用到「序列資料」時就顯得不足。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_24/">(Day 24) Adam 優化器 (Adaptive Moment Estimation)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-24T00:00:00&#43;08:00">24 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在前一天，我們整理了深度學習中常見的優化方法，從最基本的隨機梯度下降 (SGD)，到 Momentum、RMSProp、Adagrad 等。今天我們要深入介紹其中最具代表性、也是實務中最常見的優化方法之一——Adam (Adaptive Moment Estimation)。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_23/">(Day 23) 深度學習中的優化方法 (Optimization in Deep Learning)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-23T00:00:00&#43;08:00">23 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在前一篇，我們談到了深度學習中的正規化與正則化，重點在於如何避免過擬合並保持訓練穩定。然而，光是解決過擬合還不夠：在龐大的神經網路裡，我們還得面對另一個關鍵問題——如何有效率地找到參數的最佳解。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_22/">(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-22T00:00:00&#43;08:00">22 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_21/">(Day 21) 卷積神經網絡 (Convolutional Neural Network)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-21T00:00:00&#43;08:00">21 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">3 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在初步暸解全連接神經網絡 (Fully Connected Neural Network) 後，接下來必須介紹的經典架構就是卷積神經網絡 (Convolutional Neural Network; CNN)。卷積神經網絡可以說是深度學習的代表性架構之一，特別是在電腦視覺 (Computer Vision) 領域幾乎無處不在。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_20/">(Day 20) 激活函數 (Activation Function)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-20T00:00:00&#43;08:00">20 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">承接昨天的神經元 (Neuron)，神經元的輸出是線性輸出，若僅停留在這個階段，輸出仍然是線性函數，即便我們把很多神經元堆疊在一起，整體模型仍然等效於一個線性轉換，無法捕捉到真實世界中複雜的非線性關係為了解決這個問題，我們需要引入激活函數 (Activation Function) 可以讓模型學習到更複雜的模式 (非線性)，所以激活函數必須是非線性的，這樣才能跟神經元做搭配。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_19/">(Day 19) 神經元 (Neuron)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-19T00:00:00&#43;08:00">19 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">前一篇我們先介紹了全連接神經網絡 (Fully Connected Neural Network)，相信大家還是不太清楚這是什麼，接下來會用幾天的篇幅一一介紹相關的專有名詞，若要理解神經網路，必須先從最小的組成單位 —— 神經元 (Neuron) 開始。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_18/">(Day 18) 全連接神經網絡 (Fully Connected Neural Network)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-18T00:00:00&#43;08:00">18 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">5 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在進入深度學習的第一步，必須要先認識最基礎的深度學習架構，這個架構稱為: 全連接神經網路 (Fully Connected Neural Network; FCNN)、多層感知機 (Multi-Layer Perceptron; MLP) 這兩個都是指同一個東西，這個架構也是所有深度學習架構的基石，CNN、RNN、Transformer 都可以看作是在 FCNN 上加入特殊結構與限制後的延伸</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_17/">(Day 17) 淺談深度學習 (Deep Learning)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-17T00:00:00&#43;08:00">17 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">我們機器學習的部分還有 XGBoost、PCA、OneClass SVM 都還沒有談，只是篇幅限制，原本規劃深度學習大概就要花 15 篇左右的內容來談談，如果後續有篇幅我再補充。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_16/">(Day 16) K-Means</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-16T00:00:00&#43;08:00">16 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">3 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">今天本來要說極限梯度提升數 (XGBoost)，但是我發現後面的篇幅可能快不夠了，今天開始的內容會調整成，無監督式學習 → 深度學習 → 如果有時間再回來補充 One-Class SVM 跟 XGBoost。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_15/">(Day 15) 隨機森林 (Random Forest)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-15T00:00:00&#43;08:00">15 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">4 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">隨機森林是以「多棵弱學習器 (決策樹)」為基底的集成學習 (Ensemble) 方法，透過資料抽樣 (Bagging) 與特徵隨機子抽樣 (Random Subspace)  降低單棵樹的方差與不穩定性。直覺上，它像是一群專家各自投票: 每位專家 (樹) 看見的資料與特徵都不完全相同，最後以多數決 (分類) 或平均 (回歸) 給出更穩健的預測。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_14/">(Day 14) 決策樹 (Decision Tree)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-14T00:00:00&#43;08:00">14 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">Decision Tree 是一種基於條件分支的監督式學習模型，可用於分類與回歸任務。它透過一連串的「是/否」判斷，將資料不斷切分成更純淨的子集，最終形成一個由節點 (Nodes) 與邊 (Edges) 組成的樹狀結構。直覺上，你可以將它想成一連串的決策問句:「乘客的性別是女性嗎？」 → 是 → 「年齡是否小於 12 歲？」 → 是 → 存活機率高。其最大特色是 可解釋性高，每個決策規則都能清楚對應到特徵與閾值，便於與非技術背景的利害關係人溝通。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_13/">(Day 13) 迴歸任務驗證指標</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-13T00:00:00&#43;08:00">13 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">分類任務有混淆矩陣作為指標的核心基礎，迴歸任務則建立在誤差分佈 (Error Distribution) 之上。所有迴歸指標，都是在真實值與預測值的差異上進行數學運算。迴歸的評估相對分類簡單，沒有多種 TP、FP 的組合，但每個指標關注的面向、對異常值的敏感度、在商業決策上的意義卻各有不同。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_12/">(Day 12) 多元分類任務驗證指標</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-12T00:00:00&#43;08:00">12 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">多元分類任務驗證指標就只是從二元分類任務驗證指標延伸而來，核心概念一樣是二元分類任務驗證指標，而兩者只是在計算內容上有些許差異，所以指標仍然是 Accuracy、Recall、F1-score 等，所以請讀者先將二元分類任務驗證指標熟練後再來看。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_11/">(Day 11) 二元分類任務驗證指標</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-11T00:00:00&#43;08:00">11 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">4 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">今天要介紹的是常見的分類任務驗證指標，會以二元分類問題為例，因為多元分類也是用相同的指標，只是計算方式會有所不同而已，預計會用 2-3 天的篇幅介紹完，分類與迴歸任務的驗證指標；先給各位讀者一個正確的觀念，選指標時必須回到業務背景與資料特性，不要迷信某個數值越高越好，真正有價值的模型評估，是能在技術表現與業務需求之間找到平衡。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_10/">(Day 10) 支援向量機 (Support Vector Machine)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-10T00:00:00&#43;08:00">10 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">6 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">終於來到 SVM，這也是本系列介紹 Machine Learning 中分類演算法的最後一個，當然在機器學習中還有很多的監督式分類演算法，我個人認為相對沒我介紹的這幾個經典，就留給讀者自行學習。從明天開始到進入樹模型之前，我會補充一下，模型 Validation Index 的內容 (用來衡量模型結果好不好)，因為前面飆的有點快，後來有發現這部分也很重要，預計會花 2 ~ 3 天的篇幅來介紹。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_9/">(Day 9) 樸素貝氏分類器 (Naive Bayes Classifier)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-09T00:00:00&#43;08:00">9 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">3 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">前幾天的討論中，我們已經探討了迴歸分析、邏輯迴歸，以及最近兩天介紹的 K-Nearest Neighbors (KNN)。今天要討論的是另一種基礎且直覺性極強的分類演算法: 樸素貝氏分類器 (Naive Bayes Classifier)。儘管樸素貝氏分類器的基本原理非常簡單，甚至經常被視為基礎模型，但在實務應用中，它仍然是許多場合的首選，尤其是在文本分類領域，例如垃圾郵件分類與情感分析。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_8/">(Day 8) K-近鄰 (K-Nearest Neighbors)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-08T00:00:00&#43;08:00">8 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">3 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">K-近鄰 (K-Nearest Neighbors; KNN) 是一種很直學的機器學習演算法。它沒有模型參數、沒有訓練過程，卻可以在某些任務上有不錯的效果。它的核心理念只有一句話: 「你是誰，由你周圍最像你的人決定」。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_7/">(Day 7) 回顧迴歸：從線性邏輯到學習本質</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-07T00:00:00&#43;08:00">7 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">前面 5 天我們聚焦於「回歸系列」模型: 線性迴歸 (Linear Regression)、多項式迴歸 (Polynomial Regression)、正則化迴歸 (Lasso / Ridge / ElasticNet Regression) 以及邏輯迴歸 (Logistic Regression)。雖然它們名稱上都掛著「Regression」，實則涵蓋了連續值預測與分類任務兩大主題。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_6/">(Day 6) 邏輯迴歸 (多項式 &#43; 正規化)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-06T00:00:00&#43;08:00">6 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">3 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在上一篇中，我們深入介紹了邏輯迴歸的模型邏輯、損失函數與分類行為。這篇則要進一步延伸這個經典模型，回答一個關鍵問題: 邏輯迴歸能否結合多項式特徵與正規化機制，來對抗非線性與過擬合問題?</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_5/">(Day 5) 邏輯迴歸 (Logistic Regression)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-05T00:00:00&#43;08:00">5 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">4 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">邏輯迴歸 (Logistic Regression) 是一種常見的分類模型，主要用於預測二元分類或多元分類，有別於先前的線性迴歸是用來預測無邊界的連數據值，而邏輯迴歸間單來說就是預測有邊界的不連續數值，如 [0, 1], [1, 2, 3]。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_4/">(Day 4) 正規化迴歸 (Regularization Regression)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-04T00:00:00&#43;08:00">4 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">3 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">延續昨日的多項式迴歸中，我們觀察到一個現象: 雖然二次特徵提升了模型的表現，但同時也引入過擬合 (Overfitting) 風險。這是因為當特徵數量暴增，模型就會變得過於「貪婪」，試圖將每個資料點都擬合得極好，結果反而喪失了在新資料上的泛化 (Generalization) 能力。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_3/">(Day 3) 多項式迴歸 (Polynomial Regression)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-03T00:00:00&#43;08:00">3 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">3 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">昨天介紹了線性迴歸 (Linear Regression)，它適合用來處理特徵與目標之間為線性關係的情境。然而，真實世界的資料往往並非純粹線性，而是呈現複雜的非線性關係，例如曲線、拋物線、甚至更複雜的波動趨勢。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_2/">(Day 2) 線性迴歸 (Linear Regression)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-02T00:00:00&#43;08:00">2 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">4 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">線性迴歸 (Linear Regression) 是統計學中的一種預測方法，主要分為簡單線性迴歸 (Simple Linear Regression) 與多元線性迴歸 (Multiple Linear Regression)，又稱複迴歸，以及其他變形的迴歸等，但在線性迴歸中，通常會有 1~N 個自變數 (Independent Variable) X，也可以稱作特徵 (Feature)；和 1 個因變數 (Dependent Variable) Y，也可以稱作目標 (Target)。而最終目的就是找出一條最佳迴歸線，來擬合這些數據點，便可以用來預測未來的數據點。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/30%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_1_1/">(Day 1) 介紹與準備</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">30 天入門常見的機器學習演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-08-01T00:00:00&#43;08:00">1 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在學習機器學習 (Machine Learning) 的過程中，可能會陷入兩種極端，一種是只會調用套件 (套模)，模型背後的機制一知半解，遇到問題只能「換模型試試看」，或者是過度陷入數學細節，花大量時間推導公式，卻無法轉化為實際應用與模型選擇能力。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/2025/articles_25071601/">學歷無用: 我仍相信學習的價值</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/heart-notes/" class="article__tag">Heart Notes</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-07-16T00:00:00&#43;08:00">16 Jul, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">近年來，我觀察到無論在台灣還是中國，「學歷無用論」的聲音愈發強烈。許多人開始質疑讀書是否還有意義，認為不靠學歷反而更能致富，網紅、直播、投資客、白手起家的商人充斥版面，讀書人反倒被視為落後者、被剝削者、社會規訓的犧牲品，但我有不同的看法。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/projects/articles_25063001/">實戰專案 - Titanic 生存預測專案</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-      <time class="article__date" datetime="2025-06-30T00:00:00&#43;08:00">30 Jun, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">這是一個資料科學專案，目標是透過 Kaggle 經典的 Titanic 生存預測題目，建立一套結構清晰、模組化的預測系統。我不只是想交出一份準確的預測結果，更希望藉由這個專案練習</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/2025/articles_25062501/">當老師只靠 ChatGPT 回信：我們期待的不是答案，而是理解</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/heart-notes/" class="article__tag">Heart Notes</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-06-25T00:00:00&#43;08:00">25 Jun, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">最近，我正在參加一門職訓課程。本來對這堂課滿懷期待，尤其是對某位老師的專業背景很感興趣。不過，隨著課程進行，我漸漸感到一股說不出的落差感：每當我主動提出深入問題，收到的回信卻幾乎都像是 ChatGPT 生成的答案——格式漂亮、邏輯完整、語氣中立，但就是少了「人味」與「針對性」。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/2025/articles_25060201/">為什麼用 AI 技術檢測企業舞弊，比想像中更困難?</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/data-science/" class="article__tag">Data Science</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-06-02T00:00:00&#43;08:00">2 Jun, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在資料科學領域中，對企業進行舞弊檢測 (Fraud Detection) 被視為是一種分類問題: 輸入企業相關的數據，輸出舞弊或非舞弊。然而，真正投入研究後會發現，這個問題很難解決，非常具挑戰性。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/2025/articles_25040701/">為什麼 AI 正在快速削弱低階 Business Analyst 的價值?</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/business-analysis/" class="article__tag">Business Analysis</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-04-07T00:00:00&#43;08:00">7 Apr, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">五年前，我踏入壽險產業，成為一名 Business Analyst (BA)。當時的工作內容相當清晰: 需求文件撰寫、報表製作、簡單的數據分析與溝通協調，是我每天的日常。那時候，這些任務仍需靠人力一項一項完成，效率與品質全憑個人經驗與熟練度。但如今，這些「核心能力」正快速被人工智慧工具重塑，甚至取代。</p>
-  </div>
-
-
-</div>
-      
-        <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/projects/articles_25040702/">視覺化專案 - 200 個國家 200 百年 4 分鐘</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/project/" class="article__tag">Project</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-04-07T00:00:00&#43;08:00">7 Apr, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">這是一個資料視覺化專案——「Dynamic Visualization: 200 Countries, 200 Years, 4 Minutes」。它將涵蓋 1816 至 2016 年，200 個國家的歷史變遷以互動動畫呈現，整體動畫長度約四分鐘，旨在結合「時間」與「地理」維度，提供用戶沉浸式的歷史視覺體驗。</p>
-  </div>
-
-
-</div>
-      
-    </div>
-  </div>
-
-</div>
 
 
 
