@@ -7,20 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>(Day 25) 循環神經網路 (Recurrent Neural Network) | 志謙&#39;s Blog</title>
-  <meta name="description" content="在前面幾天，我們介紹了全連接神經網路 (FCNN) 與卷積神經網路 (CNN)。這些架構在處理結構化數據或影像資料上非常成功，但若應用到「序列資料」時就顯得不足。">
+  <title>(Day 16) 二元搜尋 (Binary Search) | 志謙&#39;s Blog</title>
+  <meta name="description" content="在排序演算法之後，我們終於要介紹一個非常經典且實用的搜尋演算法 —— 二元搜尋 (Binary Search)。如果說排序演算法是「把資料整理好」，那麼搜尋演算法就是「如何在整理好的資料中快速找到想要的元素」。二元搜尋憑藉著「折半」的概念，將搜尋的時間複雜度大幅降低。">
 
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="(Day 25) 循環神經網路 (Recurrent Neural Network) | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="在前面幾天，我們介紹了全連接神經網路 (FCNN) 與卷積神經網路 (CNN)。這些架構在處理結構化數據或影像資料上非常成功，但若應用到「序列資料」時就顯得不足。">
+  <meta name="twitter:title" content="(Day 16) 二元搜尋 (Binary Search) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="在排序演算法之後，我們終於要介紹一個非常經典且實用的搜尋演算法 —— 二元搜尋 (Binary Search)。如果說排序演算法是「把資料整理好」，那麼搜尋演算法就是「如何在整理好的資料中快速找到想要的元素」。二元搜尋憑藉著「折半」的概念，將搜尋的時間複雜度大幅降低。">
   <meta name="twitter:image" content="http://twcch.io/">
 
   
-  <meta property="og:title" content="(Day 25) 循環神經網路 (Recurrent Neural Network) | 志謙&#39;s Blog">
-  <meta property="og:description" content="在前面幾天，我們介紹了全連接神經網路 (FCNN) 與卷積神經網路 (CNN)。這些架構在處理結構化數據或影像資料上非常成功，但若應用到「序列資料」時就顯得不足。">
+  <meta property="og:title" content="(Day 16) 二元搜尋 (Binary Search) | 志謙&#39;s Blog">
+  <meta property="og:description" content="在排序演算法之後，我們終於要介紹一個非常經典且實用的搜尋演算法 —— 二元搜尋 (Binary Search)。如果說排序演算法是「把資料整理好」，那麼搜尋演算法就是「如何在整理好的資料中快速找到想要的元素」。二元搜尋憑藉著「折半」的概念，將搜尋的時間複雜度大幅降低。">
   <meta property="og:image" content="http://twcch.io/">
 
   
@@ -59,7 +59,7 @@
 
     
     <div class="global-cover">
-      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 25) 循環神經網路 (Recurrent Neural Network)">
+      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 16) 二元搜尋 (Binary Search)">
     </div>
     
 
@@ -138,7 +138,7 @@
 <article class="post container">
 
   <div class="post-head">
-    <h1 class="post-title">(Day 25) 循環神經網路 (Recurrent Neural Network)</h1>
+    <h1 class="post-title">(Day 16) 二元搜尋 (Binary Search)</h1>
     <div class="post-meta">
       
       <div class="post-tags">
@@ -146,15 +146,15 @@
         
           <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
         
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">30 天入門常見的機器學習演算法</a>
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">快速掌握資料結構與演算法</a>
         
       </div>
       &nbsp;&bull;&nbsp;
       
-      <time class="post-date" datetime="2025-08-25T00:00:00&#43;08:00">25 Aug, 2025</time>
+      <time class="post-date" datetime="2025-09-14T00:00:00&#43;08:00">14 Sep, 2025</time>
       
         &nbsp;&bull;&nbsp;
-        <span class="post-minutes">1 min read</span>
+        <span class="post-minutes">2 min read</span>
       
     </div>
     
@@ -177,142 +177,122 @@
       </h2>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#為什麼需要-rnn">為什麼需要 RNN?</a></li>
-    <li><a href="#rnn-的結構">RNN 的結構</a></li>
-    <li><a href="#rnn-的展開視角">RNN 的展開視角</a></li>
-    <li><a href="#rnn-的任務類型">RNN 的任務類型</a></li>
-    <li><a href="#rnn-的問題梯度消失與梯度爆炸">RNN 的問題：梯度消失與梯度爆炸</a></li>
-    <li><a href="#rnn-與-cnn-的比較">RNN 與 CNN 的比較</a></li>
+    <li><a href="#演算法概念">演算法概念</a></li>
+    <li><a href="#演算法步驟">演算法步驟</a></li>
+    <li><a href="#程式碼範例">程式碼範例</a>
+      <ul>
+        <li><a href="#iterative-版本">Iterative 版本</a></li>
+        <li><a href="#recursive-版本">Recursive 版本</a></li>
+      </ul>
+    </li>
+    <li><a href="#複雜度分析">複雜度分析</a></li>
+    <li><a href="#優缺點">優缺點</a></li>
     <li><a href="#結語">結語</a></li>
     <li><a href="#備註">備註</a></li>
   </ul>
 </nav>
     </div>
     
-    <p>在前面幾天，我們介紹了全連接神經網路 (FCNN) 與卷積神經網路 (CNN)。這些架構在處理結構化數據或影像資料上非常成功，但若應用到「序列資料」時就顯得不足。例如:</p>
+    <p>在排序演算法之後，我們終於要介紹一個非常經典且實用的搜尋演算法 —— 二元搜尋 (Binary Search)。如果說排序演算法是「把資料整理好」，那麼搜尋演算法就是「如何在整理好的資料中快速找到想要的元素」。二元搜尋憑藉著「折半」的概念，將搜尋的時間複雜度大幅降低。</p>
+<h2 id="演算法概念">演算法概念</h2>
+<p>二元搜尋的基本思想是:</p>
 <ul>
-<li>文字句子 (自然語言處理)</li>
-<li>聲音波形 (語音辨識)</li>
-<li>時間序列 (股價、氣象、感測器數據)</li>
+<li>前提：資料必須是 有序的陣列 (升冪或降冪都可以，但必須一致)。</li>
+<li>方法：每次將搜尋範圍對半切割，並檢查中間元素。</li>
+<li>若中間元素剛好等於目標值 → 成功找到。</li>
+<li>若目標值小於中間元素 → 在左半邊繼續搜尋。</li>
+<li>若目標值大於中間元素 → 在右半邊繼續搜尋。</li>
 </ul>
-<p>這些資料都有一個共同特性：前後之間具有順序與依賴關係。傳統的神經網路會把輸入展平成固定維度向量，忽略了序列的時間結構，這時就需要 循環神經網路 (Recurrent Neural Network, RNN)。</p>
-<h2 id="為什麼需要-rnn">為什麼需要 RNN?</h2>
-<p>假設我們要預測一句話的下一個單字:</p>
-<p>“我今天心情很好，所以想去 ___”</p>
-<p>在這個任務中，模型不僅要知道「今天心情很好」，還要能理解語境，才可能正確預測「散步」、「旅行」等合理詞彙。這就意味著模型需要「記憶」前文資訊。</p>
+<p>透過「每次將搜尋範圍減半」，演算法的效率大幅提升。</p>
+<h2 id="演算法步驟">演算法步驟</h2>
+<ol>
+<li>設定左邊界 left = 0，右邊界 right = n - 1。</li>
+<li>當 left &lt;= right 時，計算中間索引 mid = (left + right) // 2。</li>
+<li>如果 arr[mid] == target，回傳 mid。</li>
+<li>如果 arr[mid] &gt; target，將右邊界移到 mid - 1。</li>
+<li>如果 arr[mid] &lt; target，將左邊界移到 mid + 1。</li>
+<li>若最終沒有找到，回傳 -1（表示不存在）。</li>
+</ol>
+<h2 id="程式碼範例">程式碼範例</h2>
+<h3 id="iterative-版本">Iterative 版本</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">mid</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 測試</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>   <span class="c1"># 輸出: 3</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>   <span class="c1"># 輸出: -1</span>
+</span></span></code></pre></div><h3 id="recursive-版本">Recursive 版本</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">binary_search_recursive</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">left</span> <span class="o">&gt;</span> <span class="n">right</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">mid</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">binary_search_recursive</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">binary_search_recursive</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 測試</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">binary_search_recursive</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>   <span class="c1"># 輸出: 3</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">binary_search_recursive</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>   <span class="c1"># 輸出: -1</span>
+</span></span></code></pre></div><h2 id="複雜度分析">複雜度分析</h2>
 <ul>
-<li>FCNN: 輸入固定維度，無法表達序列依賴。</li>
-<li>CNN: 能捕捉局部特徵，但難以捕捉長距離依賴。</li>
-<li>RNN: 透過循環結構，將「上一時間步的輸出」作為「下一時間步的輸入」的一部分，實現狀態的傳遞。</li>
-</ul>
-<h2 id="rnn-的結構">RNN 的結構</h2>
-<p>RNN 的核心是一個「循環單元 (Recurrent Cell)」，其計算公式如下:</p>
-<p>$$
-h_t = \tanh(W_h h_{t-1} + W_x x_t + b)
-$$</p>
-<p>其中:</p>
+<li>時間複雜度: 每次搜尋範圍縮小一半，最多重複 log2(n) 次。
 <ul>
-<li>$x_t$: 在時間步 $t$ 的輸入</li>
-<li>$h_{t-1}$: 前一時間步的隱藏狀態 (hidden state)</li>
-<li>$h_t$: 當前時間步的隱藏狀態</li>
-<li>$W_h, W_x, b$: 可學習參數</li>
-</ul>
-<p>這個設計讓 RNN 可以把前一時刻的資訊「帶到下一個時刻」，實現序列建模。</p>
-<h2 id="rnn-的展開視角">RNN 的展開視角</h2>
-<p>RNN 看起來是「循環」的，但在數學運算中，我們可以把它展開成多層結構:</p>
-<ul>
-<li>時間步 $t=1$：$h_1 = f(x_1, h_0)$</li>
-<li>時間步 $t=2$：$h_2 = f(x_2, h_1)$</li>
-<li>…</li>
-<li>時間步 $t=T$：$h_T = f(x_T, h_{T-1})$</li>
-</ul>
-<p>展開後的 RNN 就像一個「深層神經網路」，但每一層的參數 $W_h, W_x$ 是 共享的。</p>
-<p>這種參數共享大幅降低了模型複雜度，讓 RNN 能處理可變長度的序列。</p>
-<h2 id="rnn-的任務類型">RNN 的任務類型</h2>
-<p>RNN 可以應用在不同任務，根據輸入輸出的對應方式，可分為:</p>
-<ul>
-<li>一對一 (One-to-One)
-<ul>
-<li>傳統任務 (例如圖片分類)</li>
-</ul>
-</li>
-<li>一對多 (One-to-Many)
-<ul>
-<li>影像描述 (輸入一張圖片，輸出一句話)</li>
-</ul>
-</li>
-<li>多對一 (Many-to-One)
-<ul>
-<li>情感分析（輸入一段文字，輸出正/負面情緒）</li>
-</ul>
-</li>
-<li>多對多 (Many-to-Many)
-<ul>
-<li>機器翻譯 (輸入英文句子，輸出中文句子)</li>
-</ul>
-</li>
-</ul>
-<p>RNN 的靈活性使它成為自然語言處理與序列建模的核心方法之一。</p>
-<h2 id="rnn-的問題梯度消失與梯度爆炸">RNN 的問題：梯度消失與梯度爆炸</h2>
-<p>雖然 RNN 看似完美，但實際訓練時存在兩個嚴重問題:</p>
-<ul>
-<li>梯度消失 (Vanishing Gradient)
-<ul>
-<li>在反向傳播過程中，梯度需要不斷透過時間步相乘，若權重較小，梯度會快速趨近於 0。</li>
-<li>導致模型難以捕捉長距離依賴。</li>
+<li>最佳情況: $O(1)$ (剛好中間值就是目標)。</li>
+<li>最壞情況: $O(\log n)$。</li>
+<li>平均情況: $O(\log n)$。</li>
 </ul>
 </li>
-<li>梯度爆炸 (Exploding Gradient)
+<li>空間複雜度
 <ul>
-<li>相反情況下，若權重較大，梯度可能快速發散。</li>
-<li>導致模型訓練不穩定。</li>
+<li>Iterative 版本: $O(1)$。</li>
+<li>Recursive 版本: 因遞迴棧的存在，$O(\log n)$。</li>
 </ul>
 </li>
 </ul>
-<h2 id="rnn-與-cnn-的比較">RNN 與 CNN 的比較</h2>
+<h2 id="優缺點">優缺點</h2>
 <table>
   <thead>
       <tr>
-          <th>特性</th>
-          <th>RNN</th>
-          <th>CNN</th>
+          <th>優點</th>
+          <th>缺點</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td>擅長處理</td>
-          <td>序列資料 (文字、語音、時間序列)</td>
-          <td>影像、局部特徵</td>
+          <td>時間效率高，$O(\log n)$</td>
+          <td>限制多: 必須是有序陣列</td>
       </tr>
       <tr>
-          <td>輸入長度</td>
-          <td>可變長度</td>
-          <td>固定維度</td>
+          <td>實作簡單</td>
+          <td>適合靜態資料，不適合頻繁插入刪除的場景</td>
       </tr>
       <tr>
-          <td>參數共享</td>
-          <td>時間維度共享</td>
-          <td>空間維度共享</td>
-      </tr>
-      <tr>
-          <td>訓練挑戰</td>
-          <td>梯度消失/爆炸</td>
-          <td>計算量大，但穩定</td>
-      </tr>
-      <tr>
-          <td>改良方向</td>
-          <td>LSTM、GRU、Transformer</td>
-          <td>ResNet、Inception</td>
+          <td>遞迴/迴圈皆可實作</td>
+          <td>若資料不排序，必須先排序，否則無法使用</td>
       </tr>
   </tbody>
 </table>
 <h2 id="結語">結語</h2>
-<p>循環神經網路 (RNN) 的核心貢獻在於 引入時間維度的參數共享，使得神經網路能處理可變長度的序列資料。它在 NLP 與語音任務中曾經大放異彩，但也因為梯度消失/爆炸等問題而逐漸被更先進的架構取代。</p>
-<p>對初學者而言，RNN 是理解「深度學習如何處理序列資料」的第一步；對研究者而言，它是一個歷史性的里程碑，為後續的 LSTM、GRU、Transformer 奠定了基礎。</p>
-<p>下一篇，我們將延伸至 LSTM (Long Short-Term Memory)，看看它如何在 RNN 的基礎上解決長期依賴的問題。</p>
+<p>二元搜尋是一個簡單卻威力強大的演算法，它清楚展現了「減少搜尋範圍」能帶來的效率提升。雖然它只適用於有序資料，但在演算法設計中，「化問題為二分判斷」是一個常見且強大的思維模式。理解二元搜尋後，往後你在刷演算法題時會發現，許多問題都能用「Binary Search on Answer」這個技巧來解。</p>
 <h2 id="備註">備註</h2>
 <ul>
-<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8468">iThome 鐵人賽 2025 - 快速掌握資料結構與演算法</a></li>
 </ul>
 
   </div>
@@ -320,23 +300,23 @@ $$</p>
   <div class="post__share">
   <ul class="share__list list-reset">
     <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2025%29%20%e5%be%aa%e7%92%b0%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%20%28Recurrent%20Neural%20Network%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_25%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2016%29%20%e4%ba%8c%e5%85%83%e6%90%9c%e5%b0%8b%20%28Binary%20Search%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_16%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_25%2f"
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_16%2f"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_25%2f&title=%28Day%2025%29%20%e5%be%aa%e7%92%b0%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%20%28Recurrent%20Neural%20Network%29&summary=%e5%9c%a8%e5%89%8d%e9%9d%a2%e5%b9%be%e5%a4%a9%ef%bc%8c%e6%88%91%e5%80%91%e4%bb%8b%e7%b4%b9%e4%ba%86%e5%85%a8%e9%80%a3%e6%8e%a5%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%20%28FCNN%29%20%e8%88%87%e5%8d%b7%e7%a9%8d%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%20%28CNN%29%e3%80%82%e9%80%99%e4%ba%9b%e6%9e%b6%e6%a7%8b%e5%9c%a8%e8%99%95%e7%90%86%e7%b5%90%e6%a7%8b%e5%8c%96%e6%95%b8%e6%93%9a%e6%88%96%e5%bd%b1%e5%83%8f%e8%b3%87%e6%96%99%e4%b8%8a%e9%9d%9e%e5%b8%b8%e6%88%90%e5%8a%9f%ef%bc%8c%e4%bd%86%e8%8b%a5%e6%87%89%e7%94%a8%e5%88%b0%e3%80%8c%e5%ba%8f%e5%88%97%e8%b3%87%e6%96%99%e3%80%8d%e6%99%82%e5%b0%b1%e9%a1%af%e5%be%97%e4%b8%8d%e8%b6%b3%e3%80%82&source=%28Day%2025%29%20%e5%be%aa%e7%92%b0%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%20%28Recurrent%20Neural%20Network%29"
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_16%2f&title=%28Day%2016%29%20%e4%ba%8c%e5%85%83%e6%90%9c%e5%b0%8b%20%28Binary%20Search%29&summary=%e5%9c%a8%e6%8e%92%e5%ba%8f%e6%bc%94%e7%ae%97%e6%b3%95%e4%b9%8b%e5%be%8c%ef%bc%8c%e6%88%91%e5%80%91%e7%b5%82%e6%96%bc%e8%a6%81%e4%bb%8b%e7%b4%b9%e4%b8%80%e5%80%8b%e9%9d%9e%e5%b8%b8%e7%b6%93%e5%85%b8%e4%b8%94%e5%af%a6%e7%94%a8%e7%9a%84%e6%90%9c%e5%b0%8b%e6%bc%94%e7%ae%97%e6%b3%95%20%e2%80%94%e2%80%94%20%e4%ba%8c%e5%85%83%e6%90%9c%e5%b0%8b%20%28Binary%20Search%29%e3%80%82%e5%a6%82%e6%9e%9c%e8%aa%aa%e6%8e%92%e5%ba%8f%e6%bc%94%e7%ae%97%e6%b3%95%e6%98%af%e3%80%8c%e6%8a%8a%e8%b3%87%e6%96%99%e6%95%b4%e7%90%86%e5%a5%bd%e3%80%8d%ef%bc%8c%e9%82%a3%e9%ba%bc%e6%90%9c%e5%b0%8b%e6%bc%94%e7%ae%97%e6%b3%95%e5%b0%b1%e6%98%af%e3%80%8c%e5%a6%82%e4%bd%95%e5%9c%a8%e6%95%b4%e7%90%86%e5%a5%bd%e7%9a%84%e8%b3%87%e6%96%99%e4%b8%ad%e5%bf%ab%e9%80%9f%e6%89%be%e5%88%b0%e6%83%b3%e8%a6%81%e7%9a%84%e5%85%83%e7%b4%a0%e3%80%8d%e3%80%82%e4%ba%8c%e5%85%83%e6%90%9c%e5%b0%8b%e6%86%91%e8%97%89%e8%91%97%e3%80%8c%e6%8a%98%e5%8d%8a%e3%80%8d%e7%9a%84%e6%a6%82%e5%bf%b5%ef%bc%8c%e5%b0%87%e6%90%9c%e5%b0%8b%e7%9a%84%e6%99%82%e9%96%93%e8%a4%87%e9%9b%9c%e5%ba%a6%e5%a4%a7%e5%b9%85%e9%99%8d%e4%bd%8e%e3%80%82&source=%28Day%2016%29%20%e4%ba%8c%e5%85%83%e6%90%9c%e5%b0%8b%20%28Binary%20Search%29"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
     </li>
 
     <li class="share__item">
       <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_25%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2025%29%20%e5%be%aa%e7%92%b0%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%20%28Recurrent%20Neural%20Network%29"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_16%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2016%29%20%e4%ba%8c%e5%85%83%e6%90%9c%e5%b0%8b%20%28Binary%20Search%29"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
     </li>
@@ -349,39 +329,6 @@ $$</p>
 <div class="section-related">
   <h4 class="section-related__title">You may also like...</h4>
   <div class="row grid">
-    
-      <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_16/">(Day 16) 二元搜尋 (Binary Search)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-14T00:00:00&#43;08:00">14 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在排序演算法之後，我們終於要介紹一個非常經典且實用的搜尋演算法 —— 二元搜尋 (Binary Search)。如果說排序演算法是「把資料整理好」，那麼搜尋演算法就是「如何在整理好的資料中快速找到想要的元素」。二元搜尋憑藉著「折半」的概念，將搜尋的時間複雜度大幅降低。</p>
-  </div>
-
-
-</div>
     
       <div class="article col col-6 col-t-12 animate">
 
@@ -411,6 +358,39 @@ $$</p>
     </div>
   
     <p class="article__excerpt">在前面三天，我們分別介紹了氣泡排序 (Bubble Sort)、選擇排序 (Selection Sort)、插入排序 (Insertion Sort)。這三個演算法都是經典的「基礎排序」，時間複雜度同樣是 $O(n^2)$，但它們在設計思路、操作方式、適用場景上各有不同。今天我們就來做一次系統化的分析比較。</p>
+  </div>
+
+
+</div>
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_14/">(Day 14) 插入排序 (Insertion Sort)</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-09-12T00:00:00&#43;08:00">12 Sep, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">1 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">插入排序 (Insertion Sort) 也是一種簡單直觀的排序演算法。它的工作原理是通過構建有序序列，對於未排序資料，在已排序序列中從後向前掃描，找到相應位置並插入。</p>
   </div>
 
 
