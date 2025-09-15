@@ -7,20 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>(Day 27) 閘控循環單元 (Gated Recurrent Unit) | 志謙&#39;s Blog</title>
-  <meta name="description" content="在前兩篇文章，我們分別介紹了 RNN (Recurrent Neural Network) 與 LSTM (Long Short-Term Memory)。RNN 為序列建模提供了基礎架構，但受限於梯度消失與爆炸問題，難以捕捉長距離依賴；LSTM 則透過引入 記憶單元 (Cell State) 與 門控機制 (Gating Mechanism)，成功緩解了這一問題。">
+  <title>(Day 17) 內插搜尋法 (Interpolation Search) | 志謙&#39;s Blog</title>
+  <meta name="description" content="內插搜尋法 (Interpolation Search) 是一種基於數值分布估算落點的搜尋演算法，是對 二元搜尋 (Binary Search) 的改良。它特別適合用在已排序且元素分布相對均勻的資料集上，能有效地減少搜尋次數。">
 
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="(Day 27) 閘控循環單元 (Gated Recurrent Unit) | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="在前兩篇文章，我們分別介紹了 RNN (Recurrent Neural Network) 與 LSTM (Long Short-Term Memory)。RNN 為序列建模提供了基礎架構，但受限於梯度消失與爆炸問題，難以捕捉長距離依賴；LSTM 則透過引入 記憶單元 (Cell State) 與 門控機制 (Gating Mechanism)，成功緩解了這一問題。">
+  <meta name="twitter:title" content="(Day 17) 內插搜尋法 (Interpolation Search) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="內插搜尋法 (Interpolation Search) 是一種基於數值分布估算落點的搜尋演算法，是對 二元搜尋 (Binary Search) 的改良。它特別適合用在已排序且元素分布相對均勻的資料集上，能有效地減少搜尋次數。">
   <meta name="twitter:image" content="http://twcch.io/">
 
   
-  <meta property="og:title" content="(Day 27) 閘控循環單元 (Gated Recurrent Unit) | 志謙&#39;s Blog">
-  <meta property="og:description" content="在前兩篇文章，我們分別介紹了 RNN (Recurrent Neural Network) 與 LSTM (Long Short-Term Memory)。RNN 為序列建模提供了基礎架構，但受限於梯度消失與爆炸問題，難以捕捉長距離依賴；LSTM 則透過引入 記憶單元 (Cell State) 與 門控機制 (Gating Mechanism)，成功緩解了這一問題。">
+  <meta property="og:title" content="(Day 17) 內插搜尋法 (Interpolation Search) | 志謙&#39;s Blog">
+  <meta property="og:description" content="內插搜尋法 (Interpolation Search) 是一種基於數值分布估算落點的搜尋演算法，是對 二元搜尋 (Binary Search) 的改良。它特別適合用在已排序且元素分布相對均勻的資料集上，能有效地減少搜尋次數。">
   <meta property="og:image" content="http://twcch.io/">
 
   
@@ -59,7 +59,7 @@
 
     
     <div class="global-cover">
-      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 27) 閘控循環單元 (Gated Recurrent Unit)">
+      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 17) 內插搜尋法 (Interpolation Search)">
     </div>
     
 
@@ -138,7 +138,7 @@
 <article class="post container">
 
   <div class="post-head">
-    <h1 class="post-title">(Day 27) 閘控循環單元 (Gated Recurrent Unit)</h1>
+    <h1 class="post-title">(Day 17) 內插搜尋法 (Interpolation Search)</h1>
     <div class="post-meta">
       
       <div class="post-tags">
@@ -146,12 +146,12 @@
         
           <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
         
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">30 天入門常見的機器學習演算法</a>
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">快速掌握資料結構與演算法</a>
         
       </div>
       &nbsp;&bull;&nbsp;
       
-      <time class="post-date" datetime="2025-08-27T00:00:00&#43;08:00">27 Aug, 2025</time>
+      <time class="post-date" datetime="2025-09-14T00:00:00&#43;08:00">14 Sep, 2025</time>
       
         &nbsp;&bull;&nbsp;
         <span class="post-minutes">2 min read</span>
@@ -177,153 +177,135 @@
       </h2>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#gru-的設計動機">GRU 的設計動機</a></li>
-    <li><a href="#gru-的結構直觀理解">GRU 的結構直觀理解</a></li>
-    <li><a href="#gru-與-lstm-的比較">GRU 與 LSTM 的比較</a></li>
-    <li><a href="#gru-的優點">GRU 的優點</a></li>
-    <li><a href="#gru-的缺點">GRU 的缺點</a></li>
-    <li><a href="#實務應用">實務應用</a></li>
-    <li><a href="#gru-在深度學習發展中的地位">GRU 在深度學習發展中的地位</a></li>
+    <li><a href="#為什麼要用內插搜尋">為什麼要用內插搜尋?</a></li>
+    <li><a href="#公式原理">公式原理</a></li>
+    <li><a href="#演算法步驟">演算法步驟</a></li>
+    <li><a href="#程式碼範例">程式碼範例</a></li>
+    <li><a href="#複雜度分析">複雜度分析</a></li>
+    <li><a href="#與-binary-search-的比較">與 Binary Search 的比較</a></li>
     <li><a href="#結語">結語</a></li>
     <li><a href="#備註">備註</a></li>
   </ul>
 </nav>
     </div>
     
-    <p>在前兩篇文章，我們分別介紹了 RNN (Recurrent Neural Network) 與 LSTM (Long Short-Term Memory)。RNN 為序列建模提供了基礎架構，但受限於梯度消失與爆炸問題，難以捕捉長距離依賴；LSTM 則透過引入 記憶單元 (Cell State) 與 門控機制 (Gating Mechanism)，成功緩解了這一問題。</p>
-<p>然而，LSTM 的設計相對複雜，每個時間步需要更新三個門 (遺忘門、輸入門、輸出門) 與一個記憶單元，計算成本高且參數量龐大。2014 年，Cho 等人在處理機器翻譯問題時提出了一種更簡化的替代方案——GRU (Gated Recurrent Unit)。</p>
-<p>GRU 的核心思想是: 保留 LSTM 的核心優勢 (門控記憶機制)，但去除冗餘設計，讓模型更輕量、更高效。</p>
-<h2 id="gru-的設計動機">GRU 的設計動機</h2>
-<p>LSTM 雖然強大，但存在兩個痛點:</p>
+    <p>內插搜尋法 (Interpolation Search) 是一種基於數值分布估算落點的搜尋演算法，是對 二元搜尋 (Binary Search) 的改良。它特別適合用在已排序且元素分布相對均勻的資料集上，能有效地減少搜尋次數。</p>
+<h2 id="為什麼要用內插搜尋">為什麼要用內插搜尋?</h2>
+<p>二元搜尋每次都「取中間」，假設資料大致均勻地分佈，但若目標值靠近開頭，仍會浪費許多比較。</p>
+<p>舉例: 假設我們要找 3</p>
 <ul>
-<li>參數多，訓練慢: 每個 LSTM 單元有三個門與一個記憶單元，計算開銷大。</li>
-<li>模型過於複雜: 在某些任務中，LSTM 的輸出門設計顯得多餘，因為輸出與記憶單元的分離未必必要。</li>
+<li>資料是 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</li>
+<li>Binary Search 會先看中間 5，再往左看 2~4</li>
+<li>Interpolation Search 則會「預測」目標在偏左，第一次就可能落在 3 附近</li>
 </ul>
-<p>GRU 將 LSTM 的「遺忘門」與「輸入門」合併為「更新門 (Update Gate)」，並去掉獨立的記憶單元，直接用隱藏狀態 $h_t$ 來承載資訊。這樣的設計大幅簡化了結構，同時保留了建模長距依賴的能力。</p>
-<h2 id="gru-的結構直觀理解">GRU 的結構直觀理解</h2>
-<p>可以用「筆記本」的比喻來理解:</p>
+<p>核心概念: 根據數值的相對大小，估計出目標可能所在的位置。</p>
+<h2 id="公式原理">公式原理</h2>
+<p>在每次搜尋中，透過「線性內插公式」計算預估位置 pos:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">pos = left + (target - arr[left]) * (right - left) // (arr[right] - arr[left])
+</span></span></code></pre></div><ul>
+<li>left / right: 目前搜尋區間邊界</li>
+<li>arr[left] / arr[right]: 邊界的值</li>
+<li>target: 要搜尋的值</li>
+<li>pos: 根據比例估算出的落點位置</li>
+</ul>
+<p>如果 arr[left] == arr[right](例如所有元素相同)，為避免除以 0，應直接檢查元素是否等於 target。</p>
+<h2 id="演算法步驟">演算法步驟</h2>
 <ul>
-<li>更新門: 決定要不要覆蓋舊的內容。</li>
-<li>重置門: 決定在寫新內容時，要不要忽略舊的資訊。</li>
-<li>隱藏狀態: 同時扮演了 LSTM 的「記憶單元」與「輸出」，簡化了設計。</li>
+<li>設定 left = 0、right = n-1。</li>
+<li>當 left &lt;= right 且 target 介於 arr[left] 和 arr[right] 之間:
+<ul>
+<li>用公式計算預估位置 pos</li>
+<li>若 arr[pos] == target → 回傳 pos</li>
+<li>若 arr[pos] &lt; target → left = pos + 1</li>
+<li>若 arr[pos] &gt; target → right = pos - 1</li>
 </ul>
-<p>因此，GRU 本質上是 LSTM 的精簡版，保留長期記憶能力，但運算量較小。</p>
-<h2 id="gru-與-lstm-的比較">GRU 與 LSTM 的比較</h2>
+</li>
+</ul>
+<p>若未找到 → 回傳 -1</p>
+<h2 id="程式碼範例">程式碼範例</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">interpolation_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">arr</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">target</span> <span class="o">&lt;=</span> <span class="n">arr</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">==</span> <span class="n">arr</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">left</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># 根據比例計算預估位置</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pos</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">(</span><span class="n">target</span> <span class="o">-</span> <span class="n">arr</span><span class="p">[</span><span class="n">left</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">//</span> <span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">-</span> <span class="n">arr</span><span class="p">[</span><span class="n">left</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">pos</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="n">arr</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">left</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">right</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 測試</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">70</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">interpolation_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>  <span class="c1"># 輸出: 3</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">interpolation_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>  <span class="c1"># 輸出: -1</span>
+</span></span></code></pre></div><h2 id="複雜度分析">複雜度分析</h2>
+<ul>
+<li>平均情況: O(log log n)
+<ul>
+<li>因為分布均勻時，每次能大幅縮小搜尋範圍，比 Binary Search 更快</li>
+</ul>
+</li>
+<li>最壞情況: O(n)
+<ul>
+<li>若資料分布極度不均勻（例如大多數值集中在一邊），效果會急劇下降</li>
+</ul>
+</li>
+<li>空間複雜度: O(1)（原地搜尋）</li>
+</ul>
+<h2 id="與-binary-search-的比較">與 Binary Search 的比較</h2>
 <table>
   <thead>
       <tr>
-          <th>特性</th>
-          <th>LSTM</th>
-          <th>GRU</th>
+          <th>面向</th>
+          <th>Binary Search</th>
+          <th>Interpolation Search</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td>記憶單元</td>
-          <td>有獨立的 Cell State $C_t$</td>
-          <td>無，僅用隱藏狀態 $h_t$</td>
+          <td>採樣方式</td>
+          <td>每次取中間點</td>
+          <td>根據值比例推算落點</td>
       </tr>
       <tr>
-          <td>門的數量</td>
-          <td>三個門 (輸入、遺忘、輸出)</td>
-          <td>兩個門 (更新、重置)</td>
+          <td>平均時間</td>
+          <td>O(log n)</td>
+          <td>O(log log n) (分布均勻)</td>
       </tr>
       <tr>
-          <td>參數量</td>
-          <td>較多</td>
-          <td>較少</td>
+          <td>最壞時間</td>
+          <td>O(log n)</td>
+          <td>O(n)</td>
       </tr>
       <tr>
-          <td>訓練速度</td>
-          <td>較慢</td>
-          <td>較快</td>
+          <td>是否需均勻分布</td>
+          <td>否</td>
+          <td>是</td>
       </tr>
       <tr>
-          <td>表現</td>
-          <td>適合複雜長序列</td>
-          <td>在多數任務上與 LSTM 相近</td>
-      </tr>
-      <tr>
-          <td>應用</td>
-          <td>NLP、翻譯、語音辨識</td>
-          <td>NLP、時間序列、邊緣運算</td>
+          <td>是否穩定</td>
+          <td>穩定</td>
+          <td>分布不均會退化</td>
       </tr>
   </tbody>
 </table>
-<p>研究結果顯示，在許多應用中，GRU 與 LSTM 的表現非常接近，有時甚至更好；但在特別長的序列上，LSTM 仍可能優於 GRU。</p>
-<h2 id="gru-的優點">GRU 的優點</h2>
-<ul>
-<li>結構簡單，訓練更快
-<ul>
-<li>門數少，參數更少，計算量更低。</li>
-</ul>
-</li>
-<li>效果接近 LSTM
-<ul>
-<li>多數 NLP 與語音任務中，GRU 與 LSTM 準確率相差不大。</li>
-</ul>
-</li>
-<li>記憶力強於 RNN
-<ul>
-<li>能有效捕捉長距依賴。</li>
-</ul>
-</li>
-</ul>
-<h2 id="gru-的缺點">GRU 的缺點</h2>
-<ul>
-<li>靈活性略低於 LSTM
-<ul>
-<li>由於沒有獨立的記憶單元，對特別長的序列可能不如 LSTM 表現穩定。</li>
-</ul>
-</li>
-<li>缺乏標準共識
-<ul>
-<li>在某些任務上，研究者仍更偏好使用 LSTM 作為基準模型。</li>
-</ul>
-</li>
-</ul>
-<h2 id="實務應用">實務應用</h2>
-<ul>
-<li>自然語言處理 (NLP)
-<ul>
-<li>機器翻譯 (GRU Encoder-Decoder)</li>
-<li>聊天機器人</li>
-<li>文本情感分析</li>
-</ul>
-</li>
-<li>語音任務
-<ul>
-<li>語音辨識</li>
-<li>語音合成</li>
-</ul>
-</li>
-<li>時間序列分析
-<ul>
-<li>股價、天氣、IoT 感測器預測</li>
-</ul>
-</li>
-<li>邊緣運算環境
-<ul>
-<li>計算資源有限時，GRU 相較 LSTM 更高效。</li>
-</ul>
-</li>
-</ul>
-<h2 id="gru-在深度學習發展中的地位">GRU 在深度學習發展中的地位</h2>
-<p>GRU 的誕生可以看作是 RNN → LSTM 的進一步演化:</p>
-<ul>
-<li>RNN: 基礎的序列建模，但梯度消失嚴重。</li>
-<li>LSTM: 透過門控與記憶單元，解決長期依賴問題。</li>
-<li>GRU: 在保留門控機制的同時，簡化結構、減少參數。</li>
-</ul>
-<p>雖然近年來 Transformer 已經取代了 LSTM/GRU，成為 NLP 的主流，但在計算資源有限、序列長度中等的情境下，GRU 仍然是一個高性價比的選擇。</p>
 <h2 id="結語">結語</h2>
-<p>GRU (Gated Recurrent Unit) 是 LSTM 的簡化版本，將遺忘門與輸入門合併為更新門，並移除了獨立的記憶單元，直接使用隱藏狀態 $h_t$ 來同時承擔「記憶」與「輸出」。</p>
-<p>這樣的設計讓 GRU 在保有建模長距依賴能力的同時，參數更少、訓練更快，特別適合於 資源受限的應用場景。在大部分任務中，GRU 的表現與 LSTM 相差無幾，是一個實務上非常有吸引力的選擇。</p>
-<p>然而，隨著 Transformer 的興起，LSTM 與 GRU 在 NLP 領域的應用逐漸退居次要地位。但在 時間序列預測、語音處理、邊緣設備 等任務中，GRU 依然有不可替代的價值。</p>
-<p>下一篇，我們將延伸到 序列到序列 (Seq2Seq) 架構，看看如何將 LSTM 或 GRU 應用在機器翻譯等多對多的序列建模任務中。</p>
+<p>內插搜尋是一種在特定條件下非常高效的搜尋演算法，它的思維突破了「固定折半」，改用「依值推估位置」來直接逼近目標。</p>
+<p>雖然在最壞情況下效能會退化，但如果資料分布均勻、且查詢遠多於更新操作，它能比 Binary Search 更快，是搜尋問題中一個非常值得認識的技巧。</p>
 <h2 id="備註">備註</h2>
 <ul>
-<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8468">iThome 鐵人賽 2025 - 快速掌握資料結構與演算法</a></li>
 </ul>
 
   </div>
@@ -331,23 +313,23 @@
   <div class="post__share">
   <ul class="share__list list-reset">
     <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2027%29%20%e9%96%98%e6%8e%a7%e5%be%aa%e7%92%b0%e5%96%ae%e5%85%83%20%28Gated%20Recurrent%20Unit%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_27%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2017%29%20%e5%85%a7%e6%8f%92%e6%90%9c%e5%b0%8b%e6%b3%95%20%28Interpolation%20Search%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_17%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_27%2f"
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_17%2f"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_27%2f&title=%28Day%2027%29%20%e9%96%98%e6%8e%a7%e5%be%aa%e7%92%b0%e5%96%ae%e5%85%83%20%28Gated%20Recurrent%20Unit%29&summary=%e5%9c%a8%e5%89%8d%e5%85%a9%e7%af%87%e6%96%87%e7%ab%a0%ef%bc%8c%e6%88%91%e5%80%91%e5%88%86%e5%88%a5%e4%bb%8b%e7%b4%b9%e4%ba%86%20RNN%20%28Recurrent%20Neural%20Network%29%20%e8%88%87%20LSTM%20%28Long%20Short-Term%20Memory%29%e3%80%82RNN%20%e7%82%ba%e5%ba%8f%e5%88%97%e5%bb%ba%e6%a8%a1%e6%8f%90%e4%be%9b%e4%ba%86%e5%9f%ba%e7%a4%8e%e6%9e%b6%e6%a7%8b%ef%bc%8c%e4%bd%86%e5%8f%97%e9%99%90%e6%96%bc%e6%a2%af%e5%ba%a6%e6%b6%88%e5%a4%b1%e8%88%87%e7%88%86%e7%82%b8%e5%95%8f%e9%a1%8c%ef%bc%8c%e9%9b%a3%e4%bb%a5%e6%8d%95%e6%8d%89%e9%95%b7%e8%b7%9d%e9%9b%a2%e4%be%9d%e8%b3%b4%ef%bc%9bLSTM%20%e5%89%87%e9%80%8f%e9%81%8e%e5%bc%95%e5%85%a5%20%e8%a8%98%e6%86%b6%e5%96%ae%e5%85%83%20%28Cell%20State%29%20%e8%88%87%20%e9%96%80%e6%8e%a7%e6%a9%9f%e5%88%b6%20%28Gating%20Mechanism%29%ef%bc%8c%e6%88%90%e5%8a%9f%e7%b7%a9%e8%a7%a3%e4%ba%86%e9%80%99%e4%b8%80%e5%95%8f%e9%a1%8c%e3%80%82&source=%28Day%2027%29%20%e9%96%98%e6%8e%a7%e5%be%aa%e7%92%b0%e5%96%ae%e5%85%83%20%28Gated%20Recurrent%20Unit%29"
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_17%2f&title=%28Day%2017%29%20%e5%85%a7%e6%8f%92%e6%90%9c%e5%b0%8b%e6%b3%95%20%28Interpolation%20Search%29&summary=%e5%85%a7%e6%8f%92%e6%90%9c%e5%b0%8b%e6%b3%95%20%28Interpolation%20Search%29%20%e6%98%af%e4%b8%80%e7%a8%ae%e5%9f%ba%e6%96%bc%e6%95%b8%e5%80%bc%e5%88%86%e5%b8%83%e4%bc%b0%e7%ae%97%e8%90%bd%e9%bb%9e%e7%9a%84%e6%90%9c%e5%b0%8b%e6%bc%94%e7%ae%97%e6%b3%95%ef%bc%8c%e6%98%af%e5%b0%8d%20%e4%ba%8c%e5%85%83%e6%90%9c%e5%b0%8b%20%28Binary%20Search%29%20%e7%9a%84%e6%94%b9%e8%89%af%e3%80%82%e5%ae%83%e7%89%b9%e5%88%a5%e9%81%a9%e5%90%88%e7%94%a8%e5%9c%a8%e5%b7%b2%e6%8e%92%e5%ba%8f%e4%b8%94%e5%85%83%e7%b4%a0%e5%88%86%e5%b8%83%e7%9b%b8%e5%b0%8d%e5%9d%87%e5%8b%bb%e7%9a%84%e8%b3%87%e6%96%99%e9%9b%86%e4%b8%8a%ef%bc%8c%e8%83%bd%e6%9c%89%e6%95%88%e5%9c%b0%e6%b8%9b%e5%b0%91%e6%90%9c%e5%b0%8b%e6%ac%a1%e6%95%b8%e3%80%82&source=%28Day%2017%29%20%e5%85%a7%e6%8f%92%e6%90%9c%e5%b0%8b%e6%b3%95%20%28Interpolation%20Search%29"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
     </li>
 
     <li class="share__item">
       <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_27%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2027%29%20%e9%96%98%e6%8e%a7%e5%be%aa%e7%92%b0%e5%96%ae%e5%85%83%20%28Gated%20Recurrent%20Unit%29"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_17%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2017%29%20%e5%85%a7%e6%8f%92%e6%90%9c%e5%b0%8b%e6%b3%95%20%28Interpolation%20Search%29"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
     </li>
@@ -360,39 +342,6 @@
 <div class="section-related">
   <h4 class="section-related__title">You may also like...</h4>
   <div class="row grid">
-    
-      <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_17/">(Day 17) 內插搜尋法 (Interpolation Search)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-14T00:00:00&#43;08:00">14 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">內插搜尋法 (Interpolation Search) 是一種基於數值分布估算落點的搜尋演算法，是對 二元搜尋 (Binary Search) 的改良。它特別適合用在已排序且元素分布相對均勻的資料集上，能有效地減少搜尋次數。</p>
-  </div>
-
-
-</div>
     
       <div class="article col col-6 col-t-12 animate">
 
@@ -422,6 +371,39 @@
     </div>
   
     <p class="article__excerpt">在排序演算法之後，我們終於要介紹一個非常經典且實用的搜尋演算法 —— 二元搜尋 (Binary Search)。如果說排序演算法是「把資料整理好」，那麼搜尋演算法就是「如何在整理好的資料中快速找到想要的元素」。二元搜尋憑藉著「折半」的概念，將搜尋的時間複雜度大幅降低。</p>
+  </div>
+
+
+</div>
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_15/">(Day 15) 基礎排序演算法比較</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-09-13T00:00:00&#43;08:00">13 Sep, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">1 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">在前面三天，我們分別介紹了氣泡排序 (Bubble Sort)、選擇排序 (Selection Sort)、插入排序 (Insertion Sort)。這三個演算法都是經典的「基礎排序」，時間複雜度同樣是 $O(n^2)$，但它們在設計思路、操作方式、適用場景上各有不同。今天我們就來做一次系統化的分析比較。</p>
   </div>
 
 
