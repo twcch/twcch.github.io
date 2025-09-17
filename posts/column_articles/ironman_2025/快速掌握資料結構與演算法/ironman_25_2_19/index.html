@@ -7,20 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>(Day 24) Adam 優化器 (Adaptive Moment Estimation) | 志謙&#39;s Blog</title>
-  <meta name="description" content="在前一天，我們整理了深度學習中常見的優化方法，從最基本的隨機梯度下降 (SGD)，到 Momentum、RMSProp、Adagrad 等。今天我們要深入介紹其中最具代表性、也是實務中最常見的優化方法之一——Adam (Adaptive Moment Estimation)。">
+  <title>(Day 19) 動態規劃 (Dynamic Programming) | 志謙&#39;s Blog</title>
+  <meta name="description" content="動態規劃 (Dynamic Programming; DP) 是一種將複雜問題分解為較小子問題，並儲存子問題解以避免重複計算的演算法設計方法。它常用於具有「重疊子問題」和「最優子結構」性質的問題">
 
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="(Day 24) Adam 優化器 (Adaptive Moment Estimation) | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="在前一天，我們整理了深度學習中常見的優化方法，從最基本的隨機梯度下降 (SGD)，到 Momentum、RMSProp、Adagrad 等。今天我們要深入介紹其中最具代表性、也是實務中最常見的優化方法之一——Adam (Adaptive Moment Estimation)。">
+  <meta name="twitter:title" content="(Day 19) 動態規劃 (Dynamic Programming) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="動態規劃 (Dynamic Programming; DP) 是一種將複雜問題分解為較小子問題，並儲存子問題解以避免重複計算的演算法設計方法。它常用於具有「重疊子問題」和「最優子結構」性質的問題">
   <meta name="twitter:image" content="http://twcch.io/">
 
   
-  <meta property="og:title" content="(Day 24) Adam 優化器 (Adaptive Moment Estimation) | 志謙&#39;s Blog">
-  <meta property="og:description" content="在前一天，我們整理了深度學習中常見的優化方法，從最基本的隨機梯度下降 (SGD)，到 Momentum、RMSProp、Adagrad 等。今天我們要深入介紹其中最具代表性、也是實務中最常見的優化方法之一——Adam (Adaptive Moment Estimation)。">
+  <meta property="og:title" content="(Day 19) 動態規劃 (Dynamic Programming) | 志謙&#39;s Blog">
+  <meta property="og:description" content="動態規劃 (Dynamic Programming; DP) 是一種將複雜問題分解為較小子問題，並儲存子問題解以避免重複計算的演算法設計方法。它常用於具有「重疊子問題」和「最優子結構」性質的問題">
   <meta property="og:image" content="http://twcch.io/">
 
   
@@ -59,7 +59,7 @@
 
     
     <div class="global-cover">
-      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 24) Adam 優化器 (Adaptive Moment Estimation)">
+      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 19) 動態規劃 (Dynamic Programming)">
     </div>
     
 
@@ -138,7 +138,7 @@
 <article class="post container">
 
   <div class="post-head">
-    <h1 class="post-title">(Day 24) Adam 優化器 (Adaptive Moment Estimation)</h1>
+    <h1 class="post-title">(Day 19) 動態規劃 (Dynamic Programming)</h1>
     <div class="post-meta">
       
       <div class="post-tags">
@@ -146,12 +146,12 @@
         
           <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
         
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">30 天入門常見的機器學習演算法</a>
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">快速掌握資料結構與演算法</a>
         
       </div>
       &nbsp;&bull;&nbsp;
       
-      <time class="post-date" datetime="2025-08-24T00:00:00&#43;08:00">24 Aug, 2025</time>
+      <time class="post-date" datetime="2025-09-14T00:00:00&#43;08:00">14 Sep, 2025</time>
       
         &nbsp;&bull;&nbsp;
         <span class="post-minutes">2 min read</span>
@@ -177,126 +177,125 @@
       </h2>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#adam-的動機">Adam 的動機</a></li>
-    <li><a href="#數學公式">數學公式</a>
+    <li><a href="#基本思想">基本思想</a></li>
+    <li><a href="#適用條件">適用條件</a></li>
+    <li><a href="#基本步驟">基本步驟</a></li>
+    <li><a href="#經典範例">經典範例</a></li>
+    <li><a href="#優點">優點</a></li>
+    <li><a href="#缺點">缺點</a></li>
+    <li><a href="#舉例說明">舉例說明</a>
       <ul>
-        <li><a href="#初始化">初始化</a></li>
-        <li><a href="#更新規則">更新規則</a></li>
+        <li><a href="#費波那契數列">費波那契數列</a></li>
       </ul>
     </li>
-    <li><a href="#直觀理解">直觀理解</a></li>
-    <li><a href="#adam-的優點">Adam 的優點</a></li>
-    <li><a href="#adam-的缺點">Adam 的缺點</a></li>
-    <li><a href="#實務建議">實務建議</a></li>
-    <li><a href="#結語">結語</a></li>
+    <li><a href="#結論">結論</a></li>
     <li><a href="#備註">備註</a></li>
   </ul>
 </nav>
     </div>
     
-    <p>在前一天，我們整理了深度學習中常見的優化方法，從最基本的隨機梯度下降 (SGD)，到 Momentum、RMSProp、Adagrad 等。今天我們要深入介紹其中最具代表性、也是實務中最常見的優化方法之一——Adam (Adaptive Moment Estimation)。</p>
-<p>Adam 幾乎是深度學習的「預設優化器」。不論是電腦視覺、自然語言處理，還是時間序列預測，只要使用主流深度學習框架 (PyTorch、TensorFlow、Keras)，Adam 幾乎總是第一個被嘗試的選擇。</p>
-<h2 id="adam-的動機">Adam 的動機</h2>
-<p>為什麼會有 Adam? 它的出發點是想同時結合 Momentum 與 RMSProp 的優點:</p>
+    <p>動態規劃 (Dynamic Programming; DP) 是一種將複雜問題分解為較小子問題，並儲存子問題解以避免重複計算的演算法設計方法。它常用於具有「重疊子問題」和「最優子結構」性質的問題</p>
+<h2 id="基本思想">基本思想</h2>
+<p>動態規劃的核心思想是: 將原問題拆解成多個子問題，先解決並記錄子問題的解，當需要時直接查詢，從而提升效率。這種方法通常用於遞迴解法會產生大量重複計算的情況</p>
+<h2 id="適用條件">適用條件</h2>
 <ul>
-<li>Momentum: 透過累積一階動量 (過去梯度的加權平均)，能加速收斂並減少震盪。</li>
-<li>RMSProp: 透過維護二階動量 (梯度平方的移動平均)，能自動調整不同維度的學習率。</li>
+<li>重疊子問題 (Overlapping Subproblems): 題可以分解為重複出現的子問題</li>
+<li>最優子結構 (Optimal Substructure): 問題的最優解可以由子問題的最優解組合而成</li>
 </ul>
-<p>Adam 的設計思想是: 既要考慮梯度的方向 (Momentum)，又要考慮不同維度的學習率 (RMSProp)，並在數值上進行偏差修正，確保更新穩定。</p>
-<h2 id="數學公式">數學公式</h2>
-<p>Adam 的更新規則如下:</p>
-<h3 id="初始化">初始化</h3>
+<h2 id="基本步驟">基本步驟</h2>
+<ol>
+<li>定義狀態: 找出如何用一組變數描述子問題</li>
+<li>狀態轉移方程: 找出子問題之間的遞推關係 (即狀態如何由更小的狀態推導而來)</li>
+<li>初始化: 設定最基本的子問題解 (通常是最小規模的情況)</li>
+<li>計算順序: 決定計算子問題的順序，通常是自底向上 (迴圈) 或自頂向下 (遞迴+記憶化)</li>
+<li>輸出答案: 根據需求輸出最終解</li>
+</ol>
+<h2 id="經典範例">經典範例</h2>
 <ul>
-<li>參數 $\theta_0$</li>
-<li>一階動量 $m_0 = 0$</li>
-<li>二階動量 $v_0 = 0$</li>
+<li>費波那契數列 (Fibonacci Sequence): $F(n) = F(n-1) + F(n-2)$，用陣列儲存已計算的值</li>
+<li>最短路徑問題 (Shortest Path): 如 Floyd-Warshall 演算法</li>
+<li>背包問題 (Knapsack Problem): 給定物品重量和價值，求在容量限制下的最大總價值</li>
+<li>最長公共子序列 (Longest Common Subsequence, LCS): 求兩個序列的最長公共子序列長度</li>
 </ul>
-<h3 id="更新規則">更新規則</h3>
-<p>在第 $t$ 次迭代時:</p>
+<h2 id="優點">優點</h2>
 <ul>
-<li>計算梯度:</li>
+<li>大幅減少重複計算，提高效率</li>
+<li>適合解決最優化問題</li>
 </ul>
-<p>$$
-g_t = \nabla_\theta L(\theta_t)
-$$</p>
+<h2 id="缺點">缺點</h2>
 <ul>
-<li>一階動量 (類似 Momentum):</li>
+<li>需要額外的空間儲存子問題解</li>
+<li>狀態設計和轉移方程推導有時較困難</li>
 </ul>
-<p>$$
-m_t = \beta_1 m_{t-1} + (1-\beta_1) g_t
-$$</p>
+<h2 id="舉例說明">舉例說明</h2>
+<h3 id="費波那契數列">費波那契數列</h3>
 <ul>
-<li>二階動量 (類似 RMSProp):</li>
+<li>
+<p>無使用動態規劃 (單純 Divide and Conquer)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">io.twcch</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Scanner</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Demo</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">fibonacci</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">0</span><span class="p">;}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">1</span><span class="p">;}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">fibonacci</span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fibonacci</span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">2</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Scanner</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&#34;Enter an index for a Fibonacci number: &#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&#34;The Fibonacci number at index &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34; is &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fibonacci</span><span class="p">(</span><span class="n">index</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></li>
+<li>
+<p>使用動態規劃</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">io.twcch</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.HashMap</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Map</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Scanner</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Demo</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">fibonacci</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">map</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">index</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">index</span><span class="p">);}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">0</span><span class="p">;}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">1</span><span class="p">;}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fibonacci</span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fibonacci</span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">2</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Scanner</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&#34;Enter an index for a Fibonacci number: &#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&#34;The Fibonacci number at index &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34; is &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fibonacci</span><span class="p">(</span><span class="n">index</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></li>
 </ul>
-<p>$$
-v_t = \beta_2 v_{t-1} + (1-\beta_2) g_t^2
-$$</p>
-<ul>
-<li>偏差修正 (Bias Correction):</li>
-</ul>
-<p>$$
-\hat{m}_t = \frac{m_t}{1-\beta_1^t}, \quad \hat{v}_t = \frac{v_t}{1-\beta_2^t}
-$$</p>
-<ul>
-<li>更新參數:</li>
-</ul>
-<p>$$
-\theta_{t+1} = \theta_t - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}
-$$</p>
-<p>其中:</p>
-<ul>
-<li>$\beta_1$: 一階動量衰減率 (常用 0.9)</li>
-<li>$\beta_2$: 二階動量衰減率 (常用 0.999)</li>
-<li>$\eta$: 學習率 (預設 0.001)</li>
-<li>$\epsilon$: 小常數 (避免除以零，預設 $10^{-8}$)</li>
-</ul>
-<h2 id="直觀理解">直觀理解</h2>
-<ul>
-<li>Momentum 部分: 像小球在山谷中滾動，透過累積速度 (梯度平均) 加速下降，避免在峽谷來回震盪。</li>
-<li>RMSProp 部分: 針對每個維度自適應調整學習率，梯度大的方向學習率小，梯度小的方向學習率大，避免震盪。</li>
-<li>偏差修正: 在訓練初期，$m_t$ 與 $v_t$ 會偏向 0，修正後的 $\hat{m}_t, \hat{v}_t$ 能更準確反映真實期望。</li>
-</ul>
-<p>總結: Adam = Momentum + RMSProp + Bias Correction。</p>
-<h2 id="adam-的優點">Adam 的優點</h2>
-<ul>
-<li>自適應學習率: 不同參數有不同的更新幅度，對非平穩目標 (如 NLP、RNN) 表現很好。</li>
-<li>幾乎免調參: 在多數任務中，使用預設參數 $(\eta=0.001, \beta_1=0.9, \beta_2=0.999)$ 就能得到不錯結果。</li>
-<li>收斂速度快: 相較於 SGD，Adam 在初期收斂通常更快。</li>
-<li>廣泛適用性: 影像、語音、文本任務都能使用。</li>
-</ul>
-<h2 id="adam-的缺點">Adam 的缺點</h2>
-<ul>
-<li>泛化能力不如 SGD
-<ul>
-<li>雖然 Adam 收斂快，但在部分電腦視覺任務上，最終測試集準確率可能不如 SGD + Momentum。</li>
-<li>原因是 Adam 的自適應特性可能讓模型停留在「次優解」。</li>
-</ul>
-</li>
-<li>需要較多記憶體
-<ul>
-<li>需要同時儲存 $m_t$ 與 $v_t$，記憶體消耗比 SGD 大。</li>
-</ul>
-</li>
-<li>對 $\beta_1, \beta_2$ 的敏感性
-<ul>
-<li>若調整不當，可能導致收斂不穩定。</li>
-</ul>
-</li>
-</ul>
-<h2 id="實務建議">實務建議</h2>
-<ul>
-<li>初學者: 直接用 Adam，省時省力，快速得到不錯結果。</li>
-<li>大規模電腦視覺任務: 若追求最佳測試精度，建議用 SGD + Momentum，Adam 作為前期加速工具。</li>
-<li>NLP 與 Transformer: AdamW 幾乎是標配。</li>
-<li>小模型/資源有限: Adam 收斂快、免調參，適合小規模實驗。</li>
-</ul>
-<h2 id="結語">結語</h2>
-<p>Adam 是深度學習時代最具代表性的優化器之一，它結合了 Momentum 與 RMSProp 的優點，在多數應用中表現穩定且高效。雖然它並非在所有情況下都是最佳選擇，但作為「預設起點」仍然無可取代。</p>
-<p>如果說 SGD 是經典、穩健的老將，那麼 Adam 就是靈活、快速的新秀。在實務中，選擇 Adam 或 SGD 並不是二選一，而是取決於你的任務需求: 需要快速實驗? 選 Adam；需要極致表現? 選 SGD + Momentum。</p>
-<p>未來，我們會看到更多 Adam 的改進版本持續誕生，但核心精神仍是一樣: 如何在複雜的高維優化地形裡，既快又穩地找到一個好解。</p>
+<h2 id="結論">結論</h2>
+<p>動態規劃是一種高效解決具有重疊子問題和最優子結構問題的強大工具。掌握動態規劃的思想和技巧，對於解決各類複雜演算法問題非常重要</p>
 <h2 id="備註">備註</h2>
 <ul>
-<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8468">iThome 鐵人賽 2025 - 快速掌握資料結構與演算法</a></li>
 </ul>
 
   </div>
@@ -304,23 +303,23 @@ $$</p>
   <div class="post__share">
   <ul class="share__list list-reset">
     <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2024%29%20Adam%20%e5%84%aa%e5%8c%96%e5%99%a8%20%28Adaptive%20Moment%20Estimation%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_24%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2019%29%20%e5%8b%95%e6%85%8b%e8%a6%8f%e5%8a%83%20%28Dynamic%20Programming%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_19%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_24%2f"
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_19%2f"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_24%2f&title=%28Day%2024%29%20Adam%20%e5%84%aa%e5%8c%96%e5%99%a8%20%28Adaptive%20Moment%20Estimation%29&summary=%e5%9c%a8%e5%89%8d%e4%b8%80%e5%a4%a9%ef%bc%8c%e6%88%91%e5%80%91%e6%95%b4%e7%90%86%e4%ba%86%e6%b7%b1%e5%ba%a6%e5%ad%b8%e7%bf%92%e4%b8%ad%e5%b8%b8%e8%a6%8b%e7%9a%84%e5%84%aa%e5%8c%96%e6%96%b9%e6%b3%95%ef%bc%8c%e5%be%9e%e6%9c%80%e5%9f%ba%e6%9c%ac%e7%9a%84%e9%9a%a8%e6%a9%9f%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d%20%28SGD%29%ef%bc%8c%e5%88%b0%20Momentum%e3%80%81RMSProp%e3%80%81Adagrad%20%e7%ad%89%e3%80%82%e4%bb%8a%e5%a4%a9%e6%88%91%e5%80%91%e8%a6%81%e6%b7%b1%e5%85%a5%e4%bb%8b%e7%b4%b9%e5%85%b6%e4%b8%ad%e6%9c%80%e5%85%b7%e4%bb%a3%e8%a1%a8%e6%80%a7%e3%80%81%e4%b9%9f%e6%98%af%e5%af%a6%e5%8b%99%e4%b8%ad%e6%9c%80%e5%b8%b8%e8%a6%8b%e7%9a%84%e5%84%aa%e5%8c%96%e6%96%b9%e6%b3%95%e4%b9%8b%e4%b8%80%e2%80%94%e2%80%94Adam%20%28Adaptive%20Moment%20Estimation%29%e3%80%82&source=%28Day%2024%29%20Adam%20%e5%84%aa%e5%8c%96%e5%99%a8%20%28Adaptive%20Moment%20Estimation%29"
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_19%2f&title=%28Day%2019%29%20%e5%8b%95%e6%85%8b%e8%a6%8f%e5%8a%83%20%28Dynamic%20Programming%29&summary=%e5%8b%95%e6%85%8b%e8%a6%8f%e5%8a%83%20%28Dynamic%20Programming%3b%20DP%29%20%e6%98%af%e4%b8%80%e7%a8%ae%e5%b0%87%e8%a4%87%e9%9b%9c%e5%95%8f%e9%a1%8c%e5%88%86%e8%a7%a3%e7%82%ba%e8%bc%83%e5%b0%8f%e5%ad%90%e5%95%8f%e9%a1%8c%ef%bc%8c%e4%b8%a6%e5%84%b2%e5%ad%98%e5%ad%90%e5%95%8f%e9%a1%8c%e8%a7%a3%e4%bb%a5%e9%81%bf%e5%85%8d%e9%87%8d%e8%a4%87%e8%a8%88%e7%ae%97%e7%9a%84%e6%bc%94%e7%ae%97%e6%b3%95%e8%a8%ad%e8%a8%88%e6%96%b9%e6%b3%95%e3%80%82%e5%ae%83%e5%b8%b8%e7%94%a8%e6%96%bc%e5%85%b7%e6%9c%89%e3%80%8c%e9%87%8d%e7%96%8a%e5%ad%90%e5%95%8f%e9%a1%8c%e3%80%8d%e5%92%8c%e3%80%8c%e6%9c%80%e5%84%aa%e5%ad%90%e7%b5%90%e6%a7%8b%e3%80%8d%e6%80%a7%e8%b3%aa%e7%9a%84%e5%95%8f%e9%a1%8c&source=%28Day%2019%29%20%e5%8b%95%e6%85%8b%e8%a6%8f%e5%8a%83%20%28Dynamic%20Programming%29"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
     </li>
 
     <li class="share__item">
       <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_24%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2024%29%20Adam%20%e5%84%aa%e5%8c%96%e5%99%a8%20%28Adaptive%20Moment%20Estimation%29"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_19%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2019%29%20%e5%8b%95%e6%85%8b%e8%a6%8f%e5%8a%83%20%28Dynamic%20Programming%29"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
     </li>
@@ -333,39 +332,6 @@ $$</p>
 <div class="section-related">
   <h4 class="section-related__title">You may also like...</h4>
   <div class="row grid">
-    
-      <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_19/">(Day 19) 動態規劃 (Dynamic Programming)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-14T00:00:00&#43;08:00">14 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">動態規劃 (Dynamic Programming; DP) 是一種將複雜問題分解為較小子問題，並儲存子問題解以避免重複計算的演算法設計方法。它常用於具有「重疊子問題」和「最優子結構」性質的問題</p>
-  </div>
-
-
-</div>
     
       <div class="article col col-6 col-t-12 animate">
 
@@ -395,6 +361,39 @@ $$</p>
     </div>
   
     <p class="article__excerpt">前面介紹了幾個簡單又常見的排序與搜尋的演算法，接下來我們來談談演算法設計策略，仿間有很多演算法的書並不會特地把 Divide and Conquer 或 Dynamic Programming 編成一個章節，這也導致新手學完了一些演算法後，不知道自己學的是 Divide and Conquer 或 Dynamic Programming，這也包括我，所以我們在來花幾天的時間來談談這些演算法設計策略。</p>
+  </div>
+
+
+</div>
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_17/">(Day 17) 內插搜尋 (Interpolation Search)</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-09-14T00:00:00&#43;08:00">14 Sep, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">2 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">內插搜尋法 (Interpolation Search) 是一種基於數值分布估算落點的搜尋演算法，是對 二元搜尋 (Binary Search) 的改良。它特別適合用在已排序且元素分布相對均勻的資料集上，能有效地減少搜尋次數。</p>
   </div>
 
 
