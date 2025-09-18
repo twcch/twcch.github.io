@@ -6,8 +6,15 @@
     <description>Recent content in 部落格 on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 17 Sep 2025 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 18 Sep 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="http://twcch.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>(Day 20) 貪婪演算法 (Greedy Algorithm)</title>
+      <link>http://twcch.io/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_20/</link>
+      <pubDate>Thu, 18 Sep 2025 00:00:00 +0800</pubDate>
+      <guid>http://twcch.io/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_20/</guid>
+      <description>&lt;p&gt;貪婪演算法 (Greedy Algorithm) 是一種在每一步選擇中都採取在當前狀態下最好或最優 (即最有利) 的選擇，從而希望導致結果是全局最好或最優的演算法。這種方法每次做出選擇時，只考慮當前最優解，而不考慮未來的後果&lt;/p&gt;&#xA;&lt;h2 id=&#34;基本思想&#34;&gt;基本思想&lt;/h2&gt;&#xA;&lt;p&gt;貪婪演算法的核心思想是: 每一步都做出在當前狀態下看起來最好的選擇，而不考慮未來的後果。這種方法並不總是能得到最優解，但對於某些特定問題，貪婪策略可以保證得到全局最優解&lt;/p&gt;&#xA;&lt;h2 id=&#34;基本步驟&#34;&gt;基本步驟&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;選擇: 根據某種標準，從當前可行的選擇中選出最優者&lt;/li&gt;&#xA;&lt;li&gt;可行性檢查: 判斷這個選擇是否導致問題無法繼續求解&lt;/li&gt;&#xA;&lt;li&gt;合併: 將這個選擇加入到已選擇的集合中&lt;/li&gt;&#xA;&lt;li&gt;重複: 重複上述步驟，直到達到結束條件&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;經典範例&#34;&gt;經典範例&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;找零問題 (Coin Change Problem): 給定不同面額的硬幣，要求用最少的硬幣數湊出指定金額。對於某些硬幣組合，貪婪法能得到最優解&lt;/li&gt;&#xA;&lt;li&gt;活動選擇問題 (Activity Selection Problem): 選擇最多不重疊的活動，通常按照結束時間最早的活動優先選擇&lt;/li&gt;&#xA;&lt;li&gt;最小生成樹 (Minimum Spanning Tree): 如 Kruskal 和 Prim 演算法，都是貪婪策略的應用&lt;/li&gt;&#xA;&lt;li&gt;哈夫曼編碼 (Huffman Coding): 用於資料壓縮的哈夫曼樹構建過程&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;優點&#34;&gt;優點&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;實現簡單，通常只需一個迴圈或遞迴&lt;/li&gt;&#xA;&lt;li&gt;執行效率高，時間複雜度低&lt;/li&gt;&#xA;&lt;li&gt;適合於可以證明貪婪選擇性質和最優子結構的問題&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;缺點&#34;&gt;缺點&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;並非所有問題都適用，對於某些問題可能無法得到最優解&lt;/li&gt;&#xA;&lt;li&gt;需要證明問題具有「貪婪選擇性質」和「最優子結構」&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;舉例說明&#34;&gt;舉例說明&lt;/h2&gt;&#xA;&lt;h3 id=&#34;活動選擇問題&#34;&gt;活動選擇問題&lt;/h3&gt;&#xA;&lt;p&gt;假設有多個活動，每個活動有開始和結束時間，要求選擇最多不重疊的活動。貪婪策略是每次選擇結束時間最早且不與已選活動重疊的活動。&lt;/p&gt;&#xA;&lt;h3 id=&#34;找零問題&#34;&gt;找零問題&lt;/h3&gt;&#xA;&lt;p&gt;如果硬幣是 [1, 3, 4]，我要湊 6 元，使用貪婪 (每次拿最大硬幣) 會得到哪個組合?&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;先拿最大但不超過 6 的 → 4 → 剩下 2&lt;/li&gt;&#xA;&lt;li&gt;再拿最大 → 1 → 剩下 1&lt;/li&gt;&#xA;&lt;li&gt;再拿最大 → 1 → 剩下 0&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;總共: 4 + 1 + 1 = 6，用了 3 枚硬幣&lt;/p&gt;</description>
+    </item>
     <item>
       <title>(Day 19) 動態規劃 (Dynamic Programming)</title>
       <link>http://twcch.io/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_19/</link>
