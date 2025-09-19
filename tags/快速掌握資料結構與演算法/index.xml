@@ -6,8 +6,15 @@
     <description>Recent content in 快速掌握資料結構與演算法 on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 Sep 2025 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 19 Sep 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>(Day 21) 圖演算法 (Graph Algorithm)</title>
+      <link>http://twcch.io/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_21/</link>
+      <pubDate>Fri, 19 Sep 2025 00:00:00 +0800</pubDate>
+      <guid>http://twcch.io/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_21/</guid>
+      <description>&lt;p&gt;自從我們 Day 10 簡單地說一下圖結構後，就再也沒提到這個詞，我們今天開始就要介紹這個應用非常廣泛的圖 (Graph) 的演算法總覽，後續會接著介紹常見的圖演算法，因為圖是非線性資料結構中最重要的一員，在學術研究與實務應用上都有極高地位，從網路連線、地圖導航、社交網路到金融交易，幾乎都離不開圖的建模與演算法&lt;/p&gt;&#xA;&lt;h2 id=&#34;基本定義&#34;&gt;基本定義&lt;/h2&gt;&#xA;&lt;p&gt;一個圖 (Graph) 由 頂點 (Vertex) 與 邊 (Edge) 所組成。形式化表示為 $G = (V, E)$:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;$V$ 是頂點集合&lt;/li&gt;&#xA;&lt;li&gt;$E$ 是邊的集合，每一條邊連接兩個頂點&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;圖可以依照性質分類:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;有向圖 (Directed Graph) 與 無向圖 (Undirected Graph)&lt;/li&gt;&#xA;&lt;li&gt;加權圖 (Weighted Graph) 與 非加權圖 (Unweighted Graph)&lt;/li&gt;&#xA;&lt;li&gt;稠密圖 (Dense Graph) 與 稀疏圖 (Sparse Graph)&lt;/li&gt;&#xA;&lt;li&gt;循環圖 (Cyclic Graph) 與 非循環圖 (Acyclic Graph)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;圖的表示方法&#34;&gt;圖的表示方法&lt;/h2&gt;&#xA;&lt;p&gt;圖的常見儲存方式主要有兩種:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;鄰接矩陣 (Adjacency Matrix)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;使用一個 $n \times n$ 的矩陣來表示&lt;/li&gt;&#xA;&lt;li&gt;若頂點 $i$ 與 $j$ 之間有邊，則 $A[i][j] = 1$ (或權重值)&lt;/li&gt;&#xA;&lt;li&gt;適合稠密圖，但空間複雜度為 $O(n^2)$&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;鄰接串列 (Adjacency List)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;對於每個頂點，維護一個相鄰頂點的串列&lt;/li&gt;&#xA;&lt;li&gt;適合稀疏圖，空間複雜度接近 $O(V + E)$&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;圖的遍歷演算法&#34;&gt;圖的遍歷演算法&lt;/h2&gt;&#xA;&lt;p&gt;遍歷是理解圖結構的基礎，常見方法有:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>(Day 20) 貪婪演算法 (Greedy Algorithm)</title>
       <link>http://twcch.io/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_20/</link>
