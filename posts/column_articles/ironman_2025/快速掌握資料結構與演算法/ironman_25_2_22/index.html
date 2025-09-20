@@ -7,21 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>Tags | 志謙&#39;s Blog</title>
-  <meta name="description" content="">
+  <title>(Day 22) Dijkstra 最短路徑演算法 (Dijkstra’s Algorithm) | 志謙&#39;s Blog</title>
+  <meta name="description" content="Dijkstra 最短路徑演算法是一種用於計算從單一源點到圖中所有其他節點的最短路徑的經典演算法。這個演算法適用於加權圖，其中邊的權重必須是非負的，核心思想是每次選擇「距離起點最近」的尚未處理節點，並用它來更新鄰居的最短距離，這種策略屬於貪心演算法 (Greedy Algorithm)">
 
-  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/tags/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Tags | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="我是志謙，目前是學生，專注於機器學習與深度學習研究，也經營自媒體，部落格主要分享電腦科學技術文章，期待與各位交流。">
+  <meta name="twitter:title" content="(Day 22) Dijkstra 最短路徑演算法 (Dijkstra’s Algorithm) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="Dijkstra 最短路徑演算法是一種用於計算從單一源點到圖中所有其他節點的最短路徑的經典演算法。這個演算法適用於加權圖，其中邊的權重必須是非負的，核心思想是每次選擇「距離起點最近」的尚未處理節點，並用它來更新鄰居的最短距離，這種策略屬於貪心演算法 (Greedy Algorithm)">
   <meta name="twitter:image" content="http://twcch.io/">
 
   
-  <meta property="og:title" content="Tags | 志謙&#39;s Blog">
-  <meta property="og:description" content="我是志謙，目前是學生，專注於機器學習與深度學習研究，也經營自媒體，部落格主要分享電腦科學技術文章，期待與各位交流。">
+  <meta property="og:title" content="(Day 22) Dijkstra 最短路徑演算法 (Dijkstra’s Algorithm) | 志謙&#39;s Blog">
+  <meta property="og:description" content="Dijkstra 最短路徑演算法是一種用於計算從單一源點到圖中所有其他節點的最短路徑的經典演算法。這個演算法適用於加權圖，其中邊的權重必須是非負的，核心思想是每次選擇「距離起點最近」的尚未處理節點，並用它來更新鄰居的最短距離，這種策略屬於貪心演算法 (Greedy Algorithm)">
   <meta property="og:image" content="http://twcch.io/">
 
   
@@ -58,6 +57,10 @@
 
     
 
+    
+    <div class="global-cover">
+      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 22) Dijkstra 最短路徑演算法 (Dijkstra’s Algorithm)">
+    </div>
     
 
     <div class="global-content">
@@ -129,77 +132,324 @@
       <main class="content" aria-label="Content">
         
 
-<div class="page container">
 
-  <div class="page-head">
-    <h1 class="page-title">Tags</h1>
+
+
+<article class="post container">
+
+  <div class="post-head">
+    <h1 class="post-title">(Day 22) Dijkstra 最短路徑演算法 (Dijkstra’s Algorithm)</h1>
+    <div class="post-meta">
+      
+      <div class="post-tags">
+        Publish in&nbsp;
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">快速掌握資料結構與演算法</a>
+        
+      </div>
+      &nbsp;&bull;&nbsp;
+      
+      <time class="post-date" datetime="2025-09-20T00:00:00&#43;08:00">20 Sep, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="post-minutes">1 min read</span>
+      
+    </div>
     
   </div>
 
-  <div class="page__tags">
-    <div class="row">
-      
-      
-      
-      
-      
-        <div class="page__tags__item col col-3 col-t-4 col-m-6">
-          <a href="/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="page__tags__link">30 天入門常見的機器學習演算法 <sup>(30)</sup></a>
-        </div>
-      
-      
-      
-      
-      
-        <div class="page__tags__item col col-3 col-t-4 col-m-6">
-          <a href="/tags/business-analysis/" class="page__tags__link">Business Analysis <sup>(1)</sup></a>
-        </div>
-      
-      
-      
-      
-      
-        <div class="page__tags__item col col-3 col-t-4 col-m-6">
-          <a href="/tags/data-science/" class="page__tags__link">Data Science <sup>(1)</sup></a>
-        </div>
-      
-      
-      
-      
-      
-        <div class="page__tags__item col col-3 col-t-4 col-m-6">
-          <a href="/tags/heart-notes/" class="page__tags__link">Heart Notes <sup>(3)</sup></a>
-        </div>
-      
-      
-      
-      
-      
-        <div class="page__tags__item col col-3 col-t-4 col-m-6">
-          <a href="/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="page__tags__link">iThome 鐵人賽 2025 <sup>(52)</sup></a>
-        </div>
-      
-      
-      
-      
-      
-        <div class="page__tags__item col col-3 col-t-4 col-m-6">
-          <a href="/tags/project/" class="page__tags__link">Project <sup>(1)</sup></a>
-        </div>
-      
-      
-      
-      
-      
-        <div class="page__tags__item col col-3 col-t-4 col-m-6">
-          <a href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="page__tags__link">快速掌握資料結構與演算法 <sup>(22)</sup></a>
-        </div>
-      
-      
+  
+
+  
+
+  
+
+  <div class="post__content">
+    
+    <div class="table-of-contents" id="table-of-contents">
+      <h2 class="table-of-contents__title">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="margin-right: 8px; vertical-align: -2px;">
+          <path d="M2 3h12a1 1 0 110 2H2a1 1 0 110-2zm0 4h12a1 1 0 110 2H2a1 1 0 110-2zm0 4h12a1 1 0 110 2H2a1 1 0 110-2z"/>
+        </svg>
+        目錄
+      </h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#演算法步驟">演算法步驟</a></li>
+    <li><a href="#例子">例子</a></li>
+    <li><a href="#複雜度">複雜度</a></li>
+    <li><a href="#程式碼">程式碼</a></li>
+    <li><a href="#優缺點">優缺點</a></li>
+    <li><a href="#結語">結語</a></li>
+    <li><a href="#備註">備註</a></li>
+  </ul>
+</nav>
     </div>
+    
+    <p>Dijkstra 最短路徑演算法是一種用於計算從單一源點到圖中所有其他節點的最短路徑的經典演算法。這個演算法適用於加權圖，其中邊的權重必須是非負的，核心思想是每次選擇「距離起點最近」的尚未處理節點，並用它來更新鄰居的最短距離，這種策略屬於貪心演算法 (Greedy Algorithm)</p>
+<h2 id="演算法步驟">演算法步驟</h2>
+<ul>
+<li>初始化
+<ul>
+<li>將所有節點的距離設為無限大，除了起始節點，其距離設為 0</li>
+<li>將所有節點標記為未訪問</li>
+<li>使用一個優先佇列 (通常是最小堆) 來追蹤當前已知的最短距離</li>
+</ul>
+</li>
+<li>選擇節點
+<ul>
+<li>從優先佇列中選擇距離起始節點最近的未訪問節點，將其標記為訪問過</li>
+</ul>
+</li>
+<li>更新鄰居
+<ul>
+<li>對於該節點的每一個鄰居，計算從起始節點經過該節點到鄰居的距離</li>
+<li>如果這個距離小於目前記錄的距離，則更新鄰居的距離，並將其加入優先佇列</li>
+</ul>
+</li>
+<li>重複
+<ul>
+<li>重複步驟 2 和 3，直到所有節點都被訪問過</li>
+</ul>
+</li>
+<li>結束
+<ul>
+<li>當所有節點都被訪問過後，從起始節點到其他所有節點的最短路徑距離即已計算完成</li>
+</ul>
+</li>
+</ul>
+<h2 id="例子">例子</h2>
+<p>假設有一個圖如下:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">A --(1)--&gt; B
+</span></span><span class="line"><span class="cl">A --(4)--&gt; C
+</span></span><span class="line"><span class="cl">B --(2)--&gt; C
+</span></span><span class="line"><span class="cl">B --(5)--&gt; D
+</span></span><span class="line"><span class="cl">C --(1)--&gt; D
+</span></span></code></pre></div><ul>
+<li>起始節點為 A</li>
+<li>初始化: A 的距離為 0，B、C、D 的距離為無限大</li>
+<li>從 A 開始，更新 B 和 C 的距離</li>
+<li>選擇距離最小的 B，更新 C 和 D 的距離</li>
+<li>選擇距離最小的 C，更新 D 的距離</li>
+<li>最後選擇 D，所有節點都被訪問過</li>
+</ul>
+<h2 id="複雜度">複雜度</h2>
+<p>Dijkstra 演算法的時間複雜度取決於使用的資料結構。若使用二元堆，時間複雜度為 $O((V + E) \log V)$，其中 $V$ 是節點數，$E$ 是邊數</p>
+<h2 id="程式碼">程式碼</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">heapq</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">dijkstra</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># graph: adjacency list 格式 {u: [(v, weight), ...]}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dist</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dist</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 最小堆 (priority queue)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pq</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="n">start</span><span class="p">)]</span>  
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">pq</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">current_dist</span><span class="p">,</span> <span class="n">u</span> <span class="o">=</span> <span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">pq</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 如果已經不是最短路徑，跳過</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">current_dist</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">distance</span> <span class="o">=</span> <span class="n">current_dist</span> <span class="o">+</span> <span class="n">weight</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">distance</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">distance</span>
+</span></span><span class="line"><span class="cl">                <span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">pq</span><span class="p">,</span> <span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">dist</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 測試</span>
+</span></span><span class="line"><span class="cl"><span class="n">graph</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">0</span><span class="p">:</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">1</span><span class="p">:</span> <span class="p">[(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">2</span><span class="p">:</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)],</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">3</span><span class="p">:</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">dijkstra</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>  
+</span></span><span class="line"><span class="cl"><span class="c1"># 輸出: {0: 0, 1: 3, 2: 1, 3: 4}</span>
+</span></span></code></pre></div><h2 id="優缺點">優缺點</h2>
+<table>
+  <thead>
+      <tr>
+          <th>優點</th>
+          <th>缺點</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>適用於大部分「非負權重」的最短路徑問題</td>
+          <td>無法處理負權重</td>
+      </tr>
+      <tr>
+          <td>效率高，特別適合稀疏圖</td>
+          <td>若要計算所有點對最短路徑需額外呼叫多次</td>
+      </tr>
+      <tr>
+          <td>與 Priority Queue 搭配能達到 $O((V+E)\log V)$</td>
+          <td>在稠密圖上效率不如 Floyd-Warshall</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="結語">結語</h2>
+<p>Dijkstra 演算法是圖論中最重要的演算法之一，能高效解決單源最短路徑問題，它的貪心思想簡單卻強大，應用範圍極廣，從日常導航到金融網路分析都能見到它的身影</p>
+<h2 id="備註">備註</h2>
+<ul>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8468">iThome 鐵人賽 2025 - 快速掌握資料結構與演算法</a></li>
+</ul>
+
   </div>
 
+  <div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2022%29%20Dijkstra%20%e6%9c%80%e7%9f%ad%e8%b7%af%e5%be%91%e6%bc%94%e7%ae%97%e6%b3%95%20%28Dijkstra%e2%80%99s%20Algorithm%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_22%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_22%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_22%2f&title=%28Day%2022%29%20Dijkstra%20%e6%9c%80%e7%9f%ad%e8%b7%af%e5%be%91%e6%bc%94%e7%ae%97%e6%b3%95%20%28Dijkstra%e2%80%99s%20Algorithm%29&summary=Dijkstra%20%e6%9c%80%e7%9f%ad%e8%b7%af%e5%be%91%e6%bc%94%e7%ae%97%e6%b3%95%e6%98%af%e4%b8%80%e7%a8%ae%e7%94%a8%e6%96%bc%e8%a8%88%e7%ae%97%e5%be%9e%e5%96%ae%e4%b8%80%e6%ba%90%e9%bb%9e%e5%88%b0%e5%9c%96%e4%b8%ad%e6%89%80%e6%9c%89%e5%85%b6%e4%bb%96%e7%af%80%e9%bb%9e%e7%9a%84%e6%9c%80%e7%9f%ad%e8%b7%af%e5%be%91%e7%9a%84%e7%b6%93%e5%85%b8%e6%bc%94%e7%ae%97%e6%b3%95%e3%80%82%e9%80%99%e5%80%8b%e6%bc%94%e7%ae%97%e6%b3%95%e9%81%a9%e7%94%a8%e6%96%bc%e5%8a%a0%e6%ac%8a%e5%9c%96%ef%bc%8c%e5%85%b6%e4%b8%ad%e9%82%8a%e7%9a%84%e6%ac%8a%e9%87%8d%e5%bf%85%e9%a0%88%e6%98%af%e9%9d%9e%e8%b2%a0%e7%9a%84%ef%bc%8c%e6%a0%b8%e5%bf%83%e6%80%9d%e6%83%b3%e6%98%af%e6%af%8f%e6%ac%a1%e9%81%b8%e6%93%87%e3%80%8c%e8%b7%9d%e9%9b%a2%e8%b5%b7%e9%bb%9e%e6%9c%80%e8%bf%91%e3%80%8d%e7%9a%84%e5%b0%9a%e6%9c%aa%e8%99%95%e7%90%86%e7%af%80%e9%bb%9e%ef%bc%8c%e4%b8%a6%e7%94%a8%e5%ae%83%e4%be%86%e6%9b%b4%e6%96%b0%e9%84%b0%e5%b1%85%e7%9a%84%e6%9c%80%e7%9f%ad%e8%b7%9d%e9%9b%a2%ef%bc%8c%e9%80%99%e7%a8%ae%e7%ad%96%e7%95%a5%e5%b1%ac%e6%96%bc%e8%b2%aa%e5%bf%83%e6%bc%94%e7%ae%97%e6%b3%95%20%28Greedy%20Algorithm%29&source=%28Day%2022%29%20Dijkstra%20%e6%9c%80%e7%9f%ad%e8%b7%af%e5%be%91%e6%bc%94%e7%ae%97%e6%b3%95%20%28Dijkstra%e2%80%99s%20Algorithm%29"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_22%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2022%29%20Dijkstra%20%e6%9c%80%e7%9f%ad%e8%b7%af%e5%be%91%e6%bc%94%e7%ae%97%e6%b3%95%20%28Dijkstra%e2%80%99s%20Algorithm%29"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+    </li>
+  </ul>
 </div>
+
+  
+
+
+<div class="section-related">
+  <h4 class="section-related__title">You may also like...</h4>
+  <div class="row grid">
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_21/">(Day 21) 圖演算法 (Graph Algorithm)</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-09-19T00:00:00&#43;08:00">19 Sep, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">1 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">自從我們 Day 10 簡單地說一下圖結構後，就再也沒提到這個詞，我們今天開始就要介紹這個應用非常廣泛的圖 (Graph) 的演算法總覽，後續會接著介紹常見的圖演算法，因為圖是非線性資料結構中最重要的一員，在學術研究與實務應用上都有極高地位，從網路連線、地圖導航、社交網路到金融交易，幾乎都離不開圖的建模與演算法</p>
+  </div>
+
+
+</div>
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_20/">(Day 20) 貪婪演算法 (Greedy Algorithm)</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-09-18T00:00:00&#43;08:00">18 Sep, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">1 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">貪婪演算法 (Greedy Algorithm) 是一種在每一步選擇中都採取在當前狀態下最好或最優 (即最有利) 的選擇，從而希望導致結果是全局最好或最優的演算法。這種方法每次做出選擇時，只考慮當前最優解，而不考慮未來的後果</p>
+  </div>
+
+
+</div>
+    
+  </div>
+</div>
+
+
+</article>
+
+
+
+  
+
+<div class="container">
+  <div class="show-comments">
+    <button class="button" id="show-comments-button" onclick="disqus();return false;">Comments</button>
+  </div>
+  
+  <div id="disqus_thread" class="post__comments">
+    <div id="disqus_empty"></div>
+  </div>
+  
+  <script>
+    var disqus_loaded = false;
+    var disqus_shortname = 'twcch';
+    var disqus_container = document.getElementById("disqus_thread");
+    function disqus() {
+      if (!disqus_loaded) {
+        disqus_loaded = true;
+        var e = document.createElement("script");
+        e.type = "text/javascript";
+        e.async = true;
+        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+        (document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0])
+          .appendChild(e);
+        
+        document.getElementById("show-comments-button").style.display = "none";
+        
+        disqus_container.classList.add("is-open");
+      }
+    }
+  </script>
+</div>
+
+
+
+
+
 
 
       </main>
