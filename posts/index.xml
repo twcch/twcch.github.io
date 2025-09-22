@@ -6,8 +6,15 @@
     <description>Recent content in 部落格 on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 22 Sep 2025 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 23 Sep 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="http://twcch.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>(Day 25) A* 搜尋演算法 (A-star Search)</title>
+      <link>http://twcch.io/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_25/</link>
+      <pubDate>Tue, 23 Sep 2025 00:00:00 +0800</pubDate>
+      <guid>http://twcch.io/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_25/</guid>
+      <description>&lt;p&gt;在前幾天，我們介紹了 Dijkstra、Bellman-Ford、Floyd-Warshall，這些都是經典的最短路徑演算法。今天要談的是 A* 搜尋演算法 (A-star Search) —— 一個結合最短路徑與啟發式 (Heuristic) 的演算法，在人工智慧 (AI)、遊戲與導航中應用極為廣泛&lt;/p&gt;&#xA;&lt;h2 id=&#34;演算法背景&#34;&gt;演算法背景&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;發表於 1968 年，Peter Hart, Nils Nilsson, Bertram Raphael&lt;/li&gt;&#xA;&lt;li&gt;適用於 圖的最短路徑搜尋，尤其是在地圖、遊戲、路徑規劃等場景&lt;/li&gt;&#xA;&lt;li&gt;結合了 Dijkstra 的「最短距離」思想 與 Greedy Best-First Search 的「啟發式」思想&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;核心思想&#34;&gt;核心思想&lt;/h2&gt;&#xA;&lt;p&gt;A* 的代價函數定義為:&lt;/p&gt;&#xA;&lt;p&gt;$$&#xA;f(n) = g(n) + h(n)&#xA;$$&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;$g(n)$: 從起點到節點 $n$ 的實際距離&lt;/li&gt;&#xA;&lt;li&gt;$h(n)$: 從節點 $n$ 到目標的「估計距離」(啟發式函數，Heuristic Function)&lt;/li&gt;&#xA;&lt;li&gt;$f(n)$: 綜合評估函數，用來決定搜尋順序&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;若 $h(n)$ 設為 0，A* 就會退化成 Dijkstra&#xA;若 $h(n)$ 選得合理，A* 就能更快收斂到目標&lt;/p&gt;&#xA;&lt;h2 id=&#34;常見啟發式函數&#34;&gt;常見啟發式函數&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;曼哈頓距離 (Manhattan Distance):&lt;/p&gt;&#xA;&lt;p&gt;$$ h(n) = |x_1 - x_2| + |y_1 - y_2| $$&#xA;適合只能上下左右移動的網格&lt;/p&gt;</description>
+    </item>
     <item>
       <title>(Day 24) Floyd-Warshall 演算法</title>
       <link>http://twcch.io/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_24/</link>

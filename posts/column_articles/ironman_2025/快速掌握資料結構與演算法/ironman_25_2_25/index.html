@@ -7,20 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>(Day 4) 鏈表 (Linked List) | 志謙&#39;s Blog</title>
-  <meta name="description" content="Linked List (鏈表) 是一種常見的資料結構，用來儲存一系列的元素。與陣列 (Array) 不同，Linked List 的元素稱為節點 (Node) 在記憶體中不必是連續的。每個節點除了儲存資料外，還會儲存一個指向下一個節點的參考 (指標)。">
+  <title>(Day 25) A* 搜尋演算法 (A-star Search) | 志謙&#39;s Blog</title>
+  <meta name="description" content="在前幾天，我們介紹了 Dijkstra、Bellman-Ford、Floyd-Warshall，這些都是經典的最短路徑演算法。今天要談的是 A* 搜尋演算法 (A-star Search) —— 一個結合最短路徑與啟發式 (Heuristic) 的演算法，在人工智慧 (AI)、遊戲與導航中應用極為廣泛">
 
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="(Day 4) 鏈表 (Linked List) | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="Linked List (鏈表) 是一種常見的資料結構，用來儲存一系列的元素。與陣列 (Array) 不同，Linked List 的元素稱為節點 (Node) 在記憶體中不必是連續的。每個節點除了儲存資料外，還會儲存一個指向下一個節點的參考 (指標)。">
+  <meta name="twitter:title" content="(Day 25) A* 搜尋演算法 (A-star Search) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="在前幾天，我們介紹了 Dijkstra、Bellman-Ford、Floyd-Warshall，這些都是經典的最短路徑演算法。今天要談的是 A* 搜尋演算法 (A-star Search) —— 一個結合最短路徑與啟發式 (Heuristic) 的演算法，在人工智慧 (AI)、遊戲與導航中應用極為廣泛">
   <meta name="twitter:image" content="http://twcch.io/">
 
   
-  <meta property="og:title" content="(Day 4) 鏈表 (Linked List) | 志謙&#39;s Blog">
-  <meta property="og:description" content="Linked List (鏈表) 是一種常見的資料結構，用來儲存一系列的元素。與陣列 (Array) 不同，Linked List 的元素稱為節點 (Node) 在記憶體中不必是連續的。每個節點除了儲存資料外，還會儲存一個指向下一個節點的參考 (指標)。">
+  <meta property="og:title" content="(Day 25) A* 搜尋演算法 (A-star Search) | 志謙&#39;s Blog">
+  <meta property="og:description" content="在前幾天，我們介紹了 Dijkstra、Bellman-Ford、Floyd-Warshall，這些都是經典的最短路徑演算法。今天要談的是 A* 搜尋演算法 (A-star Search) —— 一個結合最短路徑與啟發式 (Heuristic) 的演算法，在人工智慧 (AI)、遊戲與導航中應用極為廣泛">
   <meta property="og:image" content="http://twcch.io/">
 
   
@@ -59,7 +59,7 @@
 
     
     <div class="global-cover">
-      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 4) 鏈表 (Linked List)">
+      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 25) A* 搜尋演算法 (A-star Search)">
     </div>
     
 
@@ -138,7 +138,7 @@
 <article class="post container">
 
   <div class="post-head">
-    <h1 class="post-title">(Day 4) 鏈表 (Linked List)</h1>
+    <h1 class="post-title">(Day 25) A* 搜尋演算法 (A-star Search)</h1>
     <div class="post-meta">
       
       <div class="post-tags">
@@ -151,10 +151,10 @@
       </div>
       &nbsp;&bull;&nbsp;
       
-      <time class="post-date" datetime="2025-09-02T00:00:00&#43;08:00">2 Sep, 2025</time>
+      <time class="post-date" datetime="2025-09-23T00:00:00&#43;08:00">23 Sep, 2025</time>
       
         &nbsp;&bull;&nbsp;
-        <span class="post-minutes">3 min read</span>
+        <span class="post-minutes">2 min read</span>
       
     </div>
     
@@ -177,229 +177,164 @@
       </h2>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#為什麼要用-linked-list">為什麼要用 Linked List?</a></li>
-    <li><a href="#linked-list-的種類">Linked List 的種類</a>
-      <ul>
-        <li><a href="#node-的結構">Node 的結構</a></li>
-      </ul>
-    </li>
-    <li><a href="#自己建立一個-linked-list">自己建立一個 Linked List</a></li>
-    <li><a href="#leetcode">LeetCode</a></li>
+    <li><a href="#演算法背景">演算法背景</a></li>
+    <li><a href="#核心思想">核心思想</a></li>
+    <li><a href="#常見啟發式函數">常見啟發式函數</a></li>
+    <li><a href="#程式範例">程式範例</a></li>
+    <li><a href="#複雜度分析">複雜度分析</a></li>
+    <li><a href="#優缺點">優缺點</a></li>
     <li><a href="#結語">結語</a></li>
     <li><a href="#備註">備註</a></li>
   </ul>
 </nav>
     </div>
     
-    <p>Linked List (鏈表) 是一種常見的資料結構，用來儲存一系列的元素。與陣列 (Array) 不同，Linked List 的元素稱為節點 (Node) 在記憶體中不必是連續的。每個節點除了儲存資料外，還會儲存一個指向下一個節點的參考 (指標)。</p>
-<p>但是很不巧的 Python 並沒有像 Java 有支援 Linked List，雖然本系列是以 Python 為主，但是也不會直接使用高階 API 來實作，因為這樣就沒有意義了，所以會使用 Python 來自己建立類別來實現，甚至之後的有些資料結構 Python 都沒有，我也會用 Python 來自定義出類別。</p>
-<h2 id="為什麼要用-linked-list">為什麼要用 Linked List?</h2>
-<p>相較 Array，Linked List 可以隨時增加或刪除元素，不需要事先宣告大小，而且在在已知位置插入或刪除元素時，只需改變指標，不需搬移其他元素，也就是說如果程式需要頻繁的新增與刪除，Linked List 表現會更為優秀；但是 Linked List 不論是哪種型態的，最多只會儲存前後 Node 的位址，所以當需要查詢的時候，就必須遍歷整個 Linked List，所以在這部分就不及 Array 的效率。</p>
-<h2 id="linked-list-的種類">Linked List 的種類</h2>
-<p>常見的 Linked List 有以下這幾種型態:</p>
+    <p>在前幾天，我們介紹了 Dijkstra、Bellman-Ford、Floyd-Warshall，這些都是經典的最短路徑演算法。今天要談的是 A* 搜尋演算法 (A-star Search) —— 一個結合最短路徑與啟發式 (Heuristic) 的演算法，在人工智慧 (AI)、遊戲與導航中應用極為廣泛</p>
+<h2 id="演算法背景">演算法背景</h2>
 <ul>
-<li>Singly Linked List (單向鏈表):  每個 Node 只指向下一個節點。</li>
-<li>Doubly Linked List (雙向鏈表): 每個 Node 同時指向前一個和下一個節點。</li>
-<li>Circular Linked List (循環鏈表): 最後一個 Node 指向第一個節點，形成一個環。</li>
+<li>發表於 1968 年，Peter Hart, Nils Nilsson, Bertram Raphael</li>
+<li>適用於 圖的最短路徑搜尋，尤其是在地圖、遊戲、路徑規劃等場景</li>
+<li>結合了 Dijkstra 的「最短距離」思想 與 Greedy Best-First Search 的「啟發式」思想</li>
 </ul>
-<h3 id="node-的結構">Node 的結構</h3>
-<p>看完 Linked List 的種類，其實會發現這些的差異都在 Node，有的 Node 只指向下一個節點，有 Node 同時指向前一個和下一個節點，接下來我們就用 Python 來演式 Node 的結構:</p>
+<h2 id="核心思想">核心思想</h2>
+<p>A* 的代價函數定義為:</p>
+<p>$$
+f(n) = g(n) + h(n)
+$$</p>
 <ul>
-<li>Node in a Singly Linked List</li>
+<li>$g(n)$: 從起點到節點 $n$ 的實際距離</li>
+<li>$h(n)$: 從節點 $n$ 到目標的「估計距離」(啟發式函數，Heuristic Function)</li>
+<li>$f(n)$: 綜合評估函數，用來決定搜尋順序</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>
-</span></span></code></pre></div><ul>
-<li>Node in a Doubly Linked List</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">		<span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
-</span></span><span class="line"><span class="cl">		<span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>
-</span></span><span class="line"><span class="cl">		<span class="bp">self</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="kc">None</span>
-</span></span></code></pre></div><ul>
-<li>Node in a Circular Linked List</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>
-</span></span></code></pre></div><p>從前述的程式碼看起來，雖然 Singly Linked List 與 Circular Linked List 一致，但是 Singly Linked List 在最後一個 Node 會指向 None，而 Circular Linked List 的最後一個 Node 會指向第一個 Node 形成一個閉環。</p>
-<h2 id="自己建立一個-linked-list">自己建立一個 Linked List</h2>
-<p>如果你是第一次學習 Linked List 看到這邊會一臉矇，會浮現出這是什麼? 怎麼用? 好像懂的又不懂的感覺，我們就以 Singly Linked List 為例:</p>
-<ul>
-<li>Create a Node class</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>
-</span></span></code></pre></div><ul>
-<li>Create a LinkedList class</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">LinkedList</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">		<span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="kc">None</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
-</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">current</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="k">yield</span> <span class="n">current</span><span class="o">.</span><span class="n">data</span>
-</span></span><span class="line"><span class="cl">            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
-</span></span></code></pre></div><p>寫到這裡，已經完成一個沒有任何功能的 Linked List，這邊說明一下 Linked List class 的 head 是什麼，他代表的就是 Node，可以想像一下，Node 就是一個一個的點，Linked List 是將這些點整個串起來；而 <code>__iter__</code> 為了後續要 print 出 Linked List 的內容，所實作的方法，只是為了讓這個資料結構可以透過 for loop 來印出，這部分不在本系列的範圍，就不多做解釋。接下來我們就繼續建立一些常見的方法，讓這個 Linked List 更完整。</p>
+<p>若 $h(n)$ 設為 0，A* 就會退化成 Dijkstra
+若 $h(n)$ 選得合理，A* 就能更快收斂到目標</p>
+<h2 id="常見啟發式函數">常見啟發式函數</h2>
 <ul>
 <li>
-<p>Create an append() method</p>
-<p>說明一下這段代碼的流程:</p>
+<p>曼哈頓距離 (Manhattan Distance):</p>
+<p>$$ h(n) = |x_1 - x_2| + |y_1 - y_2| $$
+適合只能上下左右移動的網格</p>
+</li>
+<li>
+<p>歐式距離 (Euclidean Distance):</p>
+<p>$$ h(n) = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2} $$
+適合允許對角線移動的場景</p>
+</li>
+<li>
+<p>切比雪夫距離 (Chebyshev Distance):</p>
+<p>$$ h(n) = \max(|x_1 - x_2|, |y_1 - y_2|) $$</p>
+<p>適合王棋走法 (上下左右斜角都能走)</p>
+</li>
+</ul>
+<h2 id="程式範例">程式範例</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">heapq</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">a_star</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">goal</span><span class="p">,</span> <span class="n">heuristic</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># graph: adjacency list 格式 {u: [(v, cost), ...]}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># start: 起點</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># goal: 目標點</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># heuristic: 啟發式函數 h(n)，估計節點 n 到目標的距離</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># open list（優先佇列），存放候選節點</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 優先依照 f(n) = g(n) + h(n) 的值排序</span>
+</span></span><span class="line"><span class="cl">    <span class="n">open_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">open_list</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">start</span><span class="p">))</span>  <span class="c1"># (f值, 節點)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># g(n)：記錄從起點到每個節點的實際最短距離</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># parent：紀錄路徑，方便最後回溯最短路徑</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parent</span> <span class="o">=</span> <span class="p">{</span><span class="n">start</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">open_list</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="p">,</span> <span class="n">u</span> <span class="o">=</span> <span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">open_list</span><span class="p">)</span>  <span class="c1"># 選擇當前 f 值最小的節點</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># 如果到達目標，回溯重建路徑並回傳</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">u</span> <span class="o">==</span> <span class="n">goal</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span> <span class="n">u</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">u</span> <span class="o">=</span> <span class="n">parent</span><span class="p">[</span><span class="n">u</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">path</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">g</span><span class="p">[</span><span class="n">goal</span><span class="p">]</span>  <span class="c1"># 回傳路徑與最短距離</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># 探索鄰居節點</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">cost</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">temp_g</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">cost</span>  <span class="c1"># 嘗試經由 u 到達 v 的距離</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">temp_g</span> <span class="o">&lt;</span> <span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>  <span class="c1"># 如果更短，則更新</span>
+</span></span><span class="line"><span class="cl">                <span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp_g</span>
+</span></span><span class="line"><span class="cl">                <span class="n">f</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">+</span> <span class="n">heuristic</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">goal</span><span class="p">)</span>  <span class="c1"># 計算 f(n) = g + h</span>
+</span></span><span class="line"><span class="cl">                <span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">open_list</span><span class="p">,</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                <span class="n">parent</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span>  <span class="c1"># 更新路徑</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>  <span class="c1"># 若找不到路徑，回傳 None</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 測試範例</span>
+</span></span><span class="line"><span class="cl"><span class="n">graph</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;E&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;F&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 啟發式函數（這裡簡化成 0，退化成 Dijkstra）</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">h</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">goal</span><span class="p">):</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">path</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="n">a_star</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;最短路徑:&#34;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>  <span class="c1"># 最短路徑: [&#39;A&#39;, &#39;B&#39;, &#39;E&#39;, &#39;G&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;總成本:&#34;</span><span class="p">,</span> <span class="n">cost</span><span class="p">)</span>   <span class="c1"># 總成本: 3</span>
+</span></span></code></pre></div><h2 id="複雜度分析">複雜度分析</h2>
 <ul>
-<li>有資料要加入這個 Linked List，會建立一個沒有連接的 Node 並把資料放進去 (new_node)</li>
-<li>判斷這個 Linked List 是不是空的，如果是這個新的 Node 就會作為第一個 Node</li>
-<li>如果不是空的，就要遍歷整個 Linked List 直到 self.head.next == Node，把新的 Node 放在最後面</li>
+<li>時間複雜度
+<ul>
+<li>與啟發式函數品質高度相關</li>
+<li>最壞情況：$O(E \log V)$ (類似 Dijkstra)</li>
+</ul>
+</li>
+<li>空間複雜度
+<ul>
+<li>$O(V)$，需存儲 open/closed 集合與路徑資訊</li>
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">LinkedList</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">		<span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="kc">None</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
-</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">current</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="k">yield</span> <span class="n">current</span><span class="o">.</span><span class="n">data</span>
-</span></span><span class="line"><span class="cl">            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">		<span class="n">new_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">			<span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">new_node</span>
-</span></span><span class="line"><span class="cl">			<span class="k">return</span>
-</span></span><span class="line"><span class="cl">		
-</span></span><span class="line"><span class="cl">		<span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
-</span></span><span class="line"><span class="cl">		<span class="k">while</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">			<span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
-</span></span><span class="line"><span class="cl">		<span class="n">current</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">new_node</span>
-</span></span></code></pre></div><ul>
-<li>
-<p>Create an insert() method</p>
-<p>append() 是把新的元素，一直往 Linked List 後面添加，接下來我們來實作，指定 index 的插入功能</p>
-</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">LinkedList</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">		<span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="kc">None</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
-</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">current</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="k">yield</span> <span class="n">current</span><span class="o">.</span><span class="n">data</span>
-</span></span><span class="line"><span class="cl">            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">		<span class="n">new_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">			<span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">new_node</span>
-</span></span><span class="line"><span class="cl">			<span class="k">return</span>
-</span></span><span class="line"><span class="cl">		
-</span></span><span class="line"><span class="cl">		<span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
-</span></span><span class="line"><span class="cl">		<span class="k">while</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">			<span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
-</span></span><span class="line"><span class="cl">		<span class="n">current</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">new_node</span>
-</span></span><span class="line"><span class="cl">	
-</span></span><span class="line"><span class="cl">	<span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">		<span class="n">new_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">		
-</span></span><span class="line"><span class="cl">		<span class="c1"># 插在頭部</span>
-</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">			<span class="n">new_node</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
-</span></span><span class="line"><span class="cl">			<span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">new_node</span>
-</span></span><span class="line"><span class="cl">			<span class="k">return</span>
-</span></span><span class="line"><span class="cl">		
-</span></span><span class="line"><span class="cl">		<span class="c1"># 遍歷 Linked List 找 index</span>
-</span></span><span class="line"><span class="cl">		<span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
-</span></span><span class="line"><span class="cl">		<span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span>
-</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">current</span> <span class="ow">and</span> <span class="n">pos</span> <span class="o">&lt;</span> <span class="n">index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
-</span></span><span class="line"><span class="cl">            <span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl">        
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">current</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">False</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1"># 插入新節點</span>
-</span></span><span class="line"><span class="cl">        <span class="n">new_node</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
-</span></span><span class="line"><span class="cl">        <span class="n">current</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">new_node</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">True</span>
-</span></span></code></pre></div><p>到這邊我們就先來測試一下程式，透過 append() 與 insert() 把元素放入，再透過 for loop 印出來，我們可以看到所有的元素都被依序印出來了。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">LinkedList</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="kc">None</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
-</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">current</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="k">yield</span> <span class="n">current</span><span class="o">.</span><span class="n">data</span>
-</span></span><span class="line"><span class="cl">            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="n">new_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">new_node</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
-</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
-</span></span><span class="line"><span class="cl">        <span class="n">current</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">new_node</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="n">new_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1"># 插在頭部</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="n">new_node</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
-</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">new_node</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1"># 遍歷 Linked List 找 index</span>
-</span></span><span class="line"><span class="cl">        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
-</span></span><span class="line"><span class="cl">        <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">current</span> <span class="ow">and</span> <span class="n">pos</span> <span class="o">&lt;</span> <span class="n">index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
-</span></span><span class="line"><span class="cl">            <span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">current</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">False</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1"># 插入新節點</span>
-</span></span><span class="line"><span class="cl">        <span class="n">new_node</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
-</span></span><span class="line"><span class="cl">        <span class="n">current</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">new_node</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">True</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">ll</span> <span class="o">=</span> <span class="n">LinkedList</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="n">ll</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">ll</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">ll</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">ll</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">ll</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34; &#34;</span><span class="p">)</span>  <span class="c1"># Output: 1 9 2 3</span>
-</span></span></code></pre></div><h2 id="leetcode">LeetCode</h2>
-<ul>
-<li><a href="https://leetcode.com/problems/reverse-linked-list/">LeetCode 206. Reverse Linked List</a></li>
-<li><a href="https://leetcode.com/problems/merge-two-sorted-lists/">LeetCode 21. Merge Two Sorted Lists</a></li>
-<li><a href="https://leetcode.com/problems/linked-list-cycle/">LeetCode 141. Linked List Cycle</a></li>
-</ul>
+<h2 id="優缺點">優缺點</h2>
+<table>
+  <thead>
+      <tr>
+          <th>優點</th>
+          <th>缺點</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>比 Dijkstra 更快找到目標 (若啟發式設計良好)</td>
+          <td>啟發式函數需要人工設計</td>
+      </tr>
+      <tr>
+          <td>可靈活應用於遊戲、導航、AI</td>
+          <td>若啟發式過於樂觀，效率下降</td>
+      </tr>
+      <tr>
+          <td>保證最優解 (若 $h(n)$ 為 可允許的 (Admissible))</td>
+          <td>記憶體需求較高，需儲存更多狀態</td>
+      </tr>
+  </tbody>
+</table>
 <h2 id="結語">結語</h2>
-<p>本文章只實作了 append() 與 insert() 方法，還有很多方法還沒實作，這邊就不一一實作了，Linked List 是一種靈活且常用的資料結構，適合用於需要頻繁插入、刪除元素的場合。雖然存取速度不如陣列，但在某些情境下能大幅提升效率。建議初學者多加練習，熟悉其基本操作與應用。</p>
+<p>A* 演算法結合了 Dijkstra 的保證最短路徑 與 啟發式的高效率，是一個非常實用的搜尋演算法。它的威力取決於啟發式設計，若設計良好，A* 幾乎能「直奔目標」，大幅減少搜尋時間。</p>
+<p>至此，我們完成了 最短路徑演算法四大金剛:</p>
+<ul>
+<li>Dijkstra: 非負權重的單源最短路徑</li>
+<li>Bellman-Ford: 處理負權重與檢測負環</li>
+<li>Floyd-Warshall: 所有點對最短路徑</li>
+<li>A*: 帶啟發式的高效路徑搜尋</li>
+</ul>
 <h2 id="備註">備註</h2>
 <ul>
 <li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8468">iThome 鐵人賽 2025 - 快速掌握資料結構與演算法</a></li>
@@ -410,23 +345,23 @@
   <div class="post__share">
   <ul class="share__list list-reset">
     <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%204%29%20%e9%8f%88%e8%a1%a8%20%28Linked%20List%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_4%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2025%29%20A%2a%20%e6%90%9c%e5%b0%8b%e6%bc%94%e7%ae%97%e6%b3%95%20%28A-star%20Search%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_25%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_4%2f"
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_25%2f"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_4%2f&title=%28Day%204%29%20%e9%8f%88%e8%a1%a8%20%28Linked%20List%29&summary=Linked%20List%20%28%e9%8f%88%e8%a1%a8%29%20%e6%98%af%e4%b8%80%e7%a8%ae%e5%b8%b8%e8%a6%8b%e7%9a%84%e8%b3%87%e6%96%99%e7%b5%90%e6%a7%8b%ef%bc%8c%e7%94%a8%e4%be%86%e5%84%b2%e5%ad%98%e4%b8%80%e7%b3%bb%e5%88%97%e7%9a%84%e5%85%83%e7%b4%a0%e3%80%82%e8%88%87%e9%99%a3%e5%88%97%20%28Array%29%20%e4%b8%8d%e5%90%8c%ef%bc%8cLinked%20List%20%e7%9a%84%e5%85%83%e7%b4%a0%e7%a8%b1%e7%82%ba%e7%af%80%e9%bb%9e%20%28Node%29%20%e5%9c%a8%e8%a8%98%e6%86%b6%e9%ab%94%e4%b8%ad%e4%b8%8d%e5%bf%85%e6%98%af%e9%80%a3%e7%ba%8c%e7%9a%84%e3%80%82%e6%af%8f%e5%80%8b%e7%af%80%e9%bb%9e%e9%99%a4%e4%ba%86%e5%84%b2%e5%ad%98%e8%b3%87%e6%96%99%e5%a4%96%ef%bc%8c%e9%82%84%e6%9c%83%e5%84%b2%e5%ad%98%e4%b8%80%e5%80%8b%e6%8c%87%e5%90%91%e4%b8%8b%e4%b8%80%e5%80%8b%e7%af%80%e9%bb%9e%e7%9a%84%e5%8f%83%e8%80%83%20%28%e6%8c%87%e6%a8%99%29%e3%80%82&source=%28Day%204%29%20%e9%8f%88%e8%a1%a8%20%28Linked%20List%29"
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_25%2f&title=%28Day%2025%29%20A%2a%20%e6%90%9c%e5%b0%8b%e6%bc%94%e7%ae%97%e6%b3%95%20%28A-star%20Search%29&summary=%e5%9c%a8%e5%89%8d%e5%b9%be%e5%a4%a9%ef%bc%8c%e6%88%91%e5%80%91%e4%bb%8b%e7%b4%b9%e4%ba%86%20Dijkstra%e3%80%81Bellman-Ford%e3%80%81Floyd-Warshall%ef%bc%8c%e9%80%99%e4%ba%9b%e9%83%bd%e6%98%af%e7%b6%93%e5%85%b8%e7%9a%84%e6%9c%80%e7%9f%ad%e8%b7%af%e5%be%91%e6%bc%94%e7%ae%97%e6%b3%95%e3%80%82%e4%bb%8a%e5%a4%a9%e8%a6%81%e8%ab%87%e7%9a%84%e6%98%af%20A%2a%20%e6%90%9c%e5%b0%8b%e6%bc%94%e7%ae%97%e6%b3%95%20%28A-star%20Search%29%20%e2%80%94%e2%80%94%20%e4%b8%80%e5%80%8b%e7%b5%90%e5%90%88%e6%9c%80%e7%9f%ad%e8%b7%af%e5%be%91%e8%88%87%e5%95%9f%e7%99%bc%e5%bc%8f%20%28Heuristic%29%20%e7%9a%84%e6%bc%94%e7%ae%97%e6%b3%95%ef%bc%8c%e5%9c%a8%e4%ba%ba%e5%b7%a5%e6%99%ba%e6%85%a7%20%28AI%29%e3%80%81%e9%81%8a%e6%88%b2%e8%88%87%e5%b0%8e%e8%88%aa%e4%b8%ad%e6%87%89%e7%94%a8%e6%a5%b5%e7%82%ba%e5%bb%a3%e6%b3%9b&source=%28Day%2025%29%20A%2a%20%e6%90%9c%e5%b0%8b%e6%bc%94%e7%ae%97%e6%b3%95%20%28A-star%20Search%29"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
     </li>
 
     <li class="share__item">
       <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_4%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%204%29%20%e9%8f%88%e8%a1%a8%20%28Linked%20List%29"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_25%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2025%29%20A%2a%20%e6%90%9c%e5%b0%8b%e6%bc%94%e7%ae%97%e6%b3%95%20%28A-star%20Search%29"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
     </li>
@@ -439,39 +374,6 @@
 <div class="section-related">
   <h4 class="section-related__title">You may also like...</h4>
   <div class="row grid">
-    
-      <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_25/">(Day 25) A* 搜尋演算法 (A-star Search)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-23T00:00:00&#43;08:00">23 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在前幾天，我們介紹了 Dijkstra、Bellman-Ford、Floyd-Warshall，這些都是經典的最短路徑演算法。今天要談的是 A* 搜尋演算法 (A-star Search) —— 一個結合最短路徑與啟發式 (Heuristic) 的演算法，在人工智慧 (AI)、遊戲與導航中應用極為廣泛</p>
-  </div>
-
-
-</div>
     
       <div class="article col col-6 col-t-12 animate">
 
@@ -501,6 +403,39 @@
     </div>
   
     <p class="article__excerpt">在前兩天我們分別介紹了 Dijkstra 與 Bellman-Ford ，它們都解決的是 單源最短路徑 (Single Source Shortest Path, SSSP) 問題。今天要介紹的是 Floyd-Warshall 演算法 —— 一個能計算 所有點對 (All-Pairs Shortest Path, APSP) 的演算法</p>
+  </div>
+
+
+</div>
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_23/">(Day 23) Bellman-Ford 演算法</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-09-21T00:00:00&#43;08:00">21 Sep, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">2 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">在前一天我們介紹了 Dijkstra 演算法，它能有效解決 單源最短路徑 (Single Source Shortest Path, SSSP) 問題，但有一個限制: 不能處理負權重邊 (Negative Weights)。然而，現實世界的很多問題 (例如金融套利、債務網路、價格波動) 都可能出現負權重，這時候我們就需要 Bellman-Ford 演算法。</p>
   </div>
 
 
