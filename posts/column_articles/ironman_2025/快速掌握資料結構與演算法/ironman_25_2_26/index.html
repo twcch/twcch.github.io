@@ -7,20 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>(Day 21) 圖演算法 (Graph Algorithm) | 志謙&#39;s Blog</title>
-  <meta name="description" content="自從我們 Day 10 簡單地說一下圖結構後，就再也沒提到這個詞，我們今天開始就要介紹這個應用非常廣泛的圖 (Graph) 的演算法總覽，後續會接著介紹常見的圖演算法，因為圖是非線性資料結構中最重要的一員，在學術研究與實務應用上都有極高地位，從網路連線、地圖導航、社交網路到金融交易，幾乎都離不開圖的建模與演算法">
+  <title>(Day 26) 最小生成樹 (Minimum Spanning Tree) | 志謙&#39;s Blog</title>
+  <meta name="description" content="在前幾天，我們學習了最短路徑問題 (Shortest Path)，例如 Dijkstra、Bellman-Ford、Floyd-Warshall、A*，今天要介紹的則是圖論中的另一個核心問題 —— 最小生成樹 (Minimum Spanning Tree, MST)">
 
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="(Day 21) 圖演算法 (Graph Algorithm) | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="自從我們 Day 10 簡單地說一下圖結構後，就再也沒提到這個詞，我們今天開始就要介紹這個應用非常廣泛的圖 (Graph) 的演算法總覽，後續會接著介紹常見的圖演算法，因為圖是非線性資料結構中最重要的一員，在學術研究與實務應用上都有極高地位，從網路連線、地圖導航、社交網路到金融交易，幾乎都離不開圖的建模與演算法">
+  <meta name="twitter:title" content="(Day 26) 最小生成樹 (Minimum Spanning Tree) | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="在前幾天，我們學習了最短路徑問題 (Shortest Path)，例如 Dijkstra、Bellman-Ford、Floyd-Warshall、A*，今天要介紹的則是圖論中的另一個核心問題 —— 最小生成樹 (Minimum Spanning Tree, MST)">
   <meta name="twitter:image" content="http://twcch.io/">
 
   
-  <meta property="og:title" content="(Day 21) 圖演算法 (Graph Algorithm) | 志謙&#39;s Blog">
-  <meta property="og:description" content="自從我們 Day 10 簡單地說一下圖結構後，就再也沒提到這個詞，我們今天開始就要介紹這個應用非常廣泛的圖 (Graph) 的演算法總覽，後續會接著介紹常見的圖演算法，因為圖是非線性資料結構中最重要的一員，在學術研究與實務應用上都有極高地位，從網路連線、地圖導航、社交網路到金融交易，幾乎都離不開圖的建模與演算法">
+  <meta property="og:title" content="(Day 26) 最小生成樹 (Minimum Spanning Tree) | 志謙&#39;s Blog">
+  <meta property="og:description" content="在前幾天，我們學習了最短路徑問題 (Shortest Path)，例如 Dijkstra、Bellman-Ford、Floyd-Warshall、A*，今天要介紹的則是圖論中的另一個核心問題 —— 最小生成樹 (Minimum Spanning Tree, MST)">
   <meta property="og:image" content="http://twcch.io/">
 
   
@@ -59,7 +59,7 @@
 
     
     <div class="global-cover">
-      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 21) 圖演算法 (Graph Algorithm)">
+      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 26) 最小生成樹 (Minimum Spanning Tree)">
     </div>
     
 
@@ -138,7 +138,7 @@
 <article class="post container">
 
   <div class="post-head">
-    <h1 class="post-title">(Day 21) 圖演算法 (Graph Algorithm)</h1>
+    <h1 class="post-title">(Day 26) 最小生成樹 (Minimum Spanning Tree)</h1>
     <div class="post-meta">
       
       <div class="post-tags">
@@ -151,10 +151,10 @@
       </div>
       &nbsp;&bull;&nbsp;
       
-      <time class="post-date" datetime="2025-09-19T00:00:00&#43;08:00">19 Sep, 2025</time>
+      <time class="post-date" datetime="2025-09-24T00:00:00&#43;08:00">24 Sep, 2025</time>
       
         &nbsp;&bull;&nbsp;
-        <span class="post-minutes">1 min read</span>
+        <span class="post-minutes">2 min read</span>
       
     </div>
     
@@ -177,119 +177,193 @@
       </h2>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#基本定義">基本定義</a></li>
-    <li><a href="#圖的表示方法">圖的表示方法</a></li>
-    <li><a href="#圖的遍歷演算法">圖的遍歷演算法</a></li>
-    <li><a href="#常見圖演算法">常見圖演算法</a></li>
-    <li><a href="#圖的應用">圖的應用</a></li>
+    <li><a href="#什麼是最小生成樹">什麼是最小生成樹?</a></li>
+    <li><a href="#演算法分類">演算法分類</a></li>
+    <li><a href="#python-實作">Python 實作</a>
+      <ul>
+        <li><a href="#kruskal-演算法">Kruskal 演算法</a></li>
+        <li><a href="#prim-演算法">Prim 演算法</a></li>
+      </ul>
+    </li>
+    <li><a href="#kruskal-vs-prim-比較">Kruskal vs Prim 比較</a></li>
+    <li><a href="#應用場景">應用場景</a></li>
     <li><a href="#結語">結語</a></li>
     <li><a href="#備註">備註</a></li>
   </ul>
 </nav>
     </div>
     
-    <p>自從我們 Day 10 簡單地說一下圖結構後，就再也沒提到這個詞，我們今天開始就要介紹這個應用非常廣泛的圖 (Graph) 的演算法總覽，後續會接著介紹常見的圖演算法，因為圖是非線性資料結構中最重要的一員，在學術研究與實務應用上都有極高地位，從網路連線、地圖導航、社交網路到金融交易，幾乎都離不開圖的建模與演算法</p>
-<h2 id="基本定義">基本定義</h2>
-<p>一個圖 (Graph) 由 頂點 (Vertex) 與 邊 (Edge) 所組成。形式化表示為 $G = (V, E)$:</p>
+    <p>在前幾天，我們學習了最短路徑問題 (Shortest Path)，例如 Dijkstra、Bellman-Ford、Floyd-Warshall、A*，今天要介紹的則是圖論中的另一個核心問題 —— 最小生成樹 (Minimum Spanning Tree, MST)</p>
+<h2 id="什麼是最小生成樹">什麼是最小生成樹?</h2>
+<p>對於一個 連通、加權、無向圖:</p>
 <ul>
-<li>$V$ 是頂點集合</li>
-<li>$E$ 是邊的集合，每一條邊連接兩個頂點</li>
+<li>生成樹 (Spanning Tree): 包含所有頂點，邊數為 $V-1$ 的子圖，且保證連通、無環。</li>
+<li>最小生成樹 (MST): 在所有生成樹中，邊權重和最小的一棵。</li>
 </ul>
-<p>圖可以依照性質分類:</p>
+<p>應用場景:</p>
 <ul>
-<li>有向圖 (Directed Graph) 與 無向圖 (Undirected Graph)</li>
-<li>加權圖 (Weighted Graph) 與 非加權圖 (Unweighted Graph)</li>
-<li>稠密圖 (Dense Graph) 與 稀疏圖 (Sparse Graph)</li>
-<li>循環圖 (Cyclic Graph) 與 非循環圖 (Acyclic Graph)</li>
+<li>網路佈線 (最省成本連接所有電腦/伺服器)</li>
+<li>電力網建設 (最少電纜成本連接所有城市)</li>
+<li>道路/光纖規劃 (確保覆蓋所有節點，且成本最小)</li>
 </ul>
-<h2 id="圖的表示方法">圖的表示方法</h2>
-<p>圖的常見儲存方式主要有兩種:</p>
+<h2 id="演算法分類">演算法分類</h2>
+<p>兩個經典演算法:</p>
 <ul>
-<li>鄰接矩陣 (Adjacency Matrix)
+<li>Kruskal’s Algorithm (邊為導向)
 <ul>
-<li>使用一個 $n \times n$ 的矩陣來表示</li>
-<li>若頂點 $i$ 與 $j$ 之間有邊，則 $A[i][j] = 1$ (或權重值)</li>
-<li>適合稠密圖，但空間複雜度為 $O(n^2)$</li>
-</ul>
-</li>
-<li>鄰接串列 (Adjacency List)
+<li>思路
 <ul>
-<li>對於每個頂點，維護一個相鄰頂點的串列</li>
-<li>適合稀疏圖，空間複雜度接近 $O(V + E)$</li>
+<li>將所有邊依照權重排序</li>
+<li>從最小邊開始，若不會形成環，則加入生成樹</li>
+<li>重複直到選出 $V-1$ 條邊</li>
 </ul>
 </li>
-</ul>
-<h2 id="圖的遍歷演算法">圖的遍歷演算法</h2>
-<p>遍歷是理解圖結構的基礎，常見方法有:</p>
-<ul>
-<li>深度優先搜尋 (DFS)
-<ul>
-<li>思想: 沿著一條路徑不斷往下走，直到無法再深入，然後回溯</li>
-<li>實作方式: 遞迴或 Stack</li>
-<li>時間複雜度: $O(V + E)$</li>
+<li>工具: 並查集 (Union-Find)</li>
 </ul>
 </li>
-<li>廣度優先搜尋 (BFS)
+<li>Prim’s Algorithm (點為導向)
 <ul>
-<li>思想: 一層一層展開，先訪問鄰居，再訪問更遠的節點</li>
-<li>實作方式: 使用 Queue</li>
-<li>時間複雜度: $O(V + E)$</li>
+<li>思路
+<ul>
+<li>從任意一個節點開始</li>
+<li>每次選取連接「已在樹內」與「樹外」節點的最小邊</li>
+<li>重複直到所有節點加入生成樹</li>
+</ul>
+</li>
+<li>工具: 優先佇列 (Min-Heap)</li>
 </ul>
 </li>
 </ul>
-<h2 id="常見圖演算法">常見圖演算法</h2>
+<h2 id="python-實作">Python 實作</h2>
+<h3 id="kruskal-演算法">Kruskal 演算法</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">UnionFind</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">!=</span> <span class="n">x</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>  <span class="c1"># 路徑壓縮</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">union</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">root_x</span><span class="p">,</span> <span class="n">root_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">root_x</span> <span class="o">==</span> <span class="n">root_y</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">root_x</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">root_y</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">root_x</span><span class="p">]</span> <span class="o">=</span> <span class="n">root_y</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">root_x</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">root_y</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">root_y</span><span class="p">]</span> <span class="o">=</span> <span class="n">root_x</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">root_y</span><span class="p">]</span> <span class="o">=</span> <span class="n">root_x</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">root_x</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">kruskal</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">edges</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">uf</span> <span class="o">=</span> <span class="n">UnionFind</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mst</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">edges</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># 按照權重排序</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">uf</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mst</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">mst</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 測試</span>
+</span></span><span class="line"><span class="cl"><span class="n">V</span> <span class="o">=</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl"><span class="n">edges</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">mst</span> <span class="o">=</span> <span class="n">kruskal</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">edges</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Kruskal MST:&#34;</span><span class="p">,</span> <span class="n">mst</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 輸出: [(2, 3, 4), (0, 3, 5), (0, 1, 10)]</span>
+</span></span></code></pre></div><h3 id="prim-演算法">Prim 演算法</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">heapq</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">prim</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">V</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">visited</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">V</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mst</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pq</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)]</span>  <span class="c1"># (權重, 當前節點, 來源節點)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">pq</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">w</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">pq</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">visited</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">        <span class="n">visited</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">parent</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mst</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">parent</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="ow">not</span> <span class="n">visited</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">pq</span><span class="p">,</span> <span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">mst</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 測試</span>
+</span></span><span class="line"><span class="cl"><span class="n">graph</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">0</span><span class="p">:</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)],</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">1</span><span class="p">:</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">15</span><span class="p">)],</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">2</span><span class="p">:</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)],</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">3</span><span class="p">:</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">mst</span> <span class="o">=</span> <span class="n">prim</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Prim MST:&#34;</span><span class="p">,</span> <span class="n">mst</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 輸出: [(0, 3, 5), (2, 3, 4), (0, 1, 10)]</span>
+</span></span></code></pre></div><h2 id="kruskal-vs-prim-比較">Kruskal vs Prim 比較</h2>
+<table>
+  <thead>
+      <tr>
+          <th>特性</th>
+          <th>Kruskal</th>
+          <th>Prim</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>思路</td>
+          <td>從邊出發，選最小邊，避免成環</td>
+          <td>從點出發，每次擴展最小邊</td>
+      </tr>
+      <tr>
+          <td>工具</td>
+          <td>並查集 (Union-Find)</td>
+          <td>優先佇列 (Heap)</td>
+      </tr>
+      <tr>
+          <td>適用情境</td>
+          <td>稀疏圖 (Sparse Graph)</td>
+          <td>稠密圖 (Dense Graph)</td>
+      </tr>
+      <tr>
+          <td>複雜度</td>
+          <td>$O(E \log E)$</td>
+          <td>$O(E \log V)$</td>
+      </tr>
+      <tr>
+          <td>結果</td>
+          <td>MST</td>
+          <td>MST</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="應用場景">應用場景</h2>
 <ul>
-<li>最短路徑 (Shortest Path)
-<ul>
-<li>Dijkstra 演算法 (單源最短路徑，權重非負)</li>
-<li>Bellman-Ford 演算法 (允許負權重)</li>
-<li>Floyd-Warshall 演算法 (所有點對的最短路徑)</li>
-</ul>
-</li>
-<li>最小生成樹 (Minimum Spanning Tree)
-<ul>
-<li>Kruskal 演算法</li>
-<li>Prim 演算法</li>
-</ul>
-</li>
-<li>拓撲排序 (Topological Sort)
-<ul>
-<li>適用於 DAG (Directed Acyclic Graph)，常用於工作排程</li>
-</ul>
-</li>
-<li>網路流 (Network Flow)
-<ul>
-<li>最大流演算法: Ford-Fulkerson、Edmonds-Karp</li>
-</ul>
-</li>
-</ul>
-<h2 id="圖的應用">圖的應用</h2>
-<ul>
-<li>社交網路分析
-<ul>
-<li>節點: 使用者</li>
-<li>邊: 好友關係</li>
-<li>演算法: 社群偵測、最短關係鏈</li>
-</ul>
-</li>
-<li>地圖導航
-<ul>
-<li>節點: 城市 / 路口</li>
-<li>邊: 道路，邊權重為距離或時間</li>
-<li>演算法: Dijkstra、A*</li>
-</ul>
-</li>
-<li>金融交易網路
-<ul>
-<li>節點: 帳號或公司</li>
-<li>邊: 資金流動</li>
-<li>演算法: 異常檢測、流量分析</li>
-</ul>
-</li>
+<li>網路佈線: 找出最小成本連接所有電腦的電纜佈線方式</li>
+<li>電力網建設: 最少電纜長度連接所有城市</li>
+<li>聚類分析 (Clustering): MST 可用於分群，透過刪除權重最大的邊，將圖劃分為多個子群</li>
 </ul>
 <h2 id="結語">結語</h2>
-<p>圖 (Graph) 是一種高度抽象且靈活的資料結構，能夠表示複雜的關係網路。掌握圖的基礎表示方法、遍歷演算法，以及常見的圖演算法，能讓我們解決從最短路徑、任務排程到網路流量優化的各種問題</p>
-<p>在接下來的篇章中，會針對特定演算法（如 Dijkstra、Kruskal）做更深入的探討，讓大家能在理論與實作上都能熟練掌握</p>
+<p>最小生成樹 (MST) 問題與最短路徑不同，它關心的是 整體的最小成本連接，而不是單點之間的最短距離。Kruskal 與 Prim 是兩種經典解法，分別適用於稀疏圖與稠密圖</p>
+<p>在 Day 27 與 Day 28，我們會分別深入 Kruskal 與 Prim，帶大家更細緻地掌握這兩個演算法的細節與應用</p>
 <h2 id="備註">備註</h2>
 <ul>
 <li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8468">iThome 鐵人賽 2025 - 快速掌握資料結構與演算法</a></li>
@@ -300,23 +374,23 @@
   <div class="post__share">
   <ul class="share__list list-reset">
     <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2021%29%20%e5%9c%96%e6%bc%94%e7%ae%97%e6%b3%95%20%28Graph%20Algorithm%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_21%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2026%29%20%e6%9c%80%e5%b0%8f%e7%94%9f%e6%88%90%e6%a8%b9%20%28Minimum%20Spanning%20Tree%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_26%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_21%2f"
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_26%2f"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_21%2f&title=%28Day%2021%29%20%e5%9c%96%e6%bc%94%e7%ae%97%e6%b3%95%20%28Graph%20Algorithm%29&summary=%e8%87%aa%e5%be%9e%e6%88%91%e5%80%91%20Day%2010%20%e7%b0%a1%e5%96%ae%e5%9c%b0%e8%aa%aa%e4%b8%80%e4%b8%8b%e5%9c%96%e7%b5%90%e6%a7%8b%e5%be%8c%ef%bc%8c%e5%b0%b1%e5%86%8d%e4%b9%9f%e6%b2%92%e6%8f%90%e5%88%b0%e9%80%99%e5%80%8b%e8%a9%9e%ef%bc%8c%e6%88%91%e5%80%91%e4%bb%8a%e5%a4%a9%e9%96%8b%e5%a7%8b%e5%b0%b1%e8%a6%81%e4%bb%8b%e7%b4%b9%e9%80%99%e5%80%8b%e6%87%89%e7%94%a8%e9%9d%9e%e5%b8%b8%e5%bb%a3%e6%b3%9b%e7%9a%84%e5%9c%96%20%28Graph%29%20%e7%9a%84%e6%bc%94%e7%ae%97%e6%b3%95%e7%b8%bd%e8%a6%bd%ef%bc%8c%e5%be%8c%e7%ba%8c%e6%9c%83%e6%8e%a5%e8%91%97%e4%bb%8b%e7%b4%b9%e5%b8%b8%e8%a6%8b%e7%9a%84%e5%9c%96%e6%bc%94%e7%ae%97%e6%b3%95%ef%bc%8c%e5%9b%a0%e7%82%ba%e5%9c%96%e6%98%af%e9%9d%9e%e7%b7%9a%e6%80%a7%e8%b3%87%e6%96%99%e7%b5%90%e6%a7%8b%e4%b8%ad%e6%9c%80%e9%87%8d%e8%a6%81%e7%9a%84%e4%b8%80%e5%93%a1%ef%bc%8c%e5%9c%a8%e5%ad%b8%e8%a1%93%e7%a0%94%e7%a9%b6%e8%88%87%e5%af%a6%e5%8b%99%e6%87%89%e7%94%a8%e4%b8%8a%e9%83%bd%e6%9c%89%e6%a5%b5%e9%ab%98%e5%9c%b0%e4%bd%8d%ef%bc%8c%e5%be%9e%e7%b6%b2%e8%b7%af%e9%80%a3%e7%b7%9a%e3%80%81%e5%9c%b0%e5%9c%96%e5%b0%8e%e8%88%aa%e3%80%81%e7%a4%be%e4%ba%a4%e7%b6%b2%e8%b7%af%e5%88%b0%e9%87%91%e8%9e%8d%e4%ba%a4%e6%98%93%ef%bc%8c%e5%b9%be%e4%b9%8e%e9%83%bd%e9%9b%a2%e4%b8%8d%e9%96%8b%e5%9c%96%e7%9a%84%e5%bb%ba%e6%a8%a1%e8%88%87%e6%bc%94%e7%ae%97%e6%b3%95&source=%28Day%2021%29%20%e5%9c%96%e6%bc%94%e7%ae%97%e6%b3%95%20%28Graph%20Algorithm%29"
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_26%2f&title=%28Day%2026%29%20%e6%9c%80%e5%b0%8f%e7%94%9f%e6%88%90%e6%a8%b9%20%28Minimum%20Spanning%20Tree%29&summary=%e5%9c%a8%e5%89%8d%e5%b9%be%e5%a4%a9%ef%bc%8c%e6%88%91%e5%80%91%e5%ad%b8%e7%bf%92%e4%ba%86%e6%9c%80%e7%9f%ad%e8%b7%af%e5%be%91%e5%95%8f%e9%a1%8c%20%28Shortest%20Path%29%ef%bc%8c%e4%be%8b%e5%a6%82%20Dijkstra%e3%80%81Bellman-Ford%e3%80%81Floyd-Warshall%e3%80%81A%2a%ef%bc%8c%e4%bb%8a%e5%a4%a9%e8%a6%81%e4%bb%8b%e7%b4%b9%e7%9a%84%e5%89%87%e6%98%af%e5%9c%96%e8%ab%96%e4%b8%ad%e7%9a%84%e5%8f%a6%e4%b8%80%e5%80%8b%e6%a0%b8%e5%bf%83%e5%95%8f%e9%a1%8c%20%e2%80%94%e2%80%94%20%e6%9c%80%e5%b0%8f%e7%94%9f%e6%88%90%e6%a8%b9%20%28Minimum%20Spanning%20Tree%2c%20MST%29&source=%28Day%2026%29%20%e6%9c%80%e5%b0%8f%e7%94%9f%e6%88%90%e6%a8%b9%20%28Minimum%20Spanning%20Tree%29"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
     </li>
 
     <li class="share__item">
       <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_21%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2021%29%20%e5%9c%96%e6%bc%94%e7%ae%97%e6%b3%95%20%28Graph%20Algorithm%29"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_26%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2026%29%20%e6%9c%80%e5%b0%8f%e7%94%9f%e6%88%90%e6%a8%b9%20%28Minimum%20Spanning%20Tree%29"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
     </li>
@@ -329,39 +403,6 @@
 <div class="section-related">
   <h4 class="section-related__title">You may also like...</h4>
   <div class="row grid">
-    
-      <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_26/">(Day 26) 最小生成樹 (Minimum Spanning Tree)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-24T00:00:00&#43;08:00">24 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在前幾天，我們學習了最短路徑問題 (Shortest Path)，例如 Dijkstra、Bellman-Ford、Floyd-Warshall、A*，今天要介紹的則是圖論中的另一個核心問題 —— 最小生成樹 (Minimum Spanning Tree, MST)</p>
-  </div>
-
-
-</div>
     
       <div class="article col col-6 col-t-12 animate">
 
@@ -391,6 +432,39 @@
     </div>
   
     <p class="article__excerpt">在前幾天，我們介紹了 Dijkstra、Bellman-Ford、Floyd-Warshall，這些都是經典的最短路徑演算法。今天要談的是 A* 搜尋演算法 (A-star Search) —— 一個結合最短路徑與啟發式 (Heuristic) 的演算法，在人工智慧 (AI)、遊戲與導航中應用極為廣泛</p>
+  </div>
+
+
+</div>
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_24/">(Day 24) Floyd-Warshall 演算法</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-09-22T00:00:00&#43;08:00">22 Sep, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">2 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">在前兩天我們分別介紹了 Dijkstra 與 Bellman-Ford ，它們都解決的是 單源最短路徑 (Single Source Shortest Path, SSSP) 問題。今天要介紹的是 Floyd-Warshall 演算法 —— 一個能計算 所有點對 (All-Pairs Shortest Path, APSP) 的演算法</p>
   </div>
 
 
