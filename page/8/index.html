@@ -2,25 +2,27 @@
 <html lang="en-us">
 
 <head>
+	<meta name="generator" content="Hugo 0.148.2">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU) | 志謙&#39;s Blog</title>
-  <meta name="description" content="在前幾天的文章中，我們依序介紹了 RNN、LSTM、GRU，並討論它們如何建模序列資料。這些模型能夠捕捉序列中的上下文關係，並緩解傳統 RNN 的梯度消失問題。然而，若我們想要處理更複雜的任務——例如機器翻譯 (Machine Translation)，僅僅依靠單向 RNN 或 LSTM 並不夠。">
+  <title>志謙&#39;s Blog</title>
+  <meta name="description" content="我是志謙，目前是學生，專注於機器學習與深度學習研究，也經營自媒體，部落格主要分享電腦科學技術文章，期待與各位交流。">
 
+  <link rel="alternate" type="application/rss+xml" href="http://twcch.io/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU) | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="在前幾天的文章中，我們依序介紹了 RNN、LSTM、GRU，並討論它們如何建模序列資料。這些模型能夠捕捉序列中的上下文關係，並緩解傳統 RNN 的梯度消失問題。然而，若我們想要處理更複雜的任務——例如機器翻譯 (Machine Translation)，僅僅依靠單向 RNN 或 LSTM 並不夠。">
+  <meta name="twitter:title" content="志謙&#39;s Blog">
+  <meta name="twitter:description" content="我是志謙，目前是學生，專注於機器學習與深度學習研究，也經營自媒體，部落格主要分享電腦科學技術文章，期待與各位交流。">
   <meta name="twitter:image" content="http://twcch.io/">
 
   
-  <meta property="og:title" content="(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU) | 志謙&#39;s Blog">
-  <meta property="og:description" content="在前幾天的文章中，我們依序介紹了 RNN、LSTM、GRU，並討論它們如何建模序列資料。這些模型能夠捕捉序列中的上下文關係，並緩解傳統 RNN 的梯度消失問題。然而，若我們想要處理更複雜的任務——例如機器翻譯 (Machine Translation)，僅僅依靠單向 RNN 或 LSTM 並不夠。">
+  <meta property="og:title" content="志謙&#39;s Blog">
+  <meta property="og:description" content="我是志謙，目前是學生，專注於機器學習與深度學習研究，也經營自媒體，部落格主要分享電腦科學技術文章，期待與各位交流。">
   <meta property="og:image" content="http://twcch.io/">
 
   
@@ -59,12 +61,52 @@
 
     
     <div class="global-cover">
-      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU)">
+      <img src="images/common/page_cover.jpg" alt="志謙&#39;s Blog">
     </div>
     
 
     <div class="global-content">
     
+      
+        
+<section class="author">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="contaniner__inner">
+
+          <div class="author__box with-global-cover">
+            <div class="author__info">
+              <div class="author__meta">
+                
+                <a href="/about/" class="author__avatar">
+                  <img src="images/common/avatar.jpeg" alt="謝志謙">
+                </a>
+                
+  
+                
+                  <h1 class="author__name"><a href="/about/">謝志謙</a></h1>
+                
+
+                
+                  <span class="author__role">國立成功大學 工程科學系 博士生</span>
+                
+              </div>
+              
+                <a id="getInTouchBtn" href="" class="cta-button"><i class="fa-solid fa-magnifying-glass"></i> 搜索文章</a>
+              
+            </div>
+            
+              <p class="author__bio">我是志謙，目前是學生，專注於機器學習與深度學習研究，也經營自媒體，部落格主要分享電腦科學技術文章，期待與各位交流。</p>
+            
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
       
 
       
@@ -80,7 +122,7 @@
             
             
               <li class="nav__item">
-                <a href="/" class="nav__link ">首頁</a>
+                <a href="/" class="nav__link active-link">首頁</a>
               </li>
             
             
@@ -135,316 +177,74 @@
 
 
 
-<article class="post container">
 
-  <div class="post-head">
-    <h1 class="post-title">(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU)</h1>
-    <div class="post-meta">
+<section class="section blog">
+  <div class="container">
+
+    <div class="section__info">
+      <div class="section__head">
+        <h2 class="section__title"><i class="fa-solid fa-pencil"></i> 所有文章</h2>
+      </div>
       
-      <div class="post-tags">
-        Publish in&nbsp;
+    </div>
+
+    <div class="blog__wrapper animate">
+      <div class="grid">
         
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
         
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">30 天入門常見的機器學習演算法</a>
+          <div class="article-small grid__post">
+
+            
+
+            <div class="article-small__content">
+              <h2 class="article-small__title">
+                <a href="/posts/projects/articles_25040702/">視覺化專案 - 200 個國家 200 百年 4 分鐘</a>
+              </h2>
+              
+              <div class="article-small__meta">
+                
+                <div class="article-small__tags">
+                  
+                    <a href="http://twcch.io/tags/project/" class="article-small__tag">Project</a>
+                  
+                </div>
+                &nbsp;&bull;&nbsp;
+                
+                <time class="article-small__date" datetime="2025-04-07T00:00:00&#43;08:00">7 Apr, 2025</time>
+                
+                  &nbsp;&bull;&nbsp;
+                  <span class="article-small__minutes">1 min read</span>
+                
+              </div>
+              
+              <p class="article-small__excerpt">這是一個資料視覺化專案——「Dynamic Visualization: 200 Countries, 200 Years, 4 Minutes」。它將涵蓋 1816 至 2016 年，200 個國家的歷史變遷以互動動畫呈現，整體動畫長度約四分鐘，旨在結合「時間」與「地理」維度，提供用戶沉浸式的歷史視覺體驗。</p>
+            </div>
+
+          </div>
         
       </div>
-      &nbsp;&bull;&nbsp;
+
       
-      <time class="post-date" datetime="2025-08-28T00:00:00&#43;08:00">28 Aug, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="post-minutes">1 min read</span>
-      
+
+
+
+<div class="pagination">
+  <button class="button button--big load-more-posts">Load More Posts</button>
+</div>
+
+
+
+<script>
+  var base_url = "",
+    pagination_next_url = base_url + '/page2',
+    pagination_next_page_number = '9',
+    pagination_available_pages_number = '8';
+</script>
     </div>
-    
-  </div>
-
-  
-
-  
-
-  
-
-  <div class="post__content">
-    
-    <div class="table-of-contents" id="table-of-contents">
-      <h2 class="table-of-contents__title">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="margin-right: 8px; vertical-align: -2px;">
-          <path d="M2 3h12a1 1 0 110 2H2a1 1 0 110-2zm0 4h12a1 1 0 110 2H2a1 1 0 110-2zm0 4h12a1 1 0 110 2H2a1 1 0 110-2z"/>
-        </svg>
-        目錄
-      </h2>
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#seq2seq-的核心思想">Seq2Seq 的核心思想</a></li>
-    <li><a href="#seq2seq-的數學形式">Seq2Seq 的數學形式</a></li>
-    <li><a href="#encoder-decoder-結構">Encoder-Decoder 結構</a></li>
-    <li><a href="#seq2seq-的直觀比喻">Seq2Seq 的直觀比喻</a></li>
-    <li><a href="#seq2seq-的優缺點">Seq2Seq 的優缺點</a></li>
-    <li><a href="#seq2seq-的實務應用">Seq2Seq 的實務應用</a></li>
-    <li><a href="#結語">結語</a></li>
-    <li><a href="#備註">備註</a></li>
-  </ul>
-</nav>
-    </div>
-    
-    <p>在前幾天的文章中，我們依序介紹了 RNN、LSTM、GRU，並討論它們如何建模序列資料。這些模型能夠捕捉序列中的上下文關係，並緩解傳統 RNN 的梯度消失問題。然而，若我們想要處理更複雜的任務——例如機器翻譯 (Machine Translation)，僅僅依靠單向 RNN 或 LSTM 並不夠。</p>
-<p>這就引出了今天的主角: Seq2Seq 架構 (Sequence-to-Sequence Model)。它的核心思想是利用「編碼器 (Encoder)」將輸入序列壓縮成一個上下文表示，再由「解碼器 (Decoder)」生成輸出序列。這種架構在 2014 年被 Sutskever 等人首次提出，用於神經機器翻譯 (Neural Machine Translation, NMT)，開啟了 NLP 領域的一個新時代。</p>
-<h2 id="seq2seq-的核心思想">Seq2Seq 的核心思想</h2>
-<p>假設我們要將一句英文句子翻譯成中文:</p>
-<p>輸入: “I am happy today.”
-輸出: “我今天很高興。”</p>
-<p>傳統的 RNN/LSTM 模型只能處理輸入和輸出的對應關係，但無法直接處理「序列到序列」的轉換問題。Seq2Seq 則透過 Encoder-Decoder 的設計，讓模型能夠處理 輸入與輸出長度不同的情況，這正是翻譯、摘要、對話等任務的核心需求。</p>
-<p>核心流程:</p>
-<ol>
-<li>Encoder：讀取輸入序列，將其壓縮成一個固定維度的上下文向量 $c$。</li>
-<li>Decoder：根據上下文向量 $c$ 與先前輸出的資訊，逐步生成輸出序列。</li>
-</ol>
-<h2 id="seq2seq-的數學形式">Seq2Seq 的數學形式</h2>
-<ol>
-<li>編碼器 (Encoder)
-<ul>
-<li>輸入序列: $X = (x_1, x_2, \dots, x_T)$</li>
-<li>隱藏狀態更新:
-$$
-h_t = f(h_{t-1}, x_t)
-$$</li>
-<li>最後的隱藏狀態 $h_T$ 作為上下文向量 $c$。</li>
-</ul>
-</li>
-<li>解碼器 (Decoder)
-<ul>
-<li>初始狀態: $s_0 = c$</li>
-<li>每一步輸出:
-$$
-s_t = f(s_{t-1}, y_{t-1})
-$$
-$$
-\hat{y}_t = g(s_t)
-$$
-其中:</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>$f$ 可以是 RNN / LSTM / GRU 單元</li>
-<li>$g$ 通常是 softmax 層，用來輸出詞彙的機率分布</li>
-</ul>
-<h2 id="encoder-decoder-結構">Encoder-Decoder 結構</h2>
-<p>從結構上看，Seq2Seq 就像是一個「兩段式」神經網路:</p>
-<ul>
-<li>Encoder: 讀完整個輸入序列，把資訊壓縮成一個向量。</li>
-<li>Decoder: 依靠這個向量，不斷生成輸出，直到遇到「結束符號 (EOS)」。</li>
-</ul>
-<p>這種設計使得模型能處理輸入長度與輸出長度不相等的情境。例如:</p>
-<ul>
-<li>英文翻譯成中文 (詞數不同)</li>
-<li>長文章生成短摘要</li>
-<li>對話系統生成多輪回覆</li>
-</ul>
-<h2 id="seq2seq-的直觀比喻">Seq2Seq 的直觀比喻</h2>
-<p>你可以把 Encoder 想成一個「翻譯助理」，把整段英文聽完後，壓縮成腦海中的一個「意思總結」；而 Decoder 則像是「翻譯員」，根據這個意思總結，再逐字逐句地說出中文。</p>
-<h2 id="seq2seq-的優缺點">Seq2Seq 的優缺點</h2>
-<p>優點:</p>
-<ol>
-<li>靈活性：能處理輸入與輸出長度不一致的任務。</li>
-<li>通用性：同一個框架可應用於翻譯、摘要、對話、時間序列預測。</li>
-<li>端到端學習：避免了傳統 NLP 中複雜的特徵工程。</li>
-</ol>
-<p>缺點:</p>
-<ol>
-<li>瓶頸效應 (Bottleneck Problem)
-<ul>
-<li>所有資訊被壓縮到單一向量 $c$，在長序列時容易遺失細節。</li>
-</ul>
-</li>
-<li>長序列困難
-<ul>
-<li>即便使用 LSTM/GRU，仍難以捕捉超長依賴。</li>
-</ul>
-</li>
-<li>生成速度慢
-<ul>
-<li>Decoder 是逐步生成，無法並行化。</li>
-</ul>
-</li>
-</ol>
-<h2 id="seq2seq-的實務應用">Seq2Seq 的實務應用</h2>
-<ol>
-<li>機器翻譯 (Neural Machine Translation)
-<ul>
-<li>最經典的應用，將英文翻譯成中文、法文翻譯成英文。</li>
-</ul>
-</li>
-<li>摘要生成 (Text Summarization)
-<ul>
-<li>輸入一篇長文章，輸出簡短摘要。</li>
-</ul>
-</li>
-<li>對話系統 (Dialogue System)
-<ul>
-<li>輸入使用者的問題，輸出合適的回覆。</li>
-</ul>
-</li>
-<li>時間序列預測
-<ul>
-<li>輸入過去的數據 (例如股價)，輸出未來的預測值。</li>
-</ul>
-</li>
-</ol>
-<h2 id="結語">結語</h2>
-<p>Seq2Seq 架構 (Encoder-Decoder) 是深度學習處理序列到序列任務的經典解法。它透過 Encoder 壓縮輸入，再由 Decoder 逐步生成輸出，成功應用於機器翻譯、摘要生成、對話系統等多種任務。</p>
-<p>然而，Seq2Seq 最大的瓶頸在於所有資訊都被壓縮到單一上下文向量，導致長序列表現不佳。這個缺陷直接促使了 Attention 機制的誕生，並最終引領 Transformer 成為 NLP 的主流。</p>
-<p>在下一篇，我們將深入探討 Attention 機制，看看它是如何突破 Seq2Seq 的限制，並奠定後來 GPT 與大型語言模型的基礎。</p>
-<h2 id="備註">備註</h2>
-<ul>
-<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
-</ul>
 
   </div>
 
-  <div class="post__share">
-  <ul class="share__list list-reset">
-    <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2028%29%20Seq2Seq%20%28Encoder%20Decoder%20with%20RNN%2c%20LSTM%2c%20GRU%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_28%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
-    </li>
-
-    <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_28%2f"
-        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
-        title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
-    </li>
-
-    <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_28%2f&title=%28Day%2028%29%20Seq2Seq%20%28Encoder%20Decoder%20with%20RNN%2c%20LSTM%2c%20GRU%29&summary=%e5%9c%a8%e5%89%8d%e5%b9%be%e5%a4%a9%e7%9a%84%e6%96%87%e7%ab%a0%e4%b8%ad%ef%bc%8c%e6%88%91%e5%80%91%e4%be%9d%e5%ba%8f%e4%bb%8b%e7%b4%b9%e4%ba%86%20RNN%e3%80%81LSTM%e3%80%81GRU%ef%bc%8c%e4%b8%a6%e8%a8%8e%e8%ab%96%e5%ae%83%e5%80%91%e5%a6%82%e4%bd%95%e5%bb%ba%e6%a8%a1%e5%ba%8f%e5%88%97%e8%b3%87%e6%96%99%e3%80%82%e9%80%99%e4%ba%9b%e6%a8%a1%e5%9e%8b%e8%83%bd%e5%a4%a0%e6%8d%95%e6%8d%89%e5%ba%8f%e5%88%97%e4%b8%ad%e7%9a%84%e4%b8%8a%e4%b8%8b%e6%96%87%e9%97%9c%e4%bf%82%ef%bc%8c%e4%b8%a6%e7%b7%a9%e8%a7%a3%e5%82%b3%e7%b5%b1%20RNN%20%e7%9a%84%e6%a2%af%e5%ba%a6%e6%b6%88%e5%a4%b1%e5%95%8f%e9%a1%8c%e3%80%82%e7%84%b6%e8%80%8c%ef%bc%8c%e8%8b%a5%e6%88%91%e5%80%91%e6%83%b3%e8%a6%81%e8%99%95%e7%90%86%e6%9b%b4%e8%a4%87%e9%9b%9c%e7%9a%84%e4%bb%bb%e5%8b%99%e2%80%94%e2%80%94%e4%be%8b%e5%a6%82%e6%a9%9f%e5%99%a8%e7%bf%bb%e8%ad%af%20%28Machine%20Translation%29%ef%bc%8c%e5%83%85%e5%83%85%e4%be%9d%e9%9d%a0%e5%96%ae%e5%90%91%20RNN%20%e6%88%96%20LSTM%20%e4%b8%a6%e4%b8%8d%e5%a4%a0%e3%80%82&source=%28Day%2028%29%20Seq2Seq%20%28Encoder%20Decoder%20with%20RNN%2c%20LSTM%2c%20GRU%29"
-      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
-    </li>
-
-    <li class="share__item">
-      <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_28%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2028%29%20Seq2Seq%20%28Encoder%20Decoder%20with%20RNN%2c%20LSTM%2c%20GRU%29"
-        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
-        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
-    </li>
-  </ul>
-</div>
-
-  
-
-
-<div class="section-related">
-  <h4 class="section-related__title">You may also like...</h4>
-  <div class="row grid">
-    
-      <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_27/">(Day 27) Kruskal 演算法</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-24T00:00:00&#43;08:00">24 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在 Day 26 我們介紹了最小生成樹 (MST) 的概念，並提到兩個經典演算法: Kruskal 與 Prim。今天要深入探討 Kruskal 演算法，它以邊為導向，利用貪心法 (Greedy Algorithm) 與並查集 (Union-Find)，有效率地找出 MST</p>
-  </div>
-
-
-</div>
-    
-      <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_26/">(Day 26) 最小生成樹 (Minimum Spanning Tree)</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-24T00:00:00&#43;08:00">24 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在前幾天，我們學習了最短路徑問題 (Shortest Path)，例如 Dijkstra、Bellman-Ford、Floyd-Warshall、A*，今天要介紹的則是圖論中的另一個核心問題 —— 最小生成樹 (Minimum Spanning Tree, MST)</p>
-  </div>
-
-
-</div>
-    
-  </div>
-</div>
-
-
-</article>
-
-
-
-  
-
-<div class="container">
-  <div class="show-comments">
-    <button class="button" id="show-comments-button" onclick="disqus();return false;">Comments</button>
-  </div>
-  
-  <div id="disqus_thread" class="post__comments">
-    <div id="disqus_empty"></div>
-  </div>
-  
-  <script>
-    var disqus_loaded = false;
-    var disqus_shortname = 'twcch';
-    var disqus_container = document.getElementById("disqus_thread");
-    function disqus() {
-      if (!disqus_loaded) {
-        disqus_loaded = true;
-        var e = document.createElement("script");
-        e.type = "text/javascript";
-        e.async = true;
-        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
-        (document.getElementsByTagName("head")[0] ||
-          document.getElementsByTagName("body")[0])
-          .appendChild(e);
-        
-        document.getElementById("show-comments-button").style.display = "none";
-        
-        disqus_container.classList.add("is-open");
-      }
-    }
-  </script>
-</div>
-
+</section>
 
 
 
