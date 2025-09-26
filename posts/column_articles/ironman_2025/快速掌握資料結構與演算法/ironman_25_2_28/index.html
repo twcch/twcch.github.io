@@ -7,20 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>(Day 26) 長短期記憶網路 (Long Short-Term Memory) | 志謙&#39;s Blog</title>
-  <meta name="description" content="在前一篇，我們介紹了循環神經網路 (RNN)，並指出了它在處理序列資料時的強大之處：透過「隱藏狀態」將前後資訊連結起來。然而，我們同時也看到了 RNN 的最大瓶頸——梯度消失與梯度爆炸，使得它在長距離依賴 (long-term dependency) 的學習上表現不佳。">
+  <title>(Day 28) Prim 演算法 | 志謙&#39;s Blog</title>
+  <meta name="description" content="在 Day 26 我們介紹了 最小生成樹 (MST) 的概念，並且在 Day 27 深入探討了 Kruskal 演算法。今天要介紹的是另一個經典方法 —— Prim 演算法。它與 Kruskal 不同，Prim 是以 節點為導向 的最小生成樹演算法。">
 
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="(Day 26) 長短期記憶網路 (Long Short-Term Memory) | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="在前一篇，我們介紹了循環神經網路 (RNN)，並指出了它在處理序列資料時的強大之處：透過「隱藏狀態」將前後資訊連結起來。然而，我們同時也看到了 RNN 的最大瓶頸——梯度消失與梯度爆炸，使得它在長距離依賴 (long-term dependency) 的學習上表現不佳。">
+  <meta name="twitter:title" content="(Day 28) Prim 演算法 | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="在 Day 26 我們介紹了 最小生成樹 (MST) 的概念，並且在 Day 27 深入探討了 Kruskal 演算法。今天要介紹的是另一個經典方法 —— Prim 演算法。它與 Kruskal 不同，Prim 是以 節點為導向 的最小生成樹演算法。">
   <meta name="twitter:image" content="http://twcch.io/">
 
   
-  <meta property="og:title" content="(Day 26) 長短期記憶網路 (Long Short-Term Memory) | 志謙&#39;s Blog">
-  <meta property="og:description" content="在前一篇，我們介紹了循環神經網路 (RNN)，並指出了它在處理序列資料時的強大之處：透過「隱藏狀態」將前後資訊連結起來。然而，我們同時也看到了 RNN 的最大瓶頸——梯度消失與梯度爆炸，使得它在長距離依賴 (long-term dependency) 的學習上表現不佳。">
+  <meta property="og:title" content="(Day 28) Prim 演算法 | 志謙&#39;s Blog">
+  <meta property="og:description" content="在 Day 26 我們介紹了 最小生成樹 (MST) 的概念，並且在 Day 27 深入探討了 Kruskal 演算法。今天要介紹的是另一個經典方法 —— Prim 演算法。它與 Kruskal 不同，Prim 是以 節點為導向 的最小生成樹演算法。">
   <meta property="og:image" content="http://twcch.io/">
 
   
@@ -59,7 +59,7 @@
 
     
     <div class="global-cover">
-      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 26) 長短期記憶網路 (Long Short-Term Memory)">
+      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 28) Prim 演算法">
     </div>
     
 
@@ -138,7 +138,7 @@
 <article class="post container">
 
   <div class="post-head">
-    <h1 class="post-title">(Day 26) 長短期記憶網路 (Long Short-Term Memory)</h1>
+    <h1 class="post-title">(Day 28) Prim 演算法</h1>
     <div class="post-meta">
       
       <div class="post-tags">
@@ -146,12 +146,12 @@
         
           <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="post__tag">IThome 鐵人賽 2025</a>
         
-          <a href="http://twcch.io/tags/30-%E5%A4%A9%E5%85%A5%E9%96%80%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">30 天入門常見的機器學習演算法</a>
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="post__tag">快速掌握資料結構與演算法</a>
         
       </div>
       &nbsp;&bull;&nbsp;
       
-      <time class="post-date" datetime="2025-08-26T00:00:00&#43;08:00">26 Aug, 2025</time>
+      <time class="post-date" datetime="2025-09-26T00:00:00&#43;08:00">26 Sep, 2025</time>
       
         &nbsp;&bull;&nbsp;
         <span class="post-minutes">2 min read</span>
@@ -177,158 +177,121 @@
       </h2>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#lstm-的核心概念">LSTM 的核心概念</a></li>
-    <li><a href="#lstm-的結構">LSTM 的結構</a></li>
-    <li><a href="#直觀理解">直觀理解</a></li>
-    <li><a href="#lstm-與-rnn-的比較">LSTM 與 RNN 的比較</a></li>
-    <li><a href="#lstm-的優點">LSTM 的優點</a></li>
-    <li><a href="#lstm-的缺點">LSTM 的缺點</a></li>
+    <li><a href="#演算法原理">演算法原理</a></li>
+    <li><a href="#演算法步驟">演算法步驟</a></li>
+    <li><a href="#python-實作">Python 實作</a></li>
+    <li><a href="#複雜度分析">複雜度分析</a></li>
+    <li><a href="#prim-vs-kruskal">Prim vs Kruskal</a></li>
     <li><a href="#結語">結語</a></li>
     <li><a href="#備註">備註</a></li>
   </ul>
 </nav>
     </div>
     
-    <p>在前一篇，我們介紹了循環神經網路 (RNN)，並指出了它在處理序列資料時的強大之處：透過「隱藏狀態」將前後資訊連結起來。然而，我們同時也看到了 RNN 的最大瓶頸——梯度消失與梯度爆炸，使得它在長距離依賴 (long-term dependency) 的學習上表現不佳。</p>
-<p>為了解決這個問題，1997 年 Sepp Hochreiter 和 Jürgen Schmidhuber 提出了 長短期記憶網路 (LSTM)。LSTM 是 RNN 的改良版本，透過特殊的「記憶單元 (Memory Cell)」與「門控機制 (Gating Mechanism)」，大幅減緩了梯度消失的問題，成為自然語言處理 (NLP) 與序列建模的經典架構之一。</p>
-<h2 id="lstm-的核心概念">LSTM 的核心概念</h2>
-<p>LSTM 的設計目標是:</p>
-<ol>
-<li>保留長期資訊（避免梯度消失導致遺忘）</li>
-<li>選擇性遺忘不必要的資訊（避免無限累積造成干擾）</li>
-<li>動態決定何時輸入、何時輸出資訊</li>
-</ol>
-<p>它在傳統 RNN 的基礎上，加入了兩個關鍵設計:</p>
+    <p>在 Day 26 我們介紹了 最小生成樹 (MST) 的概念，並且在 Day 27 深入探討了 Kruskal 演算法。今天要介紹的是另一個經典方法 —— Prim 演算法。它與 Kruskal 不同，Prim 是以 節點為導向 的最小生成樹演算法。</p>
+<h2 id="演算法原理">演算法原理</h2>
+<p>Prim 演算法的核心思想是: 從某個節點開始，每次選取一條 最小權重的邊，將新的節點加入生成樹，直到所有節點都被包含。</p>
+<p>這是一種貪心演算法 (Greedy Algorithm)。它與 Dijkstra 有相似之處: 都是透過優先佇列 (Min-Heap) 逐步擴展搜尋範圍。</p>
+<h2 id="演算法步驟">演算法步驟</h2>
 <ul>
-<li>記憶單元 (Cell State): 一條專門的「資訊高速公路」，允許資訊長距離傳遞。</li>
-<li>門控機制 (Gates): 透過 sigmoid 函數控制「資訊是否允許通過」，讓模型能選擇性記住或忘記。</li>
+<li>從任意一個節點作為起點，初始化生成樹集合 MST = {}</li>
+<li>將所有與起點相連的邊放入優先佇列 (Min-Heap)</li>
+<li>每次從堆中取出最小權重邊，若該邊連接的節點尚未在 MST，則將其加入</li>
+<li>將該節點的新邊加入堆中</li>
+<li>重複步驟 3–4，直到所有節點都被加入 MST</li>
 </ul>
-<h2 id="lstm-的結構">LSTM 的結構</h2>
-<p>一個 LSTM 單元 (cell) 主要包含三個門與一個記憶單元:</p>
+<h2 id="python-實作">Python 實作</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">heapq</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">prim</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    graph: adjacency list 格式 {u: [(v, w), ...]}
+</span></span></span><span class="line"><span class="cl"><span class="s2">    start: 起點
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">V</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">visited</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">V</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mst</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pq</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)]</span>  <span class="c1"># (權重, 當前節點, 來源節點)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">pq</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">w</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">pq</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">visited</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">        <span class="n">visited</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">parent</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mst</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">parent</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="ow">not</span> <span class="n">visited</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">pq</span><span class="p">,</span> <span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">mst</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 測試</span>
+</span></span><span class="line"><span class="cl"><span class="n">graph</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">0</span><span class="p">:</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)],</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">1</span><span class="p">:</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">15</span><span class="p">)],</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">2</span><span class="p">:</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)],</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">3</span><span class="p">:</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">mst</span> <span class="o">=</span> <span class="n">prim</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Prim MST:&#34;</span><span class="p">,</span> <span class="n">mst</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 輸出: [(0, 3, 5), (2, 3, 4), (0, 1, 10)]</span>
+</span></span></code></pre></div><h2 id="複雜度分析">複雜度分析</h2>
 <ul>
-<li>
-<p>遺忘門 (Forget Gate)</p>
-<ul>
-<li>決定要保留多少過去資訊。</li>
-<li>公式:</li>
+<li>時間複雜度: 使用 Min-Heap，時間為 $O(E \log V)$</li>
+<li>空間複雜度: 需要存 visited 陣列與優先佇列，為 $O(V + E)$</li>
 </ul>
-<p>$$
-f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + b_f)
-$$</p>
-<ul>
-<li>$f_t$ 越接近 0，表示忘得越多；越接近 1，表示保留越多。</li>
-</ul>
-</li>
-<li>
-<p>輸入門 (Input Gate)</p>
-<ul>
-<li>決定要加入多少新的資訊。</li>
-<li>公式:</li>
-</ul>
-<p>$$
-i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + b_i)
-$$</p>
-<p>$$
-\tilde{C}t = \tanh(W_C \cdot [h{t-1}, x_t] + b_C)
-$$</p>
-</li>
-<li>
-<p>更新記憶單元 (Cell State Update)</p>
-<ul>
-<li>結合遺忘門與輸入門，更新記憶單元。</li>
-<li>公式:</li>
-</ul>
-<p>$$
-C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C}_t
-$$</p>
-</li>
-<li>
-<p>輸出門 (Output Gate)</p>
-<ul>
-<li>決定輸出的隱藏狀態。</li>
-<li>公式:</li>
-</ul>
-<p>$$
-o_t = \sigma(W_o \cdot [h_{t-1}, x_t] + b_o)
-$$</p>
-<p>$$
-h_t = o_t \odot \tanh(C_t)
-$$</p>
-</li>
-</ul>
-<p>其中:</p>
-<ul>
-<li>$x_t$: 當前時間步的輸入</li>
-<li>$h_{t-1}$: 上一時間步的隱藏狀態</li>
-<li>$C_{t-1}$: 上一時間步的記憶單元</li>
-<li>$\sigma$: sigmoid 函數（輸出範圍 [0,1]）</li>
-<li>$\odot$: 逐元素相乘</li>
-</ul>
-<p>這樣的設計，讓 LSTM 能精確控制「要記住什麼、要忘掉什麼、要輸出什麼」。</p>
-<h2 id="直觀理解">直觀理解</h2>
-<p>可以把 LSTM 想成一個「高級筆記本」:</p>
-<ul>
-<li>遺忘門: 擦掉過期的內容 (例如: 幾天前的天氣，對今天的心情分析可能沒用)。</li>
-<li>輸入門: 記錄新資訊 (例如: 今天心情很好)。</li>
-<li>記憶單元: 長期保存有價值的內容 (例如: 這個人通常喜歡週末出門）。</li>
-<li>輸出門: 決定當下要提供什麼資訊 (例如: 根據前文輸出「可能會去旅行」）。</li>
-</ul>
-<p>這樣一來，LSTM 就能在長序列中保持「重要資訊」，而不會像傳統 RNN 那樣很快就遺忘。</p>
-<h2 id="lstm-與-rnn-的比較">LSTM 與 RNN 的比較</h2>
+<p>Prim 特別適合稠密圖 (Dense Graph)，因為它會不斷操作鄰接邊集合</p>
+<h2 id="prim-vs-kruskal">Prim vs Kruskal</h2>
 <table>
   <thead>
       <tr>
           <th>特性</th>
-          <th>RNN</th>
-          <th>LSTM</th>
+          <th>Kruskal</th>
+          <th>Prim</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td>記憶方式</td>
-          <td>單一隱藏狀態 $h_t$</td>
-          <td>記憶單元 $C_t$ + 隱藏狀態 $h_t$</td>
+          <td>導向</td>
+          <td>邊導向 (Edge-based)</td>
+          <td>點導向 (Vertex-based)</td>
       </tr>
       <tr>
-          <td>長期依賴</td>
-          <td>容易梯度消失</td>
-          <td>能有效捕捉長距離依賴</td>
+          <td>工具</td>
+          <td>並查集 (Union-Find)</td>
+          <td>優先佇列 (Heap)</td>
       </tr>
       <tr>
-          <td>訓練穩定性</td>
-          <td>差</td>
-          <td>較好</td>
+          <td>複雜度</td>
+          <td>$O(E \log E)$</td>
+          <td>$O(E \log V)$</td>
       </tr>
       <tr>
-          <td>計算成本</td>
-          <td>較低</td>
-          <td>較高 (參數更多)</td>
+          <td>適合圖</td>
+          <td>稀疏圖 (Sparse Graph)</td>
+          <td>稠密圖 (Dense Graph)</td>
       </tr>
       <tr>
-          <td>常見應用</td>
-          <td>短序列</td>
-          <td>長序列、語言模型、翻譯</td>
+          <td>建構方式</td>
+          <td>每次選邊，避免成環</td>
+          <td>從一個點擴展整棵樹</td>
       </tr>
   </tbody>
 </table>
-<h2 id="lstm-的優點">LSTM 的優點</h2>
-<ol>
-<li>緩解梯度消失問題: 透過記憶單元，能長距離保留資訊。</li>
-<li>動態記憶: 能夠選擇性地「記住或忘記」，比 RNN 靈活。</li>
-<li>泛化能力強: 在語言、語音、時間序列任務中普遍表現優秀。</li>
-</ol>
-<h2 id="lstm-的缺點">LSTM 的缺點</h2>
-<ol>
-<li>計算成本高: 每個 LSTM 單元包含多個門與記憶更新，參數量大。</li>
-<li>難以並行化: 序列必須逐步計算，無法像 Transformer 那樣一次處理整個序列。</li>
-<li>在長序列上仍有限制: 雖然比 RNN 好，但仍難以處理超長依賴。</li>
-</ol>
 <h2 id="結語">結語</h2>
-<p>長短期記憶網路 (LSTM) 是序列建模領域的一個重大突破，它在 RNN 的基礎上引入記憶單元與門控機制，解決了梯度消失的難題，使得模型能夠捕捉長距離依賴。</p>
-<p>雖然今天 Transformer 已經在 NLP 等領域逐漸取代 LSTM，但在許多應用中（如時間序列、邊緣運算環境），LSTM 依舊有不可忽視的價值。對深度學習的學習者來說，LSTM 是一個必經的里程碑，因為它不僅解釋了「如何記住過去」，也揭示了「如何選擇性遺忘」的重要性。</p>
+<p>Prim 與 Kruskal 雖然思路不同，但它們的目標都是構造出 最小生成樹。</p>
+<ul>
+<li>Kruskal 適合 稀疏圖，因為它需要排序邊</li>
+<li>Prim 適合 稠密圖，因為它逐步擴展節點</li>
+</ul>
+<p>透過這兩個演算法的比較，我們不僅理解了 MST 的本質，也能根據不同場景靈活選擇方法</p>
 <h2 id="備註">備註</h2>
 <ul>
-<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽 2025 - 30 天入門常見的機器學習演算法</a></li>
+<li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8468">iThome 鐵人賽 2025 - 快速掌握資料結構與演算法</a></li>
 </ul>
 
   </div>
@@ -336,23 +299,23 @@ $$</p>
   <div class="post__share">
   <ul class="share__list list-reset">
     <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2026%29%20%e9%95%b7%e7%9f%ad%e6%9c%9f%e8%a8%98%e6%86%b6%e7%b6%b2%e8%b7%af%20%28Long%20Short-Term%20Memory%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_26%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2028%29%20Prim%20%e6%bc%94%e7%ae%97%e6%b3%95&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_28%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_26%2f"
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_28%2f"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_26%2f&title=%28Day%2026%29%20%e9%95%b7%e7%9f%ad%e6%9c%9f%e8%a8%98%e6%86%b6%e7%b6%b2%e8%b7%af%20%28Long%20Short-Term%20Memory%29&summary=%e5%9c%a8%e5%89%8d%e4%b8%80%e7%af%87%ef%bc%8c%e6%88%91%e5%80%91%e4%bb%8b%e7%b4%b9%e4%ba%86%e5%be%aa%e7%92%b0%e7%a5%9e%e7%b6%93%e7%b6%b2%e8%b7%af%20%28RNN%29%ef%bc%8c%e4%b8%a6%e6%8c%87%e5%87%ba%e4%ba%86%e5%ae%83%e5%9c%a8%e8%99%95%e7%90%86%e5%ba%8f%e5%88%97%e8%b3%87%e6%96%99%e6%99%82%e7%9a%84%e5%bc%b7%e5%a4%a7%e4%b9%8b%e8%99%95%ef%bc%9a%e9%80%8f%e9%81%8e%e3%80%8c%e9%9a%b1%e8%97%8f%e7%8b%80%e6%85%8b%e3%80%8d%e5%b0%87%e5%89%8d%e5%be%8c%e8%b3%87%e8%a8%8a%e9%80%a3%e7%b5%90%e8%b5%b7%e4%be%86%e3%80%82%e7%84%b6%e8%80%8c%ef%bc%8c%e6%88%91%e5%80%91%e5%90%8c%e6%99%82%e4%b9%9f%e7%9c%8b%e5%88%b0%e4%ba%86%20RNN%20%e7%9a%84%e6%9c%80%e5%a4%a7%e7%93%b6%e9%a0%b8%e2%80%94%e2%80%94%e6%a2%af%e5%ba%a6%e6%b6%88%e5%a4%b1%e8%88%87%e6%a2%af%e5%ba%a6%e7%88%86%e7%82%b8%ef%bc%8c%e4%bd%bf%e5%be%97%e5%ae%83%e5%9c%a8%e9%95%b7%e8%b7%9d%e9%9b%a2%e4%be%9d%e8%b3%b4%20%28long-term%20dependency%29%20%e7%9a%84%e5%ad%b8%e7%bf%92%e4%b8%8a%e8%a1%a8%e7%8f%be%e4%b8%8d%e4%bd%b3%e3%80%82&source=%28Day%2026%29%20%e9%95%b7%e7%9f%ad%e6%9c%9f%e8%a8%98%e6%86%b6%e7%b6%b2%e8%b7%af%20%28Long%20Short-Term%20Memory%29"
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_28%2f&title=%28Day%2028%29%20Prim%20%e6%bc%94%e7%ae%97%e6%b3%95&summary=%e5%9c%a8%20Day%2026%20%e6%88%91%e5%80%91%e4%bb%8b%e7%b4%b9%e4%ba%86%20%e6%9c%80%e5%b0%8f%e7%94%9f%e6%88%90%e6%a8%b9%20%28MST%29%20%e7%9a%84%e6%a6%82%e5%bf%b5%ef%bc%8c%e4%b8%a6%e4%b8%94%e5%9c%a8%20Day%2027%20%e6%b7%b1%e5%85%a5%e6%8e%a2%e8%a8%8e%e4%ba%86%20Kruskal%20%e6%bc%94%e7%ae%97%e6%b3%95%e3%80%82%e4%bb%8a%e5%a4%a9%e8%a6%81%e4%bb%8b%e7%b4%b9%e7%9a%84%e6%98%af%e5%8f%a6%e4%b8%80%e5%80%8b%e7%b6%93%e5%85%b8%e6%96%b9%e6%b3%95%20%e2%80%94%e2%80%94%20Prim%20%e6%bc%94%e7%ae%97%e6%b3%95%e3%80%82%e5%ae%83%e8%88%87%20Kruskal%20%e4%b8%8d%e5%90%8c%ef%bc%8cPrim%20%e6%98%af%e4%bb%a5%20%e7%af%80%e9%bb%9e%e7%82%ba%e5%b0%8e%e5%90%91%20%e7%9a%84%e6%9c%80%e5%b0%8f%e7%94%9f%e6%88%90%e6%a8%b9%e6%bc%94%e7%ae%97%e6%b3%95%e3%80%82&source=%28Day%2028%29%20Prim%20%e6%bc%94%e7%ae%97%e6%b3%95"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
     </li>
 
     <li class="share__item">
       <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f30%25E5%25A4%25A9%25E5%2585%25A5%25E9%2596%2580%25E5%25B8%25B8%25E8%25A6%258B%25E7%259A%2584%25E6%25A9%259F%25E5%2599%25A8%25E5%25AD%25B8%25E7%25BF%2592%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_1_26%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2026%29%20%e9%95%b7%e7%9f%ad%e6%9c%9f%e8%a8%98%e6%86%b6%e7%b6%b2%e8%b7%af%20%28Long%20Short-Term%20Memory%29"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_28%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2028%29%20Prim%20%e6%bc%94%e7%ae%97%e6%b3%95"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
     </li>
@@ -365,39 +328,6 @@ $$</p>
 <div class="section-related">
   <h4 class="section-related__title">You may also like...</h4>
   <div class="row grid">
-    
-      <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_28/">(Day 28) Prim 演算法</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-26T00:00:00&#43;08:00">26 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">2 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">在 Day 26 我們介紹了 最小生成樹 (MST) 的概念，並且在 Day 27 深入探討了 Kruskal 演算法。今天要介紹的是另一個經典方法 —— Prim 演算法。它與 Kruskal 不同，Prim 是以 節點為導向 的最小生成樹演算法。</p>
-  </div>
-
-
-</div>
     
       <div class="article col col-6 col-t-12 animate">
 
@@ -427,6 +357,39 @@ $$</p>
     </div>
   
     <p class="article__excerpt">在 Day 26 我們介紹了最小生成樹 (MST) 的概念，並提到兩個經典演算法: Kruskal 與 Prim。今天要深入探討 Kruskal 演算法，它以邊為導向，利用貪心法 (Greedy Algorithm) 與並查集 (Union-Find)，有效率地找出 MST</p>
+  </div>
+
+
+</div>
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_26/">(Day 26) 最小生成樹 (Minimum Spanning Tree)</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-09-24T00:00:00&#43;08:00">24 Sep, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">2 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">在前幾天，我們學習了最短路徑問題 (Shortest Path)，例如 Dijkstra、Bellman-Ford、Floyd-Warshall、A*，今天要介紹的則是圖論中的另一個核心問題 —— 最小生成樹 (Minimum Spanning Tree, MST)</p>
   </div>
 
 
