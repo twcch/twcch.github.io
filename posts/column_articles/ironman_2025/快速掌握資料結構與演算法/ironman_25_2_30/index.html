@@ -7,20 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>(Day 16) 二元搜尋 (Binary Search) | 志謙&#39;s Blog</title>
-  <meta name="description" content="在排序演算法之後，我們終於要介紹一個非常經典且實用的搜尋演算法 —— 二元搜尋 (Binary Search)。如果說排序演算法是「把資料整理好」，那麼搜尋演算法就是「如何在整理好的資料中快速找到想要的元素」。二元搜尋憑藉著「折半」的概念，將搜尋的時間複雜度大幅降低。">
+  <title>(Day 30) 系列結尾 | 志謙&#39;s Blog</title>
+  <meta name="description" content="經歷了 30 天，這篇也是該系列的結尾，從一開始立下題目「快速掌握資料結構與演算法」那一刻起，我就很清楚，這不會是一場輕鬆的挑戰。這 30 天，我不只是寫文章，更是一次徹底地拆解與重構「我對程式思維的理解」的過程。這不只是輸出知識，而是一場和自己對話的學習實驗。">
 
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="(Day 16) 二元搜尋 (Binary Search) | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="在排序演算法之後，我們終於要介紹一個非常經典且實用的搜尋演算法 —— 二元搜尋 (Binary Search)。如果說排序演算法是「把資料整理好」，那麼搜尋演算法就是「如何在整理好的資料中快速找到想要的元素」。二元搜尋憑藉著「折半」的概念，將搜尋的時間複雜度大幅降低。">
+  <meta name="twitter:title" content="(Day 30) 系列結尾 | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="經歷了 30 天，這篇也是該系列的結尾，從一開始立下題目「快速掌握資料結構與演算法」那一刻起，我就很清楚，這不會是一場輕鬆的挑戰。這 30 天，我不只是寫文章，更是一次徹底地拆解與重構「我對程式思維的理解」的過程。這不只是輸出知識，而是一場和自己對話的學習實驗。">
   <meta name="twitter:image" content="http://twcch.io/">
 
   
-  <meta property="og:title" content="(Day 16) 二元搜尋 (Binary Search) | 志謙&#39;s Blog">
-  <meta property="og:description" content="在排序演算法之後，我們終於要介紹一個非常經典且實用的搜尋演算法 —— 二元搜尋 (Binary Search)。如果說排序演算法是「把資料整理好」，那麼搜尋演算法就是「如何在整理好的資料中快速找到想要的元素」。二元搜尋憑藉著「折半」的概念，將搜尋的時間複雜度大幅降低。">
+  <meta property="og:title" content="(Day 30) 系列結尾 | 志謙&#39;s Blog">
+  <meta property="og:description" content="經歷了 30 天，這篇也是該系列的結尾，從一開始立下題目「快速掌握資料結構與演算法」那一刻起，我就很清楚，這不會是一場輕鬆的挑戰。這 30 天，我不只是寫文章，更是一次徹底地拆解與重構「我對程式思維的理解」的過程。這不只是輸出知識，而是一場和自己對話的學習實驗。">
   <meta property="og:image" content="http://twcch.io/">
 
   
@@ -59,7 +59,7 @@
 
     
     <div class="global-cover">
-      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 16) 二元搜尋 (Binary Search)">
+      <img src="http://twcch.io/images/common/page_cover.jpg" alt="(Day 30) 系列結尾">
     </div>
     
 
@@ -138,7 +138,7 @@
 <article class="post container">
 
   <div class="post-head">
-    <h1 class="post-title">(Day 16) 二元搜尋 (Binary Search)</h1>
+    <h1 class="post-title">(Day 30) 系列結尾</h1>
     <div class="post-meta">
       
       <div class="post-tags">
@@ -151,10 +151,10 @@
       </div>
       &nbsp;&bull;&nbsp;
       
-      <time class="post-date" datetime="2025-09-14T00:00:00&#43;08:00">14 Sep, 2025</time>
+      <time class="post-date" datetime="2025-09-27T00:00:00&#43;08:00">27 Sep, 2025</time>
       
         &nbsp;&bull;&nbsp;
-        <span class="post-minutes">2 min read</span>
+        <span class="post-minutes">1 min read</span>
       
     </div>
     
@@ -177,119 +177,33 @@
       </h2>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#演算法概念">演算法概念</a></li>
-    <li><a href="#演算法步驟">演算法步驟</a></li>
-    <li><a href="#程式碼範例">程式碼範例</a>
-      <ul>
-        <li><a href="#iterative-版本">Iterative 版本</a></li>
-        <li><a href="#recursive-版本">Recursive 版本</a></li>
-      </ul>
-    </li>
-    <li><a href="#複雜度分析">複雜度分析</a></li>
-    <li><a href="#優缺點">優缺點</a></li>
+    <li><a href="#從學框架到打地基的轉念">從「學框架」到「打地基」的轉念</a></li>
+    <li><a href="#從背演算法到看本質">從「背演算法」到「看本質」</a></li>
+    <li><a href="#從追趕進度到建立節奏">從「追趕進度」到「建立節奏」</a></li>
     <li><a href="#結語">結語</a></li>
     <li><a href="#備註">備註</a></li>
   </ul>
 </nav>
     </div>
     
-    <p>在排序演算法之後，我們終於要介紹一個非常經典且實用的搜尋演算法 —— 二元搜尋 (Binary Search)。如果說排序演算法是「把資料整理好」，那麼搜尋演算法就是「如何在整理好的資料中快速找到想要的元素」。二元搜尋憑藉著「折半」的概念，將搜尋的時間複雜度大幅降低。</p>
-<h2 id="演算法概念">演算法概念</h2>
-<p>二元搜尋的基本思想是:</p>
+    <p>經歷了 30 天，這篇也是該系列的結尾，從一開始立下題目「快速掌握資料結構與演算法」那一刻起，我就很清楚，這不會是一場輕鬆的挑戰。這 30 天，我不只是寫文章，更是一次徹底地拆解與重構「我對程式思維的理解」的過程。這不只是輸出知識，而是一場和自己對話的學習實驗。</p>
+<h2 id="從學框架到打地基的轉念">從「學框架」到「打地基」的轉念</h2>
+<p>我遇過很多學程式的人，一開始都跟我一樣: 急著上框架、學 API、追新技術。當時的我也覺得「會用」就代表「會寫」，但那只是短期的表象。隨著時間推進，我越來越發現自己在某些技術選擇上「卡住」，因為缺乏判斷依據。直到我開始回頭看基礎，才真正明白: 框架是房子，演算法是地基。沒有穩固的結構，任何技術都只是空中樓閣。</p>
+<h2 id="從背演算法到看本質">從「背演算法」到「看本質」</h2>
+<p>剛開始寫的時候，我的目標很單純: 每天完成一篇，建立習慣。但寫到一半，我開始意識到一個更深層的問題: 我不只是要「知道 Bubble Sort 怎麼寫」，而是要能夠回答：「為什麼氣泡排序慢？慢在哪裡？什麼情況下它仍然有價值?」</p>
+<p>演算法讓我學會一件事: 一個問題的難，不在於語法，而在於抽象。當你學會從問題本質出發，不再被語言綁死，你就能在任何環境下設計出合適的解法。</p>
+<h2 id="從追趕進度到建立節奏">從「追趕進度」到「建立節奏」</h2>
+<p>這 30 天最難的部分，不是技術，而是節奏。每天要在研究與生活中擠出固定時間，思考、撰寫、驗證、修稿。更困難的是，必須在「懂」與「寫得清楚」之間找到平衡。</p>
+<p>我學到:</p>
 <ul>
-<li>前提：資料必須是 有序的陣列 (升冪或降冪都可以，但必須一致)。</li>
-<li>方法：每次將搜尋範圍對半切割，並檢查中間元素。</li>
-<li>若中間元素剛好等於目標值 → 成功找到。</li>
-<li>若目標值小於中間元素 → 在左半邊繼續搜尋。</li>
-<li>若目標值大於中間元素 → 在右半邊繼續搜尋。</li>
+<li>不是每個知識點都該寫完才懂，很多是在寫的過程中才被逼著釐清。</li>
+<li>知識的深度，不在於篇幅長短，而在於是否真的「抓住了核心」。</li>
+<li>每天只講一個重點，反而讓我更能「漸進式建構理解」。</li>
 </ul>
-<p>透過「每次將搜尋範圍減半」，演算法的效率大幅提升。</p>
-<h2 id="演算法步驟">演算法步驟</h2>
-<ol>
-<li>設定左邊界 left = 0，右邊界 right = n - 1。</li>
-<li>當 left &lt;= right 時，計算中間索引 mid = (left + right) // 2。</li>
-<li>如果 arr[mid] == target，回傳 mid。</li>
-<li>如果 arr[mid] &gt; target，將右邊界移到 mid - 1。</li>
-<li>如果 arr[mid] &lt; target，將左邊界移到 mid + 1。</li>
-<li>若最終沒有找到，回傳 -1（表示不存在）。</li>
-</ol>
-<h2 id="程式碼範例">程式碼範例</h2>
-<h3 id="iterative-版本">Iterative 版本</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">mid</span>
-</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 測試</span>
-</span></span><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>   <span class="c1"># 輸出: 3</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>   <span class="c1"># 輸出: -1</span>
-</span></span></code></pre></div><h3 id="recursive-版本">Recursive 版本</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">binary_search_recursive</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">left</span> <span class="o">&gt;</span> <span class="n">right</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">mid</span>
-</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">binary_search_recursive</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">binary_search_recursive</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 測試</span>
-</span></span><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">binary_search_recursive</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>   <span class="c1"># 輸出: 3</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">binary_search_recursive</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>   <span class="c1"># 輸出: -1</span>
-</span></span></code></pre></div><h2 id="複雜度分析">複雜度分析</h2>
-<ul>
-<li>時間複雜度: 每次搜尋範圍縮小一半，最多重複 log2(n) 次。
-<ul>
-<li>最佳情況: $O(1)$ (剛好中間值就是目標)。</li>
-<li>最壞情況: $O(\log n)$。</li>
-<li>平均情況: $O(\log n)$。</li>
-</ul>
-</li>
-<li>空間複雜度
-<ul>
-<li>Iterative 版本: $O(1)$。</li>
-<li>Recursive 版本: 因遞迴棧的存在，$O(\log n)$。</li>
-</ul>
-</li>
-</ul>
-<h2 id="優缺點">優缺點</h2>
-<table>
-  <thead>
-      <tr>
-          <th>優點</th>
-          <th>缺點</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>時間效率高，$O(\log n)$</td>
-          <td>限制多: 必須是有序陣列</td>
-      </tr>
-      <tr>
-          <td>實作簡單</td>
-          <td>適合靜態資料，不適合頻繁插入刪除的場景</td>
-      </tr>
-      <tr>
-          <td>遞迴/迴圈皆可實作</td>
-          <td>若資料不排序，必須先排序，否則無法使用</td>
-      </tr>
-  </tbody>
-</table>
+<p>這個節奏讓我學會如何「結構化輸出」，也讓我明白，知識的掌握不在於速度，而在於節奏是否可持續。</p>
 <h2 id="結語">結語</h2>
-<p>二元搜尋是一個簡單卻威力強大的演算法，它清楚展現了「減少搜尋範圍」能帶來的效率提升。雖然它只適用於有序資料，但在演算法設計中，「化問題為二分判斷」是一個常見且強大的思維模式。理解二元搜尋後，往後你在刷演算法題時會發現，許多問題都能用「Binary Search on Answer」這個技巧來解。</p>
+<p>三十天後的我，學會的不只是程式語法，而是一種「思考方式」。這世界的技術會不斷更新，但資料結構與演算法不會消失，因為它們不是工具，而是邏輯本身。因為框架會淘汰，API 會變動，唯有結構與演算法，構成思考的骨架。</p>
+<p>這 30 天，我用一篇篇文章，為自己建立了一個更穩固的地基。未來我會持續寫下去，但方向會更明確、深度會更穩。學程式，不是為了追趕技術潮流，而是為了建立「理解世界」的能力。而演算法，就是那個最好的起點。</p>
 <h2 id="備註">備註</h2>
 <ul>
 <li>同步發表於 <a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8468">iThome 鐵人賽 2025 - 快速掌握資料結構與演算法</a></li>
@@ -300,23 +214,23 @@
   <div class="post__share">
   <ul class="share__list list-reset">
     <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2016%29%20%e4%ba%8c%e5%85%83%e6%90%9c%e5%b0%8b%20%28Binary%20Search%29&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_16%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%28Day%2030%29%20%e7%b3%bb%e5%88%97%e7%b5%90%e5%b0%be&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_30%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_16%2f"
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_30%2f"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_16%2f&title=%28Day%2016%29%20%e4%ba%8c%e5%85%83%e6%90%9c%e5%b0%8b%20%28Binary%20Search%29&summary=%e5%9c%a8%e6%8e%92%e5%ba%8f%e6%bc%94%e7%ae%97%e6%b3%95%e4%b9%8b%e5%be%8c%ef%bc%8c%e6%88%91%e5%80%91%e7%b5%82%e6%96%bc%e8%a6%81%e4%bb%8b%e7%b4%b9%e4%b8%80%e5%80%8b%e9%9d%9e%e5%b8%b8%e7%b6%93%e5%85%b8%e4%b8%94%e5%af%a6%e7%94%a8%e7%9a%84%e6%90%9c%e5%b0%8b%e6%bc%94%e7%ae%97%e6%b3%95%20%e2%80%94%e2%80%94%20%e4%ba%8c%e5%85%83%e6%90%9c%e5%b0%8b%20%28Binary%20Search%29%e3%80%82%e5%a6%82%e6%9e%9c%e8%aa%aa%e6%8e%92%e5%ba%8f%e6%bc%94%e7%ae%97%e6%b3%95%e6%98%af%e3%80%8c%e6%8a%8a%e8%b3%87%e6%96%99%e6%95%b4%e7%90%86%e5%a5%bd%e3%80%8d%ef%bc%8c%e9%82%a3%e9%ba%bc%e6%90%9c%e5%b0%8b%e6%bc%94%e7%ae%97%e6%b3%95%e5%b0%b1%e6%98%af%e3%80%8c%e5%a6%82%e4%bd%95%e5%9c%a8%e6%95%b4%e7%90%86%e5%a5%bd%e7%9a%84%e8%b3%87%e6%96%99%e4%b8%ad%e5%bf%ab%e9%80%9f%e6%89%be%e5%88%b0%e6%83%b3%e8%a6%81%e7%9a%84%e5%85%83%e7%b4%a0%e3%80%8d%e3%80%82%e4%ba%8c%e5%85%83%e6%90%9c%e5%b0%8b%e6%86%91%e8%97%89%e8%91%97%e3%80%8c%e6%8a%98%e5%8d%8a%e3%80%8d%e7%9a%84%e6%a6%82%e5%bf%b5%ef%bc%8c%e5%b0%87%e6%90%9c%e5%b0%8b%e7%9a%84%e6%99%82%e9%96%93%e8%a4%87%e9%9b%9c%e5%ba%a6%e5%a4%a7%e5%b9%85%e9%99%8d%e4%bd%8e%e3%80%82&source=%28Day%2016%29%20%e4%ba%8c%e5%85%83%e6%90%9c%e5%b0%8b%20%28Binary%20Search%29"
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_30%2f&title=%28Day%2030%29%20%e7%b3%bb%e5%88%97%e7%b5%90%e5%b0%be&summary=%e7%b6%93%e6%ad%b7%e4%ba%86%2030%20%e5%a4%a9%ef%bc%8c%e9%80%99%e7%af%87%e4%b9%9f%e6%98%af%e8%a9%b2%e7%b3%bb%e5%88%97%e7%9a%84%e7%b5%90%e5%b0%be%ef%bc%8c%e5%be%9e%e4%b8%80%e9%96%8b%e5%a7%8b%e7%ab%8b%e4%b8%8b%e9%a1%8c%e7%9b%ae%e3%80%8c%e5%bf%ab%e9%80%9f%e6%8e%8c%e6%8f%a1%e8%b3%87%e6%96%99%e7%b5%90%e6%a7%8b%e8%88%87%e6%bc%94%e7%ae%97%e6%b3%95%e3%80%8d%e9%82%a3%e4%b8%80%e5%88%bb%e8%b5%b7%ef%bc%8c%e6%88%91%e5%b0%b1%e5%be%88%e6%b8%85%e6%a5%9a%ef%bc%8c%e9%80%99%e4%b8%8d%e6%9c%83%e6%98%af%e4%b8%80%e5%a0%b4%e8%bc%95%e9%ac%86%e7%9a%84%e6%8c%91%e6%88%b0%e3%80%82%e9%80%99%2030%20%e5%a4%a9%ef%bc%8c%e6%88%91%e4%b8%8d%e5%8f%aa%e6%98%af%e5%af%ab%e6%96%87%e7%ab%a0%ef%bc%8c%e6%9b%b4%e6%98%af%e4%b8%80%e6%ac%a1%e5%be%b9%e5%ba%95%e5%9c%b0%e6%8b%86%e8%a7%a3%e8%88%87%e9%87%8d%e6%a7%8b%e3%80%8c%e6%88%91%e5%b0%8d%e7%a8%8b%e5%bc%8f%e6%80%9d%e7%b6%ad%e7%9a%84%e7%90%86%e8%a7%a3%e3%80%8d%e7%9a%84%e9%81%8e%e7%a8%8b%e3%80%82%e9%80%99%e4%b8%8d%e5%8f%aa%e6%98%af%e8%bc%b8%e5%87%ba%e7%9f%a5%e8%ad%98%ef%bc%8c%e8%80%8c%e6%98%af%e4%b8%80%e5%a0%b4%e5%92%8c%e8%87%aa%e5%b7%b1%e5%b0%8d%e8%a9%b1%e7%9a%84%e5%ad%b8%e7%bf%92%e5%af%a6%e9%a9%97%e3%80%82&source=%28Day%2030%29%20%e7%b3%bb%e5%88%97%e7%b5%90%e5%b0%be"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin"></i></a>
     </li>
 
     <li class="share__item">
       <a class="share__link share__pinterest"
-        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_16%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2016%29%20%e4%ba%8c%e5%85%83%e6%90%9c%e5%b0%8b%20%28Binary%20Search%29"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2ftwcch.io%2fposts%2fcolumn_articles%2fironman_2025%2f%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%258C%25E6%258F%25A1%25E8%25B3%2587%25E6%2596%2599%25E7%25B5%2590%25E6%25A7%258B%25E8%2588%2587%25E6%25BC%2594%25E7%25AE%2597%25E6%25B3%2595%2fironman_25_2_30%2f&amp;media=http%3a%2f%2ftwcch.io%2f&amp;description=%28Day%2030%29%20%e7%b3%bb%e5%88%97%e7%b5%90%e5%b0%be"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
     </li>
@@ -329,39 +243,6 @@
 <div class="section-related">
   <h4 class="section-related__title">You may also like...</h4>
   <div class="row grid">
-    
-      <div class="article col col-6 col-t-12 animate">
-
-  <div class="article__content">
-    
-  
-    <h2 class="article__title">
-      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_30/">(Day 30) 系列結尾</a>
-    </h2>
-  
-    <div class="article__meta">
-      
-        <div class="article-tags__box">
-        
-          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
-        
-          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
-        
-        </div>
-        &nbsp;&bull;&nbsp;
-      
-      <time class="article__date" datetime="2025-09-27T00:00:00&#43;08:00">27 Sep, 2025</time>
-      
-        &nbsp;&bull;&nbsp;
-        <span class="article__minutes">1 min read</span>
-      
-    </div>
-  
-    <p class="article__excerpt">經歷了 30 天，這篇也是該系列的結尾，從一開始立下題目「快速掌握資料結構與演算法」那一刻起，我就很清楚，這不會是一場輕鬆的挑戰。這 30 天，我不只是寫文章，更是一次徹底地拆解與重構「我對程式思維的理解」的過程。這不只是輸出知識，而是一場和自己對話的學習實驗。</p>
-  </div>
-
-
-</div>
     
       <div class="article col col-6 col-t-12 animate">
 
@@ -391,6 +272,39 @@
     </div>
   
     <p class="article__excerpt">在 Day 26～Day 28 中，我們依序介紹了「最小生成樹 (Minimum Spanning Tree, MST)」的概念、Kruskal 與 Prim 兩種經典演算法。今天，我們將不談數學推導與程式碼優化，而是聚焦在 「如何將 MST 應用到現實問題」。</p>
+  </div>
+
+
+</div>
+    
+      <div class="article col col-6 col-t-12 animate">
+
+  <div class="article__content">
+    
+  
+    <h2 class="article__title">
+      <a href="/posts/column_articles/ironman_2025/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/ironman_25_2_28/">(Day 28) Prim 演算法</a>
+    </h2>
+  
+    <div class="article__meta">
+      
+        <div class="article-tags__box">
+        
+          <a href="http://twcch.io/tags/ithome-%E9%90%B5%E4%BA%BA%E8%B3%BD-2025/" class="article__tag">IThome 鐵人賽 2025</a>
+        
+          <a href="http://twcch.io/tags/%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E8%88%87%E6%BC%94%E7%AE%97%E6%B3%95/" class="article__tag">快速掌握資料結構與演算法</a>
+        
+        </div>
+        &nbsp;&bull;&nbsp;
+      
+      <time class="article__date" datetime="2025-09-26T00:00:00&#43;08:00">26 Sep, 2025</time>
+      
+        &nbsp;&bull;&nbsp;
+        <span class="article__minutes">2 min read</span>
+      
+    </div>
+  
+    <p class="article__excerpt">在 Day 26 我們介紹了 最小生成樹 (MST) 的概念，並且在 Day 27 深入探討了 Kruskal 演算法。今天要介紹的是另一個經典方法 —— Prim 演算法。它與 Kruskal 不同，Prim 是以 節點為導向 的最小生成樹演算法。</p>
   </div>
 
 
