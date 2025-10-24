@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Analytics on 志謙&#39;s Blog</title>
+    <link>http://localhost:1313/tags/analytics/</link>
+    <description>Recent content in Analytics on 志謙&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-heat</language>
+    <lastBuildDate>Fri, 24 Oct 2025 00:00:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/analytics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>資料探勘：讓數據說出它的故事</title>
+      <link>http://localhost:1313/posts/2025/the-art-of-data-mining/</link>
+      <pubDate>Fri, 24 Oct 2025 00:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/2025/the-art-of-data-mining/</guid>
+      <description>&lt;p&gt;資料探勘（Data Mining）是一場從混沌到洞察的旅程。&lt;br&gt;&#xA;它的核心不只是技術，而是一種思考方式——如何讓資料自己說話，如何從龐大的資訊中找出值得理解的模式。&lt;br&gt;&#xA;對數據分析師而言，資料探勘不只是「處理資料」，而是「與資料對話」。&lt;/p&gt;&#xA;&lt;h2 id=&#34;一從資料到知識探勘的本質&#34;&gt;一、從資料到知識：探勘的本質&lt;/h2&gt;&#xA;&lt;p&gt;在商業世界裡，資料無所不在。交易紀錄、網站點擊、感測器訊號、醫療紀錄、社群互動——&lt;br&gt;&#xA;這些原始資料就像尚未雕琢的石塊，只有經過提煉與建模，才能顯露出價值。&lt;br&gt;&#xA;資料探勘的任務，正是讓這些看似無序的碎片，拼出意義的圖像。&lt;/p&gt;&#xA;&lt;p&gt;資料探勘的終極目標，不是找到答案，而是&lt;strong&gt;找到能啟發問題的模式&lt;/strong&gt;。&lt;br&gt;&#xA;這種模式可能是一個潛在客群、一種異常行為、一組重複的事件序列，&lt;br&gt;&#xA;或是一個被忽略的關聯。它們都是資料在對我們說：「這裡有值得關注的事。」&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;二資料建模流程從混沌到結構&#34;&gt;二、資料建模流程：從混沌到結構&lt;/h2&gt;&#xA;&lt;p&gt;一個成熟的資料探勘專案，通常包含以下五個階段。&lt;br&gt;&#xA;這不僅是一套技術流程，更是一種分析思維的框架。&lt;/p&gt;&#xA;&lt;h3 id=&#34;1-問題定義problem-definition&#34;&gt;1. 問題定義（Problem Definition）&lt;/h3&gt;&#xA;&lt;p&gt;資料探勘的起點從來不是資料，而是問題。&lt;br&gt;&#xA;分析師必須明確回答：「我要解決什麼？」、「我關心的現象是什麼？」。&lt;br&gt;&#xA;在商業場景中，這可能是「提高留存率」、「預測顧客流失」或「辨識詐欺行為」；&lt;br&gt;&#xA;在研究場景中，則可能是「發現新的疾病特徵」或「理解群體行為模式」。&lt;br&gt;&#xA;清晰的問題定義是所有模型的方向盤。&lt;/p&gt;&#xA;&lt;h3 id=&#34;2-資料蒐集與整合data-collection--integration&#34;&gt;2. 資料蒐集與整合（Data Collection &amp;amp; Integration）&lt;/h3&gt;&#xA;&lt;p&gt;資料通常分散在不同來源：資料庫、API、感測器、或外部平台。&lt;br&gt;&#xA;探勘的第一步是將這些異質資料整合成可用的結構。&lt;br&gt;&#xA;這個階段強調資料的「廣度」，因為只有跨域整合，才能看見真正的關聯。&lt;br&gt;&#xA;正確的資料架構，是所有建模的基礎。&lt;/p&gt;&#xA;&lt;h3 id=&#34;3-資料清理與前處理data-cleaning--preprocessing&#34;&gt;3. 資料清理與前處理（Data Cleaning &amp;amp; Preprocessing）&lt;/h3&gt;&#xA;&lt;p&gt;在現實中，資料是混亂的：有缺失值、重複值、異常點與不一致的格式。&lt;br&gt;&#xA;分析師必須進行去噪、正規化、轉換與編碼，使資料能夠被模型正確理解。&lt;br&gt;&#xA;這個階段決定模型的「穩定性」，就像建築的地基——看不見，但至關重要。&lt;/p&gt;&#xA;&lt;h3 id=&#34;4-建模與探勘modeling--mining&#34;&gt;4. 建模與探勘（Modeling &amp;amp; Mining）&lt;/h3&gt;&#xA;&lt;p&gt;當資料準備就緒，真正的探勘才開始。&lt;br&gt;&#xA;依照問題性質，我們可能採用不同的建模策略：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;描述性模型&lt;/strong&gt;（Descriptive Models）揭示資料的結構，如分群與關聯規則。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;預測性模型&lt;/strong&gt;（Predictive Models）預測未來行為，如分類與回歸分析。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;異常偵測模型&lt;/strong&gt;（Anomaly Detection Models）找出與常態不同的模式，用於詐欺或風險預警。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;在這一階段，分析師不僅選擇演算法，更要確保模型的假設與資料特性相符。&lt;br&gt;&#xA;演算法只是工具，理解資料才是核心。&lt;/p&gt;&#xA;&lt;h3 id=&#34;5-評估與詮釋evaluation--interpretation&#34;&gt;5. 評估與詮釋（Evaluation &amp;amp; Interpretation）&lt;/h3&gt;&#xA;&lt;p&gt;一個模型的成功，取決於它能否「解釋現實」。&lt;br&gt;&#xA;因此，我們不僅評估準確率或 AUC，更關心模型是否能轉化為可行的洞察。&lt;br&gt;&#xA;在商業決策中，模型的價值不在於數字，而在於它是否能驅動行動。&lt;br&gt;&#xA;最後，分析師必須將結果以清晰、具說服力的方式傳達給決策者——&lt;br&gt;&#xA;讓資料能被理解、被信任、被採用。&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;三從技術到洞察資料探勘的思維&#34;&gt;三、從技術到洞察：資料探勘的思維&lt;/h2&gt;&#xA;&lt;p&gt;許多人將資料探勘視為演算法競賽，但真正的挑戰，在於&lt;strong&gt;詮釋&lt;/strong&gt;。&lt;br&gt;&#xA;一個模型的價值，不在於它多複雜，而在於它能否揭示行為背後的邏輯。&lt;br&gt;&#xA;探勘是技術與洞察的結合：&lt;br&gt;&#xA;演算法提供了「眼睛」，讓我們看見資料的結構；&lt;br&gt;&#xA;而詮釋則提供了「語言」，讓我們理解它的意義。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
