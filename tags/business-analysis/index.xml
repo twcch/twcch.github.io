@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Business Analysis on 志謙&#39;s Blog</title>
-    <link>https://twcch.io/tags/business-analysis/</link>
+    <link>http://localhost:1313/tags/business-analysis/</link>
     <description>Recent content in Business Analysis on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-heat</language>
-    <lastBuildDate>Mon, 07 Apr 2025 00:00:00 +0800</lastBuildDate>
-    <atom:link href="https://twcch.io/tags/business-analysis/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Jul 2025 00:00:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/business-analysis/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>為什麼 AI 正在快速削弱低階 Business Analyst 的價值？</title>
-      <link>https://twcch.io/posts/articles_25040701/</link>
-      <pubDate>Mon, 07 Apr 2025 00:00:00 +0800</pubDate>
-      <guid>https://twcch.io/posts/articles_25040701/</guid>
-      <description>&lt;p&gt;五年前，我踏入壽險產業，成為一名 Business Analyst (BA)。當時的工作內容相當清晰: 需求文件撰寫、報表製作、簡單的數據分析與溝通協調，是我每天的日常。那時候，這些任務仍需靠人力一項一項完成，效率與品質全憑個人經驗與熟練度。但如今，這些「核心能力」正快速被人工智慧工具重塑，甚至取代。&lt;/p&gt;&#xA;&lt;h2 id=&#34;我親身感受到的衝擊工具進步得比我想像中快&#34;&gt;我親身感受到的衝擊：工具進步得比我想像中快&lt;/h2&gt;&#xA;&lt;p&gt;回到 2022 年底，當我首次使用生成式 AI 工具進行報告撰寫與 Python 代碼產出時，內心的震撼難以言喻。曾經需要數小時才能完成的分析報告，在幾分鐘內生成雛形；曾經為了釐清邏輯關係而反覆修改的流程圖，如今只需一句指令就能完成。&lt;/p&gt;&#xA;&lt;p&gt;我逐漸意識到，這並不是單一任務被加速，而是整個 BA 工作流程正被結構性重塑。換言之，AI 正在壓縮 BA 的邊際價值。這不只是主觀體感，更有明確的研究支持。根據美國 OpenAI 與賓州大學的聯合研究，約有 80% 的職業至少有 10% 的工作內容將受到 LLM 工具的影響；其中，高達 19% 的職業，其超過一半的工作可由 AI 完成。而 BA 尤其是負責初階文件處理、標準報表、流程規劃等工作的分析師，被列為高曝險族群。&lt;/p&gt;&#xA;&lt;p&gt;原因很明確因為 BA 所擅長的文字組織、資料彙整與需求敘述，正是 AI 最擅長模仿與執行的任務。&lt;/p&gt;&#xA;&lt;h2 id=&#34;市場變化正在發生不是未來式而是現在進行式&#34;&gt;市場變化正在發生，不是未來式，而是現在進行式&lt;/h2&gt;&#xA;&lt;p&gt;這樣的趨勢已經開始反映在勞動市場上：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;BA 的職缺增速放緩&lt;/p&gt;&#xA;&lt;p&gt;企業在內部導入 LLM 工具後，發現許多重複性任務可由 AI 初步完成，人力需求自然下降。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;初階 BA 的薪資競爭力下降&lt;/p&gt;&#xA;&lt;p&gt;對於只熟悉基本分析任務、無法主動創造洞察的人才，企業的願意支付薪資上升空間有限。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;高階 BA 的需求反而上升&lt;/p&gt;&#xA;&lt;p&gt;企業更看重能駕馭 AI 工具、快速整合資訊、提出具策略意義建議的分析人才。所謂「會用 AI 的人」，正逐步取代「被 AI 取代的人」。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;這代表，AI 並不是取代所有 BA，而是取代了不進化的 BA。&lt;/p&gt;&#xA;&lt;h2 id=&#34;我的轉型從反應式執行者到主動創造者&#34;&gt;我的轉型：從反應式執行者，到主動創造者&lt;/h2&gt;&#xA;&lt;p&gt;面對這樣的劇變，我無法視若無睹。&lt;/p&gt;&#xA;&lt;p&gt;於是我開始盤點自己的能力，明白單靠產業 Know-how 或不夠專精的技能，將難以應對未來的競爭。因此，我選擇投入更深層的技能學習: 博士班訓練，深度的掌握資料科學、機器學習與深度學習領域，建立自身的核心競爭力。不只是會用工具或套模，而是要能理解這些如何運作、能應用在哪些情境、又有何種侷限。這樣的技能，不僅能讓我在日常分析中脫穎而出，也為我開啟進入 AI 應用領域的可能性。&lt;/p&gt;</description>
+      <link>http://localhost:1313/posts/2025/the-vanishing-junior-business-analyst/</link>
+      <pubDate>Sat, 05 Jul 2025 00:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/2025/the-vanishing-junior-business-analyst/</guid>
+      <description>&lt;p&gt;AI 並沒有殺死分析師，而是讓人們開始質疑：&lt;strong&gt;「分析師的價值究竟是什麼？」&lt;/strong&gt;&lt;br&gt;&#xA;當企業可以用 ChatGPT、Power BI Copilot 或 Python AutoML 在幾分鐘內完成資料分析報告時，&lt;br&gt;&#xA;低階 Business Analyst（BA）的任務，正以驚人的速度被演算法邊緣化。&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;一ai-並非取代而是重新定義工作&#34;&gt;一、AI 並非取代，而是「重新定義工作」&lt;/h2&gt;&#xA;&lt;p&gt;AI 的力量不在於「取代人」，而在於「重新定義什麼是人應該做的事」。&lt;br&gt;&#xA;過去的 BA 是資訊流的中介者：他們收集需求、整理數據、撰寫報告。&lt;br&gt;&#xA;但在生成式 AI 與自動化報表工具出現後，這些任務已被演算法以更快、更準、更便宜的方式完成。&lt;/p&gt;&#xA;&lt;p&gt;這不只是效率問題，而是結構性變化。&lt;br&gt;&#xA;企業在評估成本時，發現 &lt;strong&gt;AI 能生成 80% 的初步報表、70% 的需求文檔、甚至草擬用戶訪談總結&lt;/strong&gt;。&lt;br&gt;&#xA;因此，低階 BA 的價值被壓縮在最後 20% 的「人工詮釋」中——&lt;br&gt;&#xA;一個越來越窄、越來越不具議價力的區間。&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;二知識的中介功能正在崩解&#34;&gt;二、知識的中介功能正在崩解&lt;/h2&gt;&#xA;&lt;p&gt;低階 BA 的工作，本質上是一種「知識中介」：&lt;br&gt;&#xA;將資料轉換成報告、將需求轉換成圖表、將複雜的系統語言翻譯成人能理解的文字。&lt;br&gt;&#xA;但 AI 正在直接壟斷這種中介功能。&lt;/p&gt;&#xA;&lt;p&gt;生成式模型擅長文字與結構轉換——&lt;br&gt;&#xA;它可以從原始數據生成摘要，從對話生成需求文檔，從 CSV 檔案生成 PowerPoint。&lt;br&gt;&#xA;在這樣的環境裡，「中介」不再稀缺，「轉譯」不再需要。&lt;br&gt;&#xA;人類分析師不再是知識的橋樑，而只是被動的確認者。&lt;/p&gt;&#xA;&lt;p&gt;因此，BA 的價值從「生成知識」退化為「驗證知識」。&lt;br&gt;&#xA;這是一個沉默卻致命的轉變——&lt;br&gt;&#xA;當人從創造者變成校對者，職業的靈魂也隨之流失。&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;三分析思維的錯位從邏輯到模板&#34;&gt;三、分析思維的錯位：從邏輯到模板&lt;/h2&gt;&#xA;&lt;p&gt;許多 BA 其實並不真正「分析」資料，而是依賴模板操作：&lt;br&gt;&#xA;根據需求撰寫用例、根據資料套用圖表、根據報告產生建議。&lt;br&gt;&#xA;這種「模組化思維」極容易被機器學習模仿。&lt;/p&gt;&#xA;&lt;p&gt;AI 並不理解資料的語意，但它能模仿分析的形式。&lt;br&gt;&#xA;它能生成看似合理的 KPI 報表、風險矩陣與流程分析，&lt;br&gt;&#xA;因為這些任務本身就被標準化到可機械複製。&lt;/p&gt;&#xA;&lt;p&gt;於是，BA 的競爭對手不再是同事，而是系統內建的「生成分析助手」。&lt;br&gt;&#xA;當分析成為模板、思維變成巨集，&lt;br&gt;&#xA;AI 不再只是工具，而是直接侵入職能的定義。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
