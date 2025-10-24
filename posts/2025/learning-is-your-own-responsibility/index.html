@@ -58,22 +58,28 @@
   
 
   
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       renderMathInElement(document.body, {
         delimiters: [
-          {left: '$$', right: '$$', display: true},   
-          {left: '$', right: '$', display: false},    
-          {left: '\\[', right: '\\]', display: true}, 
-          {left: '\\(', right: '\\)', display: false} 
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '\\(', right: '\\)', display: false}
         ],
-        throwOnError : false
+        throwOnError: false,
+        strict: false,
+        trust: true
       });
     });
   </script>
+
+  
+  
+
 </head>
 
 <body>
@@ -264,7 +270,7 @@
               <div class="page-meta__content">
                 <a class="page-meta__author" href="/about/">謝志謙</a>
                 <div class="page-meta__bottom">
-                  <time class="page-date" datetime=" 2025-10-24T00:00:00&#43;08:00">24 Oct, 2025</time> –
+                  <time class="page-date" datetime=" 2025-10-23T00:00:00&#43;08:00">23 Oct, 2025</time> –
                   <span class="page-minutes">1 min read</span>
                 </div>
               </div>
@@ -278,7 +284,7 @@
         data-title="學習這件事，沒有人能替你完成"
         data-desc="我最近擔任一門人工智慧課程的助教。這門課的對象是碩士在職專班的學生，理應具備一定的專業基礎，但讓人訝異的是，課程進行到第七週，竟仍有人不會安裝 Python 環境。
 這不是技術問題，而是態度問題，因為 …"
-        data-date="24 October, 2025"
+        data-date="23 October, 2025"
         data-image="">
         <i class="fa-regular fa-bookmark"></i>
       </div>
@@ -374,6 +380,16 @@
   </div>
   
 
+  
+  <div class="page__next">
+    <div class="next__box">
+      
+      <span class="page__nav__next">Newer post</span>
+      
+      <h2 class="page__nav__title"><a href="https://twcch.io/posts/machine_learning/apriori_algorithm/">Machine Learning - Apriori Algorothm</a></h2>
+    </div>
+    
+  </div>
   
 </div>
 

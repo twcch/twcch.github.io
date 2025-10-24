@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="zh-heat">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>在數據中尋找秩序，資料探勘的藝術 | 志謙&#39;s Blog</title>
-  <meta name="description" content="資料探勘是一門結合統計學、資料庫與機器學習的藝術。它讓分析師能在龐雜資料中尋找模式、關聯與異常，揭示人類行為與決策背後的邏輯。從行銷分析到醫療預測，資料探勘不僅是技術過程，更是一種思考方式，教我們如何傾聽資料、理解現象，並將知識轉化為行動。">
+  <title>Market Basket | 志謙&#39;s Blog</title>
+  <meta name="description" content="">
 
+  <link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/market-basket/index.xml" title="志謙's Blog">
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="在數據中尋找秩序，資料探勘的藝術 | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="資料探勘是一門結合統計學、資料庫與機器學習的藝術。它讓分析師能在龐雜資料中尋找模式、關聯與異常，揭示人類行為與決策背後的邏輯。從行銷分析到醫療預測，資料探勘不僅是技術過程，更是一種思考方式，教我們如何傾聽資料、理解現象，並將知識轉化為行動。">
-  <meta name="twitter:image" content="https://twcch.io/">
+  <meta name="twitter:title" content="Market Basket | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="http://localhost:1313/">
 
   
-  <meta property="og:title" content="在數據中尋找秩序，資料探勘的藝術 | 志謙&#39;s Blog">
-  <meta property="og:description" content="資料探勘是一門結合統計學、資料庫與機器學習的藝術。它讓分析師能在龐雜資料中尋找模式、關聯與異常，揭示人類行為與決策背後的邏輯。從行銷分析到醫療預測，資料探勘不僅是技術過程，更是一種思考方式，教我們如何傾聽資料、理解現象，並將知識轉化為行動。">
-  <meta property="og:image" content="https://twcch.io/">
+  <meta property="og:title" content="Market Basket | 志謙&#39;s Blog">
+  <meta property="og:description" content="">
+  <meta property="og:image" content="http://localhost:1313/">
 
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,28 +59,22 @@
   
 
   
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       renderMathInElement(document.body, {
         delimiters: [
-          {left: '$$', right: '$$', display: true},
-          {left: '$', right: '$', display: false},
-          {left: '\\[', right: '\\]', display: true},
-          {left: '\\(', right: '\\)', display: false}
+          {left: '$$', right: '$$', display: true},   
+          {left: '$', right: '$', display: false},    
+          {left: '\\[', right: '\\]', display: true}, 
+          {left: '\\(', right: '\\)', display: false} 
         ],
-        throwOnError: false,
-        strict: false,
-        trust: true
+        throwOnError : false
       });
     });
   </script>
-
-  
-  
-
 </head>
 
 <body>
@@ -99,7 +94,7 @@
       
 
       <div class="logo">
-        <a class="logo__link" href="https://twcch.io/">
+        <a class="logo__link" href="http://localhost:1313/">
           志謙&#39;s Blog
         </a>
       </div>
@@ -235,246 +230,30 @@
 
 
 
+  
 
-<div class="container">
-  <div class="section__inner">
+  
+  <section class="section tags">
+    <div class="container">
+      <div class="section__inner">
+        <div class="row">
 
-    <div class="row">
-      <div class="col col-8 col-w-10 col-d-12 push-2 push-w-1 push-d-0">
+          <div class="col col-8 col-w-10 col-d-12 push-2 push-w-1 push-d-0">
 
-        <div class="page-hero">
-
-          <div class="page-hero__inner">
-            
-            <div class="page-tags">
-              
-              <a href="https://twcch.io/tags/data-mining/" class="page-tag">Data Mining</a>
-              
-            </div>
-            
-            
-            <h1 class="page-hero__title">在數據中尋找秩序，資料探勘的藝術</h1>
-            
-            
-            <p class="page-hero__description">資料探勘是一門結合統計學、資料庫與機器學習的藝術。它讓分析師能在龐雜資料中尋找模式、關聯與異常，揭示人類行為與決策背後的邏輯。從行銷分析到醫療預測，資料探勘不僅是技術過程，更是一種思考方式，教我們如何傾聽資料、理解現象，並將知識轉化為行動。</p>
-            
-          </div>
-
-          <div class="page-info">
-            <div class="page-meta">
-              <a href="/about/" class="page-meta__image">
-                <img class="lazy" data-src="/images/avatar.jpg"
-                  alt="謝志謙">
-              </a>
-
-              <div class="page-meta__content">
-                <a class="page-meta__author" href="/about/">謝志謙</a>
-                <div class="page-meta__bottom">
-                  <time class="page-date" datetime=" 2025-08-02T00:00:00&#43;08:00">02 Aug, 2025</time> –
-                  <span class="page-minutes">1 min read</span>
+              <div class="tags__inner">
+                <div class="section__hero">
+                  <div class="section__hero__inner">
+                    
+                    <h1 class="section__hero__title">Market Basket</h1>
+                    
+                    <p class="section__hero__description">A collection of <span>1 Post</span></p>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="share">
-  <ul class="share__list list-reset">
 
-    <li class="share__item">
-      <div class="share__link bookmark-btn"
-        data-id="/posts/2025/order-in-the-chaos-of-data/"
-        data-title="在數據中尋找秩序，資料探勘的藝術"
-        data-desc="資料探勘 (Data Mining) 是一場從混沌到洞察的旅程，它的核心不只是技術，而是一種思考方式——如何讓資料自己說話，如何從龐大的資訊中找出值得理解的模式，對數據分析師而言，資料探勘不只是「處理 …"
-        data-date="02 August, 2025"
-        data-image="">
-        <i class="fa-regular fa-bookmark"></i>
-      </div>
-    </li>
-
-    <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%e5%9c%a8%e6%95%b8%e6%93%9a%e4%b8%ad%e5%b0%8b%e6%89%be%e7%a7%a9%e5%ba%8f%ef%bc%8c%e8%b3%87%e6%96%99%e6%8e%a2%e5%8b%98%e7%9a%84%e8%97%9d%e8%a1%93&url=https%3a%2f%2ftwcch.io%2fposts%2f2025%2forder-in-the-chaos-of-data%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-x-twitter"></i></a>
-    </li>
-
-    <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftwcch.io%2fposts%2f2025%2forder-in-the-chaos-of-data%2f"
-        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
-        title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
-    </li>
-
-    <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftwcch.io%2fposts%2f2025%2forder-in-the-chaos-of-data%2f&title=%e5%9c%a8%e6%95%b8%e6%93%9a%e4%b8%ad%e5%b0%8b%e6%89%be%e7%a7%a9%e5%ba%8f%ef%bc%8c%e8%b3%87%e6%96%99%e6%8e%a2%e5%8b%98%e7%9a%84%e8%97%9d%e8%a1%93&summary=%e8%b3%87%e6%96%99%e6%8e%a2%e5%8b%98%e6%98%af%e4%b8%80%e9%96%80%e7%b5%90%e5%90%88%e7%b5%b1%e8%a8%88%e5%ad%b8%e3%80%81%e8%b3%87%e6%96%99%e5%ba%ab%e8%88%87%e6%a9%9f%e5%99%a8%e5%ad%b8%e7%bf%92%e7%9a%84%e8%97%9d%e8%a1%93%e3%80%82%e5%ae%83%e8%ae%93%e5%88%86%e6%9e%90%e5%b8%ab%e8%83%bd%e5%9c%a8%e9%be%90%e9%9b%9c%e8%b3%87%e6%96%99%e4%b8%ad%e5%b0%8b%e6%89%be%e6%a8%a1%e5%bc%8f%e3%80%81%e9%97%9c%e8%81%af%e8%88%87%e7%95%b0%e5%b8%b8%ef%bc%8c%e6%8f%ad%e7%a4%ba%e4%ba%ba%e9%a1%9e%e8%a1%8c%e7%82%ba%e8%88%87%e6%b1%ba%e7%ad%96%e8%83%8c%e5%be%8c%e7%9a%84%e9%82%8f%e8%bc%af%e3%80%82%e5%be%9e%e8%a1%8c%e9%8a%b7%e5%88%86%e6%9e%90%e5%88%b0%e9%86%ab%e7%99%82%e9%a0%90%e6%b8%ac%ef%bc%8c%e8%b3%87%e6%96%99%e6%8e%a2%e5%8b%98%e4%b8%8d%e5%83%85%e6%98%af%e6%8a%80%e8%a1%93%e9%81%8e%e7%a8%8b%ef%bc%8c%e6%9b%b4%e6%98%af%e4%b8%80%e7%a8%ae%e6%80%9d%e8%80%83%e6%96%b9%e5%bc%8f%ef%bc%8c%e6%95%99%e6%88%91%e5%80%91%e5%a6%82%e4%bd%95%e5%82%be%e8%81%bd%e8%b3%87%e6%96%99%e3%80%81%e7%90%86%e8%a7%a3%e7%8f%be%e8%b1%a1%ef%bc%8c%e4%b8%a6%e5%b0%87%e7%9f%a5%e8%ad%98%e8%bd%89%e5%8c%96%e7%82%ba%e8%a1%8c%e5%8b%95%e3%80%82&source=%e5%9c%a8%e6%95%b8%e6%93%9a%e4%b8%ad%e5%b0%8b%e6%89%be%e7%a7%a9%e5%ba%8f%ef%bc%8c%e8%b3%87%e6%96%99%e6%8e%a2%e5%8b%98%e7%9a%84%e8%97%9d%e8%a1%93"
-      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-square-linkedin"></i></a>
-    </li>
-  </ul>
-</div>
-          </div>
-
-        </div>
-
-        <div class="page-head">
-          
-          
-          
-        </div>
-
-        <article class="post">
-          <div class="post__content">
-            
-            <details class="post__toc">
-              <summary>Table of Contents</summary>
-              <nav id="TableOfContents">
-  <ol>
-    <li><a href="#資料探勘的先備知識">資料探勘的先備知識</a></li>
-    <li><a href="#從資料到知識-探勘的本質">從資料到知識: 探勘的本質</a></li>
-    <li><a href="#資料建模流程-從混沌到結構">資料建模流程: 從混沌到結構</a>
-      <ol>
-        <li><a href="#問題定義-problem-definition">問題定義 (Problem Definition)</a></li>
-        <li><a href="#資料蒐集與整合-data-collection--integration">資料蒐集與整合 (Data Collection &amp; Integration)</a></li>
-        <li><a href="#資料清理與前處理-data-cleaning--preprocessing">資料清理與前處理 (Data Cleaning &amp; Preprocessing)</a></li>
-        <li><a href="#建模與探勘-modeling--mining">建模與探勘 (Modeling &amp; Mining)</a></li>
-        <li><a href="#評估與詮釋-evaluation--interpretation">評估與詮釋 (Evaluation &amp; Interpretation)</a></li>
-      </ol>
-    </li>
-    <li><a href="#從技術到洞察-資料探勘的思維">從技術到洞察: 資料探勘的思維</a></li>
-    <li><a href="#結語-讓資料說出它的故事">結語: 讓資料說出它的故事</a></li>
-  </ol>
-</nav>
-            </details>
-            
-            <p>資料探勘 (Data Mining) 是一場從混沌到洞察的旅程，它的核心不只是技術，而是一種思考方式——如何讓資料自己說話，如何從龐大的資訊中找出值得理解的模式，對數據分析師而言，資料探勘不只是「處理資料」，而是「與資料對話」。</p>
-<h2 id="資料探勘的先備知識">資料探勘的先備知識</h2>
-<p>在開始資料探勘之前，我們需要理解它的理論基礎，資料探勘並非單一技術，而是多個學科的交會點:</p>
-<ul>
-<li>統計學 (Statistics): 提供對資料分佈、變異與相關的量化理解，確保模型結果具可解釋性。</li>
-<li>機器學習 (Machine Learning): 提供自動化演算法，從資料中學習模式並進行預測。</li>
-<li>資料庫系統 (Database Systems): 讓我們能有效率地儲存、檢索與處理大規模資料。</li>
-<li>資訊視覺化 (Data Visualization): 幫助分析師以直覺方式觀察結構與異常，將複雜資料轉化為可理解的圖像。</li>
-</ul>
-<p>這些領域共同構成資料探勘的基礎，使分析師既能理解數學邏輯，也能掌握資料結構與商業語境，換言之，資料探勘的專業是「跨界的知識整合」。</p>
-<h2 id="從資料到知識-探勘的本質">從資料到知識: 探勘的本質</h2>
-<p>在商業世界裡，資料無所不在，交易紀錄、網站點擊、感測器訊號、醫療紀錄、社群互動——  這些原始資料就像尚未雕琢的石塊，只有經過提煉與建模，才能顯露出價值。</p>
-<p>資料探勘的任務，正是讓這些看似無序的碎片，拼出意義的圖像，我認為資料探勘的終極目標，不是找到答案，而是找到能啟發問題的模式，這種模式可能是一個潛在客群、一種異常行為、一組重複的事件序列，或是一個被忽略的關聯。它們都是資料在對我們說：「這裡有值得關注的事。」</p>
-<h2 id="資料建模流程-從混沌到結構">資料建模流程: 從混沌到結構</h2>
-<p>一個成熟的資料探勘專案，通常包含以下五個階段，這不僅是一套技術流程，更是一種分析思維的框架:</p>
-<h3 id="問題定義-problem-definition">問題定義 (Problem Definition)</h3>
-<p>資料探勘的起點從來不是資料，而是問題，分析師必須明確回答：「我要解決什麼？」、「我關心的現象是什麼？」，因為清晰的問題定義是所有模型的方向盤。</p>
-<p>如在商業場景中，這可能是「提高留存率」、「預測顧客流失」或「辨識詐欺行為」；在研究場景中，則可能是「發現新的疾病特徵」或「理解群體行為模式」。</p>
-<h3 id="資料蒐集與整合-data-collection--integration">資料蒐集與整合 (Data Collection &amp; Integration)</h3>
-<p>資料通常分散在不同來源: 資料庫、API、感測器、或外部平台，探勘的第一步是將這些異質資料整合成可用的結構。</p>
-<p>這個階段強調資料的「廣度」，因為只有跨域整合，才能看見真正的關聯，正確的資料架構，是所有建模的基礎。</p>
-<h3 id="資料清理與前處理-data-cleaning--preprocessing">資料清理與前處理 (Data Cleaning &amp; Preprocessing)</h3>
-<p>在現實中，資料是混亂的: 有缺失值、重複值、異常點與不一致的格式，分析師必須進行去噪、正規化、轉換與編碼，使資料能夠被模型正確理解，這個階段決定模型的「穩定性」，就像建築的地基——看不見，但至關重要。</p>
-<h3 id="建模與探勘-modeling--mining">建模與探勘 (Modeling &amp; Mining)</h3>
-<p>當資料準備就緒，真正的探勘才開始，依照問題性質，我們可能採用不同的建模策略:</p>
-<ul>
-<li>描述性模型 (Descriptive Models) 揭示資料的結構，如分群與關聯規則。</li>
-<li>預測性模型 (Predictive Models) 預測未來行為，如分類與回歸分析。</li>
-<li>異常偵測模型 (Anomaly Detection Models) 找出與常態不同的模式，用於詐欺或風險預警。</li>
-</ul>
-<p>在這一階段，分析師不僅選擇演算法，更要確保模型的假設與資料特性相符，演算法只是工具，理解資料才是核心。</p>
-<h3 id="評估與詮釋-evaluation--interpretation">評估與詮釋 (Evaluation &amp; Interpretation)</h3>
-<p>一個模型的成功，取決於它能否「解釋現實」，而不僅是數學上的優越，因此，我們不僅評估準確率或 AUC，更關心模型是否能轉化為可行的洞察。</p>
-<p>在商業決策中，模型的價值不在於數字，而在於它是否能驅動行動，最後，分析師必須將結果以清晰、具說服力的方式傳達給決策者——讓資料能被理解、被信任、被採用。</p>
-<h2 id="從技術到洞察-資料探勘的思維">從技術到洞察: 資料探勘的思維</h2>
-<p>許多人將資料探勘視為演算法競賽，但真正的挑戰，在於詮釋，因為一個模型的價值，不在於它多複雜，而在於它能否揭示行為背後的邏輯。</p>
-<p>探勘是技術與洞察的結合: 演算法提供了「眼睛」，讓我們看見資料的結構；而詮釋則提供了「語言」，讓我們理解它的意義。</p>
-<p>成熟的分析師懂得在模型結果與人類決策之間搭橋——將模式轉化為策略，將統計轉化為故事。這也是資料探勘真正的力量所在: 把無聲的資料，變成有意義的語言。</p>
-<h2 id="結語-讓資料說出它的故事">結語: 讓資料說出它的故事</h2>
-<p>資料探勘不僅是科學，更是一種觀察世界的方式，它教我們如何在噪音中尋找規律，在數字中理解人性，每一次模型訓練、每一次規則發現，都是資料在對我們訴說故事，當我們學會傾聽資料的語言，我們不只是分析師，更是解釋世界的觀察者。</p>
-
-          </div>
-
-          
-<div class="page__navigation">
-  
-  <div class="page__prev">
-    
-    <div class="prev__box">
-      
-      <span class="page__nav__prev">Older post</span>
-      
-      <h2 class="page__nav__title"><a href="https://twcch.io/posts/2025/the-vanishing-junior-business-analyst/">AI 時代下，逐漸消失的初階商業分析師</a></h2>
-    </div>
-  </div>
-  
-
-  
-  <div class="page__next">
-    <div class="next__box">
-      
-      <span class="page__nav__next">Newer post</span>
-      
-      <h2 class="page__nav__title"><a href="https://twcch.io/posts/2025/the-fallacy-of-anti-education/">讀書無用論，真的無用嗎?</a></h2>
-    </div>
-    
-  </div>
-  
-</div>
-
-
-
-          
-            
-<div class="show-comments">
-  
-  <h3 class="show-comments__title">What are your thoughts?</h3>
-  
-  <button class="disqus-button button button--medium" id="show-comments-button" onclick="disqus();return false;">Show Comments</button>
-
-  <div id="disqus_thread" class="post__comments">
-    <div id="disqus_empty"></div>
-  </div>
-</div>
-
-
-<script>
-  var disqus_loaded = false;
-  var disqus_shortname = 'twcch';
-  var disqus_container = document.getElementById("disqus_thread");
-  function disqus() {
-    if (!disqus_loaded) {
-      disqus_loaded = true;
-      var e = document.createElement("script");
-      e.type = "text/javascript";
-      e.async = true;
-      e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
-      (document.getElementsByTagName("head")[0] ||
-        document.getElementsByTagName("body")[0])
-        .appendChild(e);
-      
-      document.getElementById("show-comments-button").style.display = "none";
-      
-      disqus_container.classList.add("is-open");
-    }
-  }
-</script>
-
-<noscript>Please enable JavaScript to view the
-  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-</noscript>
-
-          
-        </article>
-
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-
-
-
-<section class="section section-related">
-  <div class="container">
-    <div class="section__inner">
-
-      <div class="section__head">
-        <h2 class="section__title">Related</h2>
-      </div>
-
-      <div class="row">
-        
-          <div class="article col col-4 col-w-6 col-t-12">
+                <div class="row grid">
+                  
+                  
+                    <div class="article col col-6 col-t-12 grid__post">
   <div class="article__inner">
 
     
@@ -485,33 +264,46 @@
         
         <div class="article__tags">
           
-            <a href="https://twcch.io/tags/data-mining/" class="article__tag">Data Mining</a>
+            <a href="http://localhost:1313/tags/association-rules/" class="article__tag">Association Rules</a>
+          
+            <a href="http://localhost:1313/tags/data-mining/" class="article__tag">Data Mining</a>
+          
+            <a href="http://localhost:1313/tags/market-basket/" class="article__tag">Market Basket</a>
+          
+            <a href="http://localhost:1313/tags/machine-learning/" class="article__tag">Machine Learning</a>
           
         </div>
         
 
-        <time class="article__date" datetime=" 2025-09-06T00:00:00&#43;08:00">06 Sep, 2025</time>
+        <time class="article__date" datetime=" 2025-10-24T00:00:00&#43;08:00">24 Oct, 2025</time>
       </div>
 
       <h2 class="article__title">
-        <a href="/posts/2025/when-data-starts-to-connect/">數據分析師的洞察之眼關聯分析</a>
+        <a href="/posts/machine_learning/understanding-apriori/">當資料開始連結：Apriori 從集合到策略的全圖解</a>
       </h2>
 
-      <p class="article__excerpt">關聯分析是一門讓資料自己說話的藝術。它揭示了人類行為中難以察覺的潛在規律，讓原本靜止的交易紀錄轉化為可被理解的語言。從超市購物籃到金融詐欺偵測，從用戶瀏覽軌跡到醫療診斷模式，關聯分析讓分析師在海量資料中捕捉行為的共現脈絡與決策邏輯。這門技術不僅協助企業理解選擇背後的心理與社會結構，也讓我們意識到——當資料開始說話，人類的行為故事，終於得以被閱讀與理解。</p>
+      <p class="article__excerpt">Apriori 不是一段程式，而是一套把「共現」化為「決策」的語言。本文以市場籃分析為起點，精準拆解 support、confidence、lift 等核心度量，說明反單調性如何讓巨量組合可被搜尋，並示範從交易資料編碼、演算法實作到結果詮釋與業務落地。更納入效能調校、指標選擇、與 FP-Growth 對照，作為從原理到實務的完整指南。</p>
 
     </div>
   </div>
 </div>
-        
+                  
+                </div>
+
+                
+
+
+              </div>
+
+          </div>
+
+        </div>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
+  
 
-
-
-
+  
 
   
 
@@ -528,6 +320,7 @@
 
 
 
+  
 
 
 

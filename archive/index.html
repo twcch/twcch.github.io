@@ -58,22 +58,28 @@
   
 
   
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       renderMathInElement(document.body, {
         delimiters: [
-          {left: '$$', right: '$$', display: true},   
-          {left: '$', right: '$', display: false},    
-          {left: '\\[', right: '\\]', display: true}, 
-          {left: '\\(', right: '\\)', display: false} 
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '\\(', right: '\\)', display: false}
         ],
-        throwOnError : false
+        throwOnError: false,
+        strict: false,
+        trust: true
       });
     });
   </script>
+
+  
+  
+
 </head>
 
 <body>
@@ -250,12 +256,26 @@
             
             
             <div class="archive-page__group">
-              <h2 class="archive-page__year">2025 <sup>(6)</sup></h2>
+              <h2 class="archive-page__year">2025 <sup>(7)</sup></h2>
               <div class="archive-page__list">
                 
                 
-                <h3 class="archive-page__month">October <sup>1</sup></h3>
+                <h3 class="archive-page__month">October <sup>2</sup></h3>
                 <div class="archive-page__collection">
+                  
+                  <div class="archive-article">
+                    <div class="archive-article__head">
+                      <h3 class="archive-article__title">
+                        <a href="https://twcch.io/posts/machine_learning/apriori_algorithm/">Machine Learning - Apriori Algorothm</a>
+                      </h3>
+                      <p class="archive-article__excerpt">Apriori 不是一段程式，而是一套把「共現」化為「決策」的語言。本文以市場籃分析為起點，精準拆解 support、confidence、lift 等核心度量，說明反單調性如何讓巨量組合可被搜尋，並示範從交易資料編碼、演算法實作到結果詮釋與業務落地。更納入效能調校、指標選擇、與 FP-Growth 對照，作為從原理到實務的完整指南。</p>
+                    </div>
+                    <div class="archive-article__meta">
+                      <time class="archive-article__date" datetime="2025-10-24 00:00:00 &#43;0800 CST">
+                        24 Oct, 2025
+                      </time>
+                    </div>
+                  </div>
                   
                   <div class="archive-article">
                     <div class="archive-article__head">
@@ -265,8 +285,8 @@
                       <p class="archive-article__excerpt">在知識唾手可得的時代，學習最大的障礙不再是資源不足，而是態度懶散。主動探索是學習的根本，被動等待則是自我放棄的開端。當學生把「不會」當作藉口，而非起點，教育的價值便被掏空。真正的學習，從未是別人教會你的事，而是你願意去理解的事。</p>
                     </div>
                     <div class="archive-article__meta">
-                      <time class="archive-article__date" datetime="2025-10-24 00:00:00 &#43;0800 CST">
-                        24 Oct, 2025
+                      <time class="archive-article__date" datetime="2025-10-23 00:00:00 &#43;0800 CST">
+                        23 Oct, 2025
                       </time>
                     </div>
                   </div>

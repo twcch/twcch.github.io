@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Market Basket on 志謙&#39;s Blog</title>
+    <link>http://localhost:1313/tags/market-basket/</link>
+    <description>Recent content in Market Basket on 志謙&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-heat</language>
+    <lastBuildDate>Fri, 24 Oct 2025 00:00:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/market-basket/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>當資料開始連結：Apriori 從集合到策略的全圖解</title>
+      <link>http://localhost:1313/posts/machine_learning/understanding-apriori/</link>
+      <pubDate>Fri, 24 Oct 2025 00:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/machine_learning/understanding-apriori/</guid>
+      <description>&lt;p&gt;關聯規則探勘的問題，看似朴素：在成千上萬筆交易中，哪些項目「總是一起」出現？真正困難在於組合爆炸：若有 10,000 件商品，潛在組合多到無法枚舉。&lt;strong&gt;Apriori 的偉大之處&lt;/strong&gt;是把「可搜尋性」建立在**反單調性（anti-monotonicity）**之上，讓我們能以數學性質剃除海量不必要的候選，保留真有機會成為規則的組合。本文從概念、數學、實作到策略，將 Apriori 的路徑一次走完。&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;一問題定義從交易到規則&#34;&gt;一、問題定義：從交易到規則&lt;/h2&gt;&#xA;&lt;p&gt;資料型態：一組交易 $T={t_1,\dots,t_n}$，每筆交易 $t$ 是項目集合 $I={i_1,\dots,i_m}$ 的子集。&lt;br&gt;&#xA;我們尋找的對象是&lt;strong&gt;關聯規則&lt;/strong&gt;：$X \rightarrow Y$，其中 $X, Y \subseteq I$、$X \cap Y = \varnothing$。&lt;/p&gt;&#xA;&lt;p&gt;三個基本度量：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Support&lt;/strong&gt;：$\text{supp}(X) = \frac{|{t \in T: X \subseteq t}|}{|T|}$，即 $X$ 在所有交易中的出現比例。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Confidence&lt;/strong&gt;：$\text{conf}(X \rightarrow Y) = \frac{\text{supp}(X \cup Y)}{\text{supp}(X)}$，觀察買了 $X$ 之後同時買 $Y$ 的機率。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Lift&lt;/strong&gt;：$\text{lift}(X \rightarrow Y) = \frac{\text{supp}(X \cup Y)}{\text{supp}(X)\text{supp}(Y)}$，衡量相對於獨立假設的加成（&amp;gt;1 表正向關聯）。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;延伸常用度量（利於排序與風控）：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Leverage&lt;/strong&gt;：$\text{lev}(X \rightarrow Y) = \text{supp}(X \cup Y) - \text{supp}(X)\text{supp}(Y)$（絕對提升量）。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Conviction&lt;/strong&gt;：$\text{conv}(X \rightarrow Y)=\frac{1-\text{supp}(Y)}{1-\text{conf}(X \rightarrow Y)}$（「若 $X$ 發生而 $Y$ 未發生」的驚訝程度）。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;二數學原理反單調性與可搜尋性&#34;&gt;二、數學原理：反單調性與可搜尋性&lt;/h2&gt;&#xA;&lt;p&gt;**頻繁項集（frequent itemset）**的定義：若 $\text{supp}(X)\ge \text{min_support}$，則 $X$ 為頻繁。Apriori 的核心斷言：&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

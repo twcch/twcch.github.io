@@ -59,22 +59,28 @@
   
 
   
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       renderMathInElement(document.body, {
         delimiters: [
-          {left: '$$', right: '$$', display: true},   
-          {left: '$', right: '$', display: false},    
-          {left: '\\[', right: '\\]', display: true}, 
-          {left: '\\(', right: '\\)', display: false} 
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '\\(', right: '\\)', display: false}
         ],
-        throwOnError : false
+        throwOnError: false,
+        strict: false,
+        trust: true
       });
     });
   </script>
+
+  
+  
+
 </head>
 
 <body>
@@ -261,12 +267,41 @@
         
         <div class="article__tags">
           
-            <a href="https://twcch.io/tags/heart-notes/" class="article__tag">Heart Notes</a>
+            <a href="https://twcch.io/tags/machine-learning/" class="article__tag">Machine Learning</a>
           
         </div>
         
 
         <time class="article__date" datetime=" 2025-10-24T00:00:00&#43;08:00">24 Oct, 2025</time>
+      </div>
+
+      <h2 class="article__title">
+        <a href="/posts/machine_learning/apriori_algorithm/">Machine Learning - Apriori Algorothm</a>
+      </h2>
+
+      <p class="article__excerpt">Apriori 不是一段程式，而是一套把「共現」化為「決策」的語言。本文以市場籃分析為起點，精準拆解 support、confidence、lift 等核心度量，說明反單調性如何讓巨量組合可被搜尋，並示範從交易資料編碼、演算法實作到結果詮釋與業務落地。更納入效能調校、指標選擇、與 FP-Growth 對照，作為從原理到實務的完整指南。</p>
+
+    </div>
+  </div>
+</div>
+              
+                <div class="article col col-6 col-t-12 grid__post">
+  <div class="article__inner">
+
+    
+
+    <div class="article__content">
+
+      <div class="article__info">
+        
+        <div class="article__tags">
+          
+            <a href="https://twcch.io/tags/heart-notes/" class="article__tag">Heart Notes</a>
+          
+        </div>
+        
+
+        <time class="article__date" datetime=" 2025-10-23T00:00:00&#43;08:00">23 Oct, 2025</time>
       </div>
 
       <h2 class="article__title">

@@ -9,9 +9,16 @@
     <lastBuildDate>Fri, 24 Oct 2025 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://twcch.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Machine Learning</title>
+      <link>https://twcch.io/tags/machine-learning/</link>
+      <pubDate>Fri, 24 Oct 2025 00:00:00 +0800</pubDate>
+      <guid>https://twcch.io/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Heart Notes</title>
       <link>https://twcch.io/tags/heart-notes/</link>
-      <pubDate>Fri, 24 Oct 2025 00:00:00 +0800</pubDate>
+      <pubDate>Thu, 23 Oct 2025 00:00:00 +0800</pubDate>
       <guid>https://twcch.io/tags/heart-notes/</guid>
       <description></description>
     </item>
