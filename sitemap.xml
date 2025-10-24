@@ -52,8 +52,6 @@
   </url><url>
     <loc>https://twcch.io/faq/</loc>
   </url><url>
-    <loc>https://twcch.io/contact/</loc>
-  </url><url>
     <loc>https://twcch.io/about/</loc>
   </url><url>
     <loc>https://twcch.io/videos/</loc>
@@ -61,5 +59,7 @@
     <loc>https://twcch.io/column_article/</loc>
   </url><url>
     <loc>https://twcch.io/services/</loc>
+  </url><url>
+    <loc>https://twcch.io/contact/</loc>
   </url>
 </urlset>
