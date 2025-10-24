@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>資料探勘 on Alan&#39;s Blog</title>
+    <link>http://localhost:1313/tags/%E8%B3%87%E6%96%99%E6%8E%A2%E5%8B%98/</link>
+    <description>Recent content in 資料探勘 on Alan&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-heat</language>
+    <lastBuildDate>Sat, 06 Sep 2025 00:00:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%E8%B3%87%E6%96%99%E6%8E%A2%E5%8B%98/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>從關聯看世界：數據分析師的洞察之眼</title>
+      <link>http://localhost:1313/posts/articles_25040701-copy/</link>
+      <pubDate>Sat, 06 Sep 2025 00:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/articles_25040701-copy/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

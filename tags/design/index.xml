@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Design on Alan&#39;s Blog</title>
+    <link>http://localhost:1313/tags/design/</link>
+    <description>Recent content in Design on Alan&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-heat</language>
+    <lastBuildDate>Sun, 29 Jun 2025 15:01:35 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/design/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lessons from a Failed Prototype</title>
+      <link>http://localhost:1313/posts/lessons-from-a-failed-prototype/</link>
+      <pubDate>Sun, 29 Jun 2025 15:01:35 +0300</pubDate>
+      <guid>http://localhost:1313/posts/lessons-from-a-failed-prototype/</guid>
+      <description>&lt;p&gt;As part of this comprehensive project, I completely reimagined the user experience for EcoTracker, a mobile application platform designed for tracking environmental footprints. The challenge was to create an intuitive interface that would motivate users to adopt more sustainable lifestyle practices.&lt;/p&gt;&#xA;&lt;p&gt;Primary insights revealed that users felt overwhelmed by the complexity of tracking their environmental impact. Existing solutions were either too technical or insufficiently motivating for long-term engagement. Users expressed frustration with current market offerings but remained passionate about environmental responsibility.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Why Simplicity Is Harder Than It Looks</title>
+      <link>http://localhost:1313/posts/why-simplicity-is-harder-than-it-looks/</link>
+      <pubDate>Sat, 28 Jun 2025 15:01:35 +0300</pubDate>
+      <guid>http://localhost:1313/posts/why-simplicity-is-harder-than-it-looks/</guid>
+      <description>&lt;p&gt;As part of this comprehensive project, I completely reimagined the user experience for EcoTracker, a mobile application platform designed for tracking environmental footprints. The challenge was to create an intuitive interface that would motivate users to adopt more sustainable lifestyle practices.&lt;/p&gt;&#xA;&lt;h2 id=&#34;user-research-insights&#34;&gt;User Research Insights&lt;/h2&gt;&#xA;&lt;p&gt;Conducting deep user research became the foundation of the entire project. Over six weeks, I interviewed 45 potential users, analyzed competitors, and studied current trends in sustainability and environmental awareness.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>My Favorite Design Questions to Ask</title>
+      <link>http://localhost:1313/posts/my-favorite-design-questions-to-ask/</link>
+      <pubDate>Wed, 25 Jun 2025 15:01:35 +0300</pubDate>
+      <guid>http://localhost:1313/posts/my-favorite-design-questions-to-ask/</guid>
+      <description>&lt;p&gt;As part of this comprehensive project, I completely reimagined the user experience for EcoTracker, a mobile application platform designed for tracking environmental footprints. The challenge was to create an intuitive interface that would motivate users to adopt more sustainable lifestyle practices.&lt;/p&gt;&#xA;&lt;h2 id=&#34;information-architecture&#34;&gt;Information Architecture&lt;/h2&gt;&#xA;&lt;p&gt;Creating a logical information architecture became critically important for user navigation and feature discovery. I developed a structure that groups functionality into three main categories: tracking, learning, and community engagement.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>What I Learned Reviewing Old Work</title>
+      <link>http://localhost:1313/posts/what-i-learned-reviewing-old-work/</link>
+      <pubDate>Tue, 24 Jun 2025 15:01:35 +0300</pubDate>
+      <guid>http://localhost:1313/posts/what-i-learned-reviewing-old-work/</guid>
+      <description>&lt;p&gt;As part of this comprehensive project, I completely reimagined the user experience for EcoTracker, a mobile application platform designed for tracking environmental footprints. The challenge was to create an intuitive interface that would motivate users to adopt more sustainable lifestyle practices.&lt;/p&gt;&#xA;&lt;h2 id=&#34;user-research-insights&#34;&gt;User Research Insights&lt;/h2&gt;&#xA;&lt;p&gt;Conducting deep user research became the foundation of the entire project. Over six weeks, I interviewed 45 potential users, analyzed competitors, and studied current trends in sustainability and environmental awareness.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
