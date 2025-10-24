@@ -2,13 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://twcch.io/</loc>
-    <lastmod>9999-09-02T00:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://twcch.io/posts/</loc>
-    <lastmod>9999-09-02T00:00:00+08:00</lastmod>
-  </url><url>
     <loc>https://twcch.io/projects/</loc>
+    <lastmod>9999-06-12T08:04:35+03:00</lastmod>
+  </url><url>
+    <loc>https://twcch.io/</loc>
     <lastmod>9999-06-12T08:04:35+03:00</lastmod>
   </url><url>
     <loc>https://twcch.io/tags/heart-notes/</loc>
@@ -20,17 +17,26 @@
     <loc>https://twcch.io/posts/2025/learning-is-your-own-responsibility/</loc>
     <lastmod>2025-10-24T00:00:00+08:00</lastmod>
   </url><url>
+    <loc>https://twcch.io/posts/</loc>
+    <lastmod>2025-10-24T00:00:00+08:00</lastmod>
+  </url><url>
     <loc>https://twcch.io/tags/data-mining/</loc>
     <lastmod>2025-09-06T00:00:00+08:00</lastmod>
   </url><url>
     <loc>https://twcch.io/posts/2025/when-data-starts-to-connect/</loc>
     <lastmod>2025-09-06T00:00:00+08:00</lastmod>
   </url><url>
+    <loc>https://twcch.io/posts/2025/the-fallacy-of-anti-education/</loc>
+    <lastmod>2025-09-02T00:00:00+08:00</lastmod>
+  </url><url>
     <loc>https://twcch.io/posts/2025/order-in-the-chaos-of-data/</loc>
     <lastmod>2025-08-02T00:00:00+08:00</lastmod>
   </url><url>
     <loc>https://twcch.io/posts/2025/the-vanishing-junior-business-analyst/</loc>
     <lastmod>2025-07-05T00:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://twcch.io/posts/2025/teaching-without-understanding/</loc>
+    <lastmod>2025-06-25T00:00:00+08:00</lastmod>
   </url><url>
     <loc>https://twcch.io/archive/</loc>
   </url><url>
