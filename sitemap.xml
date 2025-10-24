@@ -2,10 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://twcch.io/projects/</loc>
-    <lastmod>9999-06-12T08:04:35+03:00</lastmod>
-  </url><url>
     <loc>https://twcch.io/</loc>
+    <lastmod>9999-09-02T00:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://twcch.io/posts/</loc>
+    <lastmod>9999-09-02T00:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://twcch.io/projects/</loc>
     <lastmod>9999-06-12T08:04:35+03:00</lastmod>
   </url><url>
     <loc>https://twcch.io/tags/data-mining/</loc>
@@ -14,35 +17,8 @@
     <loc>https://twcch.io/tags/</loc>
     <lastmod>2025-09-06T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://twcch.io/posts/</loc>
-    <lastmod>2025-09-06T00:00:00+08:00</lastmod>
-  </url><url>
     <loc>https://twcch.io/posts/2025/the-art-of-association/</loc>
     <lastmod>2025-09-06T00:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://twcch.io/tags/heart-notes/</loc>
-    <lastmod>2025-09-02T00:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://twcch.io/posts/articles_25090201/</loc>
-    <lastmod>2025-09-02T00:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://twcch.io/posts/articles_25071601/</loc>
-    <lastmod>2025-07-16T00:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://twcch.io/posts/articles_25062501/</loc>
-    <lastmod>2025-06-25T00:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://twcch.io/tags/data-science/</loc>
-    <lastmod>2025-06-02T00:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://twcch.io/posts/articles_25060201/</loc>
-    <lastmod>2025-06-02T00:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://twcch.io/tags/business-analysis/</loc>
-    <lastmod>2025-04-07T00:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://twcch.io/posts/articles_25040701/</loc>
-    <lastmod>2025-04-07T00:00:00+08:00</lastmod>
   </url><url>
     <loc>https://twcch.io/archive/</loc>
   </url><url>
