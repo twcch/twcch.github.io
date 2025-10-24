@@ -2,64 +2,64 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/projects/</loc>
+    <loc>https://twcch.io/projects/</loc>
     <lastmod>9999-06-12T08:04:35+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://twcch.io/</loc>
     <lastmod>9999-06-12T08:04:35+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/data-mining/</loc>
+    <loc>https://twcch.io/tags/data-mining/</loc>
     <lastmod>2025-09-06T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://twcch.io/tags/</loc>
     <lastmod>2025-09-06T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://twcch.io/posts/</loc>
     <lastmod>2025-09-06T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/2025/the-art-of-association/</loc>
+    <loc>https://twcch.io/posts/2025/the-art-of-association/</loc>
     <lastmod>2025-09-06T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/heart-notes/</loc>
+    <loc>https://twcch.io/tags/heart-notes/</loc>
     <lastmod>2025-09-02T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/articles_25090201/</loc>
+    <loc>https://twcch.io/posts/articles_25090201/</loc>
     <lastmod>2025-09-02T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/articles_25071601/</loc>
+    <loc>https://twcch.io/posts/articles_25071601/</loc>
     <lastmod>2025-07-16T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/articles_25062501/</loc>
+    <loc>https://twcch.io/posts/articles_25062501/</loc>
     <lastmod>2025-06-25T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/data-science/</loc>
+    <loc>https://twcch.io/tags/data-science/</loc>
     <lastmod>2025-06-02T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/articles_25060201/</loc>
+    <loc>https://twcch.io/posts/articles_25060201/</loc>
     <lastmod>2025-06-02T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/business-analysis/</loc>
+    <loc>https://twcch.io/tags/business-analysis/</loc>
     <lastmod>2025-04-07T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/articles_25040701/</loc>
+    <loc>https://twcch.io/posts/articles_25040701/</loc>
     <lastmod>2025-04-07T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/archive/</loc>
+    <loc>https://twcch.io/archive/</loc>
   </url><url>
-    <loc>http://localhost:1313/clients/</loc>
+    <loc>https://twcch.io/clients/</loc>
   </url><url>
-    <loc>http://localhost:1313/elements/</loc>
+    <loc>https://twcch.io/elements/</loc>
   </url><url>
-    <loc>http://localhost:1313/faq/</loc>
+    <loc>https://twcch.io/faq/</loc>
   </url><url>
-    <loc>http://localhost:1313/contact/</loc>
+    <loc>https://twcch.io/contact/</loc>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://twcch.io/about/</loc>
   </url><url>
-    <loc>http://localhost:1313/videos/</loc>
+    <loc>https://twcch.io/videos/</loc>
   </url><url>
-    <loc>http://localhost:1313/column_article/</loc>
+    <loc>https://twcch.io/column_article/</loc>
   </url><url>
-    <loc>http://localhost:1313/services/</loc>
+    <loc>https://twcch.io/services/</loc>
   </url>
 </urlset>
