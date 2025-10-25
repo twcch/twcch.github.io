@@ -8,19 +8,19 @@
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
   <title>Machine Learning - Apriori Algorothm | 志謙&#39;s Blog</title>
-  <meta name="description" content="Apriori 不是一段程式，而是一套把「共現」化為「決策」的語言。本文以市場籃分析為起點，精準拆解 support、confidence、lift 等核心度量，說明反單調性如何讓巨量組合可被搜尋，並示範從交易資料編碼、演算法實作到結果詮釋與業務落地。更納入效能調校、指標選擇、與 FP-Growth 對照，作為從原理到實務的完整指南。">
+  <meta name="description" content="Apriori 不是一段程式，而是一套把「共現」化為「決策」的語言。是一個經典的關聯規則探勘演算法，目的為從數據中找出頻繁項集 (Frequent Itemsets) 及這些項目集之間的關聯性。">
 
   
 
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Machine Learning - Apriori Algorothm | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="Apriori 不是一段程式，而是一套把「共現」化為「決策」的語言。本文以市場籃分析為起點，精準拆解 support、confidence、lift 等核心度量，說明反單調性如何讓巨量組合可被搜尋，並示範從交易資料編碼、演算法實作到結果詮釋與業務落地。更納入效能調校、指標選擇、與 FP-Growth 對照，作為從原理到實務的完整指南。">
+  <meta name="twitter:description" content="Apriori 不是一段程式，而是一套把「共現」化為「決策」的語言。是一個經典的關聯規則探勘演算法，目的為從數據中找出頻繁項集 (Frequent Itemsets) 及這些項目集之間的關聯性。">
   <meta name="twitter:image" content="https://twcch.io/">
 
   
   <meta property="og:title" content="Machine Learning - Apriori Algorothm | 志謙&#39;s Blog">
-  <meta property="og:description" content="Apriori 不是一段程式，而是一套把「共現」化為「決策」的語言。本文以市場籃分析為起點，精準拆解 support、confidence、lift 等核心度量，說明反單調性如何讓巨量組合可被搜尋，並示範從交易資料編碼、演算法實作到結果詮釋與業務落地。更納入效能調校、指標選擇、與 FP-Growth 對照，作為從原理到實務的完整指南。">
+  <meta property="og:description" content="Apriori 不是一段程式，而是一套把「共現」化為「決策」的語言。是一個經典的關聯規則探勘演算法，目的為從數據中找出頻繁項集 (Frequent Itemsets) 及這些項目集之間的關聯性。">
   <meta property="og:image" content="https://twcch.io/">
 
   
@@ -256,7 +256,7 @@
             <h1 class="page-hero__title">Machine Learning - Apriori Algorothm</h1>
             
             
-            <p class="page-hero__description">Apriori 不是一段程式，而是一套把「共現」化為「決策」的語言。本文以市場籃分析為起點，精準拆解 support、confidence、lift 等核心度量，說明反單調性如何讓巨量組合可被搜尋，並示範從交易資料編碼、演算法實作到結果詮釋與業務落地。更納入效能調校、指標選擇、與 FP-Growth 對照，作為從原理到實務的完整指南。</p>
+            <p class="page-hero__description">Apriori 不是一段程式，而是一套把「共現」化為「決策」的語言。是一個經典的關聯規則探勘演算法，目的為從數據中找出頻繁項集 (Frequent Itemsets) 及這些項目集之間的關聯性。</p>
             
           </div>
 
@@ -300,7 +300,7 @@
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftwcch.io%2fposts%2fmachine_learning%2fapriori_algorithm%2f&title=Machine%20Learning%20-%20Apriori%20Algorothm&summary=Apriori%20%e4%b8%8d%e6%98%af%e4%b8%80%e6%ae%b5%e7%a8%8b%e5%bc%8f%ef%bc%8c%e8%80%8c%e6%98%af%e4%b8%80%e5%a5%97%e6%8a%8a%e3%80%8c%e5%85%b1%e7%8f%be%e3%80%8d%e5%8c%96%e7%82%ba%e3%80%8c%e6%b1%ba%e7%ad%96%e3%80%8d%e7%9a%84%e8%aa%9e%e8%a8%80%e3%80%82%e6%9c%ac%e6%96%87%e4%bb%a5%e5%b8%82%e5%a0%b4%e7%b1%83%e5%88%86%e6%9e%90%e7%82%ba%e8%b5%b7%e9%bb%9e%ef%bc%8c%e7%b2%be%e6%ba%96%e6%8b%86%e8%a7%a3%20support%e3%80%81confidence%e3%80%81lift%20%e7%ad%89%e6%a0%b8%e5%bf%83%e5%ba%a6%e9%87%8f%ef%bc%8c%e8%aa%aa%e6%98%8e%e5%8f%8d%e5%96%ae%e8%aa%bf%e6%80%a7%e5%a6%82%e4%bd%95%e8%ae%93%e5%b7%a8%e9%87%8f%e7%b5%84%e5%90%88%e5%8f%af%e8%a2%ab%e6%90%9c%e5%b0%8b%ef%bc%8c%e4%b8%a6%e7%a4%ba%e7%af%84%e5%be%9e%e4%ba%a4%e6%98%93%e8%b3%87%e6%96%99%e7%b7%a8%e7%a2%bc%e3%80%81%e6%bc%94%e7%ae%97%e6%b3%95%e5%af%a6%e4%bd%9c%e5%88%b0%e7%b5%90%e6%9e%9c%e8%a9%ae%e9%87%8b%e8%88%87%e6%a5%ad%e5%8b%99%e8%90%bd%e5%9c%b0%e3%80%82%e6%9b%b4%e7%b4%8d%e5%85%a5%e6%95%88%e8%83%bd%e8%aa%bf%e6%a0%a1%e3%80%81%e6%8c%87%e6%a8%99%e9%81%b8%e6%93%87%e3%80%81%e8%88%87%20FP-Growth%20%e5%b0%8d%e7%85%a7%ef%bc%8c%e4%bd%9c%e7%82%ba%e5%be%9e%e5%8e%9f%e7%90%86%e5%88%b0%e5%af%a6%e5%8b%99%e7%9a%84%e5%ae%8c%e6%95%b4%e6%8c%87%e5%8d%97%e3%80%82&source=Machine%20Learning%20-%20Apriori%20Algorothm"
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftwcch.io%2fposts%2fmachine_learning%2fapriori_algorithm%2f&title=Machine%20Learning%20-%20Apriori%20Algorothm&summary=Apriori%20%e4%b8%8d%e6%98%af%e4%b8%80%e6%ae%b5%e7%a8%8b%e5%bc%8f%ef%bc%8c%e8%80%8c%e6%98%af%e4%b8%80%e5%a5%97%e6%8a%8a%e3%80%8c%e5%85%b1%e7%8f%be%e3%80%8d%e5%8c%96%e7%82%ba%e3%80%8c%e6%b1%ba%e7%ad%96%e3%80%8d%e7%9a%84%e8%aa%9e%e8%a8%80%e3%80%82%e6%98%af%e4%b8%80%e5%80%8b%e7%b6%93%e5%85%b8%e7%9a%84%e9%97%9c%e8%81%af%e8%a6%8f%e5%89%87%e6%8e%a2%e5%8b%98%e6%bc%94%e7%ae%97%e6%b3%95%ef%bc%8c%e7%9b%ae%e7%9a%84%e7%82%ba%e5%be%9e%e6%95%b8%e6%93%9a%e4%b8%ad%e6%89%be%e5%87%ba%e9%a0%bb%e7%b9%81%e9%a0%85%e9%9b%86%20%28Frequent%20Itemsets%29%20%e5%8f%8a%e9%80%99%e4%ba%9b%e9%a0%85%e7%9b%ae%e9%9b%86%e4%b9%8b%e9%96%93%e7%9a%84%e9%97%9c%e8%81%af%e6%80%a7%e3%80%82&source=Machine%20Learning%20-%20Apriori%20Algorothm"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-square-linkedin"></i></a>
     </li>
   </ul>
