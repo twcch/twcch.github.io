@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="zh-heat">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>Machine Learning - Apriori Algorothm | 志謙&#39;s Blog</title>
-  <meta name="description" content="Apriori 不是一段程式，而是一套把「共現」化為「決策」的語言。本文以市場籃分析為起點，精準拆解 support、confidence、lift 等核心度量，說明反單調性如何讓巨量組合可被搜尋，並示範從交易資料編碼、演算法實作到結果詮釋與業務落地。更納入效能調校、指標選擇、與 FP-Growth 對照，作為從原理到實務的完整指南。">
+  <title>Machine Learning - Apriori | 志謙&#39;s Blog</title>
+  <meta name="description" content="Apriori 不是一段程式，而是一套把「共現」化為「決策」的語言。是一個經典的關聯規則探勘演算法，目的為從數據中找出頻繁項集 (Frequent Itemsets) 及這些項目集之間的關聯性。">
 
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Machine Learning - Apriori Algorothm | 志謙&#39;s Blog">
-  <meta name="twitter:description" content="Apriori 不是一段程式，而是一套把「共現」化為「決策」的語言。本文以市場籃分析為起點，精準拆解 support、confidence、lift 等核心度量，說明反單調性如何讓巨量組合可被搜尋，並示範從交易資料編碼、演算法實作到結果詮釋與業務落地。更納入效能調校、指標選擇、與 FP-Growth 對照，作為從原理到實務的完整指南。">
-  <meta name="twitter:image" content="http://localhost:1313/">
+  <meta name="twitter:title" content="Machine Learning - Apriori | 志謙&#39;s Blog">
+  <meta name="twitter:description" content="Apriori 不是一段程式，而是一套把「共現」化為「決策」的語言。是一個經典的關聯規則探勘演算法，目的為從數據中找出頻繁項集 (Frequent Itemsets) 及這些項目集之間的關聯性。">
+  <meta name="twitter:image" content="https://twcch.io/">
 
   
-  <meta property="og:title" content="Machine Learning - Apriori Algorothm | 志謙&#39;s Blog">
-  <meta property="og:description" content="Apriori 不是一段程式，而是一套把「共現」化為「決策」的語言。本文以市場籃分析為起點，精準拆解 support、confidence、lift 等核心度量，說明反單調性如何讓巨量組合可被搜尋，並示範從交易資料編碼、演算法實作到結果詮釋與業務落地。更納入效能調校、指標選擇、與 FP-Growth 對照，作為從原理到實務的完整指南。">
-  <meta property="og:image" content="http://localhost:1313/">
+  <meta property="og:title" content="Machine Learning - Apriori | 志謙&#39;s Blog">
+  <meta property="og:description" content="Apriori 不是一段程式，而是一套把「共現」化為「決策」的語言。是一個經典的關聯規則探勘演算法，目的為從數據中找出頻繁項集 (Frequent Itemsets) 及這些項目集之間的關聯性。">
+  <meta property="og:image" content="https://twcch.io/">
 
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,22 +58,29 @@
   
 
   
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       renderMathInElement(document.body, {
         delimiters: [
-          {left: '$$', right: '$$', display: true},   
-          {left: '$', right: '$', display: false},    
-          {left: '\\[', right: '\\]', display: true}, 
-          {left: '\\(', right: '\\)', display: false} 
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '\\(', right: '\\)', display: false}
         ],
-        throwOnError : false
+        throwOnError: false,
+        strict: false,
+        trust: true
       });
     });
   </script>
+
+  
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9963407762586875"
+     crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -93,7 +100,7 @@
       
 
       <div class="logo">
-        <a class="logo__link" href="http://localhost:1313/">
+        <a class="logo__link" href="https://twcch.io/">
           志謙&#39;s Blog
         </a>
       </div>
@@ -124,7 +131,7 @@
 
             
             <li class="nav__item">
-              <a href="/posts/" class="nav__link">所有文章</a>
+              <a href="/stat_teaching/" class="nav__link">統計學</a>
             </li>
             
             
@@ -134,7 +141,17 @@
 
             
             <li class="nav__item">
-              <a href="/column_article/" class="nav__link">專欄文章</a>
+              <a href="/ml_teaching/" class="nav__link">機器學習</a>
+            </li>
+            
+            
+            
+            
+            
+
+            
+            <li class="nav__item">
+              <a href="/posts/" class="nav__link">所有文章</a>
             </li>
             
             
@@ -155,13 +172,8 @@
                 
                 
                 
-                <a href="/projects/"
-                  class="nav__link">作品集</a>
-                
-                
-                
-                <a href="/services/"
-                  class="nav__link">服務項目</a>
+                <a href="/ithome_2025/"
+                  class="nav__link">iThome 2025 文章</a>
                 
               </div>
             </li>
@@ -242,15 +254,15 @@
             
             <div class="page-tags">
               
-              <a href="http://localhost:1313/tags/machine-learning/" class="page-tag">Machine Learning</a>
+              <a href="https://twcch.io/tags/machine-learning/" class="page-tag">Machine Learning</a>
               
             </div>
             
             
-            <h1 class="page-hero__title">Machine Learning - Apriori Algorothm</h1>
+            <h1 class="page-hero__title">Machine Learning - Apriori</h1>
             
             
-            <p class="page-hero__description">Apriori 不是一段程式，而是一套把「共現」化為「決策」的語言。本文以市場籃分析為起點，精準拆解 support、confidence、lift 等核心度量，說明反單調性如何讓巨量組合可被搜尋，並示範從交易資料編碼、演算法實作到結果詮釋與業務落地。更納入效能調校、指標選擇、與 FP-Growth 對照，作為從原理到實務的完整指南。</p>
+            <p class="page-hero__description">Apriori 不是一段程式，而是一套把「共現」化為「決策」的語言。是一個經典的關聯規則探勘演算法，目的為從數據中找出頻繁項集 (Frequent Itemsets) 及這些項目集之間的關聯性。</p>
             
           </div>
 
@@ -275,8 +287,8 @@
     <li class="share__item">
       <div class="share__link bookmark-btn"
         data-id="/posts/machine_learning/apriori/"
-        data-title="Machine Learning - Apriori Algorothm"
-        data-desc="關聯規則探勘的問題，看似朴素：在成千上萬筆交易中，哪些項目「總是一起」出現？真正困難在於組合爆炸：若有 10,000 件商品，潛在組合多到無法枚舉。Apriori 的偉大之處是把「可搜尋性」建立在** …"
+        data-title="Machine Learning - Apriori"
+        data-desc="關聯規則探勘的問題，看似朴素，但實際上卻相當複雜。它不僅涉及到大量的數據處理，還需要考慮到各種不同的度量標準，以便從中提取出有價值的資訊。因為在成千上萬筆交易中，哪些項目「總是一起」出現? 真正困難在 …"
         data-date="24 October, 2025"
         data-image="">
         <i class="fa-regular fa-bookmark"></i>
@@ -284,17 +296,17 @@
     </li>
 
     <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=Machine%20Learning%20-%20Apriori%20Algorothm&url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmachine_learning%2fapriori%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-x-twitter"></i></a>
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=Machine%20Learning%20-%20Apriori&url=https%3a%2f%2ftwcch.io%2fposts%2fmachine_learning%2fapriori%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-x-twitter"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2fmachine_learning%2fapriori%2f"
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftwcch.io%2fposts%2fmachine_learning%2fapriori%2f"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmachine_learning%2fapriori%2f&title=Machine%20Learning%20-%20Apriori%20Algorothm&summary=Apriori%20%e4%b8%8d%e6%98%af%e4%b8%80%e6%ae%b5%e7%a8%8b%e5%bc%8f%ef%bc%8c%e8%80%8c%e6%98%af%e4%b8%80%e5%a5%97%e6%8a%8a%e3%80%8c%e5%85%b1%e7%8f%be%e3%80%8d%e5%8c%96%e7%82%ba%e3%80%8c%e6%b1%ba%e7%ad%96%e3%80%8d%e7%9a%84%e8%aa%9e%e8%a8%80%e3%80%82%e6%9c%ac%e6%96%87%e4%bb%a5%e5%b8%82%e5%a0%b4%e7%b1%83%e5%88%86%e6%9e%90%e7%82%ba%e8%b5%b7%e9%bb%9e%ef%bc%8c%e7%b2%be%e6%ba%96%e6%8b%86%e8%a7%a3%20support%e3%80%81confidence%e3%80%81lift%20%e7%ad%89%e6%a0%b8%e5%bf%83%e5%ba%a6%e9%87%8f%ef%bc%8c%e8%aa%aa%e6%98%8e%e5%8f%8d%e5%96%ae%e8%aa%bf%e6%80%a7%e5%a6%82%e4%bd%95%e8%ae%93%e5%b7%a8%e9%87%8f%e7%b5%84%e5%90%88%e5%8f%af%e8%a2%ab%e6%90%9c%e5%b0%8b%ef%bc%8c%e4%b8%a6%e7%a4%ba%e7%af%84%e5%be%9e%e4%ba%a4%e6%98%93%e8%b3%87%e6%96%99%e7%b7%a8%e7%a2%bc%e3%80%81%e6%bc%94%e7%ae%97%e6%b3%95%e5%af%a6%e4%bd%9c%e5%88%b0%e7%b5%90%e6%9e%9c%e8%a9%ae%e9%87%8b%e8%88%87%e6%a5%ad%e5%8b%99%e8%90%bd%e5%9c%b0%e3%80%82%e6%9b%b4%e7%b4%8d%e5%85%a5%e6%95%88%e8%83%bd%e8%aa%bf%e6%a0%a1%e3%80%81%e6%8c%87%e6%a8%99%e9%81%b8%e6%93%87%e3%80%81%e8%88%87%20FP-Growth%20%e5%b0%8d%e7%85%a7%ef%bc%8c%e4%bd%9c%e7%82%ba%e5%be%9e%e5%8e%9f%e7%90%86%e5%88%b0%e5%af%a6%e5%8b%99%e7%9a%84%e5%ae%8c%e6%95%b4%e6%8c%87%e5%8d%97%e3%80%82&source=Machine%20Learning%20-%20Apriori%20Algorothm"
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftwcch.io%2fposts%2fmachine_learning%2fapriori%2f&title=Machine%20Learning%20-%20Apriori&summary=Apriori%20%e4%b8%8d%e6%98%af%e4%b8%80%e6%ae%b5%e7%a8%8b%e5%bc%8f%ef%bc%8c%e8%80%8c%e6%98%af%e4%b8%80%e5%a5%97%e6%8a%8a%e3%80%8c%e5%85%b1%e7%8f%be%e3%80%8d%e5%8c%96%e7%82%ba%e3%80%8c%e6%b1%ba%e7%ad%96%e3%80%8d%e7%9a%84%e8%aa%9e%e8%a8%80%e3%80%82%e6%98%af%e4%b8%80%e5%80%8b%e7%b6%93%e5%85%b8%e7%9a%84%e9%97%9c%e8%81%af%e8%a6%8f%e5%89%87%e6%8e%a2%e5%8b%98%e6%bc%94%e7%ae%97%e6%b3%95%ef%bc%8c%e7%9b%ae%e7%9a%84%e7%82%ba%e5%be%9e%e6%95%b8%e6%93%9a%e4%b8%ad%e6%89%be%e5%87%ba%e9%a0%bb%e7%b9%81%e9%a0%85%e9%9b%86%20%28Frequent%20Itemsets%29%20%e5%8f%8a%e9%80%99%e4%ba%9b%e9%a0%85%e7%9b%ae%e9%9b%86%e4%b9%8b%e9%96%93%e7%9a%84%e9%97%9c%e8%81%af%e6%80%a7%e3%80%82&source=Machine%20Learning%20-%20Apriori"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-square-linkedin"></i></a>
     </li>
   </ul>
@@ -316,180 +328,132 @@
               <summary>Table of Contents</summary>
               <nav id="TableOfContents">
   <ol>
-    <li><a href="#一問題定義從交易到規則">一、問題定義：從交易到規則</a></li>
-    <li><a href="#二數學原理反單調性與可搜尋性">二、數學原理：反單調性與可搜尋性</a></li>
-    <li><a href="#三與-fp-growth-的對照何時選用誰">三、與 FP-Growth 的對照：何時選用誰？</a></li>
-    <li><a href="#四資料準備從交易表到-one-hot">四、資料準備：從交易表到 one-hot</a></li>
-    <li><a href="#五實作流程python--mlxtend">五、實作流程（Python / mlxtend）</a></li>
-    <li><a href="#六門檻設定與評估如何避免兩個極端">六、門檻設定與評估：如何避免兩個極端？</a></li>
-    <li><a href="#七效能調校把時間花在值得的地方">七、效能調校：把時間花在值得的地方</a></li>
-    <li><a href="#八常見誤區與反例思考">八、常見誤區與反例思考</a></li>
-    <li><a href="#九從規則到策略如何把洞察嵌入決策">九、從規則到策略：如何把洞察嵌入決策？</a></li>
-    <li><a href="#十進階closedmaximalinterestingness-與網絡視覺化">十、進階：Closed/Maximal、Interestingness 與網絡視覺化</a></li>
-    <li><a href="#十一完整小結一條可重複的-apriori-作業線">十一、完整小結：一條可重複的 Apriori 作業線</a></li>
-    <li><a href="#結語apriori-的真正價值">結語：Apriori 的真正價值</a></li>
+    <li><a href="#問題定義從交易到規則">問題定義：從交易到規則</a></li>
+    <li><a href="#數學原理-反單調性與可搜尋性">數學原理: 反單調性與可搜尋性</a></li>
+    <li><a href="#資料準備-從交易表到-one-hot">資料準備: 從交易表到 one-hot</a></li>
+    <li><a href="#實作流程">實作流程</a></li>
+    <li><a href="#門檻設定與評估-如何避免兩個極端">門檻設定與評估: 如何避免兩個極端?</a></li>
+    <li><a href="#效能調校-把時間花在值得的地方">效能調校: 把時間花在值得的地方</a></li>
+    <li><a href="#常見誤區與反例思考">常見誤區與反例思考</a></li>
+    <li><a href="#結語-apriori-的真正價值">結語: Apriori 的真正價值</a></li>
   </ol>
 </nav>
             </details>
             
-            <p>關聯規則探勘的問題，看似朴素：在成千上萬筆交易中，哪些項目「總是一起」出現？真正困難在於組合爆炸：若有 10,000 件商品，潛在組合多到無法枚舉。<strong>Apriori 的偉大之處</strong>是把「可搜尋性」建立在**反單調性（anti-monotonicity）**之上，讓我們能以數學性質剃除海量不必要的候選，保留真有機會成為規則的組合。本文從概念、數學、實作到策略，將 Apriori 的路徑一次走完。</p>
-<hr>
-<h2 id="一問題定義從交易到規則">一、問題定義：從交易到規則</h2>
-<p>資料型態：一組交易 $T={t_1,\dots,t_n}$，每筆交易 $t$ 是項目集合 $I={i_1,\dots,i_m}$ 的子集。<br>
-我們尋找的對象是<strong>關聯規則</strong>：$X \rightarrow Y$，其中 $X, Y \subseteq I$、$X \cap Y = \varnothing$。</p>
+            <p>關聯規則探勘的問題，看似朴素，但實際上卻相當複雜。它不僅涉及到大量的數據處理，還需要考慮到各種不同的度量標準，以便從中提取出有價值的資訊。因為在成千上萬筆交易中，哪些項目「總是一起」出現? 真正困難在於組合爆炸，若有 10000 件商品，潛在組合多到無法枚舉。而 Apriori 的偉大之處是把「可搜尋性」建立在反單調性 (anti-monotonicity) 之上，讓我們能以數學性質剃除海量不必要的候選，保留真有機會成為規則的組合。</p>
+<div class="callout note ">
+  單調性 (monotonicity): 指的是某個屬性隨集合擴大而增加，而「反單調性」則是隨集合擴大而減少的特性。在關聯規則中，當你把項目集變大 (例如 {牛奶} → {牛奶, 麵包})，它的出現次數 (Support) 只會相同或更小，不可能變多，這個「越加項，支持度越低」的特性，就是 Support 的反單調性。
+</div>
+
+<h2 id="問題定義從交易到規則">問題定義：從交易到規則</h2>
+<p>資料型態: 一組交易 $T={t_1,\dots,t_n}$，每筆交易 $t$ 是項目集合 $I={i_1,\dots,i_m}$ 的子集。</p>
+<p>我們尋找的對象是關聯規則: $X \rightarrow Y$，其中 $X, Y \subseteq I$、$X \cap Y = \varnothing$。</p>
 <p>三個基本度量：</p>
 <ul>
-<li><strong>Support</strong>：$\text{supp}(X) = \frac{|{t \in T: X \subseteq t}|}{|T|}$，即 $X$ 在所有交易中的出現比例。</li>
-<li><strong>Confidence</strong>：$\text{conf}(X \rightarrow Y) = \frac{\text{supp}(X \cup Y)}{\text{supp}(X)}$，觀察買了 $X$ 之後同時買 $Y$ 的機率。</li>
-<li><strong>Lift</strong>：$\text{lift}(X \rightarrow Y) = \frac{\text{supp}(X \cup Y)}{\text{supp}(X)\text{supp}(Y)}$，衡量相對於獨立假設的加成（&gt;1 表正向關聯）。</li>
+<li>Support: $\text{supp}(X) = \frac{|{t \in T: X \subseteq t}|}{|T|}$，即 $X$ 在所有交易中的出現比例。</li>
+<li>Confidence: $\text{conf}(X \rightarrow Y) = \frac{\text{supp}(X \cup Y)}{\text{supp}(X)}$，觀察買了 $X$ 之後同時買 $Y$ 的機率。</li>
+<li>Lift: $\text{lift}(X \rightarrow Y) = \frac{\text{supp}(X \cup Y)}{\text{supp}(X)\text{supp}(Y)}$，衡量相對於獨立假設的加成（&gt;1 表正向關聯）。</li>
 </ul>
-<p>延伸常用度量（利於排序與風控）：</p>
+<p>延伸常用度量 (利於排序與風控):</p>
 <ul>
-<li><strong>Leverage</strong>：$\text{lev}(X \rightarrow Y) = \text{supp}(X \cup Y) - \text{supp}(X)\text{supp}(Y)$（絕對提升量）。</li>
-<li><strong>Conviction</strong>：$\text{conv}(X \rightarrow Y)=\frac{1-\text{supp}(Y)}{1-\text{conf}(X \rightarrow Y)}$（「若 $X$ 發生而 $Y$ 未發生」的驚訝程度）。</li>
+<li>Leverage: $\text{lev}(X \rightarrow Y) = \text{supp}(X \cup Y) - \text{supp}(X)\text{supp}(Y)$ (絕對提升量)。</li>
+<li>Conviction: $\text{conv}(X \rightarrow Y)=\frac{1-\text{supp}(Y)}{1-\text{conf}(X \rightarrow Y)}$ (「若 $X$ 發生而 $Y$ 未發生」的驚訝程度)。</li>
 </ul>
-<hr>
-<h2 id="二數學原理反單調性與可搜尋性">二、數學原理：反單調性與可搜尋性</h2>
-<p>**頻繁項集（frequent itemset）**的定義：若 $\text{supp}(X)\ge \text{min_support}$，則 $X$ 為頻繁。Apriori 的核心斷言：</p>
+<h2 id="數學原理-反單調性與可搜尋性">數學原理: 反單調性與可搜尋性</h2>
+<p>頻繁項集 (frequent itemset) 的定義: 若 $\text{supp}(X) \ge \text{min support}$，則 $X$ 為頻繁。</p>
+<p>Apriori 的核心斷言:</p>
 <blockquote>
-<p><strong>Apriori Principle（反單調性）</strong>：若項集 $X$ 為頻繁，則 $X$ 的所有子集皆頻繁；反之，若 $X$ 的任一子集不頻繁，$X$ 必不頻繁。</p></blockquote>
-<p>這帶來兩個關鍵操作：</p>
+<p>Apriori Principle (反單調性): 若項集 $X$ 為頻繁，則 $X$ 的所有子集皆頻繁；反之，若 $X$ 的任一子集不頻繁，$X$ 必不頻繁。</p></blockquote>
+<p>這帶來兩個關鍵操作:</p>
 <ol>
-<li><strong>候選生成（self-join）</strong>：由 $k$-項頻繁集生成 $(k!+!1)$-項候選。</li>
-<li><strong>剪枝（prune）</strong>：若候選的任一 $k$-子集不頻繁，直接丟棄該候選。</li>
+<li>候選生成 (self-join): 由 $k$-項頻繁集生成 $(k!+!1)$-項候選。</li>
+<li>剪枝 (prune): 若候選的任一 $k$-子集不頻繁，直接丟棄該候選。</li>
 </ol>
-<p>因此，我們僅需在「有可能頻繁」的前提下計數支援度，將組合空間由天文級縮至可管理的規模。</p>
-<p><strong>時間成本</strong>主要來自兩部分：<br>
-(1) 候選數量（受 min_support 與資料稀疏度影響），(2) 支援度計數（I/O 密集）。<br>
-<strong>空間成本</strong>則與候選表、雜湊結構、與交易壓縮格式（如稀疏編碼）相關。</p>
-<hr>
-<h2 id="三與-fp-growth-的對照何時選用誰">三、與 FP-Growth 的對照：何時選用誰？</h2>
-<ul>
-<li><strong>Apriori</strong>：以反單調性驅動的「產生－剪枝－計數」迭代，適合<strong>中小型、可接受多輪掃描</strong>且<strong>門檻（min_support）不過低</strong>的情境。優點是概念簡單、規則可解釋性高。</li>
-<li><strong>FP-Growth</strong>：以 FP-Tree 壓縮交易，不需顯式生成大量候選，對<strong>大規模且低 support 門檻</strong>、重複模式豐富的資料特別有效。<br>
-實務中常以 Apriori 先探索門檻與度量分布，再以 FP-Growth 深採。</li>
-</ul>
-<hr>
-<h2 id="四資料準備從交易表到-one-hot">四、資料準備：從交易表到 one-hot</h2>
-<p>Apriori 假設輸入為<strong>交易 × 項目</strong>的 one-hot 矩陣。常見來源型式與轉換：</p>
+<p>因此，我們僅需在「有可能頻繁」的前提下計數支援度，將組合空間由天文級縮至可管理的規模，時間成本主要來自兩部分:</p>
 <ol>
-<li><strong>交易-項目明細表</strong>（tid, item） → 先 groupby 交易再 pivot。</li>
-<li><strong>品類/屬性型項</strong>→ 可考慮展開為虛擬變數（如 size_M、color_blue）。</li>
-<li><strong>去噪與最小出現次數</strong>：先對低頻項做過濾，避免稀疏尾項拖慢搜尋。</li>
-<li><strong>稀疏化</strong>：對超大型資料用稀疏矩陣（scipy.sparse）以節省記憶體。</li>
+<li>候選數量 (受 $\text{min support}$ 與資料稀疏度影響)</li>
+<li>支援度計數 (I/O 密集)</li>
+</ol>
+<p>空間成本則與候選表、雜湊結構、與交易壓縮格式 (如稀疏編碼) 相關。</p>
+<h2 id="資料準備-從交易表到-one-hot">資料準備: 從交易表到 one-hot</h2>
+<p>Apriori 假設輸入為交易 × 項目的 one-hot 矩陣。常見來源型式與轉換:</p>
+<ol>
+<li>交易-項目明細表 (tid, item): 先 groupby 交易再 pivot。</li>
+<li>品類/屬性型項: 可考慮展開為虛擬變數 (如 size_M、color_blue)。</li>
+<li>去噪與最小出現次數: 先對低頻項做過濾，避免稀疏尾項拖慢搜尋。</li>
+<li>稀疏化: 對超大型資料用稀疏矩陣 (scipy.sparse) 以節省記憶體。</li>
 </ol>
 <hr>
-<h2 id="五實作流程python--mlxtend">五、實作流程（Python / mlxtend）</h2>
+<h2 id="實作流程">實作流程</h2>
 <blockquote>
-<p>重點不只是「跑出規則」，而是<strong>以可解釋的步驟</strong>建構 pipeline：資料清理 → 編碼 → 頻繁項集 → 規則 → 篩選 → 詮釋 → 驗證。</p></blockquote>
+<p>重點不只是「跑出規則」，而是以可解釋的步驟建構 pipeline: 資料清理 → 編碼 → 頻繁項集 → 規則 → 篩選 → 詮釋 → 驗證。</p></blockquote>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">mlxtend.frequent_patterns</span> <span class="kn">import</span> <span class="n">apriori</span><span class="p">,</span> <span class="n">association_rules</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 1) 範例交易（每列=一筆交易；每欄=是否購買該品）</span>
-</span></span><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
-</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl"><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;milk&#39;</span><span class="p">,</span> <span class="s1">&#39;bread&#39;</span><span class="p">,</span> <span class="s1">&#39;beer&#39;</span><span class="p">,</span> <span class="s1">&#39;butter&#39;</span><span class="p">,</span> <span class="s1">&#39;diaper&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ID&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Onion&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Potato&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Burger&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Milk&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Beer&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">},</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 2) 頻繁項集（用反單調性逐層生成）</span>
-</span></span><span class="line"><span class="cl"><span class="n">freq</span> <span class="o">=</span> <span class="n">apriori</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">min_support</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">use_colnames</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 返回 itemsets 與 support</span>
+</span></span><span class="line"><span class="cl"><span class="n">frequent_itemsets</span> <span class="o">=</span> <span class="n">apriori</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Onion&#39;</span><span class="p">,</span> <span class="s1">&#39;Potato&#39;</span><span class="p">,</span> <span class="s1">&#39;Burger&#39;</span><span class="p">,</span> <span class="s1">&#39;Milk&#39;</span><span class="p">,</span> <span class="s1">&#39;Beer&#39;</span><span class="p">]],</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">min_support</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">use_colnames</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 3) 關聯規則（以 lift 為門檻，並同時計算多種指標）</span>
-</span></span><span class="line"><span class="cl"><span class="n">rules</span> <span class="o">=</span> <span class="n">association_rules</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&#34;lift&#34;</span><span class="p">,</span> <span class="n">min_threshold</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">rules</span> <span class="o">=</span> <span class="p">(</span><span class="n">rules</span>
-</span></span><span class="line"><span class="cl">         <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">ante</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;antecedents&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="p">))))</span> <span class="p">,</span>
-</span></span><span class="line"><span class="cl">                 <span class="n">cons</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;consequents&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="p">))))))</span>
-</span></span><span class="line"><span class="cl"><span class="n">sel</span> <span class="o">=</span> <span class="n">rules</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;lift &gt; 1 and confidence &gt;= 0.6&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;lift&#39;</span><span class="p">,</span><span class="s1">&#39;confidence&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">rules</span> <span class="o">=</span> <span class="n">association_rules</span><span class="p">(</span><span class="n">frequent_itemsets</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                          <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;lift&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                          <span class="n">min_threshold</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">sel</span><span class="p">[[</span><span class="s1">&#39;ante&#39;</span><span class="p">,</span><span class="s1">&#39;cons&#39;</span><span class="p">,</span><span class="s1">&#39;support&#39;</span><span class="p">,</span><span class="s1">&#39;confidence&#39;</span><span class="p">,</span><span class="s1">&#39;lift&#39;</span><span class="p">,</span><span class="s1">&#39;leverage&#39;</span><span class="p">,</span><span class="s1">&#39;conviction&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span></span></span></code></pre></div>
-<blockquote>
-<p><strong>詮釋建議</strong>：</p>
-<ol>
-<li>請同時觀察 <strong>support（置信度的基礎樣本量）</strong> 與 <strong>lift（對隨機的增益）</strong>，避免高 conf、低 supp 的脆弱規則誤導。</li>
-<li><strong>leverage</strong> 有助挑出「絕對增益」較大的規則；<strong>conviction</strong> 在 conf 相近時可區分非對稱性。</li>
-</ol></blockquote>
-<hr>
-<h2 id="六門檻設定與評估如何避免兩個極端">六、門檻設定與評估：如何避免兩個極端？</h2>
+</span></span><span class="line"><span class="cl"><span class="n">rules</span> <span class="o">=</span> <span class="n">rules</span><span class="p">[</span><span class="n">rules</span><span class="p">[</span><span class="s2">&#34;lift&#34;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span>
+</span></span></code></pre></div><div class="callout note ">
+  <p>結果觀察建議:</p>
 <ul>
-<li><strong>min_support 太高</strong>：只剩高度普遍的「必買」規則（資訊量低）。</li>
-<li><strong>min_support 太低</strong>：候選爆炸、效能崩潰且噪音規則充斥。<br>
-實務策略：</li>
+<li>請同時觀察 support (置信度的基礎樣本量) 與 lift (對隨機的增益)，避免高 conf、低 supp 的脆弱規則誤導。</li>
+<li>leverage 有助挑出「絕對增益」較大的規則；conviction 在 conf 相近時可區分非對稱性。</li>
 </ul>
+</div>
+
+<hr>
+<h2 id="門檻設定與評估-如何避免兩個極端">門檻設定與評估: 如何避免兩個極端?</h2>
+<ul>
+<li>in_support 太高: 只剩高度普遍的「必買」規則 (資訊量低)。</li>
+<li>min_support 太低: 候選爆炸、效能崩潰且噪音規則充斥。</li>
+</ul>
+<p>實務策略:</p>
 <ol>
-<li>先以 <strong>探索性分布</strong>決定區間（觀察單品與雙品出現率的對數分布）。</li>
-<li>逐步下修 support，同步加入 <strong>min_confidence / min_lift</strong> 作為「雙閥」過濾。</li>
-<li>使用 <strong>holdout 期</strong>（如以月份切分）驗證規則是否穩定（support 漂移不宜過大）。</li>
+<li>先以探索性分布決定區間 (觀察單品與雙品出現率的對數分布)。</li>
+<li>逐步下修 support，同步加入 min_confidence / min_lift 作為「雙閥」過濾。</li>
+<li>使用 holdout 期 (如以月份切分) 驗證規則是否穩定 (support 漂移不宜過大)。</li>
 </ol>
-<p><strong>排序策略（多目標）</strong>：</p>
+<p>排序策略 (多目標):</p>
 <ul>
-<li>商業動機導向（毛利 × leverage × lift）</li>
-<li>風控導向（conviction、向量化後的穩定性分數）</li>
-<li>行銷導向（群體覆蓋率、與策略客群的一致性）</li>
+<li>商業動機導向 (毛利 × leverage × lift)</li>
+<li>風控導向 (conviction、向量化後的穩定性分數)</li>
+<li>行銷導向 (群體覆蓋率、與策略客群的一致性)</li>
 </ul>
-<hr>
-<h2 id="七效能調校把時間花在值得的地方">七、效能調校：把時間花在值得的地方</h2>
+<h2 id="效能調校-把時間花在值得的地方">效能調校: 把時間花在值得的地方</h2>
 <ul>
-<li><strong>事前去噪</strong>：刪除極低頻項、合併長尾同義項（如相同 SKU 的不同拼寫）。</li>
-<li><strong>欄位裁剪</strong>：只保留策略相關品類，減少項目宇宙。</li>
-<li><strong>交易壓縮</strong>：以 set/bitset 表示交易；或使用稀疏矩陣（scipy）以節省 RAM。</li>
-<li><strong>分批/增量</strong>：以時間窗分塊計數，再合併支持度（需小心去重）。</li>
-<li><strong>合理平行化</strong>：在候選計數階段做切分（注意 I/O 瓶頸）。</li>
+<li>事前去噪: 刪除極低頻項、合併長尾同義項 (如相同 SKU 的不同拼寫)。</li>
+<li>欄位裁剪: 只保留策略相關品類，減少項目宇宙。</li>
+<li>交易壓縮: 以 set/bitset 表示交易；或使用稀疏矩陣 (scipy) 以節省 RAM。</li>
+<li>分批/增量: 以時間窗分塊計數，再合併支持度 (需小心去重)。</li>
+<li>合理平行化: 在候選計數階段做切分 (注意 I/O 瓶頸)。</li>
 </ul>
-<hr>
-<h2 id="八常見誤區與反例思考">八、常見誤區與反例思考</h2>
+<h2 id="常見誤區與反例思考">常見誤區與反例思考</h2>
 <ol>
-<li><strong>把關聯當因果</strong>：${\text{lift}&gt;1}$ 不代表 $X$ 導致 $Y$；可能是共同原因或季節性；需做<strong>時間序列對照</strong>與<strong>干擾項控制</strong>。</li>
-<li><strong>忽略樣本基礎</strong>：高 confidence、低 support 的規則常不穩定（對冷門長尾更甚）。</li>
-<li><strong>只看 lift</strong>：在策略端，<strong>leverage</strong> 往往更貼近實際增益（多賣了多少比例）。</li>
-<li><strong>規則冗餘</strong>：$X \cup {a}\rightarrow Y$ 的 conf 若與 $X \rightarrow Y$ 幾乎相同，應做<strong>冗餘規則剔除</strong>（closed/maximal itemsets 的思路）。</li>
-<li><strong>資料漂移</strong>：促銷、換季、上新會改變支持度分布，規則須<strong>定期重採與回測</strong>。</li>
+<li>把關聯當因果: ${\text{lift}&gt;1}$ 不代表 $X$ 導致 $Y$；可能是共同原因或季節性；需做時間序列對照與干擾項控制。</li>
+<li>忽略樣本基礎: 高 confidence、低 support 的規則常不穩定 (對冷門長尾更甚)。</li>
+<li>只看 lift: 在策略端，leverage 往往更貼近實際增益 (多賣了多少比例)。</li>
+<li>規則冗餘: $X \cup {a}\rightarrow Y$ 的 conf 若與 $X \rightarrow Y$ 幾乎相同，應做冗餘規則剔除 (closed/maximal itemsets 的思路)。</li>
+<li>資料漂移: 促銷、換季、上新會改變支持度分布，規則須定期重採與回測。</li>
 </ol>
-<hr>
-<h2 id="九從規則到策略如何把洞察嵌入決策">九、從規則到策略：如何把洞察嵌入決策？</h2>
-<ul>
-<li><strong>零售/電商</strong>：
-<ul>
-<li><strong>組合促銷</strong>：以 leverage × 毛利排序，找「可被激活」的關聯（避開原本就高 attach 的必買對）。</li>
-<li><strong>貨架/推薦</strong>：將 antecedent 作為觸發條件，在 PDP/購物車加入推薦模組（lift 作為優先級，support 作覆蓋）。</li>
-</ul>
-</li>
-<li><strong>金融風控</strong>：
-<ul>
-<li><strong>風險共現事件</strong>：以 conviction 高、support 足的規則進入監測清單（如「短期多次異地登入」→「高額轉出」）。</li>
-<li><strong>誤報控制</strong>：以 lift 結合成本矩陣，對 conf 閥值做最小化整體損失。</li>
-</ul>
-</li>
-<li><strong>醫療/運維</strong>（需審慎倫理）：
-<ul>
-<li>症狀/告警共現規則作為<strong>假設生成器</strong>，後續以統計檢定或受控實驗驗證。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="十進階closedmaximalinterestingness-與網絡視覺化">十、進階：Closed/Maximal、Interestingness 與網絡視覺化</h2>
-<ul>
-<li><strong>Closed Itemset</strong>：沒有超集具有相同 support；壓縮結果，保留資訊。</li>
-<li><strong>Maximal Itemset</strong>：沒有頻繁超集；更強壓縮，但丟失部分 support 資訊。</li>
-<li><strong>Interestingness 指標族群</strong>：除 lift/leverage/conviction，亦可考慮 Jaccard、Kulczynski、Gini-Index 等，依場景選擇能與<strong>目的函數</strong>一致的排序準則。</li>
-<li><strong>視覺化</strong>：以節點=商品、邊權重=lift 或 leverage 的網絡圖，輔以社群檢測找「類目團塊」，便於行銷與品類團隊協作。</li>
-</ul>
-<hr>
-<h2 id="十一完整小結一條可重複的-apriori-作業線">十一、完整小結：一條可重複的 Apriori 作業線</h2>
-<ol>
-<li>定義問題與<strong>商業目標</strong>（提升加購？降低誤報？）。</li>
-<li>清理與編碼資料，建立<strong>one-hot 交易 × 項目</strong>矩陣（必要時稀疏化）。</li>
-<li>以合宜的 <strong>min_support</strong> 做初探，觀察單品與雙品分布。</li>
-<li>生成頻繁項集與規則，採 <strong>雙閥</strong>（min_confidence + min_lift），再以業務目標排序。</li>
-<li>做 <strong>冗餘剔除</strong>、<strong>穩定性回測</strong>，並針對時段/群體切片檢視。</li>
-<li>嵌入推薦、促銷或監測系統；建立<strong>再訓練節奏</strong>與<strong>漂移監控</strong>。</li>
-<li>迭代：讓「模型輸出 → 實驗 → 反饋」成為閉環。</li>
-</ol>
-<hr>
-<h2 id="結語apriori-的真正價值">結語：Apriori 的真正價值</h2>
-<p>Apriori 的價值，不在「找到最多規則」，而是<strong>讓我們以可計算的方式理解「一起發生」的語法</strong>。<br>
-當你能把 support 的穩健、confidence 的可用、lift 的意義、leverage 的商業價值與 conviction 的不對稱風險，編織成一套「可行的決策語言」，Apriori 才算學會。它是資料與行為之間的翻譯器——把共現變成路徑，把路徑變成行動。</p>
+<h2 id="結語-apriori-的真正價值">結語: Apriori 的真正價值</h2>
+<p>Apriori 的價值，不在「找到最多規則」，而是讓我們以可計算的方式理解「一起發生」的語法，當你能把 support 的穩健、confidence 的可用、lift 的意義、leverage 的商業價值與 conviction 的不對稱風險，編織成一套「可行的決策語言」，Apriori 才算學會，它是資料與行為之間的翻譯器——把共現變成路徑，把路徑變成行動。</p>
 
           </div>
 
@@ -502,7 +466,7 @@
       
       <span class="page__nav__prev">Older post</span>
       
-      <h2 class="page__nav__title"><a href="http://localhost:1313/posts/2025/learning-is-your-own-responsibility/">學習這件事，沒有人能替你完成</a></h2>
+      <h2 class="page__nav__title"><a href="https://twcch.io/posts/2025/learning-is-your-own-responsibility/">學習這件事，沒有人能替你完成</a></h2>
     </div>
   </div>
   
@@ -566,6 +530,8 @@
 
 
 
+
+  
 
   
 
