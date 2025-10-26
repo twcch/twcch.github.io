@@ -352,7 +352,7 @@
 <h2 id="問題定義從交易到規則">問題定義：從交易到規則</h2>
 <p>資料型態: 一組交易 $T={t_1,\dots,t_n}$，每筆交易 $t$ 是項目集合 $I={i_1,\dots,i_m}$ 的子集。</p>
 <p>我們尋找的對象是關聯規則: $X \rightarrow Y$，其中 $X, Y \subseteq I$、$X \cap Y = \varnothing$。</p>
-<p>三個基本度量：</p>
+<p>基本度量:</p>
 <ul>
 <li>Support: $\text{supp}(X) = \frac{|{t \in T: X \subseteq t}|}{|T|}$，即 $X$ 在所有交易中的出現比例。</li>
 <li>Confidence: $\text{conf}(X \rightarrow Y) = \frac{\text{supp}(X \cup Y)}{\text{supp}(X)}$，觀察買了 $X$ 之後同時買 $Y$ 的機率。</li>
@@ -387,7 +387,6 @@
 <li>去噪與最小出現次數: 先對低頻項做過濾，避免稀疏尾項拖慢搜尋。</li>
 <li>稀疏化: 對超大型資料用稀疏矩陣 (scipy.sparse) 以節省記憶體。</li>
 </ol>
-<hr>
 <h2 id="實作流程">實作流程</h2>
 <blockquote>
 <p>重點不只是「跑出規則」，而是以可解釋的步驟建構 pipeline: 資料清理 → 編碼 → 頻繁項集 → 規則 → 篩選 → 詮釋 → 驗證。</p></blockquote>
@@ -422,7 +421,6 @@
 </ul>
 </div>
 
-<hr>
 <h2 id="門檻設定與評估-如何避免兩個極端">門檻設定與評估: 如何避免兩個極端?</h2>
 <ul>
 <li>in_support 太高: 只剩高度普遍的「必買」規則 (資訊量低)。</li>
