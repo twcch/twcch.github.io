@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Machine Learning on 志謙&#39;s Blog</title>
-    <link>https://twcch.io/tags/machine-learning/</link>
+    <link>https://twcch.github.io/tags/machine-learning/</link>
     <description>Recent content in Machine Learning on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-heat</language>
     <lastBuildDate>Fri, 24 Oct 2025 00:00:00 +0800</lastBuildDate>
-    <atom:link href="https://twcch.io/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://twcch.github.io/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Machine Learning - Apriori</title>
-      <link>https://twcch.io/posts/machine_learning/apriori/</link>
+      <link>https://twcch.github.io/posts/machine_learning/apriori/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0800</pubDate>
-      <guid>https://twcch.io/posts/machine_learning/apriori/</guid>
+      <guid>https://twcch.github.io/posts/machine_learning/apriori/</guid>
       <description>&lt;p&gt;關聯規則探勘的問題，看似朴素，但實際上卻相當複雜。它不僅涉及到大量的數據處理，還需要考慮到各種不同的度量標準，以便從中提取出有價值的資訊。因為在成千上萬筆交易中，哪些項目「總是一起」出現? 真正困難在於組合爆炸，若有 10000 件商品，潛在組合多到無法枚舉。而 Apriori 的偉大之處是把「可搜尋性」建立在反單調性 (anti-monotonicity) 之上，讓我們能以數學性質剃除海量不必要的候選，保留真有機會成為規則的組合。&lt;/p&gt;&#xA;&lt;div class=&#34;callout note &#34;&gt;&#xA;  單調性 (monotonicity): 指的是某個屬性隨集合擴大而增加，而「反單調性」則是隨集合擴大而減少的特性。在關聯規則中，當你把項目集變大 (例如 {牛奶} → {牛奶, 麵包})，它的出現次數 (Support) 只會相同或更小，不可能變多，這個「越加項，支持度越低」的特性，就是 Support 的反單調性。&#xA;&lt;/div&gt;&#xA;&#xA;&lt;h2 id=&#34;問題定義從交易到規則&#34;&gt;問題定義：從交易到規則&lt;/h2&gt;&#xA;&lt;p&gt;資料型態: 一組交易 $T={t_1,\dots,t_n}$，每筆交易 $t$ 是項目集合 $I={i_1,\dots,i_m}$ 的子集。&lt;/p&gt;&#xA;&lt;p&gt;我們尋找的對象是關聯規則: $X \rightarrow Y$，其中 $X, Y \subseteq I$、$X \cap Y = \varnothing$。&lt;/p&gt;&#xA;&lt;p&gt;基本度量:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Support: $\text{supp}(X) = \frac{|{t \in T: X \subseteq t}|}{|T|}$，即 $X$ 在所有交易中的出現比例。&lt;/li&gt;&#xA;&lt;li&gt;Confidence: $\text{conf}(X \rightarrow Y) = \frac{\text{supp}(X \cup Y)}{\text{supp}(X)}$，觀察買了 $X$ 之後同時買 $Y$ 的機率。&lt;/li&gt;&#xA;&lt;li&gt;Lift: $\text{lift}(X \rightarrow Y) = \frac{\text{supp}(X \cup Y)}{\text{supp}(X)\text{supp}(Y)}$，衡量相對於獨立假設的加成（&amp;gt;1 表正向關聯）。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;延伸常用度量 (利於排序與風控):&lt;/p&gt;</description>
     </item>
   </channel>

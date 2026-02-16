@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on 志謙&#39;s Blog</title>
-    <link>https://twcch.io/tags/</link>
+    <link>https://twcch.github.io/tags/</link>
     <description>Recent content in Tags on 志謙&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-heat</language>
     <lastBuildDate>Fri, 24 Oct 2025 00:00:00 +0800</lastBuildDate>
-    <atom:link href="https://twcch.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://twcch.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Machine Learning</title>
-      <link>https://twcch.io/tags/machine-learning/</link>
+      <link>https://twcch.github.io/tags/machine-learning/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0800</pubDate>
-      <guid>https://twcch.io/tags/machine-learning/</guid>
+      <guid>https://twcch.github.io/tags/machine-learning/</guid>
       <description></description>
     </item>
     <item>
       <title>Heart Notes</title>
-      <link>https://twcch.io/tags/heart-notes/</link>
+      <link>https://twcch.github.io/tags/heart-notes/</link>
       <pubDate>Thu, 23 Oct 2025 00:00:00 +0800</pubDate>
-      <guid>https://twcch.io/tags/heart-notes/</guid>
+      <guid>https://twcch.github.io/tags/heart-notes/</guid>
       <description></description>
     </item>
     <item>
       <title>Data Mining</title>
-      <link>https://twcch.io/tags/data-mining/</link>
+      <link>https://twcch.github.io/tags/data-mining/</link>
       <pubDate>Sat, 06 Sep 2025 00:00:00 +0800</pubDate>
-      <guid>https://twcch.io/tags/data-mining/</guid>
+      <guid>https://twcch.github.io/tags/data-mining/</guid>
       <description></description>
     </item>
   </channel>
