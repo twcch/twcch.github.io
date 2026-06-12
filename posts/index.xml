@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Posts on 志謙&#39;s Blog</title>
-		<link>http://localhost:1313/posts/</link>
+		<link>https://twcch.github.io/posts/</link>
 		<description>Recent content in Posts on 志謙&#39;s Blog</description>
 		<generator>Hugo</generator>
 		<language>zh-tw</language>
@@ -12,54 +12,54 @@
 		
 			<lastBuildDate>Thu, 11 Jun 2026 00:00:00 +0800</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="https://twcch.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>沒本事念博士，就別念</title>
-				<link>http://localhost:1313/posts/2026/no-one-can-earn-your-doctorate/</link>
+				<link>https://twcch.github.io/posts/2026/no-one-can-earn-your-doctorate/</link>
 				<pubDate>Thu, 11 Jun 2026 00:00:00 +0800</pubDate>
-				<guid>http://localhost:1313/posts/2026/no-one-can-earn-your-doctorate/</guid>
+				<guid>https://twcch.github.io/posts/2026/no-one-can-earn-your-doctorate/</guid>
 				<description>博士從來不是一個頭銜，而是一種能力的證明。有些人把學位當名片，把學術當門面，自己跑不動研究，就想花錢、靠關係、找人代勞把論文「生出來」。這種人念的不是博士，是虛榮。真正的研究，沒有人能替你完成，沒本事，就別念。</description>
 			</item>
 			<item>
 				<title>學習這件事，沒有人能替你完成</title>
-				<link>http://localhost:1313/posts/2025/learning-is-your-own-responsibility/</link>
+				<link>https://twcch.github.io/posts/2025/learning-is-your-own-responsibility/</link>
 				<pubDate>Thu, 23 Oct 2025 00:00:00 +0800</pubDate>
-				<guid>http://localhost:1313/posts/2025/learning-is-your-own-responsibility/</guid>
+				<guid>https://twcch.github.io/posts/2025/learning-is-your-own-responsibility/</guid>
 				<description>在知識唾手可得的時代，學習最大的障礙不再是資源不足，而是態度懶散。主動探索是學習的根本，被動等待則是自我放棄的開端。當學生把「不會」當作藉口，而非起點，教育的價值便被掏空。真正的學習，從未是別人教會你的事，而是你願意去理解的事。</description>
 			</item>
 			<item>
 				<title>數據分析師的洞察之眼關聯分析</title>
-				<link>http://localhost:1313/posts/2025/when-data-starts-to-connect/</link>
+				<link>https://twcch.github.io/posts/2025/when-data-starts-to-connect/</link>
 				<pubDate>Sat, 06 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>http://localhost:1313/posts/2025/when-data-starts-to-connect/</guid>
+				<guid>https://twcch.github.io/posts/2025/when-data-starts-to-connect/</guid>
 				<description>關聯分析是一門讓資料自己說話的藝術。它揭示了人類行為中難以察覺的潛在規律，讓原本靜止的交易紀錄轉化為可被理解的語言。從超市購物籃到金融詐欺偵測，從用戶瀏覽軌跡到醫療診斷模式，關聯分析讓分析師在海量資料中捕捉行為的共現脈絡與決策邏輯。這門技術不僅協助企業理解選擇背後的心理與社會結構，也讓我們意識到——當資料開始說話，人類的行為故事，終於得以被閱讀與理解。</description>
 			</item>
 			<item>
 				<title>讀書無用論，真的無用嗎?</title>
-				<link>http://localhost:1313/posts/2025/the-fallacy-of-anti-education/</link>
+				<link>https://twcch.github.io/posts/2025/the-fallacy-of-anti-education/</link>
 				<pubDate>Tue, 02 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>http://localhost:1313/posts/2025/the-fallacy-of-anti-education/</guid>
+				<guid>https://twcch.github.io/posts/2025/the-fallacy-of-anti-education/</guid>
 				<description>前陣子在一個群組裡，我看到一個案例。一位年僅 19 歲的年輕人，沒有繼續升學，而是直接進入一家小型乙方軟體公司工作。他對此洋洋自得，甚至把「不讀書」當成一種優越感，強調「讀書無用」，彷彿他提早進入職場就是成功的證明。</description>
 			</item>
 			<item>
 				<title>在數據中尋找秩序，資料探勘的藝術</title>
-				<link>http://localhost:1313/posts/2025/order-in-the-chaos-of-data/</link>
+				<link>https://twcch.github.io/posts/2025/order-in-the-chaos-of-data/</link>
 				<pubDate>Sat, 02 Aug 2025 00:00:00 +0800</pubDate>
-				<guid>http://localhost:1313/posts/2025/order-in-the-chaos-of-data/</guid>
+				<guid>https://twcch.github.io/posts/2025/order-in-the-chaos-of-data/</guid>
 				<description>資料探勘是一門結合統計學、資料庫與機器學習的藝術。它讓分析師能在龐雜資料中尋找模式、關聯與異常，揭示人類行為與決策背後的邏輯。從行銷分析到醫療預測，資料探勘不僅是技術過程，更是一種思考方式，教我們如何傾聽資料、理解現象，並將知識轉化為行動。</description>
 			</item>
 			<item>
 				<title>AI 時代下，逐漸消失的初階商業分析師</title>
-				<link>http://localhost:1313/posts/2025/the-vanishing-junior-business-analyst/</link>
+				<link>https://twcch.github.io/posts/2025/the-vanishing-junior-business-analyst/</link>
 				<pubDate>Sat, 05 Jul 2025 00:00:00 +0800</pubDate>
-				<guid>http://localhost:1313/posts/2025/the-vanishing-junior-business-analyst/</guid>
+				<guid>https://twcch.github.io/posts/2025/the-vanishing-junior-business-analyst/</guid>
 				<description>AI 的興起正重塑企業對分析能力的想像。它不僅取代報表製作或資料清理，更動搖了低階 Business Analyst 的核心價值。當模型能即時回答、生成洞察、甚至提出決策建議，分析師的角色不再是資訊轉譯者，而必須重新定義「理解」與「價值創造」的邊界。</description>
 			</item>
 			<item>
 				<title>當老師只靠 ChatGPT 回信：我們期待的不是答案，而是理解</title>
-				<link>http://localhost:1313/posts/2025/teaching-without-understanding/</link>
+				<link>https://twcch.github.io/posts/2025/teaching-without-understanding/</link>
 				<pubDate>Wed, 25 Jun 2025 00:00:00 +0800</pubDate>
-				<guid>http://localhost:1313/posts/2025/teaching-without-understanding/</guid>
+				<guid>https://twcch.github.io/posts/2025/teaching-without-understanding/</guid>
 				<description>最近，我正在參加一門職訓課程。本來對這堂課滿懷期待，尤其是對某位老師的專業背景很感興趣。不過，隨著課程進行，我漸漸感到一股說不出的落差感：每當我主動提出深入問題，收到的回信卻幾乎都像是 ChatGPT 生成的答案——格式漂亮、邏輯完整、語氣中立，但就是少了「人味」與「針對性」。</description>
 			</item>
 	</channel>
