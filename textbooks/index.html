@@ -17,10 +17,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#ffffff">
 <title>Textbooks · 志謙&#39;s Blog</title>
-<meta name="description" content="In preparation &hellip;"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="twcch, 部落格, 技術, 筆記">
+<meta name="description" content=" 📘 Git Lab ↗ Git 版本控制的實作練習講義。 (準備中...) HackMD · 線上閱讀 "><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="twcch, 部落格, 技術, 筆記">
 <link rel="canonical" href="https://twcch.github.io/textbooks/"><meta property="og:site_name" content="志謙&#39;s Blog">
 <meta property="og:title" content="Textbooks">
-<meta property="og:description" content="In preparation &hellip;">
+<meta property="og:description" content=" 📘 Git Lab ↗ Git 版本控制的實作練習講義。 (準備中...) HackMD · 線上閱讀 ">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://twcch.github.io/textbooks/">
 <meta name="twitter:card" content="summary"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -70,7 +70,58 @@
     </header>
 
     <div class="post-content prose">
-      <p>In preparation &hellip;</p>
+      <style>
+/* 教材卡片（樣式僅作用於本頁，class 皆以 tb- 前綴；顏色沿用全站 CSS 變數，深色模式自動套用） */
+.tb-list { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 0.5rem; }
+.prose a.tb-card {
+  display: flex; align-items: center; gap: 1.15rem;
+  padding: 1.35rem 1.5rem;
+  border: 1px solid var(--border-strong); border-radius: 14px;
+  background: var(--bg); text-decoration: none;
+  transition: border-color .18s ease, background-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.prose a.tb-card:hover {
+  border-color: var(--text); background: var(--bg-subtle);
+  transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,.07);
+}
+.tb-icon {
+  flex-shrink: 0; width: 50px; height: 50px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 13px; background: var(--bg-subtle);
+  border: 1px solid var(--border); font-size: 1.55rem; line-height: 1;
+  transition: background-color .18s ease;
+}
+.prose a.tb-card:hover .tb-icon { background: var(--bg); }
+.tb-body { flex: 1; min-width: 0; }
+.tb-title {
+  display: flex; align-items: center; gap: .4rem;
+  color: var(--text); font-size: 1.12rem; font-weight: 600; line-height: 1.3;
+}
+.tb-arrow { color: var(--muted); font-size: .9em; transition: transform .18s ease; }
+.prose a.tb-card:hover .tb-arrow { transform: translate(3px,-3px); color: var(--text); }
+.tb-desc { margin: .35rem 0 0; color: var(--muted); font-size: .95rem; line-height: 1.55; }
+.tb-tag {
+  display: inline-flex; align-items: center; gap: .35rem; margin-top: .7rem;
+  font-size: .78rem; color: var(--muted);
+  border: 1px solid var(--border); border-radius: 999px; padding: .18rem .65rem;
+}
+.tb-tag svg { width: 13px; height: 13px; }
+@media (max-width: 640px) {
+  .prose a.tb-card { padding: 1.1rem 1.15rem; gap: .85rem; }
+  .tb-icon { width: 44px; height: 44px; font-size: 1.35rem; }
+  .tb-title { font-size: 1.05rem; }
+}
+</style>
+<div class="tb-list">
+  <a class="tb-card" href="https://hackmd.io/Cy_G1lEaTreYtpL74ywtuQ" target="_blank" rel="noopener">
+    <span class="tb-icon" aria-hidden="true">📘</span>
+    <span class="tb-body">
+      <span class="tb-title">Git Lab <span class="tb-arrow" aria-hidden="true">↗</span></span>
+      <span class="tb-desc">Git 版本控制的實作練習講義。 (準備中...)</span>
+      <span class="tb-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path d="M5 8V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2H7"></path><path d="M3 12h11M3 12l3-3M3 12l3 3"></path></svg>HackMD · 線上閱讀</span>
+    </span>
+  </a>
+</div>
 
     </div>
   </article>
