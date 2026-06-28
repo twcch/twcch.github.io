@@ -2,72 +2,72 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://twcch.github.io/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2026-06-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/about/</loc>
+    <loc>http://localhost:1313/about/</loc>
     <lastmod>2026-06-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/tags/heart-notes/</loc>
+    <loc>http://localhost:1313/tags/heart-notes/</loc>
     <lastmod>2026-06-12T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/posts/</loc>
+    <loc>http://localhost:1313/posts/</loc>
     <lastmod>2026-06-12T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2026-06-12T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/posts/2026/a-phd-is-not-a-student/</loc>
+    <loc>http://localhost:1313/posts/2026/a-phd-is-not-a-student/</loc>
     <lastmod>2026-06-12T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/posts/2026/no-one-can-earn-your-doctorate/</loc>
+    <loc>http://localhost:1313/posts/2026/no-one-can-earn-your-doctorate/</loc>
     <lastmod>2026-06-11T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/posts/2025/learning-is-your-own-responsibility/</loc>
+    <loc>http://localhost:1313/posts/2025/learning-is-your-own-responsibility/</loc>
     <lastmod>2025-10-23T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/tags/data-mining/</loc>
+    <loc>http://localhost:1313/tags/data-mining/</loc>
     <lastmod>2025-09-06T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/posts/2025/when-data-starts-to-connect/</loc>
+    <loc>http://localhost:1313/posts/2025/when-data-starts-to-connect/</loc>
     <lastmod>2025-09-06T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/posts/2025/the-fallacy-of-anti-education/</loc>
+    <loc>http://localhost:1313/posts/2025/the-fallacy-of-anti-education/</loc>
     <lastmod>2025-09-02T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/posts/2025/order-in-the-chaos-of-data/</loc>
+    <loc>http://localhost:1313/posts/2025/order-in-the-chaos-of-data/</loc>
     <lastmod>2025-08-02T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/posts/2025/the-vanishing-junior-business-analyst/</loc>
+    <loc>http://localhost:1313/posts/2025/the-vanishing-junior-business-analyst/</loc>
     <lastmod>2025-07-05T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/posts/2025/teaching-without-understanding/</loc>
+    <loc>http://localhost:1313/posts/2025/teaching-without-understanding/</loc>
     <lastmod>2025-06-25T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
