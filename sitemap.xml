@@ -17,6 +17,11 @@
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://twcch.github.io/textbooks/</loc>
+    <lastmod>2026-06-28T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://twcch.github.io/about/</loc>
     <lastmod>2026-06-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
