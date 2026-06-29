@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-tw" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <script>
+  (function () {
+    try {
+      var t = localStorage.getItem("theme");
+      if (t !== "light" && t !== "dark") {
+        t = "light"; 
+      }
+      document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU) · Chih-Chien&#39;s Blog</title>
+<meta name="description" content="在前幾天的文章中，我們依序介紹了 RNN、LSTM、GRU，並討論它們如何建模序列資料。這些模型能夠捕捉序列中的上下文關係，並緩解傳統 RNN 的梯度消失問題。然而，若我們想要處理更複雜的任務——例如機器翻譯 (Machine Translation)，僅僅依靠單向 RNN 或 LSTM 並不夠。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="twcch, 部落格, 技術, 筆記">
+<link rel="canonical" href="http://localhost:1313/ithome_ironman/2025_1/2025_1_28/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
+<meta property="og:title" content="(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU)">
+<meta property="og:description" content="在前幾天的文章中，我們依序介紹了 RNN、LSTM、GRU，並討論它們如何建模序列資料。這些模型能夠捕捉序列中的上下文關係，並緩解傳統 RNN 的梯度消失問題。然而，若我們想要處理更複雜的任務——例如機器翻譯 (Machine Translation)，僅僅依靠單向 RNN 或 LSTM 並不夠。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://localhost:1313/ithome_ironman/2025_1/2025_1_28/">
+<meta name="twitter:card" content="summary"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/css/main.min.11c3736beb98bfae0608e51b66b0651ca4caadc4f01fd0f7e15eabab5b80e136.css" integrity="sha256-EcNza&#43;uYv64GCOUbZrBlHKTKrcTwH9D34V6rq1uA4TY=">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-inner">
+    <a class="site-title" href="/">Chih-Chien&#39;s Blog</a>
+    <div class="header-actions">
+      <nav class="site-nav" id="site-nav" aria-label="主選單">
+        <a class="nav-link" href="/chih-chien-hsieh/">About Me</a>
+        <a class="nav-link" href="/textbooks/">Textbooks</a>
+        <a class="nav-link" href="/posts/">Posts</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="開啟選單" aria-expanded="false" aria-controls="site-nav" title="開啟選單">
+        <svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"></path>
+        </svg>
+        <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
+      <button class="theme-toggle" type="button" aria-label="切換深色模式" title="切換深色模式">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main class="site-main">
+    
+<div class="container-narrow">
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU)</h1>
+    </header>
+
+    <div class="post-content prose">
+      <p>在前幾天的文章中，我們依序介紹了 RNN、LSTM、GRU，並討論它們如何建模序列資料。這些模型能夠捕捉序列中的上下文關係，並緩解傳統 RNN 的梯度消失問題。然而，若我們想要處理更複雜的任務——例如機器翻譯 (Machine Translation)，僅僅依靠單向 RNN 或 LSTM 並不夠。</p>
+<p>這就引出了今天的主角: Seq2Seq 架構 (Sequence-to-Sequence Model)。它的核心思想是利用「編碼器 (Encoder)」將輸入序列壓縮成一個上下文表示，再由「解碼器 (Decoder)」生成輸出序列。這種架構在 2014 年被 Sutskever 等人首次提出，用於神經機器翻譯 (Neural Machine Translation, NMT)，開啟了 NLP 領域的一個新時代。</p>
+<h2 id="seq2seq-的核心思想">Seq2Seq 的核心思想</h2>
+<p>假設我們要將一句英文句子翻譯成中文:</p>
+<p>輸入: “I am happy today.”
+輸出: “我今天很高興。”</p>
+<p>傳統的 RNN/LSTM 模型只能處理輸入和輸出的對應關係，但無法直接處理「序列到序列」的轉換問題。Seq2Seq 則透過 Encoder-Decoder 的設計，讓模型能夠處理 輸入與輸出長度不同的情況，這正是翻譯、摘要、對話等任務的核心需求。</p>
+<p>核心流程:</p>
+<ol>
+<li>Encoder：讀取輸入序列，將其壓縮成一個固定維度的上下文向量 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>。</li>
+<li>Decoder：根據上下文向量 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span> 與先前輸出的資訊，逐步生成輸出序列。</li>
+</ol>
+<h2 id="seq2seq-的數學形式">Seq2Seq 的數學形式</h2>
+<ol>
+<li>編碼器 (Encoder)
+<ul>
+<li>輸入序列: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>x</mi><mn>2</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>x</mi><mi>T</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X = (x_1, x_2, \dots, x_T)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+<li>隱藏狀態更新:
+
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>h</mi><mi>t</mi></msub><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>h</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo separator="true">,</mo><msub><mi>x</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+	h_t = f(h_{t-1}, x_t)
+	</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></li>
+<li>最後的隱藏狀態 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mi>T</mi></msub></mrow><annotation encoding="application/x-tex">h_T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 作為上下文向量 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>。</li>
+</ul>
+</li>
+<li>解碼器 (Decoder)
+<ul>
+<li>初始狀態: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mn>0</mn></msub><mo>=</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">s_0 = c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span></li>
+<li>每一步輸出:
+
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>s</mi><mi>t</mi></msub><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>s</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo separator="true">,</mo><msub><mi>y</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+	s_t = f(s_{t-1}, y_{t-1})
+	</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span>
+
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mover accent="true"><mi>y</mi><mo>^</mo></mover><mi>t</mi></msub><mo>=</mo><mi>g</mi><mo stretchy="false">(</mo><msub><mi>s</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+	\hat{y}_t = g(s_t)
+	</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1944em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span>
+其中:</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> 可以是 RNN / LSTM / GRU 單元</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span></span></span></span> 通常是 softmax 層，用來輸出詞彙的機率分布</li>
+</ul>
+<h2 id="encoder-decoder-結構">Encoder-Decoder 結構</h2>
+<p>從結構上看，Seq2Seq 就像是一個「兩段式」神經網路:</p>
+<ul>
+<li>Encoder: 讀完整個輸入序列，把資訊壓縮成一個向量。</li>
+<li>Decoder: 依靠這個向量，不斷生成輸出，直到遇到「結束符號 (EOS)」。</li>
+</ul>
+<p>這種設計使得模型能處理輸入長度與輸出長度不相等的情境。例如:</p>
+<ul>
+<li>英文翻譯成中文 (詞數不同)</li>
+<li>長文章生成短摘要</li>
+<li>對話系統生成多輪回覆</li>
+</ul>
+<h2 id="seq2seq-的直觀比喻">Seq2Seq 的直觀比喻</h2>
+<p>你可以把 Encoder 想成一個「翻譯助理」，把整段英文聽完後，壓縮成腦海中的一個「意思總結」；而 Decoder 則像是「翻譯員」，根據這個意思總結，再逐字逐句地說出中文。</p>
+<h2 id="seq2seq-的優缺點">Seq2Seq 的優缺點</h2>
+<p>優點:</p>
+<ol>
+<li>靈活性：能處理輸入與輸出長度不一致的任務。</li>
+<li>通用性：同一個框架可應用於翻譯、摘要、對話、時間序列預測。</li>
+<li>端到端學習：避免了傳統 NLP 中複雜的特徵工程。</li>
+</ol>
+<p>缺點:</p>
+<ol>
+<li>瓶頸效應 (Bottleneck Problem)
+<ul>
+<li>所有資訊被壓縮到單一向量 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>，在長序列時容易遺失細節。</li>
+</ul>
+</li>
+<li>長序列困難
+<ul>
+<li>即便使用 LSTM/GRU，仍難以捕捉超長依賴。</li>
+</ul>
+</li>
+<li>生成速度慢
+<ul>
+<li>Decoder 是逐步生成，無法並行化。</li>
+</ul>
+</li>
+</ol>
+<h2 id="seq2seq-的實務應用">Seq2Seq 的實務應用</h2>
+<ol>
+<li>機器翻譯 (Neural Machine Translation)
+<ul>
+<li>最經典的應用，將英文翻譯成中文、法文翻譯成英文。</li>
+</ul>
+</li>
+<li>摘要生成 (Text Summarization)
+<ul>
+<li>輸入一篇長文章，輸出簡短摘要。</li>
+</ul>
+</li>
+<li>對話系統 (Dialogue System)
+<ul>
+<li>輸入使用者的問題，輸出合適的回覆。</li>
+</ul>
+</li>
+<li>時間序列預測
+<ul>
+<li>輸入過去的數據 (例如股價)，輸出未來的預測值。</li>
+</ul>
+</li>
+</ol>
+<h2 id="結語">結語</h2>
+<p>Seq2Seq 架構 (Encoder-Decoder) 是深度學習處理序列到序列任務的經典解法。它透過 Encoder 壓縮輸入，再由 Decoder 逐步生成輸出，成功應用於機器翻譯、摘要生成、對話系統等多種任務。</p>
+<p>然而，Seq2Seq 最大的瓶頸在於所有資訊都被壓縮到單一上下文向量，導致長序列表現不佳。這個缺陷直接促使了 Attention 機制的誕生，並最終引領 Transformer 成為 NLP 的主流。</p>
+<p>在下一篇，我們將深入探討 Attention 機制，看看它是如何突破 Seq2Seq 的限制，並奠定後來 GPT 與大型語言模型的基礎。</p>
+
+    </div>
+  </article>
+</div>
+
+  </main>
+  <footer class="site-footer">
+  <div class="container footer-inner">
+    
+<ul class="social-list">
+  <li>
+    <a href="https://github.com/twcch" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" title="GitHub">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.62 8.21 11.18.6.11.82-.25.82-.57v-2.2c-3.34.71-4.04-1.58-4.04-1.58-.55-1.36-1.34-1.73-1.34-1.73-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.79 2.81 1.27 3.5.97.11-.76.42-1.27.76-1.56-2.67-.3-5.47-1.3-5.47-5.78 0-1.28.47-2.32 1.24-3.14-.13-.3-.54-1.52.11-3.16 0 0 1.01-.32 3.3 1.2a11.6 11.6 0 0 1 6.01 0c2.29-1.52 3.3-1.2 3.3-1.2.65 1.64.24 2.86.12 3.16.77.82 1.23 1.86 1.23 3.14 0 4.49-2.81 5.48-5.49 5.77.43.36.81 1.08.81 2.18v3.23c0 .32.22.69.83.57A12.01 12.01 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg>
+    </a>
+  </li>
+  <li>
+    <a href="mailto:twcch1218@gmail.com"  aria-label="Email" title="Email">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+    </a>
+  </li>
+</ul>
+<p class="footer-meta">Chih-Chien Hsieh．Since 1993</p>
+  </div>
+</footer>
+
+<script>
+  
+  (function () {
+    var btn = document.querySelector(".theme-toggle");
+    if (btn) {
+      btn.addEventListener("click", function () {
+        var root = document.documentElement;
+        var next = root.dataset.theme === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try { localStorage.setItem("theme", next); } catch (e) {}
+      });
+    }
+
+    
+    var navToggle = document.querySelector(".nav-toggle");
+    var siteNav = document.getElementById("site-nav");
+    if (navToggle && siteNav) {
+      var setNav = function (open) {
+        siteNav.classList.toggle("is-open", open);
+        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      };
+      navToggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        setNav(!siteNav.classList.contains("is-open"));
+      });
+      
+      siteNav.addEventListener("click", function (e) {
+        if (e.target.closest(".nav-link")) setNav(false);
+      });
+      document.addEventListener("click", function (e) {
+        if (!siteNav.contains(e.target) && !navToggle.contains(e.target)) setNav(false);
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") setNav(false);
+      });
+    }
+
+    
+    document.querySelectorAll(".post-content .highlight").forEach(function (block) {
+      var btn = document.createElement("button");
+      btn.className = "copy-btn";
+      btn.type = "button";
+      btn.textContent = "複製";
+      btn.addEventListener("click", function () {
+        var code = block.querySelector("code") || block.querySelector("pre");
+        if (!code) return;
+        navigator.clipboard.writeText(code.innerText).then(function () {
+          btn.textContent = "已複製";
+          setTimeout(function () { btn.textContent = "複製"; }, 1500);
+        });
+      });
+      block.appendChild(btn);
+    });
+  })();
+</script>
+
+</body>
+</html>

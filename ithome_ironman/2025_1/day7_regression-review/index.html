@@ -16,16 +16,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#ffffff">
-<title>iThome Ironman · Chih-Chien&#39;s Blog</title>
-<meta name="description" content="twcch 的個人網站與部落格——分享技術、學習筆記與觀點。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="twcch, 部落格, 技術, 筆記">
-<link rel="canonical" href="https://twcch.github.io/ithome_ironman/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
-<meta property="og:title" content="iThome Ironman">
-<meta property="og:description" content="twcch 的個人網站與部落格——分享技術、學習筆記與觀點。">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://twcch.github.io/ithome_ironman/">
+<title>(Day 7) 回顧迴歸：從線性邏輯到學習本質 · Chih-Chien&#39;s Blog</title>
+<meta name="description" content="前面 5 天我們聚焦於「回歸系列」模型: 線性迴歸 (Linear Regression)、多項式迴歸 (Polynomial Regression)、正則化迴歸 (Lasso / Ridge / ElasticNet Regression) 以及邏輯迴歸 (Logistic Regression)。雖然它們名稱上都掛著「Regression」，實則涵蓋了連續值預測與分類任務兩大主題。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="twcch, 部落格, 技術, 筆記">
+<link rel="canonical" href="https://twcch.github.io/ithome_ironman/2025_1/day7_regression-review/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
+<meta property="og:title" content="(Day 7) 回顧迴歸：從線性邏輯到學習本質">
+<meta property="og:description" content="前面 5 天我們聚焦於「回歸系列」模型: 線性迴歸 (Linear Regression)、多項式迴歸 (Polynomial Regression)、正則化迴歸 (Lasso / Ridge / ElasticNet Regression) 以及邏輯迴歸 (Logistic Regression)。雖然它們名稱上都掛著「Regression」，實則涵蓋了連續值預測與分類任務兩大主題。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twcch.github.io/ithome_ironman/2025_1/day7_regression-review/">
 <meta name="twitter:card" content="summary"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="alternate icon" href="/favicon.ico"><link rel="alternate" type="application/rss&#43;xml" href="https://twcch.github.io/ithome_ironman/index.xml" title="Chih-Chien&#39;s Blog">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="alternate icon" href="/favicon.ico"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="/css/main.min.11c3736beb98bfae0608e51b66b0651ca4caadc4f01fd0f7e15eabab5b80e136.css" integrity="sha256-EcNza&#43;uYv64GCOUbZrBlHKTKrcTwH9D34V6rq1uA4TY="><meta name="generator" content="Hugo 0.163.1">
@@ -65,20 +64,86 @@
   <main class="site-main">
     
 <div class="container-narrow">
-  <header class="list-header">
-    <h1 class="list-title">iThome Ironman</h1>
-  </header>
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">(Day 7) 回顧迴歸：從線性邏輯到學習本質</h1>
+    </header>
 
-  <ul class="post-list post-list-lg">
-    <li class="post-list-item">
-      <a class="post-list-link" href="/ithome_ironman/2025_1/">
-        <div class="post-list-main">
-          <span class="post-list-title">2025：30 天入門常見的機器學習演算法</span>
-        </div>
-        <time class="post-list-date" datetime="2025-08-01">2025-08-01</time>
-      </a>
-    </li>
-  </ul>
+    <div class="post-content prose">
+      <p>前面 5 天我們聚焦於「回歸系列」模型: 線性迴歸 (Linear Regression)、多項式迴歸 (Polynomial Regression)、正則化迴歸 (Lasso / Ridge / ElasticNet Regression) 以及邏輯迴歸 (Logistic Regression)。雖然它們名稱上都掛著「Regression」，實則涵蓋了連續值預測與分類任務兩大主題。</p>
+<p>在正式進入其他學習範式前，我想透過這篇文章做一個小結，幫助讀者重新理解「迴歸模型的核心精神」，並進一步延伸思考「什麼是機器學習的學習」。</p>
+<h2 id="迴歸模型統整與對比">迴歸模型統整與對比</h2>
+<table>
+	<thead>
+			<tr>
+					<th>模型</th>
+					<th>任務類型</th>
+					<th>是否可擴展非線性</th>
+					<th>是否有正則化</th>
+					<th>適用場景</th>
+					<th>代表限制</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Linear Regression</td>
+					<td>迴歸</td>
+					<td>否</td>
+					<td>否</td>
+					<td>數據關係明確線性、特徵少時</td>
+					<td>對離群值、共線性敏感</td>
+			</tr>
+			<tr>
+					<td>Polynomial Regression</td>
+					<td>迴歸</td>
+					<td>✅</td>
+					<td>否</td>
+					<td>存在非線性曲線關係時</td>
+					<td>過度擬合風險高</td>
+			</tr>
+			<tr>
+					<td>Lasso / Ridge / ElasticNet</td>
+					<td>迴歸</td>
+					<td>✅</td>
+					<td>✅</td>
+					<td>高維度資料、需特徵選擇時</td>
+					<td>模型可解釋性略減</td>
+			</tr>
+			<tr>
+					<td>Logistic Regression</td>
+					<td>分類</td>
+					<td>否</td>
+					<td>✅ (可搭配)</td>
+					<td>二元分類、機率預測、可解釋性要求高場景</td>
+					<td>不適合複雜非線性邊界</td>
+			</tr>
+	</tbody>
+</table>
+<p>這四種模型本質上都假設資料可以被一個「參數化的函數」所建模，且可以透過某種「最小化損失」的方式來進行學習。而這種最小化行為，正是機器學習中最常見的學習模式: 梯度下降法 (Gradient Descent)。</p>
+<h2 id="為什麼梯度下降能學習">為什麼梯度下降能「學習」?</h2>
+<p>這是一個我自己也還在思考的問題。梯度下降看似只是數學上的最小化技巧，但其實它蘊含了學習的邏輯核心: 錯誤導向的自我修正。</p>
+<p>每一次模型的預測錯了，就利用這個錯誤的方向與程度，去修正模型的參數，使下一次預測更好。這種機制背後隱含的 3 個條件，值得特別點出:</p>
+<ul>
+<li>✅ 存在可微分的損失函數</li>
+<li>✅ 模型是參數化的 (parameters 可調整)</li>
+<li>✅ 可以反覆試誤 (迭代優化)</li>
+</ul>
+<p>符合上述條件，模型便可以「學習」。也正因如此，這四個回歸模型雖然類型不同 (分類 / 迴歸)、形式不同 (線性 / 非線性 / 正則化)，但都共享「透過梯度下降調整參數」這一關鍵本質。</p>
+<h2 id="即將迎來的轉折-非梯度型演算法">即將迎來的轉折: 非梯度型演算法</h2>
+<p>從 Day 8 開始，我們將進入另一個範疇──非梯度型演算法:</p>
+<ul>
+<li>最近鄰演算法 (K-Nearest Neighbors) 不靠函數建模，也不進行訓練，只做記憶與距離判斷。</li>
+<li>樸素貝氏 (Naive Bayes) 直接根據機率分佈進行預測。</li>
+<li>支援向量機 (Support Vector Machine) 雖然有最佳化問題，但本質不使用梯度下降訓練整個模型。</li>
+<li>樹模型如 Decision Tree / Random Forest 則是透過遞迴分裂與熵減少來建模。</li>
+</ul>
+<p>這些模型將從不同角度重新定義「何謂學習」，也讓我們開始質疑: 模型一定要參數化、要能微分、要能疊代才能學習嗎？</p>
+<h2 id="結語-學習的多樣性">結語: 學習的多樣性</h2>
+<p>迴歸模型讓我們初步理解了機器學習中最直觀的「錯誤修正型」學習模式，也讓我們有機會練習與模型溝通：如何調整參數、評估表現、選擇正則化、觀察殘差等。</p>
+<p>而從下一篇開始，我們將脫離梯度的世界，認識一些邏輯思維為主的演算法。你會發現，機器學習不只有一種思維路徑，而「學習」這件事，也不只一種方式能實現。</p>
+
+    </div>
+  </article>
 </div>
 
   </main>

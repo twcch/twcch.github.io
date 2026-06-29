@@ -16,16 +16,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#ffffff">
-<title>iThome Ironman · Chih-Chien&#39;s Blog</title>
-<meta name="description" content="twcch 的個人網站與部落格——分享技術、學習筆記與觀點。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="twcch, 部落格, 技術, 筆記">
-<link rel="canonical" href="https://twcch.github.io/ithome_ironman/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
-<meta property="og:title" content="iThome Ironman">
-<meta property="og:description" content="twcch 的個人網站與部落格——分享技術、學習筆記與觀點。">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://twcch.github.io/ithome_ironman/">
+<title>(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning) · Chih-Chien&#39;s Blog</title>
+<meta name="description" content="在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="twcch, 部落格, 技術, 筆記">
+<link rel="canonical" href="https://twcch.github.io/ithome_ironman/2025_1/day22_regularization-in-deep-learning/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
+<meta property="og:title" content="(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning)">
+<meta property="og:description" content="在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twcch.github.io/ithome_ironman/2025_1/day22_regularization-in-deep-learning/">
 <meta name="twitter:card" content="summary"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="alternate icon" href="/favicon.ico"><link rel="alternate" type="application/rss&#43;xml" href="https://twcch.github.io/ithome_ironman/index.xml" title="Chih-Chien&#39;s Blog">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="alternate icon" href="/favicon.ico"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="/css/main.min.11c3736beb98bfae0608e51b66b0651ca4caadc4f01fd0f7e15eabab5b80e136.css" integrity="sha256-EcNza&#43;uYv64GCOUbZrBlHKTKrcTwH9D34V6rq1uA4TY="><meta name="generator" content="Hugo 0.163.1">
@@ -65,20 +64,78 @@
   <main class="site-main">
     
 <div class="container-narrow">
-  <header class="list-header">
-    <h1 class="list-title">iThome Ironman</h1>
-  </header>
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning)</h1>
+    </header>
 
-  <ul class="post-list post-list-lg">
-    <li class="post-list-item">
-      <a class="post-list-link" href="/ithome_ironman/2025_1/">
-        <div class="post-list-main">
-          <span class="post-list-title">2025：30 天入門常見的機器學習演算法</span>
-        </div>
-        <time class="post-list-date" datetime="2025-08-01">2025-08-01</time>
-      </a>
-    </li>
-  </ul>
+    <div class="post-content prose">
+      <p>在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。</p>
+<p>今天我們要談的主題「正規化 (Normalization) 與正則化 (Regularization)」，就是專門為了解決這類問題而設計的工具。這兩個詞在中文裡常常被混淆，但在深度學習中有明確的區分:</p>
+<ul>
+<li>正規化 (Normalization): 處理資料或中間層輸出的「分布」，讓訓練更穩定。</li>
+<li>正則化 (Regularization): 在模型學習過程中「限制參數自由度」，避免過度擬合。</li>
+</ul>
+<p>可以把它們理解成:</p>
+<ul>
+<li>正規化是「讓訓練跑得順暢」</li>
+<li>正則化是「讓模型不要學壞」</li>
+</ul>
+<h2 id="為什麼需要正規化與正則化">為什麼需要正規化與正則化?</h2>
+<p>深度學習的挑戰主要來自於以下幾點:</p>
+<ol>
+<li>參數數量龐大
+<ul>
+<li>FCNN、CNN、RNN 等模型的參數動輒上百萬，模型表達能力非常強。這雖然能學習複雜模式，但也極容易記住「訓練資料」而不是「一般化規律」。</li>
+</ul>
+</li>
+<li>梯度傳遞問題
+<ul>
+<li>深層網路容易遇到梯度消失或爆炸，導致學習不穩定。</li>
+<li>即便是設計良好的激活函數 (如 ReLU)，也可能因資料分布不均而造成某些神經元失效。</li>
+</ul>
+</li>
+<li>資料有限
+<ul>
+<li>真實世界中，資料集往往有限，無法支撐一個龐大模型完全「正確」學習。若沒有適當限制，模型就會死記硬背訓練資料，導致測試集表現不佳。</li>
+</ul>
+</li>
+</ol>
+<p>為了應對這些問題，正規化與正則化技術被廣泛應用在深度學習的訓練流程中。</p>
+<h3 id="正規化-normalization">正規化 (Normalization)</h3>
+<p>正規化的核心目標是: 讓輸入資料或中間層輸出的數值保持在合理範圍內，以便模型更容易學習。在模型訓練前，我們通常會對輸入資料進行縮放，例如:</p>
+<ul>
+<li>Min-Max Scaling</li>
+<li>Z-score Standardization</li>
+</ul>
+<h3 id="正則化-regularization">正則化 (Regularization)</h3>
+<p>正則化的核心目標是：避免模型過擬合，提升泛化能力。</p>
+<ul>
+<li>L1 與 L2 正則化</li>
+<li>Dropout</li>
+</ul>
+<h2 id="正規化與正則化的互補關係">正規化與正則化的互補關係</h2>
+<p>雖然名稱相似，但正規化與正則化針對的問題不同:</p>
+<ul>
+<li>正規化 → 解決訓練穩定性、加速收斂</li>
+<li>正則化 → 解決過擬合、提升泛化</li>
+</ul>
+<p>在實務上，它們通常是 同時使用 的。例如:</p>
+<ul>
+<li>CNN: 資料正規化 + Batch Normalization + Dropout + Weight Decay</li>
+<li>RNN/Transformer: Layer Normalization + Early Stopping + Data Augmentation</li>
+</ul>
+<h2 id="結語">結語</h2>
+<p>深度學習之所以能夠在近十年迅速崛起，不只是因為 GPU 算力提升或資料量增大，還有賴於一系列 正規化與正則化技術 的發展，讓深度模型可以被穩定地訓練並具備良好的泛化能力。</p>
+<p>可以這樣理解:</p>
+<ul>
+<li>沒有正規化，模型可能訓練不起來</li>
+<li>沒有正則化，模型可能學壞掉</li>
+</ul>
+<p>在進入 RNN、LSTM、Transformer 之前，理解這些基礎的訓練技巧，能讓我們更清楚地看到深度學習從「能跑」到「能用」的過程。</p>
+
+    </div>
+  </article>
 </div>
 
   </main>

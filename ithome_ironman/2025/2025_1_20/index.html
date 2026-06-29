@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-tw" data-theme="light">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <script>
   (function () {
     try {
@@ -16,19 +16,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#ffffff">
-<title>iThome Ironman · Chih-Chien&#39;s Blog</title>
-<meta name="description" content="twcch 的個人網站與部落格——分享技術、學習筆記與觀點。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="twcch, 部落格, 技術, 筆記">
-<link rel="canonical" href="https://twcch.github.io/ithome_ironman/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
-<meta property="og:title" content="iThome Ironman">
-<meta property="og:description" content="twcch 的個人網站與部落格——分享技術、學習筆記與觀點。">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://twcch.github.io/ithome_ironman/">
+<title>(Day 20) 激活函數 (Activation Function) · Chih-Chien&#39;s Blog</title>
+<meta name="description" content="承接昨天的神經元 (Neuron)，神經元的輸出是線性輸出，若僅停留在這個階段，輸出仍然是線性函數，即便我們把很多神經元堆疊在一起，整體模型仍然等效於一個線性轉換，無法捕捉到真實世界中複雜的非線性關係為了解決這個問題，我們需要引入激活函數 (Activation Function) 可以讓模型學習到更複雜的模式 (非線性)，所以激活函數必須是非線性的，這樣才能跟神經元做搭配。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="twcch, 部落格, 技術, 筆記">
+<link rel="canonical" href="http://localhost:1313/ithome_ironman/2025/2025_1_20/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
+<meta property="og:title" content="(Day 20) 激活函數 (Activation Function)">
+<meta property="og:description" content="承接昨天的神經元 (Neuron)，神經元的輸出是線性輸出，若僅停留在這個階段，輸出仍然是線性函數，即便我們把很多神經元堆疊在一起，整體模型仍然等效於一個線性轉換，無法捕捉到真實世界中複雜的非線性關係為了解決這個問題，我們需要引入激活函數 (Activation Function) 可以讓模型學習到更複雜的模式 (非線性)，所以激活函數必須是非線性的，這樣才能跟神經元做搭配。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://localhost:1313/ithome_ironman/2025/2025_1_20/">
 <meta name="twitter:card" content="summary"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="alternate icon" href="/favicon.ico"><link rel="alternate" type="application/rss&#43;xml" href="https://twcch.github.io/ithome_ironman/index.xml" title="Chih-Chien&#39;s Blog">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="alternate icon" href="/favicon.ico"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="/css/main.min.11c3736beb98bfae0608e51b66b0651ca4caadc4f01fd0f7e15eabab5b80e136.css" integrity="sha256-EcNza&#43;uYv64GCOUbZrBlHKTKrcTwH9D34V6rq1uA4TY="><meta name="generator" content="Hugo 0.163.1">
+<link rel="stylesheet" href="/css/main.min.11c3736beb98bfae0608e51b66b0651ca4caadc4f01fd0f7e15eabab5b80e136.css" integrity="sha256-EcNza&#43;uYv64GCOUbZrBlHKTKrcTwH9D34V6rq1uA4TY=">
 
 </head>
 <body>
@@ -65,20 +64,75 @@
   <main class="site-main">
     
 <div class="container-narrow">
-  <header class="list-header">
-    <h1 class="list-title">iThome Ironman</h1>
-  </header>
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">(Day 20) 激活函數 (Activation Function)</h1>
+    </header>
 
-  <ul class="post-list post-list-lg">
-    <li class="post-list-item">
-      <a class="post-list-link" href="/ithome_ironman/2025_1/">
-        <div class="post-list-main">
-          <span class="post-list-title">2025：30 天入門常見的機器學習演算法</span>
-        </div>
-        <time class="post-list-date" datetime="2025-08-01">2025-08-01</time>
-      </a>
-    </li>
-  </ul>
+    <div class="post-content prose">
+      <p>承接昨天的神經元 (Neuron)，神經元的輸出是線性輸出，若僅停留在這個階段，輸出仍然是線性函數，即便我們把很多神經元堆疊在一起，整體模型仍然等效於一個線性轉換，無法捕捉到真實世界中複雜的非線性關係為了解決這個問題，我們需要引入激活函數 (Activation Function) 可以讓模型學習到更複雜的模式 (非線性)，所以激活函數必須是非線性的，這樣才能跟神經元做搭配。</p>
+<h2 id="常見的激活函數">常見的激活函數</h2>
+<h3 id="1-sigmoid-函數">1. Sigmoid 函數</h3>
+$$
+\sigma(x) = \frac{1}{1+e^{-x}}
+$$<p>特點:</p>
+<ul>
+<li>輸出範圍在 [0,1] 之間</li>
+<li>常用於二元分類問題</li>
+<li>缺點: 容易出現梯度消失問題</li>
+</ul>
+<h3 id="2-softmax">2. Softmax</h3>
+$$
+\sigma(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{K}e^{z_j}}
+$$<p>特點:</p>
+<ul>
+<li>輸出範圍: $(0,1)$，且所有輸出和為 1</li>
+<li>特點: 多分類問題的常用輸出層函數</li>
+</ul>
+<h3 id="3-relu-rectified-linear-unit">3. ReLU (Rectified Linear Unit)</h3>
+$$
+f(x) = max(0, x)
+$$<p>特點：</p>
+<ul>
+<li>輸出範圍：$[0, +\infty)$</li>
+<li>特點: 簡單高效，目前深度學習最常用的激活函數</li>
+<li>缺點: 在 $x < 0$ 的區域梯度為 0，可能導致「神經元死亡」</li>
+</ul>
+<h3 id="4-tanh-雙曲正切函數">4. Tanh (雙曲正切函數)</h3>
+$$
+\text{tanh}(x) = \frac{e^{x} - e^{-x}}{e^{x} + e^{-x}}
+$$<p>特點:</p>
+<ul>
+<li>輸出範圍在 [-1,1] 之間</li>
+<li>特點: 相較 Sigmoid，數值以 0 為中心，收斂較快</li>
+<li>缺點: 仍然存在梯度消失問題</li>
+</ul>
+<h2 id="如何選擇激活函數">如何選擇激活函數？</h2>
+<ul>
+<li>一般建議:
+<ul>
+<li>隱藏層優先使用 ReLU</li>
+<li>輸出層根據任務類型選擇:
+<ul>
+<li>二元分類: Sigmoid</li>
+<li>多類別分類: Softmax</li>
+<li>迴歸問題: 線性激活或無激活函數</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>特殊情況:
+<ul>
+<li>如果遇到 ReLU 死亡問題，可以考慮使用 Leaky ReLU</li>
+<li>處理序列資料時，GRU/LSTM 中常用 Tanh</li>
+</ul>
+</li>
+</ul>
+<h2 id="總結">總結</h2>
+<p>激活函數是深度學習中不可或缺的組件，選擇合適的激活函數對模型的性能有重要影響。現代深度學習中，ReLU 及其變體是最常用的選擇，但在特定場景下其他激活函數可能更適合。了解各種激活函數的特點和適用場景，有助於構建更好的神經網路模型。</p>
+
+    </div>
+  </article>
 </div>
 
   </main>
