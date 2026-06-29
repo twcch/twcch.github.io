@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-tw" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <script>
+  (function () {
+    try {
+      var t = localStorage.getItem("theme");
+      if (t !== "light" && t !== "dark") {
+        t = "light"; 
+      }
+      document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>(Day 17) 內插搜尋 (Interpolation Search) · Chih-Chien&#39;s Blog</title>
+<meta name="description" content="依數值分布估算落點、改良二元搜尋的內插搜尋（Interpolation Search）。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="謝志謙, Chih-Chien Hsieh, twcch, cch, 部落格, 技術, 筆記">
+<link rel="canonical" href="http://localhost:1313/posts/ithome_ironman-copy-2/2025_2/day17_interpolation-search/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
+<meta property="og:title" content="(Day 17) 內插搜尋 (Interpolation Search)">
+<meta property="og:description" content="依數值分布估算落點、改良二元搜尋的內插搜尋（Interpolation Search）。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://localhost:1313/posts/ithome_ironman-copy-2/2025_2/day17_interpolation-search/">
+<meta name="twitter:card" content="summary"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/css/main.min.11c3736beb98bfae0608e51b66b0651ca4caadc4f01fd0f7e15eabab5b80e136.css" integrity="sha256-EcNza&#43;uYv64GCOUbZrBlHKTKrcTwH9D34V6rq1uA4TY=">
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-inner">
+    <a class="site-title" href="/">Chih-Chien&#39;s Blog</a>
+    <div class="header-actions">
+      <nav class="site-nav" id="site-nav" aria-label="主選單">
+        <a class="nav-link" href="/chih-chien-hsieh/">About Me</a>
+        <a class="nav-link" href="/textbooks/">Textbooks</a>
+        <a class="nav-link" href="/posts/ithome_ironman/">iThome Ironman</a>
+        <a class="nav-link" href="/posts/">Posts</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="開啟選單" aria-expanded="false" aria-controls="site-nav" title="開啟選單">
+        <svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"></path>
+        </svg>
+        <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
+      <button class="theme-toggle" type="button" aria-label="切換深色模式" title="切換深色模式">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main class="site-main">
+    
+<div class="container-narrow">
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">(Day 17) 內插搜尋 (Interpolation Search)</h1>
+      <div class="post-meta">
+        <time datetime="2025-09-15">2025-09-15</time>
+        <span class="dot">·</span>
+        <span>2 分鐘閱讀</span>
+      </div>
+    </header>
+
+    <div class="post-content prose">
+      <p>內插搜尋法 (Interpolation Search) 是一種基於數值分布估算落點的搜尋演算法，是對 二元搜尋 (Binary Search) 的改良。它特別適合用在已排序且元素分布相對均勻的資料集上，能有效地減少搜尋次數。</p>
+<h2 id="為什麼要用內插搜尋">為什麼要用內插搜尋?</h2>
+<p>二元搜尋每次都「取中間」，假設資料大致均勻地分佈，但若目標值靠近開頭，仍會浪費許多比較。</p>
+<p>舉例: 假設我們要找 3</p>
+<ul>
+<li>資料是 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</li>
+<li>Binary Search 會先看中間 5，再往左看 2~4</li>
+<li>Interpolation Search 則會「預測」目標在偏左，第一次就可能落在 3 附近</li>
+</ul>
+<p>核心概念: 根據數值的相對大小，估計出目標可能所在的位置。</p>
+<h2 id="公式原理">公式原理</h2>
+<p>在每次搜尋中，透過「線性內插公式」計算預估位置 pos:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">pos = left + (target - arr[left]) * (right - left) // (arr[right] - arr[left])
+</span></span></code></pre></div><ul>
+<li>left / right: 目前搜尋區間邊界</li>
+<li>arr
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>l</mi><mi>e</mi><mi>f</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">left</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">t</span></span></span></span></span>/ arr
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>r</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">right</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">h</span><span class="mord mathnormal">t</span></span></span></span></span>: 邊界的值</li>
+<li>target: 要搜尋的值</li>
+<li>pos: 根據比例估算出的落點位置</li>
+</ul>
+<p>如果 arr</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>l</mi><mi>e</mi><mi>f</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">left</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">t</span></span></span></span></span><p> == arr</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>r</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">right</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">h</span><span class="mord mathnormal">t</span></span></span></span></span><p>(例如所有元素相同)，為避免除以 0，應直接檢查元素是否等於 target。</p>
+<h2 id="演算法步驟">演算法步驟</h2>
+<ul>
+<li>設定 left = 0、right = n-1。</li>
+<li>當 left &lt;= right 且 target 介於 arr[left] 和 arr[right] 之間:
+<ul>
+<li>用公式計算預估位置 pos</li>
+<li>若 arr[pos] == target → 回傳 pos</li>
+<li>若 arr[pos] &lt; target → left = pos + 1</li>
+<li>若 arr[pos] &gt; target → right = pos - 1</li>
+</ul>
+</li>
+</ul>
+<p>若未找到 → 回傳 -1</p>
+<h2 id="程式碼範例">程式碼範例</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">interpolation_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">arr</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">target</span> <span class="o">&lt;=</span> <span class="n">arr</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">==</span> <span class="n">arr</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">left</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># 根據比例計算預估位置</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pos</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">(</span><span class="n">target</span> <span class="o">-</span> <span class="n">arr</span><span class="p">[</span><span class="n">left</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">//</span> <span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">-</span> <span class="n">arr</span><span class="p">[</span><span class="n">left</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">pos</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="n">arr</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">left</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">right</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 測試</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">70</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">interpolation_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>  <span class="c1"># 輸出: 3</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">interpolation_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>  <span class="c1"># 輸出: -1</span>
+</span></span></code></pre></div><h2 id="複雜度分析">複雜度分析</h2>
+<ul>
+<li>平均情況: O(log log n)
+<ul>
+<li>因為分布均勻時，每次能大幅縮小搜尋範圍，比 Binary Search 更快</li>
+</ul>
+</li>
+<li>最壞情況: O(n)
+<ul>
+<li>若資料分布極度不均勻（例如大多數值集中在一邊），效果會急劇下降</li>
+</ul>
+</li>
+<li>空間複雜度: O(1)（原地搜尋）</li>
+</ul>
+<h2 id="與-binary-search-的比較">與 Binary Search 的比較</h2>
+<table>
+	<thead>
+			<tr>
+					<th>面向</th>
+					<th>Binary Search</th>
+					<th>Interpolation Search</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>採樣方式</td>
+					<td>每次取中間點</td>
+					<td>根據值比例推算落點</td>
+			</tr>
+			<tr>
+					<td>平均時間</td>
+					<td>O(log n)</td>
+					<td>O(log log n) (分布均勻)</td>
+			</tr>
+			<tr>
+					<td>最壞時間</td>
+					<td>O(log n)</td>
+					<td>O(n)</td>
+			</tr>
+			<tr>
+					<td>是否需均勻分布</td>
+					<td>否</td>
+					<td>是</td>
+			</tr>
+			<tr>
+					<td>是否穩定</td>
+					<td>穩定</td>
+					<td>分布不均會退化</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="結語">結語</h2>
+<p>內插搜尋是一種在特定條件下非常高效的搜尋演算法，它的思維突破了「固定折半」，改用「依值推估位置」來直接逼近目標。</p>
+<p>雖然在最壞情況下效能會退化，但如果資料分布均勻、且查詢遠多於更新操作，它能比 Binary Search 更快，是搜尋問題中一個非常值得認識的技巧。</p>
+
+    </div>
+    <div class="post-tags">
+      <a class="tag" href="/tags/2025-ithome-ironman/">#2025 iThome Ironman</a>
+    </div>
+  </article>
+  <nav class="post-nav">
+    <div class="post-nav-side">
+      <a href="/posts/ithome_ironman-copy-2/2025_2/day16_binary-search/">
+        <span class="post-nav-label">← 較舊的文章</span>
+        <span class="post-nav-title">(Day 16) 二元搜尋 (Binary Search)</span>
+      </a>
+    </div>
+    <div class="post-nav-side post-nav-right">
+      <a href="/posts/ithome_ironman-copy-2/2025_2/day18_divide-and-conquer/">
+        <span class="post-nav-label">較新的文章 →</span>
+        <span class="post-nav-title">(Day 18) 分治法 (Divide and Conquer)</span>
+      </a>
+    </div>
+  </nav>
+  
+<section class="comments">
+  <h2 class="section-label">留言</h2>
+  <div class="giscus-comments"></div>
+</section>
+<script>
+  (function () {
+    
+    function giscusTheme() {
+      const t = document.documentElement.dataset.theme;
+      if (t === "dark") return "dark";
+      if (t === "light") return "light";
+      return "preferred_color_scheme"; 
+    }
+
+    
+    const s = document.createElement("script");
+    s.src = "https://giscus.app/client.js";
+    s.async = true;
+    s.crossOrigin = "anonymous";
+    s.setAttribute("data-repo", "twcch\/twcch.github.io");
+    s.setAttribute("data-repo-id", "R_kgDONCl-Aw");
+    s.setAttribute("data-category", "Announcements");
+    s.setAttribute("data-category-id", "DIC_kwDONCl-A84C_B03");
+    s.setAttribute("data-mapping", "pathname");
+    s.setAttribute("data-strict", "0");
+    s.setAttribute("data-reactions-enabled", "1");
+    s.setAttribute("data-emit-metadata", "0");
+    s.setAttribute("data-input-position", "bottom");
+    s.setAttribute("data-theme", giscusTheme());
+    s.setAttribute("data-lang", "zh-TW");
+    s.setAttribute("data-loading", "lazy");
+    document.querySelector(".giscus-comments").appendChild(s);
+
+    
+    function syncTheme() {
+      const iframe = document.querySelector("iframe.giscus-frame");
+      if (!iframe) return;
+      iframe.contentWindow.postMessage(
+        { giscus: { setConfig: { theme: giscusTheme() } } },
+        "https://giscus.app"
+      );
+    }
+    new MutationObserver(syncTheme).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+  })();
+</script>
+
+</div>
+
+  </main>
+  <footer class="site-footer">
+  <div class="container footer-inner">
+    
+<ul class="social-list">
+  <li>
+    <a href="https://github.com/twcch" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" title="GitHub">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.62 8.21 11.18.6.11.82-.25.82-.57v-2.2c-3.34.71-4.04-1.58-4.04-1.58-.55-1.36-1.34-1.73-1.34-1.73-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.79 2.81 1.27 3.5.97.11-.76.42-1.27.76-1.56-2.67-.3-5.47-1.3-5.47-5.78 0-1.28.47-2.32 1.24-3.14-.13-.3-.54-1.52.11-3.16 0 0 1.01-.32 3.3 1.2a11.6 11.6 0 0 1 6.01 0c2.29-1.52 3.3-1.2 3.3-1.2.65 1.64.24 2.86.12 3.16.77.82 1.23 1.86 1.23 3.14 0 4.49-2.81 5.48-5.49 5.77.43.36.81 1.08.81 2.18v3.23c0 .32.22.69.83.57A12.01 12.01 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg>
+    </a>
+  </li>
+  <li>
+    <a href="mailto:twcch1218@gmail.com"  aria-label="Email" title="Email">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+    </a>
+  </li>
+</ul>
+<p class="footer-meta">Chih-Chien Hsieh．Since 1993</p>
+  </div>
+</footer>
+
+<script>
+  
+  (function () {
+    var btn = document.querySelector(".theme-toggle");
+    if (btn) {
+      btn.addEventListener("click", function () {
+        var root = document.documentElement;
+        var next = root.dataset.theme === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try { localStorage.setItem("theme", next); } catch (e) {}
+      });
+    }
+
+    
+    var navToggle = document.querySelector(".nav-toggle");
+    var siteNav = document.getElementById("site-nav");
+    if (navToggle && siteNav) {
+      var setNav = function (open) {
+        siteNav.classList.toggle("is-open", open);
+        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      };
+      navToggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        setNav(!siteNav.classList.contains("is-open"));
+      });
+      
+      siteNav.addEventListener("click", function (e) {
+        if (e.target.closest(".nav-link")) setNav(false);
+      });
+      document.addEventListener("click", function (e) {
+        if (!siteNav.contains(e.target) && !navToggle.contains(e.target)) setNav(false);
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") setNav(false);
+      });
+    }
+
+    
+    document.querySelectorAll(".post-content .highlight").forEach(function (block) {
+      var btn = document.createElement("button");
+      btn.className = "copy-btn";
+      btn.type = "button";
+      btn.textContent = "複製";
+      btn.addEventListener("click", function () {
+        var code = block.querySelector("code") || block.querySelector("pre");
+        if (!code) return;
+        navigator.clipboard.writeText(code.innerText).then(function () {
+          btn.textContent = "已複製";
+          setTimeout(function () { btn.textContent = "複製"; }, 1500);
+        });
+      });
+      block.appendChild(btn);
+    });
+  })();
+</script>
+
+</body>
+</html>

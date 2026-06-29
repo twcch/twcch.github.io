@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>2025 iThome Ironman: 快速掌握資料結構與演算法 on Chih-Chien&#39;s Blog</title>
-		<link>https://twcch.github.io/posts/ithome_ironman/2025_2/</link>
+		<link>http://localhost:1313/posts/ithome_ironman/2025_2/</link>
 		<description>Recent content in 2025 iThome Ironman: 快速掌握資料結構與演算法 on Chih-Chien&#39;s Blog</description>
 		<generator>Hugo</generator>
 		<language>zh-tw</language>
@@ -12,215 +12,215 @@
 		
 			<lastBuildDate>Sun, 28 Sep 2025 00:00:00 +0800</lastBuildDate>
 		
-			<atom:link href="https://twcch.github.io/posts/ithome_ironman/2025_2/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="http://localhost:1313/posts/ithome_ironman/2025_2/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>(Day 30) 系列結尾</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day30_series-conclusion/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day30_series-conclusion/</link>
 				<pubDate>Sun, 28 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day30_series-conclusion/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day30_series-conclusion/</guid>
 				<description>資料結構與演算法系列的結尾與反思，一場與自己對話的學習實驗。</description>
 			</item>
 			<item>
 				<title>(Day 29) 最小生成樹的實務應用 (Applications of MST)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day29_mst-applications/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day29_mst-applications/</link>
 				<pubDate>Sat, 27 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day29_mst-applications/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day29_mst-applications/</guid>
 				<description>聚焦最小生成樹在現實問題中的實務應用，而非數學推導。</description>
 			</item>
 			<item>
 				<title>(Day 28) Prim 演算法</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day28_prim-algorithm/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day28_prim-algorithm/</link>
 				<pubDate>Fri, 26 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day28_prim-algorithm/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day28_prim-algorithm/</guid>
 				<description>以節點為導向求最小生成樹的 Prim 演算法。</description>
 			</item>
 			<item>
 				<title>(Day 27) Kruskal 演算法</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day27_kruskal-algorithm/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day27_kruskal-algorithm/</link>
 				<pubDate>Thu, 25 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day27_kruskal-algorithm/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day27_kruskal-algorithm/</guid>
 				<description>以邊為導向、結合貪心與並查集求最小生成樹的 Kruskal 演算法。</description>
 			</item>
 			<item>
 				<title>(Day 26) 最小生成樹 (Minimum Spanning Tree)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day26_minimum-spanning-tree/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day26_minimum-spanning-tree/</link>
 				<pubDate>Wed, 24 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day26_minimum-spanning-tree/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day26_minimum-spanning-tree/</guid>
 				<description>介紹圖論另一個核心問題——最小生成樹（MST）的概念。</description>
 			</item>
 			<item>
 				<title>(Day 25) A* 搜尋演算法 (A-star Search)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day25_a-star-search/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day25_a-star-search/</link>
 				<pubDate>Tue, 23 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day25_a-star-search/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day25_a-star-search/</guid>
 				<description>結合最短路徑與啟發式（Heuristic）、廣泛用於 AI 與導航的 A* 搜尋演算法。</description>
 			</item>
 			<item>
 				<title>(Day 24) Floyd-Warshall 演算法</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day24_floyd-warshall-algorithm/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day24_floyd-warshall-algorithm/</link>
 				<pubDate>Mon, 22 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day24_floyd-warshall-algorithm/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day24_floyd-warshall-algorithm/</guid>
 				<description>一次計算所有點對最短路徑（APSP）的 Floyd-Warshall 演算法。</description>
 			</item>
 			<item>
 				<title>(Day 23) Bellman-Ford 演算法</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day23_bellman-ford-algorithm/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day23_bellman-ford-algorithm/</link>
 				<pubDate>Sun, 21 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day23_bellman-ford-algorithm/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day23_bellman-ford-algorithm/</guid>
 				<description>能處理負權重邊的單源最短路徑演算法 Bellman-Ford。</description>
 			</item>
 			<item>
 				<title>(Day 22) Dijkstra 最短路徑演算法 (Dijkstra’s Algorithm)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day22_dijkstra-algorithm/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day22_dijkstra-algorithm/</link>
 				<pubDate>Sat, 20 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day22_dijkstra-algorithm/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day22_dijkstra-algorithm/</guid>
 				<description>計算單源最短路徑、要求邊權非負的經典貪心演算法 Dijkstra。</description>
 			</item>
 			<item>
 				<title>(Day 21) 圖演算法 (Graph Algorithm)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day21_graph-algorithm/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day21_graph-algorithm/</link>
 				<pubDate>Fri, 19 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day21_graph-algorithm/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day21_graph-algorithm/</guid>
 				<description>圖演算法的總覽與應用，從網路連線、地圖導航到社交網路與金融交易。</description>
 			</item>
 			<item>
 				<title>(Day 20) 貪婪演算法 (Greedy Algorithm)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day20_greedy-algorithm/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day20_greedy-algorithm/</link>
 				<pubDate>Thu, 18 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day20_greedy-algorithm/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day20_greedy-algorithm/</guid>
 				<description>每步都取當前最優、寄望導向全域最優解的貪婪演算法（Greedy）。</description>
 			</item>
 			<item>
 				<title>(Day 19) 動態規劃 (Dynamic Programming)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day19_dynamic-programming/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day19_dynamic-programming/</link>
 				<pubDate>Wed, 17 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day19_dynamic-programming/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day19_dynamic-programming/</guid>
 				<description>以儲存子問題解避免重複計算的動態規劃，適用具重疊子問題與最優子結構的問題。</description>
 			</item>
 			<item>
 				<title>(Day 18) 分治法 (Divide and Conquer)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day18_divide-and-conquer/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day18_divide-and-conquer/</link>
 				<pubDate>Tue, 16 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day18_divide-and-conquer/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day18_divide-and-conquer/</guid>
 				<description>介紹分治法（Divide and Conquer）這個演算法設計策略的核心思路。</description>
 			</item>
 			<item>
 				<title>(Day 17) 內插搜尋 (Interpolation Search)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day17_interpolation-search/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day17_interpolation-search/</link>
 				<pubDate>Mon, 15 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day17_interpolation-search/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day17_interpolation-search/</guid>
 				<description>依數值分布估算落點、改良二元搜尋的內插搜尋（Interpolation Search）。</description>
 			</item>
 			<item>
 				<title>(Day 16) 二元搜尋 (Binary Search)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day16_binary-search/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day16_binary-search/</link>
 				<pubDate>Sun, 14 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day16_binary-search/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day16_binary-search/</guid>
 				<description>在已排序資料中以「折半」大幅降低搜尋複雜度的二元搜尋（Binary Search）。</description>
 			</item>
 			<item>
 				<title>(Day 15) 基礎排序演算法比較</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day15_basic-sorting-comparison/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day15_basic-sorting-comparison/</link>
 				<pubDate>Sat, 13 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day15_basic-sorting-comparison/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day15_basic-sorting-comparison/</guid>
 				<description>系統化比較氣泡、選擇、插入三種 O(n^2) 基礎排序的設計思路與適用場景。</description>
 			</item>
 			<item>
 				<title>(Day 14) 插入排序 (Insertion Sort)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day14_insertion-sort/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day14_insertion-sort/</link>
 				<pubDate>Fri, 12 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day14_insertion-sort/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day14_insertion-sort/</guid>
 				<description>介紹將未排序元素逐一插入已排序序列的插入排序（Insertion Sort）。</description>
 			</item>
 			<item>
 				<title>(Day 13) 選擇排序 (Selection Sort)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day13_selection-sort/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day13_selection-sort/</link>
 				<pubDate>Thu, 11 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day13_selection-sort/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day13_selection-sort/</guid>
 				<description>介紹每輪挑出最小者放到定位的選擇排序（Selection Sort）。</description>
 			</item>
 			<item>
 				<title>(Day 12) 氣泡排序 (Bubble Sort)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day12_bubble-sort/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day12_bubble-sort/</link>
 				<pubDate>Wed, 10 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day12_bubble-sort/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day12_bubble-sort/</guid>
 				<description>排序演算法開篇，介紹相鄰交換的氣泡排序與排序的基本觀念。</description>
 			</item>
 			<item>
 				<title>(Day 11) 演算法評估 (Algorithm Analysis)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day11_algorithm-analysis/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day11_algorithm-analysis/</link>
 				<pubDate>Tue, 09 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day11_algorithm-analysis/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day11_algorithm-analysis/</guid>
 				<description>說明如何以時間與空間複雜度評估演算法效率，銜接後續的演算法主題。</description>
 			</item>
 			<item>
 				<title>(Day 10) 圖 (Graph)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day10_graph/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day10_graph/</link>
 				<pubDate>Mon, 08 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day10_graph/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day10_graph/</guid>
 				<description>資料結構的最後一篇，正式進入比樹更一般化的圖（Graph）結構。</description>
 			</item>
 			<item>
 				<title>(Day 9) 其他樹 (Other Trees)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day9_other-trees/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day9_other-trees/</link>
 				<pubDate>Sun, 07 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day9_other-trees/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day9_other-trees/</guid>
 				<description>概覽其他常見的樹結構，作為資料結構主題的拋磚引玉。</description>
 			</item>
 			<item>
 				<title>(Day 8) 平衡樹 (Balanced Tree)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day8_balanced-tree/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day8_balanced-tree/</link>
 				<pubDate>Sat, 06 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day8_balanced-tree/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day8_balanced-tree/</guid>
 				<description>維持樹高以提升操作效率的平衡樹，如 AVL 樹、紅黑樹與 B 樹。</description>
 			</item>
 			<item>
 				<title>(Day 7) 二元樹 (Binary Tree)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day7_binary-tree/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day7_binary-tree/</link>
 				<pubDate>Fri, 05 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day7_binary-tree/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day7_binary-tree/</guid>
 				<description>從線性結構邁入非線性的樹結構，介紹相當重要的二元樹（Binary Tree）。</description>
 			</item>
 			<item>
 				<title>(Day 6) 隊列 (Queue)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day6_queue/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day6_queue/</link>
 				<pubDate>Thu, 04 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day6_queue/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day6_queue/</guid>
 				<description>介紹遵循先進先出（FIFO）的線性資料結構——隊列（Queue）。</description>
 			</item>
 			<item>
 				<title>(Day 5) 堆疊 (Stack)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day5_stack/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day5_stack/</link>
 				<pubDate>Wed, 03 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day5_stack/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day5_stack/</guid>
 				<description>介紹遵循後進先出（LIFO）、僅在頂端操作的堆疊（Stack）。</description>
 			</item>
 			<item>
 				<title>(Day 4) 鏈表 (Linked List)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day4_linked-list/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day4_linked-list/</link>
 				<pubDate>Tue, 02 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day4_linked-list/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day4_linked-list/</guid>
 				<description>以節點與指標串接、記憶體不必連續的鏈表（Linked List）結構。</description>
 			</item>
 			<item>
 				<title>(Day 3) 矩陣 (Matrix)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day3_matrix/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day3_matrix/</link>
 				<pubDate>Mon, 01 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day3_matrix/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day3_matrix/</guid>
 				<description>從陣列延伸、常被忽略卻在資料科學中重要的矩陣（Matrix）結構。</description>
 			</item>
 			<item>
 				<title>(Day 2) 陣列 (Array)</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day2_array/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day2_array/</link>
 				<pubDate>Sun, 31 Aug 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day2_array/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day2_array/</guid>
 				<description>介紹以連續記憶體配置、靜態大小儲存同型元素的陣列（Array）。</description>
 			</item>
 			<item>
 				<title>(Day 1) 介紹與準備</title>
-				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day1_introduction-and-preparation/</link>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day1_introduction-and-preparation/</link>
 				<pubDate>Sat, 30 Aug 2025 00:00:00 +0800</pubDate>
-				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day1_introduction-and-preparation/</guid>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day1_introduction-and-preparation/</guid>
 				<description>資料結構與演算法系列開場，強調時間複雜度、記憶體模型等不變的底層地基。</description>
 			</item>
 	</channel>

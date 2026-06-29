@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-tw" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <script>
+  (function () {
+    try {
+      var t = localStorage.getItem("theme");
+      if (t !== "light" && t !== "dark") {
+        t = "light"; 
+      }
+      document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>(Day 11) 二元分類任務驗證指標 · Chih-Chien&#39;s Blog</title>
+<meta name="description" content="以二元分類為例，介紹混淆矩陣與 Accuracy、Recall、F1 等評估指標及選用觀念。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="謝志謙, Chih-Chien Hsieh, twcch, cch, 部落格, 技術, 筆記">
+<link rel="canonical" href="http://localhost:1313/posts/ithome_ironman-copy/2025_1/day11_binary-classification-metrics/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
+<meta property="og:title" content="(Day 11) 二元分類任務驗證指標">
+<meta property="og:description" content="以二元分類為例，介紹混淆矩陣與 Accuracy、Recall、F1 等評估指標及選用觀念。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://localhost:1313/posts/ithome_ironman-copy/2025_1/day11_binary-classification-metrics/">
+<meta name="twitter:card" content="summary"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/css/main.min.11c3736beb98bfae0608e51b66b0651ca4caadc4f01fd0f7e15eabab5b80e136.css" integrity="sha256-EcNza&#43;uYv64GCOUbZrBlHKTKrcTwH9D34V6rq1uA4TY=">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-inner">
+    <a class="site-title" href="/">Chih-Chien&#39;s Blog</a>
+    <div class="header-actions">
+      <nav class="site-nav" id="site-nav" aria-label="主選單">
+        <a class="nav-link" href="/chih-chien-hsieh/">About Me</a>
+        <a class="nav-link" href="/textbooks/">Textbooks</a>
+        <a class="nav-link" href="/posts/ithome_ironman/">iThome Ironman</a>
+        <a class="nav-link" href="/posts/">Posts</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="開啟選單" aria-expanded="false" aria-controls="site-nav" title="開啟選單">
+        <svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"></path>
+        </svg>
+        <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
+      <button class="theme-toggle" type="button" aria-label="切換深色模式" title="切換深色模式">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main class="site-main">
+    
+<div class="container-narrow">
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">(Day 11) 二元分類任務驗證指標</h1>
+      <div class="post-meta">
+        <time datetime="2025-08-11">2025-08-11</time>
+        <span class="dot">·</span>
+        <span>7 分鐘閱讀</span>
+      </div>
+    </header>
+
+    <div class="post-content prose">
+      <p>今天要介紹的是常見的分類任務驗證指標，會以二元分類問題為例，因為多元分類也是用相同的指標，只是計算方式會有所不同而已，預計會用 2-3 天的篇幅介紹完，分類與迴歸任務的驗證指標；先給各位讀者一個正確的觀念，選指標時必須回到業務背景與資料特性，不要迷信某個數值越高越好，真正有價值的模型評估，是能在技術表現與業務需求之間找到平衡。</p>
+<h2 id="指標介紹">指標介紹</h2>
+<h3 id="混淆矩陣-confusion-matrix">混淆矩陣 (Confusion Matrix)</h3>
+<p>分類任務的所有核心指標，幾乎都來自 Confusion Matrix，它是用來統計分類模型在測試集上的結果，Confusion Matrix 在 Binary Classification 問題上，它是一個 2x2 表格:</p>
+<table>
+	<thead>
+			<tr>
+					<th></th>
+					<th>True Condition - Positive</th>
+					<th>True Condition - Negative</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Predict Outcome - Positive</td>
+					<td>TP (True Positve)</td>
+					<td>FP (False Positve) (誤報)</td>
+			</tr>
+			<tr>
+					<td>Predict Outcome - Negative</td>
+					<td>FN (False Negative) (漏報)</td>
+					<td>TN (True Negative)</td>
+			</tr>
+	</tbody>
+</table>
+<ul>
+<li>TP: 實際是 Positive，模型也預測 Positive (預測正確)</li>
+<li>TN: 實際是 Negative，模型也預測 Negative (預測正確)</li>
+<li>FP: 實際是 Negative，但模型預測 Positive (誤報 / 假警報) (Type I error)</li>
+<li>FN: 實際是 Positive，但模型預測 Negative (漏報 / 漏檢) (Type II error)</li>
+</ul>
+<h3 id="accuracy-準確率">Accuracy (準確率)</h3>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>A</mi><mi>c</mi><mi>c</mi><mi>u</mi><mi>r</mi><mi>a</mi><mi>c</mi><mi>y</mi><mo>=</mo><mfrac><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>T</mi><mi>N</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>T</mi><mi>N</mi><mo>+</mo><mi>F</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>N</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+Accuracy = \frac{TP + TN}{TP + TN + FP + FN}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal">cc</span><span class="mord mathnormal">u</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.03588em;">cy</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1297em;vertical-align:-0.7693em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">TP</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">TN</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">FP</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">FN</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">TP</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">TN</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>就是看所有預測中，有多少的比例是預測正確的</p>
+<ul>
+<li>優點
+<ul>
+<li>簡單直觀</li>
+<li>如果類別分佈平均 (Positive / Negative 差不多)，可以直接解讀</li>
+</ul>
+</li>
+<li>缺點
+<ul>
+<li>如果類別分佈不平均 (e.g. 99% negative, 1% positive)，即使全猜 negative 也能有 99% accuracy → 失真</li>
+</ul>
+</li>
+<li>解讀
+<ul>
+<li>數值越高越好</li>
+</ul>
+</li>
+</ul>
+<h3 id="precision-精確率">Precision (精確率)</h3>
+<p>Precision 是防止誤報 (Type I error) 的指標，適合保守策略，但單獨用它評估模型非常危險，因為它忽略漏報 (Type II error) 問題</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mi>r</mi><mi>e</mi><mi>c</mi><mi>i</mi><mi>s</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo>=</mo><mfrac><mrow><mi>T</mi><mi>P</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>P</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+Precision = \frac{TP}{TP + FP}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal">rec</span><span class="mord mathnormal">i</span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1297em;vertical-align:-0.7693em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">TP</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">FP</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">TP</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>優點:</p>
+<ul>
+<li>抑制誤報 (False Positive, FP, Type I error): 高 Precision 代表 False Positive 少，模型很少有 Type I error</li>
+<li>在類別極度不平衡時，比 Accuracy 更能反映模型的實際效益 (尤其 Positive 很稀有時)</li>
+</ul>
+<p>缺點:</p>
+<ul>
+<li>忽略漏報 (False Negative, FN, Type II error): 完全不管 FN，所以可能 Precision 很高，但可能 Recall 很低，對一些應用 (如詐欺偵測) 是致命的</li>
+<li>容易被閾值操控: 提高分類 threshold，確實可以提升 Precision，但會犧牲 Recall，導致模型只在「很確定」時才預測 Positive</li>
+<li>對整體表現無法單獨衡量: 單看 Precision 無法知道模型是否有廣泛檢出正例，需要搭配 Recall 或 F1-score</li>
+</ul>
+<p>適用高誤報成本場景:</p>
+<ul>
+<li>醫療診斷 (假陽性會導致不必要的侵入性檢查)</li>
+<li>信用評分 (誤把壞客戶當好客戶會造成損失)</li>
+</ul>
+<h3 id="recall-召回率--敏感度">Recall (召回率 / 敏感度)</h3>
+<p>Recall 是防止漏報 (Type II error) 的指標，適合在漏報代價高的情境使用，但單看 Recall 容易造成誤報氾濫，因此常和 Precision 一起使用 (F1-score 或 Precision-Recall 曲線)</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mi>e</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>l</mi><mo>=</mo><mfrac><mrow><mi>T</mi><mi>P</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>N</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+Recall = \frac{TP}{TP + FN}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord mathnormal">ec</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.01968em;">ll</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1297em;vertical-align:-0.7693em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">TP</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">FN</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">TP</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>優點:</p>
+<ul>
+<li>抑制漏報 (False Negative, FN, Type II error): 高 Recall 代表 False Negative 少，模型很少有 Type II error</li>
+</ul>
+<p>缺點:</p>
+<ul>
+<li>忽略誤報 (False Positive, FP, Type I error): 完全不管 FN，所以可能 Recall 很高，但可能 Precision 很低</li>
+<li>容易被閾值操控:  降低分類 threshold，確實可以提升 Recall，但會犧牲 Precision (大量誤報)</li>
+</ul>
+<p>適用高漏報成本場景:</p>
+<p>(在安全性應用中重要，寧可多報也不能漏報)</p>
+<ul>
+<li>入侵檢測、工業故障預警</li>
+<li>癌症篩檢 (漏掉病人可能致命)、詐欺交易偵測 (漏掉會直接造成金錢損失)</li>
+</ul>
+<h3 id="f1-score">F1-score</h3>
+<p>Precision 與 Recall 的調和平均 (harmonic mean)，想同時兼顧 Precision (正例預測的正確性) 和 Recall (正例檢出的完整性) 時，用 F1-score 評估整體表現</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>F</mi><mn>1</mn><mo>−</mo><mi>s</mi><mi>c</mi><mi>o</mi><mi>r</mi><mi>e</mi><mo>=</mo><mn>2</mn><mo>×</mo><mfrac><mrow><mi>P</mi><mi>r</mi><mi>e</mi><mi>c</mi><mi>i</mi><mi>s</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo>×</mo><mi>R</mi><mi>e</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>l</mi></mrow><mrow><mi>P</mi><mi>r</mi><mi>e</mi><mi>c</mi><mi>i</mi><mi>s</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo>+</mo><mi>R</mi><mi>e</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>l</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+F1-score = 2 \times \frac{Precision \times Recall}{Precision + Recall}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">score</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.1408em;vertical-align:-0.7693em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal">rec</span><span class="mord mathnormal">i</span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord mathnormal">ec</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.01968em;">ll</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal">rec</span><span class="mord mathnormal">i</span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord mathnormal">ec</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.01968em;">ll</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><p>優點:</p>
+<ul>
+<li>平衡 Precision 與 Recall	適合同時重視誤報與漏報的情境</li>
+<li>對極端值敏感: 如果 Precision 或 Recall 有一個很低，F1 會反映這個缺陷 (不像普通平均可能被掩蓋)</li>
+<li>適用類別不平衡情境: 當 Positive 樣本很少時，比 Accuracy 更能反映模型品質</li>
+<li>簡單單一分數: 能把 Precision、Recall 濃縮成一個可比較的指標，方便模型之間比較</li>
+</ul>
+<p>缺點:</p>
+<ul>
+<li>權重固定: F1 默認 Precision 和 Recall 的重要性一樣，但實務中可能某一方更重要 (此時應用 Fβ-score 調整權重)</li>
+<li>無法反映全域表現: 只是一個閾值下的結果，無法取代 ROC-AUC / PR-AUC 那種「不同閾值下的整體能力評估」</li>
+<li>容易被閾值影響: 和 Precision、Recall 一樣，閾值選擇不同，F1 會大幅變動</li>
+<li>忽略 TN:	F1 完全不考慮 True Negative 的數量，對於負例判斷好壞的場景不敏感
+<ul>
+<li>優點
+<ul>
+<li>更專注稀有類別的檢測能力: TN 不會沖淡結果，F1 更能反映正例檢出的真實能力</li>
+<li>避免類別不平衡下的高分假象: 即使 99% TN，F1 也不會被刷高</li>
+</ul>
+</li>
+<li>缺點
+<ul>
+<li>低估模型在負例上的表現: 如果應用中 Negative 也很重要 (例如垃圾郵件分類中「正確放行正常郵件」很重要)，F1 可能低估模型價值</li>
+<li>不適用需要同時關注 TN 與 TP 的場景: 例如醫療檢測中，誤把健康人當病人 (FP) 雖然嚴重，但正確判斷健康人 (TN) 也是有價值的，這時 Accuracy、Specificity 可能更適合補充</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>典型使用場景:</p>
+<ul>
+<li>正例與負例數量差異大 (類別不平衡)</li>
+<li>誤報與漏報代價相近: 想用一個分數快速比較多個模型的整體分類能力</li>
+</ul>
+<h3 id="roc-auc-receiver-operating-characteristic---area-under-curve">ROC-AUC (Receiver Operating Characteristic - Area Under Curve)</h3>
+<p>ROC-AUC 是「排序能力」的評估指標，不是「預測正確率」，高 AUC 意味著模型傾向將正例分數排得比負例高，在類別極度不平衡的情況下，ROC-AUC 可能會給出過於樂觀的結果 (建議搭配 PR-AUC 與實際混淆矩陣分析)</p>
+<p>優點:</p>
+<ul>
+<li>閾值無關: 評估的是模型在所有可能閾值下的整體表現，不依賴特定 cut-off</li>
+<li>對類別比例不敏感 (相對 Accuracy): 在類別不平衡的情況下，仍可提供較穩定的比較依據</li>
+<li>可視化能力強: 曲線可以直觀看出模型在不同 FPR 下的 TPR 表現</li>
+<li>可用於排序模型: 特別適合用在需要排序預測分數 (如風險評分、推薦系統) 的場景</li>
+</ul>
+<p>缺點:</p>
+<ul>
+<li>在極端類別不平衡時可能過於樂觀: 因為 FPR 的分母是 TN，負例很多時，錯一些負例對 FPR 影響很小，AUC 看起來很好，但實際 Precision 可能很差</li>
+<li>無法反映預測機率的絕對校準性: 只看排序，不看分數本身準不準 (Calibration)</li>
+<li>不適合只關注正例的場景	如果漏報成本很高 (正例稀少)，PR-AUC 更合適</li>
+</ul>
+<p>典型使用場景:</p>
+<ul>
+<li>ROC-AUC 特別適合:
+<ul>
+<li>需要在不同閾值下比較模型整體區分能力</li>
+<li>正負例比例沒有極端不平衡</li>
+<li>想用單一數值比較排序能力 (例如風險評分模型)</li>
+</ul>
+</li>
+<li>不適用:
+<ul>
+<li>正例極少 (如詐欺偵測、罕見病檢測): 這時 PR-AUC 更能反映真實效果</li>
+</ul>
+</li>
+</ul>
+<h4 id="roc-receiver-operating-characteristic-曲線">ROC (Receiver Operating Characteristic) 曲線</h4>
+<p>當你改變分類閾值 (threshold) 時，模型會有不同的 TPR 與 FPR 組合，連起來就形成 ROC 曲線</p>
+<ul>
+<li>x 軸 (False Positive Rate; FPR)</li>
+<li>y 軸 (True Positive Rate; TPR), Recall</li>
+</ul>
+<h4 id="auc-area-under-curve-曲線">AUC (Area Under Curve) 曲線</h4>
+<p>ROC 曲線下的面積，就是 AUC</p>
+<p>數值範圍:</p>
+<ul>
+<li>0.9 ≦ AUC ≦ 1.0 (outstanding discrimination極佳的鑑別力)</li>
+<li>0.8 ≦ AUC ≦ 0.9 (excellent discrimination優良的鑑別力)</li>
+<li>0.7 ≦ AUC ≦ 0.8 (acceptable discrimination可接受的鑑別力)</li>
+<li>AUC = 0.5 (no discrimination 無鑑別力)，ROC剛好是對角線</li>
+<li>AUC &lt; 0.5 分類方向顛倒 (把預測反過來就變好)</li>
+</ul>
+<p>統計解讀:</p>
+<ul>
+<li>AUC 等於「隨機取一個正例與一個負例時，模型把正例排在負例前的機率」</li>
+</ul>
+<h3 id="pr-auc-precision-recall-auc">PR-AUC (Precision-Recall AUC)</h3>
+<p>PR-AUC 更貼近「找出稀有重要事件」的實務需求，在極度不平衡資料中，比 ROC-AUC 更真實，但它對正例比例非常敏感，因此跨資料集比較要小心</p>
+<p>優點:</p>
+<ul>
+<li>適合稀有事件偵測: 在正例比例極低時，ROC-AUC 可能樂觀，但 PR-AUC 會真實反映誤報多寡</li>
+<li>直接反映 Precision-Recall 平衡: Precision 和 Recall 都直接與實務成本相關 (誤報 vs 漏報)</li>
+<li>曲線解讀直觀: 看得出在不同檢出率下，Precision 是否快速下降</li>
+</ul>
+<p>缺點:</p>
+<ul>
+<li>受正例比例影響大: 正例比例變化會改變基準線 (baseline precision)，不同數據集之間不一定可直接比較</li>
+<li>變動性高: 當正例數很少時，Precision 和 Recall 在高閾值下的波動大，曲線可能很抖</li>
+<li>計算結果不如 ROC 平滑: 因為 Precision 與 Recall 對少量樣本非常敏感</li>
+</ul>
+<p>典型使用場景:</p>
+<ul>
+<li>PR-AUC 特別適合:
+<ul>
+<li>正例極少 (詐欺偵測、罕見病診斷)</li>
+<li>關注誤報與漏報的平衡</li>
+<li>想知道模型在不同 Recall 水平下能維持多少 Precision</li>
+</ul>
+</li>
+<li>不適用:
+<ul>
+<li>正負例比例接近且負例表現也同等重要 → ROC-AUC 更全面</li>
+</ul>
+</li>
+</ul>
+<h4 id="pr-曲線">PR 曲線</h4>
+<p>當你改變分類閾值 (threshold) 時，模型會有不同的 TPR 與 FPR 組合，連起來就形成 ROC 曲線</p>
+<ul>
+<li>x 軸 (Precision)</li>
+<li>y 軸 (Recall)</li>
+</ul>
+<h4 id="auc-area-under-curve-曲線-1">AUC (Area Under Curve) 曲線</h4>
+<p>PR 曲線下的面積</p>
+<ul>
+<li>範圍 0 ~ 1 (越接近 1 越好)</li>
+</ul>
+<h3 id="pr-auc-vs-roc-auc-的差異">PR-AUC vs ROC-AUC 的差異</h3>
+<table>
+	<thead>
+			<tr>
+					<th>特性</th>
+					<th>ROC-AUC</th>
+					<th>PR-AUC</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>橫軸</td>
+					<td>FPR</td>
+					<td>Recall</td>
+			</tr>
+			<tr>
+					<td>縱軸</td>
+					<td>TPR</td>
+					<td>Precision</td>
+			</tr>
+			<tr>
+					<td>適用場景</td>
+					<td>類別分布均衡或中等不平衡</td>
+					<td>極度類別不平衡 (正例極少)</td>
+			</tr>
+			<tr>
+					<td>敏感度</td>
+					<td>對負例數量不太敏感</td>
+					<td>對正例數量敏感 (專注於正例表現)</td>
+			</tr>
+			<tr>
+					<td>誤報反映</td>
+					<td>間接反映 (FPR)</td>
+					<td>直接反映 (Precision)</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="程式實例">程式實例</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">ConfusionMatrixDisplay</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">average_precision_score</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 資料</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 模型</span>
+</span></span><span class="line"><span class="cl"><span class="n">clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="s2">&#34;scaler&#34;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="s2">&#34;svc&#34;</span><span class="p">,</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s2">&#34;rbf&#34;</span><span class="p">,</span> <span class="n">probability</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 預測</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_proba</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 混淆矩陣</span>
+</span></span><span class="line"><span class="cl"><span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">disp</span> <span class="o">=</span> <span class="n">ConfusionMatrixDisplay</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="o">=</span><span class="n">cm</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">disp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 評估</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Accuracy:&#34;</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Macro Precision:&#34;</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&#34;macro&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Macro Recall:&#34;</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&#34;macro&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Macro F1:&#34;</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&#34;macro&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Weighted F1:&#34;</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&#34;weighted&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 多分類 ROC-AUC</span>
+</span></span><span class="line"><span class="cl"><span class="n">roc_auc</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_proba</span><span class="p">,</span> <span class="n">multi_class</span><span class="o">=</span><span class="s2">&#34;ovr&#34;</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&#34;macro&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Macro ROC-AUC:&#34;</span><span class="p">,</span> <span class="n">roc_auc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 多分類 PR-AUC</span>
+</span></span><span class="line"><span class="cl"><span class="n">pr_auc</span> <span class="o">=</span> <span class="n">average_precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_proba</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&#34;macro&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Macro PR-AUC:&#34;</span><span class="p">,</span> <span class="n">pr_auc</span><span class="p">)</span>
+</span></span></code></pre></div><h2 id="結語">結語</h2>
+<p>混淆矩陣是分類評估的根基，所有指標都只是對它不同切面的計算與加權，再次提醒，選指標時必須回到業務背景與資料特性，不要迷信某個數值越高越好，真正有價值的模型評估，是能在技術表現與業務需求之間找到平衡。</p>
+
+    </div>
+    <div class="post-tags">
+      <a class="tag" href="/tags/2025-ithome-ironman/">#2025 iThome Ironman</a>
+    </div>
+  </article>
+  <nav class="post-nav">
+    <div class="post-nav-side">
+      <a href="/posts/ithome_ironman-copy/2025_1/day10_support-vector-machine/">
+        <span class="post-nav-label">← 較舊的文章</span>
+        <span class="post-nav-title">(Day 10) 支援向量機 (Support Vector Machine)</span>
+      </a>
+    </div>
+    <div class="post-nav-side post-nav-right">
+      <a href="/posts/ithome_ironman-copy/2025_1/day12_multiclass-classification-metrics/">
+        <span class="post-nav-label">較新的文章 →</span>
+        <span class="post-nav-title">(Day 12) 多元分類任務驗證指標</span>
+      </a>
+    </div>
+  </nav>
+  
+<section class="comments">
+  <h2 class="section-label">留言</h2>
+  <div class="giscus-comments"></div>
+</section>
+<script>
+  (function () {
+    
+    function giscusTheme() {
+      const t = document.documentElement.dataset.theme;
+      if (t === "dark") return "dark";
+      if (t === "light") return "light";
+      return "preferred_color_scheme"; 
+    }
+
+    
+    const s = document.createElement("script");
+    s.src = "https://giscus.app/client.js";
+    s.async = true;
+    s.crossOrigin = "anonymous";
+    s.setAttribute("data-repo", "twcch\/twcch.github.io");
+    s.setAttribute("data-repo-id", "R_kgDONCl-Aw");
+    s.setAttribute("data-category", "Announcements");
+    s.setAttribute("data-category-id", "DIC_kwDONCl-A84C_B03");
+    s.setAttribute("data-mapping", "pathname");
+    s.setAttribute("data-strict", "0");
+    s.setAttribute("data-reactions-enabled", "1");
+    s.setAttribute("data-emit-metadata", "0");
+    s.setAttribute("data-input-position", "bottom");
+    s.setAttribute("data-theme", giscusTheme());
+    s.setAttribute("data-lang", "zh-TW");
+    s.setAttribute("data-loading", "lazy");
+    document.querySelector(".giscus-comments").appendChild(s);
+
+    
+    function syncTheme() {
+      const iframe = document.querySelector("iframe.giscus-frame");
+      if (!iframe) return;
+      iframe.contentWindow.postMessage(
+        { giscus: { setConfig: { theme: giscusTheme() } } },
+        "https://giscus.app"
+      );
+    }
+    new MutationObserver(syncTheme).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+  })();
+</script>
+
+</div>
+
+  </main>
+  <footer class="site-footer">
+  <div class="container footer-inner">
+    
+<ul class="social-list">
+  <li>
+    <a href="https://github.com/twcch" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" title="GitHub">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.62 8.21 11.18.6.11.82-.25.82-.57v-2.2c-3.34.71-4.04-1.58-4.04-1.58-.55-1.36-1.34-1.73-1.34-1.73-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.79 2.81 1.27 3.5.97.11-.76.42-1.27.76-1.56-2.67-.3-5.47-1.3-5.47-5.78 0-1.28.47-2.32 1.24-3.14-.13-.3-.54-1.52.11-3.16 0 0 1.01-.32 3.3 1.2a11.6 11.6 0 0 1 6.01 0c2.29-1.52 3.3-1.2 3.3-1.2.65 1.64.24 2.86.12 3.16.77.82 1.23 1.86 1.23 3.14 0 4.49-2.81 5.48-5.49 5.77.43.36.81 1.08.81 2.18v3.23c0 .32.22.69.83.57A12.01 12.01 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg>
+    </a>
+  </li>
+  <li>
+    <a href="mailto:twcch1218@gmail.com"  aria-label="Email" title="Email">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+    </a>
+  </li>
+</ul>
+<p class="footer-meta">Chih-Chien Hsieh．Since 1993</p>
+  </div>
+</footer>
+
+<script>
+  
+  (function () {
+    var btn = document.querySelector(".theme-toggle");
+    if (btn) {
+      btn.addEventListener("click", function () {
+        var root = document.documentElement;
+        var next = root.dataset.theme === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try { localStorage.setItem("theme", next); } catch (e) {}
+      });
+    }
+
+    
+    var navToggle = document.querySelector(".nav-toggle");
+    var siteNav = document.getElementById("site-nav");
+    if (navToggle && siteNav) {
+      var setNav = function (open) {
+        siteNav.classList.toggle("is-open", open);
+        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      };
+      navToggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        setNav(!siteNav.classList.contains("is-open"));
+      });
+      
+      siteNav.addEventListener("click", function (e) {
+        if (e.target.closest(".nav-link")) setNav(false);
+      });
+      document.addEventListener("click", function (e) {
+        if (!siteNav.contains(e.target) && !navToggle.contains(e.target)) setNav(false);
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") setNav(false);
+      });
+    }
+
+    
+    document.querySelectorAll(".post-content .highlight").forEach(function (block) {
+      var btn = document.createElement("button");
+      btn.className = "copy-btn";
+      btn.type = "button";
+      btn.textContent = "複製";
+      btn.addEventListener("click", function () {
+        var code = block.querySelector("code") || block.querySelector("pre");
+        if (!code) return;
+        navigator.clipboard.writeText(code.innerText).then(function () {
+          btn.textContent = "已複製";
+          setTimeout(function () { btn.textContent = "複製"; }, 1500);
+        });
+      });
+      block.appendChild(btn);
+    });
+  })();
+</script>
+
+</body>
+</html>

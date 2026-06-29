@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>2025 iThome Ironman: 30 天入門常見的機器學習演算法 on Chih-Chien&#39;s Blog</title>
+		<link>http://localhost:1313/posts/ithome_ironman_2025_1/</link>
+		<description>Recent content in 2025 iThome Ironman: 30 天入門常見的機器學習演算法 on Chih-Chien&#39;s Blog</description>
+		<generator>Hugo</generator>
+		<language>zh-tw</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 30 Aug 2025 00:00:00 +0800</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/posts/ithome_ironman_2025_1/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>(Day 30) 系列結尾</title>
+				<link>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day30_series-conclusion/</link>
+				<pubDate>Sat, 30 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day30_series-conclusion/</guid>
+				<description>機器學習系列的回顧與反思，總結這 30 天的收穫與不足。</description>
+			</item>
+			<item>
+				<title>(Day 29) 注意力機制 (Attention Mechanism)</title>
+				<link>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day29_attention-mechanism/</link>
+				<pubDate>Fri, 29 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day29_attention-mechanism/</guid>
+				<description>解決 Seq2Seq 固定向量瓶頸的注意力機制，讓解碼器能聚焦於關鍵輸入。</description>
+			</item>
+			<item>
+				<title>(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU)</title>
+				<link>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day28_seq2seq/</link>
+				<pubDate>Thu, 28 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day28_seq2seq/</guid>
+				<description>以 Encoder-Decoder 架構處理機器翻譯等序列轉序列（Seq2Seq）任務。</description>
+			</item>
+			<item>
+				<title>(Day 27) 閘控循環單元 (Gated Recurrent Unit)</title>
+				<link>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day27_gated-recurrent-unit/</link>
+				<pubDate>Wed, 27 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day27_gated-recurrent-unit/</guid>
+				<description>結構較 LSTM 精簡、同樣以門控機制處理長距離依賴的閘控循環單元（GRU）。</description>
+			</item>
+			<item>
+				<title>(Day 26) 長短期記憶網路 (Long Short-Term Memory)</title>
+				<link>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day26_long-short-term-memory/</link>
+				<pubDate>Tue, 26 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day26_long-short-term-memory/</guid>
+				<description>透過記憶單元與門控機制克服 RNN 梯度消失、學習長距離依賴的 LSTM。</description>
+			</item>
+			<item>
+				<title>(Day 25) 循環神經網路 (Recurrent Neural Network)</title>
+				<link>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day25_recurrent-neural-network/</link>
+				<pubDate>Mon, 25 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day25_recurrent-neural-network/</guid>
+				<description>介紹處理序列資料的循環神經網路（RNN），如何以隱藏狀態連結前後資訊。</description>
+			</item>
+			<item>
+				<title>(Day 24) Adam 優化器 (Adaptive Moment Estimation)</title>
+				<link>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day24_adam-optimizer/</link>
+				<pubDate>Sun, 24 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day24_adam-optimizer/</guid>
+				<description>深入實務中最常見的優化器 Adam，理解其結合動量與自適應學習率的更新規則。</description>
+			</item>
+			<item>
+				<title>(Day 23) 深度學習中的優化方法 (Optimization in Deep Learning)</title>
+				<link>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day23_optimization-in-deep-learning/</link>
+				<pubDate>Sat, 23 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day23_optimization-in-deep-learning/</guid>
+				<description>從 SGD、Momentum、RMSProp 到 Adagrad，探討如何有效率地找到參數的最佳解。</description>
+			</item>
+			<item>
+				<title>(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning)</title>
+				<link>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day22_regularization-in-deep-learning/</link>
+				<pubDate>Fri, 22 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day22_regularization-in-deep-learning/</guid>
+				<description>面對深度模型動輒上百萬參數的過擬合，介紹深度學習中的各種正規化與正則化手段。</description>
+			</item>
+			<item>
+				<title>(Day 21) 卷積神經網絡 (Convolutional Neural Network)</title>
+				<link>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day21_convolutional-neural-network/</link>
+				<pubDate>Thu, 21 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day21_convolutional-neural-network/</guid>
+				<description>介紹深度學習在電腦視覺的代表性架構——卷積神經網絡（CNN）的概念與運作。</description>
+			</item>
+			<item>
+				<title>(Day 20) 激活函數 (Activation Function)</title>
+				<link>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day20_activation-function/</link>
+				<pubDate>Wed, 20 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day20_activation-function/</guid>
+				<description>說明為何需要激活函數引入非線性，讓堆疊的神經元能學習複雜模式。</description>
+			</item>
+			<item>
+				<title>(Day 19) 神經元 (Neuron)</title>
+				<link>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day19_neuron/</link>
+				<pubDate>Tue, 19 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day19_neuron/</guid>
+				<description>從神經網路最小的組成單位「神經元」出發，理解其輸入、權重與輸出。</description>
+			</item>
+			<item>
+				<title>(Day 18) 全連接神經網絡 (Fully Connected Neural Network)</title>
+				<link>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day18_fully-connected-neural-network/</link>
+				<pubDate>Mon, 18 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day18_fully-connected-neural-network/</guid>
+				<description>認識深度學習最基礎的架構——全連接神經網絡的組成與運作方式。</description>
+			</item>
+			<item>
+				<title>(Day 17) 淺談深度學習 (Deep Learning)</title>
+				<link>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day17_deep-learning-introduction/</link>
+				<pubDate>Sun, 17 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day17_deep-learning-introduction/</guid>
+				<description>從機器學習邁向深度學習的入門概觀，為後續神經網路內容鋪路。</description>
+			</item>
+			<item>
+				<title>(Day 16) K-Means</title>
+				<link>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day16_k-means/</link>
+				<pubDate>Sat, 16 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day16_k-means/</guid>
+				<description>進入無監督式學習，介紹以分群為目標的 K-Means 演算法。</description>
+			</item>
+			<item>
+				<title>(Day 15) 隨機森林 (Random Forest)</title>
+				<link>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day15_random-forest/</link>
+				<pubDate>Fri, 15 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman_2025_1/2025_1/day15_random-forest/</guid>
+				<description>以多棵決策樹集成（Bagging）的隨機森林，降低單棵樹的方差與不穩定性。</description>
+			</item>
+			<item>
+				<title>(Day 10) 支援向量機 (Support Vector Machine)</title>
+				<link>http://localhost:1313/posts/ithome_ironman_2025_1/day10_support-vector-machine/</link>
+				<pubDate>Sun, 10 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman_2025_1/day10_support-vector-machine/</guid>
+				<description>介紹支援向量機如何以最大間隔超平面進行分類，為本系列經典分類模型收尾。</description>
+			</item>
+			<item>
+				<title>(Day 1) 介紹與準備</title>
+				<link>http://localhost:1313/posts/ithome_ironman_2025_1/day1_introduction-and-preparation/</link>
+				<pubDate>Fri, 01 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman_2025_1/day1_introduction-and-preparation/</guid>
+				<description>機器學習系列的開場，說明學習定位、技術範圍與預期讀者，避免只會套模或過度陷入數學推導的兩種極端。</description>
+			</item>
+	</channel>
+</rss>

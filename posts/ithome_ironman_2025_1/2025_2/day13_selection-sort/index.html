@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-tw" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <script>
+  (function () {
+    try {
+      var t = localStorage.getItem("theme");
+      if (t !== "light" && t !== "dark") {
+        t = "light"; 
+      }
+      document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>(Day 13) 選擇排序 (Selection Sort) · Chih-Chien&#39;s Blog</title>
+<meta name="description" content="介紹每輪挑出最小者放到定位的選擇排序（Selection Sort）。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="謝志謙, Chih-Chien Hsieh, twcch, cch, 部落格, 技術, 筆記">
+<link rel="canonical" href="http://localhost:1313/posts/ithome_ironman_2025_1/2025_2/day13_selection-sort/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
+<meta property="og:title" content="(Day 13) 選擇排序 (Selection Sort)">
+<meta property="og:description" content="介紹每輪挑出最小者放到定位的選擇排序（Selection Sort）。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://localhost:1313/posts/ithome_ironman_2025_1/2025_2/day13_selection-sort/">
+<meta name="twitter:card" content="summary"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/css/main.min.11c3736beb98bfae0608e51b66b0651ca4caadc4f01fd0f7e15eabab5b80e136.css" integrity="sha256-EcNza&#43;uYv64GCOUbZrBlHKTKrcTwH9D34V6rq1uA4TY=">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-inner">
+    <a class="site-title" href="/">Chih-Chien&#39;s Blog</a>
+    <div class="header-actions">
+      <nav class="site-nav" id="site-nav" aria-label="主選單">
+        <a class="nav-link" href="/chih-chien-hsieh/">About Me</a>
+        <a class="nav-link" href="/textbooks/">Textbooks</a>
+        <a class="nav-link" href="/posts/ithome_ironman/">iThome Ironman</a>
+        <a class="nav-link" href="/posts/">Posts</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="開啟選單" aria-expanded="false" aria-controls="site-nav" title="開啟選單">
+        <svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"></path>
+        </svg>
+        <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
+      <button class="theme-toggle" type="button" aria-label="切換深色模式" title="切換深色模式">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main class="site-main">
+    
+<div class="container-narrow">
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">(Day 13) 選擇排序 (Selection Sort)</h1>
+      <div class="post-meta">
+        <time datetime="2025-09-11">2025-09-11</time>
+        <span class="dot">·</span>
+        <span>2 分鐘閱讀</span>
+      </div>
+    </header>
+
+    <div class="post-content prose">
+      <p>選擇排序 (Selection Sort) 是一種簡單直觀的排序演算法。核心概念: 每一輪從尚未排序的元素中挑出最小 (或最大) 者，放到目前應在的位置，一直重複直到完成。可以把它想成「選拔賽」: 第一輪選出最優放第一名，第二輪從剩下的人選次優放第二名，依此類推。</p>
+<h2 id="演算法步驟">演算法步驟</h2>
+<ul>
+<li>從索引 i = 0 開始，掃描區間 [i..n-1] 找到最小值的索引 min_idx，把 arr[i] 與 arr[min_idx] 交換。</li>
+<li>將 i 前進一格，重複步驟 1，直到 i = n-1 為止。</li>
+<li>全部就緒時，陣列即為遞增序。</li>
+</ul>
+<p>由於每一輪至少能確定一個元素的最終位置，總共需要執行 n-1 輪。</p>
+<h2 id="範例說明">範例說明</h2>
+<p>以序列 [29, 10, 14, 37, 13] 為例:</p>
+<ul>
+<li>全陣列最小值是 10，與開頭 29 交換 → [10, 29, 14, 37, 13]</li>
+<li>在剩餘 [29, 14, 37, 13] 中最小是 13，與 29 交換 → [10, 13, 14, 37, 29]</li>
+<li>在剩餘 [14, 37, 29] 中最小是 14，位置不變 → [10, 13, 14, 37, 29]</li>
+<li>在剩餘 [37, 29] 中最小是 29，與 37 交換 → [10, 13, 14, 29, 37]</li>
+<li>完成</li>
+</ul>
+<h2 id="程式碼範例">程式碼範例</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">selection_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">min_idx</span> <span class="o">=</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">min_idx</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">min_idx</span> <span class="o">=</span> <span class="n">j</span>
+</span></span><span class="line"><span class="cl">        <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">min_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">min_idx</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">arr</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">29</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">13</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">selection_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>  <span class="c1"># 輸出: [10, 13, 14, 29, 37]</span>
+</span></span></code></pre></div><h2 id="複雜度分析">複雜度分析</h2>
+<h3 id="時間複雜度">時間複雜度</h3>
+<ul>
+<li>最佳情況: O(n^2)</li>
+<li>最壞情況: O(n^2)</li>
+<li>平均情況: O(n^2)</li>
+</ul>
+<p>說明：即使資料本來已排序，外圈第 i 輪仍需在 [i..n-1] 全掃描以確認最小值，無法提前終止。</p>
+<h3 id="空間複雜度">空間複雜度</h3>
+<ul>
+<li>額外空間：O(1)（原地排序，不需輔助結構）</li>
+</ul>
+<h3 id="穩定性">穩定性</h3>
+<ul>
+<li>不穩定。因為「把最小值與前端元素交換」可能改變相同鍵值的相對次序。例：[4a, 5, 4b] 若選到的是後面的 4b 與前面的 4a 交換，排序後會變成 [4b, 5, 4a]，相對順序被打亂。</li>
+</ul>
+<h2 id="優缺點">優缺點</h2>
+<table>
+	<thead>
+			<tr>
+					<th>面向</th>
+					<th>說明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>優點</td>
+					<td>實作容易、流程清楚；原地排序 O(1)；每輪最多一次交換，交換成本低</td>
+			</tr>
+			<tr>
+					<td>缺點</td>
+					<td>無論資料狀態如何，掃描成本固定 → O(n^2)；不穩定</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="結語">結語</h2>
+<p>選擇排序的價值在於思路清晰與交換成本低，雖然整體效率不佳 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，但非常適合用來與其他基礎排序做對照:</p>
+<ul>
+<li>和 Bubble 對比「交換策略」與是否能早停；</li>
+<li>為 Insertion 鋪路，理解「已排序區/未排序區」的概念；</li>
+<li>最後過渡到 O(n log n) 等級的演算法 (如 Merge/Quick)，理解為什麼在大規模資料上必須升級工具。</li>
+</ul>
+
+    </div>
+    <div class="post-tags">
+      <a class="tag" href="/tags/2025-ithome-ironman/">#2025 iThome Ironman</a>
+    </div>
+  </article>
+  <nav class="post-nav">
+    <div class="post-nav-side">
+      <a href="/posts/ithome_ironman_2025_1/2025_2/day12_bubble-sort/">
+        <span class="post-nav-label">← 較舊的文章</span>
+        <span class="post-nav-title">(Day 12) 氣泡排序 (Bubble Sort)</span>
+      </a>
+    </div>
+    <div class="post-nav-side post-nav-right">
+      <a href="/posts/ithome_ironman_2025_1/2025_2/day14_insertion-sort/">
+        <span class="post-nav-label">較新的文章 →</span>
+        <span class="post-nav-title">(Day 14) 插入排序 (Insertion Sort)</span>
+      </a>
+    </div>
+  </nav>
+  
+<section class="comments">
+  <h2 class="section-label">留言</h2>
+  <div class="giscus-comments"></div>
+</section>
+<script>
+  (function () {
+    
+    function giscusTheme() {
+      const t = document.documentElement.dataset.theme;
+      if (t === "dark") return "dark";
+      if (t === "light") return "light";
+      return "preferred_color_scheme"; 
+    }
+
+    
+    const s = document.createElement("script");
+    s.src = "https://giscus.app/client.js";
+    s.async = true;
+    s.crossOrigin = "anonymous";
+    s.setAttribute("data-repo", "twcch\/twcch.github.io");
+    s.setAttribute("data-repo-id", "R_kgDONCl-Aw");
+    s.setAttribute("data-category", "Announcements");
+    s.setAttribute("data-category-id", "DIC_kwDONCl-A84C_B03");
+    s.setAttribute("data-mapping", "pathname");
+    s.setAttribute("data-strict", "0");
+    s.setAttribute("data-reactions-enabled", "1");
+    s.setAttribute("data-emit-metadata", "0");
+    s.setAttribute("data-input-position", "bottom");
+    s.setAttribute("data-theme", giscusTheme());
+    s.setAttribute("data-lang", "zh-TW");
+    s.setAttribute("data-loading", "lazy");
+    document.querySelector(".giscus-comments").appendChild(s);
+
+    
+    function syncTheme() {
+      const iframe = document.querySelector("iframe.giscus-frame");
+      if (!iframe) return;
+      iframe.contentWindow.postMessage(
+        { giscus: { setConfig: { theme: giscusTheme() } } },
+        "https://giscus.app"
+      );
+    }
+    new MutationObserver(syncTheme).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+  })();
+</script>
+
+</div>
+
+  </main>
+  <footer class="site-footer">
+  <div class="container footer-inner">
+    
+<ul class="social-list">
+  <li>
+    <a href="https://github.com/twcch" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" title="GitHub">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.62 8.21 11.18.6.11.82-.25.82-.57v-2.2c-3.34.71-4.04-1.58-4.04-1.58-.55-1.36-1.34-1.73-1.34-1.73-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.79 2.81 1.27 3.5.97.11-.76.42-1.27.76-1.56-2.67-.3-5.47-1.3-5.47-5.78 0-1.28.47-2.32 1.24-3.14-.13-.3-.54-1.52.11-3.16 0 0 1.01-.32 3.3 1.2a11.6 11.6 0 0 1 6.01 0c2.29-1.52 3.3-1.2 3.3-1.2.65 1.64.24 2.86.12 3.16.77.82 1.23 1.86 1.23 3.14 0 4.49-2.81 5.48-5.49 5.77.43.36.81 1.08.81 2.18v3.23c0 .32.22.69.83.57A12.01 12.01 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg>
+    </a>
+  </li>
+  <li>
+    <a href="mailto:twcch1218@gmail.com"  aria-label="Email" title="Email">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+    </a>
+  </li>
+</ul>
+<p class="footer-meta">Chih-Chien Hsieh．Since 1993</p>
+  </div>
+</footer>
+
+<script>
+  
+  (function () {
+    var btn = document.querySelector(".theme-toggle");
+    if (btn) {
+      btn.addEventListener("click", function () {
+        var root = document.documentElement;
+        var next = root.dataset.theme === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try { localStorage.setItem("theme", next); } catch (e) {}
+      });
+    }
+
+    
+    var navToggle = document.querySelector(".nav-toggle");
+    var siteNav = document.getElementById("site-nav");
+    if (navToggle && siteNav) {
+      var setNav = function (open) {
+        siteNav.classList.toggle("is-open", open);
+        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      };
+      navToggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        setNav(!siteNav.classList.contains("is-open"));
+      });
+      
+      siteNav.addEventListener("click", function (e) {
+        if (e.target.closest(".nav-link")) setNav(false);
+      });
+      document.addEventListener("click", function (e) {
+        if (!siteNav.contains(e.target) && !navToggle.contains(e.target)) setNav(false);
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") setNav(false);
+      });
+    }
+
+    
+    document.querySelectorAll(".post-content .highlight").forEach(function (block) {
+      var btn = document.createElement("button");
+      btn.className = "copy-btn";
+      btn.type = "button";
+      btn.textContent = "複製";
+      btn.addEventListener("click", function () {
+        var code = block.querySelector("code") || block.querySelector("pre");
+        if (!code) return;
+        navigator.clipboard.writeText(code.innerText).then(function () {
+          btn.textContent = "已複製";
+          setTimeout(function () { btn.textContent = "複製"; }, 1500);
+        });
+      });
+      block.appendChild(btn);
+    });
+  })();
+</script>
+
+</body>
+</html>

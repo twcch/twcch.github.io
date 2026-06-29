@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-tw" data-theme="light">
+<head>
+  <script>
+  (function () {
+    try {
+      var t = localStorage.getItem("theme");
+      if (t !== "light" && t !== "dark") {
+        t = "light"; 
+      }
+      document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>(Day 2) 線性迴歸 (Linear Regression) · Chih-Chien&#39;s Blog</title>
+<meta name="description" content="介紹線性迴歸的核心概念、基本假設，以及如何找出最佳迴歸線來預測連續數值。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="謝志謙, Chih-Chien Hsieh, twcch, cch, 部落格, 技術, 筆記">
+<link rel="canonical" href="https://twcch.github.io/ithome_ironman/2025_1/day2_linear-regression/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
+<meta property="og:title" content="(Day 2) 線性迴歸 (Linear Regression)">
+<meta property="og:description" content="介紹線性迴歸的核心概念、基本假設，以及如何找出最佳迴歸線來預測連續數值。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twcch.github.io/ithome_ironman/2025_1/day2_linear-regression/">
+<meta name="twitter:card" content="summary"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/css/main.min.11c3736beb98bfae0608e51b66b0651ca4caadc4f01fd0f7e15eabab5b80e136.css" integrity="sha256-EcNza&#43;uYv64GCOUbZrBlHKTKrcTwH9D34V6rq1uA4TY=">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous"><meta name="generator" content="Hugo 0.163.1">
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-inner">
+    <a class="site-title" href="/">Chih-Chien&#39;s Blog</a>
+    <div class="header-actions">
+      <nav class="site-nav" id="site-nav" aria-label="主選單">
+        <a class="nav-link" href="/chih-chien-hsieh/">About Me</a>
+        <a class="nav-link" href="/textbooks/">Textbooks</a>
+        <a class="nav-link" href="/ithome_ironman/">iThome Ironman</a>
+        <a class="nav-link" href="/posts/">Posts</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="開啟選單" aria-expanded="false" aria-controls="site-nav" title="開啟選單">
+        <svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"></path>
+        </svg>
+        <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
+      <button class="theme-toggle" type="button" aria-label="切換深色模式" title="切換深色模式">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main class="site-main">
+    
+<div class="container-narrow">
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">(Day 2) 線性迴歸 (Linear Regression)</h1>
+    </header>
+
+    <div class="post-content prose">
+      <p>線性迴歸 (Linear Regression) 是統計學中的一種預測方法，主要分為簡單線性迴歸 (Simple Linear Regression) 與多元線性迴歸 (Multiple Linear Regression)，又稱複迴歸，以及其他變形的迴歸等，但在線性迴歸中，通常會有 1~N 個自變數 (Independent Variable) X，也可以稱作特徵 (Feature)；和 1 個因變數 (Dependent Variable) Y，也可以稱作目標 (Target)。而最終目的就是找出一條最佳迴歸線，來擬合這些數據點，便可以用來預測未來的數據點。</p>
+<h2 id="模型介紹">模型介紹</h2>
+<h3 id="模型邏輯與核心概念">模型邏輯與核心概念</h3>
+<h4 id="線性迴歸假設">線性迴歸假設</h4>
+<p>統計學線性迴歸的經典的五大假設:</p>
+<ul>
+<li>線性關係: 自變數與因變數之間存在線性關係</li>
+<li>誤差項獨立 (Independence): 誤差項之間沒有相互關係</li>
+<li>同標準差性 (Homoscedasticity): 對於所有的自變數，誤差項具有相同的標準差</li>
+<li>誤差項常態性 (Normality of Errors): 誤差項應該成常態分佈</li>
+<li>高度共線性 (Multicollinearity): 自變數間無高度線性相關</li>
+</ul>
+<p>看到這邊會想說，為什麼要特別註明統計學? 跟機器學習無關? 先記住一句話「統計學重推論，機器學習重預測」，很多假設跟機器學習中的線性迴歸模型還真的沒有太大的關係，但是也不代表，機器學習模型完全沒有假設，但是相對比較不重要，這也是為什麼很多仿間的機器學習教材都會忽略假設這塊。</p>
+<p>總而言之，機器學習模型不像統計學模型需要那麼嚴謹的假設，但是若違反某些假設，也是會影響機器學習模型的表現，也會使得模型只能用於預測，無法用於推論，以下簡單整理假設對統計模型與機器學習模型的影響:</p>
+<table>
+	<thead>
+			<tr>
+					<th>假設</th>
+					<th>對傳統統計模型影響</th>
+					<th>對機器學習影響</th>
+					<th>建議處理方式</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>線性關係</td>
+					<td>✅ 極高 (核心假設)</td>
+					<td>❌ 可忽略 (可透過特徵轉換處理)</td>
+					<td>用非線性模型 / 特徵轉換</td>
+			</tr>
+			<tr>
+					<td>誤差獨立性</td>
+					<td>✅ 高 (推論與解釋需此條件支持)</td>
+					<td>✅ 高 (對 generalization 有直接影響)</td>
+					<td>使用適當資料分割策略</td>
+			</tr>
+			<tr>
+					<td>同變異性</td>
+					<td>✅ 中高 (影響參數估計的信度)</td>
+					<td>❌ 可忽略 (模型的估計值仍然準，但 p-value、CI 失真)</td>
+					<td>變數轉換、加權最小平方法</td>
+			</tr>
+			<tr>
+					<td>誤差常態性</td>
+					<td>✅ 中高 (特定推論工具須常態性支持)</td>
+					<td>❌ 可忽略</td>
+					<td>若僅做預測可忽略</td>
+			</tr>
+			<tr>
+					<td>共線性</td>
+					<td>✅ 高 (嚴重影響模型可解釋性與推論)</td>
+					<td>❌ 可忽略 (但建議修正以利解釋)</td>
+					<td>VIF、降維、正則化</td>
+			</tr>
+	</tbody>
+</table>
+<h4 id="運作原理">運作原理</h4>
+<p>我們先回到線性迴歸的用途與目的，簡單來說就是「找出一條最佳直線，來擬合這些數據點，便可以用來預測未來的數據點」，如何找出最佳直線? 本文會簡單的介紹一下，詳細過程與原理，再請讀者自行尋找其他資源暸解。</p>
+<ul>
+<li>假設方程式: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>y</mi><mo>^</mo></mover><mo>=</mo><msub><mi>β</mi><mn>0</mn></msub><mo>+</mo><msup><mi mathvariant="bold">x</mi><mi mathvariant="normal">⊤</mi></msup><mi mathvariant="bold-italic">β</mi></mrow><annotation encoding="application/x-tex">\hat{y} = \beta_0 + \mathbf{x}^\top \boldsymbol{\beta}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1944em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0528em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0435em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathbf">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">⊤</span></span></span></span></span></span></span></span><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03403em;">β</span></span></span></span></span></span>。</li>
+<li>統計學模型
+<ul>
+<li>假設誤差項 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ε</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\varepsilon_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">ε</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 滿足期望值為 0、常態分布、同變異等條件。</li>
+<li>根據 Gauss-Markov 定理，最小化殘差平方和 (RSS) 可得到 BLUE (最佳線性無偏估計量)，這就是 Ordinary Least Squares (OLS) 方法，使用最小二乘法的封閉解來最小化損失函數，該方法找到使誤差平方和最小的係數。</li>
+</ul>
+</li>
+<li>機器學習模型
+<ul>
+<li>假設損失函數 (Cost Function): <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>S</mi><mi>E</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mi>n</mi></mrow></mfrac><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mo stretchy="false">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><msub><mover accent="true"><mi>y</mi><mo>^</mo></mover><mi>i</mi></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">MSE = \frac{1}{2n} \sum\limits_{i=1}^{n} (y_{i} - \hat{y}_{i})^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">MSE</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.3291em;vertical-align:-0.9777em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3514em;"><span style="top:-2.1223em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop op-symbol small-op">∑</span></span></span><span style="top:-3.95em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9777em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1944em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>。</li>
+<li>使用梯度下降 (Batch Gradient Descent) 來最小化損失函數，最符合機器學習的原理，但是通常只用於大數據 (而 sklearn 仍然是透過 OLS 來實現)。</li>
+</ul>
+</li>
+</ul>
+<p>所以不論是統計學還是機器學習的線性迴歸模型，就是要找出最佳的迴歸線，只是方式不同而已。</p>
+<h4 id="模型評估指標">模型評估指標</h4>
+<ul>
+<li>R-squared (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">R^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>): 衡量解釋能力 (總體績效)</li>
+<li>Adjusted R-squared</li>
+<li>Mean Squared Error (MSE)</li>
+<li>Root Mean Squared Error (RMSE)</li>
+<li>Mean Absolute Error (MAE)</li>
+<li>Residual Analysis: 檢查模型假設、異常、偏誤</li>
+</ul>
+<h3 id="適用情境">適用情境</h3>
+<p>線性迴歸的適用場景通常滿足以下條件:</p>
+<ul>
+<li>特徵與標籤之間關係接近線性 (可透過散佈圖觀察)。</li>
+<li>預測任務對解釋能力有高度需求 (例如需要明確了解每個變數如何影響結果)。</li>
+<li>需求偏向建構基準線 (baseline) 或快速估算。</li>
+</ul>
+<h3 id="限制條件">限制條件</h3>
+<p>線性迴歸雖然簡潔，但在多數真實場景下可能面臨以下困境:</p>
+<ul>
+<li>資料非線性: 大多數實務資料都包含非線性結構，線性模型難以捕捉 (可以搭配 Polynomial Features 處理)。</li>
+<li>高維資料與多重共線性: 特徵太多或高度相關，可能導致不穩定或過擬合。</li>
+<li>不具備交互作用建模能力: 無法處理變數之間的聯合影響 (除非顯式創造交互項)。</li>
+<li>差異質性與異常值敏感: 若誤差分布異常或出現極端值，模型容易偏誤。</li>
+</ul>
+<h3 id="與其他模型的比較">與其他模型的比較</h3>
+<p>與其他模型相比，線性迴歸具備明確的比較基準:</p>
+<table>
+	<thead>
+			<tr>
+					<th>模型</th>
+					<th>解釋性</th>
+					<th>應變能力</th>
+					<th>計算成本</th>
+					<th>擬合彈性</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>線性迴歸</td>
+					<td>✅ 高</td>
+					<td>❌ 低</td>
+					<td>✅ 低</td>
+					<td>❌ 低</td>
+			</tr>
+			<tr>
+					<td>決策樹 / 隨機森林</td>
+					<td>❌ 低</td>
+					<td>✅ 高</td>
+					<td>❌ 中</td>
+					<td>✅ 中</td>
+			</tr>
+			<tr>
+					<td>支持向量機</td>
+					<td>❌ 中</td>
+					<td>✅ 高</td>
+					<td>❌ 高</td>
+					<td>✅ 中</td>
+			</tr>
+			<tr>
+					<td>神經網路</td>
+					<td>❌ 極低</td>
+					<td>✅ 極高</td>
+					<td>❌ 極高</td>
+					<td>✅ 高</td>
+			</tr>
+	</tbody>
+</table>
+<p>(其他模型後續會慢慢介紹 &hellip; )</p>
+<p>線性迴歸的最大價值在於它是所有模型的基線模型 (baseline)。若一個任務連線性迴歸都無法擊敗，則其他模型的表現很可能也是不穩定或過擬合的。</p>
+<h2 id="模型實作">模型實作</h2>
+<h3 id="資料集介紹">資料集介紹</h3>
+<p>將使用經典的 Boston Housing Dataset 為例。由於 scikit-learn 已移除該資料集，我們改採自 Carnegie Mellon University 所提供的公開版本。樣本內容如下:</p>
+<p><img src="https://github.com/twcch/drive/raw/main/images/Image_2025-08-01_22-34-54.png" alt="Image_2025-08-01_22-34-54.png"></p>
+<p>欄位說明:</p>
+<ul>
+<li>CRIM: 每人平均犯罪率</li>
+<li>ZN: 區域住宅用地比例</li>
+<li>INDUS: 區域非零售商業用地比例</li>
+<li>CHAS: 查爾斯河虛擬變數 (1 = 河流旁, 0 = 其他)</li>
+<li>NOX: 一氧化氮濃度 (parts per 10 million)</li>
+<li>RM: 每個住宅的平均房間數</li>
+<li>AGE: 1940 年之前建造的自用住宅比例</li>
+<li>DIS: 到波士頓五個中心區域的加權距離</li>
+<li>RAD: 公路接近指數 (1 = 最接近, 24 = 最遠)</li>
+<li>TAX: 每 $10,000 的財產稅率</li>
+<li>PTRATIO: 學生與教師比例</li>
+<li>B: 1000(Bk - 0.63)^2, Bk = 區域黑人比例</li>
+<li>LSTAT: 區域人口中低收入者的比例</li>
+<li>MEDV: 自用住宅的中位數價格 (單位: $1000s)</li>
+</ul>
+<h3 id="程式實例">程式實例</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_boston_housing_data</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://lib.stat.cmu.edu/datasets/boston&#34;</span>  <span class="c1"># Boston Housing Dataset from Carnegie Mellon University</span>
+</span></span><span class="line"><span class="cl">    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="mi">22</span><span class="p">:]</span>  <span class="c1"># 從第 23 行開始</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 每筆資料分為 2 行 → 共 506 筆 → 總共 1012 行</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">raw_data</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">line_1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">raw_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">line_2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">raw_data</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line_1</span> <span class="o">+</span> <span class="n">line_2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CRIM&#34;</span><span class="p">,</span>  <span class="c1"># 每人平均犯罪率</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ZN&#34;</span><span class="p">,</span>  <span class="c1"># 區域住宅用地比例</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;INDUS&#34;</span><span class="p">,</span>  <span class="c1"># 區域非零售商業用地比例</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CHAS&#34;</span><span class="p">,</span>  <span class="c1"># 查爾斯河虛擬變數 (1 = 河流旁, 0 = 其他)</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;NOX&#34;</span><span class="p">,</span>  <span class="c1"># 一氧化氮濃度 (parts per 10 million)</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RM&#34;</span><span class="p">,</span>  <span class="c1"># 每個住宅的平均房間數</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;AGE&#34;</span><span class="p">,</span>  <span class="c1"># 1940 年之前建造的自用住宅比例</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;DIS&#34;</span><span class="p">,</span>  <span class="c1"># 到波士頓五個中心區域的加權距離</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;RAD&#34;</span><span class="p">,</span>  <span class="c1"># 公路接近指數 (1 = 最接近, 24 = 最遠)</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;TAX&#34;</span><span class="p">,</span>  <span class="c1"># 每 $10,000 的財產稅率</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;PTRATIO&#34;</span><span class="p">,</span>  <span class="c1"># 學生與教師比例</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;B&#34;</span><span class="p">,</span>  <span class="c1"># 1000(Bk - 0.63)^2, Bk = 區域黑人比例</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;LSTAT&#34;</span><span class="p">,</span>  <span class="c1"># 區域人口中低收入者的比例</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;MEDV&#34;</span><span class="p">,</span>  <span class="c1"># 自用住宅的中位數價格 (單位: $1000s)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">df</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># ----- 讀取資料 -----</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">original_data</span> <span class="o">=</span> <span class="n">get_boston_housing_data</span><span class="p">()</span>  <span class="c1"># 讀取資料</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># ----- 資料前處理 -----</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">cleaned_data</span> <span class="o">=</span> <span class="n">original_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">## 因透過 print(cleaned_data.isnull().sum()) 檢查缺失值 (0 筆)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">## 且 Pearson 相關係數檢查，相關係數 &gt;= 0.8 (0 筆)    </span>
+</span></span><span class="line"><span class="cl">    <span class="c1">### correlation_matrix = cleaned_data.corr()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">### target_corr = correlation_matrix[&#39;MEDV&#39;]</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">### high_corr_features = target_corr[target_corr &gt; 0.8].drop(&#39;MEDV&#39;)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">### print(f&#34;與 target 高度正相關的欄位:&#34;, high_corr_features)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">## 故不做資料前處理</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># ----- 模型訓練 -----</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">## 資料分割</span>
+</span></span><span class="line"><span class="cl">    <span class="n">X</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;MEDV&#34;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="p">[</span><span class="s2">&#34;MEDV&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">## 建立模型</span>
+</span></span><span class="line"><span class="cl">    <span class="n">model</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;lr&#34;</span><span class="p">,</span> <span class="n">LinearRegression</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="p">])</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">## 預測</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">## 評估</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">train_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">train_r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;train data 均方誤差 (MSE): </span><span class="si">{</span><span class="n">train_mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;train data 決定係數 R²: </span><span class="si">{</span><span class="n">train_r2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">test_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">test_r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;test data 均方誤差 (MSE): </span><span class="si">{</span><span class="n">test_mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;test data 決定係數 R²: </span><span class="si">{</span><span class="n">test_r2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></div><h3 id="執行結果">執行結果</h3>
+<ul>
+<li>train data 均方誤差 (MSE): 21.6414</li>
+<li>train data 決定係數 R²: 0.7509</li>
+<li>test data 均方誤差 (MSE): 24.2911</li>
+<li>test data 決定係數 R²: 0.6688</li>
+</ul>
+<h4 id="結果評估">結果評估</h4>
+<p>進行執行結果評估前，先來回顧評估指標的含義:</p>
+<table>
+	<thead>
+			<tr>
+					<th>指標</th>
+					<th>意義</th>
+					<th>解釋方式</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>MSE (Mean Squared Error)</td>
+					<td>預測值與實際值之間的平方差平均值</td>
+					<td>越小越好，越接近 0 表示預測誤差越小</td>
+			</tr>
+			<tr>
+					<td>R² (決定係數)</td>
+					<td>模型能解釋的變異比例 (總變異中有多少被模型解釋)</td>
+					<td>越接近 1 越好；0 表示無解釋力；&lt;0 表示比常數預測還差</td>
+			</tr>
+	</tbody>
+</table>
+<p>接下來看一下訓練資料與測試資料的表現:</p>
+<ul>
+<li>訓練資料 (Train Data) 的表現
+<ul>
+<li>R² = 0.7509: 表示模型可以解釋訓練資料中 約 75% 的變異</li>
+<li>MSE = 21.64: 對應房價誤差約為 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>21.64</mn></msqrt><mo>≈</mo><mn>4.65</mn></mrow><annotation encoding="application/x-tex">\sqrt{21.64} \approx 4.65</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.1328em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9072em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord">21.64</span></span></span><span style="top:-2.8672em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1328em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4.65</span></span></span></span> 千美元 ($4,650)</li>
+</ul>
+</li>
+<li>測試資料 (Test Data) 表現
+<ul>
+<li>R² = 0.6688: 模型在未見過的資料上仍解釋了 約 66.9% 的變異</li>
+<li>MSE = 24.29: 誤差略升，對應 RMSE 約 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>24.29</mn></msqrt><mo>≈</mo><mn>4.93</mn></mrow><annotation encoding="application/x-tex">\sqrt{24.29} \approx 4.93</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.1328em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9072em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord">24.29</span></span></span><span style="top:-2.8672em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1328em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4.93</span></span></span></span> 千美元</li>
+</ul>
+</li>
+</ul>
+<p>以上的結果表現，都相當合理，表示模型在訓練資料上有不錯的擬合力，沒有明顯欠擬合 (underfitting)，測試資料預測略為劣化，但整體表現尚稱穩定，總結如下:</p>
+<table>
+	<thead>
+			<tr>
+					<th>指標</th>
+					<th>判斷</th>
+					<th>解釋</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Train R² 明顯 &gt; Test R²</td>
+					<td>輕微的 overfitting 傾向</td>
+					<td>差距不大，可接受</td>
+			</tr>
+			<tr>
+					<td>MSE 增加幅度有限 (+2.65)</td>
+					<td>模型泛化能力尚可</td>
+					<td>尚無高變異問題</td>
+			</tr>
+	</tbody>
+</table>
+<h4 id="下一步建議">下一步建議</h4>
+<table>
+	<thead>
+			<tr>
+					<th>方向</th>
+					<th>建議方法</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>增強模型</td>
+					<td>使用 PolynomialFeatures 擴展非線性項</td>
+			</tr>
+			<tr>
+					<td>加強泛化能力</td>
+					<td>使用 Ridge 或 Lasso 進行正則化</td>
+			</tr>
+			<tr>
+					<td>改用非線性模型</td>
+					<td>嘗試 RandomForestRegressor、XGBoostRegressor</td>
+			</tr>
+			<tr>
+					<td>模型比較</td>
+					<td>建立 baseline vs 進階模型比較報告 (MSE / R² / 殘差圖)</td>
+			</tr>
+			<tr>
+					<td>誤差分析</td>
+					<td>畫出 Residual Plot 檢查異常值與變異不一致性 (heteroscedasticity)</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="結語">結語</h2>
+<p>線性迴歸的價值不在於它能解決所有問題，而在於它讓我們對「資料與結果的關係」建立第一個清晰的架構。這種清晰，是日後面對複雜資料時，所有模型選擇的比較基準。當你真正理解一個模型的假設、信念、行為邏輯與表現訊號時，你不再是依賴工具，而是在與資料進行對話。</p>
+
+    </div>
+  </article>
+</div>
+
+  </main>
+  <footer class="site-footer">
+  <div class="container footer-inner">
+    
+<ul class="social-list">
+  <li>
+    <a href="https://github.com/twcch" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" title="GitHub">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.62 8.21 11.18.6.11.82-.25.82-.57v-2.2c-3.34.71-4.04-1.58-4.04-1.58-.55-1.36-1.34-1.73-1.34-1.73-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.79 2.81 1.27 3.5.97.11-.76.42-1.27.76-1.56-2.67-.3-5.47-1.3-5.47-5.78 0-1.28.47-2.32 1.24-3.14-.13-.3-.54-1.52.11-3.16 0 0 1.01-.32 3.3 1.2a11.6 11.6 0 0 1 6.01 0c2.29-1.52 3.3-1.2 3.3-1.2.65 1.64.24 2.86.12 3.16.77.82 1.23 1.86 1.23 3.14 0 4.49-2.81 5.48-5.49 5.77.43.36.81 1.08.81 2.18v3.23c0 .32.22.69.83.57A12.01 12.01 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg>
+    </a>
+  </li>
+  <li>
+    <a href="mailto:twcch1218@gmail.com"  aria-label="Email" title="Email">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+    </a>
+  </li>
+</ul>
+<p class="footer-meta">Chih-Chien Hsieh．Since 1993</p>
+  </div>
+</footer>
+
+<script>
+  
+  (function () {
+    var btn = document.querySelector(".theme-toggle");
+    if (btn) {
+      btn.addEventListener("click", function () {
+        var root = document.documentElement;
+        var next = root.dataset.theme === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try { localStorage.setItem("theme", next); } catch (e) {}
+      });
+    }
+
+    
+    var navToggle = document.querySelector(".nav-toggle");
+    var siteNav = document.getElementById("site-nav");
+    if (navToggle && siteNav) {
+      var setNav = function (open) {
+        siteNav.classList.toggle("is-open", open);
+        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      };
+      navToggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        setNav(!siteNav.classList.contains("is-open"));
+      });
+      
+      siteNav.addEventListener("click", function (e) {
+        if (e.target.closest(".nav-link")) setNav(false);
+      });
+      document.addEventListener("click", function (e) {
+        if (!siteNav.contains(e.target) && !navToggle.contains(e.target)) setNav(false);
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") setNav(false);
+      });
+    }
+
+    
+    document.querySelectorAll(".post-content .highlight").forEach(function (block) {
+      var btn = document.createElement("button");
+      btn.className = "copy-btn";
+      btn.type = "button";
+      btn.textContent = "複製";
+      btn.addEventListener("click", function () {
+        var code = block.querySelector("code") || block.querySelector("pre");
+        if (!code) return;
+        navigator.clipboard.writeText(code.innerText).then(function () {
+          btn.textContent = "已複製";
+          setTimeout(function () { btn.textContent = "複製"; }, 1500);
+        });
+      });
+      block.appendChild(btn);
+    });
+  })();
+</script>
+
+</body>
+</html>

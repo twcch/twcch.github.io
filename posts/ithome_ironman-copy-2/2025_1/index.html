@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-tw" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <script>
+  (function () {
+    try {
+      var t = localStorage.getItem("theme");
+      if (t !== "light" && t !== "dark") {
+        t = "light"; 
+      }
+      document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>2025 iThome Ironman: 30 天入門常見的機器學習演算法 · Chih-Chien&#39;s Blog</title>
+<meta name="description" content="iThome 鐵人賽系列文章 (站外連結)"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="謝志謙, Chih-Chien Hsieh, twcch, cch, 部落格, 技術, 筆記">
+<link rel="canonical" href="http://localhost:1313/posts/ithome_ironman-copy-2/2025_1/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
+<meta property="og:title" content="2025 iThome Ironman: 30 天入門常見的機器學習演算法">
+<meta property="og:description" content="iThome 鐵人賽系列文章 (站外連結)">
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://localhost:1313/posts/ithome_ironman-copy-2/2025_1/">
+<meta name="twitter:card" content="summary"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico"><link rel="alternate" type="application/rss&#43;xml" href="http://localhost:1313/posts/ithome_ironman-copy-2/2025_1/index.xml" title="Chih-Chien&#39;s Blog">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/css/main.min.11c3736beb98bfae0608e51b66b0651ca4caadc4f01fd0f7e15eabab5b80e136.css" integrity="sha256-EcNza&#43;uYv64GCOUbZrBlHKTKrcTwH9D34V6rq1uA4TY=">
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-inner">
+    <a class="site-title" href="/">Chih-Chien&#39;s Blog</a>
+    <div class="header-actions">
+      <nav class="site-nav" id="site-nav" aria-label="主選單">
+        <a class="nav-link" href="/chih-chien-hsieh/">About Me</a>
+        <a class="nav-link" href="/textbooks/">Textbooks</a>
+        <a class="nav-link" href="/posts/ithome_ironman/">iThome Ironman</a>
+        <a class="nav-link" href="/posts/">Posts</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="開啟選單" aria-expanded="false" aria-controls="site-nav" title="開啟選單">
+        <svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"></path>
+        </svg>
+        <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
+      <button class="theme-toggle" type="button" aria-label="切換深色模式" title="切換深色模式">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main class="site-main">
+    
+<div class="container-narrow">
+  <header class="list-header">
+    <h1 class="list-title">2025 iThome Ironman: 30 天入門常見的機器學習演算法</h1><div class="prose list-desc"><p><a href="https://ithelp.ithome.com.tw/users/20163705/ironman/8136">iThome 鐵人賽系列文章 (站外連結)</a></p>
+</div>
+  </header>
+
+  <ul class="post-list post-list-lg">
+    <li class="post-list-item">
+      <a class="post-list-link" href="/posts/ithome_ironman-copy-2/2025_1/day30_series-conclusion/">
+        <div class="post-list-main">
+          <span class="post-list-title">(Day 30) 系列結尾</span>
+          <p class="post-list-summary">機器學習系列的回顧與反思，總結這 30 天的收穫與不足。</p>
+        </div>
+        <time class="post-list-date" datetime="2025-08-30">2025-08-30</time>
+      </a>
+    </li>
+    <li class="post-list-item">
+      <a class="post-list-link" href="/posts/ithome_ironman-copy-2/2025_1/day29_attention-mechanism/">
+        <div class="post-list-main">
+          <span class="post-list-title">(Day 29) 注意力機制 (Attention Mechanism)</span>
+          <p class="post-list-summary">解決 Seq2Seq 固定向量瓶頸的注意力機制，讓解碼器能聚焦於關鍵輸入。</p>
+        </div>
+        <time class="post-list-date" datetime="2025-08-29">2025-08-29</time>
+      </a>
+    </li>
+    <li class="post-list-item">
+      <a class="post-list-link" href="/posts/ithome_ironman-copy-2/2025_1/day28_seq2seq/">
+        <div class="post-list-main">
+          <span class="post-list-title">(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU)</span>
+          <p class="post-list-summary">以 Encoder-Decoder 架構處理機器翻譯等序列轉序列（Seq2Seq）任務。</p>
+        </div>
+        <time class="post-list-date" datetime="2025-08-28">2025-08-28</time>
+      </a>
+    </li>
+    <li class="post-list-item">
+      <a class="post-list-link" href="/posts/ithome_ironman-copy-2/2025_1/day27_gated-recurrent-unit/">
+        <div class="post-list-main">
+          <span class="post-list-title">(Day 27) 閘控循環單元 (Gated Recurrent Unit)</span>
+          <p class="post-list-summary">結構較 LSTM 精簡、同樣以門控機制處理長距離依賴的閘控循環單元（GRU）。</p>
+        </div>
+        <time class="post-list-date" datetime="2025-08-27">2025-08-27</time>
+      </a>
+    </li>
+    <li class="post-list-item">
+      <a class="post-list-link" href="/posts/ithome_ironman-copy-2/2025_1/day26_long-short-term-memory/">
+        <div class="post-list-main">
+          <span class="post-list-title">(Day 26) 長短期記憶網路 (Long Short-Term Memory)</span>
+          <p class="post-list-summary">透過記憶單元與門控機制克服 RNN 梯度消失、學習長距離依賴的 LSTM。</p>
+        </div>
+        <time class="post-list-date" datetime="2025-08-26">2025-08-26</time>
+      </a>
+    </li>
+    <li class="post-list-item">
+      <a class="post-list-link" href="/posts/ithome_ironman-copy-2/2025_1/day25_recurrent-neural-network/">
+        <div class="post-list-main">
+          <span class="post-list-title">(Day 25) 循環神經網路 (Recurrent Neural Network)</span>
+          <p class="post-list-summary">介紹處理序列資料的循環神經網路（RNN），如何以隱藏狀態連結前後資訊。</p>
+        </div>
+        <time class="post-list-date" datetime="2025-08-25">2025-08-25</time>
+      </a>
+    </li>
+    <li class="post-list-item">
+      <a class="post-list-link" href="/posts/ithome_ironman-copy-2/2025_1/day24_adam-optimizer/">
+        <div class="post-list-main">
+          <span class="post-list-title">(Day 24) Adam 優化器 (Adaptive Moment Estimation)</span>
+          <p class="post-list-summary">深入實務中最常見的優化器 Adam，理解其結合動量與自適應學習率的更新規則。</p>
+        </div>
+        <time class="post-list-date" datetime="2025-08-24">2025-08-24</time>
+      </a>
+    </li>
+    <li class="post-list-item">
+      <a class="post-list-link" href="/posts/ithome_ironman-copy-2/2025_1/day23_optimization-in-deep-learning/">
+        <div class="post-list-main">
+          <span class="post-list-title">(Day 23) 深度學習中的優化方法 (Optimization in Deep Learning)</span>
+          <p class="post-list-summary">從 SGD、Momentum、RMSProp 到 Adagrad，探討如何有效率地找到參數的最佳解。</p>
+        </div>
+        <time class="post-list-date" datetime="2025-08-23">2025-08-23</time>
+      </a>
+    </li>
+  </ul>
+  <nav class="pagination" aria-label="分頁"><span></span>
+    <span class="page-info">1 / 4</span><a class="page-next" href="/posts/ithome_ironman-copy-2/2025_1/page/2/">較舊 →</a>
+  </nav>
+</div>
+
+  </main>
+  <footer class="site-footer">
+  <div class="container footer-inner">
+    
+<ul class="social-list">
+  <li>
+    <a href="https://github.com/twcch" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" title="GitHub">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.62 8.21 11.18.6.11.82-.25.82-.57v-2.2c-3.34.71-4.04-1.58-4.04-1.58-.55-1.36-1.34-1.73-1.34-1.73-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.79 2.81 1.27 3.5.97.11-.76.42-1.27.76-1.56-2.67-.3-5.47-1.3-5.47-5.78 0-1.28.47-2.32 1.24-3.14-.13-.3-.54-1.52.11-3.16 0 0 1.01-.32 3.3 1.2a11.6 11.6 0 0 1 6.01 0c2.29-1.52 3.3-1.2 3.3-1.2.65 1.64.24 2.86.12 3.16.77.82 1.23 1.86 1.23 3.14 0 4.49-2.81 5.48-5.49 5.77.43.36.81 1.08.81 2.18v3.23c0 .32.22.69.83.57A12.01 12.01 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg>
+    </a>
+  </li>
+  <li>
+    <a href="mailto:twcch1218@gmail.com"  aria-label="Email" title="Email">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+    </a>
+  </li>
+</ul>
+<p class="footer-meta">Chih-Chien Hsieh．Since 1993</p>
+  </div>
+</footer>
+
+<script>
+  
+  (function () {
+    var btn = document.querySelector(".theme-toggle");
+    if (btn) {
+      btn.addEventListener("click", function () {
+        var root = document.documentElement;
+        var next = root.dataset.theme === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try { localStorage.setItem("theme", next); } catch (e) {}
+      });
+    }
+
+    
+    var navToggle = document.querySelector(".nav-toggle");
+    var siteNav = document.getElementById("site-nav");
+    if (navToggle && siteNav) {
+      var setNav = function (open) {
+        siteNav.classList.toggle("is-open", open);
+        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      };
+      navToggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        setNav(!siteNav.classList.contains("is-open"));
+      });
+      
+      siteNav.addEventListener("click", function (e) {
+        if (e.target.closest(".nav-link")) setNav(false);
+      });
+      document.addEventListener("click", function (e) {
+        if (!siteNav.contains(e.target) && !navToggle.contains(e.target)) setNav(false);
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") setNav(false);
+      });
+    }
+
+    
+    document.querySelectorAll(".post-content .highlight").forEach(function (block) {
+      var btn = document.createElement("button");
+      btn.className = "copy-btn";
+      btn.type = "button";
+      btn.textContent = "複製";
+      btn.addEventListener("click", function () {
+        var code = block.querySelector("code") || block.querySelector("pre");
+        if (!code) return;
+        navigator.clipboard.writeText(code.innerText).then(function () {
+          btn.textContent = "已複製";
+          setTimeout(function () { btn.textContent = "複製"; }, 1500);
+        });
+      });
+      block.appendChild(btn);
+    });
+  })();
+</script>
+
+</body>
+</html>
