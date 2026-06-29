@@ -17,7 +17,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#ffffff">
 <title>(Day 9) 樸素貝氏分類器 (Naive Bayes Classifier) · Chih-Chien&#39;s Blog</title>
-<meta name="description" content="前幾天的討論中，我們已經探討了迴歸分析、邏輯迴歸，以及最近兩天介紹的 K-Nearest Neighbors (KNN)。今天要討論的是另一種基礎且直覺性極強的分類演算法: 樸素貝氏分類器 (Naive Bayes Classifier)。儘管樸素貝氏分類器的基本原理非常簡單，甚至經常被視為基礎模型，但在實務應用中，它仍然是許多場合的首選，尤其是在文本分類領域，例如垃圾郵件分類與情感分析。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="twcch, 部落格, 技術, 筆記">
+<meta name="description" content="前幾天的討論中，我們已經探討了迴歸分析、邏輯迴歸，以及最近兩天介紹的 K-Nearest Neighbors (KNN)。今天要討論的是另一種基礎且直覺性極強的分類演算法: 樸素貝氏分類器 (Naive Bayes Classifier)。儘管樸素貝氏分類器的基本原理非常簡單，甚至經常被視為基礎模型，但在實務應用中，它仍然是許多場合的首選，尤其是在文本分類領域，例如垃圾郵件分類與情感分析。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="謝志謙, Chih-Chien Hsieh, twcch, cch, 部落格, 技術, 筆記">
 <link rel="canonical" href="https://twcch.github.io/ithome_ironman/2025_1/day9_naive-bayes-classifier/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
 <meta property="og:title" content="(Day 9) 樸素貝氏分類器 (Naive Bayes Classifier)">
 <meta property="og:description" content="前幾天的討論中，我們已經探討了迴歸分析、邏輯迴歸，以及最近兩天介紹的 K-Nearest Neighbors (KNN)。今天要討論的是另一種基礎且直覺性極強的分類演算法: 樸素貝氏分類器 (Naive Bayes Classifier)。儘管樸素貝氏分類器的基本原理非常簡單，甚至經常被視為基礎模型，但在實務應用中，它仍然是許多場合的首選，尤其是在文本分類領域，例如垃圾郵件分類與情感分析。">
