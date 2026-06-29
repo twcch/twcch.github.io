@@ -10,9 +10,16 @@
 		
 		
 		
-			<lastBuildDate>Sun, 28 Sep 2025 00:00:00 +0800</lastBuildDate>
+			<lastBuildDate>Mon, 29 Sep 2025 00:00:00 +0800</lastBuildDate>
 		
 			<atom:link href="https://twcch.github.io/tags/2025-ithome-ironman/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>兩個 30 天：我的 2025 iThome 鐵人賽完賽心得</title>
+				<link>https://twcch.github.io/posts/2025/ironman-2025-completion-reflection/</link>
+				<pubDate>Mon, 29 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>https://twcch.github.io/posts/2025/ironman-2025-completion-reflection/</guid>
+				<description>2025 年我一口氣完成了兩個 iThome 鐵人賽系列、共 60 篇——機器學習演算法與資料結構演算法。這篇回顧兩條路線的脈絡、誠實的自我檢討，以及它們共同訓練我的那種能力：把複雜問題，拆解到能被理解、被計算、被驗證的最小單位。</description>
+			</item>
 			<item>
 				<title>(Day 30) 系列結尾</title>
 				<link>https://twcch.github.io/ithome_ironman/2025_2/day30_series-conclusion/</link>
