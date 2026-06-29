@@ -17,10 +17,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#ffffff">
 <title>(Day 26) 長短期記憶網路 (Long Short-Term Memory) · Chih-Chien&#39;s Blog</title>
-<meta name="description" content="在前一篇，我們介紹了循環神經網路 (RNN)，並指出了它在處理序列資料時的強大之處：透過「隱藏狀態」將前後資訊連結起來。然而，我們同時也看到了 RNN 的最大瓶頸——梯度消失與梯度爆炸，使得它在長距離依賴 (long-term dependency) 的學習上表現不佳。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="謝志謙, Chih-Chien Hsieh, twcch, cch, 部落格, 技術, 筆記">
+<meta name="description" content="透過記憶單元與門控機制克服 RNN 梯度消失、學習長距離依賴的 LSTM。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="謝志謙, Chih-Chien Hsieh, twcch, cch, 部落格, 技術, 筆記">
 <link rel="canonical" href="https://twcch.github.io/posts/ithome_ironman/2025_1/day26_long-short-term-memory/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
 <meta property="og:title" content="(Day 26) 長短期記憶網路 (Long Short-Term Memory)">
-<meta property="og:description" content="在前一篇，我們介紹了循環神經網路 (RNN)，並指出了它在處理序列資料時的強大之處：透過「隱藏狀態」將前後資訊連結起來。然而，我們同時也看到了 RNN 的最大瓶頸——梯度消失與梯度爆炸，使得它在長距離依賴 (long-term dependency) 的學習上表現不佳。">
+<meta property="og:description" content="透過記憶單元與門控機制克服 RNN 梯度消失、學習長距離依賴的 LSTM。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://twcch.github.io/posts/ithome_ironman/2025_1/day26_long-short-term-memory/">
 <meta name="twitter:card" content="summary"><link rel="icon" href="/favicon.svg" type="image/svg+xml">

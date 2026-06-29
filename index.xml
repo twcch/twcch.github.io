@@ -53,161 +53,161 @@
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day30_series-conclusion/</link>
 				<pubDate>Sun, 28 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day30_series-conclusion/</guid>
-				<description>&lt;p&gt;經歷了 30 天，這篇也是該系列的結尾，從一開始立下題目「快速掌握資料結構與演算法」那一刻起，我就很清楚，這不會是一場輕鬆的挑戰。這 30 天，我不只是寫文章，更是一次徹底地拆解與重構「我對程式思維的理解」的過程。這不只是輸出知識，而是一場和自己對話的學習實驗。&lt;/p&gt;</description>
+				<description>資料結構與演算法系列的結尾與反思，一場與自己對話的學習實驗。</description>
 			</item>
 			<item>
 				<title>(Day 29) 最小生成樹的實務應用 (Applications of MST)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day29_mst-applications/</link>
 				<pubDate>Sat, 27 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day29_mst-applications/</guid>
-				<description>&lt;p&gt;在 Day 26～Day 28 中，我們依序介紹了「最小生成樹 (Minimum Spanning Tree, MST)」的概念、Kruskal 與 Prim 兩種經典演算法。今天，我們將不談數學推導與程式碼優化，而是聚焦在 「如何將 MST 應用到現實問題」。&lt;/p&gt;</description>
+				<description>聚焦最小生成樹在現實問題中的實務應用，而非數學推導。</description>
 			</item>
 			<item>
 				<title>(Day 28) Prim 演算法</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day28_prim-algorithm/</link>
 				<pubDate>Fri, 26 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day28_prim-algorithm/</guid>
-				<description>&lt;p&gt;在 Day 26 我們介紹了 最小生成樹 (MST) 的概念，並且在 Day 27 深入探討了 Kruskal 演算法。今天要介紹的是另一個經典方法 —— Prim 演算法。它與 Kruskal 不同，Prim 是以 節點為導向 的最小生成樹演算法。&lt;/p&gt;</description>
+				<description>以節點為導向求最小生成樹的 Prim 演算法。</description>
 			</item>
 			<item>
 				<title>(Day 27) Kruskal 演算法</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day27_kruskal-algorithm/</link>
 				<pubDate>Thu, 25 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day27_kruskal-algorithm/</guid>
-				<description>&lt;p&gt;在 Day 26 我們介紹了最小生成樹 (MST) 的概念，並提到兩個經典演算法: Kruskal 與 Prim。今天要深入探討 Kruskal 演算法，它以邊為導向，利用貪心法 (Greedy Algorithm) 與並查集 (Union-Find)，有效率地找出 MST&lt;/p&gt;</description>
+				<description>以邊為導向、結合貪心與並查集求最小生成樹的 Kruskal 演算法。</description>
 			</item>
 			<item>
 				<title>(Day 26) 最小生成樹 (Minimum Spanning Tree)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day26_minimum-spanning-tree/</link>
 				<pubDate>Wed, 24 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day26_minimum-spanning-tree/</guid>
-				<description>&lt;p&gt;在前幾天，我們學習了最短路徑問題 (Shortest Path)，例如 Dijkstra、Bellman-Ford、Floyd-Warshall、A*，今天要介紹的則是圖論中的另一個核心問題 —— 最小生成樹 (Minimum Spanning Tree, MST)&lt;/p&gt;</description>
+				<description>介紹圖論另一個核心問題——最小生成樹（MST）的概念。</description>
 			</item>
 			<item>
 				<title>(Day 25) A* 搜尋演算法 (A-star Search)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day25_a-star-search/</link>
 				<pubDate>Tue, 23 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day25_a-star-search/</guid>
-				<description>&lt;p&gt;在前幾天，我們介紹了 Dijkstra、Bellman-Ford、Floyd-Warshall，這些都是經典的最短路徑演算法。今天要談的是 A* 搜尋演算法 (A-star Search) —— 一個結合最短路徑與啟發式 (Heuristic) 的演算法，在人工智慧 (AI)、遊戲與導航中應用極為廣泛&lt;/p&gt;</description>
+				<description>結合最短路徑與啟發式（Heuristic）、廣泛用於 AI 與導航的 A* 搜尋演算法。</description>
 			</item>
 			<item>
 				<title>(Day 24) Floyd-Warshall 演算法</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day24_floyd-warshall-algorithm/</link>
 				<pubDate>Mon, 22 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day24_floyd-warshall-algorithm/</guid>
-				<description>&lt;p&gt;在前兩天我們分別介紹了 Dijkstra 與 Bellman-Ford ，它們都解決的是 單源最短路徑 (Single Source Shortest Path, SSSP) 問題。今天要介紹的是 Floyd-Warshall 演算法 —— 一個能計算 所有點對 (All-Pairs Shortest Path, APSP) 的演算法&lt;/p&gt;&#xA;&lt;h2 id=&#34;演算法背景&#34;&gt;演算法背景&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;適用情境&#xA;&lt;ul&gt;&#xA;&lt;li&gt;計算圖中 任意兩點之間的最短路徑&lt;/li&gt;&#xA;&lt;li&gt;圖可以包含 負權重邊，但 不能有負權重環&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;典型應用: 交通網路、路由系統、關係強度分析&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;核心思想&#34;&gt;核心思想&lt;/h2&gt;&#xA;&lt;p&gt;Floyd-Warshall 採用 動態規劃 (Dynamic Programming, DP) 的方式，逐步引入節點作為「中繼點」，不斷更新最短路徑&lt;/p&gt;</description>
+				<description>一次計算所有點對最短路徑（APSP）的 Floyd-Warshall 演算法。</description>
 			</item>
 			<item>
 				<title>(Day 23) Bellman-Ford 演算法</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day23_bellman-ford-algorithm/</link>
 				<pubDate>Sun, 21 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day23_bellman-ford-algorithm/</guid>
-				<description>&lt;p&gt;在前一天我們介紹了 Dijkstra 演算法，它能有效解決 單源最短路徑 (Single Source Shortest Path, SSSP) 問題，但有一個限制: 不能處理負權重邊 (Negative Weights)。然而，現實世界的很多問題 (例如金融套利、債務網路、價格波動) 都可能出現負權重，這時候我們就需要 Bellman-Ford 演算法。&lt;/p&gt;</description>
+				<description>能處理負權重邊的單源最短路徑演算法 Bellman-Ford。</description>
 			</item>
 			<item>
 				<title>(Day 22) Dijkstra 最短路徑演算法 (Dijkstra’s Algorithm)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day22_dijkstra-algorithm/</link>
 				<pubDate>Sat, 20 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day22_dijkstra-algorithm/</guid>
-				<description>&lt;p&gt;Dijkstra 最短路徑演算法是一種用於計算從單一源點到圖中所有其他節點的最短路徑的經典演算法。這個演算法適用於加權圖，其中邊的權重必須是非負的，核心思想是每次選擇「距離起點最近」的尚未處理節點，並用它來更新鄰居的最短距離，這種策略屬於貪心演算法 (Greedy Algorithm)&lt;/p&gt;</description>
+				<description>計算單源最短路徑、要求邊權非負的經典貪心演算法 Dijkstra。</description>
 			</item>
 			<item>
 				<title>(Day 21) 圖演算法 (Graph Algorithm)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day21_graph-algorithm/</link>
 				<pubDate>Fri, 19 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day21_graph-algorithm/</guid>
-				<description>&lt;p&gt;自從我們 Day 10 簡單地說一下圖結構後，就再也沒提到這個詞，我們今天開始就要介紹這個應用非常廣泛的圖 (Graph) 的演算法總覽，後續會接著介紹常見的圖演算法，因為圖是非線性資料結構中最重要的一員，在學術研究與實務應用上都有極高地位，從網路連線、地圖導航、社交網路到金融交易，幾乎都離不開圖的建模與演算法&lt;/p&gt;</description>
+				<description>圖演算法的總覽與應用，從網路連線、地圖導航到社交網路與金融交易。</description>
 			</item>
 			<item>
 				<title>(Day 20) 貪婪演算法 (Greedy Algorithm)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day20_greedy-algorithm/</link>
 				<pubDate>Thu, 18 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day20_greedy-algorithm/</guid>
-				<description>&lt;p&gt;貪婪演算法 (Greedy Algorithm) 是一種在每一步選擇中都採取在當前狀態下最好或最優 (即最有利) 的選擇，從而希望導致結果是全局最好或最優的演算法。這種方法每次做出選擇時，只考慮當前最優解，而不考慮未來的後果。&lt;/p&gt;</description>
+				<description>每步都取當前最優、寄望導向全域最優解的貪婪演算法（Greedy）。</description>
 			</item>
 			<item>
 				<title>(Day 19) 動態規劃 (Dynamic Programming)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day19_dynamic-programming/</link>
 				<pubDate>Wed, 17 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day19_dynamic-programming/</guid>
-				<description>&lt;p&gt;動態規劃 (Dynamic Programming; DP) 是一種將複雜問題分解為較小子問題，並儲存子問題解以避免重複計算的演算法設計方法。它常用於具有「重疊子問題」和「最優子結構」性質的問題&lt;/p&gt;</description>
+				<description>以儲存子問題解避免重複計算的動態規劃，適用具重疊子問題與最優子結構的問題。</description>
 			</item>
 			<item>
 				<title>(Day 18) 分治法 (Divide and Conquer)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day18_divide-and-conquer/</link>
 				<pubDate>Tue, 16 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day18_divide-and-conquer/</guid>
-				<description>&lt;p&gt;前面介紹了幾個簡單又常見的排序與搜尋的演算法，接下來我們來談談演算法設計策略，仿間有很多演算法的書並不會特地把 Divide and Conquer 或 Dynamic Programming 編成一個章節，這也導致新手學完了一些演算法後，不知道自己學的是 Divide and Conquer 或 Dynamic Programming，這也包括我，所以我們在來花幾天的時間來談談這些演算法設計策略。&lt;/p&gt;</description>
+				<description>介紹分治法（Divide and Conquer）這個演算法設計策略的核心思路。</description>
 			</item>
 			<item>
 				<title>(Day 17) 內插搜尋 (Interpolation Search)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day17_interpolation-search/</link>
 				<pubDate>Mon, 15 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day17_interpolation-search/</guid>
-				<description>&lt;p&gt;內插搜尋法 (Interpolation Search) 是一種基於數值分布估算落點的搜尋演算法，是對 二元搜尋 (Binary Search) 的改良。它特別適合用在已排序且元素分布相對均勻的資料集上，能有效地減少搜尋次數。&lt;/p&gt;</description>
+				<description>依數值分布估算落點、改良二元搜尋的內插搜尋（Interpolation Search）。</description>
 			</item>
 			<item>
 				<title>(Day 16) 二元搜尋 (Binary Search)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day16_binary-search/</link>
 				<pubDate>Sun, 14 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day16_binary-search/</guid>
-				<description>&lt;p&gt;在排序演算法之後，我們終於要介紹一個非常經典且實用的搜尋演算法 —— 二元搜尋 (Binary Search)。如果說排序演算法是「把資料整理好」，那麼搜尋演算法就是「如何在整理好的資料中快速找到想要的元素」。二元搜尋憑藉著「折半」的概念，將搜尋的時間複雜度大幅降低。&lt;/p&gt;</description>
+				<description>在已排序資料中以「折半」大幅降低搜尋複雜度的二元搜尋（Binary Search）。</description>
 			</item>
 			<item>
 				<title>(Day 15) 基礎排序演算法比較</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day15_basic-sorting-comparison/</link>
 				<pubDate>Sat, 13 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day15_basic-sorting-comparison/</guid>
-				<description>&lt;p&gt;在前面三天，我們分別介紹了氣泡排序 (Bubble Sort)、選擇排序 (Selection Sort)、插入排序 (Insertion Sort)。這三個演算法都是經典的「基礎排序」，時間複雜度同樣是 &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;O(n^2)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1.0641em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02778em;&#34;&gt;O&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.8141em;&#34;&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;，但它們在設計思路、操作方式、適用場景上各有不同。今天我們就來做一次系統化的分析比較。&lt;/p&gt;</description>
+				<description>系統化比較氣泡、選擇、插入三種 O(n^2) 基礎排序的設計思路與適用場景。</description>
 			</item>
 			<item>
 				<title>(Day 14) 插入排序 (Insertion Sort)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day14_insertion-sort/</link>
 				<pubDate>Fri, 12 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day14_insertion-sort/</guid>
-				<description>&lt;p&gt;插入排序 (Insertion Sort) 也是一種簡單直觀的排序演算法。它的工作原理是通過構建有序序列，對於未排序資料，在已排序序列中從後向前掃描，找到相應位置並插入。&lt;/p&gt;&#xA;&lt;h2 id=&#34;演算法步驟&#34;&gt;演算法步驟&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;從第二個元素開始，將該元素與前面的元素進行比較。&lt;/li&gt;&#xA;&lt;li&gt;如果該元素比前面的元素小，則將前面的元素往後移動一位。&lt;/li&gt;&#xA;&lt;li&gt;重複步驟2，直到找到該元素應插入的位置。&lt;/li&gt;&#xA;&lt;li&gt;將該元素插入到正確的位置。&lt;/li&gt;&#xA;&lt;li&gt;重複步驟1~4，直到所有元素都排序完成。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;範例&#34;&gt;範例&lt;/h2&gt;&#xA;&lt;p&gt;假設有一個陣列 &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo stretchy=&#34;false&#34;&gt;[&lt;/mo&gt;&lt;mn&gt;5&lt;/mn&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mn&gt;4&lt;/mn&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mn&gt;6&lt;/mn&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;mo stretchy=&#34;false&#34;&gt;]&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;A = [5, 2, 4, 6, 1, 3]&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.6833em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2778em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;mpunct&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.1667em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;mpunct&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.1667em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;mpunct&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.1667em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;mpunct&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.1667em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mpunct&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.1667em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;，插入排序的過程如下:&lt;/p&gt;</description>
+				<description>介紹將未排序元素逐一插入已排序序列的插入排序（Insertion Sort）。</description>
 			</item>
 			<item>
 				<title>(Day 13) 選擇排序 (Selection Sort)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day13_selection-sort/</link>
 				<pubDate>Thu, 11 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day13_selection-sort/</guid>
-				<description>&lt;p&gt;選擇排序 (Selection Sort) 是一種簡單直觀的排序演算法。核心概念: 每一輪從尚未排序的元素中挑出最小 (或最大) 者，放到目前應在的位置，一直重複直到完成。可以把它想成「選拔賽」: 第一輪選出最優放第一名，第二輪從剩下的人選次優放第二名，依此類推。&lt;/p&gt;</description>
+				<description>介紹每輪挑出最小者放到定位的選擇排序（Selection Sort）。</description>
 			</item>
 			<item>
 				<title>(Day 12) 氣泡排序 (Bubble Sort)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day12_bubble-sort/</link>
 				<pubDate>Wed, 10 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day12_bubble-sort/</guid>
-				<description>&lt;p&gt;終於進入演算法的部分，預計會介紹 3~4 個很常見的排序演算法，所以光排序這個主題就會用掉一些篇幅，今天除了介紹 Bubble Sort 外，會先簡單介紹一下排序，讓各位讀者更好地認識排序演算法。&lt;/p&gt;</description>
+				<description>排序演算法開篇，介紹相鄰交換的氣泡排序與排序的基本觀念。</description>
 			</item>
 			<item>
 				<title>(Day 11) 演算法評估 (Algorithm Analysis)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day11_algorithm-analysis/</link>
 				<pubDate>Tue, 09 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day11_algorithm-analysis/</guid>
-				<description>&lt;p&gt;到目前為止，我們已經介紹了各種資料結構 (Array、Linked List、Stack、Queue、Tree、Graph)，也練習了基本操作。但光有資料結構還不夠，要能設計演算法，就必須懂得如何評估一個演算法的效率。&lt;/p&gt;</description>
+				<description>說明如何以時間與空間複雜度評估演算法效率，銜接後續的演算法主題。</description>
 			</item>
 			<item>
 				<title>(Day 10) 圖 (Graph)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day10_graph/</link>
 				<pubDate>Mon, 08 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day10_graph/</guid>
-				<description>&lt;p&gt;這是資料結構的最後一篇，明天開始進入本系列的重點驗算法，前面幾天，我們介紹了各種樹結構 Binary Tree、Balanced Tree，以及其他衍生樹。而樹是一種特殊的圖結構，今天我們正式進入 Graph 的世界。&lt;/p&gt;</description>
+				<description>資料結構的最後一篇，正式進入比樹更一般化的圖（Graph）結構。</description>
 			</item>
 			<item>
 				<title>(Day 9) 其他樹 (Other Trees)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day9_other-trees/</link>
 				<pubDate>Sun, 07 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day9_other-trees/</guid>
-				<description>&lt;p&gt;在前面兩天，粗淺的介紹了 Binary Tree 與 Balanced Tree，今天更粗淺的介紹一下其他樹，因為本系列只是要做一個拋磚引玉的動作，如果讀者對於資料結構有興趣，建議可以買書來研讀。&lt;/p&gt;</description>
+				<description>概覽其他常見的樹結構，作為資料結構主題的拋磚引玉。</description>
 			</item>
 			<item>
 				<title>(Day 8) 平衡樹 (Balanced Tree)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day8_balanced-tree/</link>
 				<pubDate>Sat, 06 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day8_balanced-tree/</guid>
-				<description>&lt;p&gt;Balanced Tree 是一種特殊的二元樹結構，旨在保持樹的高度盡可能低，以提高操作效率。常見的平衡樹包括 AVL 樹、紅黑樹和 B 樹等。以下是關於平衡樹的詳細介紹。&lt;/p&gt;&#xA;&lt;h2 id=&#34;基本概念&#34;&gt;基本概念&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;二元樹: 是一種樹形數據結構，其中每個節點最多有兩個子節點，分別稱為左子節點和右子節點。&lt;/li&gt;&#xA;&lt;li&gt;平衡樹: 是一種二元樹，其特點是任何節點的兩個子樹的高度差不超過一個常數 (通常是 1)。這樣的結構確保了樹的高度保持在 &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;log&lt;/mi&gt;&lt;mo&gt;⁡&lt;/mo&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;O(\log n)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02778em;&#34;&gt;O&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mop&#34;&gt;lo&lt;span style=&#34;margin-right:0.01389em;&#34;&gt;g&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.1667em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;，從而使得查找、插入和刪除操作的時間複雜度都能保持在 &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;log&lt;/mi&gt;&lt;mo&gt;⁡&lt;/mo&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;O(\log n)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02778em;&#34;&gt;O&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mop&#34;&gt;lo&lt;span style=&#34;margin-right:0.01389em;&#34;&gt;g&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.1667em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;平衡樹類型&#34;&gt;平衡樹類型&lt;/h2&gt;&#xA;&lt;h3 id=&#34;avl-樹&#34;&gt;AVL 樹&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;定義: AVL樹是一種自平衡二元搜索樹，任何節點的兩個子樹的高度差不超過1。&lt;/li&gt;&#xA;&lt;li&gt;操作:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;插入: 插入後可能會破壞平衡，需要通過旋轉來恢復。&lt;/li&gt;&#xA;&lt;li&gt;刪除: 刪除後也可能需要旋轉來保持平衡。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;紅黑樹&#34;&gt;紅黑樹&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;定義: 紅黑樹是一種自平衡二元搜索樹，每個節點都有一個顏色 (紅或黑)，並遵循以下規則:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;節點是紅色或黑色。&lt;/li&gt;&#xA;&lt;li&gt;根節點是黑色。&lt;/li&gt;&#xA;&lt;li&gt;每個葉子節點 (NIL 或空節點) 是黑色。&lt;/li&gt;&#xA;&lt;li&gt;如果一個節點是紅色，則其兩個子節點都是黑色。&lt;/li&gt;&#xA;&lt;li&gt;從任何節點到其每個葉子節點的所有路徑都包含相同數量的黑色節點。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;操作:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;插入: 插入後可能需要重新著色和旋轉來保持平衡。&lt;/li&gt;&#xA;&lt;li&gt;刪除: 刪除後也可能需要重新著色和旋轉。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;b-樹&#34;&gt;B 樹&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;定義: B 樹是一種自平衡樹數據結構，適合用於存儲系統中需要大量讀寫操作的情況。B 樹的每個節點可以有多個子節點。&lt;/li&gt;&#xA;&lt;li&gt;特點:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;節點可以包含多個鍵和子節點。&lt;/li&gt;&#xA;&lt;li&gt;所有葉子節點位於同一層。&lt;/li&gt;&#xA;&lt;li&gt;B 樹的高度較低，適合磁盤存取。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;應用&#34;&gt;應用&lt;/h2&gt;&#xA;&lt;p&gt;平衡樹廣泛應用於需要快速查找、插入和刪除操作的場景，如數據庫索引、文件系統和內存管理等。&lt;/p&gt;</description>
+				<description>維持樹高以提升操作效率的平衡樹，如 AVL 樹、紅黑樹與 B 樹。</description>
 			</item>
 			<item>
 				<title>數據分析師的洞察之眼關聯分析</title>
@@ -221,28 +221,28 @@
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day7_binary-tree/</link>
 				<pubDate>Fri, 05 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day7_binary-tree/</guid>
-				<description>&lt;p&gt;前面幾天所介紹的資料結構就是線性的資料結構，今天開始所介紹的樹資料節構是屬於非線性資料結構，也非常的重要。&lt;/p&gt;&#xA;&lt;h2 id=&#34;基本定義&#34;&gt;基本定義&lt;/h2&gt;&#xA;&lt;p&gt;在進入 Binary Tree 之前，先來介紹一下基本的組成部分，可以搭配著下圖看:&lt;/p&gt;</description>
+				<description>從線性結構邁入非線性的樹結構，介紹相當重要的二元樹（Binary Tree）。</description>
 			</item>
 			<item>
 				<title>(Day 6) 隊列 (Queue)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day6_queue/</link>
 				<pubDate>Thu, 04 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day6_queue/</guid>
-				<description>&lt;p&gt;Queue (佇列) 與 Stack 一樣，是一種線性資料結構，但它遵循的是先進先出 (First-In-First-Out; FIFO) 的規則。你可以把 Queue 想像成排隊買票: 最早排隊的人會最先買到票並離開，而新加入的人只能站在隊伍最後。&lt;/p&gt;</description>
+				<description>介紹遵循先進先出（FIFO）的線性資料結構——隊列（Queue）。</description>
 			</item>
 			<item>
 				<title>(Day 5) 堆疊 (Stack)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day5_stack/</link>
 				<pubDate>Wed, 03 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day5_stack/</guid>
-				<description>&lt;p&gt;Stack (堆疊) 是一種受限的線性資料結構，遵循先進後出 (Last-In-First-Out; LIFO) 的資料結構。你可想像有一疊盤子，最後放上去的盤子會最先被拿走，所以 Stack 只允許在「頂端」進行操作，簡單來說就是你不能看或是取非最上層的元素。&lt;/p&gt;</description>
+				<description>介紹遵循後進先出（LIFO）、僅在頂端操作的堆疊（Stack）。</description>
 			</item>
 			<item>
 				<title>(Day 4) 鏈表 (Linked List)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day4_linked-list/</link>
 				<pubDate>Tue, 02 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day4_linked-list/</guid>
-				<description>&lt;p&gt;Linked List (鏈表) 是一種常見的資料結構，用來儲存一系列的元素。與陣列 (Array) 不同，Linked List 的元素稱為節點 (Node) 在記憶體中不必是連續的。每個節點除了儲存資料外，還會儲存一個指向下一個節點的參考 (指標)。&lt;/p&gt;</description>
+				<description>以節點與指標串接、記憶體不必連續的鏈表（Linked List）結構。</description>
 			</item>
 			<item>
 				<title>讀書無用論，真的無用嗎?</title>
@@ -256,224 +256,224 @@
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day3_matrix/</link>
 				<pubDate>Mon, 01 Sep 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day3_matrix/</guid>
-				<description>&lt;p&gt;我不知道大家看到這天會不會驚訝一下，不是應該接續 List 家族這是什麼? Matrix 就是 Array 只是我單獨抽出來說明，如果你沒有在學習或處理資料科學相關的，應該不會使用到 Matrix，但是我認為這是一個蠻常被忽略的部分，也就花一點篇幅來介紹它。&lt;/p&gt;</description>
+				<description>從陣列延伸、常被忽略卻在資料科學中重要的矩陣（Matrix）結構。</description>
 			</item>
 			<item>
 				<title>(Day 2) 陣列 (Array)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day2_array/</link>
 				<pubDate>Sun, 31 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day2_array/</guid>
-				<description>&lt;p&gt;Array 是一種 Static Data Structure 或稱為 Dense List，它是一種將有序串列的資料結構使用 Contiguous Allocation 來儲存，意味著儲存的元素必須是相同類型，且靜態資料結構的記憶體配置是在編譯時，就必須配置給相關的變數，因此在創建時必須先宣告空間大小。&lt;/p&gt;</description>
+				<description>介紹以連續記憶體配置、靜態大小儲存同型元素的陣列（Array）。</description>
 			</item>
 			<item>
 				<title>(Day 1) 介紹與準備</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_2/day1_introduction-and-preparation/</link>
 				<pubDate>Sat, 30 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_2/day1_introduction-and-preparation/</guid>
-				<description>&lt;p&gt;我遇過很多學習程式語言的人，都一直學框架或是 API 怎麼用，都不是很注重底層的知識，我認為一棟樓要蓋多高取決於地基打得多深，因為框架與 API 會變，但時間複雜度、記憶體模型、資料結構設計是不會變的。&lt;/p&gt;</description>
+				<description>資料結構與演算法系列開場，強調時間複雜度、記憶體模型等不變的底層地基。</description>
 			</item>
 			<item>
 				<title>(Day 30) 系列結尾</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day30_series-conclusion/</link>
 				<pubDate>Sat, 30 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day30_series-conclusion/</guid>
-				<description>&lt;p&gt;終於來到這個系列的最後一天。老實說，如果要我替這 30 天打個分數，我大概只會給自己一個勉強及格。原因很簡單: 這個系列從一開始就有宏大的規劃與期待，但在實際執行的過程中，遭遇了不少現實挑戰，也暴露了自己在知識深度、寫作規劃與時間管理上的不足。&lt;/p&gt;</description>
+				<description>機器學習系列的回顧與反思，總結這 30 天的收穫與不足。</description>
 			</item>
 			<item>
 				<title>(Day 29) 注意力機制 (Attention Mechanism)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day29_attention-mechanism/</link>
 				<pubDate>Fri, 29 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day29_attention-mechanism/</guid>
-				<description>&lt;p&gt;在前一天，我們介紹了 Seq2Seq 架構 (Encoder-Decoder)，它將輸入序列壓縮成一個固定維度的上下文向量 (Context Vector)，再交由解碼器 (Decoder) 逐步生成輸出。這種方法為機器翻譯、摘要生成等任務帶來了突破，但它也有一個致命的缺陷——瓶頸效應 (Bottleneck Problem)。&lt;/p&gt;</description>
+				<description>解決 Seq2Seq 固定向量瓶頸的注意力機制，讓解碼器能聚焦於關鍵輸入。</description>
 			</item>
 			<item>
 				<title>(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day28_seq2seq/</link>
 				<pubDate>Thu, 28 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day28_seq2seq/</guid>
-				<description>&lt;p&gt;在前幾天的文章中，我們依序介紹了 RNN、LSTM、GRU，並討論它們如何建模序列資料。這些模型能夠捕捉序列中的上下文關係，並緩解傳統 RNN 的梯度消失問題。然而，若我們想要處理更複雜的任務——例如機器翻譯 (Machine Translation)，僅僅依靠單向 RNN 或 LSTM 並不夠。&lt;/p&gt;</description>
+				<description>以 Encoder-Decoder 架構處理機器翻譯等序列轉序列（Seq2Seq）任務。</description>
 			</item>
 			<item>
 				<title>(Day 27) 閘控循環單元 (Gated Recurrent Unit)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day27_gated-recurrent-unit/</link>
 				<pubDate>Wed, 27 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day27_gated-recurrent-unit/</guid>
-				<description>&lt;p&gt;在前兩篇文章，我們分別介紹了 RNN (Recurrent Neural Network) 與 LSTM (Long Short-Term Memory)。RNN 為序列建模提供了基礎架構，但受限於梯度消失與爆炸問題，難以捕捉長距離依賴；LSTM 則透過引入 記憶單元 (Cell State) 與 門控機制 (Gating Mechanism)，成功緩解了這一問題。&lt;/p&gt;</description>
+				<description>結構較 LSTM 精簡、同樣以門控機制處理長距離依賴的閘控循環單元（GRU）。</description>
 			</item>
 			<item>
 				<title>(Day 26) 長短期記憶網路 (Long Short-Term Memory)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day26_long-short-term-memory/</link>
 				<pubDate>Tue, 26 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day26_long-short-term-memory/</guid>
-				<description>&lt;p&gt;在前一篇，我們介紹了循環神經網路 (RNN)，並指出了它在處理序列資料時的強大之處：透過「隱藏狀態」將前後資訊連結起來。然而，我們同時也看到了 RNN 的最大瓶頸——梯度消失與梯度爆炸，使得它在長距離依賴 (long-term dependency) 的學習上表現不佳。&lt;/p&gt;</description>
+				<description>透過記憶單元與門控機制克服 RNN 梯度消失、學習長距離依賴的 LSTM。</description>
 			</item>
 			<item>
 				<title>(Day 25) 循環神經網路 (Recurrent Neural Network)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day25_recurrent-neural-network/</link>
 				<pubDate>Mon, 25 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day25_recurrent-neural-network/</guid>
-				<description>&lt;p&gt;在前面幾天，我們介紹了全連接神經網路 (FCNN) 與卷積神經網路 (CNN)。這些架構在處理結構化數據或影像資料上非常成功，但若應用到「序列資料」時就顯得不足。例如:&lt;/p&gt;</description>
+				<description>介紹處理序列資料的循環神經網路（RNN），如何以隱藏狀態連結前後資訊。</description>
 			</item>
 			<item>
 				<title>(Day 24) Adam 優化器 (Adaptive Moment Estimation)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day24_adam-optimizer/</link>
 				<pubDate>Sun, 24 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day24_adam-optimizer/</guid>
-				<description>&lt;p&gt;在前一天，我們整理了深度學習中常見的優化方法，從最基本的隨機梯度下降 (SGD)，到 Momentum、RMSProp、Adagrad 等。今天我們要深入介紹其中最具代表性、也是實務中最常見的優化方法之一——Adam (Adaptive Moment Estimation)。&lt;/p&gt;</description>
+				<description>深入實務中最常見的優化器 Adam，理解其結合動量與自適應學習率的更新規則。</description>
 			</item>
 			<item>
 				<title>(Day 23) 深度學習中的優化方法 (Optimization in Deep Learning)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day23_optimization-in-deep-learning/</link>
 				<pubDate>Sat, 23 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day23_optimization-in-deep-learning/</guid>
-				<description>&lt;p&gt;在前一篇，我們談到了深度學習中的正規化與正則化，重點在於如何避免過擬合並保持訓練穩定。然而，光是解決過擬合還不夠：在龐大的神經網路裡，我們還得面對另一個關鍵問題——如何有效率地找到參數的最佳解。&lt;/p&gt;</description>
+				<description>從 SGD、Momentum、RMSProp 到 Adagrad，探討如何有效率地找到參數的最佳解。</description>
 			</item>
 			<item>
 				<title>(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day22_regularization-in-deep-learning/</link>
 				<pubDate>Fri, 22 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day22_regularization-in-deep-learning/</guid>
-				<description>&lt;p&gt;在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。&lt;/p&gt;</description>
+				<description>面對深度模型動輒上百萬參數的過擬合，介紹深度學習中的各種正規化與正則化手段。</description>
 			</item>
 			<item>
 				<title>(Day 21) 卷積神經網絡 (Convolutional Neural Network)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day21_convolutional-neural-network/</link>
 				<pubDate>Thu, 21 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day21_convolutional-neural-network/</guid>
-				<description>&lt;p&gt;在初步暸解全連接神經網絡 (Fully Connected Neural Network) 後，接下來必須介紹的經典架構就是卷積神經網絡 (Convolutional Neural Network; CNN)。卷積神經網絡可以說是深度學習的代表性架構之一，特別是在電腦視覺 (Computer Vision) 領域幾乎無處不在。&lt;/p&gt;</description>
+				<description>介紹深度學習在電腦視覺的代表性架構——卷積神經網絡（CNN）的概念與運作。</description>
 			</item>
 			<item>
 				<title>(Day 20) 激活函數 (Activation Function)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day20_activation-function/</link>
 				<pubDate>Wed, 20 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day20_activation-function/</guid>
-				<description>&lt;p&gt;承接昨天的神經元 (Neuron)，神經元的輸出是線性輸出，若僅停留在這個階段，輸出仍然是線性函數，即便我們把很多神經元堆疊在一起，整體模型仍然等效於一個線性轉換，無法捕捉到真實世界中複雜的非線性關係為了解決這個問題，我們需要引入激活函數 (Activation Function) 可以讓模型學習到更複雜的模式 (非線性)，所以激活函數必須是非線性的，這樣才能跟神經元做搭配。&lt;/p&gt;</description>
+				<description>說明為何需要激活函數引入非線性，讓堆疊的神經元能學習複雜模式。</description>
 			</item>
 			<item>
 				<title>(Day 19) 神經元 (Neuron)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day19_neuron/</link>
 				<pubDate>Tue, 19 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day19_neuron/</guid>
-				<description>&lt;p&gt;前一篇我們先介紹了全連接神經網絡 (Fully Connected Neural Network)，相信大家還是不太清楚這是什麼，接下來會用幾天的篇幅一一介紹相關的專有名詞，若要理解神經網路，必須先從最小的組成單位 —— 神經元 (Neuron) 開始。&lt;/p&gt;</description>
+				<description>從神經網路最小的組成單位「神經元」出發，理解其輸入、權重與輸出。</description>
 			</item>
 			<item>
 				<title>(Day 18) 全連接神經網絡 (Fully Connected Neural Network)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day18_fully-connected-neural-network/</link>
 				<pubDate>Mon, 18 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day18_fully-connected-neural-network/</guid>
-				<description>&lt;p&gt;在進入深度學習的第一步，必須要先認識最基礎的深度學習架構，這個架構稱為:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;全連接神經網路 (Fully Connected Neural Network; FCNN)&lt;/li&gt;&#xA;&lt;li&gt;多層感知機 (Multi-Layer Perceptron; MLP)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;這兩個都是指同一個東西，這個架構也是所有深度學習架構的基石，CNN、RNN、Transformer 都可以看作是在 FCNN 上加入特殊結構與限制後的延伸&lt;/p&gt;</description>
+				<description>認識深度學習最基礎的架構——全連接神經網絡的組成與運作方式。</description>
 			</item>
 			<item>
 				<title>(Day 17) 淺談深度學習 (Deep Learning)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day17_deep-learning-introduction/</link>
 				<pubDate>Sun, 17 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day17_deep-learning-introduction/</guid>
-				<description>&lt;p&gt;我們機器學習的部分還有 XGBoost、PCA、OneClass SVM 都還沒有談，只是篇幅限制，原本規劃深度學習大概就要花 15 篇左右的內容來談談，如果後續有篇幅我再補充。&lt;/p&gt;</description>
+				<description>從機器學習邁向深度學習的入門概觀，為後續神經網路內容鋪路。</description>
 			</item>
 			<item>
 				<title>(Day 16) K-Means</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day16_k-means/</link>
 				<pubDate>Sat, 16 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day16_k-means/</guid>
-				<description>&lt;p&gt;今天本來要說極限梯度提升數 (XGBoost)，但是我發現後面的篇幅可能快不夠了，今天開始的內容會調整成，無監督式學習 → 深度學習 → 如果有時間再回來補充 One-Class SVM 跟 XGBoost。&lt;/p&gt;</description>
+				<description>進入無監督式學習，介紹以分群為目標的 K-Means 演算法。</description>
 			</item>
 			<item>
 				<title>(Day 15) 隨機森林 (Random Forest)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day15_random-forest/</link>
 				<pubDate>Fri, 15 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day15_random-forest/</guid>
-				<description>&lt;p&gt;隨機森林是以「多棵弱學習器 (決策樹)」為基底的集成學習 (Ensemble) 方法，透過資料抽樣 (Bagging) 與特徵隨機子抽樣 (Random Subspace)  降低單棵樹的方差與不穩定性。直覺上，它像是一群專家各自投票: 每位專家 (樹) 看見的資料與特徵都不完全相同，最後以多數決 (分類) 或平均 (回歸) 給出更穩健的預測。&lt;/p&gt;</description>
+				<description>以多棵決策樹集成（Bagging）的隨機森林，降低單棵樹的方差與不穩定性。</description>
 			</item>
 			<item>
 				<title>(Day 14) 決策樹 (Decision Tree)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day14_decision-tree/</link>
 				<pubDate>Thu, 14 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day14_decision-tree/</guid>
-				<description>&lt;p&gt;Decision Tree 是一種基於條件分支的監督式學習模型，可用於分類與回歸任務。它透過一連串的「是/否」判斷，將資料不斷切分成更純淨的子集，最終形成一個由節點 (Nodes) 與邊 (Edges) 組成的樹狀結構。直覺上，你可以將它想成一連串的決策問句:  「乘客的性別是女性嗎？」 → 是 → 「年齡是否小於 12 歲？」 → 是 → 存活機率高。其最大特色是 可解釋性高，每個決策規則都能清楚對應到特徵與閾值，便於與非技術背景的利害關係人溝通。&lt;/p&gt;</description>
+				<description>以是／否條件分支將資料切分成更純子集的決策樹模型，可用於分類與迴歸。</description>
 			</item>
 			<item>
 				<title>(Day 13) 迴歸任務驗證指標</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day13_regression-metrics/</link>
 				<pubDate>Wed, 13 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day13_regression-metrics/</guid>
-				<description>&lt;p&gt;分類任務有混淆矩陣作為指標的核心基礎，迴歸任務則建立在誤差分佈 (Error Distribution) 之上。所有迴歸指標，都是在真實值與預測值的差異上進行數學運算。迴歸的評估相對分類簡單，沒有多種 TP、FP 的組合，但每個指標關注的面向、對異常值的敏感度、在商業決策上的意義卻各有不同。&lt;/p&gt;</description>
+				<description>建立在誤差分佈上的迴歸評估指標，比較各指標對異常值的敏感度與商業意義。</description>
 			</item>
 			<item>
 				<title>(Day 12) 多元分類任務驗證指標</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day12_multiclass-classification-metrics/</link>
 				<pubDate>Tue, 12 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day12_multiclass-classification-metrics/</guid>
-				<description>&lt;p&gt;多元分類任務驗證指標就只是從二元分類任務驗證指標延伸而來，核心概念一樣是二元分類任務驗證指標，而兩者只是在計算內容上有些許差異，所以指標仍然是 Accuracy、Recall、F1-score 等，所以請讀者先將二元分類任務驗證指標熟練後再來看。&lt;/p&gt;</description>
+				<description>從二元延伸到多元分類的驗證指標，說明同樣指標在計算方式上的差異。</description>
 			</item>
 			<item>
 				<title>(Day 11) 二元分類任務驗證指標</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day11_binary-classification-metrics/</link>
 				<pubDate>Mon, 11 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day11_binary-classification-metrics/</guid>
-				<description>&lt;p&gt;今天要介紹的是常見的分類任務驗證指標，會以二元分類問題為例，因為多元分類也是用相同的指標，只是計算方式會有所不同而已，預計會用 2-3 天的篇幅介紹完，分類與迴歸任務的驗證指標；先給各位讀者一個正確的觀念，選指標時必須回到業務背景與資料特性，不要迷信某個數值越高越好，真正有價值的模型評估，是能在技術表現與業務需求之間找到平衡。&lt;/p&gt;</description>
+				<description>以二元分類為例，介紹混淆矩陣與 Accuracy、Recall、F1 等評估指標及選用觀念。</description>
 			</item>
 			<item>
 				<title>(Day 10) 支援向量機 (Support Vector Machine)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day10_support-vector-machine/</link>
 				<pubDate>Sun, 10 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day10_support-vector-machine/</guid>
-				<description>&lt;p&gt;終於來到 SVM，這也是本系列介紹 Machine Learning 中分類演算法的最後一個，當然在機器學習中還有很多的監督式分類演算法，我個人認為相對沒我介紹的這幾個經典，就留給讀者自行學習。從明天開始到進入樹模型之前，我會補充一下，模型 Validation Index 的內容 (用來衡量模型結果好不好)，因為前面飆的有點快，後來有發現這部分也很重要，預計會花 2 ~ 3 天的篇幅來介紹。&lt;/p&gt;</description>
+				<description>介紹支援向量機如何以最大間隔超平面進行分類，為本系列經典分類模型收尾。</description>
 			</item>
 			<item>
 				<title>(Day 9) 樸素貝氏分類器 (Naive Bayes Classifier)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day9_naive-bayes-classifier/</link>
 				<pubDate>Sat, 09 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day9_naive-bayes-classifier/</guid>
-				<description>&lt;p&gt;前幾天的討論中，我們已經探討了迴歸分析、邏輯迴歸，以及最近兩天介紹的 K-Nearest Neighbors (KNN)。今天要討論的是另一種基礎且直覺性極強的分類演算法: 樸素貝氏分類器 (Naive Bayes Classifier)。儘管樸素貝氏分類器的基本原理非常簡單，甚至經常被視為基礎模型，但在實務應用中，它仍然是許多場合的首選，尤其是在文本分類領域，例如垃圾郵件分類與情感分析。&lt;/p&gt;</description>
+				<description>以貝氏定理為基礎、計算簡單卻在實務上相當實用的樸素貝氏分類器。</description>
 			</item>
 			<item>
 				<title>(Day 8) K-近鄰 (K-Nearest Neighbors)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day8_k-nearest-neighbors/</link>
 				<pubDate>Fri, 08 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day8_k-nearest-neighbors/</guid>
-				<description>&lt;p&gt;K-近鄰 (K-Nearest Neighbors; KNN) 是一種很直學的機器學習演算法。它沒有模型參數、沒有訓練過程，卻可以在某些任務上有不錯的效果。它的核心理念只有一句話: 「你是誰，由你周圍最像你的人決定。」&lt;/p&gt;</description>
+				<description>介紹無需訓練的 K-近鄰演算法，以「鄰居多數決」進行分類的直覺原理。</description>
 			</item>
 			<item>
 				<title>(Day 7) 回顧迴歸：從線性邏輯到學習本質</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day7_regression-review/</link>
 				<pubDate>Thu, 07 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day7_regression-review/</guid>
-				<description>&lt;p&gt;前面 5 天我們聚焦於「回歸系列」模型: 線性迴歸 (Linear Regression)、多項式迴歸 (Polynomial Regression)、正則化迴歸 (Lasso / Ridge / ElasticNet Regression) 以及邏輯迴歸 (Logistic Regression)。雖然它們名稱上都掛著「Regression」，實則涵蓋了連續值預測與分類任務兩大主題。&lt;/p&gt;</description>
+				<description>回顧線性、多項式、正則化與邏輯迴歸，從學習本質串起整個迴歸家族。</description>
 			</item>
 			<item>
 				<title>(Day 6) 邏輯迴歸 (多項式 &#43; 正規化)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day6_logistic-regression-polynomial-regularization/</link>
 				<pubDate>Wed, 06 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day6_logistic-regression-polynomial-regularization/</guid>
-				<description>&lt;p&gt;在上一篇中，我們深入介紹了邏輯迴歸的模型邏輯、損失函數與分類行為。這篇則要進一步延伸這個經典模型，回答一個關鍵問題: 邏輯迴歸能否結合多項式特徵與正規化機制，來對抗非線性與過擬合問題?&lt;/p&gt;</description>
+				<description>延伸邏輯迴歸，結合多項式特徵與正規化機制，來對抗非線性與過擬合問題。</description>
 			</item>
 			<item>
 				<title>(Day 5) 邏輯迴歸 (Logistic Regression)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day5_logistic-regression/</link>
 				<pubDate>Tue, 05 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day5_logistic-regression/</guid>
-				<description>&lt;p&gt;邏輯迴歸 (Logistic Regression) 是一種常見的分類模型，主要用於預測二元分類或多元分類，有別於先前的線性迴歸是用來預測無邊界的連數據值，而邏輯迴歸間單來說就是預測有邊界的不連續數值，如 [0, 1], [1, 2, 3]。&lt;/p&gt;</description>
+				<description>介紹用於分類任務的邏輯迴歸，如何將輸出壓縮到有邊界的機率區間以區分類別。</description>
 			</item>
 			<item>
 				<title>(Day 4) 正規化迴歸 (Regularization Regression)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day4_regularization-regression/</link>
 				<pubDate>Mon, 04 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day4_regularization-regression/</guid>
-				<description>&lt;p&gt;延續昨日的多項式迴歸中，我們觀察到一個現象: 雖然二次特徵提升了模型的表現，但同時也引入過擬合 (Overfitting) 風險。這是因為當特徵數量暴增，模型就會變得過於「貪婪」，試圖將每個資料點都擬合得極好，結果反而喪失了在新資料上的泛化 (Generalization) 能力。&lt;/p&gt;</description>
+				<description>透過 Lasso、Ridge、ElasticNet 等正規化手段抑制過擬合，提升模型在新資料上的泛化能力。</description>
 			</item>
 			<item>
 				<title>(Day 3) 多項式迴歸 (Polynomial Regression)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day3_polynomial-regression/</link>
 				<pubDate>Sun, 03 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day3_polynomial-regression/</guid>
-				<description>&lt;p&gt;昨天介紹了線性迴歸 (Linear Regression)，它適合用來處理特徵與目標之間為線性關係的情境。然而，真實世界的資料往往並非純粹線性，而是呈現複雜的非線性關係，例如曲線、拋物線、甚至更複雜的波動趨勢。&lt;/p&gt;</description>
+				<description>當資料呈現非線性關係時，如何以多項式迴歸擬合曲線趨勢，並認識隨之而來的過擬合風險。</description>
 			</item>
 			<item>
 				<title>(Day 2) 線性迴歸 (Linear Regression)</title>
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day2_linear-regression/</link>
 				<pubDate>Sat, 02 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day2_linear-regression/</guid>
-				<description>&lt;p&gt;線性迴歸 (Linear Regression) 是統計學中的一種預測方法，主要分為簡單線性迴歸 (Simple Linear Regression) 與多元線性迴歸 (Multiple Linear Regression)，又稱複迴歸，以及其他變形的迴歸等，但在線性迴歸中，通常會有 1~N 個自變數 (Independent Variable) X，也可以稱作特徵 (Feature)；和 1 個因變數 (Dependent Variable) Y，也可以稱作目標 (Target)。而最終目的就是找出一條最佳迴歸線，來擬合這些數據點，便可以用來預測未來的數據點。&lt;/p&gt;</description>
+				<description>介紹線性迴歸的核心概念、基本假設，以及如何找出最佳迴歸線來預測連續數值。</description>
 			</item>
 			<item>
 				<title>在數據中尋找秩序，資料探勘的藝術</title>
@@ -487,7 +487,7 @@
 				<link>https://twcch.github.io/posts/ithome_ironman/2025_1/day1_introduction-and-preparation/</link>
 				<pubDate>Fri, 01 Aug 2025 00:00:00 +0800</pubDate>
 				<guid>https://twcch.github.io/posts/ithome_ironman/2025_1/day1_introduction-and-preparation/</guid>
-				<description>&lt;p&gt;在學習機器學習 (Machine Learning) 的過程中，可能會陷入兩種極端，一種是只會調用套件 (套模)，模型背後的機制一知半解，遇到問題只能「換模型試試看」，或者是過度陷入數學細節，花大量時間推導公式，卻無法轉化為實際應用與模型選擇能力。&lt;/p&gt;</description>
+				<description>機器學習系列的開場，說明學習定位、技術範圍與預期讀者，避免只會套模或過度陷入數學推導的兩種極端。</description>
 			</item>
 			<item>
 				<title>AI 時代下，逐漸消失的初階商業分析師</title>

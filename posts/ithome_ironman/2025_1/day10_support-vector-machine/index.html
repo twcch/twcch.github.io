@@ -17,10 +17,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#ffffff">
 <title>(Day 10) 支援向量機 (Support Vector Machine) · Chih-Chien&#39;s Blog</title>
-<meta name="description" content="終於來到 SVM，這也是本系列介紹 Machine Learning 中分類演算法的最後一個，當然在機器學習中還有很多的監督式分類演算法，我個人認為相對沒我介紹的這幾個經典，就留給讀者自行學習。從明天開始到進入樹模型之前，我會補充一下，模型 Validation Index 的內容 (用來衡量模型結果好不好)，因為前面飆的有點快，後來有發現這部分也很重要，預計會花 2 ~ 3 天的篇幅來介紹。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="謝志謙, Chih-Chien Hsieh, twcch, cch, 部落格, 技術, 筆記">
+<meta name="description" content="介紹支援向量機如何以最大間隔超平面進行分類，為本系列經典分類模型收尾。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="謝志謙, Chih-Chien Hsieh, twcch, cch, 部落格, 技術, 筆記">
 <link rel="canonical" href="https://twcch.github.io/posts/ithome_ironman/2025_1/day10_support-vector-machine/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
 <meta property="og:title" content="(Day 10) 支援向量機 (Support Vector Machine)">
-<meta property="og:description" content="終於來到 SVM，這也是本系列介紹 Machine Learning 中分類演算法的最後一個，當然在機器學習中還有很多的監督式分類演算法，我個人認為相對沒我介紹的這幾個經典，就留給讀者自行學習。從明天開始到進入樹模型之前，我會補充一下，模型 Validation Index 的內容 (用來衡量模型結果好不好)，因為前面飆的有點快，後來有發現這部分也很重要，預計會花 2 ~ 3 天的篇幅來介紹。">
+<meta property="og:description" content="介紹支援向量機如何以最大間隔超平面進行分類，為本系列經典分類模型收尾。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://twcch.github.io/posts/ithome_ironman/2025_1/day10_support-vector-machine/">
 <meta name="twitter:card" content="summary"><link rel="icon" href="/favicon.svg" type="image/svg+xml">

@@ -17,12 +17,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#ffffff">
 <title>(Day 24) Floyd-Warshall 演算法 · Chih-Chien&#39;s Blog</title>
-<meta name="description" content="在前兩天我們分別介紹了 Dijkstra 與 Bellman-Ford ，它們都解決的是 單源最短路徑 (Single Source Shortest Path, SSSP) 問題。今天要介紹的是 Floyd-Warshall 演算法 —— 一個能計算 所有點對 (All-Pairs Shortest Path, APSP) 的演算法
-演算法背景 適用情境 計算圖中 任意兩點之間的最短路徑 圖可以包含 負權重邊，但 不能有負權重環 典型應用: 交通網路、路由系統、關係強度分析 核心思想 Floyd-Warshall 採用 動態規劃 (Dynamic Programming, DP) 的方式，逐步引入節點作為「中繼點」，不斷更新最短路徑"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="謝志謙, Chih-Chien Hsieh, twcch, cch, 部落格, 技術, 筆記">
+<meta name="description" content="一次計算所有點對最短路徑（APSP）的 Floyd-Warshall 演算法。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="謝志謙, Chih-Chien Hsieh, twcch, cch, 部落格, 技術, 筆記">
 <link rel="canonical" href="https://twcch.github.io/posts/ithome_ironman/2025_2/day24_floyd-warshall-algorithm/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
 <meta property="og:title" content="(Day 24) Floyd-Warshall 演算法">
-<meta property="og:description" content="在前兩天我們分別介紹了 Dijkstra 與 Bellman-Ford ，它們都解決的是 單源最短路徑 (Single Source Shortest Path, SSSP) 問題。今天要介紹的是 Floyd-Warshall 演算法 —— 一個能計算 所有點對 (All-Pairs Shortest Path, APSP) 的演算法
-演算法背景 適用情境 計算圖中 任意兩點之間的最短路徑 圖可以包含 負權重邊，但 不能有負權重環 典型應用: 交通網路、路由系統、關係強度分析 核心思想 Floyd-Warshall 採用 動態規劃 (Dynamic Programming, DP) 的方式，逐步引入節點作為「中繼點」，不斷更新最短路徑">
+<meta property="og:description" content="一次計算所有點對最短路徑（APSP）的 Floyd-Warshall 演算法。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://twcch.github.io/posts/ithome_ironman/2025_2/day24_floyd-warshall-algorithm/">
 <meta name="twitter:card" content="summary"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
