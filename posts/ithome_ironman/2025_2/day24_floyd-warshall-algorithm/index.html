@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-tw" data-theme="light">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <script>
   (function () {
     try {
@@ -19,18 +19,18 @@
 <title>(Day 24) Floyd-Warshall 演算法 · Chih-Chien&#39;s Blog</title>
 <meta name="description" content="在前兩天我們分別介紹了 Dijkstra 與 Bellman-Ford ，它們都解決的是 單源最短路徑 (Single Source Shortest Path, SSSP) 問題。今天要介紹的是 Floyd-Warshall 演算法 —— 一個能計算 所有點對 (All-Pairs Shortest Path, APSP) 的演算法
 演算法背景 適用情境 計算圖中 任意兩點之間的最短路徑 圖可以包含 負權重邊，但 不能有負權重環 典型應用: 交通網路、路由系統、關係強度分析 核心思想 Floyd-Warshall 採用 動態規劃 (Dynamic Programming, DP) 的方式，逐步引入節點作為「中繼點」，不斷更新最短路徑"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="謝志謙, Chih-Chien Hsieh, twcch, cch, 部落格, 技術, 筆記">
-<link rel="canonical" href="http://localhost:1313/posts/ithome_ironman/2025_2/day24_floyd-warshall-algorithm/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
+<link rel="canonical" href="https://twcch.github.io/posts/ithome_ironman/2025_2/day24_floyd-warshall-algorithm/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
 <meta property="og:title" content="(Day 24) Floyd-Warshall 演算法">
 <meta property="og:description" content="在前兩天我們分別介紹了 Dijkstra 與 Bellman-Ford ，它們都解決的是 單源最短路徑 (Single Source Shortest Path, SSSP) 問題。今天要介紹的是 Floyd-Warshall 演算法 —— 一個能計算 所有點對 (All-Pairs Shortest Path, APSP) 的演算法
 演算法背景 適用情境 計算圖中 任意兩點之間的最短路徑 圖可以包含 負權重邊，但 不能有負權重環 典型應用: 交通網路、路由系統、關係強度分析 核心思想 Floyd-Warshall 採用 動態規劃 (Dynamic Programming, DP) 的方式，逐步引入節點作為「中繼點」，不斷更新最短路徑">
 <meta property="og:type" content="article">
-<meta property="og:url" content="http://localhost:1313/posts/ithome_ironman/2025_2/day24_floyd-warshall-algorithm/">
+<meta property="og:url" content="https://twcch.github.io/posts/ithome_ironman/2025_2/day24_floyd-warshall-algorithm/">
 <meta name="twitter:card" content="summary"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/favicon.ico"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="/css/main.min.11c3736beb98bfae0608e51b66b0651ca4caadc4f01fd0f7e15eabab5b80e136.css" integrity="sha256-EcNza&#43;uYv64GCOUbZrBlHKTKrcTwH9D34V6rq1uA4TY=">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous"><meta name="generator" content="Hugo 0.163.1">
 
 </head>
 <body>

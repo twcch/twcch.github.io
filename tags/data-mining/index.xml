@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Data Mining on Chih-Chien&#39;s Blog</title>
-		<link>http://localhost:1313/tags/data-mining/</link>
+		<link>https://twcch.github.io/tags/data-mining/</link>
 		<description>Recent content in Data Mining on Chih-Chien&#39;s Blog</description>
 		<generator>Hugo</generator>
 		<language>zh-tw</language>
@@ -12,19 +12,19 @@
 		
 			<lastBuildDate>Sat, 06 Sep 2025 00:00:00 +0800</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/tags/data-mining/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="https://twcch.github.io/tags/data-mining/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>數據分析師的洞察之眼關聯分析</title>
-				<link>http://localhost:1313/posts/2025/when-data-starts-to-connect/</link>
+				<link>https://twcch.github.io/posts/2025/when-data-starts-to-connect/</link>
 				<pubDate>Sat, 06 Sep 2025 00:00:00 +0800</pubDate>
-				<guid>http://localhost:1313/posts/2025/when-data-starts-to-connect/</guid>
+				<guid>https://twcch.github.io/posts/2025/when-data-starts-to-connect/</guid>
 				<description>關聯分析是一門讓資料自己說話的藝術。它揭示了人類行為中難以察覺的潛在規律，讓原本靜止的交易紀錄轉化為可被理解的語言。從超市購物籃到金融詐欺偵測，從用戶瀏覽軌跡到醫療診斷模式，關聯分析讓分析師在海量資料中捕捉行為的共現脈絡與決策邏輯。這門技術不僅協助企業理解選擇背後的心理與社會結構，也讓我們意識到——當資料開始說話，人類的行為故事，終於得以被閱讀與理解。</description>
 			</item>
 			<item>
 				<title>在數據中尋找秩序，資料探勘的藝術</title>
-				<link>http://localhost:1313/posts/2025/order-in-the-chaos-of-data/</link>
+				<link>https://twcch.github.io/posts/2025/order-in-the-chaos-of-data/</link>
 				<pubDate>Sat, 02 Aug 2025 00:00:00 +0800</pubDate>
-				<guid>http://localhost:1313/posts/2025/order-in-the-chaos-of-data/</guid>
+				<guid>https://twcch.github.io/posts/2025/order-in-the-chaos-of-data/</guid>
 				<description>資料探勘是一門結合統計學、資料庫與機器學習的藝術。它讓分析師能在龐雜資料中尋找模式、關聯與異常，揭示人類行為與決策背後的邏輯。從行銷分析到醫療預測，資料探勘不僅是技術過程，更是一種思考方式，教我們如何傾聽資料、理解現象，並將知識轉化為行動。</description>
 			</item>
 	</channel>
