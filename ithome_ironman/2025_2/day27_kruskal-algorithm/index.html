@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-tw" data-theme="light">
+<head>
+  <script>
+  (function () {
+    try {
+      var t = localStorage.getItem("theme");
+      if (t !== "light" && t !== "dark") {
+        t = "light"; 
+      }
+      document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>(Day 27) Kruskal 演算法 · Chih-Chien&#39;s Blog</title>
+<meta name="description" content="在 Day 26 我們介紹了最小生成樹 (MST) 的概念，並提到兩個經典演算法: Kruskal 與 Prim。今天要深入探討 Kruskal 演算法，它以邊為導向，利用貪心法 (Greedy Algorithm) 與並查集 (Union-Find)，有效率地找出 MST"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="twcch, 部落格, 技術, 筆記">
+<link rel="canonical" href="https://twcch.github.io/ithome_ironman/2025_2/day27_kruskal-algorithm/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
+<meta property="og:title" content="(Day 27) Kruskal 演算法">
+<meta property="og:description" content="在 Day 26 我們介紹了最小生成樹 (MST) 的概念，並提到兩個經典演算法: Kruskal 與 Prim。今天要深入探討 Kruskal 演算法，它以邊為導向，利用貪心法 (Greedy Algorithm) 與並查集 (Union-Find)，有效率地找出 MST">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://twcch.github.io/ithome_ironman/2025_2/day27_kruskal-algorithm/">
+<meta name="twitter:card" content="summary"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/css/main.min.11c3736beb98bfae0608e51b66b0651ca4caadc4f01fd0f7e15eabab5b80e136.css" integrity="sha256-EcNza&#43;uYv64GCOUbZrBlHKTKrcTwH9D34V6rq1uA4TY=">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous"><meta name="generator" content="Hugo 0.163.1">
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-inner">
+    <a class="site-title" href="/">Chih-Chien&#39;s Blog</a>
+    <div class="header-actions">
+      <nav class="site-nav" id="site-nav" aria-label="主選單">
+        <a class="nav-link" href="/chih-chien-hsieh/">About Me</a>
+        <a class="nav-link" href="/textbooks/">Textbooks</a>
+        <a class="nav-link" href="/posts/">Posts</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="開啟選單" aria-expanded="false" aria-controls="site-nav" title="開啟選單">
+        <svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"></path>
+        </svg>
+        <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
+      <button class="theme-toggle" type="button" aria-label="切換深色模式" title="切換深色模式">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main class="site-main">
+    
+<div class="container-narrow">
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">(Day 27) Kruskal 演算法</h1>
+    </header>
+
+    <div class="post-content prose">
+      <p>在 Day 26 我們介紹了最小生成樹 (MST) 的概念，並提到兩個經典演算法: Kruskal 與 Prim。今天要深入探討 Kruskal 演算法，它以邊為導向，利用貪心法 (Greedy Algorithm) 與並查集 (Union-Find)，有效率地找出 MST</p>
+<h2 id="演算法原理">演算法原理</h2>
+<p>Kruskal 的核心思想是: 每次選擇當前最小的邊，只要不形成環，就把它加入生成樹，直到選出 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">V-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 條邊。</p>
+<p>這是一種貪心策略 (Greedy Strategy)，因為它每一步都選擇「目前最小代價」的選項，並且最終能證明得到的結果是最優解。</p>
+<h2 id="演算法步驟">演算法步驟</h2>
+<ul>
+<li>將圖中所有邊依照權重大小排序。</li>
+<li>初始化一個空集合，用來存放 MST 的邊。</li>
+<li>依序取出最小邊，若這條邊不會與已選的邊形成環，則加入 MST。</li>
+<li>重複直到選出 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">V-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 條邊（V 為節點數）。</li>
+</ul>
+<h2 id="關鍵-如何判斷是否成環">關鍵: 如何判斷是否成環?</h2>
+<p>這裡就需要 Union-Find (並查集):</p>
+<ul>
+<li>Find(x): 找到元素 x 所屬的集合代表（根節點）。</li>
+<li>Union(x, y): 將兩個集合合併。</li>
+</ul>
+<p>如果一條邊 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(u, v)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mclose">)</span></span></span></span> 的兩端節點已經在同一個集合，代表加入它會形成環，必須跳過。</p>
+<h2 id="python-實作">Python 實作</h2>
+<h3 id="union-find">Union-Find</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">UnionFind</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>  <span class="c1"># 初始化，每個節點的父節點指向自己</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>           <span class="c1"># 用 rank 優化，避免退化成鏈狀</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">!=</span> <span class="n">x</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>  <span class="c1"># 路徑壓縮</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">union</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">root_x</span><span class="p">,</span> <span class="n">root_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">root_x</span> <span class="o">==</span> <span class="n">root_y</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># 在同一集合，不能合併（會成環）</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">root_x</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">root_y</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">root_x</span><span class="p">]</span> <span class="o">=</span> <span class="n">root_y</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">root_x</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">root_y</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">root_y</span><span class="p">]</span> <span class="o">=</span> <span class="n">root_x</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">root_y</span><span class="p">]</span> <span class="o">=</span> <span class="n">root_x</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">root_x</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">True</span>
+</span></span></code></pre></div><h3 id="kruskal-演算法">Kruskal 演算法</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">kruskal</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">edges</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    V: 節點數
+</span></span></span><span class="line"><span class="cl"><span class="s2">    edges: (u, v, w) 的邊清單
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">uf</span> <span class="o">=</span> <span class="n">UnionFind</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mst</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">edges</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># 按照權重排序</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">uf</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>  <span class="c1"># 如果不成環，加入 MST</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mst</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mst</span><span class="p">)</span> <span class="o">==</span> <span class="n">V</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">mst</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 測試</span>
+</span></span><span class="line"><span class="cl"><span class="n">V</span> <span class="o">=</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl"><span class="n">edges</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">mst</span> <span class="o">=</span> <span class="n">kruskal</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">edges</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Kruskal MST:&#34;</span><span class="p">,</span> <span class="n">mst</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 輸出: [(2, 3, 4), (0, 3, 5), (0, 1, 10)]</span>
+</span></span></code></pre></div><h2 id="複雜度分析">複雜度分析</h2>
+<ul>
+<li>排序邊: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>E</mi><mi>log</mi><mo>⁡</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(E \log E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span></li>
+<li>Union-Find 操作: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(\alpha(V))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mclose">))</span></span></span></span>，近乎常數時間</li>
+<li>總時間複雜度: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>E</mi><mi>log</mi><mo>⁡</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(E \log E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span>
+<ul>
+<li>E 為邊數，通常 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>E</mi><mi>log</mi><mo>⁡</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(E \log V)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mclose">)</span></span></span></span></li>
+</ul>
+</li>
+<li>空間複雜度: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>V</mi><mo>+</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(V + E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span></li>
+</ul>
+<p>Kruskal 適合 稀疏圖 (Sparse Graph)，因為邊排序的開銷不大。</p>
+<h2 id="kruskal-的應用">Kruskal 的應用</h2>
+<ul>
+<li>網路設計
+<ul>
+<li>例如建設光纖網路，確保所有城市連接，且總電纜長度最小。</li>
+</ul>
+</li>
+<li>聚類分析 (Clustering)
+<ul>
+<li>先建立 MST，再刪去最大的幾條邊，可將圖分成多個子群。</li>
+</ul>
+</li>
+<li>地理與交通規劃
+<ul>
+<li>設計最省成本的道路網，避免重複建設。</li>
+</ul>
+</li>
+</ul>
+<h2 id="與-prim-的比較">與 Prim 的比較</h2>
+<table>
+	<thead>
+			<tr>
+					<th>特性</th>
+					<th>Kruskal</th>
+					<th>Prim</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>導向</td>
+					<td>以邊為導向，先排序邊</td>
+					<td>以點為導向，逐步擴展</td>
+			</tr>
+			<tr>
+					<td>複雜度</td>
+					<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>E</mi><mi>log</mi><mo>⁡</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(E \log E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span></td>
+					<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>E</mi><mi>log</mi><mo>⁡</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(E \log V)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mclose">)</span></span></span></span></td>
+			</tr>
+			<tr>
+					<td>適合</td>
+					<td>稀疏圖</td>
+					<td>稠密圖</td>
+			</tr>
+			<tr>
+					<td>工具</td>
+					<td>Union-Find</td>
+					<td>Heap</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="結語">結語</h2>
+<p>Kruskal 演算法透過貪心策略與並查集，能快速構造出最小生成樹。它特別適合 邊數較少、稀疏圖 的情境，也是演算法課程與面試中必考的重點。</p>
+
+    </div>
+  </article>
+</div>
+
+  </main>
+  <footer class="site-footer">
+  <div class="container footer-inner">
+    
+<ul class="social-list">
+  <li>
+    <a href="https://github.com/twcch" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" title="GitHub">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.62 8.21 11.18.6.11.82-.25.82-.57v-2.2c-3.34.71-4.04-1.58-4.04-1.58-.55-1.36-1.34-1.73-1.34-1.73-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.79 2.81 1.27 3.5.97.11-.76.42-1.27.76-1.56-2.67-.3-5.47-1.3-5.47-5.78 0-1.28.47-2.32 1.24-3.14-.13-.3-.54-1.52.11-3.16 0 0 1.01-.32 3.3 1.2a11.6 11.6 0 0 1 6.01 0c2.29-1.52 3.3-1.2 3.3-1.2.65 1.64.24 2.86.12 3.16.77.82 1.23 1.86 1.23 3.14 0 4.49-2.81 5.48-5.49 5.77.43.36.81 1.08.81 2.18v3.23c0 .32.22.69.83.57A12.01 12.01 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg>
+    </a>
+  </li>
+  <li>
+    <a href="mailto:twcch1218@gmail.com"  aria-label="Email" title="Email">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+    </a>
+  </li>
+</ul>
+<p class="footer-meta">Chih-Chien Hsieh．Since 1993</p>
+  </div>
+</footer>
+
+<script>
+  
+  (function () {
+    var btn = document.querySelector(".theme-toggle");
+    if (btn) {
+      btn.addEventListener("click", function () {
+        var root = document.documentElement;
+        var next = root.dataset.theme === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try { localStorage.setItem("theme", next); } catch (e) {}
+      });
+    }
+
+    
+    var navToggle = document.querySelector(".nav-toggle");
+    var siteNav = document.getElementById("site-nav");
+    if (navToggle && siteNav) {
+      var setNav = function (open) {
+        siteNav.classList.toggle("is-open", open);
+        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      };
+      navToggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        setNav(!siteNav.classList.contains("is-open"));
+      });
+      
+      siteNav.addEventListener("click", function (e) {
+        if (e.target.closest(".nav-link")) setNav(false);
+      });
+      document.addEventListener("click", function (e) {
+        if (!siteNav.contains(e.target) && !navToggle.contains(e.target)) setNav(false);
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") setNav(false);
+      });
+    }
+
+    
+    document.querySelectorAll(".post-content .highlight").forEach(function (block) {
+      var btn = document.createElement("button");
+      btn.className = "copy-btn";
+      btn.type = "button";
+      btn.textContent = "複製";
+      btn.addEventListener("click", function () {
+        var code = block.querySelector("code") || block.querySelector("pre");
+        if (!code) return;
+        navigator.clipboard.writeText(code.innerText).then(function () {
+          btn.textContent = "已複製";
+          setTimeout(function () { btn.textContent = "複製"; }, 1500);
+        });
+      });
+      block.appendChild(btn);
+    });
+  })();
+</script>
+
+</body>
+</html>
