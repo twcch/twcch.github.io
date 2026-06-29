@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>2025 iThome Ironman: 快速掌握資料結構與演算法 on Chih-Chien&#39;s Blog</title>
+		<link>http://localhost:1313/posts/ithome_ironman/2025_2/</link>
+		<description>Recent content in 2025 iThome Ironman: 快速掌握資料結構與演算法 on Chih-Chien&#39;s Blog</description>
+		<generator>Hugo</generator>
+		<language>zh-tw</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 28 Sep 2025 00:00:00 +0800</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/posts/ithome_ironman/2025_2/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>(Day 30) 系列結尾</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day30_series-conclusion/</link>
+				<pubDate>Sun, 28 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day30_series-conclusion/</guid>
+				<description>&lt;p&gt;經歷了 30 天，這篇也是該系列的結尾，從一開始立下題目「快速掌握資料結構與演算法」那一刻起，我就很清楚，這不會是一場輕鬆的挑戰。這 30 天，我不只是寫文章，更是一次徹底地拆解與重構「我對程式思維的理解」的過程。這不只是輸出知識，而是一場和自己對話的學習實驗。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 29) 最小生成樹的實務應用 (Applications of MST)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day29_mst-applications/</link>
+				<pubDate>Sat, 27 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day29_mst-applications/</guid>
+				<description>&lt;p&gt;在 Day 26～Day 28 中，我們依序介紹了「最小生成樹 (Minimum Spanning Tree, MST)」的概念、Kruskal 與 Prim 兩種經典演算法。今天，我們將不談數學推導與程式碼優化，而是聚焦在 「如何將 MST 應用到現實問題」。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 28) Prim 演算法</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day28_prim-algorithm/</link>
+				<pubDate>Fri, 26 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day28_prim-algorithm/</guid>
+				<description>&lt;p&gt;在 Day 26 我們介紹了 最小生成樹 (MST) 的概念，並且在 Day 27 深入探討了 Kruskal 演算法。今天要介紹的是另一個經典方法 —— Prim 演算法。它與 Kruskal 不同，Prim 是以 節點為導向 的最小生成樹演算法。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 27) Kruskal 演算法</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day27_kruskal-algorithm/</link>
+				<pubDate>Thu, 25 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day27_kruskal-algorithm/</guid>
+				<description>&lt;p&gt;在 Day 26 我們介紹了最小生成樹 (MST) 的概念，並提到兩個經典演算法: Kruskal 與 Prim。今天要深入探討 Kruskal 演算法，它以邊為導向，利用貪心法 (Greedy Algorithm) 與並查集 (Union-Find)，有效率地找出 MST&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 26) 最小生成樹 (Minimum Spanning Tree)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day26_minimum-spanning-tree/</link>
+				<pubDate>Wed, 24 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day26_minimum-spanning-tree/</guid>
+				<description>&lt;p&gt;在前幾天，我們學習了最短路徑問題 (Shortest Path)，例如 Dijkstra、Bellman-Ford、Floyd-Warshall、A*，今天要介紹的則是圖論中的另一個核心問題 —— 最小生成樹 (Minimum Spanning Tree, MST)&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 25) A* 搜尋演算法 (A-star Search)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day25_a-star-search/</link>
+				<pubDate>Tue, 23 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day25_a-star-search/</guid>
+				<description>&lt;p&gt;在前幾天，我們介紹了 Dijkstra、Bellman-Ford、Floyd-Warshall，這些都是經典的最短路徑演算法。今天要談的是 A* 搜尋演算法 (A-star Search) —— 一個結合最短路徑與啟發式 (Heuristic) 的演算法，在人工智慧 (AI)、遊戲與導航中應用極為廣泛&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 24) Floyd-Warshall 演算法</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day24_floyd-warshall-algorithm/</link>
+				<pubDate>Mon, 22 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day24_floyd-warshall-algorithm/</guid>
+				<description>&lt;p&gt;在前兩天我們分別介紹了 Dijkstra 與 Bellman-Ford ，它們都解決的是 單源最短路徑 (Single Source Shortest Path, SSSP) 問題。今天要介紹的是 Floyd-Warshall 演算法 —— 一個能計算 所有點對 (All-Pairs Shortest Path, APSP) 的演算法&lt;/p&gt;&#xA;&lt;h2 id=&#34;演算法背景&#34;&gt;演算法背景&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;適用情境&#xA;&lt;ul&gt;&#xA;&lt;li&gt;計算圖中 任意兩點之間的最短路徑&lt;/li&gt;&#xA;&lt;li&gt;圖可以包含 負權重邊，但 不能有負權重環&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;典型應用: 交通網路、路由系統、關係強度分析&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;核心思想&#34;&gt;核心思想&lt;/h2&gt;&#xA;&lt;p&gt;Floyd-Warshall 採用 動態規劃 (Dynamic Programming, DP) 的方式，逐步引入節點作為「中繼點」，不斷更新最短路徑&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 23) Bellman-Ford 演算法</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day23_bellman-ford-algorithm/</link>
+				<pubDate>Sun, 21 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day23_bellman-ford-algorithm/</guid>
+				<description>&lt;p&gt;在前一天我們介紹了 Dijkstra 演算法，它能有效解決 單源最短路徑 (Single Source Shortest Path, SSSP) 問題，但有一個限制: 不能處理負權重邊 (Negative Weights)。然而，現實世界的很多問題 (例如金融套利、債務網路、價格波動) 都可能出現負權重，這時候我們就需要 Bellman-Ford 演算法。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 22) Dijkstra 最短路徑演算法 (Dijkstra’s Algorithm)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day22_dijkstra-algorithm/</link>
+				<pubDate>Sat, 20 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day22_dijkstra-algorithm/</guid>
+				<description>&lt;p&gt;Dijkstra 最短路徑演算法是一種用於計算從單一源點到圖中所有其他節點的最短路徑的經典演算法。這個演算法適用於加權圖，其中邊的權重必須是非負的，核心思想是每次選擇「距離起點最近」的尚未處理節點，並用它來更新鄰居的最短距離，這種策略屬於貪心演算法 (Greedy Algorithm)&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 21) 圖演算法 (Graph Algorithm)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day21_graph-algorithm/</link>
+				<pubDate>Fri, 19 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day21_graph-algorithm/</guid>
+				<description>&lt;p&gt;自從我們 Day 10 簡單地說一下圖結構後，就再也沒提到這個詞，我們今天開始就要介紹這個應用非常廣泛的圖 (Graph) 的演算法總覽，後續會接著介紹常見的圖演算法，因為圖是非線性資料結構中最重要的一員，在學術研究與實務應用上都有極高地位，從網路連線、地圖導航、社交網路到金融交易，幾乎都離不開圖的建模與演算法&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 20) 貪婪演算法 (Greedy Algorithm)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day20_greedy-algorithm/</link>
+				<pubDate>Thu, 18 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day20_greedy-algorithm/</guid>
+				<description>&lt;p&gt;貪婪演算法 (Greedy Algorithm) 是一種在每一步選擇中都採取在當前狀態下最好或最優 (即最有利) 的選擇，從而希望導致結果是全局最好或最優的演算法。這種方法每次做出選擇時，只考慮當前最優解，而不考慮未來的後果。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 19) 動態規劃 (Dynamic Programming)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day19_dynamic-programming/</link>
+				<pubDate>Wed, 17 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day19_dynamic-programming/</guid>
+				<description>&lt;p&gt;動態規劃 (Dynamic Programming; DP) 是一種將複雜問題分解為較小子問題，並儲存子問題解以避免重複計算的演算法設計方法。它常用於具有「重疊子問題」和「最優子結構」性質的問題&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 18) 分治法 (Divide and Conquer)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day18_divide-and-conquer/</link>
+				<pubDate>Tue, 16 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day18_divide-and-conquer/</guid>
+				<description>&lt;p&gt;前面介紹了幾個簡單又常見的排序與搜尋的演算法，接下來我們來談談演算法設計策略，仿間有很多演算法的書並不會特地把 Divide and Conquer 或 Dynamic Programming 編成一個章節，這也導致新手學完了一些演算法後，不知道自己學的是 Divide and Conquer 或 Dynamic Programming，這也包括我，所以我們在來花幾天的時間來談談這些演算法設計策略。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 17) 內插搜尋 (Interpolation Search)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day17_interpolation-search/</link>
+				<pubDate>Mon, 15 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day17_interpolation-search/</guid>
+				<description>&lt;p&gt;內插搜尋法 (Interpolation Search) 是一種基於數值分布估算落點的搜尋演算法，是對 二元搜尋 (Binary Search) 的改良。它特別適合用在已排序且元素分布相對均勻的資料集上，能有效地減少搜尋次數。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 16) 二元搜尋 (Binary Search)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day16_binary-search/</link>
+				<pubDate>Sun, 14 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day16_binary-search/</guid>
+				<description>&lt;p&gt;在排序演算法之後，我們終於要介紹一個非常經典且實用的搜尋演算法 —— 二元搜尋 (Binary Search)。如果說排序演算法是「把資料整理好」，那麼搜尋演算法就是「如何在整理好的資料中快速找到想要的元素」。二元搜尋憑藉著「折半」的概念，將搜尋的時間複雜度大幅降低。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 15) 基礎排序演算法比較</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day15_basic-sorting-comparison/</link>
+				<pubDate>Sat, 13 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day15_basic-sorting-comparison/</guid>
+				<description>&lt;p&gt;在前面三天，我們分別介紹了氣泡排序 (Bubble Sort)、選擇排序 (Selection Sort)、插入排序 (Insertion Sort)。這三個演算法都是經典的「基礎排序」，時間複雜度同樣是 &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;O(n^2)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1.0641em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02778em;&#34;&gt;O&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.8141em;&#34;&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;，但它們在設計思路、操作方式、適用場景上各有不同。今天我們就來做一次系統化的分析比較。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 14) 插入排序 (Insertion Sort)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day14_insertion-sort/</link>
+				<pubDate>Fri, 12 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day14_insertion-sort/</guid>
+				<description>&lt;p&gt;插入排序 (Insertion Sort) 也是一種簡單直觀的排序演算法。它的工作原理是通過構建有序序列，對於未排序資料，在已排序序列中從後向前掃描，找到相應位置並插入。&lt;/p&gt;&#xA;&lt;h2 id=&#34;演算法步驟&#34;&gt;演算法步驟&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;從第二個元素開始，將該元素與前面的元素進行比較。&lt;/li&gt;&#xA;&lt;li&gt;如果該元素比前面的元素小，則將前面的元素往後移動一位。&lt;/li&gt;&#xA;&lt;li&gt;重複步驟2，直到找到該元素應插入的位置。&lt;/li&gt;&#xA;&lt;li&gt;將該元素插入到正確的位置。&lt;/li&gt;&#xA;&lt;li&gt;重複步驟1~4，直到所有元素都排序完成。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;範例&#34;&gt;範例&lt;/h2&gt;&#xA;&lt;p&gt;假設有一個陣列 &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo stretchy=&#34;false&#34;&gt;[&lt;/mo&gt;&lt;mn&gt;5&lt;/mn&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mn&gt;4&lt;/mn&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mn&gt;6&lt;/mn&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;mo stretchy=&#34;false&#34;&gt;]&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;A = [5, 2, 4, 6, 1, 3]&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.6833em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2778em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;mpunct&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.1667em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;mpunct&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.1667em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;mpunct&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.1667em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;mpunct&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.1667em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mpunct&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.1667em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;，插入排序的過程如下:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 13) 選擇排序 (Selection Sort)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day13_selection-sort/</link>
+				<pubDate>Thu, 11 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day13_selection-sort/</guid>
+				<description>&lt;p&gt;選擇排序 (Selection Sort) 是一種簡單直觀的排序演算法。核心概念: 每一輪從尚未排序的元素中挑出最小 (或最大) 者，放到目前應在的位置，一直重複直到完成。可以把它想成「選拔賽」: 第一輪選出最優放第一名，第二輪從剩下的人選次優放第二名，依此類推。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 12) 氣泡排序 (Bubble Sort)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day12_bubble-sort/</link>
+				<pubDate>Wed, 10 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day12_bubble-sort/</guid>
+				<description>&lt;p&gt;終於進入演算法的部分，預計會介紹 3~4 個很常見的排序演算法，所以光排序這個主題就會用掉一些篇幅，今天除了介紹 Bubble Sort 外，會先簡單介紹一下排序，讓各位讀者更好地認識排序演算法。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 11) 演算法評估 (Algorithm Analysis)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day11_algorithm-analysis/</link>
+				<pubDate>Tue, 09 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day11_algorithm-analysis/</guid>
+				<description>&lt;p&gt;到目前為止，我們已經介紹了各種資料結構 (Array、Linked List、Stack、Queue、Tree、Graph)，也練習了基本操作。但光有資料結構還不夠，要能設計演算法，就必須懂得如何評估一個演算法的效率。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 10) 圖 (Graph)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day10_graph/</link>
+				<pubDate>Mon, 08 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day10_graph/</guid>
+				<description>&lt;p&gt;這是資料結構的最後一篇，明天開始進入本系列的重點驗算法，前面幾天，我們介紹了各種樹結構 Binary Tree、Balanced Tree，以及其他衍生樹。而樹是一種特殊的圖結構，今天我們正式進入 Graph 的世界。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 9) 其他樹 (Other Trees)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day9_other-trees/</link>
+				<pubDate>Sun, 07 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day9_other-trees/</guid>
+				<description>&lt;p&gt;在前面兩天，粗淺的介紹了 Binary Tree 與 Balanced Tree，今天更粗淺的介紹一下其他樹，因為本系列只是要做一個拋磚引玉的動作，如果讀者對於資料結構有興趣，建議可以買書來研讀。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 8) 平衡樹 (Balanced Tree)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day8_balanced-tree/</link>
+				<pubDate>Sat, 06 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day8_balanced-tree/</guid>
+				<description>&lt;p&gt;Balanced Tree 是一種特殊的二元樹結構，旨在保持樹的高度盡可能低，以提高操作效率。常見的平衡樹包括 AVL 樹、紅黑樹和 B 樹等。以下是關於平衡樹的詳細介紹。&lt;/p&gt;&#xA;&lt;h2 id=&#34;基本概念&#34;&gt;基本概念&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;二元樹: 是一種樹形數據結構，其中每個節點最多有兩個子節點，分別稱為左子節點和右子節點。&lt;/li&gt;&#xA;&lt;li&gt;平衡樹: 是一種二元樹，其特點是任何節點的兩個子樹的高度差不超過一個常數 (通常是 1)。這樣的結構確保了樹的高度保持在 &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;log&lt;/mi&gt;&lt;mo&gt;⁡&lt;/mo&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;O(\log n)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02778em;&#34;&gt;O&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mop&#34;&gt;lo&lt;span style=&#34;margin-right:0.01389em;&#34;&gt;g&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.1667em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;，從而使得查找、插入和刪除操作的時間複雜度都能保持在 &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;log&lt;/mi&gt;&lt;mo&gt;⁡&lt;/mo&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;O(\log n)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02778em;&#34;&gt;O&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mop&#34;&gt;lo&lt;span style=&#34;margin-right:0.01389em;&#34;&gt;g&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.1667em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;平衡樹類型&#34;&gt;平衡樹類型&lt;/h2&gt;&#xA;&lt;h3 id=&#34;avl-樹&#34;&gt;AVL 樹&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;定義: AVL樹是一種自平衡二元搜索樹，任何節點的兩個子樹的高度差不超過1。&lt;/li&gt;&#xA;&lt;li&gt;操作:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;插入: 插入後可能會破壞平衡，需要通過旋轉來恢復。&lt;/li&gt;&#xA;&lt;li&gt;刪除: 刪除後也可能需要旋轉來保持平衡。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;紅黑樹&#34;&gt;紅黑樹&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;定義: 紅黑樹是一種自平衡二元搜索樹，每個節點都有一個顏色 (紅或黑)，並遵循以下規則:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;節點是紅色或黑色。&lt;/li&gt;&#xA;&lt;li&gt;根節點是黑色。&lt;/li&gt;&#xA;&lt;li&gt;每個葉子節點 (NIL 或空節點) 是黑色。&lt;/li&gt;&#xA;&lt;li&gt;如果一個節點是紅色，則其兩個子節點都是黑色。&lt;/li&gt;&#xA;&lt;li&gt;從任何節點到其每個葉子節點的所有路徑都包含相同數量的黑色節點。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;操作:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;插入: 插入後可能需要重新著色和旋轉來保持平衡。&lt;/li&gt;&#xA;&lt;li&gt;刪除: 刪除後也可能需要重新著色和旋轉。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;b-樹&#34;&gt;B 樹&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;定義: B 樹是一種自平衡樹數據結構，適合用於存儲系統中需要大量讀寫操作的情況。B 樹的每個節點可以有多個子節點。&lt;/li&gt;&#xA;&lt;li&gt;特點:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;節點可以包含多個鍵和子節點。&lt;/li&gt;&#xA;&lt;li&gt;所有葉子節點位於同一層。&lt;/li&gt;&#xA;&lt;li&gt;B 樹的高度較低，適合磁盤存取。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;應用&#34;&gt;應用&lt;/h2&gt;&#xA;&lt;p&gt;平衡樹廣泛應用於需要快速查找、插入和刪除操作的場景，如數據庫索引、文件系統和內存管理等。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 7) 二元樹 (Binary Tree)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day7_binary-tree/</link>
+				<pubDate>Fri, 05 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day7_binary-tree/</guid>
+				<description>&lt;p&gt;前面幾天所介紹的資料結構就是線性的資料結構，今天開始所介紹的樹資料節構是屬於非線性資料結構，也非常的重要。&lt;/p&gt;&#xA;&lt;h2 id=&#34;基本定義&#34;&gt;基本定義&lt;/h2&gt;&#xA;&lt;p&gt;在進入 Binary Tree 之前，先來介紹一下基本的組成部分，可以搭配著下圖看:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 6) 隊列 (Queue)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day6_queue/</link>
+				<pubDate>Thu, 04 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day6_queue/</guid>
+				<description>&lt;p&gt;Queue (佇列) 與 Stack 一樣，是一種線性資料結構，但它遵循的是先進先出 (First-In-First-Out; FIFO) 的規則。你可以把 Queue 想像成排隊買票: 最早排隊的人會最先買到票並離開，而新加入的人只能站在隊伍最後。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 5) 堆疊 (Stack)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day5_stack/</link>
+				<pubDate>Wed, 03 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day5_stack/</guid>
+				<description>&lt;p&gt;Stack (堆疊) 是一種受限的線性資料結構，遵循先進後出 (Last-In-First-Out; LIFO) 的資料結構。你可想像有一疊盤子，最後放上去的盤子會最先被拿走，所以 Stack 只允許在「頂端」進行操作，簡單來說就是你不能看或是取非最上層的元素。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 4) 鏈表 (Linked List)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day4_linked-list/</link>
+				<pubDate>Tue, 02 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day4_linked-list/</guid>
+				<description>&lt;p&gt;Linked List (鏈表) 是一種常見的資料結構，用來儲存一系列的元素。與陣列 (Array) 不同，Linked List 的元素稱為節點 (Node) 在記憶體中不必是連續的。每個節點除了儲存資料外，還會儲存一個指向下一個節點的參考 (指標)。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 3) 矩陣 (Matrix)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day3_matrix/</link>
+				<pubDate>Mon, 01 Sep 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day3_matrix/</guid>
+				<description>&lt;p&gt;我不知道大家看到這天會不會驚訝一下，不是應該接續 List 家族這是什麼? Matrix 就是 Array 只是我單獨抽出來說明，如果你沒有在學習或處理資料科學相關的，應該不會使用到 Matrix，但是我認為這是一個蠻常被忽略的部分，也就花一點篇幅來介紹它。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 2) 陣列 (Array)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day2_array/</link>
+				<pubDate>Sun, 31 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day2_array/</guid>
+				<description>&lt;p&gt;Array 是一種 Static Data Structure 或稱為 Dense List，它是一種將有序串列的資料結構使用 Contiguous Allocation 來儲存，意味著儲存的元素必須是相同類型，且靜態資料結構的記憶體配置是在編譯時，就必須配置給相關的變數，因此在創建時必須先宣告空間大小。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 1) 介紹與準備</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_2/day1_introduction-and-preparation/</link>
+				<pubDate>Sat, 30 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_2/day1_introduction-and-preparation/</guid>
+				<description>&lt;p&gt;我遇過很多學習程式語言的人，都一直學框架或是 API 怎麼用，都不是很注重底層的知識，我認為一棟樓要蓋多高取決於地基打得多深，因為框架與 API 會變，但時間複雜度、記憶體模型、資料結構設計是不會變的。&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

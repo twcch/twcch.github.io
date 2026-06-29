@@ -2,392 +2,397 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://twcch.github.io/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2026-06-28T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/textbooks/</loc>
+    <loc>http://localhost:1313/textbooks/</loc>
     <lastmod>2026-06-28T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/chih-chien-hsieh/</loc>
+    <loc>http://localhost:1313/chih-chien-hsieh/</loc>
     <lastmod>2026-06-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/tags/heart-notes/</loc>
+    <loc>http://localhost:1313/tags/heart-notes/</loc>
     <lastmod>2026-06-12T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/posts/</loc>
+    <loc>http://localhost:1313/posts/</loc>
     <lastmod>2026-06-12T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2026-06-12T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/posts/2026/a-phd-is-not-a-student/</loc>
+    <loc>http://localhost:1313/posts/2026/a-phd-is-not-a-student/</loc>
     <lastmod>2026-06-12T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/posts/2026/no-one-can-earn-your-doctorate/</loc>
+    <loc>http://localhost:1313/posts/2026/no-one-can-earn-your-doctorate/</loc>
     <lastmod>2026-06-11T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/posts/2025/learning-is-your-own-responsibility/</loc>
+    <loc>http://localhost:1313/posts/2025/learning-is-your-own-responsibility/</loc>
     <lastmod>2025-10-23T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day30_series-conclusion/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day30_series-conclusion/</loc>
     <lastmod>2025-09-28T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/</loc>
+    <loc>http://localhost:1313/tags/2025-ithome-ironman/</loc>
     <lastmod>2025-09-28T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day29_mst-applications/</loc>
+    <loc>http://localhost:1313/ithome_ironman/</loc>
+    <lastmod>2025-09-28T00:00:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day29_mst-applications/</loc>
     <lastmod>2025-09-27T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day28_prim-algorithm/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day28_prim-algorithm/</loc>
     <lastmod>2025-09-26T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day27_kruskal-algorithm/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day27_kruskal-algorithm/</loc>
     <lastmod>2025-09-25T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day26_minimum-spanning-tree/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day26_minimum-spanning-tree/</loc>
     <lastmod>2025-09-24T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day25_a-star-search/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day25_a-star-search/</loc>
     <lastmod>2025-09-23T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day24_floyd-warshall-algorithm/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day24_floyd-warshall-algorithm/</loc>
     <lastmod>2025-09-22T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day23_bellman-ford-algorithm/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day23_bellman-ford-algorithm/</loc>
     <lastmod>2025-09-21T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day22_dijkstra-algorithm/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day22_dijkstra-algorithm/</loc>
     <lastmod>2025-09-20T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day21_graph-algorithm/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day21_graph-algorithm/</loc>
     <lastmod>2025-09-19T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day20_greedy-algorithm/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day20_greedy-algorithm/</loc>
     <lastmod>2025-09-18T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day19_dynamic-programming/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day19_dynamic-programming/</loc>
     <lastmod>2025-09-17T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day18_divide-and-conquer/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day18_divide-and-conquer/</loc>
     <lastmod>2025-09-16T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day17_interpolation-search/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day17_interpolation-search/</loc>
     <lastmod>2025-09-15T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day16_binary-search/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day16_binary-search/</loc>
     <lastmod>2025-09-14T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day15_basic-sorting-comparison/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day15_basic-sorting-comparison/</loc>
     <lastmod>2025-09-13T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day14_insertion-sort/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day14_insertion-sort/</loc>
     <lastmod>2025-09-12T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day13_selection-sort/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day13_selection-sort/</loc>
     <lastmod>2025-09-11T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day12_bubble-sort/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day12_bubble-sort/</loc>
     <lastmod>2025-09-10T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day11_algorithm-analysis/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day11_algorithm-analysis/</loc>
     <lastmod>2025-09-09T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day10_graph/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day10_graph/</loc>
     <lastmod>2025-09-08T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day9_other-trees/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day9_other-trees/</loc>
     <lastmod>2025-09-07T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day8_balanced-tree/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day8_balanced-tree/</loc>
     <lastmod>2025-09-06T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/tags/data-mining/</loc>
+    <loc>http://localhost:1313/tags/data-mining/</loc>
     <lastmod>2025-09-06T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/posts/2025/when-data-starts-to-connect/</loc>
+    <loc>http://localhost:1313/posts/2025/when-data-starts-to-connect/</loc>
     <lastmod>2025-09-06T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day7_binary-tree/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day7_binary-tree/</loc>
     <lastmod>2025-09-05T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day6_queue/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day6_queue/</loc>
     <lastmod>2025-09-04T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day5_stack/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day5_stack/</loc>
     <lastmod>2025-09-03T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day4_linked-list/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day4_linked-list/</loc>
     <lastmod>2025-09-02T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/posts/2025/the-fallacy-of-anti-education/</loc>
+    <loc>http://localhost:1313/posts/2025/the-fallacy-of-anti-education/</loc>
     <lastmod>2025-09-02T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day3_matrix/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day3_matrix/</loc>
     <lastmod>2025-09-01T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day2_array/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day2_array/</loc>
     <lastmod>2025-08-31T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/day1_introduction-and-preparation/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/day1_introduction-and-preparation/</loc>
     <lastmod>2025-08-30T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day30_series-conclusion/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day30_series-conclusion/</loc>
     <lastmod>2025-08-30T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_2/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_2/</loc>
     <lastmod>2025-08-30T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day29_attention-mechanism/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day29_attention-mechanism/</loc>
     <lastmod>2025-08-29T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day28_seq2seq/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day28_seq2seq/</loc>
     <lastmod>2025-08-28T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day27_gated-recurrent-unit/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day27_gated-recurrent-unit/</loc>
     <lastmod>2025-08-27T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day26_long-short-term-memory/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day26_long-short-term-memory/</loc>
     <lastmod>2025-08-26T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day25_recurrent-neural-network/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day25_recurrent-neural-network/</loc>
     <lastmod>2025-08-25T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day24_adam-optimizer/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day24_adam-optimizer/</loc>
     <lastmod>2025-08-24T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day23_optimization-in-deep-learning/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day23_optimization-in-deep-learning/</loc>
     <lastmod>2025-08-23T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day22_regularization-in-deep-learning/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day22_regularization-in-deep-learning/</loc>
     <lastmod>2025-08-22T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day21_convolutional-neural-network/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day21_convolutional-neural-network/</loc>
     <lastmod>2025-08-21T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day20_activation-function/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day20_activation-function/</loc>
     <lastmod>2025-08-20T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day19_neuron/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day19_neuron/</loc>
     <lastmod>2025-08-19T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day18_fully-connected-neural-network/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day18_fully-connected-neural-network/</loc>
     <lastmod>2025-08-18T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day17_deep-learning-introduction/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day17_deep-learning-introduction/</loc>
     <lastmod>2025-08-17T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day16_k-means/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day16_k-means/</loc>
     <lastmod>2025-08-16T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day15_random-forest/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day15_random-forest/</loc>
     <lastmod>2025-08-15T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day14_decision-tree/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day14_decision-tree/</loc>
     <lastmod>2025-08-14T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day13_regression-metrics/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day13_regression-metrics/</loc>
     <lastmod>2025-08-13T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day12_multiclass-classification-metrics/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day12_multiclass-classification-metrics/</loc>
     <lastmod>2025-08-12T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day11_binary-classification-metrics/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day11_binary-classification-metrics/</loc>
     <lastmod>2025-08-11T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day10_support-vector-machine/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day10_support-vector-machine/</loc>
     <lastmod>2025-08-10T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day9_naive-bayes-classifier/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day9_naive-bayes-classifier/</loc>
     <lastmod>2025-08-09T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day8_k-nearest-neighbors/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day8_k-nearest-neighbors/</loc>
     <lastmod>2025-08-08T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day7_regression-review/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day7_regression-review/</loc>
     <lastmod>2025-08-07T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day6_logistic-regression-polynomial-regularization/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day6_logistic-regression-polynomial-regularization/</loc>
     <lastmod>2025-08-06T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day5_logistic-regression/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day5_logistic-regression/</loc>
     <lastmod>2025-08-05T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day4_regularization-regression/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day4_regularization-regression/</loc>
     <lastmod>2025-08-04T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day3_polynomial-regression/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day3_polynomial-regression/</loc>
     <lastmod>2025-08-03T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day2_linear-regression/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day2_linear-regression/</loc>
     <lastmod>2025-08-02T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/posts/2025/order-in-the-chaos-of-data/</loc>
+    <loc>http://localhost:1313/posts/2025/order-in-the-chaos-of-data/</loc>
     <lastmod>2025-08-02T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/day1_introduction-and-preparation/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/day1_introduction-and-preparation/</loc>
     <lastmod>2025-08-01T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/ithome_ironman/2025_1/</loc>
+    <loc>http://localhost:1313/ithome_ironman/2025_1/</loc>
     <lastmod>2025-08-01T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/posts/2025/the-vanishing-junior-business-analyst/</loc>
+    <loc>http://localhost:1313/posts/2025/the-vanishing-junior-business-analyst/</loc>
     <lastmod>2025-07-05T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://twcch.github.io/posts/2025/teaching-without-understanding/</loc>
+    <loc>http://localhost:1313/posts/2025/teaching-without-understanding/</loc>
     <lastmod>2025-06-25T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

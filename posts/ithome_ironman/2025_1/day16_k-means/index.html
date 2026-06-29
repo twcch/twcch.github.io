@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-tw" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <script>
+  (function () {
+    try {
+      var t = localStorage.getItem("theme");
+      if (t !== "light" && t !== "dark") {
+        t = "light"; 
+      }
+      document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>(Day 16) K-Means · Chih-Chien&#39;s Blog</title>
+<meta name="description" content="今天本來要說極限梯度提升數 (XGBoost)，但是我發現後面的篇幅可能快不夠了，今天開始的內容會調整成，無監督式學習 → 深度學習 → 如果有時間再回來補充 One-Class SVM 跟 XGBoost。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="謝志謙, Chih-Chien Hsieh, twcch, cch, 部落格, 技術, 筆記">
+<link rel="canonical" href="http://localhost:1313/posts/ithome_ironman/2025_1/day16_k-means/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
+<meta property="og:title" content="(Day 16) K-Means">
+<meta property="og:description" content="今天本來要說極限梯度提升數 (XGBoost)，但是我發現後面的篇幅可能快不夠了，今天開始的內容會調整成，無監督式學習 → 深度學習 → 如果有時間再回來補充 One-Class SVM 跟 XGBoost。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://localhost:1313/posts/ithome_ironman/2025_1/day16_k-means/">
+<meta name="twitter:card" content="summary"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/css/main.min.11c3736beb98bfae0608e51b66b0651ca4caadc4f01fd0f7e15eabab5b80e136.css" integrity="sha256-EcNza&#43;uYv64GCOUbZrBlHKTKrcTwH9D34V6rq1uA4TY=">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-inner">
+    <a class="site-title" href="/">Chih-Chien&#39;s Blog</a>
+    <div class="header-actions">
+      <nav class="site-nav" id="site-nav" aria-label="主選單">
+        <a class="nav-link" href="/chih-chien-hsieh/">About Me</a>
+        <a class="nav-link" href="/textbooks/">Textbooks</a>
+        <a class="nav-link" href="/ithome_ironman/">iThome Ironman</a>
+        <a class="nav-link" href="/posts/">Posts</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="開啟選單" aria-expanded="false" aria-controls="site-nav" title="開啟選單">
+        <svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"></path>
+        </svg>
+        <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
+      <button class="theme-toggle" type="button" aria-label="切換深色模式" title="切換深色模式">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main class="site-main">
+    
+<div class="container-narrow">
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">(Day 16) K-Means</h1>
+      <div class="post-meta">
+        <time datetime="2025-08-16">2025-08-16</time>
+        <span class="dot">·</span>
+        <span>4 分鐘閱讀</span>
+      </div>
+    </header>
+
+    <div class="post-content prose">
+      <p>今天本來要說極限梯度提升數 (XGBoost)，但是我發現後面的篇幅可能快不夠了，今天開始的內容會調整成，無監督式學習 → 深度學習 → 如果有時間再回來補充 One-Class SVM 跟 XGBoost。</p>
+<p>K-Means 是一種無監督學習中的聚類演算法，旨在將資料分為 K 個群集，使同一群集內的資料點之間相似度最高，而不同群集之間相似度最低。到這邊可能會有疑問，分類跟聚類差在哪? 分類要有標籤 (監督式學習)，而聚類不需要有標籤 (無監督式學習)，可以想像一下原始資料，如果要訓練分類模型，你在訓練之前就會知道每筆資料要分成什麼類別，但是到了聚類，你的資料完全分不出來該筆資料要分成什麼類別，只知道我這組資料要分成幾群。</p>
+<h2 id="模型介紹">模型介紹</h2>
+<h3 id="模型邏輯與核心概念">模型邏輯與核心概念</h3>
+<ul>
+<li>依照 K 的數量，隨機選出 K 個資料點作為初始質心 (centroids)</li>
+<li>每筆資料進行窮舉比較與 centroids 的歐幾里得距離，與距離最小的 centroids 為一群</li>
+<li>計算每個群集的平均值，為該群集所有資料點的 centroids</li>
+<li>重複指派與更新步驟，直到 centroids 不再顯著變動或達到最大迭代次數</li>
+</ul>
+<h4 id="cost-function">Cost Function</h4>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>J</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></munderover><munder><mo>∑</mo><mrow><mi>x</mi><mo>∈</mo><msub><mi>C</mi><mi>i</mi></msub></mrow></munder><mi mathvariant="normal">∥</mi><mi>x</mi><mo>−</mo><msub><mi>μ</mi><mi>i</mi></msub><msup><mi mathvariant="normal">∥</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">
+J = \sum_{i=1}^K \sum_{x \in C_i} \|x - \mu_i\|^2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.09618em;">J</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:3.2228em;vertical-align:-1.3944em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">K</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em;"><span style="top:-1.8557em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">x</span><span class="mrel mtight">∈</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:-0.0715em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.3944em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">∥</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">μ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord">∥</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><h4 id="肘部法">肘部法</h4>
+<ul>
+<li>K 值得決定，可以依照肘部法進行判斷</li>
+</ul>
+<h4 id="k-means-的核心弱點">K-Means 的核心弱點</h4>
+<ul>
+<li>初始中心點敏感問題 (Initialization Sensitivity): 當第一次初始化結果不好，導致誤差就很大，且沒辦法降低怎麼辦，即使資料本身具有明確的群聚特徵，也可能被錯誤分群，可以透過 K-Means++ 解決
+<ul>
+<li>替代隨機初始化，透過機率機制選出「較分散」的中心點</li>
+<li>能顯著降低收斂到壞解的風險，推薦預設使用</li>
+<li>sklearn 中內建支援: KMeans(init=&lsquo;k-means++&rsquo;) (預設就是這個)</li>
+</ul>
+</li>
+</ul>
+<h3 id="優缺點">優缺點</h3>
+<table>
+	<thead>
+			<tr>
+					<th>優點</th>
+					<th>缺點</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>計算快速、可擴展、易平行</td>
+					<td>需先給定 k，對初始化與尺度敏感</td>
+			</tr>
+			<tr>
+					<td>易實作、常作為分群基線</td>
+					<td>假設球形/大小相近群，對離群值非常敏感</td>
+			</tr>
+			<tr>
+					<td>可搭配 MiniBatchKMeans 處理大規模資料</td>
+					<td>對非凸形狀或重疊群表現不佳</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="模型實作">模型實作</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Day 16 - K-Means on Iris (library dataset, full pipeline)</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span><span class="p">,</span> <span class="n">MiniBatchKMeans</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">silhouette_score</span><span class="p">,</span> <span class="n">adjusted_rand_score</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">ParameterGrid</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1) 載入資料（無需外部檔案）</span>
+</span></span><span class="line"><span class="cl"><span class="n">iris</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&#34;iris&#34;</span><span class="p">)</span>  <span class="c1"># columns: sepal_length, sepal_width, petal_length, petal_width, species</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;species&#34;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_true</span> <span class="o">=</span> <span class="n">iris</span><span class="p">[</span><span class="s2">&#34;species&#34;</span><span class="p">]</span>  <span class="c1"># 僅作對照評估，不參與訓練（非監督）</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2) 工程化 Pipeline：標準化 + KMeans</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">make_kmeans_pipe</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Pipeline</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;scaler&#34;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;kmeans&#34;</span><span class="p">,</span> <span class="n">KMeans</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">init</span><span class="o">=</span><span class="s2">&#34;k-means++&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>            <span class="c1"># 提升穩定性</span>
+</span></span><span class="line"><span class="cl">            <span class="n">max_iter</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+</span></span><span class="line"><span class="cl">        <span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3) 用 Elbow 與 Silhouette 輔助挑 k</span>
+</span></span><span class="line"><span class="cl"><span class="n">K_RANGE</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>  <span class="c1"># Iris 通常 2~6 即可觀察</span>
+</span></span><span class="line"><span class="cl"><span class="n">wcss</span><span class="p">,</span> <span class="n">sils</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">K_RANGE</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pipe</span> <span class="o">=</span> <span class="n">make_kmeans_pipe</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">labels</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;kmeans&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">labels_</span>
+</span></span><span class="line"><span class="cl">    <span class="n">wcss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;kmeans&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">inertia_</span><span class="p">)</span>  <span class="c1"># WCSS</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sils</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">silhouette_score</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;scaler&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">labels</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;k vs WCSS:&#34;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">K_RANGE</span><span class="p">,</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">wcss</span><span class="p">])))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;k vs Silhouette:&#34;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">K_RANGE</span><span class="p">,</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sils</span><span class="p">])))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4) 以 k=3 做主實驗（Iris 有 3 個物種）</span>
+</span></span><span class="line"><span class="cl"><span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">pipe</span> <span class="o">=</span> <span class="n">make_kmeans_pipe</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">labels</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;kmeans&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">labels_</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 5) 非監督情境下的評估指標</span>
+</span></span><span class="line"><span class="cl"><span class="n">sil</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;scaler&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">labels</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 若有真實標籤可作參考（僅作對照用）：Adjusted Rand Index（ARI）</span>
+</span></span><span class="line"><span class="cl"><span class="n">ari</span> <span class="o">=</span> <span class="n">adjusted_rand_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Silhouette Score (k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">sil</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Adjusted Rand Index vs species (k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">ari</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 6) 簡易視覺化（PCA 2D）</span>
+</span></span><span class="line"><span class="cl"><span class="n">Z</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;scaler&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Z</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">Z</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;K-Means (k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">) on Iris (PCA 2D)</span><span class="se">\n</span><span class="s2">Silhouette=</span><span class="si">{</span><span class="n">sil</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, ARI=</span><span class="si">{</span><span class="n">ari</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&#34;PC1&#34;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&#34;PC2&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 7) 進一步：MiniBatchKMeans（大資料時）</span>
+</span></span><span class="line"><span class="cl"><span class="n">mbk_pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="s2">&#34;scaler&#34;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="s2">&#34;kmeans&#34;</span><span class="p">,</span> <span class="n">MiniBatchKMeans</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s2">&#34;k-means++&#34;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span>
+</span></span><span class="line"><span class="cl">    <span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">])</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">mbk_labels</span> <span class="o">=</span> <span class="n">mbk_pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;kmeans&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">labels_</span>
+</span></span><span class="line"><span class="cl"><span class="n">mbk_sil</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">mbk_pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;scaler&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">mbk_labels</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;MiniBatchKMeans Silhouette (k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">mbk_sil</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 8) 粗略參數掃描（僅示例）</span>
+</span></span><span class="line"><span class="cl"><span class="n">grid</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;kmeans__n_clusters&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="s2">&#34;kmeans__n_init&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">]}</span>
+</span></span><span class="line"><span class="cl"><span class="n">best</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">params</span> <span class="ow">in</span> <span class="n">ParameterGrid</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">candidate</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s2">&#34;scaler&#34;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s2">&#34;kmeans&#34;</span><span class="p">,</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s2">&#34;k-means++&#34;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">))])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">candidate</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">labels_c</span> <span class="o">=</span> <span class="n">candidate</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;kmeans&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">labels_</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sil_c</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">candidate</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&#34;scaler&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">labels_c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">best</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">sil_c</span> <span class="o">&gt;</span> <span class="n">best</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">best</span> <span class="o">=</span> <span class="p">(</span><span class="n">sil_c</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Best by Silhouette:&#34;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">best</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">4</span><span class="p">),</span> <span class="n">best</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span></span></code></pre></div><h3 id="執行結果">執行結果</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">k vs WCSS: [(2, 222.36), (3, 139.82), (4, 114.09), (5, 90.93), (6, 81.54), (7, 72.63)]
+</span></span><span class="line"><span class="cl">k vs Silhouette: [(2, 0.5818), (3, 0.4599), (4, 0.3869), (5, 0.3459), (6, 0.3171), (7, 0.3202)]
+</span></span><span class="line"><span class="cl">Silhouette Score (k=3): 0.4599
+</span></span><span class="line"><span class="cl">Adjusted Rand Index vs species (k=3): 0.6201
+</span></span><span class="line"><span class="cl">MiniBatchKMeans Silhouette (k=3): 0.4557
+</span></span><span class="line"><span class="cl">Best by Silhouette: 0.5818 {&#39;kmeans__n_clusters&#39;: 2, &#39;kmeans__n_init
+</span></span></code></pre></div><h4 id="結果評估">結果評估</h4>
+<ul>
+<li>k 值與 WCSS (Elbow 法)
+<ul>
+<li>WCSS 從 k=2 到 k=7 持續下降，且在 k=3 後下降幅度明顯趨緩 (139.82 → 114.09 → 90.93)</li>
+<li>這符合 Elbow 法的典型訊號：在 k=3 之後邊際效益降低</li>
+</ul>
+</li>
+<li>k 值與 Silhouette Score
+<ul>
+<li>最高分在 k=2 (0.5818)，k=3 則下降至 0.4599，之後隨著 k 增加分數持續降低</li>
+<li>這意味著，若純粹以內部結構 (凝聚度與分離度) 來衡量，k=2 是最緊密且分離度最佳的分群方案</li>
+<li>但 Silhouette 只考慮幾何結構，不代表與實際業務需求或真實標籤完全對應</li>
+</ul>
+</li>
+<li>k=3 的分群表現
+<ul>
+<li>Silhouette Score = 0.4599，屬於中等偏弱的群分離度，叢集邊界可能有交疊</li>
+<li>Adjusted Rand Index (ARI) = 0.6201：與真實 species 標籤有中等對齊程度，表示模型能部分復原真實物種結構，但錯分率仍顯著</li>
+<li>與 MiniBatchKMeans 相比，Silhouette 由 0.4599 降至 0.4557，效能損失不大，但 MiniBatch 在大資料場景下能顯著節省計算時間</li>
+</ul>
+</li>
+<li>參數搜尋結果
+<ul>
+<li>最佳 Silhouette 方案是 k=2, n_init=10 (0.5818)</li>
+<li>這與初步觀察一致，顯示在內部幾何結構下，Iris 資料更適合分成兩群，但這不符合三物種的領域先驗</li>
+</ul>
+</li>
+</ul>
+<h2 id="結語">結語</h2>
+<p>K-Means 在本篇範例中清楚展現了它作為無監督式分群基線的特性: 計算效率高、實作簡單、可快速提供初步的資料結構洞察。透過 Elbow 法與 Silhouette Score 的雙重分析，我們觀察到在 Iris 資料集上，幾何結構最佳的分群數為 k=2，而符合領域知識的 k=3 則在分群品質上略顯不足，顯示資料真實分佈與理想分群假設之間的落差。這種差異提醒我們，分群結果不能僅憑數學指標決定，還需結合業務目標與領域先驗做取捨。</p>
+<p>總結來說，K-Means 是值得在專案初期引入的分群起點模型，但應搭配多種指標與方法驗證，並在必要時替換為更契合資料幾何與業務需求的分群策略。</p>
+
+    </div>
+    <div class="post-tags">
+      <a class="tag" href="/tags/2025-ithome-ironman/">#2025 iThome Ironman</a>
+    </div>
+  </article>
+  <nav class="post-nav">
+    <div class="post-nav-side">
+      <a href="/posts/ithome_ironman/2025_1/day15_random-forest/">
+        <span class="post-nav-label">← 較舊的文章</span>
+        <span class="post-nav-title">(Day 15) 隨機森林 (Random Forest)</span>
+      </a>
+    </div>
+    <div class="post-nav-side post-nav-right">
+      <a href="/posts/ithome_ironman/2025_1/day17_deep-learning-introduction/">
+        <span class="post-nav-label">較新的文章 →</span>
+        <span class="post-nav-title">(Day 17) 淺談深度學習 (Deep Learning)</span>
+      </a>
+    </div>
+  </nav>
+  
+<section class="comments">
+  <h2 class="section-label">留言</h2>
+  <div class="giscus-comments"></div>
+</section>
+<script>
+  (function () {
+    
+    function giscusTheme() {
+      const t = document.documentElement.dataset.theme;
+      if (t === "dark") return "dark";
+      if (t === "light") return "light";
+      return "preferred_color_scheme"; 
+    }
+
+    
+    const s = document.createElement("script");
+    s.src = "https://giscus.app/client.js";
+    s.async = true;
+    s.crossOrigin = "anonymous";
+    s.setAttribute("data-repo", "twcch\/twcch.github.io");
+    s.setAttribute("data-repo-id", "R_kgDONCl-Aw");
+    s.setAttribute("data-category", "Announcements");
+    s.setAttribute("data-category-id", "DIC_kwDONCl-A84C_B03");
+    s.setAttribute("data-mapping", "pathname");
+    s.setAttribute("data-strict", "0");
+    s.setAttribute("data-reactions-enabled", "1");
+    s.setAttribute("data-emit-metadata", "0");
+    s.setAttribute("data-input-position", "bottom");
+    s.setAttribute("data-theme", giscusTheme());
+    s.setAttribute("data-lang", "zh-TW");
+    s.setAttribute("data-loading", "lazy");
+    document.querySelector(".giscus-comments").appendChild(s);
+
+    
+    function syncTheme() {
+      const iframe = document.querySelector("iframe.giscus-frame");
+      if (!iframe) return;
+      iframe.contentWindow.postMessage(
+        { giscus: { setConfig: { theme: giscusTheme() } } },
+        "https://giscus.app"
+      );
+    }
+    new MutationObserver(syncTheme).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+  })();
+</script>
+
+</div>
+
+  </main>
+  <footer class="site-footer">
+  <div class="container footer-inner">
+    
+<ul class="social-list">
+  <li>
+    <a href="https://github.com/twcch" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" title="GitHub">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.62 8.21 11.18.6.11.82-.25.82-.57v-2.2c-3.34.71-4.04-1.58-4.04-1.58-.55-1.36-1.34-1.73-1.34-1.73-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.79 2.81 1.27 3.5.97.11-.76.42-1.27.76-1.56-2.67-.3-5.47-1.3-5.47-5.78 0-1.28.47-2.32 1.24-3.14-.13-.3-.54-1.52.11-3.16 0 0 1.01-.32 3.3 1.2a11.6 11.6 0 0 1 6.01 0c2.29-1.52 3.3-1.2 3.3-1.2.65 1.64.24 2.86.12 3.16.77.82 1.23 1.86 1.23 3.14 0 4.49-2.81 5.48-5.49 5.77.43.36.81 1.08.81 2.18v3.23c0 .32.22.69.83.57A12.01 12.01 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg>
+    </a>
+  </li>
+  <li>
+    <a href="mailto:twcch1218@gmail.com"  aria-label="Email" title="Email">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+    </a>
+  </li>
+</ul>
+<p class="footer-meta">Chih-Chien Hsieh．Since 1993</p>
+  </div>
+</footer>
+
+<script>
+  
+  (function () {
+    var btn = document.querySelector(".theme-toggle");
+    if (btn) {
+      btn.addEventListener("click", function () {
+        var root = document.documentElement;
+        var next = root.dataset.theme === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try { localStorage.setItem("theme", next); } catch (e) {}
+      });
+    }
+
+    
+    var navToggle = document.querySelector(".nav-toggle");
+    var siteNav = document.getElementById("site-nav");
+    if (navToggle && siteNav) {
+      var setNav = function (open) {
+        siteNav.classList.toggle("is-open", open);
+        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      };
+      navToggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        setNav(!siteNav.classList.contains("is-open"));
+      });
+      
+      siteNav.addEventListener("click", function (e) {
+        if (e.target.closest(".nav-link")) setNav(false);
+      });
+      document.addEventListener("click", function (e) {
+        if (!siteNav.contains(e.target) && !navToggle.contains(e.target)) setNav(false);
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") setNav(false);
+      });
+    }
+
+    
+    document.querySelectorAll(".post-content .highlight").forEach(function (block) {
+      var btn = document.createElement("button");
+      btn.className = "copy-btn";
+      btn.type = "button";
+      btn.textContent = "複製";
+      btn.addEventListener("click", function () {
+        var code = block.querySelector("code") || block.querySelector("pre");
+        if (!code) return;
+        navigator.clipboard.writeText(code.innerText).then(function () {
+          btn.textContent = "已複製";
+          setTimeout(function () { btn.textContent = "複製"; }, 1500);
+        });
+      });
+      block.appendChild(btn);
+    });
+  })();
+</script>
+
+</body>
+</html>

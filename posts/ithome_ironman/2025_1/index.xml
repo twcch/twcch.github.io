@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>2025 iThome Ironman: 30 天入門常見的機器學習演算法 on Chih-Chien&#39;s Blog</title>
+		<link>http://localhost:1313/posts/ithome_ironman/2025_1/</link>
+		<description>Recent content in 2025 iThome Ironman: 30 天入門常見的機器學習演算法 on Chih-Chien&#39;s Blog</description>
+		<generator>Hugo</generator>
+		<language>zh-tw</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 30 Aug 2025 00:00:00 +0800</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/posts/ithome_ironman/2025_1/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>(Day 30) 系列結尾</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day30_series-conclusion/</link>
+				<pubDate>Sat, 30 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day30_series-conclusion/</guid>
+				<description>&lt;p&gt;終於來到這個系列的最後一天。老實說，如果要我替這 30 天打個分數，我大概只會給自己一個勉強及格。原因很簡單: 這個系列從一開始就有宏大的規劃與期待，但在實際執行的過程中，遭遇了不少現實挑戰，也暴露了自己在知識深度、寫作規劃與時間管理上的不足。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 29) 注意力機制 (Attention Mechanism)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day29_attention-mechanism/</link>
+				<pubDate>Fri, 29 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day29_attention-mechanism/</guid>
+				<description>&lt;p&gt;在前一天，我們介紹了 Seq2Seq 架構 (Encoder-Decoder)，它將輸入序列壓縮成一個固定維度的上下文向量 (Context Vector)，再交由解碼器 (Decoder) 逐步生成輸出。這種方法為機器翻譯、摘要生成等任務帶來了突破，但它也有一個致命的缺陷——瓶頸效應 (Bottleneck Problem)。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 28) Seq2Seq (Encoder Decoder with RNN, LSTM, GRU)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day28_seq2seq/</link>
+				<pubDate>Thu, 28 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day28_seq2seq/</guid>
+				<description>&lt;p&gt;在前幾天的文章中，我們依序介紹了 RNN、LSTM、GRU，並討論它們如何建模序列資料。這些模型能夠捕捉序列中的上下文關係，並緩解傳統 RNN 的梯度消失問題。然而，若我們想要處理更複雜的任務——例如機器翻譯 (Machine Translation)，僅僅依靠單向 RNN 或 LSTM 並不夠。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 27) 閘控循環單元 (Gated Recurrent Unit)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day27_gated-recurrent-unit/</link>
+				<pubDate>Wed, 27 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day27_gated-recurrent-unit/</guid>
+				<description>&lt;p&gt;在前兩篇文章，我們分別介紹了 RNN (Recurrent Neural Network) 與 LSTM (Long Short-Term Memory)。RNN 為序列建模提供了基礎架構，但受限於梯度消失與爆炸問題，難以捕捉長距離依賴；LSTM 則透過引入 記憶單元 (Cell State) 與 門控機制 (Gating Mechanism)，成功緩解了這一問題。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 26) 長短期記憶網路 (Long Short-Term Memory)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day26_long-short-term-memory/</link>
+				<pubDate>Tue, 26 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day26_long-short-term-memory/</guid>
+				<description>&lt;p&gt;在前一篇，我們介紹了循環神經網路 (RNN)，並指出了它在處理序列資料時的強大之處：透過「隱藏狀態」將前後資訊連結起來。然而，我們同時也看到了 RNN 的最大瓶頸——梯度消失與梯度爆炸，使得它在長距離依賴 (long-term dependency) 的學習上表現不佳。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 25) 循環神經網路 (Recurrent Neural Network)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day25_recurrent-neural-network/</link>
+				<pubDate>Mon, 25 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day25_recurrent-neural-network/</guid>
+				<description>&lt;p&gt;在前面幾天，我們介紹了全連接神經網路 (FCNN) 與卷積神經網路 (CNN)。這些架構在處理結構化數據或影像資料上非常成功，但若應用到「序列資料」時就顯得不足。例如:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 24) Adam 優化器 (Adaptive Moment Estimation)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day24_adam-optimizer/</link>
+				<pubDate>Sun, 24 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day24_adam-optimizer/</guid>
+				<description>&lt;p&gt;在前一天，我們整理了深度學習中常見的優化方法，從最基本的隨機梯度下降 (SGD)，到 Momentum、RMSProp、Adagrad 等。今天我們要深入介紹其中最具代表性、也是實務中最常見的優化方法之一——Adam (Adaptive Moment Estimation)。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 23) 深度學習中的優化方法 (Optimization in Deep Learning)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day23_optimization-in-deep-learning/</link>
+				<pubDate>Sat, 23 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day23_optimization-in-deep-learning/</guid>
+				<description>&lt;p&gt;在前一篇，我們談到了深度學習中的正規化與正則化，重點在於如何避免過擬合並保持訓練穩定。然而，光是解決過擬合還不夠：在龐大的神經網路裡，我們還得面對另一個關鍵問題——如何有效率地找到參數的最佳解。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day22_regularization-in-deep-learning/</link>
+				<pubDate>Fri, 22 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day22_regularization-in-deep-learning/</guid>
+				<description>&lt;p&gt;在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 21) 卷積神經網絡 (Convolutional Neural Network)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day21_convolutional-neural-network/</link>
+				<pubDate>Thu, 21 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day21_convolutional-neural-network/</guid>
+				<description>&lt;p&gt;在初步暸解全連接神經網絡 (Fully Connected Neural Network) 後，接下來必須介紹的經典架構就是卷積神經網絡 (Convolutional Neural Network; CNN)。卷積神經網絡可以說是深度學習的代表性架構之一，特別是在電腦視覺 (Computer Vision) 領域幾乎無處不在。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 20) 激活函數 (Activation Function)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day20_activation-function/</link>
+				<pubDate>Wed, 20 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day20_activation-function/</guid>
+				<description>&lt;p&gt;承接昨天的神經元 (Neuron)，神經元的輸出是線性輸出，若僅停留在這個階段，輸出仍然是線性函數，即便我們把很多神經元堆疊在一起，整體模型仍然等效於一個線性轉換，無法捕捉到真實世界中複雜的非線性關係為了解決這個問題，我們需要引入激活函數 (Activation Function) 可以讓模型學習到更複雜的模式 (非線性)，所以激活函數必須是非線性的，這樣才能跟神經元做搭配。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 19) 神經元 (Neuron)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day19_neuron/</link>
+				<pubDate>Tue, 19 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day19_neuron/</guid>
+				<description>&lt;p&gt;前一篇我們先介紹了全連接神經網絡 (Fully Connected Neural Network)，相信大家還是不太清楚這是什麼，接下來會用幾天的篇幅一一介紹相關的專有名詞，若要理解神經網路，必須先從最小的組成單位 —— 神經元 (Neuron) 開始。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 18) 全連接神經網絡 (Fully Connected Neural Network)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day18_fully-connected-neural-network/</link>
+				<pubDate>Mon, 18 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day18_fully-connected-neural-network/</guid>
+				<description>&lt;p&gt;在進入深度學習的第一步，必須要先認識最基礎的深度學習架構，這個架構稱為:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;全連接神經網路 (Fully Connected Neural Network; FCNN)&lt;/li&gt;&#xA;&lt;li&gt;多層感知機 (Multi-Layer Perceptron; MLP)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;這兩個都是指同一個東西，這個架構也是所有深度學習架構的基石，CNN、RNN、Transformer 都可以看作是在 FCNN 上加入特殊結構與限制後的延伸&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 17) 淺談深度學習 (Deep Learning)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day17_deep-learning-introduction/</link>
+				<pubDate>Sun, 17 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day17_deep-learning-introduction/</guid>
+				<description>&lt;p&gt;我們機器學習的部分還有 XGBoost、PCA、OneClass SVM 都還沒有談，只是篇幅限制，原本規劃深度學習大概就要花 15 篇左右的內容來談談，如果後續有篇幅我再補充。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 16) K-Means</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day16_k-means/</link>
+				<pubDate>Sat, 16 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day16_k-means/</guid>
+				<description>&lt;p&gt;今天本來要說極限梯度提升數 (XGBoost)，但是我發現後面的篇幅可能快不夠了，今天開始的內容會調整成，無監督式學習 → 深度學習 → 如果有時間再回來補充 One-Class SVM 跟 XGBoost。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 15) 隨機森林 (Random Forest)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day15_random-forest/</link>
+				<pubDate>Fri, 15 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day15_random-forest/</guid>
+				<description>&lt;p&gt;隨機森林是以「多棵弱學習器 (決策樹)」為基底的集成學習 (Ensemble) 方法，透過資料抽樣 (Bagging) 與特徵隨機子抽樣 (Random Subspace)  降低單棵樹的方差與不穩定性。直覺上，它像是一群專家各自投票: 每位專家 (樹) 看見的資料與特徵都不完全相同，最後以多數決 (分類) 或平均 (回歸) 給出更穩健的預測。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 14) 決策樹 (Decision Tree)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day14_decision-tree/</link>
+				<pubDate>Thu, 14 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day14_decision-tree/</guid>
+				<description>&lt;p&gt;Decision Tree 是一種基於條件分支的監督式學習模型，可用於分類與回歸任務。它透過一連串的「是/否」判斷，將資料不斷切分成更純淨的子集，最終形成一個由節點 (Nodes) 與邊 (Edges) 組成的樹狀結構。直覺上，你可以將它想成一連串的決策問句:  「乘客的性別是女性嗎？」 → 是 → 「年齡是否小於 12 歲？」 → 是 → 存活機率高。其最大特色是 可解釋性高，每個決策規則都能清楚對應到特徵與閾值，便於與非技術背景的利害關係人溝通。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 13) 迴歸任務驗證指標</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day13_regression-metrics/</link>
+				<pubDate>Wed, 13 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day13_regression-metrics/</guid>
+				<description>&lt;p&gt;分類任務有混淆矩陣作為指標的核心基礎，迴歸任務則建立在誤差分佈 (Error Distribution) 之上。所有迴歸指標，都是在真實值與預測值的差異上進行數學運算。迴歸的評估相對分類簡單，沒有多種 TP、FP 的組合，但每個指標關注的面向、對異常值的敏感度、在商業決策上的意義卻各有不同。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 12) 多元分類任務驗證指標</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day12_multiclass-classification-metrics/</link>
+				<pubDate>Tue, 12 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day12_multiclass-classification-metrics/</guid>
+				<description>&lt;p&gt;多元分類任務驗證指標就只是從二元分類任務驗證指標延伸而來，核心概念一樣是二元分類任務驗證指標，而兩者只是在計算內容上有些許差異，所以指標仍然是 Accuracy、Recall、F1-score 等，所以請讀者先將二元分類任務驗證指標熟練後再來看。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 11) 二元分類任務驗證指標</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day11_binary-classification-metrics/</link>
+				<pubDate>Mon, 11 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day11_binary-classification-metrics/</guid>
+				<description>&lt;p&gt;今天要介紹的是常見的分類任務驗證指標，會以二元分類問題為例，因為多元分類也是用相同的指標，只是計算方式會有所不同而已，預計會用 2-3 天的篇幅介紹完，分類與迴歸任務的驗證指標；先給各位讀者一個正確的觀念，選指標時必須回到業務背景與資料特性，不要迷信某個數值越高越好，真正有價值的模型評估，是能在技術表現與業務需求之間找到平衡。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 10) 支援向量機 (Support Vector Machine)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day10_support-vector-machine/</link>
+				<pubDate>Sun, 10 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day10_support-vector-machine/</guid>
+				<description>&lt;p&gt;終於來到 SVM，這也是本系列介紹 Machine Learning 中分類演算法的最後一個，當然在機器學習中還有很多的監督式分類演算法，我個人認為相對沒我介紹的這幾個經典，就留給讀者自行學習。從明天開始到進入樹模型之前，我會補充一下，模型 Validation Index 的內容 (用來衡量模型結果好不好)，因為前面飆的有點快，後來有發現這部分也很重要，預計會花 2 ~ 3 天的篇幅來介紹。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 9) 樸素貝氏分類器 (Naive Bayes Classifier)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day9_naive-bayes-classifier/</link>
+				<pubDate>Sat, 09 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day9_naive-bayes-classifier/</guid>
+				<description>&lt;p&gt;前幾天的討論中，我們已經探討了迴歸分析、邏輯迴歸，以及最近兩天介紹的 K-Nearest Neighbors (KNN)。今天要討論的是另一種基礎且直覺性極強的分類演算法: 樸素貝氏分類器 (Naive Bayes Classifier)。儘管樸素貝氏分類器的基本原理非常簡單，甚至經常被視為基礎模型，但在實務應用中，它仍然是許多場合的首選，尤其是在文本分類領域，例如垃圾郵件分類與情感分析。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 8) K-近鄰 (K-Nearest Neighbors)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day8_k-nearest-neighbors/</link>
+				<pubDate>Fri, 08 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day8_k-nearest-neighbors/</guid>
+				<description>&lt;p&gt;K-近鄰 (K-Nearest Neighbors; KNN) 是一種很直學的機器學習演算法。它沒有模型參數、沒有訓練過程，卻可以在某些任務上有不錯的效果。它的核心理念只有一句話: 「你是誰，由你周圍最像你的人決定。」&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 7) 回顧迴歸：從線性邏輯到學習本質</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day7_regression-review/</link>
+				<pubDate>Thu, 07 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day7_regression-review/</guid>
+				<description>&lt;p&gt;前面 5 天我們聚焦於「回歸系列」模型: 線性迴歸 (Linear Regression)、多項式迴歸 (Polynomial Regression)、正則化迴歸 (Lasso / Ridge / ElasticNet Regression) 以及邏輯迴歸 (Logistic Regression)。雖然它們名稱上都掛著「Regression」，實則涵蓋了連續值預測與分類任務兩大主題。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 6) 邏輯迴歸 (多項式 &#43; 正規化)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day6_logistic-regression-polynomial-regularization/</link>
+				<pubDate>Wed, 06 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day6_logistic-regression-polynomial-regularization/</guid>
+				<description>&lt;p&gt;在上一篇中，我們深入介紹了邏輯迴歸的模型邏輯、損失函數與分類行為。這篇則要進一步延伸這個經典模型，回答一個關鍵問題: 邏輯迴歸能否結合多項式特徵與正規化機制，來對抗非線性與過擬合問題?&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 5) 邏輯迴歸 (Logistic Regression)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day5_logistic-regression/</link>
+				<pubDate>Tue, 05 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day5_logistic-regression/</guid>
+				<description>&lt;p&gt;邏輯迴歸 (Logistic Regression) 是一種常見的分類模型，主要用於預測二元分類或多元分類，有別於先前的線性迴歸是用來預測無邊界的連數據值，而邏輯迴歸間單來說就是預測有邊界的不連續數值，如 [0, 1], [1, 2, 3]。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 4) 正規化迴歸 (Regularization Regression)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day4_regularization-regression/</link>
+				<pubDate>Mon, 04 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day4_regularization-regression/</guid>
+				<description>&lt;p&gt;延續昨日的多項式迴歸中，我們觀察到一個現象: 雖然二次特徵提升了模型的表現，但同時也引入過擬合 (Overfitting) 風險。這是因為當特徵數量暴增，模型就會變得過於「貪婪」，試圖將每個資料點都擬合得極好，結果反而喪失了在新資料上的泛化 (Generalization) 能力。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 3) 多項式迴歸 (Polynomial Regression)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day3_polynomial-regression/</link>
+				<pubDate>Sun, 03 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day3_polynomial-regression/</guid>
+				<description>&lt;p&gt;昨天介紹了線性迴歸 (Linear Regression)，它適合用來處理特徵與目標之間為線性關係的情境。然而，真實世界的資料往往並非純粹線性，而是呈現複雜的非線性關係，例如曲線、拋物線、甚至更複雜的波動趨勢。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 2) 線性迴歸 (Linear Regression)</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day2_linear-regression/</link>
+				<pubDate>Sat, 02 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day2_linear-regression/</guid>
+				<description>&lt;p&gt;線性迴歸 (Linear Regression) 是統計學中的一種預測方法，主要分為簡單線性迴歸 (Simple Linear Regression) 與多元線性迴歸 (Multiple Linear Regression)，又稱複迴歸，以及其他變形的迴歸等，但在線性迴歸中，通常會有 1~N 個自變數 (Independent Variable) X，也可以稱作特徵 (Feature)；和 1 個因變數 (Dependent Variable) Y，也可以稱作目標 (Target)。而最終目的就是找出一條最佳迴歸線，來擬合這些數據點，便可以用來預測未來的數據點。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>(Day 1) 介紹與準備</title>
+				<link>http://localhost:1313/posts/ithome_ironman/2025_1/day1_introduction-and-preparation/</link>
+				<pubDate>Fri, 01 Aug 2025 00:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/ithome_ironman/2025_1/day1_introduction-and-preparation/</guid>
+				<description>&lt;p&gt;在學習機器學習 (Machine Learning) 的過程中，可能會陷入兩種極端，一種是只會調用套件 (套模)，模型背後的機制一知半解，遇到問題只能「換模型試試看」，或者是過度陷入數學細節，花大量時間推導公式，卻無法轉化為實際應用與模型選擇能力。&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

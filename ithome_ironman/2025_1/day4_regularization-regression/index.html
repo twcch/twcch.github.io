@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-tw" data-theme="light">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <script>
   (function () {
     try {
@@ -18,17 +18,17 @@
 <meta name="theme-color" content="#ffffff">
 <title>(Day 4) 正規化迴歸 (Regularization Regression) · Chih-Chien&#39;s Blog</title>
 <meta name="description" content="延續昨日的多項式迴歸中，我們觀察到一個現象: 雖然二次特徵提升了模型的表現，但同時也引入過擬合 (Overfitting) 風險。這是因為當特徵數量暴增，模型就會變得過於「貪婪」，試圖將每個資料點都擬合得極好，結果反而喪失了在新資料上的泛化 (Generalization) 能力。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="謝志謙, Chih-Chien Hsieh, twcch, cch, 部落格, 技術, 筆記">
-<link rel="canonical" href="https://twcch.github.io/ithome_ironman/2025_1/day4_regularization-regression/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
+<link rel="canonical" href="http://localhost:1313/ithome_ironman/2025_1/day4_regularization-regression/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
 <meta property="og:title" content="(Day 4) 正規化迴歸 (Regularization Regression)">
 <meta property="og:description" content="延續昨日的多項式迴歸中，我們觀察到一個現象: 雖然二次特徵提升了模型的表現，但同時也引入過擬合 (Overfitting) 風險。這是因為當特徵數量暴增，模型就會變得過於「貪婪」，試圖將每個資料點都擬合得極好，結果反而喪失了在新資料上的泛化 (Generalization) 能力。">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://twcch.github.io/ithome_ironman/2025_1/day4_regularization-regression/">
+<meta property="og:url" content="http://localhost:1313/ithome_ironman/2025_1/day4_regularization-regression/">
 <meta name="twitter:card" content="summary"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/favicon.ico"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="/css/main.min.11c3736beb98bfae0608e51b66b0651ca4caadc4f01fd0f7e15eabab5b80e136.css" integrity="sha256-EcNza&#43;uYv64GCOUbZrBlHKTKrcTwH9D34V6rq1uA4TY=">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous"><meta name="generator" content="Hugo 0.163.1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 
 </head>
 <body>
