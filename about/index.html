@@ -16,13 +16,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#ffffff">
-<title>(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning) · Chih-Chien&#39;s Blog</title>
-<meta name="description" content="面對深度模型動輒上百萬參數的過擬合，介紹深度學習中的各種正規化與正則化手段。"><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="謝志謙, Chih-Chien Hsieh, twcch, cch, 部落格, 技術, 筆記">
-<link rel="canonical" href="https://twcch.github.io/ithome_ironman/2025_1/day22_regularization-in-deep-learning/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
-<meta property="og:title" content="(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning)">
-<meta property="og:description" content="面對深度模型動輒上百萬參數的過擬合，介紹深度學習中的各種正規化與正則化手段。">
+<title>Chih-Chien Hsieh · Chih-Chien&#39;s Blog</title>
+<meta name="description" content="
+I work on time series, spatiotemporal, and multimodal AI, specializing in Time Series Forecasting, Natural Language Processing, and Large Language Models.
+Current Position Research Assistant, Data Science and Computational Thinking Laboratory, Department of Engineering Science, National Cheng Kung University, Taiwan | 2025.09—Present Education Ph.D. Student, Computer Science and Its Applications Group, Department of Engineering Science, National Cheng Kung University, Taiwan | 2025.09—Present Technical Skills Machine Learning, Deep Learning, Large Language Model Time Series Forcasting, Nature Language Processing Backend: Java/Spring/Maven, Python/PyTorch/TensorFlow/Django/Flask/FastAPI Fontend: HTML/CSS/Bootstrap, JavaScript/VueJS Database: Neo4j, PostgreSQL, MySQL, SQLite, MongoDB, Redis Other: Docker, Git/Github, Google Cloud Platform, Cloudflare, Linux Certifications Project Management Professional (PMP) Fellow, Life Management Institute (FLMI) Competitions 2026 iThome Ironman (AI &amp; Data) 2025 AI Cup — E.SUN AI Open Challenge 2025 FinTech Taipei — AI-Powered Automated ESG Document Screening System 2025 iThome Ironman (Software Development) — Mastering Data Structures and Algorithms 2025 iThome Ironman (AI &amp; Data) — 30-Day Introduction to Common Machine Learning Algorithms Research Feng-Jui Hsu, Chih-Chien Hsieh, Shih-Chieh Lin, Chen-En Lan, and Mu-Yen Chen. “A Fair Benchmark of Deep Models for Non-Stationary Stock Price Forecasting: RevTransLSTM-AR as a Complexity Probe.” Applied Soft Computing, 2026. JCR Q1 · IF: 7.8. Lecturer Teaching Assistant Links GitHub：@twcch Email：twcch1218@gmail.com "><meta name="author" content="Chih-Chien Hsieh"><meta name="keywords" content="謝志謙, Chih-Chien Hsieh, twcch, cch, 部落格, 技術, 筆記">
+<link rel="canonical" href="https://twcch.github.io/about/"><meta property="og:site_name" content="Chih-Chien&#39;s Blog">
+<meta property="og:title" content="Chih-Chien Hsieh">
+<meta property="og:description" content="
+I work on time series, spatiotemporal, and multimodal AI, specializing in Time Series Forecasting, Natural Language Processing, and Large Language Models.
+Current Position Research Assistant, Data Science and Computational Thinking Laboratory, Department of Engineering Science, National Cheng Kung University, Taiwan | 2025.09—Present Education Ph.D. Student, Computer Science and Its Applications Group, Department of Engineering Science, National Cheng Kung University, Taiwan | 2025.09—Present Technical Skills Machine Learning, Deep Learning, Large Language Model Time Series Forcasting, Nature Language Processing Backend: Java/Spring/Maven, Python/PyTorch/TensorFlow/Django/Flask/FastAPI Fontend: HTML/CSS/Bootstrap, JavaScript/VueJS Database: Neo4j, PostgreSQL, MySQL, SQLite, MongoDB, Redis Other: Docker, Git/Github, Google Cloud Platform, Cloudflare, Linux Certifications Project Management Professional (PMP) Fellow, Life Management Institute (FLMI) Competitions 2026 iThome Ironman (AI &amp; Data) 2025 AI Cup — E.SUN AI Open Challenge 2025 FinTech Taipei — AI-Powered Automated ESG Document Screening System 2025 iThome Ironman (Software Development) — Mastering Data Structures and Algorithms 2025 iThome Ironman (AI &amp; Data) — 30-Day Introduction to Common Machine Learning Algorithms Research Feng-Jui Hsu, Chih-Chien Hsieh, Shih-Chieh Lin, Chen-En Lan, and Mu-Yen Chen. “A Fair Benchmark of Deep Models for Non-Stationary Stock Price Forecasting: RevTransLSTM-AR as a Complexity Probe.” Applied Soft Computing, 2026. JCR Q1 · IF: 7.8. Lecturer Teaching Assistant Links GitHub：@twcch Email：twcch1218@gmail.com ">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://twcch.github.io/ithome_ironman/2025_1/day22_regularization-in-deep-learning/">
+<meta property="og:url" content="https://twcch.github.io/about/">
 <meta name="twitter:card" content="summary"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/favicon.ico"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,73 +71,53 @@
 <div class="container-narrow">
   <article class="post">
     <header class="post-header">
-      <h1 class="post-title">(Day 22) 深度學習中的正規化與正則化 (Regularization in Deep Learning)</h1>
+      <h1 class="post-title">Chih-Chien Hsieh</h1>
     </header>
 
     <div class="post-content prose">
-      <p>在前幾天的文章裡，我們已經從線性迴歸、邏輯迴歸一路走到 CNN (卷積神經網路)，逐步體驗了機器學習與深度學習的不同。到了深度學習階段，模型的複雜度往往大幅增加，參數數量動輒上百萬甚至上億，這也帶來了一個非常嚴重的問題: 過擬合 (Overfitting)。</p>
-<p>今天我們要談的主題「正規化 (Normalization) 與正則化 (Regularization)」，就是專門為了解決這類問題而設計的工具。這兩個詞在中文裡常常被混淆，但在深度學習中有明確的區分:</p>
+      <p><img src="https://avatars.githubusercontent.com/u/24428408?v=4" alt="avatar"></p>
+<p>I work on time series, spatiotemporal, and multimodal AI, specializing in Time Series Forecasting, Natural Language Processing, and Large Language Models.</p>
+<h2 id="current-position">Current Position</h2>
 <ul>
-<li>正規化 (Normalization): 處理資料或中間層輸出的「分布」，讓訓練更穩定。</li>
-<li>正則化 (Regularization): 在模型學習過程中「限制參數自由度」，避免過度擬合。</li>
+<li><strong>Research Assistant</strong>, Data Science and Computational Thinking Laboratory, Department of Engineering Science, National Cheng Kung University, Taiwan | 2025.09—Present</li>
 </ul>
-<p>可以把它們理解成:</p>
+<h2 id="education">Education</h2>
 <ul>
-<li>正規化是「讓訓練跑得順暢」</li>
-<li>正則化是「讓模型不要學壞」</li>
+<li><strong>Ph.D. Student</strong>, Computer Science and Its Applications Group, Department of Engineering Science, National Cheng Kung University, Taiwan | 2025.09—Present</li>
 </ul>
-<h2 id="為什麼需要正規化與正則化">為什麼需要正規化與正則化?</h2>
-<p>深度學習的挑戰主要來自於以下幾點:</p>
-<ol>
-<li>參數數量龐大
+<h2 id="technical-skills">Technical Skills</h2>
 <ul>
-<li>FCNN、CNN、RNN 等模型的參數動輒上百萬，模型表達能力非常強。這雖然能學習複雜模式，但也極容易記住「訓練資料」而不是「一般化規律」。</li>
+<li>Machine Learning, Deep Learning, Large Language Model</li>
+<li>Time Series Forcasting, Nature Language Processing</li>
+<li>Backend: Java/Spring/Maven, Python/PyTorch/TensorFlow/Django/Flask/FastAPI</li>
+<li>Fontend: HTML/CSS/Bootstrap, JavaScript/VueJS</li>
+<li>Database: Neo4j, PostgreSQL, MySQL, SQLite, MongoDB, Redis</li>
+<li>Other: Docker, Git/Github, Google Cloud Platform, Cloudflare, Linux</li>
 </ul>
-</li>
-<li>梯度傳遞問題
+<h2 id="certifications">Certifications</h2>
 <ul>
-<li>深層網路容易遇到梯度消失或爆炸，導致學習不穩定。</li>
-<li>即便是設計良好的激活函數 (如 ReLU)，也可能因資料分布不均而造成某些神經元失效。</li>
+<li>Project Management Professional (PMP)</li>
+<li>Fellow, Life Management Institute (FLMI)</li>
 </ul>
-</li>
-<li>資料有限
+<h2 id="competitions">Competitions</h2>
 <ul>
-<li>真實世界中，資料集往往有限，無法支撐一個龐大模型完全「正確」學習。若沒有適當限制，模型就會死記硬背訓練資料，導致測試集表現不佳。</li>
+<li>2026 iThome Ironman (AI &amp; Data)</li>
+<li>2025 AI Cup — E.SUN AI Open Challenge</li>
+<li>2025 FinTech Taipei — AI-Powered Automated ESG Document Screening System</li>
+<li>2025 iThome Ironman (Software Development) — <a href="../ithome_ironman/2025_2/">Mastering Data Structures and Algorithms</a></li>
+<li>2025 iThome Ironman (AI &amp; Data) — <a href="../ithome_ironman/2025_1/">30-Day Introduction to Common Machine Learning Algorithms</a></li>
 </ul>
-</li>
-</ol>
-<p>為了應對這些問題，正規化與正則化技術被廣泛應用在深度學習的訓練流程中。</p>
-<h3 id="正規化-normalization">正規化 (Normalization)</h3>
-<p>正規化的核心目標是: 讓輸入資料或中間層輸出的數值保持在合理範圍內，以便模型更容易學習。在模型訓練前，我們通常會對輸入資料進行縮放，例如:</p>
+<h2 id="research">Research</h2>
 <ul>
-<li>Min-Max Scaling</li>
-<li>Z-score Standardization</li>
+<li>Feng-Jui Hsu, <strong>Chih-Chien Hsieh</strong>, Shih-Chieh Lin, Chen-En Lan, and Mu-Yen Chen. “<a href="https://doi.org/10.1016/j.asoc.2026.116006">A Fair Benchmark of Deep Models for Non-Stationary Stock Price Forecasting: RevTransLSTM-AR as a Complexity Probe</a>.” <em>Applied Soft Computing</em>, 2026. <strong>JCR Q1 · IF: 7.8</strong>.</li>
 </ul>
-<h3 id="正則化-regularization">正則化 (Regularization)</h3>
-<p>正則化的核心目標是：避免模型過擬合，提升泛化能力。</p>
+<h2 id="lecturer">Lecturer</h2>
+<h2 id="teaching-assistant">Teaching Assistant</h2>
+<h2 id="links">Links</h2>
 <ul>
-<li>L1 與 L2 正則化</li>
-<li>Dropout</li>
+<li>GitHub：<a href="https://github.com/twcch">@twcch</a></li>
+<li>Email：<a href="mailto:twcch1218@gmail.com">twcch1218@gmail.com</a></li>
 </ul>
-<h2 id="正規化與正則化的互補關係">正規化與正則化的互補關係</h2>
-<p>雖然名稱相似，但正規化與正則化針對的問題不同:</p>
-<ul>
-<li>正規化 → 解決訓練穩定性、加速收斂</li>
-<li>正則化 → 解決過擬合、提升泛化</li>
-</ul>
-<p>在實務上，它們通常是 同時使用 的。例如:</p>
-<ul>
-<li>CNN: 資料正規化 + Batch Normalization + Dropout + Weight Decay</li>
-<li>RNN/Transformer: Layer Normalization + Early Stopping + Data Augmentation</li>
-</ul>
-<h2 id="結語">結語</h2>
-<p>深度學習之所以能夠在近十年迅速崛起，不只是因為 GPU 算力提升或資料量增大，還有賴於一系列 正規化與正則化技術 的發展，讓深度模型可以被穩定地訓練並具備良好的泛化能力。</p>
-<p>可以這樣理解:</p>
-<ul>
-<li>沒有正規化，模型可能訓練不起來</li>
-<li>沒有正則化，模型可能學壞掉</li>
-</ul>
-<p>在進入 RNN、LSTM、Transformer 之前，理解這些基礎的訓練技巧，能讓我們更清楚地看到深度學習從「能跑」到「能用」的過程。</p>
 
     </div>
   </article>
